@@ -1,5 +1,5 @@
 <template>
-<div class="container">
+<div class="contain">
         
         <aside class="left">
             <div class="head_portrait">
@@ -27,13 +27,8 @@
             </div>
         </aside>
 
-        <main class="right">
+        <div class="right">
             <div class="right_head">
-                <div class="logout">
-                    <div class="logout_text">
-                        <p>登出</p>
-                    </div>
-                </div>
                 <div class="right_head_text">
                     <h2>個人資料修改</h2>
                 </div>
@@ -54,9 +49,33 @@
                             <li>修改密碼</li>
                         </ul>
                     </div>
-                    <div class="person_right"></div>
+                    <div class="person_right">
+                        <p>XXX</p>
+                        <input type="text">
+                        <br>
+                        <input type="text">
+                        <br>
+                        <label for=""><input type="radio">男</label>
+                        <label for=""><input type="radio">女</label>
+                        <label for=""><input type="radio">其他</label>
+                        <br>
+                        <input type="text">
+                        <br>
+                        <input type="text">
+                        <br>
+                        <p>fruitee</p>
+                        <input type="password">
+                        <br>
+                        <input type="password">
+                        <div class="submit_button">
+                            <div class="correct">
+                                <p>確定</p>
+                            </div>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
-        </main>
+        </div>
     </div>
 </template>

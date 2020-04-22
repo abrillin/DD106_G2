@@ -1,6 +1,13 @@
 import $ from "jquery";
 import * as THREE from "three";
-import {gsap, TweenMax, Power1, Power3, TimelineMax} from "gsap";
+import {
+    gsap,
+    TweenMax,
+    Power1,
+    Power3,
+    TimelineMax,
+    TimeLite
+} from "gsap";
 import MotionPathPlugin from "gsap/MotionPathPlugin";
 
 import cloudWhite from "@/assets/cloudWhite.png";
@@ -32,12 +39,13 @@ import waterpearline01 from "@/assets/waterpearline.png";
 import fruitbox01 from "@/assets/fruitbox.png";
 import fruitboxline01 from "@/assets/fruitboxline.png";
 
-$(function() {
-    $("div.tab").on("click", function() {
-
-
+$(function () {
+    $("div.tab").on("click", function () {
         /* 將頁籤列表移除所有 -on，再將指定的加上 -on */
-        $(this).closest("#knowledge_container").find("div.tab").removeClass("-on");
+        $(this)
+            .closest("#knowledge_container")
+            .find("div.tab")
+            .removeClass("-on");
         $(this).addClass("-on");
 
         /* 找到對應的頁籤內容，加上 -on 來顯示 */
@@ -46,22 +54,16 @@ $(function() {
     });
 });
 
-$(function() {
-
+$(function () {
     // hamburger icon 的切換
-    $("div.hamburger").on("click", function() {
+    $("div.hamburger").on("click", function () {
         $(this).toggleClass("is-active");
     });
-
 });
 gsap.registerPlugin(MotionPathPlugin);
-let renderer, scene, camera
-
+let renderer, scene, camera;
 
 function init() {
-
-
-
     scene = new THREE.Scene();
 
     // 相機設定與 OrbitControls
@@ -72,12 +74,8 @@ function init() {
         3000
     );
 
-
     camera.position.set(0, 800, 1500);
     camera.lookAt(0, 800, 0);
-
-
-
 
     // 渲染器設定
     renderer = new THREE.WebGLRenderer();
@@ -94,8 +92,6 @@ function init() {
     var texturecloud7 = new THREE.TextureLoader().load(cloudsmoke);
     var materialcloudlight = new THREE.TextureLoader().load(cloudlight01);
     var materialcloudlight2 = new THREE.TextureLoader().load(cloudlight02);
-
-    console.log(texturecloud1);
 
     var geometry = new THREE.PlaneGeometry(300, 160);
     var materialcloud1 = new THREE.MeshBasicMaterial({
@@ -166,88 +162,139 @@ function init() {
         blendDst: THREE.OneMinusSrcAlphaFactor,
     });
 
-
     // instantiate a loader
     let cloud1 = new THREE.Mesh(geometry, materialcloud1);
     cloud1.position.set(180, 680, 1200);
     scene.add(cloud1);
 
-    let cloud2 = new THREE.Mesh(new THREE.PlaneGeometry(240, 140), materialcloud2);
+    let cloud2 = new THREE.Mesh(
+        new THREE.PlaneGeometry(240, 140),
+        materialcloud2
+    );
     cloud2.position.set(280, 750, -1100);
     scene.add(cloud2);
 
-    let cloud3 = new THREE.Mesh(new THREE.PlaneGeometry(240, 140), materialcloud6);
+    let cloud3 = new THREE.Mesh(
+        new THREE.PlaneGeometry(240, 140),
+        materialcloud6
+    );
     cloud3.position.set(-950, 680, -1100);
     scene.add(cloud3);
 
-
-    let cloud4 = new THREE.Mesh(new THREE.PlaneGeometry(240, 140), materialcloud1);
+    let cloud4 = new THREE.Mesh(
+        new THREE.PlaneGeometry(240, 140),
+        materialcloud1
+    );
     cloud4.position.set(-850, 620, -1109);
     scene.add(cloud4);
-
 
     let cloud5 = new THREE.Mesh(new THREE.PlaneGeometry(140, 90), materialcloud6);
     cloud5.position.set(-200, 690, 1100);
     scene.add(cloud5);
 
-    let cloud6 = new THREE.Mesh(new THREE.PlaneGeometry(360, 240), materialcloud2);
+    let cloud6 = new THREE.Mesh(
+        new THREE.PlaneGeometry(360, 240),
+        materialcloud2
+    );
     cloud6.position.set(-350, 950, 1000);
     scene.add(cloud6);
-    let cloudlight = new THREE.Mesh(new THREE.PlaneGeometry(120, 90), materialcloudlight);
+    let cloudlight = new THREE.Mesh(
+        new THREE.PlaneGeometry(120, 90),
+        materialcloudlight
+    );
     cloudlight.position.set(-220, 807, 1000);
     scene.add(cloudlight);
-    let cloud7 = new THREE.Mesh(new THREE.PlaneGeometry(220, 150), materialcloud1);
+    let cloud7 = new THREE.Mesh(
+        new THREE.PlaneGeometry(220, 150),
+        materialcloud1
+    );
     cloud7.position.set(-350, 650, 1150);
     scene.add(cloud7);
 
-    let cloud8 = new THREE.Mesh(new THREE.PlaneGeometry(220, 150), materialcloud1);
+    let cloud8 = new THREE.Mesh(
+        new THREE.PlaneGeometry(220, 150),
+        materialcloud1
+    );
     cloud8.position.set(-220, 680, 900);
     scene.add(cloud8);
 
-    let cloud9 = new THREE.Mesh(new THREE.PlaneGeometry(2020, 1250), materialcloud2);
+    let cloud9 = new THREE.Mesh(
+        new THREE.PlaneGeometry(2020, 1250),
+        materialcloud2
+    );
     cloud9.position.set(0, 200, 300);
     scene.add(cloud9);
 
-    let cloud10 = new THREE.Mesh(new THREE.PlaneGeometry(360, 240), materialcloud4);
+    let cloud10 = new THREE.Mesh(
+        new THREE.PlaneGeometry(360, 240),
+        materialcloud4
+    );
     cloud10.position.set(0, 1300, 600);
     scene.add(cloud10);
 
-    let cloud11 = new THREE.Mesh(new THREE.PlaneGeometry(280, 150), materialcloud5);
+    let cloud11 = new THREE.Mesh(
+        new THREE.PlaneGeometry(280, 150),
+        materialcloud5
+    );
     cloud11.position.set(-1200, 900, 0);
     scene.add(cloud11);
 
-    let cloud12 = new THREE.Mesh(new THREE.PlaneGeometry(280, 150), materialcloud1);
+    let cloud12 = new THREE.Mesh(
+        new THREE.PlaneGeometry(280, 150),
+        materialcloud1
+    );
     cloud12.position.set(700, 1100, 500);
     scene.add(cloud12);
 
-    let cloud13 = new THREE.Mesh(new THREE.PlaneGeometry(280, 150), materialcloud6);
+    let cloud13 = new THREE.Mesh(
+        new THREE.PlaneGeometry(280, 150),
+        materialcloud6
+    );
     cloud13.position.set(850, 1200, 400);
     scene.add(cloud13);
 
-    let cloud14 = new THREE.Mesh(new THREE.PlaneGeometry(280, 150), materialcloud5);
+    let cloud14 = new THREE.Mesh(
+        new THREE.PlaneGeometry(280, 150),
+        materialcloud5
+    );
     cloud14.position.set(670, 860, 300);
     scene.add(cloud14);
 
-    let cloudlight2 = new THREE.Mesh(new THREE.PlaneGeometry(180, 140), materialcloudlight2);
+    let cloudlight2 = new THREE.Mesh(
+        new THREE.PlaneGeometry(180, 140),
+        materialcloudlight2
+    );
     cloudlight2.position.set(650, 980, 500);
     scene.add(cloudlight2);
 
-    let cloud15 = new THREE.Mesh(new THREE.PlaneGeometry(240, 160), materialcloud2);
+    let cloud15 = new THREE.Mesh(
+        new THREE.PlaneGeometry(240, 160),
+        materialcloud2
+    );
     cloud15.position.set(340, 301, 80);
     cloud15.rotation.x = -0.5 * Math.PI;
     scene.add(cloud15);
 
-    let cloud16 = new THREE.Mesh(new THREE.PlaneGeometry(120, 70), materialcloud6);
+    let cloud16 = new THREE.Mesh(
+        new THREE.PlaneGeometry(120, 70),
+        materialcloud6
+    );
     cloud16.position.set(-520, 300, -120);
     cloud16.rotation.x = -0.5 * Math.PI;
     scene.add(cloud16);
 
-    let cloud17 = new THREE.Mesh(new THREE.PlaneGeometry(120, 70), materialcloud1);
+    let cloud17 = new THREE.Mesh(
+        new THREE.PlaneGeometry(120, 70),
+        materialcloud1
+    );
     cloud17.position.set(-550, 300, -150);
     cloud17.rotation.x = -0.5 * Math.PI;
     scene.add(cloud17);
 
-    let cloud18 = new THREE.Mesh(new THREE.PlaneGeometry(120, 70), materialcloud1);
+    let cloud18 = new THREE.Mesh(
+        new THREE.PlaneGeometry(120, 70),
+        materialcloud1
+    );
     cloud18.position.set(0, 330, -400);
     cloud18.rotation.x = -0.5 * Math.PI;
     scene.add(cloud18);
@@ -262,7 +309,10 @@ function init() {
     cloud20.rotation.x = -0.5 * Math.PI;
     scene.add(cloud20);
 
-    let cloud21 = new THREE.Mesh(new THREE.PlaneGeometry(100, 50), materialcloud6);
+    let cloud21 = new THREE.Mesh(
+        new THREE.PlaneGeometry(100, 50),
+        materialcloud6
+    );
     cloud21.position.set(150, 251, 10);
     cloud21.rotation.x = -0.5 * Math.PI;
     scene.add(cloud21);
@@ -281,8 +331,6 @@ function init() {
     cloud24.position.set(170, 251, -300);
     cloud24.rotation.x = -0.5 * Math.PI;
     scene.add(cloud24);
-
-
 
     //台灣
     const planeGeometry = new THREE.PlaneGeometry(600, 900);
@@ -311,7 +359,6 @@ function init() {
 
     // scene.add(plane1);
 
-
     //知識百科
     const planeGeometryknowledgehead = new THREE.PlaneGeometry(50, 35);
     const planeMaterialknowledgehead = new THREE.MeshLambertMaterial({
@@ -320,20 +367,28 @@ function init() {
         depthWrite: false,
         opacity: 0.9,
     });
-    var knowledgehead = new THREE.Mesh(planeGeometryknowledgehead, planeMaterialknowledgehead);
+    var knowledgehead = new THREE.Mesh(
+        planeGeometryknowledgehead,
+        planeMaterialknowledgehead
+    );
     knowledgehead.rotation.x = -0.5 * Math.PI;
-    knowledgehead.position.set(22, 30, -447);
+    knowledgehead.position.set(22, 31, -449);
 
     scene.add(knowledgehead);
-    var knowledgeheadtween = TweenMax.fromTo(knowledgehead.position, 1, {
-        x: 50,
-        repeat: -1,
-        yoyo: true,
-    }, {
-        x: 51,
-        repeat: -1,
-        yoyo: true,
-    });
+    var knowledgeheadtween = TweenMax.fromTo(
+        knowledgehead.position,
+        1, {
+            x: 50,
+            z: -448,
+            repeat: -1,
+            yoyo: true,
+        }, {
+            x: 51,
+            z: -449,
+            repeat: -1,
+            yoyo: true,
+        }
+    );
 
     const planeGeometryknowledge = new THREE.PlaneGeometry(160, 120);
     const planeMaterialknowledge = new THREE.MeshLambertMaterial({
@@ -342,7 +397,10 @@ function init() {
         depthWrite: false,
         opacity: 0.9,
     });
-    var knowledge = new THREE.Mesh(planeGeometryknowledge, planeMaterialknowledge);
+    var knowledge = new THREE.Mesh(
+        planeGeometryknowledge,
+        planeMaterialknowledge
+    );
     knowledge.rotation.x = -0.5 * Math.PI;
     knowledge.position.set(30, 30, -380);
 
@@ -357,7 +415,7 @@ function init() {
     });
     var member = new THREE.Mesh(planeGeometrymember, planeMaterialmember);
     member.rotation.x = -0.5 * Math.PI;
-    member.position.set(-150, 30, 200);
+    member.position.set(-180, 30, 200);
     scene.add(member);
 
     const planeGeometrymemberRight = new THREE.PlaneGeometry(100, 180);
@@ -367,13 +425,15 @@ function init() {
         depthWrite: false,
         opacity: 0.9,
     });
-    var memberRight = new THREE.Mesh(planeGeometrymemberRight, planeMaterialmemberRight);
+    var memberRight = new THREE.Mesh(
+        planeGeometrymemberRight,
+        planeMaterialmemberRight
+    );
     memberRight.rotation.x = -0.5 * Math.PI;
-    memberRight.position.set(-50, 30, 200);
+    memberRight.position.set(-20, 30, 200);
     scene.add(memberRight);
 
     //商城
-
 
     const planeGeometryshop = new THREE.PlaneGeometry(160, 140);
     const planeMaterialshop = new THREE.MeshBasicMaterial({
@@ -394,22 +454,28 @@ function init() {
         depthWrite: false,
         opacity: 0.9,
     });
-    var shopfruit = new THREE.Mesh(planeGeometryshopfruit, planeMaterialshopfruit);
+    var shopfruit = new THREE.Mesh(
+        planeGeometryshopfruit,
+        planeMaterialshopfruit
+    );
     shopfruit.rotation.x = -0.5 * Math.PI;
     shopfruit.position.set(-250, 25, -100);
     scene.add(shopfruit);
 
-    var shopfruittween = TweenMax.fromTo(shopfruit.position, 1, {
-        z: -100,
-        repeat: -1,
-        yoyo: true,
-        ease: Power1.easeOut,
-    }, {
-        z: -105,
-        repeat: -1,
-        yoyo: true,
-        ease: Power1.easeOut,
-    });
+    var shopfruittween = TweenMax.fromTo(
+        shopfruit.position,
+        1, {
+            z: -100,
+            repeat: -1,
+            yoyo: true,
+            ease: Power1.easeOut,
+        }, {
+            z: -105,
+            repeat: -1,
+            yoyo: true,
+            ease: Power1.easeOut,
+        }
+    );
 
     const planeGeometrymarketfruit02 = new THREE.PlaneGeometry(100, 70);
     const planeMaterialmarketfruit02 = new THREE.MeshBasicMaterial({
@@ -418,7 +484,10 @@ function init() {
         depthWrite: false,
         opacity: 0.9,
     });
-    var marketfruit02 = new THREE.Mesh(planeGeometrymarketfruit02, planeMaterialmarketfruit02);
+    var marketfruit02 = new THREE.Mesh(
+        planeGeometrymarketfruit02,
+        planeMaterialmarketfruit02
+    );
     marketfruit02.rotation.x = -0.5 * Math.PI;
     marketfruit02.position.set(-175, 30, 30);
     scene.add(marketfruit02);
@@ -487,7 +556,7 @@ function init() {
     scene.add(tree02);
 
     //部落格
-    const planeGeometryblog = new THREE.PlaneGeometry(130, 140);
+    const planeGeometryblog = new THREE.PlaneGeometry(130, 160);
     const planeMaterialblog = new THREE.MeshLambertMaterial({
         map: THREE.ImageUtils.loadTexture(blog01),
         transparent: true,
@@ -499,29 +568,35 @@ function init() {
     blog.position.set(180, 50, -100);
     scene.add(blog);
 
-    const planeGeometryblogwatermelon = new THREE.PlaneGeometry(50, 40);
+    const planeGeometryblogwatermelon = new THREE.PlaneGeometry(60, 40);
     const planeMaterialblogwatermelon = new THREE.MeshLambertMaterial({
         map: THREE.ImageUtils.loadTexture(blogwatermelon01),
         transparent: true,
         depthWrite: false,
         opacity: 0.9,
     });
-    var blogwatermelon = new THREE.Mesh(planeGeometryblogwatermelon, planeMaterialblogwatermelon);
+    var blogwatermelon = new THREE.Mesh(
+        planeGeometryblogwatermelon,
+        planeMaterialblogwatermelon
+    );
     blogwatermelon.rotation.x = -0.5 * Math.PI;
-    blogwatermelon.position.set(148, 60, -115);
+    blogwatermelon.position.set(153, 60, -115);
     scene.add(blogwatermelon);
 
-    var blogwatermelon = TweenMax.fromTo(blogwatermelon.position, 1, {
-        z: -115,
-        repeat: -1,
-        yoyo: true,
-        ease: Power1.easeOut,
-    }, {
-        z: -130,
-        repeat: -1,
-        yoyo: true,
-        ease: Power1.easeOut,
-    });
+    var blogwatermelon = TweenMax.fromTo(
+        blogwatermelon.position,
+        1, {
+            z: -115,
+            repeat: -1,
+            yoyo: true,
+            ease: Power1.easeOut,
+        }, {
+            z: -130,
+            repeat: -1,
+            yoyo: true,
+            ease: Power1.easeOut,
+        }
+    );
 
     //水梨
     const planeGeometrywaterpear = new THREE.PlaneGeometry(40, 30);
@@ -531,7 +606,10 @@ function init() {
         depthWrite: false,
         opacity: 0.9,
     });
-    var waterpear = new THREE.Mesh(planeGeometrywaterpear, planeMaterialwaterpear);
+    var waterpear = new THREE.Mesh(
+        planeGeometrywaterpear,
+        planeMaterialwaterpear
+    );
     waterpear.rotation.x = -0.5 * Math.PI;
     waterpear.position.set(70, 50, -300);
     scene.add(waterpear);
@@ -543,11 +621,13 @@ function init() {
         depthWrite: false,
         opacity: 0.9,
     });
-    var waterpearline = new THREE.Mesh(planeGeometrywaterpearline, planeMaterialwaterpearline);
+    var waterpearline = new THREE.Mesh(
+        planeGeometrywaterpearline,
+        planeMaterialwaterpearline
+    );
     waterpearline.rotation.x = -0.5 * Math.PI;
     waterpearline.position.set(20, 45, -210);
     scene.add(waterpearline);
-
 
     //箱子
     const planeGeometryfruitbox = new THREE.PlaneGeometry(40, 40);
@@ -569,7 +649,10 @@ function init() {
         depthWrite: false,
         opacity: 0.9,
     });
-    var fruitboxline = new THREE.Mesh(planeGeometryfruitboxline, planeMaterialfruitboxline);
+    var fruitboxline = new THREE.Mesh(
+        planeGeometryfruitboxline,
+        planeMaterialfruitboxline
+    );
     fruitboxline.rotation.x = -0.5 * Math.PI;
     fruitboxline.position.set(10, 45, 20);
     scene.add(fruitboxline);
@@ -587,170 +670,232 @@ function init() {
     // var controls = new THREE.OrbitControls(camera, renderer.domElement);
     // controls.target.set(0, 0.5, 0); //控制焦點
 
-    var requestId = null
+    var requestId = null;
     var triggerOffset = document.documentElement.clientHeight / 2;
     var tl = new TimelineMax({
             paused: true,
+            useFrames: true,
         })
-        .to(camera.position, {
-            ease: Power3.easeInOut,
+        .to(
+            camera.position, {
+                ease: Power3.easeInOut,
 
-            duration: 3000,
-            onUpdate: function() {
-
-                camera.lookAt(0, 800, 0)
+                duration: 3000,
+                onUpdate: function () {
+                    camera.lookAt(0, 800, 0);
+                },
+                x: 0,
+                y: 900,
+                z: 0,
             },
-            x: 0,
-            y: 900,
-            z: 0,
-        }, 0)
-        .to(camera.position, {
-            ease: Power3.easeInOut,
+            0
+        )
+        .to(
+            camera.position, {
+                ease: Power3.easeInOut,
 
-            duration: 2000,
-            onUpdate: function() {
-
-                camera.lookAt(camera.position.x, 100, camera.position.z)
+                duration: 2000,
+                onUpdate: function () {
+                    camera.lookAt(camera.position.x, 100, camera.position.z);
+                },
+                x: 22,
+                y: 300,
+                z: -420,
             },
-            x: 22,
-            y: 300,
-            z: -420,
-        }, 4000)
-        .to(camera.position, {
-            ease: Power1.easeInOut,
-            duration: 1500,
-            onUpdate: function() {
-
-                camera.lookAt(camera.position.x, 100, camera.position.z)
+            4000
+        )
+        .to(
+            camera.position, {
+                ease: Power1.easeInOut,
+                duration: 1500,
+                onUpdate: function () {
+                    camera.lookAt(camera.position.x, 100, camera.position.z);
+                },
+                x: 22,
+                y: 300,
+                z: -420,
             },
-            x: 22,
-            y: 300,
-            z: -420,
-        }, 6500)
-        .to(waterpear.position, {
-            ease: Power1.easeInOut,
-            duration: 2000,
-            motionPath: {
-
-                path: [{
-                    x: 70,
-                    z: -300,
-                }, {
-                    x: 40,
-                    z: -250,
-                }, {
-                    x: 10,
-                    z: -200,
-                }, {
-                    x: -20,
-                    z: -150,
-                }, {
-                    x: -45,
-                    z: -120,
-                }],
-                curviness: 1
+            6500
+        )
+        .to(
+            waterpear.position, {
+                ease: Power1.easeInOut,
+                duration: 2000,
+                motionPath: {
+                    path: [{
+                            x: 70,
+                            z: -300,
+                        },
+                        {
+                            x: 40,
+                            z: -250,
+                        },
+                        {
+                            x: 10,
+                            z: -200,
+                        },
+                        {
+                            x: -20,
+                            z: -150,
+                        },
+                        {
+                            x: -45,
+                            z: -120,
+                        },
+                    ],
+                    curviness: 1,
+                },
             },
-        }, 8500)
-        .to(camera.position, {
-            ease: Power1.easeInOut,
-            duration: 2000,
-            onUpdate: function() {
-
-                camera.lookAt(camera.position.x, 100, camera.position.z)
+            8500
+        )
+        .to(
+            camera.position, {
+                ease: Power1.easeInOut,
+                duration: 2000,
+                onUpdate: function () {
+                    camera.lookAt(camera.position.x, 100, camera.position.z);
+                },
+                x: -200,
+                y: 300,
+                z: -100,
             },
-            x: -200,
-            y: 300,
-            z: -100,
-        }, 8500)
-        .to(waterpear.position, {
-            ease: Power1.easeInOut,
-            duration: 3000,
-            motionPath: {
-                type: 'quadratic',
-                path: [{
-                    x: -80,
-                    z: -190,
-                }, {
-                    x: 0,
-                    z: -180,
-                }, {
-                    x: 30,
-                    z: -165,
-                }, {
-                    x: 110,
-                    z: -180,
-                }],
-                curviness: 1
+            8500
+        )
+        .to(
+            waterpear.position, {
+                ease: Power1.easeInOut,
+                duration: 3000,
+                motionPath: {
+                    type: "quadratic",
+                    path: [{
+                            x: -80,
+                            z: -190,
+                        },
+                        {
+                            x: 0,
+                            z: -180,
+                        },
+                        {
+                            x: 30,
+                            z: -165,
+                        },
+                        {
+                            x: 110,
+                            z: -180,
+                        },
+                    ],
+                    curviness: 1,
+                },
             },
-        }, 11500)
-        .to(camera.position, {
-            ease: Power1.easeInOut,
-            duration: 3000,
-            onUpdate: function() {
-
-                camera.lookAt(camera.position.x, 100, camera.position.z)
+            11500
+        )
+        .to(
+            camera.position, {
+                ease: Power1.easeInOut,
+                duration: 3000,
+                onUpdate: function () {
+                    camera.lookAt(camera.position.x, 100, camera.position.z);
+                },
+                x: 180,
+                y: 300,
+                z: -100,
             },
-            x: 180,
-            y: 300,
-            z: -100,
-        }, 11500)
-        .to(fruitbox.position, {
-            ease: Power1.easeInOut,
-            duration: 4000,
-            motionPath: {
-                type: 'quadratic',
-                path: [{
-                    x: 90,
-                    z: -50,
-                }, {
-                    x: 0,
-                    z: 70,
-                }, ],
-                curviness: 1
+            11500
+        )
+        .to(
+            fruitbox.position, {
+                ease: Power1.easeInOut,
+                duration: 4000,
+                motionPath: {
+                    type: "quadratic",
+                    path: [{
+                            x: 90,
+                            z: -50,
+                        },
+                        {
+                            x: 0,
+                            z: 70,
+                        },
+                    ],
+                    curviness: 1,
+                },
             },
-        }, 15500)
-        .to(camera.position, {
-            ease: Power1.easeInOut,
-            duration: 4000,
-            onUpdate: function() {
-                camera.lookAt(camera.position.x, 100, camera.position.z)
+            16500
+        )
+        .to(
+            camera.position, {
+                ease: Power1.easeInOut,
+                duration: 4000,
+                onUpdate: function () {
+                    camera.lookAt(camera.position.x, 100, camera.position.z);
+                },
+
+                x: -100,
+                y: 300,
+                z: 200,
             },
+            16500
+        )
+        .to(
+            member.position, {
+                ease: Power1.easeInOut,
+                duration: 2000,
 
-            x: -75,
-            y: 300,
-            z: 200,
-        }, 15500)
-        .to(member.position, {
-            ease: Power1.easeInOut,
-            duration: 2000,
+                x: -250,
+            },
+            18500
+        )
+        .to(
+            memberRight.position, {
+                ease: Power1.easeInOut,
+                duration: 2000,
 
-            x: -250,
+                x: 50,
+            },
+            18500
+        )
+        .to(
+            camera.position, {
+                ease: Power1.easeInOut,
+                duration: 3000,
+                onUpdate: function () {
+                    camera.lookAt(camera.position.x, 100, camera.position.z);
+                },
 
-        }, 17500)
-        .to(memberRight.position, {
-            ease: Power1.easeInOut,
-            duration: 2000,
+                x: -100,
+                y: 900,
+                z: 200,
+            },
+            22500
+        )
+        .to(
+            camera.position, {
+                ease: Power1.easeInOut,
+                duration: 3000,
+                onUpdate: function () {
+                    camera.lookAt(camera.position.x, 100, camera.position.z);
+                },
 
-            x: 50,
+                x: 0,
+                y: 900,
+                z: 0,
+            },
+            22500
+        )
+        .to(
+            camera.position, {
+                ease: Power1.easeInOut,
+                duration: 3000,
+                onUpdate: function () {
+                    camera.lookAt(0, 800, 0);
+                },
 
-        }, 17500)
-    console.log(member.position);
-
-
-
-
-
-    // Only update on animation frames
-    window.addEventListener("scroll", function() {
-        if (!requestId) {
-            requestId = requestAnimationFrame(update);
-        };
-
-
-    });
-
-
-    update();
+                x: 0,
+                y: 900,
+                z: 1400,
+            },
+            26500
+        );
 
     // Set timeline time to scrollTop
     function update() {
@@ -758,20 +903,23 @@ function init() {
         requestId = null;
     }
 
+    // Only update on animation frames
+    window.addEventListener("scroll", function () {
+        if (!requestId) {
+            requestId = requestAnimationFrame(update);
+        }
+    });
 
-
+    update();
 }
 
-
-
 function render() {
-    requestAnimationFrame(render)
-    renderer.render(scene, camera)
-    renderer.setClearColor(new THREE.Color('rgb(255, 212, 195)'), 1);
+    requestAnimationFrame(render);
+    renderer.render(scene, camera);
+    renderer.setClearColor(new THREE.Color("rgb(255, 212, 195)"), 1);
+}
 
-};
-
-window.addEventListener('resize', function() {
+window.addEventListener("resize", function () {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);

@@ -35,6 +35,11 @@ const routes = [
     },
   },
   {
+    path: '/blog-post',
+    name: 'Blog-post',
+    component: function() {
+      return import('../views/Blog-post.vue');
+    },
     path: '/shop',
     name: 'Shop',
     component: function () {

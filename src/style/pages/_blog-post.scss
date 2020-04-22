@@ -1,0 +1,15 @@
+.blog-post-container{
+  display: grid;
+  grid-template-columns: repeat(1fr,1);
+  text-align: center;
+  padding: 100px;
+  border: solid 1px rgb(197, 41, 41);
+  >form:nth-child(2){
+    display: grid;
+    grid-template-columns: repeat(1fr,1);
+    padding: 20px;
+    >label{
+      padding: 10px;
+    }
+  }
+}

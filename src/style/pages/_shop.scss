@@ -8,7 +8,7 @@ $border:1px solid black;
 }
 
 .show_item{
-    background-color: #ffd3c1;
+    // background-color: #ffd3c1;
     height: 1080px;
     display: flex;
     justify-content: space-between;
@@ -35,9 +35,32 @@ $border:1px solid black;
     display: flex;
     justify-content: space-around;
 }
-.container{
-    // margin: 0;
+
+
+
+// 排行榜
+.hot_commodity_filter-status{
+    display: flex;
+    background-color: #f7c845;
+    padding: 20px 0;
+    width: 160px;
+    position: relative;
+    right: 10px;
 }
+.hot_commodity{
+    float: right;
+    width: 150px;
+    background-color: #007552;
+    color: white;
+    position: relative;
+    height: 100vh;
+}
+.hot_commoditystatus_text{
+    display: flex;
+    align-items: center;
+}
+
+
 
 .search_logo{
     transform: translate(60px,57px);
@@ -84,8 +107,8 @@ $border:1px solid black;
     
 }
 .hot-words_list{
-    margin-top: 5px;
     padding-left: 10px;
+    margin-top: 11px;
 }
 .hot-words_item{
     font-size: 14px;
@@ -123,8 +146,7 @@ $border:1px solid black;
     letter-spacing: 0.5px;
 
 }
-.main{
-}
+
 // 卡片 //
 .commodity{
     border: 2px solid #007552;
@@ -147,9 +169,14 @@ $border:1px solid black;
 .tag_icon{
     margin-right: 10px;
 }
+.card_tag{
+    display: flex;
+    align-items: center;
+}
 .card_tag_text{
     font-size: 14px;
     color: #A9A9A9;
+    line-height: 24px;
 }
 .card_price{
     font-size: 16px;
@@ -167,7 +194,9 @@ $border:1px solid black;
 }
 
 .buy{
-    margin: 10px;
+    display: flex;
+    justify-content: space-around;
+    margin: 10px 0;
 }
 .card_btn{
     font-size: 16px;
@@ -177,7 +206,7 @@ $border:1px solid black;
 }
 
 
-// hot ranking//
+
 .hot_commodity{
     float: right;
     width: 150px;
