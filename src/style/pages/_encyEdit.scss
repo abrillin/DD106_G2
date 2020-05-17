@@ -12,21 +12,6 @@
     overflow: scroll;
     // border: 1px solid red;
 
-    // margin: 0 auto;
-    // color: $contentColor;
-    // display: flex;
-    // flex-direction: column;
-    // font-size: $contentSize;
-    // // width: 80%;
-    // width: 100%;
-    // height: 100%;
-    // box-sizing: border-box;
-    // justify-content: center;
-    // position: relative;
-    // left: 10%;
-    // margin-right: 4%;
-
-
     .encyEditTab {
         display: inline-block;
         width: 100%;
@@ -34,7 +19,7 @@
         margin-bottom: 70px;
 
         th {
-            width: 15%;
+            width: 18%;
             padding: 20px 20px;
             text-align: center;
             color: $contentColor;
@@ -87,24 +72,29 @@
 
             }
 
-
-            #encyTitle {
+            #encyIntro, #encyQ, #encyA {
                 resize: none;
                 font-size: $contentSize;
                 font-family: myFont;
                 width: 90%;
-                height: $contentSize;
+            }
+
+            #encyIntro {
+                height: 200px;
+                overflow: scroll;
                 // letter-spacing: 1px;
                 padding: 10px;
 
             }
 
-            #encyContent {
-                resize: none;
-                font-size: $contentSize;
-                font-family: myFont;
-                width: 90%;
-                height: 400px;
+            #encyQ {
+                height: 250px;
+                overflow: scroll;
+                padding: 10px;
+            }
+            
+            #encyA{
+                height: 150px;
                 overflow: scroll;
                 padding: 10px;
             }
