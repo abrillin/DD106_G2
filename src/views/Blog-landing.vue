@@ -1,11 +1,11 @@
 <template>
   <div class="blog-landing-outer">
     <img src="@/assets/blog-img/blog-bar.png" /><br />
-    <div class="blog-landing-container">
+    <div class="blog-landing-container-new">
       <div>
         <div>
           <!--果農日誌LOGO-->
-          <img src="@/assets/blog-img/blog_logo.svg" />
+          <img src="@/assets/blog-img/blog_logo.svg" @click="test" />
         </div>
         <div>
           <div>
@@ -234,7 +234,7 @@
     }
   }
 }
-.blog-landing-container {
+.blog-landing-container-new {
   padding-top: 1%;
   width: 95%;
   margin-left: 2.5%;
@@ -312,20 +312,20 @@
     grid-template-columns: 0.3fr 1fr;
   }
   @media (max-width: 1300px) {
-  margin-left: 2%;
-      grid-template-columns: 1fr;
-      grid-template-rows: 0.04fr 1fr;
+    margin-left: 2%;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.04fr 1fr;
   }
   @media (max-width: 768px) {
-  margin-left: 1.5%;
-      grid-template-columns: 1fr;
-      grid-template-rows: 0.04fr 1fr;
+    margin-left: 1.5%;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.04fr 1fr;
   }
   @media (max-width: 576px) {
-  margin-left: 1%;
+    margin-left: 1%;
   }
   @media (max-width: 350px) {
-  margin-left: 0.5%;
+    margin-left: 0.5%;
   }
   > div:nth-child(1) {
     //會員區1
@@ -343,13 +343,12 @@
       display: grid;
       grid-template-columns: 0.5fr 1.2fr 1fr;
       padding: 30% 50px 0px 50px;
-      @media (max-width: 1500px)  {
-      padding: 30% 10px 0px 10px;
+      @media (max-width: 1500px) {
+        padding: 30% 10px 0px 10px;
       }
-      @media (max-width: 1300px)  {
-      border-bottom:solid #007552 2px ;
-      padding: 30% 10px 10px 10px;
-
+      @media (max-width: 1300px) {
+        border-bottom: solid #007552 2px;
+        padding: 30% 10px 10px 10px;
       }
       .blog-landing-aunt {
         width: 100%;
@@ -361,7 +360,7 @@
           display: flex;
           flex-wrap: wrap;
           justify-content: center;
-          
+
           .blog-landing-aunt {
             width: 100%;
           }
@@ -582,7 +581,7 @@
           // margin-bottom: 10rem;
           position: relative;
           &::before {
-            content: "";
+            content: '';
             width: 90%;
             border-bottom: solid #007552 2px;
             position: absolute;
@@ -599,7 +598,7 @@
             }
           }
           &::after {
-            content: "";
+            content: '';
             width: 75%;
             border-bottom: solid #007552 2px;
             position: absolute;
@@ -629,27 +628,28 @@
         right: 0%;
         bottom: 15%;
         @media (max-width: 1700px) {
-            // position: relative;
-            right: -2.5%;
-            bottom: 5%;
+          // position: relative;
+          right: -2.5%;
+          bottom: 5%;
         }
         @media (max-width: 1500px) {
-            position: relative;
-            right: -2.5%;
-            bottom: 0%;
+          position: relative;
+          right: -2.5%;
+          bottom: 0%;
         }
         > div:nth-child(1) {
           text-align: right;
           // position: relative;
           @media (max-width: 1500px) {
-              text-align: left;
-              // display: none;
+            text-align: left;
+            // display: none;
           }
           > img:nth-child(1) {
             // border: solid #000 3px;
             // height: 100%;
-            @media (max-width: 1500px) {//梯形
-                display: none;
+            @media (max-width: 1500px) {
+              //梯形
+              display: none;
             }
           }
           > div:nth-child(2) {
@@ -694,7 +694,7 @@
       padding-bottom: 20px;
       position: relative;
       &::after {
-        content: "";
+        content: '';
         width: 90%;
         border-top: 2px solid #007552;
         position: absolute;
@@ -702,7 +702,7 @@
         right: 5%;
       }
       &::before {
-        content: "";
+        content: '';
         width: 90%;
         border-top: 2px solid #007552;
         position: absolute;
@@ -745,8 +745,8 @@
           grid-template-columns: 15% 75% 10%;
           grid-template-rows: repeat(2, 1fr);
           grid-template-areas:
-            "aa1 aa2 aa4"
-            "aa1 aa3 aa4";
+            'aa1 aa2 aa4'
+            'aa1 aa3 aa4';
         }
         > div:nth-child(1) {
           // background-color: #000;
@@ -768,7 +768,7 @@
             grid-area: aa2;
           }
           &::after {
-            content: "";
+            content: '';
             position: absolute;
             top: 0px;
             right: 10%;
@@ -780,15 +780,14 @@
           }
           @media (max-width: 576px) {
             &::before {
-              content: "";
+              content: '';
               position: absolute;
               top: 3px;
               left: -10px;
               border-right: solid 1px #a0a0a0;
               height: 30px;
               @media (max-width: 576px) {
-              left: -5px;
-                
+                left: -5px;
               }
             }
           }
@@ -844,3 +843,13 @@
   }
 }
 </style>
+<script>
+export default {
+  props: {blogInfProps: Array,c:String},
+  methods: {
+    test() {
+      console.log(this.blogInfProps,this.c);
+    },
+  },
+};
+</script>
