@@ -1,136 +1,131 @@
-div.Registered{
+div.Registered {
     display: inline-block;
     color: #007552;
-    background-color: #FBF8EF;
-    width: 100%;
-    height: auto;
+    background-color: #fbf8ef;
+    width: calc(100% - 250px);
+    height: 100vh;
     vertical-align: top;
-    @include rwd(mobile){
-        width: 95%;
+    box-sizing: border-box;
+    padding: 60px 40px;
+
+    @include rwd(medium) {
+        float: right;
+        width: calc(100% - 200px);
     }
-    >.Registered_head{
-        color: #F7C845;
-        margin-top: 45px;
-        margin-left: 300px;
-        font-size: 30px;
-        @include rwd(large){
-            margin-left: 160px;
-            margin-bottom: 10px;
-        }
-        @include rwd(medium){
-            margin-left: 130px;
-        }
-        @include rwd(small){
-            margin-left: 90px;
-        }
-        @include rwd(mobile){
-            margin-left: 20px;
-        }
+
+    @include rwd(small) {
+        float: none;
+        width: 100vw;
+        padding: 10% 5%;
     }
-    >.Registered_bottom{
+
+    >.Registered_head {
+        color: #f7c845;
+        font-size: 3rem;
+    }
+
+    >.Registered_bottom {
         display: block;
-        height: auto;
         text-align: center;
-        @include rwd(mobile) {
+        padding-top: 100px;
+        margin: 0 auto;
+
+        @include rwd(medium) {
             display: block;
-            text-align: center;
             width: 100%;
-            margin-left: 13px;
+            padding-top: 10%;
         }
-        >.bottom_form{
-            margin-top: 100px;
-            margin-left: 190px;
-            line-height: 2;
-            font-size: 16px;
-            @include rwd(large){
-                margin-top: 90px;
-            }
-            @include rwd(medium){
-                margin-top: 90px;
-                margin-left: 70px;
-            }
+
+        >.bottom_form {
+            display: inline-block;
+
+            border: 1px solid #666;
+
             @include rwd(small) {
-                margin-top: 40px;
-                margin-left: 40px;
-                line-height: 1.8;
+                line-height: normal;
             }
 
-            @include rwd(mobile) {
-                display: flex;
-                width: 100%;
-                margin-top: 40px;
-                margin-left: 0;
-                padding-right: 3px;
-                line-height: 2;
-                font-size: 16px;
-            }
-            >.Registered_left{
+            >.Registered_left {
                 vertical-align: top;
                 display: inline-block;
-                background-color: #F7C845;
-                width: 260px;
+                background-color: #f7c845;
+                width: 150px;
                 height: 500px;
-                padding: 50px 0px;
-                @include rwd(medium){
-                    width: 200px;
+                padding-top: 50px;
+
+                @include rwd(small) {
+                    width: 30%;
+                    height: 400px;
                 }
-                @include rwd(small){
-                    width: 100px;
-                }
-                @include rwd(mobile){
-                    width: 25%;
-                }
-                >ul{
-                    >li{
-                        padding: 10px 0;
+
+                >ul {
+                    >li {
+                        font-size: 1.8rem;
+                        color: #666;
+                        line-height: 3.3;
+
+                        @include rwd(small) {
+                            font-size: 1.4rem;
+                            line-height: 3;
+                        }
                     }
                 }
             }
-            >.Registered_right{
+
+            >.Registered_right {
                 display: inline-block;
-                position: relative;
                 text-align: start;
+
                 background-color: white;
-                padding: 50px;
-                padding-right: 145px;
+                box-sizing: border-box;
+                padding-top: 50px;
+                padding-left: 30px;
+                padding-right: 30px;
+                width: 340px;
                 height: 500px;
-                width: 260px;
-                line-height: 3.3;
+
                 @include rwd(medium) {
-                    width: 200px;
-                    line-height: 3.3;
+                    width: 340px;
                 }
 
                 @include rwd(small) {
-                    padding-right: 120px;
-                    width: 143px;
-                    height: 500px;
-                    line-height: 3.1;
+                    width: 70%;
+                    height: 400px;
                 }
 
-                @include rwd(mobile) {
-                    padding: 0;
-                    padding-right: 84.8px;
-                    padding-bottom: 54px;
-                    padding-top: 47px;
-                    padding-left: 5px;
-                    width: 50%;
-                    line-height: 3.3;
+                span {
+                    display: block;
+                    line-height: 3.5;
+
+                    @include rwd(small) {
+                        line-height: 3;
+                    }
+
+                    p {
+                        overflow: hidden;
+                        padding: 0;
+
+                        @include rwd(small) {
+                            font-size: 1.4rem;
+                        }
+                    }
                 }
-                >label {
-                    margin-right: 10px;
-                }
-                >.submit_button{
-                    position: absolute;
+
+                >.submit_button {
+                    margin-top: 20px;
+                    display: inline-block;
                     border-radius: 5px;
                     background-color: #007552;
                     color: white;
                     padding: 0px 20px;
-                    right: 30px;
-                    bottom: 10px;
                     line-height: 2.3;
-                    &:hover{
-                        background-color: #62B45A;
+                    cursor: pointer;
+                    font-size: 1.6rem;
+
+                    &:hover {
+                        background-color: #fca87c;
+                        color: #fbf8ef;
+                        border: none;
                     }
                 }
             }

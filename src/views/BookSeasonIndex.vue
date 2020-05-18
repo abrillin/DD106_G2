@@ -1,137 +1,139 @@
 <template>
-  <div class="book_layout">
-    <div class="bk_season_index">
-      <div class="bk_season">
-        <h5>春季目錄</h5>
-        <div class="bk_season_img">
-          <img src="@/assets/book_img/flower_ct.svg" />
+    <div class="book_layout">
+        <div class="bk_season_index">
+            <div class="bk_season">
+                <!-- 9. 偵聽到 contentType 的更新，傳給 data 的 type 物件去更新要顯示的內容 -->
+                <h5>{{type[contentType].season}}目錄</h5>
+                <div class="bk_season_img"></div>
+                <div class="bk_season_img"></div>
+                <div class="bk_season_img"></div>
+            </div>
+            <div class="bk_season_pic">
+                <div class="bk_season_pic_package">
+                    <!-- 9. 偵聽到 contentType 的更新，傳給 data 的 type 物件去更新要顯示的內容 -->
+                    <div class="bk_season_pic1" v-for="i in type[contentType].item" :key="i.name">
+                        <img src="../assets/book_img/spring/plum/plum04.jpg" alt />
+                        <span>{{i.name}}</span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="bk_season_img">
-          <img src="@/assets/book_img/flower_ct.svg" />
-        </div>
-        <div class="bk_season_img">
-          <img src="@/assets/book_img/flower_ct.svg" />
-        </div>
-      </div>
-      <div class="bk_season_pic">
-        <div class="bk_season_pic_package">
-          <div class="bk_season_pic1" v-for="i in type[contentType].item" :key="i.name">
-            <img src="../assets/book_img/spring/plum/plum04.jpg" alt />
-            <span>{{i.name}}</span>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
 </template>
 <script>
 export default {
-  props: ["contentType"],
-  data() {
-    return {
-      type: [
-        {
-          item: [
-            {
-              name: "梅子",
-              img: "plum04.jpg"
-            },
-            {
-              name: "李子",
-              img: "plum04.jpg"
-            },
-            {
-              name: "桃子",
-              img: "plum04.jpg"
-            },
-            {
-              name: "琵琶",
-              img: "plum04.jpg"
-            }
-          ]
-        },
-        {
-          item: [
-            {
-              name: "西瓜",
-              img: "plum04.jpg"
-            },
-            {
-              name: "芒果",
-              img: "plum04.jpg"
-            },
-            {
-              name: "火龍果",
-              img: "plum04.jpg"
-            },
-            {
-              name: "荔枝",
-              img: "plum04.jpg"
-            }
-          ]
-        },
-        {
-          item: [
-            {
-              name: "西瓜",
-              img: "plum04.jpg"
-            },
-            {
-              name: "芒果",
-              img: "plum04.jpg"
-            },
-            {
-              name: "火龍果",
-              img: "plum04.jpg"
-            },
-            {
-              name: "荔枝",
-              img: "plum04.jpg"
-            }
-          ]
-        },
-        {
-          item: [
-            {
-              name: "西瓜",
-              img: "plum04.jpg"
-            },
-            {
-              name: "芒果",
-              img: "plum04.jpg"
-            },
-            {
-              name: "火龍果",
-              img: "plum04.jpg"
-            },
-            {
-              name: "荔枝",
-              img: "plum04.jpg"
-            }
-          ]
-        },
-        {
-          item: [
-            {
-              name: "西瓜",
-              img: "plum04.jpg"
-            },
-            {
-              name: "芒果",
-              img: "plum04.jpg"
-            },
-            {
-              name: "火龍果",
-              img: "plum04.jpg"
-            },
-            {
-              name: "荔枝",
-              img: "plum04.jpg"
-            }
-          ]
-        }
-      ]
-    };
-  }
+    // 8. 接收到父元件的自定義變數 contentType 的值，更新上面的內容顯示
+    props: ["contentType"],
+    data() {
+        return {
+            type: [
+                {
+                    season: "春季",
+                    item: [
+                        {
+                            name: "梅子",
+                            img: "plum04.jpg"
+                        },
+                        {
+                            name: "李子",
+                            img: "plum04.jpg"
+                        },
+                        {
+                            name: "桃子",
+                            img: "plum04.jpg"
+                        },
+                        {
+                            name: "琵琶",
+                            img: "plum04.jpg"
+                        }
+                    ]
+                },
+                {
+                    season: "夏季",
+                    item: [
+                        {
+                            name: "西瓜",
+                            img: "plum04.jpg"
+                        },
+                        {
+                            name: "芒果",
+                            img: "plum04.jpg"
+                        },
+                        {
+                            name: "火龍果",
+                            img: "plum04.jpg"
+                        },
+                        {
+                            name: "荔枝",
+                            img: "plum04.jpg"
+                        }
+                    ]
+                },
+                {
+                    season: "秋季",
+                    item: [
+                        {
+                            name: "西瓜",
+                            img: "plum04.jpg"
+                        },
+                        {
+                            name: "芒果",
+                            img: "plum04.jpg"
+                        },
+                        {
+                            name: "火龍果",
+                            img: "plum04.jpg"
+                        },
+                        {
+                            name: "荔枝",
+                            img: "plum04.jpg"
+                        }
+                    ]
+                },
+                {
+                    season: "冬季",
+                    item: [
+                        {
+                            name: "西瓜",
+                            img: "plum04.jpg"
+                        },
+                        {
+                            name: "芒果",
+                            img: "plum04.jpg"
+                        },
+                        {
+                            name: "火龍果",
+                            img: "plum04.jpg"
+                        },
+                        {
+                            name: "荔枝",
+                            img: "plum04.jpg"
+                        }
+                    ]
+                },
+                {
+                    season: "常年",
+                    item: [
+                        {
+                            name: "西瓜",
+                            img: "plum04.jpg"
+                        },
+                        {
+                            name: "芒果",
+                            img: "plum04.jpg"
+                        },
+                        {
+                            name: "火龍果",
+                            img: "plum04.jpg"
+                        },
+                        {
+                            name: "荔枝",
+                            img: "plum04.jpg"
+                        }
+                    ]
+                }
+            ]
+        };
+    }
 };
 </script>

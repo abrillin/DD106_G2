@@ -19,17 +19,32 @@
             <li>
               <span>
                 果農地址
-                (若無則免填)
               </span>
             </li>
           </ul>
         </div>
         <div class="Registered_right">
-          <p>{{member.no}}</p>
-          <p>{{member.acc}}</p>
-          <p>{{member.name}}</p>
-          <p>{{member.nick}}</p>
-          <p>{{member.gender}}</p>
+          <span>
+            <p>{{member.no}}</p>
+          </span>
+          <span>
+            <p>{{member.acc}}</p>
+          </span>
+          <span>
+            <p>{{member.name}}</p>
+          </span>
+          <span>
+            <p>{{member.nick}}</p>
+          </span>
+          <span>
+            <p>{{member.gender}}</p>
+          </span>
+          <span>
+            <p>0{{member.phone}}</p>
+          </span>
+          <span>
+            <p>{{member.email}}</p>
+          </span>
           <!-- <label for>
             <input type="radio" />男
           </label>
@@ -40,8 +55,8 @@
             <input type="radio" />其他
           </label>
           <br /> -->
-          <p>{{member.phone}}</p>
-          <p>{{member.email}}</p>
+          
+          
           <input type="text" v-model="member.add" />
           <div class="submit_button">
             <div class="correct">

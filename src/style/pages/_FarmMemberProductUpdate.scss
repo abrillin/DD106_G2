@@ -1,28 +1,28 @@
 div.product {
     display: inline-block;
     color: #007552;
-    background-color: #FBF8EF;
-    width: 100%;
+    background-color: #fbf8ef;
+    width: calc(100% - 250px);
     height: 100vh;
     vertical-align: top;
+    box-sizing: border-box;
+    padding: 60px 40px;
+
+    @include rwd(medium) {
+        float: right;
+        width: calc(100% - 200px);
+    }
+
+    @include rwd(small) {
+        float: none;
+        width: 100vw;
+        padding: 10% 5%;
+    }
 
     .product_right_head {
-        color: #F7C845;
-        margin-top: 45px;
-        margin-left: 300px;
-        font-size: 30px;
-        @include rwd(large){
-            margin-left: 160px;
-        }
-        @include rwd(medium){
-            margin-left: 130px;
-        }
-        @include rwd(small){
-            margin-left: 100px;
-        }
-        @include rwd(mobile){
-            margin-left: 15px;
-        }
+        color: #f7c845;
+        font-size: 3rem;
+
         >.product_right_head_text {
             span.new {
                 margin-left: 10px;
@@ -34,109 +34,47 @@ div.product {
 
     .product_right_bottom {
         display: block;
-        height: auto;
         text-align: center;
-        @include rwd(medium){
-            margin-left: 78px;
-        }
-        @include rwd(mobile) {
-            margin-left: 20px;
+        padding-top: 100px;
+        margin: 0 auto;
+
+        @include rwd(medium) {
+            display: block;
+            width: 100%;
+            padding-top: 10%;
         }
 
         >.bottom_form {
+            display: inline-block;
 
-            margin-top: 150px;
-            line-height: 3;
+            border: 1px solid #666;
 
             @include rwd(small) {
-                margin-top: 120px;
-                line-height: 1.8;
-            }
-
-            @include rwd(mobile) {
-                display: flex;
-                width: 100%;
-                margin-top: 40px;
-                line-height: 2;
-                font-size: 16px;
+                line-height: normal;
             }
 
             >.person_left {
                 vertical-align: top;
                 display: inline-block;
-                background-color: #F7C845;
-                width: 260px;
-                height: 500px;
-                padding: 50px 0px;
-
-                @include rwd(medium) {
-                    width: 25%;
-                }
+                background-color: #f7c845;
+                width: 150px;
+                height: 550px;
+                padding-top: 50px;
 
                 @include rwd(small) {
-                    width: 25%;
-                }
-
-                @include rwd(mobile) {
-                    width: 25%;
-                    height: 524px;
+                    width: 30%;
+                    height: 400px;
                 }
 
                 >ul {
-                    display: block;
-                    padding-left: 40px;
-                    padding-right: 40px;
+                    >li {
+                        font-size: 1.8rem;
+                        color: #666;
+                        line-height: 3.3;
 
-                    @include rwd(mobile) {
-                        padding-left: 0px;
-                        padding-right: 0px;
-                    }
-
-                    >.p_num {
-                        padding-top: 5px;
-                        @include rwd(medium){
-                            padding-top: 5px;
-                            padding-bottom: 16px;
-                        }
-                        @include rwd(mobile){
-                            padding-top: 5px;
-                            padding-bottom: 16px;
-                        }
-                    }
-                    >.p_name{
-                        @include rwd(medium){
-                            padding-bottom: 27px;
-                        }
-                        @include rwd(mobile){
-                            padding-bottom: 27px;
-                        }
-                    }
-
-                    >.p_text {
-                        padding-bottom: 80px;
-                        @include rwd(medium){
-                            padding-bottom: 108px;
-                        }
-                        @include rwd(mobile){
-                            padding-bottom: 108px;
-                        }
-                    }
-                    >.p_img{
-                        @include rwd(medium){
-                            padding-bottom: 18px;
-                        }
-                        @include rwd(mobile){
-                            padding-bottom: 18px;
-                        }
-                    }
-
-                    >.p_tag {
-                        padding-bottom: 56px;
-                        @include rwd(medium){
-                            padding-bottom: 0;
-                        }
-                        @include rwd(mobile){
-                            padding-bottom: 0;
+                        @include rwd(small) {
+                            font-size: 1.4rem;
+                            line-height: 3;
                         }
                     }
                 }
@@ -237,7 +175,8 @@ div.product {
                         padding: 0;
                         margin-right: 4px;
                         margin-bottom: 10px;
-                        @include rwd(medium){
+
+                        @include rwd(medium) {
                             width: 74px;
                         }
                     }
@@ -248,6 +187,7 @@ div.product {
                     right: 30px;
                     bottom: 10px;
                     line-height: 2;
+
                     >.cancel {
                         display: inline-block;
                         border-radius: 10px;
@@ -255,7 +195,8 @@ div.product {
                         color: white;
                         padding: 0px 20px;
                         margin-right: 20px;
-                        &:hover{
+
+                        &:hover {
                             background-color: #62B45A;
                         }
                     }
@@ -266,7 +207,8 @@ div.product {
                         background-color: #007552;
                         color: white;
                         padding: 0px 20px;
-                        &:hover{
+
+                        &:hover {
                             background-color: #62B45A;
                         }
                     }

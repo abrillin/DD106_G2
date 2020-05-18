@@ -67,13 +67,17 @@ body {
     top: -10%;
     left: 5%;
     background-color: #dce07a;
-    padding: 50px 0px;
+    box-sizing: border-box;
+    padding: 30px 0px;
+    height: 550px;
     border-radius: 5px;
     transition: all 0.5s ease-in-out;
     z-index: 2;
     @include rwd(small) {
       position: static;
+      padding: 20px 0px;
       width: 300px;
+      height: 530px;
       margin: 0 auto;
     }
 
@@ -102,14 +106,14 @@ body {
 
           > .formtext {
             text-align: end;
-            line-height: 2;
+            line-height: 2.5;
             width: 140px;
             @include rwd(small) {
               width: 120px;
             }
             label {
               color: #666;
-              font-size: 2rem;
+              font-size: 1.6rem;
               @include rwd(small) {
                 font-size: 1.4rem;
               }
@@ -118,20 +122,17 @@ body {
 
           > form.forminputbox {
             width: 280px;
-            line-height: 3.2;
+            line-height: 2.6;
+            font-size: 1.6rem;
             @include rwd(small) {
               width: 260px;
               line-height: 2.4;
             }
 
-            input {
-              font-size: 1.6rem;
-            }
-
             .from_gender {
-              line-height: 2.7;
+              line-height: 2;
               margin: 0 auto;
-              font-size: 2rem;
+              font-size: 1.6rem;
               color: #666;
               text-align: left;
               width: 150px;

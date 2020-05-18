@@ -1,37 +1,31 @@
  div.Order {
    display: inline-block;
    background-color: #FBF8EF;
-   width: 100%;
-   height: auto;
+   width: calc(100% - 250px);
+   height: 100vh;
+   vertical-align: top;
+   box-sizing: border-box;
+   padding: 60px 40px;
+   padding-top: 20px;
+   @include rwd(medium) {
+    float: right;
+    width: calc(100% - 200px);
+  }
 
+  @include rwd(small) {
+    float: none;
+    width: 100vw;
+    padding: 10% 5%;
+  }
    .Order_head {
      color: #F7C845;
-     margin-top: 50px;
-     margin-left: 300px;
-     font-size: 30px;
-
-     @include rwd(large) {
-       margin-left: 170px;
-     }
-
-     @include rwd(medium) {
-       margin-left: 140px;
-     }
-
-     @include rwd(small) {
-       margin-left: 140px;
-     }
-
-     @include rwd(mobile) {
-       margin-left: 20px;
-     }
+     font-size: 3rem;
    }
 
    .Order_bottom {
      display: block;
-     height: auto;
      text-align: center;
-
+     margin: 0 auto;
      >.Orderlist {
        margin-top: 40px;
        margin-left: 70px;
@@ -237,7 +231,7 @@
          .total {
            display: block;
            background-color: #FFD3C1;
-           margin: 30px 20px;
+           margin: 20px 20px;
 
            >p {
              text-align: end;
@@ -258,7 +252,7 @@
          .address {
            display: block;
            background-color: #FFD3C1;
-           margin: 30px 20px;
+           margin: 20px 20px;
 
            >.address_left {
              display: inline-block;
@@ -286,7 +280,7 @@
          .Evaluation {
            display: block;
            background-color: #DCE07A;
-           margin: 30px 20px;
+           margin: 20px 20px;
            padding: 10px;
 
            >.star {

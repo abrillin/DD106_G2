@@ -2,60 +2,64 @@
     margin: 0 auto;
     color: $contentColor;
     display: inline-block;
-    // flex-flow: row wrap;
     font-size: $contentSize;
-    // width: 80%;
-    min-width: 70%;
+    width: 100vw;
     height: 100%;
     box-sizing: border-box;
     justify-content: center;
     position: fixed;
     left: 25%;
-    margin-right: 4%;
+
+    padding-bottom: 80px;
+    overflow: scroll;
+    scroll-behavior: smooth;
     // border: 1px solid red;
 
+    .aSellerTableSection {
 
-.aSellerTableSection {
-
-    .ast-header {
-        display: flex;
-        background: $formTtlBg;
-    }
-
-    .ast-content {
-        display: flex;
-        background-color: #fff;
-        height: 80%;
-        overflow-x: auto;
-        margin-top: 0px;
-    }
-
-    .sellerManageTab {
-        // width: 70%;
-        table-layout: fixed;
-
-    }
-
-    th {
-        width: 150px;
-        padding: 20px 20px;
-        text-align: left;
-        color: $contentColor;
-
-        &:last-child {
-            padding-left: 10%;
+        .ast-header {
+            display: flex;
+            background: $formTtlBg;
+            width: 715px;
         }
-    }
 
-    td {
-        width: 150px;
-        padding: 20px;
-        text-align: left;
-        vertical-align: middle;
-        color: $contentColor;
+        .ast-content {
+            display: flex;
+            background-color: #fff;
+            height: 80%;
+            width: 715px;
+        }
 
-        &:last-child {
-            padding-left: 10%;
+        // .sellerManageTab {
+        //     // width: 70%;
+        //     table-layout: fixed;
+
+        // }
+
+        th {
+            width: 125px;
+            padding: 15px 0px;
+            text-align: center;
+            color: $contentColor;
+            box-sizing: border-box;
+
+            &:first-child {
+                width: 90px;
+            }
+        }
+
+        td {
+            width: 125px;
+            padding: 15px 0px;
+            text-align: center;
+            vertical-align: middle;
+            color: $contentColor;
+            box-sizing: border-box;
+
+            &:first-child {
+                width: 90px;
+            }
+
 
             .statusBtn[type=checkbox] {
                 height: 0;
@@ -73,6 +77,7 @@
                 border-radius: 100px;
                 position: relative;
                 top: -6px;
+                left: 45px;
             }
 
             .statusBtnLabel:after {
@@ -101,12 +106,12 @@
             }
 
 
+
+
+
         }
 
-
     }
-
-}
 
 }
 

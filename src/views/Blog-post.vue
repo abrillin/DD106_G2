@@ -556,7 +556,7 @@
 <style lang="scss">
 .tri {
   //select
-  background: url('../assets/blog-img/post/triangle.png');
+  background: url("../assets/blog-img/post/triangle.png");
   background-repeat: no-repeat;
   background-position: 95% 60%;
   font-size: 15px;
@@ -668,10 +668,10 @@
       border-bottom: #a0a0a0 solid 1px;
       // border: chocolate 3px solid;
       grid-template-areas:
-        'aa1 aa2 aa2 aa2'
-        'aa1 aa3 aa3 aa3'
-        'aa1 aa4 aa5 aa7'
-        'aa1 aa4 aa6 aa7';
+        "aa1 aa2 aa2 aa2"
+        "aa1 aa3 aa3 aa3"
+        "aa1 aa4 aa5 aa7"
+        "aa1 aa4 aa6 aa7";
       > div:nth-child(1) {
         grid-area: aa1;
         font-size: 80px;
@@ -725,7 +725,7 @@
     > div:nth-child(1) {
       position: relative;
       &::before {
-        content: '';
+        content: "";
         z-index: 2;
         position: absolute;
         top: 30px;
@@ -734,7 +734,7 @@
         width: 80%;
       }
       &::after {
-        content: '';
+        content: "";
         z-index: 2;
         position: absolute;
         bottom: 15%;

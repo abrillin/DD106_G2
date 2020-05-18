@@ -10,11 +10,11 @@
             <div class="bottom_form">
                 <div class="person_left">
                     <ul>
-                        <li class="p_num">日誌編號</li>
-                        <li class="p_name">標題</li>
-                        <li class="p_price">內容</li>
-                        <li class="p_text">圖片</li>
-                        <li class="p_img">標籤</li>
+                        <li>日誌編號</li>
+                        <li>標題</li>
+                        <li>內容</li>
+                        <li>圖片</li>
+                        <li>標籤</li>
                     </ul>
                 </div>
                 <div class="person_right">

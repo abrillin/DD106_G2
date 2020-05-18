@@ -1,9 +1,17 @@
 .shopping {
 
-    flex-grow: 1;
-    box-sizing: border-box;
+    display: inline-block;
 
+    height: 100vh;
+    width: calc(100% - 250px);
+
+    box-sizing: border-box;
     overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+
+        display: none;
+    }
 
     .content {
 

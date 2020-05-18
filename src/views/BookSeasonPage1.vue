@@ -1,9 +1,10 @@
 <template>
   <div class="book_layout">
     <div class="bk_ct bk_ct_left">
+      <!-- 9. 接收到 contentType、page 的值，傳值到元件的自定義變數 type、page -->
       <component :is="'PageLeft'+this.left" :type="contentType" :page="page"></component>
       <div class="fruit_intro">
-        <p>梅子是亞洲特有的果樹，除了灣、日本和韓國之外，其他地區很少栽種。梅子的風味以清酸稱絕，滿口生津而別有風味，和一般水果講求香、甜有所不同。梅子所含的果酸較多，如果生食未成熟的青梅會造成腸胃不適，經過醃漬、曝晒加工之後更適合食用。梅子的加工品項多樣，除梅乾、蜜餞、脆梅、梅醬等，也能用來釀酒。梅子內有豐富檸檬酸、蘋果酸等有機酸，蛋白質的含量更是草莓、柑桔的兩倍以上。台灣的梅子主要栽種在中央山脈兩側，以南投信義鄉、水里鄉的產量最多，信義鄉更有「梅子鄉」的雅稱。</p>
+        <p>{{ooo + xxx}}</p>
       </div>
     </div>
     <component :is="'PageRight'+this.right" :type="contentType"></component>
@@ -20,7 +21,8 @@ import PageLeftWinter from "@/components/bookWinter";
 import PageLeftYear from "@/components/bookSpring";
 
 export default {
-  props: { page: Number, contentType: Number },
+  // 8. 接收到父元件的自定義變數 contentType 的值，更新上面的內容顯示
+  props: { pageId: Number, page: Number, contentType: Number },
   data() {
     return {
       index: [
@@ -90,8 +92,22 @@ export default {
         }
       ],
       right: "Others",
-      left: "Spring"
+      left: "Spring",
+      json: [
+        {
+          intro:
+            "梅子是亞洲特有的果樹，除了灣、日本和韓國之外，其他地區很少栽種。梅子的風味以清酸稱絕，滿口生津而別有風味，和一般水果講求香、甜有所不同。$梅子所含的果酸較多，如果生食未成熟的青梅會造成腸胃不適，經過醃漬、曝晒加工之後更適合食用。梅子的加工品項多樣，除梅乾、蜜餞、脆梅、梅醬等，也能用來釀酒。梅子內有豐富檸檬酸、蘋果酸等有機酸，蛋白質的含量更是草莓、柑桔的兩倍以上。台灣的梅子主要栽種在中央山脈兩側，以南投信義鄉、水里鄉的產量最多，信義鄉更有$「梅子鄉」的雅稱。"
+        }
+      ],
+      ooo: "",
+      xxx: ""
     };
+  },
+  created() {
+    this.changeContent();
+
+    this.ooo = this.json[0].intro.split("$")[0];
+    this.xxx = this.json[0].intro.split("$")[1];
   },
   computed: {
     content: function() {
@@ -100,11 +116,7 @@ export default {
     }
   },
   methods: {
-    test: function() {
-      // eslint-disable-next-line no-console
-      console.log(this.page);
-    },
-    changeContent: function() {
+    changeContent: function() {   
       if (this.contentType == 0) {
         this.right = "Others";
         this.left = "Spring";

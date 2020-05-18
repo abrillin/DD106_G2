@@ -95,7 +95,7 @@
             </div>
           </div>
         </div>
-        <router-link to="/main/book">
+        <router-link to="/main/book/bookIndex">
           <button class="home_title" style="left:53%;">
             知識百科
           </button>

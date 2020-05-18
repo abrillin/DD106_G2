@@ -39,8 +39,8 @@
                     <ul>
                         <li>果粉編號</li>
                         <li>帳號</li>
-                        <li>密碼</li>
-                        <li>修改密碼</li>
+                        <!-- <li>密碼</li> -->
+                        <!-- <li>修改密碼</li> -->
                         <li>果粉姓名</li>
                         <li>暱稱</li>
                         <li>性別</li>
@@ -49,16 +49,16 @@
                     </ul>
                 </div>
                 <div class="person_right">
-                    <p>XXX</p>
-                    <p>fruitee</p>
-                    <p>XXXXXXXXXX</p>
-                    <input type="text">
-                    <br>
-                    <p>某某某</p>
-                    <p>某oo</p>
-                    <p>女</p>
-                    <p>0912-345678</p>
-                    <p>you_go33@yahoo.com</p>
+                    <p>{{no}}</p>
+                    <p>{{acc}}</p>
+                    <!-- <p>XXXXXXXXXX</p> -->
+                    <!-- <input type="text"> -->
+                    <!-- <br> -->
+                    <p>{{name}}</p>
+                    <p>{{nick}}</p>
+                    <p>{{gender}}</p>
+                    <p>0{{phone}}</p>
+                    <p>{{email}}</p>
                     <div class="submit_button">
                         <div class="correct">
                             <p>確定</p>
@@ -70,3 +70,12 @@
     </div>
 
 </template>
+<script>
+export default{
+    data(){
+        return{
+            
+        }
+    }
+};
+</script>

@@ -1,59 +1,33 @@
 div.FarmOrder {
     display: inline-block;
-    background-color: #FBF8EF;
-    width: 100%;
-    height: 100%;
-
-    @include rwd(large) {
-        height: auto;
-    }
+    color: #007552;
+    background-color: #fbf8ef;
+    width: calc(100% - 250px);
+    height: 100vh;
+    vertical-align: top;
+    box-sizing: border-box;
+    padding: 60px 40px;
 
     @include rwd(medium) {
-        height: 100%;
+        float: right;
+        width: calc(100% - 200px);
     }
 
     @include rwd(small) {
-        height: 100%;
-    }
-
-    @include rwd(mobile) {
-        height: auto;
+        float: none;
+        width: 100vw;
+        padding: 10% 5%;
     }
 
     .FarmOrder_head {
-        color: #F7C845;
-        margin-top: 45px;
-        margin-left: 300px;
-        font-size: 30px;
-        @include rwd(large){
-            margin-left: 180px;
-        }
-        @include rwd(medium){
-            margin-left: 140px;
-        }
-        @include rwd(small){
-            margin-left: 120px;
-        }
-        @include rwd(mobile){
-            margin-left: 20px;
-        }
+        color: #f7c845;
+        font-size: 3rem;
     }
 
     .plusbutton {
         display: block;
-        margin: 20px 0px 20px 300px;
-        @include rwd(large){
-            margin: 20px 0px 20px 180px;
-        }
-        @include rwd(medium){
-            margin: 20px 0px 20px 140px;
-        }
-        @include rwd(small){
-            margin: 20px 0px 20px 120px;
-        }
-        @include rwd(mobile){
-            margin: 20px 0px 20px 20px;
-        }
+        padding: 10px 0;
+
         >.plus {
             display: inline-block;
             border: 1px solid #007552;
@@ -72,18 +46,26 @@ div.FarmOrder {
 
     .FarmOrder_bottom {
         display: block;
-        height: auto;
-        width: 100%;
+        padding-top: 100px;
+        margin: 0 auto;
         text-align: center;
+
+        @include rwd(medium) {
+            display: block;
+            width: 100%;
+            padding-top: 10%;
+        }
 
         >.list_1 {
             display: flex;
             height: auto;
             text-align: start;
             margin-left: 30%;
-            @include rwd(large){
+
+            @include rwd(large) {
                 margin-left: 25%;
             }
+
             @include rwd(medium) {
                 margin-left: 25%;
             }
@@ -95,123 +77,158 @@ div.FarmOrder {
             @include rwd(mobile) {
                 margin-left: 4%;
             }
-            
-            >.Ordernum{
+
+            >.Ordernum {
                 width: 15%;
                 text-align: center;
                 background-color: white;
-                @include rwd(mobile){
+
+                @include rwd(mobile) {
                     width: 20%;
                 }
-                >.title{
+
+                >.title {
                     background-color: #F7C845;
                     padding: 20px 0px 20px 0px;
-                    @include rwd(mobile){
+
+                    @include rwd(mobile) {
                         padding: 20px 0px 20px 0px;
                     }
                 }
-                >p{
+
+                >p {
                     padding: 20px 0px 20px 0px;
-                    @include rwd(mobile){
+
+                    @include rwd(mobile) {
                         padding: 20px 0px 55px 0px;
                     }
                 }
             }
-            >.Ordername{
-                width: 15%;
+
+            >.Ordername {
+                width: 16%;
                 text-align: center;
                 background-color: white;
-                @include rwd(large){
+
+                @include rwd(large) {
                     width: 19.3%;
                 }
-                @include rwd(medium){
+
+                @include rwd(medium) {
                     width: 23.4%;
                 }
-                @include rwd(small){
+
+                @include rwd(small) {
                     width: 28.5%;
                 }
-                @include rwd(mobile){
+
+                @include rwd(mobile) {
                     width: 20%;
                 }
-                >.title{
+
+                >.title {
                     background-color: #F7C845;
-                    @include rwd(mobile){
+
+                    @include rwd(mobile) {
                         padding: 20px 0px 20px 0px;
                     }
                 }
-                >p{
+
+                >p {
                     padding: 20px 0px 20px 0px;
                 }
             }
-            >.Orderprice{
+
+            >.Orderprice {
                 width: 15%;
                 text-align: center;
                 background-color: white;
-                @include rwd(mobile){
+
+                @include rwd(mobile) {
                     width: 20%;
                 }
-                >.title{
+
+                >.title {
                     background-color: #F7C845;
-                    @include rwd(mobile){
+
+                    @include rwd(mobile) {
                         padding: 20px 0px 20px 0px;
                     }
                 }
-                >p{
+
+                >p {
                     padding: 20px 0px 20px 0px;
-                    @include rwd(mobile){
+
+                    @include rwd(mobile) {
                         padding: 36px 0px 38px 0px;
                     }
                 }
             }
-            >.Ordertime{
+
+            >.Ordertime {
                 width: 15%;
                 text-align: center;
                 background-color: white;
-                @include rwd(large){
+
+                @include rwd(large) {
                     width: 16.8%;
                 }
-                @include rwd(medium){
+
+                @include rwd(medium) {
                     width: 20.3%;
                 }
-                @include rwd(small){
+
+                @include rwd(small) {
                     width: 24.7%;
                 }
-                @include rwd(mobile){
+
+                @include rwd(mobile) {
                     width: 20%;
                 }
-                >.title{
+
+                >.title {
                     background-color: #F7C845;
-                    @include rwd(mobile){
+
+                    @include rwd(mobile) {
                         padding: 20px 0px 20px 0px;
                     }
                 }
-                >p{
+
+                >p {
                     padding: 20px 0px 20px 0px;
                 }
             }
-            >.Orderputon{
+
+            >.Orderputon {
                 width: 10%;
                 text-align: center;
                 background-color: white;
-                @include rwd(small){
+
+                @include rwd(small) {
                     width: 11.4%;
                 }
-                @include rwd(mobile){
+
+                @include rwd(mobile) {
                     width: 19%;
                 }
-                >.title{
+
+                >.title {
                     background-color: #F7C845;
                     padding: 20px 0;
-                    @include rwd(mobile){
+
+                    @include rwd(mobile) {
                         padding: 20px 0px 20px 0px;
                     }
                 }
-                >p{
+
+                >p {
                     padding: 15.3px 0px 22.4px 0px;
-                    @include rwd(mobile){
+
+                    @include rwd(mobile) {
                         padding: 36px 0px 36px 0px;
                     }
                 }
+
                 .statusBtn[type=checkbox] {
                     height: 0;
                     width: 0;
@@ -273,7 +290,8 @@ div.FarmOrder {
                 text-align: center;
                 margin-left: 30px;
             }
-            @include rwd(small){
+
+            @include rwd(small) {
                 margin-left: 13%;
             }
 

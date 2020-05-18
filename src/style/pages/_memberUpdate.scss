@@ -47,7 +47,7 @@ div.MemberUpdate_right {
         display: inline-block;
         background-color: #f7c845;
         width: 150px;
-        height: 550px;
+        height: 570px;
         padding-top: 50px;
 
         @include rwd(small) {
@@ -78,7 +78,7 @@ div.MemberUpdate_right {
         padding-left: 30px;
         padding-right: 30px;
         width: 340px;
-        height: 550px;
+        height: 570px;
         line-height: 3.5;
         @include rwd(medium) {
           width: 340px;
@@ -91,20 +91,32 @@ div.MemberUpdate_right {
         }
 
         input {
-          width: 150px;
+          width: 200px;
+          @include rwd(small) {
+            width: 150px;
+          }
+        }
+
+        div {
+          input {
+            display: inline-block;
+            width: auto;
+          }
         }
 
         > .submit_button {
+          float: right;
           border: none;
           margin-top: 20px;
-          display: inline-block;
+          display: block;
           border-radius: 5px;
           background-color: #007552;
           color: white;
-          padding: 0px 20px;
+          width: 80px;
           line-height: 2.3;
           cursor: pointer;
           font-size: 1.6rem;
+
           &:hover {
             background-color: #fca87c;
             color: #fbf8ef;

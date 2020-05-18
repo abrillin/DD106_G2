@@ -2,7 +2,6 @@ import Vue from 'vue';
 import App from './main.vue';
 import router from './router';
 import axios from "axios";
-import VueAxios from "vue-axios";
 
 import "@/js/components";
 import "@/style/main.scss";

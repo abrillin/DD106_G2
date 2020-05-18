@@ -8,7 +8,7 @@
         <div class="plusbutton">
             <div class="plus">
                 <router-link to="/farm/blogupdate">
-                    <p>新增商品</p>
+                    <p>新增日誌</p>
                 </router-link>
 
             </div>
@@ -76,7 +76,7 @@
                     <p>2020-04-16 11:22</p>
                 </div>
                 <div class="Blogputon">
-                    <p class="title">上架狀態</p>
+                    <p class="title">狀態</p>
                     <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
                             for="switch">Toggle</label></p>
                     <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"

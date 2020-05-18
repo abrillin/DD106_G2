@@ -7,8 +7,8 @@
         </div>
         <ul>
           <li>設定頭像</li>
-          <li class="nick">暱稱</li>
-          <li class="fans">身分別:果農</li>
+          <li class="nick">暱稱:<span>台北暴徒</span></li>
+          <li class="fans">身分別:<span>果農</span></li>
         </ul>
         <div class="star">
           <div class="starimg">
@@ -51,31 +51,42 @@
       <div class="farm_button">
         <div class="farm">
           <router-link to="/main/member/information">
-            <p>切換果粉</p>
+            <button-more class="return_member" msg="切換果粉"></button-more>
           </router-link>
         </div>
       </div>
-       <button type="button" class="btn_drawer"> >> </button>
+       <button type="button" class="btn_drawer">&#9658;</button>
     </aside>
-    <router-view />
+    <router-view  @update="update"/>
   </div>
 </template>
 
 <script>
 import $ from "jquery";
 export default {
-    mounted(){
-      var x=0;
-      $("button.btn_drawer").on("click", function(){
-          if(x == 0){
-            $('aside.left').css("transform","translateX(0%)");
-            x=1;
-          }else{
-            $('aside.left').css("transform","translateX(-93%)");
-            x=0;
-          }
-          
-        });
+  mounted() {
+    if (window.innerWidth < 768) {
+      $("aside.left").addClass("popover");
+      $("button.btn_drawer").on("click", function() {
+        $("aside.left").toggleClass("popover");
+      });
     }
+
+    $(window).resize(function() {
+      if (window.innerWidth < 768) {
+        $("aside.left").addClass("popover");
+        $("button.btn_drawer").on("click", function() {
+          $("aside.left").toggleClass("popover");
+        });
+      } else {
+        $("aside.left").removeClass("popover");
+      }
+    });
+  },
+  methods: {
+    update: function(s) {
+      // this.$emit("loginStatus", s);
+    },
+  },
 };
 </script>

@@ -1,64 +1,31 @@
 div.FarmList {
     display: inline-block;
-    background-color: #FBF8EF;
-    width: 100%;
-    height: 100%;
-    font-size: 16px;
-    @include rwd(large) {
-        height: auto;
-    }
-
+    color: #007552;
+    background-color: #fbf8ef;
+    width: calc(100% - 250px);
+    height: 100vh;
+    vertical-align: top;
+    box-sizing: border-box;
+    padding: 60px 40px;
     @include rwd(medium) {
-        height: 100%;
+        float: right;
+        width: calc(100% - 200px);
     }
 
     @include rwd(small) {
-        height: 100%;
-    }
-
-    @include rwd(mobile) {
-        height: auto;
+        float: none;
+        width: 100vw;
+        padding: 10% 5%;
     }
     .FarmList_head {
-        color: #F7C845;
-        margin-top: 45px;
-        margin-left: 300px;
-        font-size: 30px;
-        @include rwd(large) {
-            margin-left: 180px;
-        }
-
-        @include rwd(medium) {
-            margin-left: 140px;
-        }
-
-        @include rwd(small) {
-            margin-left: 120px;
-        }
-
-        @include rwd(mobile) {
-            margin-left: 20px;
-        }
+        color: #f7c845;
+        font-size: 3rem;
     }
 
     .plusbutton {
         display: block;
-        margin: 20px 0px 20px 300px;
-        @include rwd(large) {
-            margin: 20px 0px 20px 180px;
-        }
-
-        @include rwd(medium) {
-            margin: 20px 0px 20px 140px;
-        }
-
-        @include rwd(small) {
-            margin: 20px 0px 20px 120px;
-        }
-
-        @include rwd(mobile) {
-            margin: 20px 0px 20px 20px;
-        }
+        padding: 10px 0;
+        
         >.plus {
             display: inline-block;
             border: 1px solid #007552;
@@ -77,9 +44,15 @@ div.FarmList {
 
     .FarmList_bottom {
         display: block;
-        height: auto;
-        width: 100%;
+        padding-top: 100px;
+        margin: 0 auto;
         text-align: center;
+
+        @include rwd(medium) {
+            display: block;
+            width: 100%;
+            padding-top: 10%;
+        }
 
         >.list_1 {
 
@@ -141,7 +114,7 @@ div.FarmList {
             }
 
             >.Listdate {
-                width: 12%;
+                width: 14%;
                 text-align: center;
                 background-color: white;
 

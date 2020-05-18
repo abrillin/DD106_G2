@@ -9,8 +9,6 @@
     },
     "dependencies": {
         "axios": "^0.19.2",
-        "bootstrap": "^4.5.0",
-        "bootstrap-vue": "^2.14.0",
         "gsap": "^3.2.6",
         "jquery": "^3.5.0",
         "scrollmagic": "^2.0.7",
@@ -18,7 +16,6 @@
         "three": "^0.115.0",
         "three-js": "^79.0.0",
         "vue": "^2.6.11",
-        "vue-axios": "^2.1.5",
         "vue-router": "^3.1.6"
     },
     "devDependencies": {

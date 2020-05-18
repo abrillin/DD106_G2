@@ -21,8 +21,8 @@
           </ul>
         </div>
         <div class="update_right">
-          <p>{{member.no}}</p>
-          <p>{{member.acc}}</p>
+          <p>{{ member.no }}</p>
+          <p>{{ member.acc }}</p>
           <!-- <input type="text">
           <br>-->
           <button type="button">修改密碼</button>
@@ -31,7 +31,28 @@
           <br />
           <input type="text" v-model="member.nick" />
           <br />
-          <p>{{member.gender}}</p>
+          <div>
+            <input
+              type="radio"
+              v-model="member.gender"
+              value="1"
+              name="gender"
+            />男
+            <input
+              type="radio"
+              v-model="member.gender"
+              value="2"
+              name="gender"
+            />女
+            <input
+              type="radio"
+              v-model="member.gender"
+              value="0"
+              name="gender"
+            />其它
+          </div>
+
+          <!-- <p>{{ member.gender }}</p>-->
           <!-- <label for=""><input type="radio">男</label>
                     <label for=""><input type="radio">女</label>
           <label for=""><input type="radio">其他</label>-->
@@ -51,6 +72,7 @@
   </div>
 </template>
 <script>
+import { log } from "three";
 export default {
   data() {
     return {
@@ -61,8 +83,8 @@ export default {
         nick: "",
         gender: "",
         phone: "",
-        email: ""
-      }
+        email: "",
+      },
     };
   },
   created() {
@@ -70,7 +92,7 @@ export default {
 
     this.$http
       .post(api)
-      .then(res => {
+      .then((res) => {
         const data = res.data;
 
         if (data != "") {
@@ -80,54 +102,63 @@ export default {
             name: data.name,
             nick: data.nick,
             phone: 0 + data.phone,
-            email: data.email
+            email: data.email,
+            gender: data.gender,
           };
 
-          if (data.gender == 1) {
-            this.member.gender = "男";
-          } else if (data.gender == 2) {
-            this.member.gender = "女";
-          } else if (data.gender == 3) {
-            this.member.gender = "其它";
-          }
+          // if (data.gender == 1) {
+          //   this.member.gender = "男";
+          // } else if (data.gender == 2) {
+          //   this.member.gender = "女";
+          // } else if (data.gender == 3) {
+          //   this.member.gender = "其它";
+          // }
         }
       })
       // eslint-disable-next-line no-console
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   },
   methods: {
     update: function() {
       const api = "/api/api_memberUpdate.php";
 
+      for (let i in this.member) {
+        if (this.member[i] == "") {
+          alert("請檢查是否所有欄位都有輸入資料");
+          return;
+        }
+      }
+
       this.$http
         .post(api, JSON.stringify(this.member))
-        .then(res => {
+        .then((res) => {
           const data = res.data;
 
-          if (data == "1") {
+          if (data == 0) {
             alert("修改成功！");
 
             this.updateSession();
+            this.$router.go(0);
           }
         })
         // eslint-disable-next-line no-console
-        .catch(err => console.log(err));
+        .catch((err) => console.log(err));
     },
     updateSession: function() {
       const api = "/api/api_memberUpdateSession.php";
 
       this.$http
         .post(api, JSON.stringify(this.member))
-        .then(res => {
+        .then((res) => {
           const data = res.data;
 
-          if (data != "") {
+          if (data == 1) {
             // this.$emit("update", true);
           }
         })
         // eslint-disable-next-line no-console
-        .catch(err => console.log(err));
-    }
-  }
+        .catch((err) => console.log(err));
+    },
+  },
 };
 </script>

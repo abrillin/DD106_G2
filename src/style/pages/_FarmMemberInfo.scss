@@ -1,40 +1,41 @@
 div.farminfo {
     display: inline-block;
     color: #007552;
-    background-color: #FBF8EF;
-    width: 100%;
-    height: auto;
+    background-color: #fbf8ef;
+    width: calc(100% - 250px);
+    height: 100vh;
     vertical-align: top;
-    @include rwd(mobile){
-        width: 95%;
+    box-sizing: border-box;
+    padding: 60px 40px;
+
+    @include rwd(medium) {
+        float: right;
+        width: calc(100% - 200px);
     }
+
+    @include rwd(small) {
+        float: none;
+        width: 100vw;
+        padding: 10% 5%;
+    }
+
     .farminfo_head {
-        color: #F7C845;
-        margin-top: 45px;
-        margin-left: 300px;
-        font-size: 30px;
-        @include rwd(large){
-            margin-left: 160px;
-            margin-bottom: 10px;
-        }
-        @include rwd(medium){
-            margin-left: 130px;
-        }
-        @include rwd(small){
-            margin-left: 90px;
-        }
-        @include rwd(mobile){
-            margin-left: 20px;
-        }
+        color: #f7c845;
+        font-size: 3rem;
     }
 
     .farminfo_bottom {
         display: block;
-        height: auto;
         text-align: center;
-        @include rwd(mobile){
-            padding-left: 20px;
+        padding-top: 100px;
+        margin: 0 auto;
+
+        @include rwd(medium) {
+            display: block;
+            width: 100%;
+            padding-top: 10%;
         }
+
         >.top_card {
             display: inline-block;
             border: 3px solid #007552;
@@ -49,18 +50,22 @@ div.farminfo {
             background-repeat: no-repeat;
             background-size: 690px;
             overflow: hidden;
-            @include rwd(medium){
-            width: 610px;
-            height: 360px;
+
+            @include rwd(medium) {
+                width: 610px;
+                height: 360px;
             }
-            @include rwd(small){
-            width: 480px;
-            height: 360px;
+
+            @include rwd(small) {
+                width: 480px;
+                height: 360px;
             }
-            @include rwd(mobile){
+
+            @include rwd(mobile) {
                 width: 330px;
                 height: 577px;
-                }
+            }
+
             >.card {
                 display: block;
                 padding-top: 20px;
@@ -116,11 +121,13 @@ div.farminfo {
             margin-top: 60px;
             margin-bottom: 10px;
             line-height: 1.9;
-            @include rwd(small){
+
+            @include rwd(small) {
                 margin-top: 40px;
                 line-height: 1.8;
             }
-            @include rwd(mobile){
+
+            @include rwd(mobile) {
                 display: flex;
                 width: 100%;
                 margin-top: 40px;
@@ -129,6 +136,7 @@ div.farminfo {
                 line-height: 2;
                 font-size: 16px;
             }
+
             >.person_left {
                 vertical-align: top;
                 display: inline-block;

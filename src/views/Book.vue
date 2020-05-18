@@ -24,14 +24,15 @@
                   <p class="book_link" @click="changeType(5)">總目錄</p>
                 </div>
                 <ul class="tag">
+                  <!-- 1. 點選季節標籤，發送來自 item(tabs) 的 type 值給 changeType() -->
                   <li
                     v-for="(item, index) in tabs"
                     :id="index"
                     :key="item.id"
                     @click="changeType(item.type)"
+                    class="book_link"
                   >
-                    {{item.name}}
-                    <!-- <router-link class="book_link" :to="'/main/book/'+ item.path">{{item.name}}</router-link> -->
+                    {{ item.name }}
                   </li>
                 </ul>
               </div>
@@ -44,10 +45,17 @@
                   <div class="pagepaper"></div>
                 </div>
                 <!-- bookcontent書籍內容 -->
+                <!-- 4. 傳 data 的 type 值給 class 屬性去動態切換 class -->
                 <div id="bk_content" :class="type">
-                  <Content v-if="change == false" :contentIndex="index"></Content>
-                  <Index v-if="change == true"></Index>
-                  <!-- <router-view /> -->
+                  <!-- 4. 偵測到 data 的更新，傳 data 的 change 值給 v-if 判斷要顯示哪一個元件 -->
+                  <!-- 4. 傳 data 的 index 值給子元件(BookContent.vue)的自定義名稱 -> contentIndex -->
+                  <Content
+                    v-if="change == false"
+                    :contentIndex="index"
+                    :pageId="page"
+                    @addType="addIndex"
+                  ></Content>
+                  <Index v-if="change == true" @changePage="changePage"></Index>
                   <!-- fruit_knowledge -->
                 </div>
                 <!-- 右切換按鈕 -->
@@ -61,15 +69,11 @@
           </div>
         </div>
       </div>
-      <!-- <div id="book_footer">
-                <Footer />
-      </div>-->
     </section>
-    <!-- <div id="book_footer">
-                <Footer />
-    </div>-->
   </div>
 </template>
+
+<style></style>
 <script>
 import "@/js/book";
 import Index from "@/views/BookIndex";
@@ -80,30 +84,32 @@ export default {
       tabs: [
         {
           name: "春季",
-          type: 0
+          type: 0,
         },
         {
           name: "夏季",
-          type: 1
+          type: 1,
         },
         {
           name: "秋季",
-          type: 2
+          type: 2,
         },
         {
           name: "冬季",
-          type: 3
+          type: 3,
         },
         {
           name: "常年",
-          type: 4
-        }
+          type: 4,
+        },
       ],
       i: 0,
       top: 0,
+      // 3. 接收到 changeType() 的更新
       type: "spring",
       index: 0,
-      change: true
+      change: true,
+      page: 0
     };
   },
   mounted() {
@@ -123,38 +129,50 @@ export default {
         document.getElementById("move_img").style = `left:${this.i}%;`;
       }
     },
+    // 2. t 接收到 type 值，並更新 this(data) 的 type、index、change 值
     changeType: function(t) {
       if (t == 0) {
         this.type = "spring";
         this.index = 0;
         this.change = false;
+        this.page = 0;
       } else if (t == 1) {
         this.type = "summer";
         this.index = 1;
         this.change = false;
+        this.page = 0;
       } else if (t == 2) {
-        this.type = "full";
+        this.type = "fall";
         this.index = 2;
         this.change = false;
+        this.page = 0;
       } else if (t == 3) {
         this.type = "winter";
         this.index = 3;
         this.change = false;
+        this.page = 0;
       } else if (t == 4) {
         this.type = "year";
         this.index = 4;
         this.change = false;
+        this.page = 0;
       } else if (t == 5) {
         this.type = "index";
         this.change = true;
+        this.page = 0;
       }
+    },
+    changePage: function(p) {
+      this.changeType(p.type);
+      this.page = p.id;
+    },
+    addIndex: function(n) {
+      this.changeType(this.index + n);
     }
   },
   components: {
     Content,
-    // eslint-disable-next-line vue/no-unused-components
     Index
   }
 };
 </script>
-

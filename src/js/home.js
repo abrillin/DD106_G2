@@ -1162,34 +1162,34 @@ window.addEventListener("load", () => {
       $("div.knowledge_page." + $(this).attr("data-target")).addClass("-on");
     });
   });
-  $(function() {
-    // hamburger icon 的切換
-    $("div.hamburger").on("click", function() {
-      $(this).toggleClass("is-active");
-      $("div.nav_back").slideToggle();
-      $("#nav").toggleClass("is-active");
-    });
-  });
-  $(function() {
-    $("a.page").on("click", function() {
-      if ($("div.hamburger").hasClass("is-active") == true) {
-        $("div.nav_back").slideToggle();
-        $("div.hamburger").removeClass("is-active");
-      }
-    });
-    $("img.logo").on("click", function() {
-      if ($("div.hamburger").hasClass("is-active") == true) {
-        $("div.nav_back").slideToggle();
-        $("div.hamburger").removeClass("is-active");
-      }
-    });
-    $("a.login_logout").on("click", function() {
-      if ($("div.hamburger").hasClass("is-active") == true) {
-        $("div.nav_back").slideToggle();
-        $("div.hamburger").removeClass("is-active");
-      }
-    });
-  });
+  // $(function() {
+  //   // hamburger icon 的切換
+  // //   $("div.hamburger").on("click", function() {
+  // //     $(this).toggleClass("is-active");
+  // //     $("div.nav_back").slideToggle();
+  // //     $("#nav").toggleClass("is-active");
+  // //   });
+  // // });
+  // $(function() {
+  //   $("a.page").on("click", function() {
+  //     if ($("div.hamburger").hasClass("is-active") == true) {
+  //       $("div.nav_back").slideToggle();
+  //       $("div.hamburger").removeClass("is-active");
+  //     }
+  //   });
+  //   // $("img.logo").on("click", function() {
+  //   //   if ($("div.hamburger").hasClass("is-active") == true) {
+  //   //     $("div.nav_back").slideToggle();
+  //   //     $("div.hamburger").removeClass("is-active");
+  //   //   }
+  //   // });
+  //   $("a.login_logout").on("click", function() {
+  //     if ($("div.hamburger").hasClass("is-active") == true) {
+  //       $("div.nav_back").slideToggle();
+  //       $("div.hamburger").removeClass("is-active");
+  //     }
+  //   });
+  // });
 
   $(function() {
     function stopScrolling(e) {

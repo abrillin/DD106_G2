@@ -1,35 +1,35 @@
 div.track {
   display: inline-block;
-  background-color: #FBF8EF;
-  width: 100%;
-  height: auto;
+  background-color: #fbf8ef;
+  width: calc(100% - 250px);
+  height: 100vh;
+  vertical-align: top;
+  box-sizing: border-box;
+  padding: 60px 40px;
+  @include rwd(medium) {
+    float: right;
+    width: calc(100% - 200px);
+  }
 
+  @include rwd(small) {
+    float: none;
+    width: 100vw;
+    padding: 10% 5%;
+  }
   .track_head {
     color: #F7C845;
-    margin-top: 45px;
-    margin-left: 300px;
-    font-size: 30px;
-    @include rwd(large){
-      margin-left: 180px;
-    }
-    @include rwd(medium){
-      margin-left: 130px;
-    }
-    @include rwd(small){
-      margin-left: 100px;
-    }
-    @include rwd(mobile){
-      margin-left: 20px;
-    }
+    font-size: 3rem;
   }
 
   .track_bottom {
     display: block;
-    height: auto;
     text-align: center;
-    padding-left: 17%;
-    @include rwd(mobile){
-      padding-left: 5px;
+    padding-top: 100px;
+    margin: 0 auto;
+    @include rwd(medium){
+      display: block;
+      width: 100%;
+      padding-top: 10%;
     }
     >.trackcard {
       display: inline-block;

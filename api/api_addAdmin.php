@@ -3,6 +3,8 @@ try {
     require_once("connectDB.php");
 
     $addAdminInfo = json_decode(file_get_contents("php://input"));
+    // 使用file_get_contents獲取php://input內容，由json檔轉為物件/陣列
+    // 前面表單輸入進來的資料會在以下被處理
     
 	$sql = "insert into `admin` (`no`, `name`, `acc`, `psw`, `status`) values(null, :name, :acc, :psw, '1')";
     // $addAdmin = $pdo->query($sql);
@@ -12,20 +14,13 @@ try {
     $addAdmin -> bindValue(":psw", $addAdminInfo->psw);
     $addAdmin-> execute();
 
+    // 跑sql既有資料，看acc是否有重複
+
+
+    
     $no = $pdo->lastInsertId();
     
-    echo json_encode($addAdminInfo);
-
-    function showMsg() {
-        $message = "資料新增完成 ٩(･ิᴗ･ิ๑)۶";
-        echo "<script type='text/javascript'>alert('$message');</script>";
-        header("Location:./AdminManage.vue");
-      }
-      
-    showMsg();
-
-   
-
+    echo json_encode($addAdminInfo); // 以上處理完後，將物件轉json檔
     
 } catch (PDOException $e) {
    echo "錯誤原因 : ", $e->getMessage(), "<br>";

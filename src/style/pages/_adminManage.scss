@@ -32,215 +32,222 @@ $tagBGcolor: #E2E2E2;
   // border: 1px solid #000;
   // box-sizing: border-box;
 
-  .msFrame {
-    color: $contentColor;
+  // .msFrame {
+  // display: flex;
+  // width: 100%;
+  // border: 1px solid blue;
+  // box-sizing: border-box;
+
+  .msSideBar {
+    // margin: auto;
+    color: $title1Color;
     display: flex;
-    width: 100%;
-    // border: 1px solid blue;
+    background: $sidebarBgColor;
+    min-width: 20%;
+    height: 100%;
     box-sizing: border-box;
+    // align-items: center;
+    justify-content: center;
+    font-size: $title2Size;
+    line-height: 3.3rem;
+    position: fixed;
+    // border: 1px solid red;
 
-    // overflow: scroll;
+    .mng_logo {
+      margin-top: 30px;
+    }
 
-    .msSideBar {
-      // margin: auto;
-      color: $title1Color;
-      display: flex;
-      background: $sidebarBgColor;
-      min-width: 20%;
-      height: 100%;
-      box-sizing: border-box;
-      // align-items: center;
-      justify-content: center;
+    .admin_name {
+      color: $title2Color;
+      position: relative;
+      top: 15px;
+      left: 25%;
       font-size: $title2Size;
-      line-height: 3.3rem;
-      position: fixed;
-      // border: 1px solid red;
+    }
 
-      .mng_logo {
-        margin-top: 30px;
-      }
+    li {
+      position: relative;
+      top: 10%;
+    }
 
-    
-      .admin_name {
+    a {
+      // position: relative;
+      // top: 25%;
+      text-decoration: none;
+      color: $title1Color;
+      outline: none;
+      transition: ease .3s;
+
+      &:hover {
         color: $title2Color;
         position: relative;
-        top: 15px;
-        left: 25%;
-        font-size: $title2Size;
+        top: 1px;
+        left: 1px;
       }
 
-      li {
-        position: relative;
-        top: 10%;
+      &:active {
+        color: $title2Color;
       }
+    }
+
+  }
+
+  .manageTitle {
+    color: $maintitleColor;
+    font-size: $maintitleSize;
+    margin: 30px 0;
+  }
+
+  .manageSubTitle {
+    color: $mainSubtitleColor;
+    font-size: $title1Size;
+    vertical-align: bottom;
+    margin-left: 10px;
+
+  }
+
+  .AdminMainContent {
+    margin: 0 auto;
+    color: $contentColor;
+    display: inline-block;
+    font-size: $contentSize;
+    width: 100vw;
+    height: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    position: fixed;
+    left: 25%;
+    // border: 1px solid red;
+    padding-bottom: 80px;
+
+    overflow: scroll;
+    scroll-behavior: smooth;
+
+    .addAdmin {
+      background: $btnBgcolor;
+      color: $btnColor;
+      border-radius: $btnRadius;
+      border: hidden;
+      width: auto;
+      height: 30px;
+      transition: ease-in-out .3s;
 
       a {
-        // position: relative;
-        // top: 25%;
         text-decoration: none;
-        color: $title1Color;
-        outline: none;
-        transition: ease .3s;
-
-        &:hover {
-          color: $title2Color;
-          position: relative;
-          top: 1px;
-          left: 1px;
-        }
-
-        &:active {
-          color: $title2Color;
-        }
+        color: $title3Color;
       }
 
+      &:hover {
+        position: relative;
+        top: .08rem;
+        left: .08rem;
+        background: $btnBgHcolor;
+      }
     }
 
-    .manageTitle {
-      color: $maintitleColor;
-      font-size: $maintitleSize;
-      margin: 30px 0;
-    }
+    .tableSection {
+      margin-top: 30px;
 
-    .manageSubTitle {
-      color: $mainSubtitleColor;
-      font-size: $title1Size;
-      vertical-align: bottom;
-      margin-left: 10px;
-
-    }
-
-    .AdminMainContent {
-      margin: 0 auto;
-      color: $contentColor;
-      display: inline-block;
-      font-size: $contentSize;
-      min-width: 70%;
-      height: 100%;
-      box-sizing: border-box;
-      justify-content: center;
-      position: fixed;
-      left: 25%;
-      // border: 1px solid red;
-
-      .addAdmin {
-        background: $btnBgcolor;
-        color: $btnColor;
-        border-radius: $btnRadius;
-        border: hidden;
-        width: auto;
-        height: 30px;
-        transition: ease-in-out .3s;
-
-        a {
-          text-decoration: none;
-          color: $title3Color;
-        }
-
-        &:hover {
-          position: relative;
-          top: .08rem;
-          left: .08rem;
-          background: $btnBgHcolor;
-        }
+      .amt-header {
+        display: flex;
+        background: $formTtlBg;
+        width: 640px;
       }
 
-      .tableSection {
-        margin-top: 30px;
+      .amt-content {
+        display: flex;
+        background-color: #fff;
+        height: 80%;
+        margin-top: 0px;
+        width: 640px;
+      }
 
-        .amt-header {
-          display: flex;
-          background: $formTtlBg;
+      .adminManageTab {
+        table-layout: auto;
+        // width: 100%;
+        // width: 700px;
+      }
+
+      th {
+        width: 140px;
+        padding: 15px 0px;
+        text-align: center;
+        color: $contentColor;
+
+        &:first-child {
+          width: 60px;
+          padding-left: 20px;
         }
 
-        .amt-content {
-          display: flex;
-          background-color: #fff;
-          height: 80%;
-          overflow-x: auto;
-          margin-top: 0px;
+        // &:last-child {
+        //   padding-left: 10%;
+        // }
+      }
+
+      td {
+        width: 140px;
+        padding: 15px 0px;
+        text-align: center;
+        vertical-align: middle;
+        color: $contentColor;
+
+        &:first-child {
+          width: 60px;
+          padding-left: 20px;
         }
 
-        .adminManageTab {
-          table-layout: auto;
+        // &:last-child {
+        //   padding-left: 5%;
+        // }
+
+        .statusBtn[type='checkbox'] {
+          height: 0;
+          width: 0;
+          visibility: hidden;
         }
 
-        th {
-          width: 90px;
-          padding: 15px 20px;
-          text-align: left;
-          color: $contentColor;
-
-          &:first-child {
-            width: 60px;
-          }
-
-          &:last-child {
-            padding-left: 10%;
-          }
+        .statusBtnLabel {
+          cursor: pointer;
+          text-indent: -9999px;
+          width: 35px;
+          height: 19px;
+          background: rgb(161, 161, 161);
+          display: block;
+          border-radius: 100px;
+          position: relative;
+          top: -6px;
+          left: 52px;
         }
 
-        td {
-          width: 90px;
-          padding: 15px 20px;
-          text-align: left;
-          vertical-align: middle;
-          color: $contentColor;
+        .statusBtnLabel:after {
+          content: '';
+          position: absolute;
+          top: 1.5px;
+          left: 2px;
+          width: 15px;
+          height: 15px;
+          background: #fff;
+          border-radius: 90px;
+          transition: 0.3s;
+        }
 
-          &:first-child {
-            width: 60px;
-          }
+        .statusBtn:checked+.statusBtnLabel {
+          background: $btnBgcolor;
+        }
 
-          &:last-child {
-            padding-left: 10%;
-          }
+        .statusBtn:checked+.statusBtnLabel:after {
+          left: calc(100% - 2px);
+          transform: translateX(-100%);
+        }
 
-          .statusBtn[type='checkbox'] {
-            height: 0;
-            width: 0;
-            visibility: hidden;
-          }
-
-          .statusBtnLabel {
-            cursor: pointer;
-            text-indent: -9999px;
-            width: 35px;
-            height: 19px;
-            background: rgb(161, 161, 161);
-            display: block;
-            border-radius: 100px;
-            position: relative;
-            top: -6px;
-          }
-
-          .statusBtnLabel:after {
-            content: '';
-            position: absolute;
-            top: 1.5px;
-            left: 2px;
-            width: 15px;
-            height: 15px;
-            background: #fff;
-            border-radius: 90px;
-            transition: 0.3s;
-          }
-
-          .statusBtn:checked+.statusBtnLabel {
-            background: $btnBgcolor;
-          }
-
-          .statusBtn:checked+.statusBtnLabel:after {
-            left: calc(100% - 2px);
-            transform: translateX(-100%);
-          }
-
-          .statusBtnLabel:active:after {
-            width: 20px;
-          }
+        .statusBtnLabel:active:after {
+          width: 20px;
         }
       }
     }
   }
+
+  // }
 }
 
 

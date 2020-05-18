@@ -32,11 +32,11 @@ try {
 
         for ($i = 0; $i < count($item); $i++) {
 
-            $_SESSION[$item[$i]] = $memRow[$item[$i]];
+            $_SESSION["member_" . $item[$i]] = $memRow[$item[$i]];
         }
 
         // 送出登入者的姓名資料
-        $member = array("name" => $_SESSION["name"], "nick" => $_SESSION["nick"], "status" => $_SESSION["status"]);
+        $member = array("name" => $_SESSION["member_name"], "nick" => $_SESSION["member_nick"], "status" => $_SESSION["member_status"]);
 
         echo json_encode($memRow);
     }
