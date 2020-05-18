@@ -171,14 +171,18 @@
             <!--卡片區-->
             <!--卡片區-->
             <div class="blog-post2-card-area">
-              <div class="blog-post2-long-card">
+              <div
+                class="blog-post2-long-card"
+                v-for="(i, index) in blogArrFilterTop"
+                :key="index"
+              >
                 <div>
                   <img src />
                 </div>
                 <div>
                   <div>
-                    <p>2020-04-08</p>
-                    <p>親子輕旅行 台北白石湖採草莓、 踏青一日遊</p>
+                    <p>{{ i.date }}</p>
+                    <p>{{ i.title }}</p>
                     <p>
                       <img src="@/assets/blog-img/blog-thumb.png" />
                       <span>100</span>
@@ -188,7 +192,7 @@
                       <span>果農心得</span>
                     </p>
                     <p>
-                      每年12月至5月的草區，區內種植草莓聞名，每年12月至5月的草區，區內種植草莓聞名，每年12月至5月的草區，區內種植草莓聞名，每年12月至5月的草莓產季來臨，的草莓園
+                      {{ i.content }}
                     </p>
                   </div>
                   <div>
@@ -616,19 +620,20 @@
             <!--頁簽-->
             <!--頁簽-->
             <ul class="page">
-              <li>
+              <li @click="PreviousPage">
                 <img src="@/assets/blog-img/post/arrow-left.png" />
               </li>
-              <li>1</li>
-              <li>2</li>
-              <li>3</li>
-              <li>4</li>
-              <li>5</li>
-              <li>6</li>
-              <li>7</li>
-              <li>8</li>
-              <li>9</li>
-              <li>
+
+              <li
+                class="pageBorder"
+                v-for="(i, index) in pageArr"
+                :key="index"
+                v-on="{ click: pageSelect }"
+              >
+                {{ i }}
+              </li>
+
+              <li @click="nextPage">
                 <img src="@/assets/blog-img/post/arrow-right.png" />
               </li>
             </ul>
@@ -1522,20 +1527,26 @@
       border-right: solid #007552 1.5px;
       position: relative;
       //妹妹假蠵龜
-      width: 80%;
+      width: 500%;
       padding-top: 310px;
       background-image: url("../assets/blog-img/post/kidEatsWatermelon.png");
       background-repeat: no-repeat;
       background-size: cover;
-      background-position: center center;
+      background-position: 0% 50%;
+      @media (max-width: 1800px) {
+        width: 550%;
+      }
+      @media (max-width: 1700px) {
+        width: 600%;
+      }
       @media (max-width: 1500px) {
-        width: 100%;
+        width: 750%;
       }
       @media (max-width: 1400px) {
-        width: 150%;
+        width: 1000%;
       }
       @media (max-width: 768px) {
-        width: 200%;
+        width: 1200%;
       }
       @media (max-width: 700px) {
         width: 100%;
@@ -1652,7 +1663,7 @@
         @media (max-width: 9999px) {
           display: none;
         }
-        @media (max-width: 1879px) {
+        @media (max-width: 1896px) {
           display: inline-block;
         }
         @media (max-width: 1400px) {
@@ -1820,15 +1831,17 @@
     }
   }
   > li:nth-child(2) {
+    cursor: pointer;
     border: solid #007552 2px;
   }
-  > li:nth-child(1n + 2) {
+  > .pageBorder {
     // border: solid #007552 2px;
     border-top: solid #007552 2px;
     border-right: solid #007552 2px;
     border-bottom: solid #007552 2px;
+    cursor: pointer;
   }
-  > li:nth-child(11) {
+  > li:nth-child(12) {
     border: none;
     > img:nth-child(1) {
       width: 95%;
@@ -1837,7 +1850,11 @@
       }
     }
   }
-  > li:nth-child(2) {
+  // li:nth-child(2) {
+  //   background-color: #ffd3c1;
+  //   color: #007552;
+  // }
+  > .currentPagecolor {
     background-color: #ffd3c1;
     color: #007552;
   }
@@ -1848,42 +1865,47 @@
 </style>
 
 <script>
-import $ from 'jquery';
+import $ from "jquery";
 export default {
   data() {
     return {
       member: {
-        no: [1, 2, 3],
+        no: [1, 2, 3]
       },
       blogArr: null,
       blogArrFilter: [],
+      blogArrFilterTop: [],
+      pageArr: [],
+      currentPage: [],
     };
   },
-  beforeMount() {
-    // this.findclass();
+  beforeMount() {},
+  mounted() {
+    // console.log(document.getElementsByClassName("pageBorder")[0]);
+    // document
+    //   .getElementsByClassName("pageBorder")[0]
+    //   .classList.add("currentPagecolor");
   },
   updated() {
-    let bb = document.getElementsByClassName('blog-post2-small-card')[5];
-    // console.log(bb[8]);
-    // bb.setAttribute('class', 'blog-post2-small-card nine');
-    bb.classList.add('nine');
+    let bb = document.getElementsByClassName("blog-post2-small-card")[8];
+    bb.classList.add("nine");
+    for (let i = 0; i <= 8; i++) {
+      document
+        .getElementsByClassName("pageBorder")
+        [i].setAttribute("class", "pageBorder");
+      if (
+        document.getElementsByClassName("pageBorder")[i].textContent ==
+        this.currentPage[0]
+      ) {
+        document
+          .getElementsByClassName("pageBorder")
+          [i].classList.add("currentPagecolor");
+      }
+    }
+    // console.log(document.getElementsByClassName("pageBorder"))
   },
   created() {
-    // this.bb = 1;
-    const api = '/api/api_blog.php';
-    // let xhr = new XMLHttpRequest();
-    // xhr.open('Post', 'http://localhost/api/api_blog.php', true);
-    // xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
-
-    // let dataInfo = `${JSON.stringify(member)}`;
-    //  console.log(dataInfo);
-    // xhr.send(dataInfo);
-    // xhr.onload = function() {
-    //   if (xhr.status == 200) {
-    //     console.log(xhr.responseText);
-    //   }
-    // };
-
+    const api = "/api/api_blog.php";
     this.$http
       .post(api, JSON.stringify(this.member))
       .then((res) => {
@@ -1894,33 +1916,112 @@ export default {
           // sessionStorage.clear();
           // let abc = sessionStorage.getItem('abc');
           this.blogArr = res.data;
-          // console.log(this.aa[0].content);
-          // console.log(this.aa[1].content);
-          // console.log(this.aa);
-          for (var i = 1; i < 10; i++) {
-            console.log(this.blogArr[i]);
+
+          this.blogArrFilterTop.push(this.blogArr[0]);
+          for (let i = 1; i < 10; i++) {
             this.blogArrFilter.push(this.blogArr[i]);
+          }
+          this.currentPage.push(1);
+          for (let i = 1; i < 10; i++) {
+            this.pageArr.push(i);
           }
         } else {
           // console.log(res.error);
         }
-      })
-      .catch((err) => console.log(err));
+      });
   },
+  beforeDestroy() {},
   computed: {},
+  methods: {
+    pageSelect(e) {
+      let pageNum = parseInt(e.target.textContent);
+      // console.log(e.target.textContent)
+      this.blogArrFilter = [];
+      this.blogArrFilterTop = [];
+      this.currentPage = [];
+      // console.log(parseInt(this.blogArr.length / 9));
+      if (pageNum > 5 && pageNum < parseInt(this.blogArr.length / 9) - 5) {
+        this.pageArr = [];
+        for (let i = pageNum - 4; i < pageNum + 5; i++) {
+          this.pageArr.push(i);
+        }
+      } else if (pageNum >= parseInt(this.blogArr.length / 9) - 5) {
+        this.pageArr = [];
+        for (
+          let i = parseInt(this.blogArr.length / 9) - 8;
+          i <= parseInt(this.blogArr.length / 9);
+          i++
+        ) {
+          this.pageArr.push(i);
+        }
+      } else {
+        this.pageArr = [];
+        for (let i = 1; i < 10; i++) {
+          this.pageArr.push(i);
+        }
+      }
 
-  methods: {},
+      this.currentPage.push(pageNum);
+      let currentPage1 = this.currentPage[0];
+      this.blogArrFilterTop.push(this.blogArr[(currentPage1 - 1) * 9]);
+
+      for (let i = (currentPage1 - 1) * 9 + 1; i < currentPage1 * 9 + 1; i++) {
+        this.blogArrFilter.push(this.blogArr[i]);
+      }
+
+      for (let i = 1; i < 9; i++) {
+        e.target.parentNode.children[i].setAttribute("class", "pageBorder");
+      }
+      // console.log(document.getElementsByClassName("pageBorder"));
+      e.target.parentNode.children[1].setAttribute("class", "pageBorder");
+      //   document.getElementsByClassName("pageBorder")[0].setAttribute("class","");
+    },
+
+    PreviousPage() {
+      let currentPage1 = this.currentPage[0];
+      // this.currentPage = [];
+      this.blogArrFilterTop = [];
+      this.blogArrFilter = [];
+if (this.currentPage > 1) {
+      this.currentPage = [];
+        this.currentPage.push(currentPage1 - 1);
+      } 
+      // this.currentPage.push(currentPage1 - 1);
+      let updatePage = this.currentPage[0];
+
+      this.blogArrFilterTop.push(this.blogArr[(updatePage - 1) * 9]);
+
+      for (let i = (updatePage - 1) * 9 + 1; i < updatePage * 9 + 1; i++) {
+        this.blogArrFilter.push(this.blogArr[i]);
+      }
+      if (this.pageArr[0] > 1) {
+        this.pageArr.forEach((item, index, array) => {
+          this.pageArr[index] = this.pageArr[index] - 1;
+        });
+      }
+    },
+    nextPage() {
+      let currentPage1 = this.currentPage[0];
+      // this.currentPage = [];
+      this.blogArrFilterTop = [];
+      this.blogArrFilter = [];
+      if (this.currentPage < parseInt(this.blogArr.length / 9)) {
+      this.currentPage = [];
+        this.currentPage.push(currentPage1 + 1);
+      } 
+      let updatePage = this.currentPage[0];
+
+      this.blogArrFilterTop.push(this.blogArr[(updatePage - 1) * 9]);
+
+      for (let i = (updatePage - 1) * 9 + 1; i < updatePage * 9 + 1; i++) {
+        this.blogArrFilter.push(this.blogArr[i]);
+      }
+      if (this.pageArr[8] < parseInt(this.blogArr.length / 9)) {
+        this.pageArr.forEach((item, index, array) => {
+          this.pageArr[index] = this.pageArr[index] + 1;
+        });
+      }
+    },
+  },
 };
-// $(window).ready(function() {
-//   var bb = document.getElementsByClassName('blog-post2-small-card')[0];
-//   setInterval(function() {
-//     console.log(bb);
-//   }, 100);
-// });
-// var bb = document.getElementsByClassName('blog-post2-small-card')[0];
-// setInterval(function() {
-//   console.log(bb);
-// }, 500);
-
-// bb.style.display = 'none';
 </script>

@@ -21,7 +21,7 @@
             <label for="addAdminAccount">帳號</label>
           </th>
           <td>
-            <input id="addAdminAccount" type="text" v-model="addAdmin.acc" />
+            <input id="addAdminAccount" type="text" placeholder="請輸入帳號" v-model="addAdmin.acc" />
           </td>
         </tr>
         <tr>
@@ -29,17 +29,17 @@
             <label for="addAdminPSW">密碼</label>
           </th>
           <td>
-            <input id="addAdminPSW" type="password" v-model="addAdmin.psw" />
+            <input id="addAdminPSW" type="password" placeholder="請輸入密碼" v-model="addAdmin.psw" />
           </td>
         </tr>
-        <!-- <tr>
+        <tr>
           <th>
             <label for="addAdminPSWcheck">密碼確認</label>
           </th>
           <td>
-            <input id="addAdminPSWsubmit" type="text" value />
+            <input id="addAdminPSWsubmit" type="password" placeholder="請再次輸入密碼" v-model="addAdmin.checkpsw" />
           </td>
-        </tr>-->
+        </tr>
 
         <tr>
           <th></th>
@@ -76,12 +76,16 @@ export default {
     addAdminF: function() {
       const api = "/api/api_addAdmin.php";
 
+
       this.$http
         .post(api, JSON.stringify(this.addAdmin))
+        // $http.post(url,data)
+        // 用post把從addAdmin來的js物件資料轉為json字串，傳給api背後的那支php
         .then(res => {
           this.data = res.data;
           alert(" 資料新增完成 ٩(･ิᴗ･ิ๑)۶ ");
           this.$router.go(-1);
+         
         })
         .catch(err => console.log(err));
     }

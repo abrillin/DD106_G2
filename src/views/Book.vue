@@ -135,25 +135,31 @@ export default {
         this.type = "spring";
         this.index = 0;
         this.change = false;
+        this.page = 0;
       } else if (t == 1) {
         this.type = "summer";
         this.index = 1;
         this.change = false;
+        this.page = 0;
       } else if (t == 2) {
         this.type = "fall";
         this.index = 2;
         this.change = false;
+        this.page = 0;
       } else if (t == 3) {
         this.type = "winter";
         this.index = 3;
         this.change = false;
+        this.page = 0;
       } else if (t == 4) {
         this.type = "year";
         this.index = 4;
         this.change = false;
+        this.page = 0;
       } else if (t == 5) {
         this.type = "index";
         this.change = true;
+        this.page = 0;
       }
     },
     changePage: function(p) {
