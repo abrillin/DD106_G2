@@ -16,6 +16,8 @@ try {
 
     // 跑sql既有資料，看acc是否有重複
 
+
+    
     $no = $pdo->lastInsertId();
     
     echo json_encode($addAdminInfo); // 以上處理完後，將物件轉json檔

@@ -1,18 +1,27 @@
 <template>
   <nav id="nav">
     <router-link id="home" to="/main">
-      <img class="logo" src="@/assets/headerLOGO.svg" alt="logo" @click="logoclick" />
+      <img
+        class="logo"
+        src="@/assets/headerLOGO.svg"
+        alt="logo"
+        @click="logoclick"
+      />
     </router-link>
-    <div class="member_status" @click="loginclick">
+    <div class="member_status">
       <!-- 檢查登入的狀態 -->
       <router-link
         class="login_logout"
         to="/loginMember"
         v-if="status == false && session != true"
-      >登入/註冊</router-link>
+        >登入/註冊</router-link
+      >
       <div v-else>
         <router-link class="member_link" to="/main/member/information">
-          <span class="member_pic" :style="'background-image: url(' + img + ')'"></span>
+          <span
+            class="member_pic"
+            :style="'background-image: url(' + img + ')'"
+          ></span>
           {{ userName }}
         </router-link>
         <button class="logout" @click="logout">登出</button>
@@ -105,13 +114,13 @@ export default {
     return {
       status: false,
       userName: "",
-      img: ""
+      img: "",
     };
   },
   created() {
     const api = "/api/api_memberStatus.php";
 
-    this.$http.post(api).then(res => {
+    this.$http.post(api).then((res) => {
       const data = res.data;
 
       // 如果 session 的資料存在（代表有登入），則切換 navbar 果粉狀態
@@ -120,7 +129,9 @@ export default {
         this.userName = data.name;
       }
     });
+  },
 
+  mounted() {
     $("div.title").click(function(e) {
       $("div.title")
         .find("h1")
@@ -136,7 +147,31 @@ export default {
         .addClass("pactive");
     });
 
-    $(".member_status").click(function() {
+    $(".login_logout").click(function() {
+      if ($("div.hamburger").hasClass("is-active") == true) {
+        $("div.nav_back").slideToggle();
+        $("div.hamburger").removeClass("is-active");
+      }
+      $("div.title")
+        .find("h1")
+        .removeClass("h1active");
+      $("div.title")
+        .find("p")
+        .removeClass("pactive");
+      $("ul li:nth-child(4)")
+        .find("h1")
+        .addClass("h1active");
+      $("ul li:nth-child(4)")
+        .find("p")
+        .addClass("pactive");
+    });
+  },
+  updated() {
+    $(".member_link").click(function() {
+      if ($("div.hamburger").hasClass("is-active") == true) {
+        $("div.nav_back").slideToggle();
+        $("div.hamburger").removeClass("is-active");
+      }
       $("div.title")
         .find("h1")
         .removeClass("h1active");
@@ -156,7 +191,7 @@ export default {
       // 6. 偵聽到 memberStatus 有變動，觸發 login 方法，並回傳值到上面v-if狀態的顯示判斷
       this.login();
       return this.memberStatus;
-    }
+    },
   },
   methods: {
     logout() {
@@ -171,11 +206,22 @@ export default {
       this.$emit("logout", false);
 
       this.$router.push("/main");
+
+      if ($("div.hamburger").hasClass("is-active") == true) {
+        $("div.nav_back").slideToggle();
+        $("div.hamburger").removeClass("is-active");
+      }
+      $("div.title")
+        .find("h1")
+        .removeClass("h1active");
+      $("div.title")
+        .find("p")
+        .removeClass("pactive");
     },
     login() {
       const api = "/api/api_memberStatus.php";
 
-      this.$http.post(api).then(res => {
+      this.$http.post(api).then((res) => {
         const data = res.data;
 
         // 如果 session 的資料存在（代表有登入），則切換 navbar 果粉狀態
@@ -196,6 +242,7 @@ export default {
         $("div.nav_back").slideToggle();
         $("div.hamburger").removeClass("is-active");
       }
+
       $("div.title")
         .find("h1")
         .removeClass("h1active");
@@ -208,7 +255,7 @@ export default {
       $("div.nav_back").slideToggle();
       $("#nav").toggleClass("is-active");
     },
-    pageclick(e) {
+    pageclick() {
       if ($("div.hamburger").hasClass("is-active") == true) {
         $("div.nav_back").slideToggle();
         $("div.hamburger").removeClass("is-active");
@@ -231,7 +278,7 @@ export default {
       $("ul li:nth-child(4)")
         .find("p")
         .addClass("pactive");
-    }
-  }
+    },
+  },
 };
 </script>

@@ -56,7 +56,7 @@
         <div class="CommodityContenText">
           <div class="CommodityContenTextBox">
             <div class="CommodityTitle">
-              <h1>木瓜乾 零添加</h1>
+              <h1>標題標題</h1>
             </div>
 
             <div class="CommodityNarrative">
@@ -103,7 +103,7 @@
 
             <div class="CommodityDetailsBox">
               <h2 class="CommodityDetailsTitle">商品詳情：</h2>
-              <p>2020年頂級愛文芒果 愛文ドライマンゴー （アップルマンゴー）嚴選台灣出產高甜度愛文芒果，為夏季芒果推薦“TOP 1” 因果皮紅潤且果肉金黃，又有“太陽果”之稱。</p>
+              <p>詳情</p>
             </div>
 
             <div class="CommodityDetailsBox">
@@ -127,18 +127,18 @@
       <div class="SellerInformationBox">
         <div class="SellerInformation">
           <img
-            src="../assets/shop/BenjaminAidoo.jpg"
+            :src="'../assets/shop/' + shopseller.img"
             alt
             height="60px"
             width="60px"
             style="border-radius: 100%;"
           />
-          <p>Benjamin Aidoo</p>
+          <p>{{shopseller.name}}</p>
           <div class="TrackBtn">＋追蹤</div>
         </div>
         <div class="SellerReviewsBox">
           <div class="SellerReviews">
-            <div class="Reviews">5.0</div>
+            <div class="Reviews">{{shopseller.Starsaverage}}</div>
             <div class="StarBox">
               <img src="../assets/icon/star.svg" alt width="20" height="20" />
               <img src="../assets/icon/star.svg" alt width="20" height="20" />
@@ -149,11 +149,7 @@
           </div>
         </div>
         <div class="SellerInformationTextBox">
-          <p>
-            Owner and founder of Nana Otafrija
-            Creator of the Coffin Dance
-            humble and kind person
-          </p>
+          <p>{{shopseller.content}}</p>
         </div>
       </div>
     </section>
@@ -162,7 +158,7 @@
     <div id="carouselWrap">
       <h2>相關商品：</h2>
       <ul id="CommodityCarouselList">
-        <li class="CommodityCarouselConten">
+        <li class="CommodityCarouselConten" v-for="(i, index) in shopseller.items" :key="index">
           <div class="CommodityCarousel commodity">
             <div class="card_img_box">
               <img src="../assets/ia_300000017.jpg" width="100%" height="100%" title="蜜蕉乾 零添加" />
@@ -170,7 +166,7 @@
 
             <div class="card_content">
               <div class="commodity_title">
-                <div class="commodity_title_text">蜜蕉乾 零添加</div>
+                <div class="commodity_title_text">{{i.name}}</div>
               </div>
 
               <div class="card_tag">
@@ -179,7 +175,7 @@
               </div>
 
               <div class="card_price">
-                <span class="money">550</span>
+                <span class="money">{{i.price}}}</span>
               </div>
 
               <div class="buy">
@@ -189,7 +185,7 @@
             </div>
           </div>
         </li>
-        <li class="CommodityCarouselConten">
+        <!--     <li class="CommodityCarouselConten">
           <div class="CommodityCarousel commodity">
             <div class="card_img_box">
               <img src="../assets/ia_300000017.jpg" width="100%" height="100%" title="蜜蕉乾 零添加" />
@@ -323,7 +319,7 @@
               </div>
             </div>
           </div>
-        </li>
+        </li>-->
       </ul>
       <!--左右按鍵-->
       <input
@@ -340,7 +336,6 @@
       <Footer />
     </div>
   </main>
-  
 </template>
 
 <script>
@@ -366,6 +361,11 @@ window.addEventListener("resize", function() {
 import $ from "jquery";
 import { gsap, TweenMax, Power1, Power3, TimelineMax, Linear } from "gsap";
 export default {
+  data() {
+    return {
+      shopseller: {}
+    };
+  },
   mounted() {
     function $id(id) {
       return document.getElementById(id);
@@ -392,6 +392,23 @@ export default {
         $id("arrowright").disabled = true;
       }
     };
+
+    //資料庫連結
+    const api = "/api/api_shopseller.php";
+
+    this.$http
+      .post(api)
+      .then(res => {
+        // const data = res.data;
+        // this.item.itemName = data.name;
+        // this.item.money = data.price;
+
+        // this.shopcommodity = res.data;
+        this.shopseller = res.data;
+        console.log(res.data);
+      })
+      .catch(err => console.log(err));
   }
+  //資料庫連結
 };
 </script>

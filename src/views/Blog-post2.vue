@@ -1882,7 +1882,7 @@ export default {
   data() {
     return {
       member: {
-        no: [1, 2, 3],
+        no: [1, 2, 3]
       },
       blogArr: null,
       blogArrFilter: [],
@@ -1918,7 +1918,6 @@ export default {
   },
   created() {
     const api = '/api/api_blog.php';
-
     this.$http
       .post(api, JSON.stringify(this.member))
       .then((res) => {
@@ -1941,12 +1940,10 @@ export default {
         } else {
           // console.log(res.error);
         }
-      })
-      .catch((err) => console.log(err));
+      });
   },
   beforeDestroy() {},
   computed: {},
-
   methods: {
     pageSelect(e) {
       let pageNum = parseInt(e.target.textContent);
