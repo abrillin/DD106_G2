@@ -32,7 +32,11 @@
                 <td>{{row.psw}}</td>
                 <td>
                   <input class="statusBtn" type="checkbox" :id="'switch'+row.no" />
-                  <label class="statusBtnLabel" :for="'switch'+row.no">Toggle</label>
+                  <label
+                    class="statusBtnLabel"
+                    :for="'switch'+row.no"
+                    @click="toggleStatus(row.no)"
+                  >Toggle</label>
                 </td>
               </tr>
             </tbody>
@@ -62,12 +66,14 @@ export default {
         // 如果可以傳送出去的話會response資料回來
 
         this.data = res.data; // 只取res中的data屬性中的資料
-
-        // this.no = data[0].no;
-        // this.name = data[0].name;
-        // this.acc = data[0].acc;
-        // this.psw = data[0].psw;
       });
+  },
+  methods: {
+    toggleStatus(n) {
+
+      console.log(n);
+      
+    }
   }
 };
 </script>
