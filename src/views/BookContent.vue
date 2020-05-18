@@ -40,11 +40,21 @@ export default {
       ]
     };
   },
-  mounted() {
+  created() {
     this.currentTab = {
       index: "index",
       page: 0
     };
+  },
+  mounted() {
+    if (this.currentTab.page > 0) {
+      this.tabs[0].status = true;
+      this.tabs[1].status = true;
+      this.currentTab = {
+        index: "page1",
+        page: this.pageId
+      };
+    }
   },
   computed: {
     // 6. 偵聽到 contentIndex 值的更新，觸發 rePage() 並回傳 pageType() 值給上面的元件
@@ -120,11 +130,14 @@ export default {
       };
     },
     changePage: function() {
-      this.tabs[1].status = true;
-      this.currentTab = {
-        index: "page1",
-        page: this.pageId * 2 + 1
-      };
+      
+      if (this.pageId > 0) {
+        this.tabs[1].status = true;
+        this.currentTab = {
+          index: "page1",
+          page: this.pageId
+        };
+      }
     }
   },
   components: {
