@@ -38,11 +38,12 @@ div.information {
 
     > .bottom_form {
       display: inline-block;
-
+      width: 492px;
       border: 1px solid #666;
 
       @include rwd(small) {
         line-height: normal;
+        width: 287px;
       }
 
       > .person_left {
@@ -78,10 +79,11 @@ div.information {
         background-color: white;
         box-sizing: border-box;
         padding-top: 50px;
+
         padding-left: 30px;
         padding-right: 30px;
         width: 340px;
-        height: 500px;
+        height: 550px;
 
         @include rwd(medium) {
           width: 340px;
@@ -104,23 +106,6 @@ div.information {
             @include rwd(small) {
               font-size: 1.4rem;
             }
-          }
-        }
-        > .submit_button {
-          margin-top: 20px;
-          float: right;
-          display: inline-block;
-          border-radius: 5px;
-          background-color: #007552;
-          color: white;
-          padding: 0px 20px;
-          line-height: 2.3;
-          cursor: pointer;
-          font-size: 1.6rem;
-          &:hover {
-            background-color: #fca87c;
-            color: #fbf8ef;
-            border: none;
           }
         }
       }

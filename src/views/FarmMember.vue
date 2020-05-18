@@ -3,29 +3,30 @@
     <aside class="left">
       <div class="head_portrait">
         <div class="head_img_box">
-          <img src="../assets/navbar_account_img.svg" alt />
+          <img :src="member.img" />
         </div>
         <ul>
           <li>設定頭像</li>
-          <li class="nick">暱稱:<span>台北暴徒</span></li>
+          <li class="nick">
+            暱稱:<span>{{ member.nick }}</span>
+          </li>
           <li class="fans">身分別:<span>果農</span></li>
         </ul>
         <div class="star">
           <div class="starimg">
-            <img src="@/assets/Group 720.svg" alt="">
+            <img src="@/assets/Group 720.svg" alt="" />
           </div>
           <div class="starimg">
-            <img src="@/assets/Group 720.svg" alt="">
+            <img src="@/assets/Group 720.svg" alt="" />
           </div>
           <div class="starimg">
-            <img src="@/assets/Group 720.svg" alt="">
+            <img src="@/assets/Group 720.svg" alt="" />
           </div>
           <div class="starimg">
-            <img src="@/assets/Group 720.svg" alt="">
+            <img src="@/assets/Group 720.svg" alt="" />
           </div>
           <span>(2134)</span>
         </div>
-
       </div>
 
       <div class="Farminfo">
@@ -55,15 +56,61 @@
           </router-link>
         </div>
       </div>
-       <button type="button" class="btn_drawer">&#9658;</button>
+      <button type="button" class="btn_drawer">&#9658;</button>
     </aside>
-    <router-view  @update="update"/>
+    <router-view @update="update" />
   </div>
 </template>
 
 <script>
 import $ from "jquery";
 export default {
+  data() {
+    return {
+      member: {
+        no: "",
+        acc: "",
+        name: "",
+        nick: "",
+        phone: "",
+        email: "",
+        gender: "",
+        address: "",
+        content: "",
+        reviewtotal: "",
+        reviewcount: "",
+        memberno: "",
+      },
+    };
+  },
+  created() {
+    const api = "/api/api_memberStatus.php";
+    this.$http.post(api).then((res) => {
+      const data = res.data;
+      if (data != "") {
+        this.member = {
+          no: data.no,
+          acc: data.acc,
+          name: data.name,
+          nick: data.nick,
+          phone: 0 + data.phone,
+          email: data.email,
+          gender: data.gender,
+          address: data.address,
+          img: data.img,
+          content: data.content,
+          reviewtotal: data.reviewtotal,
+          reviewcount: data.reviewcount,
+          memberno: data.memberno,
+        };
+        if (data.img == "") {
+          this.member.img = require("@/assets/waterpear.png");
+        } else {
+          this.member.img = data.img;
+        }
+      }
+    });
+  },
   mounted() {
     if (window.innerWidth < 768) {
       $("aside.left").addClass("popover");
