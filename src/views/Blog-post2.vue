@@ -187,9 +187,7 @@
                       <img src="@/assets/blog-img/blog-tag.png" />
                       <span>果農心得</span>
                     </p>
-                    <p>
-                      每年12月至5月的草區，區內種植草莓聞名，每年12月至5月的草區，區內種植草莓聞名，每年12月至5月的草區，區內種植草莓聞名，每年12月至5月的草莓產季來臨，的草莓園
-                    </p>
+                    <p>每年12月至5月的草區，區內種植草莓聞名，每年12月至5月的草區，區內種植草莓聞名，每年12月至5月的草區，區內種植草莓聞名，每年12月至5月的草莓產季來臨，的草莓園</p>
                   </div>
                   <div>
                     <div>
@@ -760,7 +758,7 @@
   // height: 50vw;
   // padding-bottom: 5%;
   &::before {
-    content: '';
+    content: "";
     border-bottom: #007552 5px solid;
     width: 105%;
     position: absolute;
@@ -780,7 +778,7 @@
   }
   > div:nth-child(1) {
     &::before {
-      content: '';
+      content: "";
       display: inline-block;
       border-right: #6baf9b solid 2px;
       height: 50%;
@@ -801,7 +799,7 @@
       bottom: 0%;
       left: 0%;
       @media (max-width: 1300px) {
-        content: '';
+        content: "";
       }
     }
     // border: 4px solid #000;
@@ -813,12 +811,12 @@
     grid-template-columns: 1.5fr 2fr 1.5fr 3fr;
     grid-template-rows: 0.1fr 1fr 0.5fr 0.5fr 0.4fr 5fr;
     grid-template-areas:
-      'aa1 aa1 aa1 aa1'
-      'aa2 aa2 aa2 aa2 '
-      'aa3 aa4 aa6 aa7'
-      'aa3 aa5 aa6 aa7'
-      'aa8 aa8 aa8 aa8'
-      'aa9 aa9 aa9 aa9';
+      "aa1 aa1 aa1 aa1"
+      "aa2 aa2 aa2 aa2 "
+      "aa3 aa4 aa6 aa7"
+      "aa3 aa5 aa6 aa7"
+      "aa8 aa8 aa8 aa8"
+      "aa9 aa9 aa9 aa9";
     @media (max-width: 1600px) {
       // padding-right: 0%;
       grid-template-columns: 0.9fr 1.3fr 1fr 3fr;
@@ -836,12 +834,12 @@
     }
     @media (max-width: 576px) {
       grid-template-areas:
-        'aa1 aa1 aa1 aa1'
-        'aa2 aa2 aa2 aa2 '
-        'aa3 aa4 aa6 aa6'
-        'aa3 aa5 aa7 aa7'
-        'aa8 aa8 aa8 aa8'
-        'aa9 aa9 aa9 aa9';
+        "aa1 aa1 aa1 aa1"
+        "aa2 aa2 aa2 aa2 "
+        "aa3 aa4 aa6 aa6"
+        "aa3 aa5 aa7 aa7"
+        "aa8 aa8 aa8 aa8"
+        "aa9 aa9 aa9 aa9";
       grid-template-columns: 1fr 1fr 1fr 1fr;
       // border: solid 1px red;
     }
@@ -997,12 +995,12 @@
         z-index: 2;
         width: 70%;
         padding-top: 70%;
-        background: url('../assets/blog-img/post/blog_aabbcc.svg') no-repeat
+        background: url("../assets/blog-img/post/blog_aabbcc.svg") no-repeat
           center center;
         background-size: cover;
-        -webkit-mask: url('../assets/blog-img/post/blog_aabbcc.svg') no-repeat
+        -webkit-mask: url("../assets/blog-img/post/blog_aabbcc.svg") no-repeat
           center center;
-        mask: url('../assets/blog-img/post/blog_aabbcc.svg') no-repeat center
+        mask: url("../assets/blog-img/post/blog_aabbcc.svg") no-repeat center
           center;
         @media (max-width: 1600px) {
           width: 100%;
@@ -1063,7 +1061,7 @@
           margin-left: 10px;
         }
         &::before {
-          content: '';
+          content: "";
           position: absolute;
           height: 25px;
           border-right: #a0a0a0 solid 1px;
@@ -1079,7 +1077,7 @@
       position: relative;
       //留言表單
       &::before {
-        content: '';
+        content: "";
         border-top: solid #a0a0a0 1px;
         width: 50rem;
         position: absolute;
@@ -1249,7 +1247,7 @@
 }
 .blog-post-tri {
   //select
-  background: url('../assets/blog-img/post/triangle.png');
+  background: url("../assets/blog-img/post/triangle.png");
   background-repeat: no-repeat;
   background-position: 95% 60%;
   font-size: 15px;
@@ -1459,10 +1457,10 @@
       border-bottom: #a0a0a0 solid 1px;
       // border: chocolate 3px solid;
       grid-template-areas:
-        'aa1 aa2 aa2 aa2'
-        'aa1 aa3 aa3 aa3'
-        'aa1 aa4 aa5 aa7'
-        'aa1 aa4 aa6 aa7';
+        "aa1 aa2 aa2 aa2"
+        "aa1 aa3 aa3 aa3"
+        "aa1 aa4 aa5 aa7"
+        "aa1 aa4 aa6 aa7";
       > div:nth-child(1) {
         grid-area: aa1;
         font-size: 80px;
@@ -1523,7 +1521,7 @@
       //妹妹假蠵龜
       width: 80%;
       padding-top: 310px;
-      background-image: url('../assets/blog-img/post/kidEatsWatermelon.png');
+      background-image: url("../assets/blog-img/post/kidEatsWatermelon.png");
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center center;
@@ -1605,7 +1603,7 @@
         margin-top: 70px;
         position: relative;
         &::before {
-          content: '';
+          content: "";
           border-top: solid #007552 1.5px;
           width: 100%;
           top: -15px;
@@ -1843,13 +1841,13 @@ export default {
   data() {
     return {
       member: {
-        no: [1, 2, 3],
+        no: [1, 2, 3]
       },
-      aa: null,
+      aa: null
     };
   },
   created() {
-    const api = '/api/api_blog.php';
+    const api = "/api/api_blog.php";
     // let xhr = new XMLHttpRequest();
     // xhr.open('Post', 'http://localhost/api/api_blog.php', true);
     // xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
@@ -1865,8 +1863,8 @@ export default {
 
     this.$http
       .post(api, JSON.stringify(this.member))
-      .then((res) => {
-        if (res.data != '') {
+      .then(res => {
+        if (res.data != "") {
           // console.log(res.data);
 
           // sessionStorage.setItem('abc', JSON.stringify(res.data));
@@ -1881,11 +1879,11 @@ export default {
           console.log(res.error);
         }
       })
-      .catch((err) => console.log(err));
+      .catch(err => console.log(err));
 
     // console.log(aa);
   },
   computed: {},
-  methods: {},
+  methods: {}
 };
 </script>

@@ -175,148 +175,23 @@
             </div>
           </div>
           <div class="commodity-flex">
-            <div class="commodity">
+            <div class="commodity" v-for="(i, index) in shopcommodity" :key="index">
               <div class="card_img_box">
                 <img src="../assets/ia_300000017.jpg" width="100%" height="100%" title="蜜蕉乾 零添加" />
               </div>
 
               <div class="card_content">
                 <div class="commodity_title">
-                  <div class="commodity_title_text">{{item.itemName}}</div>
+                  <div class="commodity_title_text">{{i.name}}</div>
                 </div>
 
                 <div class="card_tag">
                   <img src="../assets/icon/tag.svg" alt width="16px" height="16px" class="tag_icon" />
-                  <span class="card_tag_text">24hr宅配到府</span>
+                  <span class="card_tag_text">ＴＡＧ</span>
                 </div>
 
                 <div class="card_price">
-                  <span class="money">{{item.money}}</span>
-                </div>
-
-                <div class="buy">
-                  <a href="#" class="card_btn">加入購物籃</a>
-                  <a href="#" class="card_btn">直接購買</a>
-                </div>
-              </div>
-            </div>
-            <div class="commodity">
-              <div class="card_img_box">
-                <img src="../assets/ia_300000017.jpg" width="100%" height="100%" />
-              </div>
-
-              <div class="card_content">
-                <div class="commodity_title">
-                  <div class="commodity_title_text">蜜蕉乾 零添加</div>
-                </div>
-
-                <div class="card_tag">
-                  <img src="../assets/icon/tag.svg" alt width="16px" height="16px" class="tag_icon" />
-                  <span class="card_tag_text">24hr宅配到府</span>
-                </div>
-
-                <div class="card_price">
-                  <span class="money">550</span>
-                </div>
-
-                <div class="buy">
-                  <a href="#" class="card_btn">加入購物籃</a>
-                  <a href="#" class="card_btn">直接購買</a>
-                </div>
-              </div>
-            </div>
-            <div class="commodity">
-              <div class="card_img_box">
-                <img src="../assets/ia_300000017.jpg" width="100%" height="100%" />
-              </div>
-
-              <div class="card_content">
-                <div class="commodity_title">
-                  <div class="commodity_title_text">蜜蕉乾 零添加</div>
-                </div>
-
-                <div class="card_tag">
-                  <img src="../assets/icon/tag.svg" alt width="16px" height="16px" class="tag_icon" />
-                  <span class="card_tag_text">24hr宅配到府</span>
-                </div>
-
-                <div class="card_price">
-                  <span class="money">550</span>
-                </div>
-
-                <div class="buy">
-                  <a href="#" class="card_btn">加入購物籃</a>
-                  <a href="#" class="card_btn">直接購買</a>
-                </div>
-              </div>
-            </div>
-            <div class="commodity">
-              <div class="card_img_box">
-                <img src="../assets/ia_300000017.jpg" width="100%" height="100%" />
-              </div>
-
-              <div class="card_content">
-                <div class="commodity_title">
-                  <div class="commodity_title_text">蜜蕉乾 零添加</div>
-                </div>
-
-                <div class="card_tag">
-                  <img src="../assets/icon/tag.svg" alt width="16px" height="16px" class="tag_icon" />
-                  <span class="card_tag_text">24hr宅配到府</span>
-                </div>
-
-                <div class="card_price">
-                  <span class="money">550</span>
-                </div>
-
-                <div class="buy">
-                  <a href="#" class="card_btn">加入購物籃</a>
-                  <a href="#" class="card_btn">直接購買</a>
-                </div>
-              </div>
-            </div>
-            <div class="commodity">
-              <div class="card_img_box">
-                <img src="../assets/ia_300000017.jpg" width="100%" height="100%" />
-              </div>
-
-              <div class="card_content">
-                <div class="commodity_title">
-                  <div class="commodity_title_text">蜜蕉乾 零添加</div>
-                </div>
-
-                <div class="card_tag">
-                  <img src="../assets/icon/tag.svg" alt width="16px" height="16px" class="tag_icon" />
-                  <span class="card_tag_text">24hr宅配到府</span>
-                </div>
-
-                <div class="card_price">
-                  <span class="money">550</span>
-                </div>
-
-                <div class="buy">
-                  <a href="#" class="card_btn">加入購物籃</a>
-                  <a href="#" class="card_btn">直接購買</a>
-                </div>
-              </div>
-            </div>
-            <div class="commodity">
-              <div class="card_img_box">
-                <img src="../assets/ia_300000017.jpg" width="100%" height="100%" />
-              </div>
-
-              <div class="card_content">
-                <div class="commodity_title">
-                  <div class="commodity_title_text">蜜蕉乾 零添加</div>
-                </div>
-
-                <div class="card_tag">
-                  <img src="../assets/icon/tag.svg" alt width="16px" height="16px" class="tag_icon" />
-                  <span class="card_tag_text">24hr宅配到府</span>
-                </div>
-
-                <div class="card_price">
-                  <span class="money">550</span>
+                  <span class="money">{{i.price}}</span>
                 </div>
 
                 <div class="buy">
@@ -526,10 +401,11 @@ import { gsap, TweenMax, Power1, Power3, TimelineMax, Linear } from "gsap";
 export default {
   data() {
     return {
-      item: {
-        money: 0,
-        itemName: ""
-      }
+      // i: {
+      //   money: 0,
+      //   itemName: ""
+      // },
+      shopcommodity: null
     };
   },
   mounted() {
@@ -665,9 +541,13 @@ export default {
     this.$http
       .post(api)
       .then(res => {
-        const data = res.data;
-        this.item.itemName = data.name;
-        this.item.money = data.price;
+        // const data = res.data;
+        // this.item.itemName = data.name;
+        // this.item.money = data.price;
+
+        // this.shopcommodity = res.data;
+        this.shopcommodity = res.data;
+        console.log(res.data);
       })
       .catch(err => console.log(err));
   }
