@@ -61,14 +61,14 @@ export default {
     .then(res => {
 
       this.data = res.data;
-
+      
       // this.no = data[0].no;
       // this.name = data[0].name;
       // this.acc = data[0].acc;
       // this.psw = data[0].psw;
       
-    })
-    .catch(err => console.log(err));
+    });
+    // .catch(err => console.log(err));
   }
 
 
