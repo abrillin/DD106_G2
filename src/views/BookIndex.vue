@@ -196,7 +196,7 @@ export default {
   },
   methods: {
     changePage: function(i, d, n) {
-      this.$emit("changePage", { type: i, id: d, name: n });
+      this.$emit("changePage", { type: i, id: d * 2 + 1, name: n });
     }
   }
 };
