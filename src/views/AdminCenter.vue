@@ -1,6 +1,7 @@
 <template>
   <div class="msContainer">
     <div class="msFrame">
+
       <aside class="msSideBar">
         <ul>
           <img class="mng_logo" src="@/assets/LOGO.svg" alt />
@@ -30,3 +31,18 @@
   </div>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      login: false
+    };
+  },
+  methods: {
+    // 3. c. 接到 loginStatus 的值（status），傳給 login
+    checkLogin(status) {
+      this.login = status;
+    }
+  }
+};
+</script>
