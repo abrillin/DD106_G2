@@ -46,12 +46,6 @@
           <!-- <p>XXXXXXXXXX</p> -->
           <!-- <input type="text" /> -->
           <!-- <br /> -->
-
-          <div class="submit_button">
-            <div class="correct">
-              <p>確定</p>
-            </div>
-          </div>
         </div>
       </div>
     </div>
