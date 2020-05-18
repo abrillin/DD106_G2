@@ -193,7 +193,7 @@
 
                 <div class="card_tag">
                   <img src="../assets/icon/tag.svg" alt width="16px" height="16px" class="tag_icon" />
-                  <span class="card_tag_text">{{i["tags"][0]}}</span>
+                  <span class="card_tag_text">{{i}}</span>
                 </div>
 
                 <div class="card_price">
@@ -546,9 +546,9 @@ export default {
       // this.item.itemName = data.name;
       // this.item.money = data.price;
 
-      // this.shopcommodity = res.data;
+
       this.shopcommodity = res.data;
-      this.tags = res.data;
+      // this.tags = res.data;
 
       // console.log(res.data);
       // console.log(res.error);
