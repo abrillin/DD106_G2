@@ -175,7 +175,7 @@
               </div>
 
               <div class="card_price">
-                <span class="money">{{i.price}}</span>
+                <span class="money">{{i.price}}}</span>
               </div>
 
               <div class="buy">
