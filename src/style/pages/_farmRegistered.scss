@@ -1,134 +1,137 @@
 div.Registered {
-    display: inline-block;
-    color: #007552;
-    background-color: #fbf8ef;
-    width: calc(100% - 250px);
-    height: 100vh;
-    vertical-align: top;
-    box-sizing: border-box;
-    padding: 60px 40px;
+  display: inline-block;
+  color: #007552;
+  background-color: #fbf8ef;
+  width: calc(100% - 250px);
+  height: 100vh;
+  vertical-align: top;
+  box-sizing: border-box;
+  padding: 60px 40px;
+
+  @include rwd(medium) {
+    float: right;
+    width: calc(100% - 200px);
+  }
+
+  @include rwd(small) {
+    float: none;
+    width: 100vw;
+    padding: 10% 5%;
+  }
+
+  > .Registered_head {
+    color: #f7c845;
+    font-size: 3rem;
+  }
+
+  > .Registered_bottom {
+    display: block;
+    text-align: center;
+    padding-top: 100px;
+    margin: 0 auto;
 
     @include rwd(medium) {
-        float: right;
-        width: calc(100% - 200px);
+      display: block;
+      width: 100%;
+      padding-top: 10%;
     }
 
-    @include rwd(small) {
-        float: none;
-        width: 100vw;
-        padding: 10% 5%;
-    }
+    > .bottom_form {
+      display: inline-block;
+      width: 492px;
+      border: 1px solid #666;
 
-    >.Registered_head {
-        color: #f7c845;
-        font-size: 3rem;
-    }
+      @include rwd(small) {
+        line-height: normal;
+      }
 
-    >.Registered_bottom {
-        display: block;
-        text-align: center;
-        padding-top: 100px;
-        margin: 0 auto;
+      > .Registered_left {
+        vertical-align: top;
+        display: inline-block;
+        background-color: #f7c845;
+        box-sizing: border-box;
+        width: 150px;
+        height: 600px;
+        padding-top: 50px;
 
-        @include rwd(medium) {
-            display: block;
-            width: 100%;
-            padding-top: 10%;
+        @include rwd(small) {
+          width: 30%;
+          height: 400px;
         }
 
-        >.bottom_form {
-            display: inline-block;
-
-            border: 1px solid #666;
+        > ul {
+          > li {
+            font-size: 1.8rem;
+            color: #666;
+            line-height: 3.3;
 
             @include rwd(small) {
-                line-height: normal;
+              font-size: 1.4rem;
+              line-height: 3;
             }
-
-            >.Registered_left {
-                vertical-align: top;
-                display: inline-block;
-                background-color: #f7c845;
-                width: 150px;
-                height: 500px;
-                padding-top: 50px;
-
-                @include rwd(small) {
-                    width: 30%;
-                    height: 400px;
-                }
-
-                >ul {
-                    >li {
-                        font-size: 1.8rem;
-                        color: #666;
-                        line-height: 3.3;
-
-                        @include rwd(small) {
-                            font-size: 1.4rem;
-                            line-height: 3;
-                        }
-                    }
-                }
-            }
-
-            >.Registered_right {
-                display: inline-block;
-                text-align: start;
-
-                background-color: white;
-                box-sizing: border-box;
-                padding-top: 50px;
-                padding-left: 30px;
-                padding-right: 30px;
-                width: 340px;
-                height: 500px;
-
-                @include rwd(medium) {
-                    width: 340px;
-                }
-
-                @include rwd(small) {
-                    width: 70%;
-                    height: 400px;
-                }
-
-                span {
-                    display: block;
-                    line-height: 3.5;
-
-                    @include rwd(small) {
-                        line-height: 3;
-                    }
-
-                    p {
-                        overflow: hidden;
-                        padding: 0;
-
-                        @include rwd(small) {
-                            font-size: 1.4rem;
-                        }
-                    }
-                }
-
-                >.submit_button {
-                    margin-top: 20px;
-                    display: inline-block;
-                    border-radius: 5px;
-                    background-color: #007552;
-                    color: white;
-                    padding: 0px 20px;
-                    line-height: 2.3;
-                    cursor: pointer;
-                    font-size: 1.6rem;
-
-                    &:hover {
-                        background-color: #fca87c;
-                        color: #fbf8ef;
-                        border: none;
-                    }
-                }
-            }
+          }
         }
+      }
+
+      > .Registered_right {
+        display: inline-block;
+        text-align: start;
+
+        background-color: white;
+        box-sizing: border-box;
+        padding-top: 50px;
+        padding-left: 30px;
+        padding-right: 30px;
+        width: 340px;
+        height: 600px;
+        line-height: 3.5;
+
+        @include rwd(medium) {
+          width: 340px;
+        }
+
+        @include rwd(small) {
+          width: 70%;
+          height: 400px;
+        }
+
+        span {
+          display: block;
+          line-height: 3.5;
+
+          @include rwd(small) {
+            line-height: 3;
+          }
+
+          p {
+            overflow: hidden;
+            padding: 0;
+
+            @include rwd(small) {
+              font-size: 1.4rem;
+            }
+          }
+        }
+
+        > .submit_button {
+          margin-top: 20px;
+          display: inline-block;
+          border-radius: 5px;
+          background-color: #007552;
+          color: white;
+          padding: 0px 20px;
+          line-height: 2.3;
+          float: right;
+          cursor: pointer;
+          font-size: 1.6rem;
+
+          &:hover {
+            background-color: #fca87c;
+            color: #fbf8ef;
+            border: none;
+          }
+        }
+      }
     }
+  }
 }

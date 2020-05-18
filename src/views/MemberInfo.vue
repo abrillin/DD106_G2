@@ -81,7 +81,7 @@ export default {
             this.gender = "男";
           } else if (data.gender == 2) {
             this.gender = "女";
-          } else if (data.gender == 3) {
+          } else if (data.gender == 0) {
             this.gender = "其它";
           }
           this.phone = data.phone;

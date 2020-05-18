@@ -194,6 +194,7 @@ export default {
         email: "",
         phone: "",
         gender: "",
+        no: "",
       },
     };
   },
@@ -221,6 +222,8 @@ export default {
         })
         // eslint-disable-next-line no-console
         .catch((err) => console.log(err));
+
+      // this.sellerStatus();
     },
     changeSignin: function() {
       this.form = {

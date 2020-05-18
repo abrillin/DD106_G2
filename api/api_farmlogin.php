@@ -8,13 +8,13 @@ try {
     require_once("connectDB.php");
 
     // 操作DB
-    $sql = "select * from `member` where acc=:acc and psw=:psw";
+    $sql = "select a.*, b.`address`,b.`content`,b.`review_total`,b.`review_count`,b.`member_no` FROM `member` as a LEFT JOIN `seller` as b on a.no =:no&&b.member_no=:no";
     $member = $pdo->prepare($sql);
 
     $memberInfo = json_decode(file_get_contents("php://input"));
 
-    $member->bindValue(":acc", $memberInfo->acc);
-    $member->bindValue(":psw", $memberInfo->psw);
+    $member->bindValue(":no", $memberInfo->no);
+    
 
     // 返回data
     $member->execute();
@@ -28,7 +28,7 @@ try {
         $memRow = $member->fetch(PDO::FETCH_ASSOC);
 
         // 寫入session
-        $item = array("no", "name", "phone", "email", "gender", "img", "acc", "psw", "nick", "status");
+        $item = array("no", "name", "phone", "email", "gender", "img", "acc", "psw", "nick", "status","address","content","review_total","review_count","member_no");
 
         for ($i = 0; $i < count($item); $i++) {
 
