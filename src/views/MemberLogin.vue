@@ -28,12 +28,7 @@
                 <input type="text" v-model="form.nick" />
                 <div class="from_gender">
                   男
-                  <input
-                    type="radio"
-                    name="gender"
-                    v-model="form.gender"
-                    value="1"
-                  />
+                  <input type="radio" name="gender" v-model="form.gender" value="1" />
                   女
                   <input
                     type="radio"
@@ -51,18 +46,8 @@
                 </div>
 
                 <input type="text" v-model="form.acc" />
-                <input
-                  id="signupPsw"
-                  type="password"
-                  v-model="form.psw"
-                  @blur="checkPsw"
-                />
-                <input
-                  id="signupRePsw"
-                  type="password"
-                  v-model="form.rePsw"
-                  @blur="checkPsw"
-                />
+                <input id="signupPsw" type="password" v-model="form.psw" @blur="checkPsw" />
+                <input id="signupRePsw" type="password" v-model="form.rePsw" @blur="checkPsw" />
                 <input type="text" v-model="form.email" />
                 <input type="text" v-model="form.phone" />
               </form>
@@ -84,11 +69,7 @@
             <input type="text" placeholder="請輸入帳號" v-model="member.acc" />
             <br />
             <label>密碼:</label>
-            <input
-              type="password"
-              placeholder="請輸入密碼"
-              v-model="member.psw"
-            />
+            <input type="password" placeholder="請輸入密碼" v-model="member.psw" />
             <br />
             <div class="signinsubmit" @click="login">
               <p>登入</p>
@@ -102,13 +83,7 @@
       </div>
       <div class="leftbox">
         <h1>已經是果粉了?</h1>
-        <img
-          class="loginbutton"
-          id="signin"
-          src="@/assets/login.png"
-          @click="changeSignin"
-          alt
-        />
+        <img class="loginbutton" id="signin" src="@/assets/login.png" @click="changeSignin" alt />
       </div>
       <div class="rightbox">
         <h1>還不是果粉嗎?</h1>
@@ -183,7 +158,7 @@ export default {
     return {
       member: {
         acc: "",
-        psw: "",
+        psw: ""
       },
       form: {
         name: "",
@@ -195,35 +170,32 @@ export default {
         phone: "",
         gender: "",
         no: "",
-      },
+      }
     };
   },
   methods: {
     login: function() {
       const api = "/api/api_memberLogin.php";
 
-      this.$http
-        .post(api, JSON.stringify(this.member))
-        .then((res) => {
-          const data = res.data;
+      this.$http.post(api, JSON.stringify(this.member)).then(res => {
+        const data = res.data;
 
-          if (data == "") {
-            alert("痾喔，帳號或密碼輸入錯誤。請重新再試一次！");
-          } else {
-            alert(data.nick + " 您好，歡迎回來！");
+        if (data == "") {
+          alert("痾喔，帳號或密碼輸入錯誤。請重新再試一次！");
+        } else if (data == 2) {
+          alert("此帳號已經停權！");
+          return;
+        } else {
+          alert(data.nick + " 您好，歡迎回來！");
 
-            // 1. 傳遞登入狀態到父層
-            this.$emit("loginStatus", true);
+          // 1. 傳遞登入狀態到父層
+          this.$emit("loginStatus", true);
 
-            // 清除表單
-            this.member = { acc: "", psw: "" };
-            this.$router.go(-1);
-          }
-        })
-        // eslint-disable-next-line no-console
-        .catch((err) => console.log(err));
-
-      // this.sellerStatus();
+          // 清除表單
+          this.member = { acc: "", psw: "" };
+          this.$router.go(-1);
+        }
+      });
     },
     changeSignin: function() {
       this.form = {
@@ -234,7 +206,7 @@ export default {
         rePsw: "",
         email: "",
         phone: "",
-        gender: "",
+        gender: ""
       };
     },
     signup: function() {
@@ -247,7 +219,7 @@ export default {
         }
       }
 
-      this.$http.post(api, JSON.stringify(this.form)).then((res) => {
+      this.$http.post(api, JSON.stringify(this.form)).then(res => {
         const data = res.data;
 
         if (data.error) {
@@ -266,7 +238,7 @@ export default {
             rePsw: "",
             email: "",
             phone: "",
-            gender: "",
+            gender: ""
           };
 
           $(".movebox").css("transform", "translateX(-10%)");
@@ -287,7 +259,7 @@ export default {
         document.getElementById("signupPsw").style.backgroundColor = "";
         document.getElementById("signupRePsw").style.backgroundColor = "";
       }
-    },
-  },
+    }
+  }
 };
 </script>

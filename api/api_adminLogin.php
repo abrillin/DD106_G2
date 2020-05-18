@@ -19,7 +19,7 @@ try {
     // 返回data
     $member->execute();
     if ($member->rowCount() == 0) { //查無此人
-        echo "";
+        echo "0";
     } else { //登入成功
         //自資料庫中取回資料
         $memRow = $member->fetch(PDO::FETCH_ASSOC);
