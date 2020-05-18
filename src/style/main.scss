@@ -1,62 +1,62 @@
 // SCSS 的出口
 // base
-@import "./base/reset";
-@import "./base/var";
-@import "./base/mixin";
+@import './base/reset';
+@import './base/var';
+@import './base/mixin';
 // layout
-@import "./layout/navbar";
-@import "./layout/footer";
+@import './layout/navbar';
+@import './layout/footer';
 // components
-@import "./components/buttonMore";
-@import "./components/input";
+@import './components/buttonMore';
+@import './components/input';
 // pages
-@import "./pages/home";
+@import './pages/home';
 
-@import "./pages/book";
-@import "./pages/bookIndex";
-@import "./pages/bookPage1";
-@import "./pages/bookPage2";
+@import './pages/book';
+@import './pages/bookIndex';
+@import './pages/bookPage1';
+@import './pages/bookPage2';
 
-@import "./pages/blog-landing";
-@import "./pages/blog-post";
+@import './pages/blog-landing';
+@import './pages/blog-post2';
 
-@import "./pages/shop";
-@import "./pages/shopItem";
+@import './pages/shop';
+@import './pages/shopItem';
 
-@import "./pages/memberlogin";
-@import "./pages/member";
+@import './pages/memberlogin';
+@import './pages/member';
 
-@import "./pages/adminLogin";
-@import "./pages/Farm";
+@import './pages/adminLogin';
+@import './pages/Farm';
 
-@import "./pages/FarmMember";
-@import "./pages/FarmMemberInfo";
-@import "./pages/FarmMemberupdate";
-@import "./pages/FarmMemberOrder";
-@import "./pages/FarmMemberProductUpdate";
-@import "./pages/FarmMemberBlog";
-@import "./pages/FarmMemberBlogUpdate";
-@import "./pages/FarmMemberList";
-@import "./pages/FarmMemberListUpdate";
-@import "./pages/farmRegistered";
-@import "./pages/memberUpdate";
-@import "./pages/memberinfo";
-@import "./pages/memberOrder";
-@import "./pages/memberTrack";
-@import "./pages/memberShopping";
-@import "./pages/memberCheckInfo";
+@import './pages/FarmMember';
+@import './pages/FarmMemberInfo';
+@import './pages/FarmMemberupdate';
+@import './pages/FarmMemberOrder';
+@import './pages/FarmMemberProductUpdate';
+@import './pages/FarmMemberBlog';
+@import './pages/FarmMemberBlogUpdate';
+@import './pages/FarmMemberList';
+@import './pages/FarmMemberListUpdate';
+@import './pages/farmRegistered';
+@import './pages/memberUpdate';
+@import './pages/memberinfo';
+@import './pages/memberOrder';
+@import './pages/memberTrack';
+@import './pages/memberShopping';
+@import './pages/memberCheckInfo';
 
-@import "./pages/adminLogin";
-@import "./pages/adminManage";
-@import "./pages/addAdmin";
+@import './pages/adminLogin';
+@import './pages/adminManage';
+@import './pages/addAdmin';
 
-@import "./pages/encyManage";
-@import "./pages/encyEdit";
+@import './pages/encyManage';
+@import './pages/encyEdit';
 
-@import "./pages/fanManage";
-@import "./pages/sellerManage";
+@import './pages/fanManage';
+@import './pages/sellerManage';
 
-@import "./pages/index";
+@import './pages/index';
 
-@import "./pages/commentReport";
-@import "./pages/blogReport";
+@import './pages/commentReport';
+@import './pages/blogReport';
