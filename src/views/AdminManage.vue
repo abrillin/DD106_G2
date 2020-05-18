@@ -56,11 +56,11 @@ export default {
   created(){
     const api ="/api/api_adminManage.php";
 
-    this.$http
-    .post(api) // 將api承接到的資料post出去
-    .then(res => {
+    this.$http // $http 是將axios封裝後的promise寫法
+    .post(api) // 用axios post info到此api
+    .then(res => { // 如果可以傳送出去的話會response資料回來
 
-      this.data = res.data;
+      this.data = res.data; // 只取res中的data屬性中的資料
 
       // this.no = data[0].no;
       // this.name = data[0].name;
@@ -68,7 +68,7 @@ export default {
       // this.psw = data[0].psw;
       
     })
-    .catch(err => console.log(err));
+    // .catch(err => console.log(err));
   }
 
 

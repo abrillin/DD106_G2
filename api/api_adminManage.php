@@ -10,7 +10,8 @@ try {
     echo json_encode($adminInfo);
     
 } catch (PDOException $e) {
-   echo "錯誤原因 : ", $e->getMessage(), "<br>";
-   echo "錯誤行號 : ", $e->getLine(), "<br>";	
-}	
+
+    $error = ["error" => $e->getMessage()]; // 這裡的"error"是function
+    echo json_encode($error);
+}
 ?>
