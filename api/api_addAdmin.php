@@ -15,8 +15,6 @@ try {
     $addAdmin-> execute();
 
     // 跑sql既有資料，看acc是否有重複
-
-
     
     $no = $pdo->lastInsertId();
     
