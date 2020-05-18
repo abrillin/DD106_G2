@@ -43,14 +43,14 @@
         </ul>
       </div>
       <div class="member_button">
-        <div class="befarm">
+        <div class="befarm" @click="checkFarm">
           <router-link to="/main/member/farmRegistered">
             <button-more class="become_farmer" msg="成為果農"></button-more>
           </router-link>
         </div>
       </div>
       <div class="member_button">
-        <div class="changefarm">
+        <div class="changefarm" @click="changeFarm">
           <router-link to="/farm/info">
             <button-more class="goto_farmer" msg="切換果農"></button-more>
           </router-link>
@@ -76,14 +76,14 @@ export default {
         gender: "",
         phone: "",
         email: "",
-        img: ""
-      }
+        img: "",
+      },
     };
   },
   created() {
     const api = "/api/api_memberStatus.php";
 
-    this.$http.post(api).then(res => {
+    this.$http.post(api).then((res) => {
       const data = res.data;
 
       if (data != "") {
@@ -94,7 +94,7 @@ export default {
           nick: data.nick,
           phone: 0 + data.phone,
           email: data.email,
-          gender: data.gender
+          gender: data.gender,
         };
 
         if (data.img == "") {
@@ -138,33 +138,70 @@ export default {
       this.formData.append("file", img.files[0]);
       this.member.img = "../../api/MemPic/member" + img.files[0].name;
 
-      this.$http.post("/api/api_changeMemPic.php", this.formData).then(res => {
+      this.$http
+        .post("/api/api_changeMemPic.php", this.formData)
+        .then((res) => {
+          const data = res.data;
+
+          // 如果上傳成功
+          if (data == 0) {
+            this.$http
+              .post("/api/api_getMemPic.php", JSON.stringify(this.member))
+              .then((res) => {
+                const r = res.data;
+
+                // 如果更新成功
+                if (r == 0) {
+                  const api = "/api/api_memberUpdateSession.php";
+
+                  // 觸發更新 session 的API
+                  this.$http.post(api, JSON.stringify(this.member));
+                  alert("上傳成功！");
+                  this.$router.go(0);
+                } else if (r == 1) {
+                  alert("資料庫更新錯誤");
+                }
+              });
+          } else if (data == 1) {
+            alert("上傳失敗！");
+          }
+        });
+    },
+    checkFarm: function() {
+      const api = "/api/api_checkFarm.php";
+
+      this.$http
+        .post(api, JSON.stringify(this.member))
+        .then((res) => {
+          const data = res.data;
+
+          if (data == "") {
+          } else {
+            alert("已經是果農了");
+            this.$router.go(-1);
+          }
+        })
+
+        .catch((err) => console.log(err));
+    },
+    changeFarm: function() {
+      const api = "/api/api_checkFarm.php";
+
+      this.$http.post(api, JSON.stringify(this.member)).then((res) => {
         const data = res.data;
 
-        // 如果上傳成功
-        if (data == 0) {
-          this.$http
-            .post("/api/api_getMemPic.php", JSON.stringify(this.member))
-            .then(res => {
-              const r = res.data;
+        if (data == "") {
+          alert("還不是果農了喔");
+          this.$router.go(-1);
+        } else {
+          const api2 = "/api/api_farmlogin.php";
 
-              // 如果更新成功
-              if (r == 0) {
-                const api = "/api/api_memberUpdateSession.php";
-
-                // 觸發更新 session 的API
-                this.$http.post(api, JSON.stringify(this.member));
-                alert("上傳成功！");
-                this.$router.go(0);
-              } else if (r == 1) {
-                alert("資料庫更新錯誤");
-              }
-            });
-        } else if (data == 1) {
-          alert("上傳失敗！");
+          this.$http.post(api2, JSON.stringify(this.member)).then((res) => {
+            const data = res.data;
+          });
         }
       });
-    }
-  }
+    },
+  },
 };
 </script>
