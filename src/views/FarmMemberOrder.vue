@@ -78,29 +78,29 @@
                 <div class="Orderputon">
                     <p class="title">上架狀態</p>
                     <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable" 
-                    for="switch">Toggle</label></p>
+                    for="switch">Toggle<div class="after"></div></label></p>
                     <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle</label></p>
+                            for="switch">Toggle<div class="after"></div></label></p>
                     <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle</label></p>
+                            for="switch">Toggle<div class="after"></div></label></p>
                     <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle</label></p>
+                            for="switch">Toggle<div class="after"></div></label></p>
                     <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle</label></p>
+                            for="switch">Toggle<div class="after"></div></label></p>
                     <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle</label></p>
+                            for="switch">Toggle<div class="after"></div></label></p>
                     <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle</label></p>
+                            for="switch">Toggle<div class="after"></div></label></p>
                     <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle</label></p>
+                            for="switch">Toggle<div class="after"></div></label></p>
                     <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle</label></p>
+                            for="switch">Toggle<div class="after"></div></label></p>
                     <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle</label></p>
+                            for="switch">Toggle<div class="after"></div></label></p>
                     <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle</label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle</label></p>
+                            for="switch">Toggle<div class="after"></div></label></p>
+                    <p><input class="statusBtn" type="checkbox" id="switch"  /><label class="statuslable"
+                            for="switch" >Toggle<div class="after"></div></label></p>
                 </div>
             </div>
 
@@ -124,3 +124,20 @@
         </div>
     </div>
 </template>
+// <script>
+import $ from "jquery";
+export default {
+    
+ mounted(){
+     $('.statuslable').click(function(){
+          $(this).find(".after").toggleClass("scrol");
+         
+         
+          if($(".after").hasClass("scrol")){
+              $(".statuslable").addClass("color");
+          }
+     })
+
+ },
+};
+</script>

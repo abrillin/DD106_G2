@@ -70,45 +70,4 @@
     </div>
 
 </template>
-<script>
-export default {
-  data() {
-    return {
-      no: "",
-      acc: "",
-      name: "",
-      nick: "",
-      gender: "",
-      phone: "",
-      email: "",
-    };
-  },
-  mounted() {
-    const api = "/api/api_seller_member.php";
 
-    this.$http
-      .post(api)
-      .then((res) => {
-        const data = res.data;
-
-        if (data != "") {
-          this.no = data.no;
-          this.acc = data.acc;
-          this.name = data.name;
-          this.nick = data.nick;
-          if (data.gender == 1) {
-            this.gender = "男";
-          } else if (data.gender == 2) {
-            this.gender = "女";
-          } else if (data.gender == 3) {
-            this.gender = "其它";
-          }
-          this.phone = data.phone;
-          this.email = data.email;
-        }
-      })
-      // eslint-disable-next-line no-console
-      .catch((err) => console.log(err));
-  },
-};
-</script>
