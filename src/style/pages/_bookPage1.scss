@@ -18,133 +18,6 @@ $color-green:#5fbc55;
             box-sizing: border-box;
             height: 100%;
 
-
-            //個別季節目錄
-            .bk_season_index {
-                @include baseset;
-                position: relative;
-                //display: none;
-
-                &::after {
-                    content: "";
-                    position: absolute;
-                    bottom: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 5%;
-                    background-color: rgba(255, 208, 191, 1);
-                }
-
-                .bk_season {
-                    @include baseset;
-                    display: inline-block;
-                    width: 20%;
-                    background-color: #f38e8ea8;
-                    vertical-align: top;
-                    text-align: center;
-
-                    h5 {
-                        //border: 1px solid purple;
-                        font-size: 1.6rem;
-                        font-weight: bolder;
-                        color: black;
-                        margin: 50% auto 10%;
-                        background-color: #f3c452;
-                        width: 40%;
-                        padding: 10px;
-                    }
-
-                    .bk_season_img {
-                        //border: 1px solid green;
-                        width: 30px;
-                        height: 30px;
-                        margin: 0 auto 10px;
-
-                        img {
-                            height: 100%;
-                        }
-                    }
-                }
-
-                @include rwd(small) {
-                    .bk_season {
-                        width: 100%;
-                        height: 10%;
-
-                        h5 {
-                            display: block;
-                            padding: 5px;
-                            margin: 10px auto 5px;
-                        }
-
-                        .bk_season_img {
-                            display: inline-block;
-                            margin: 5px;
-                        }
-                    }
-                }
-
-                .bk_season_pic {
-                    box-sizing: border-box;
-                    display: inline-block;
-                    width: 80%;
-                    position: relative;
-                    top: 50%;
-                    transform: translateY(-50%);
-
-                    .bk_season_pic_package {
-                        //border: 1px solid red;                
-                        display: flex;
-                        flex-wrap: wrap;
-                        justify-content: center;
-                        align-items: center;
-
-                        .bk_season_pic1 {
-                            border: 5px solid #f38e8ea8;
-                            box-sizing: border-box;
-                            width: 150px;
-                            height: 150px;
-                            border-radius: 50%;
-                            overflow: hidden;
-                            position: relative;
-                            margin: 5px;
-                            transition: 1s;
-
-                            img {
-                                height: 100%;
-                                transition: 1s;
-                            }
-
-                            span {
-                                display: none;
-                                animation-delay: 2s;
-                            }
-
-                            &:hover img {
-                                height: 120%;
-                            }
-
-                            &:hover span {
-                                position: absolute;
-                                top: 50%;
-                                left: 50%;
-                                transform: translate(-50%, -50%);
-                                display: block;
-                                font-size: 2rem;
-                                background-color: #f3c452;
-                                padding: 5px;
-                            }
-                        }
-                    }
-
-                    @include rwd(small) {
-                        width: 100%;
-                        display: block;
-                        top: 40%;
-                    }
-                }
-            }
-
             .bk_ct {
                 // border: 1px solid blue;
                 box-sizing: border-box;
@@ -154,92 +27,22 @@ $color-green:#5fbc55;
                 width: 50%;
                 height: 100%;
                 vertical-align: top;
-            }
 
-            @include rwd (small) {
-                .bk_ct {
+                @include rwd (small) {
                     width: 100%;
                     display: block;
                     height: 80%;
                 }
-            }
 
-            @include rwd (mobile) {
-                .bk_ct {
-                    width: 100%;
-                    display: block;
+                @include rwd (mobile) {
                     height: auto;
                 }
             }
 
-
-            //spring spring spring
+            //左page
             .bk_ct_left {
-                //  display: none; /////這裏
-                font-size: 0;
 
                 .fruit_start {
-                    @include baseset;
-                    display: inline-block;
-                    height: 45%;
-                    min-height: 270px;
-
-                    @keyframes rotation {
-                        0% {
-                            transform: rotate(0deg);
-                        }
-
-                        100% {
-                            transform: rotate(360deg);
-                        }
-                    }
-
-                    h1 {
-                        display: inline-block;
-                        //border: 1px solid red;
-                        writing-mode: vertical-lr;
-                        letter-spacing: 0.6rem;
-                        font-size: 5rem;
-                        font-weight: bolder;
-                        color: #f38e8e;
-                        position: relative;
-                        left: 5%;
-                        top: 45%;
-                        z-index: 2;
-
-                        &::before {
-                            content: "";
-                            position: absolute;
-                            top: -30px;
-                            left: -10px;
-                            width: 50px;
-                            height: 50px;
-                            background-image: url("../assets/book_img/flower.svg");
-                            background-repeat: no-repeat;
-                            background-size: contain;
-                            animation-name: rotation;
-                            animation-duration: 2.5s;
-                            animation-iteration-count: infinite;
-
-                        }
-
-                        &::after {
-                            content: "";
-                            position: absolute;
-                            bottom: -30px;
-                            left: 20px;
-                            width: 30px;
-                            height: 30px;
-                            background-image: url("../assets/book_img/flower.svg");
-                            background-repeat: no-repeat;
-                            background-size: contain;
-                            animation-name: rotation;
-                            animation-duration: 2s;
-                            animation-iteration-count: infinite;
-                            animation-direction: alternate-reverse;
-                            animation-delay: 1s;
-                        }
-                    }
 
                     @mixin pic_center {
                         width: 120%;
@@ -302,7 +105,155 @@ $color-green:#5fbc55;
                         }
                     }
 
-                    //春天//常年
+                    @include rwd(medium) {
+                        .fruit_start_img {
+                            width: 150px;
+                            height: 140px;
+
+                            &:hover {
+                                width: 140px;
+                                height: 130px;
+                            }
+                        }
+                    }
+
+                    @include rwd(small) {
+                        .fruit_start_img {
+                            width: 180px;
+                            height: 170px;
+
+                            &:hover {
+                                width: 170px;
+                                height: 160px;
+                            }
+                        }
+                    }
+
+                    @include rwd(mobile) {
+                        .fruit_start_img {
+                            bottom: 0;
+
+                            &:hover {
+                                width: 170px;
+                                height: 160px;
+                            }
+                        }
+                    }
+                }
+
+                .fruit_intro {
+                    @include baseset();
+                    height: 50%;
+
+                    p {
+                        //border: 1px solid blue;
+                        @include baseset;
+                        font-size: 1.4rem;
+                        padding: 15px;
+                        white-space: pre-wrap;
+                        line-height: 1.8;
+                        column-count: 2;
+                        overflow-x: auto;
+                        white-space: break-all;
+                        display: inline-block;
+
+                        @include rwd (medium) {
+                            column-count: 1;
+                        }
+
+                        @include rwd (small) {
+                            column-count: 2;
+                            overflow-y: scroll;
+                            font-size: 1.6rem;
+                        }
+
+                        @include rwd (mobile) {
+                            column-count: 1;
+                            overflow-y: scroll;
+                            font-size: 1.6rem;
+                        }
+                    }
+
+                    @include rwd(small) {
+                        padding: 10px;
+                    }
+                }
+            }
+
+        }
+    }
+
+    //page1-left
+    @mixin path {
+
+        .bk_All {
+
+            .book_layout {
+
+                .bk_ct_left {
+                    font-size: 0;
+                    .fruit_start {
+                        @include baseset;
+                        display: inline-block;
+                        height: 45%;
+                        min-height: 270px;
+                        border: 1px solid rgba(0, 0, 0, 0);
+
+                        @keyframes rotation {
+                            0% {
+                                transform: rotate(0deg);
+                            }
+    
+                            100% {
+                                transform: rotate(360deg);
+                            }
+                        }
+                        h1{
+                            display: inline-block;
+                            writing-mode: vertical-lr;
+                            letter-spacing: 0.6rem;
+                            font-size: 5rem;
+                            font-weight: bolder;
+                            color: #f38e8e;
+                            position: relative;
+                            left: 5%;
+                            top: 45%;
+                            z-index: 2;
+
+                            &::before {
+                                content: "";
+                                position: absolute;
+                                top: -30px;
+                                left: -10px;
+                                width: 50px;
+                                height: 50px;
+                                background-image: url("../assets/book_img/flower.svg");
+                                background-repeat: no-repeat;
+                                background-size: contain;
+                                animation-name: rotation;
+                                animation-duration: 2.5s;
+                                animation-iteration-count: infinite;
+    
+                            }
+                            &::after {
+                                content: "";
+                                position: absolute;
+                                bottom: -30px;
+                                left: 20px;
+                                width: 30px;
+                                height: 30px;
+                                background-image: url("../assets/book_img/flower.svg");
+                                background-repeat: no-repeat;
+                                background-size: contain;
+                                animation-name: rotation;
+                                animation-duration: 2s;
+                                animation-iteration-count: infinite;
+                                animation-direction: alternate-reverse;
+                                animation-delay: 1s;
+                            }
+    
+                        }
+                          //春天//常年
                     .fruit_start_img {
                         //border: 1px solid red;
                         display: inline-block;
@@ -372,355 +323,6 @@ $color-green:#5fbc55;
                         }
                     }
 
-                    @include rwd(medium) {
-                        .fruit_start_img {
-                            width: 150px;
-                            height: 140px;
-
-                            &:hover {
-                                width: 140px;
-                                height: 130px;
-                            }
-                        }
-                    }
-
-                    @include rwd(small) {
-                        .fruit_start_img {
-                            width: 180px;
-                            height: 170px;
-
-                            &:hover {
-                                width: 170px;
-                                height: 160px;
-                            }
-                        }
-                    }
-
-                    @include rwd(mobile) {
-                        .fruit_start_img {
-                            bottom: 0;
-
-                            &:hover {
-                                width: 170px;
-                                height: 160px;
-                            }
-                        }
-                    }
-                }
-
-                @include rwd(mobile) {
-                    .fruit_start {
-                        position: relative;
-                        height: 40vh;
-                        padding: 20px;
-                    }
-                }
-
-                .fruit_intro {
-                    @include baseset();
-                    height: 50%;
-
-                    p {
-                        //border: 1px solid blue;
-                        @include baseset;
-                        font-size: 1.4rem;
-                        padding: 15px;
-                        white-space: pre-wrap;
-                        line-height: 1.8;
-                        column-count: 2;
-                        overflow-x: auto;
-                        white-space: break-all;           
-                        display: inline-block;   
-                        @include rwd (medium){
-                            column-count: 1; 
-                        }
-                        @include rwd (small){
-                            column-count: 2;
-                            overflow-y: scroll;
-                            font-size: 1.6rem;
-                        }
-                        @include rwd (mobile){
-                            column-count: 1;
-                            overflow-y: scroll;
-                            font-size: 1.6rem;
-                        }
-                    }
-                }
-
-                @include rwd(small) {
-                    .fruit_intro {
-                        height: 50%;
-                        padding: 10px;
-                        // background-color: rgba(255, 208, 191, .8);
-
-                    }
-                }
-            }
-
-            //右page
-            .bk_ct_right {
-                font-size: 0;
-                h2 {
-                    //border: 1px solid red;
-                    font-size: 1.6rem;
-                    font-weight: bold;
-                    color: $min-color;
-                    margin: 20px 0 10px;
-                    padding-left: 15px;
-                    @include rwd(small){
-                        font-size: 1.8rem;
-                    }
-                }
-
-                //水果產季週期
-                .fruit_time {
-                    //border: 1px solid red;
-                    background-color: #ba3f2b;
-                    box-sizing: border-box;
-                    display: block;
-                    width: 100%;
-                    height: 10%;
-
-                    ul {
-                        display: flex;
-                        flex-wrap: nowrap;
-
-                        li {
-                            border: 1px solid white;
-                            color: white;
-                            background-color: #f38e8e;
-                            padding: 5px 0;
-                            width: 10%;
-                            height: 10px;
-                            font-size: 1.2rem;
-                            text-align: center;
-                            @include rwd (medium){
-                                font-size: 1.1rem;
-                            }
-                        }
-                    }
-
-                    .fruit_timeline {
-                        background-color: #f38e8e;
-                        border-radius: 10px;
-                        width: 100px;
-                        height: 10px;
-                        position: relative;
-                        top: 20%;
-                    }
-
-                }
-                @include rwd(small) {
-                    .fruit_time {
-                        height: 60px;
-                    }
-                }
-
-                //影片
-                .fruit_video {
-                    margin-top: 20px;
-                    //border: 1px solid green;
-                    box-sizing: border-box;
-                    text-align: center;
-
-                    >video {
-                        width: auto;
-                        height: 150px;
-                    }
-
-                }
-                .fruit_video_year {
-                    >video {
-                        width: 280px;
-                        height: 180px;
-                    }
-                }
-
-                @include rwd(small) {
-                    .fruit_video {
-                        width: 100%;
-
-                        >video {
-                            width: 90%;
-                            height: auto;
-                        }
-                    }
-                }
-
-                @include rwd(mobile) {
-                    .fruit_video {
-                        width: 100%;
-
-                        >video {
-                            width: 100%;
-                            height: auto;
-                        }
-                    }
-                }
-
-
-
-
-                //農知識
-                .fruit_Q {
-                    //border: 1px solid green;
-                    box-sizing: border-box;
-                    width: 100%;
-                    .fruit_question {
-                        box-sizing: border-box;
-                        padding: 0;
-
-                        h2 {
-                            // border: 1px solid purple;
-                            font-weight: bolder;
-                            display: inline-block;
-                            margin-top: 20px;
-                            @include rwd (medium) {
-                                display: block;
-                                margin: 5px;
-                            }
-                            @include rwd (small){
-                                display: block;
-                                margin: 5px 0 0 0;
-                            }
-                        }
-                    }
-
-                    @include rwd (medium) {
-                        .fruit_question {
-                            padding-top: 10px;
-                        }
-                    }
-
-                    .fruit_A {
-                     @include baseset;
-                        max-height: 100%;
-                        display: flex;
-                        flex-wrap: nowrap;
-
-
-                        p {
-                            // border: 1px solid blue;
-                            font-size: 1.4rem;
-                            white-space: pre-wrap;
-                            line-height: 1.8;
-                            vertical-align: top;
-                            padding-left: 15px;
-                            overflow-y: scroll;
-                            &::-webkit-scrollbar {
-                                display: none;
-                            }
-                            box-sizing: border-box;
-                            display: inline-block;
-                            width: 50%;
-                            @include rwd(medium){
-                                width: 100%;
-                                overflow-x:auto;
-                                column-count: 1;
-                                padding: 10px;
-                            }
-                            @include rwd(small){
-                                font-size: 1.6rem;
-                            }
-                            @include rwd(mobile){
-                                width: 100%;
-                                column-count: 1;
-                                display: block;
-                            }
-                        }
-
-                        .fruit_img {
-                            // border: 1px solid green;
-                            display: inline-block;
-                            width: 180px;
-                            height: auto;
-                            position: relative;
-                            margin: 5px;
-
-
-                            img {
-
-                                width: 100%;
-                            }
-
-                        }
-
-                        @include rwd (medium) {
-                            .fruit_img {
-                                width: 40%;
-                                min-width: 130px;
-                                display: none;
-                            }
-                        }
-
-                        @include rwd (small) {
-                            .fruit_img {
-                                width: 70%;
-                                min-width: 130px;
-                                display: inline-block;
-                            }
-                        }
-
-                        @include rwd (mobile) {
-                            .fruit_img {
-                                width: 100%;
-                                margin-bottom: 100px;
-
-                            }
-                        }
-
-                    }
-
-                    @include rwd(small) {
-                        .fruit_A {
-                            margin-top: 10px;
-                            flex-wrap: nowrap;
-                        }
-                    }
-
-                    @include rwd(mobile) {
-                        .fruit_A {
-                            flex-wrap: wrap;
-                        }
-                    }
-
-                }
-
-                .fruit_Q_year {
-                    height: 50%;
-                    padding-top: 20px;
-                }
-
-                @include rwd (mobile) {
-                    height: 100%;
-                }
-            }
-
-            @include rwd(small) {
-                .bk_ct_right {
-                    padding: 10px;
-                    background-color: rgba(255, 208, 191, .8);
-                    height: auto;
-
-                    &::before {
-                        display: none;
-                    }
-                }
-            }
-        }
-    }
-
-    //page1-left
-    @mixin path {
-
-        .bk_All {
-
-            .book_layout {
-
-                .bk_ct_left {
-
-                    .fruit_start {
-                        border: 1px solid rgba(0, 0, 0, 0);
 
                         @include rwd(small) {
                             position: relative;
@@ -732,6 +334,11 @@ $color-green:#5fbc55;
                             }
                         }
 
+                        @include rwd(mobile){
+                            position: relative;
+                            height: 40vh;
+                            padding: 20px;
+                        }
                         @content;
                     }
                 }
@@ -911,8 +518,8 @@ $color-green:#5fbc55;
                             height: 100%;
                             z-index: -1;
                             -webkit-clip-path: polygon(50% 0%, 100% 0, 100% 100%, 0 100%, 0 48%);
-                            clip-path: polygon(50% 0%, 100% 0, 100% 100%, 0 100%, 0 48%);                            
-                            background-color:rgba(255, 208, 191, 0.8) ;
+                            clip-path: polygon(50% 0%, 100% 0, 100% 100%, 0 100%, 0 48%);
+                            background-color: rgba(255, 208, 191, 0.8);
                             @content;
                         }
                     }
@@ -920,36 +527,43 @@ $color-green:#5fbc55;
             }
         }
     }
-    &.spring{
+
+    &.spring {
         @include pathBGC;
-    } 
-    &.summer{
-        @include pathBGC{
-           background-color: #fce6ac;
+    }
+
+    &.summer {
+        @include pathBGC {
+            background-color: #fce6ac;
         }
-    } 
-    &.fall{
-        @include pathBGC{
-          background-color: #ffcba8;
+    }
+
+    &.fall {
+        @include pathBGC {
+            background-color: #ffcba8;
         }
-    } 
-    &.winter{
-        @include pathBGC{
-            background-color:#d1e5ff;
+    }
+
+    &.winter {
+        @include pathBGC {
+            background-color: #d1e5ff;
         }
-    } 
-    &.year{
-        @include pathBGC{
-            background-color:#f0faa7;
+    }
+
+    &.year {
+        @include pathBGC {
+            background-color: #f0faa7;
         }
-    } 
+    }
 
 
+    //右page
     //page2-rightother
     @mixin pathRight {
         .bk_All {
             .book_layout {
                 .bk_ct_right {
+                    font-size: 0;
                     &::before {
                         content: "";
                         position: absolute;
@@ -961,7 +575,230 @@ $color-green:#5fbc55;
                         -webkit-clip-path: polygon(34% 0%, 100% 0, 100% 100%, 0 100%);
                         clip-path: polygon(34% 0%, 100% 0, 100% 100%, 0 100%);
                         background-color: rgba(255, 208, 191, 1);
+
+                        @include rwd(small) {
+                            display: none;
+                        }
                     }
+                    h2 {
+                        //border: 1px solid red;
+                        font-size: 1.6rem;
+                        font-weight: bold;
+                        color: $min-color;
+                        margin: 20px 0 10px;
+                        padding-left: 15px;
+    
+                        @include rwd(small) {
+                            font-size: 1.8rem;
+                        }
+                    }
+                      //水果產季週期
+                .fruit_time {
+                    //border: 1px solid red;
+                    background-color: #ba3f2b;
+                    box-sizing: border-box;
+                    display: block;
+                    width: 100%;
+                    height: 10%;
+
+                    ul {
+                        display: flex;
+                        flex-wrap: nowrap;
+
+                        li {
+                            border: 1px solid white;
+                            color: white;
+                            background-color: #f38e8e;
+                            padding: 5px 0;
+                            width: 10%;
+                            height: 10px;
+                            font-size: 1.2rem;
+                            text-align: center;
+
+                            @include rwd (medium) {
+                                font-size: 1.1rem;
+                            }
+                        }
+                    }
+
+                    .fruit_timeline {
+                        background-color: #f38e8e;
+                        border-radius: 10px;
+                        width: 100px;
+                        height: 10px;
+                        position: relative;
+                        top: 20%;
+                    }
+
+                    @include rwd(small) {
+                        height: 60px;
+                    }
+                }
+
+                //影片
+                .fruit_video {
+                    margin-top: 20px;
+                    //border: 1px solid green;
+                    box-sizing: border-box;
+                    text-align: center;
+
+                    >video {
+                        width: auto;
+                        height: 150px;
+
+                        @include rwd(small) {
+                            width: 90%;
+                            height: auto;
+                        }
+
+                        @include rwd(mobile) {
+                            width: 100%;
+                            height: auto;
+                        }
+                    }
+
+                    @include rwd(small) {
+                        width: 100%;
+                    }
+
+                }
+
+                .fruit_video_year {
+                    >video {
+                        width: 280px;
+                        height: 180px;
+                    }
+                }
+
+                //農知識
+                .fruit_Q {
+                    //border: 1px solid green;
+                    box-sizing: border-box;
+                    width: 100%;
+
+                    .fruit_question {
+                        box-sizing: border-box;
+                        padding: 0;
+
+                        h2 {
+                            // border: 1px solid purple;
+                            font-weight: bolder;
+                            display: inline-block;
+                            margin-top: 20px;
+
+                            @include rwd (medium) {
+                                display: block;
+                                margin: 5px;
+                            }
+
+                            @include rwd (small) {
+                                display: block;
+                                margin: 5px 0 0 0;
+                            }
+                        }
+
+                        @include rwd (medium) {
+                            padding-top: 10px;
+                        }
+                    }
+
+                    .fruit_A {
+                        @include baseset;
+                        max-height: 100%;
+                        display: flex;
+                        flex-wrap: nowrap;
+
+                        p {
+                            // border: 1px solid blue;
+                            font-size: 1.4rem;
+                            white-space: pre-wrap;
+                            line-height: 1.8;
+                            vertical-align: top;
+                            padding-left: 15px;
+                            overflow-y: scroll;
+
+                            &::-webkit-scrollbar {
+                                display: none;
+                            }
+
+                            box-sizing: border-box;
+                            display: inline-block;
+                            width: 50%;
+
+                            @include rwd(medium) {
+                                width: 100%;
+                                overflow-x: auto;
+                                column-count: 1;
+                                padding: 10px;
+                            }
+
+                            @include rwd(small) {
+                                font-size: 1.6rem;
+                            }
+
+                            @include rwd(mobile) {
+                                width: 100%;
+                                column-count: 1;
+                                display: block;
+                            }
+                        }
+
+                        .fruit_img {
+                            display: inline-block;
+                            width: 180px;
+                            height: auto;
+                            position: relative;
+                            margin: 5px;
+
+                            img {
+                                width: 100%;
+                            }
+
+                            @include rwd (medium) {
+                                width: 40%;
+                                min-width: 130px;
+                                display: none;
+                            }
+
+                            @include rwd (small) {
+                                width: 70%;
+                                min-width: 130px;
+                                display: inline-block;
+                            }
+
+                            @include rwd (mobile) {
+                                width: 100%;
+                                margin-bottom: 100px;
+                            }
+                        }
+
+                        @include rwd(small) {
+                            margin-top: 10px;
+                            flex-wrap: nowrap;
+                        }
+
+                        @include rwd(mobile) {
+                            flex-wrap: wrap;
+                        }
+                    }
+                }
+
+                .fruit_Q_year {
+                    height: 50%;
+                    padding-top: 20px;
+
+                    @include rwd (mobile) {
+                        height: 100%;
+                    }
+                }
+
+
+                    @include rwd(small) {
+                        padding: 10px;
+                        background-color: rgba(255, 208, 191, .8);
+                        height: auto;
+                    }
+
                     @content;
                 }
             }
@@ -971,8 +808,10 @@ $color-green:#5fbc55;
     &.spring {
         @include pathRight;
     }
+
     &.summer {
         @include pathRight {
+
             &::before {
                 background-color: #ffe398;
             }
@@ -990,9 +829,14 @@ $color-green:#5fbc55;
                     background-color: rgb(80, 41, 9);
                 }
             }
+
+            @include rwd (small) {
+                background-color: #fce6ac;
+            }
         }
 
     }
+
     &.fall {
         @include pathRight {
             &::before {
@@ -1011,6 +855,10 @@ $color-green:#5fbc55;
                 .fruit_timeline {
                     background-color: rgb(133, 59, 16);
                 }
+            }
+
+            @include rwd (small) {
+                background-color: #ffcba8;
             }
         }
 
@@ -1037,6 +885,11 @@ $color-green:#5fbc55;
                     background-color: #97c4ff;
                 }
             }
+
+            @include rwd (small) {
+                background-color: #d1e5ff;
+            }
+
         }
 
     }
@@ -1047,8 +900,250 @@ $color-green:#5fbc55;
                 background-color: #f0faa7;
             }
 
+            @include rwd (small) {
+                background-color: #f0faa7;
+            }
+
         }
 
+    }
+
+    //sesasonIndex
+    //個別季節目錄
+
+    @mixin seasonIndex {
+        .bk_All {
+            .book_layout {
+                .bk_season_index {
+                    @include baseset;
+                    position: relative;
+
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 5%;
+                        background-color: rgba(255, 208, 191, 1);
+                    }
+
+                    .bk_season {
+                        @include baseset;
+                        display: inline-block;
+                        width: 20%;
+                        background-color: #f38e8ea8;
+                        vertical-align: top;
+                        text-align: center;
+
+                        h5 {
+                            //border: 1px solid purple;
+                            font-size: 1.6rem;
+                            font-weight: bolder;
+                            color: black;
+                            margin: 50% auto 10%;
+                            background-color: #f3c452;
+                            width: 40%;
+                            padding: 10px;
+
+                            @include rwd(small) {
+                                display: block;
+                                padding: 5px;
+                                margin: 10px auto 5px;
+                            }
+                        }
+
+                        .bk_season_img {
+                            //border: 1px solid green;
+                            width: 30px;
+                            height: 30px;
+                            margin: 0 auto 10px;
+                           background-image: url("../assets/book_img/flower_ct.svg");
+                            background-repeat: no-repeat;
+                            background-size: contain;
+
+                            @include rwd(small) {
+                                display: inline-block;
+                                margin: 5px;
+                            }
+                        }
+
+                        @include rwd(small) {
+                            width: 100%;
+                            height: 10%;
+                        }
+                    }
+
+                    .bk_season_pic {
+                        box-sizing: border-box;
+                        display: inline-block;
+                        width: 80%;
+                        position: relative;
+                        top: 50%;
+                        transform: translateY(-50%);
+
+                        .bk_season_pic_package {
+                            //border: 1px solid red;                
+                            display: flex;
+                            flex-wrap: wrap;
+                            justify-content: center;
+                            align-items: center;
+
+                            .bk_season_pic1 {
+                                border: 5px solid #f38e8ea8;
+                                box-sizing: border-box;
+                                width: 150px;
+                                height: 150px;
+                                border-radius: 50%;
+                                overflow: hidden;
+                                position: relative;
+                                margin: 5px;
+                                transition: 1s;
+
+                                img {
+                                    height: 100%;
+                                    transition: 1s;
+                                }
+                                span {
+                                    display: none;
+                                    animation-delay: 2s;
+                                }
+    
+                                &:hover img {
+                                    height: 120%;
+                                }
+    
+                                &:hover span {
+                                    position: absolute;
+                                    top: 50%;
+                                    left: 50%;
+                                    transform: translate(-50%, -50%);
+                                    display: block;
+                                    font-size: 2rem;
+                                    background-color: #f3c452;
+                                    padding: 5px;
+                                }
+                            }
+                        }
+
+                        @include rwd(small){
+                            width: 100%;
+                            display: block;
+                            top: 40%;
+                        }
+                    }
+
+                    @content;
+                }
+            }
+        }
+    }
+
+    &.spring {
+        @include seasonIndex;
+    }
+
+    &.summer {
+        @include seasonIndex {
+            &::after {
+                background-color: #f6d16b;
+            }
+
+            .bk_season {
+                background-color: #f6d16ba8;
+                .bk_season_img{
+                    background-image: url("../assets/book_img/binbo.svg");
+                    transform: rotate(30deg);
+                }
+            }
+             .bk_season_pic{
+                .bk_season_pic_package{
+                    .bk_season_pic1{
+                        border: 5px solid #f6d16ba8; 
+                    }
+                }
+             }
+
+
+        }
+    }
+
+    &.fall {
+        @include seasonIndex {
+            &::after {
+            background-color: #e19b6b;
+          
+            }
+
+            .bk_season {
+            background-color: #e19b6b8a;
+                .bk_season_img{
+                    background-image: url("../assets/book_img/leaf.svg");
+                    transform: rotate(30deg);
+                }
+            }
+             .bk_season_pic{
+                .bk_season_pic_package{
+                    .bk_season_pic1{
+                        border: 5px solid #e19b6ba8; 
+                    }
+                }
+             }
+
+
+        }
+    }
+
+    &.winter {
+        @include seasonIndex {
+            &::after {
+            background-color: #87b0e7;
+          
+            }
+
+            .bk_season {
+            background-color: #87b0e78a;
+                .bk_season_img{
+                    background-image: url("../assets/book_img/snow.svg");
+                    transform: rotate(30deg);
+                }
+            }
+             .bk_season_pic{
+                .bk_season_pic_package{
+                    .bk_season_pic1{
+                        border: 5px solid #87b0e78a; 
+                    }
+                }
+             }
+
+
+        }
+    }
+
+    &.year {
+        @include seasonIndex {
+            &::after {
+            background-color: #c4ce7c;
+          
+            }
+
+            .bk_season {
+            background-color:  #e1fc198a;
+                .bk_season_img{
+                    background-image: url("../assets/book_img/leaf_year.svg");
+                    transform: rotate(30deg);
+                }
+            }
+             .bk_season_pic{
+                .bk_season_pic_package{
+                    .bk_season_pic1{
+                        border: 5px solid #c4ce7c; 
+                    }
+                }
+             }
+
+
+        }
     }
 
 }

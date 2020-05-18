@@ -134,10 +134,11 @@ export default {
         .then((res) => {
           const data = res.data;
 
-          if (data != " ") {
+          if (data == 0) {
             alert("修改成功！");
 
             this.updateSession();
+            this.$router.go(0);
           }
         })
         // eslint-disable-next-line no-console

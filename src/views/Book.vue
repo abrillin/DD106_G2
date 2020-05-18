@@ -52,8 +52,10 @@
                   <Content
                     v-if="change == false"
                     :contentIndex="index"
+                    :pageId="page"
+                    @addType="addIndex"
                   ></Content>
-                  <Index v-if="change == true"></Index>
+                  <Index v-if="change == true" @changePage="changePage"></Index>
                   <!-- fruit_knowledge -->
                 </div>
                 <!-- 右切換按鈕 -->
@@ -107,6 +109,7 @@ export default {
       type: "spring",
       index: 0,
       change: true,
+      page: 0
     };
   },
   mounted() {
@@ -153,11 +156,17 @@ export default {
         this.change = true;
       }
     },
+    changePage: function(p) {
+      this.changeType(p.type);
+      this.page = p.id;
+    },
+    addIndex: function(n) {
+      this.changeType(this.index + n);
+    }
   },
   components: {
     Content,
-    // eslint-disable-next-line vue/no-unused-components
-    Index,
-  },
+    Index
+  }
 };
 </script>

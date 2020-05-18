@@ -91,8 +91,8 @@
       height: 30px;
       box-sizing: border-box;
       background-size: cover;
-      background-image: url("./../assets/headFarmer.svg");
-      display: none;
+      // background-image: url("./../assets/headFarmer.svg");
+      // display: none;
 
       @include rwd(small) {
         width: 20px;

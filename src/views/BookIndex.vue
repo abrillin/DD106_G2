@@ -61,13 +61,16 @@
       </ul>
     </div>-->
     <div v-for="i in index" :key="i.type" class="bk_content1">
-      <h5>春季</h5>
+      <h5>{{i.name}}</h5>
       <div class="bk_content_img">
-        <!-- <img :src="'../assets/book_img/' + i.img" /> -->
         <img :src="require('@/assets/book_img/' + i.img)" />
       </div>
       <ul>
-        <li v-for="(j, index) in i.item" :key="index">{{j.name}}</li>
+        <li
+          v-for="(j, index) in i.item"
+          :key="index"
+          @click="changePage(i.type, j.id, j.name)"
+        >{{j.name}}</li>
       </ul>
     </div>
   </div>
@@ -83,15 +86,19 @@ export default {
           img: "flower_ct.svg",
           item: [
             {
+              id: 0,
               name: "梅子"
             },
             {
+              id: 1,
               name: "李子"
             },
             {
+              id: 2,
               name: "桃子"
             },
             {
+              id: 3,
               name: "枇杷"
             }
           ]
@@ -102,15 +109,19 @@ export default {
           img: "binbo.svg",
           item: [
             {
+              id: 0,
               name: "西瓜"
             },
             {
+              id: 1,
               name: "火龍果"
             },
             {
+              id: 2,
               name: "荔枝"
             },
             {
+              id: 3,
               name: "芒果"
             }
           ]
@@ -121,15 +132,19 @@ export default {
           img: "leaf.svg",
           item: [
             {
+              id: 0,
               name: "葡萄"
             },
             {
+              id: 1,
               name: "柿子"
             },
             {
+              id: 2,
               name: "柚子"
             },
             {
+              id: 3,
               name: "梨子"
             }
           ]
@@ -140,15 +155,19 @@ export default {
           img: "snow.svg",
           item: [
             {
+              id: 0,
               name: "草莓"
             },
             {
+              id: 1,
               name: "橘子"
             },
             {
+              id: 2,
               name: "棗子"
             },
             {
+              id: 3,
               name: "番茄"
             }
           ]
@@ -159,18 +178,26 @@ export default {
           img: "leaf_year.svg",
           item: [
             {
+              id: 0,
               name: "木瓜"
             },
             {
+              id: 1,
               name: "鳳梨"
             },
             {
+              id: 2,
               name: "香蕉"
             }
           ]
         }
       ]
     };
+  },
+  methods: {
+    changePage: function(i, d, n) {
+      this.$emit("changePage", { type: i, id: d, name: n });
+    }
   }
 };
 </script>

@@ -109,7 +109,7 @@
 import $ from "jquery";
 export default {
   // 5. 接收父層的 memberStatus 的值
-  props: ["memberStatus"],
+  props: { memberStatus: Boolean, memberImg: String },
   data() {
     return {
       status: false,
@@ -117,7 +117,7 @@ export default {
       img: "",
     };
   },
-  mounted() {
+  created() {
     const api = "/api/api_memberStatus.php";
 
     this.$http
@@ -130,9 +130,7 @@ export default {
           this.status = true;
           this.userName = data.name;
         }
-      })
-      // eslint-disable-next-line no-console
-      .catch((err) => console.log(err));
+      });
 
     $("div.title").click(function(e) {
       $("div.title")
@@ -167,7 +165,6 @@ export default {
   computed: {
     session: function() {
       // 6. 偵聽到 memberStatus 有變動，觸發 login 方法，並回傳值到上面v-if狀態的顯示判斷
-
       this.login();
       return this.memberStatus;
     },
@@ -194,20 +191,17 @@ export default {
         .then((res) => {
           const data = res.data;
 
-          // 如果 session 的資料存在（代表有登入），則切換 navbar 果粉狀態
-          if (data != "") {
-            this.status = true;
-            this.userName = data.name;
+        // 如果 session 的資料存在（代表有登入），則切換 navbar 果粉狀態
+        if (data != "") {
+          this.status = true;
+          this.userName = data.name;
 
-            if (data.img == "") {
-              this.img = require("@/assets/waterpear.png");
-            } else {
-              this.img = data.img;
-            }
+          if (data.img == "") {
+            this.img = require("@/assets/waterpear.png");
+          } else {
+            this.img = data.img;
           }
-        })
-        // eslint-disable-next-line no-console
-        .catch((err) => console.log(err));
+        });
     },
     logoclick() {
       if ($("div.hamburger").hasClass("is-active") == true) {
