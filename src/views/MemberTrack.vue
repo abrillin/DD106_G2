@@ -45,12 +45,11 @@
                             <div class="track_button">
                                 <p>查看市集</p>
                             </div>
-                        </div>
-                        <div class="frontbutton2">
                             <div class="track_button2">
                                 <p>查看日誌</p>
                             </div>
                         </div>
+
                     </div>
                     <!-- <div class="cardinfo">
                         <div class="top">
@@ -109,8 +108,6 @@
                             <div class="track_button">
                                 <p>查看市集</p>
                             </div>
-                        </div>
-                        <div class="frontbutton2">
                             <div class="track_button2">
                                 <p>查看日誌</p>
                             </div>
@@ -159,8 +156,6 @@
                             <div class="track_button">
                                 <p>查看市集</p>
                             </div>
-                        </div>
-                        <div class="frontbutton2">
                             <div class="track_button2">
                                 <p>查看日誌</p>
                             </div>
@@ -209,8 +204,6 @@
                             <div class="track_button">
                                 <p>查看市集</p>
                             </div>
-                        </div>
-                        <div class="frontbutton2">
                             <div class="track_button2">
                                 <p>查看日誌</p>
                             </div>
@@ -259,8 +252,6 @@
                             <div class="track_button">
                                 <p>查看市集</p>
                             </div>
-                        </div>
-                        <div class="frontbutton2">
                             <div class="track_button2">
                                 <p>查看日誌</p>
                             </div>
@@ -309,8 +300,6 @@
                             <div class="track_button">
                                 <p>查看市集</p>
                             </div>
-                        </div>
-                        <div class="frontbutton2">
                             <div class="track_button2">
                                 <p>查看日誌</p>
                             </div>
@@ -359,8 +348,6 @@
                             <div class="track_button">
                                 <p>查看市集</p>
                             </div>
-                        </div>
-                        <div class="frontbutton2">
                             <div class="track_button2">
                                 <p>查看日誌</p>
                             </div>
@@ -409,8 +396,6 @@
                             <div class="track_button">
                                 <p>查看市集</p>
                             </div>
-                        </div>
-                        <div class="frontbutton2">
                             <div class="track_button2">
                                 <p>查看日誌</p>
                             </div>
@@ -459,8 +444,6 @@
                             <div class="track_button">
                                 <p>查看市集</p>
                             </div>
-                        </div>
-                        <div class="frontbutton2">
                             <div class="track_button2">
                                 <p>查看日誌</p>
                             </div>
