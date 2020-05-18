@@ -62,7 +62,7 @@ export default {
 
       this.$http.post(login, JSON.stringify(this.member)).then(res => {
         const data = res.data;
-        if (data.status == 0) {
+        if (data.status == 1) {
           alert("此帳號已經停用");
         } else if (data == 0) {
           alert(" Σ(*ﾟдﾟﾉ)ﾉ  帳號或密碼輸入錯誤，請重新再試一次！ ");

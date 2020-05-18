@@ -27,11 +27,19 @@
                 <td>{{row.phone}}</td>
                 <td>{{row.email}}</td>
                 <td>
-                  <input class="statusBtn" type="checkbox" :id="'switch'+row.no" />
-                  <label class="statusBtnLabel" :for="'switch'+row.no">Toggle</label>
+                  <input
+                    class="statusBtn"
+                    type="checkbox"
+                    :id="'switch'+row.no"
+                    v-model="row.status"
+                  />
+                  <label
+                    class="statusBtnLabel"
+                    :for="'switch'+row.no"
+                    @click="toggleStatus(row.no, row.status)"
+                  >Toggle</label>
                 </td>
               </tr>
-            
             </tbody>
           </table>
         </div>
@@ -39,7 +47,6 @@
     </main>
   </div>
 </template>
-
 <script>
 export default {
   data() {
@@ -47,22 +54,41 @@ export default {
       no: "",
       acc: "",
       name: "",
-      phone:"",
+      phone: "",
       email: "",
-      
+
       data: []
     };
   },
-  created(){
-    const api ="/api/api_adminFanManage.php";
+  created() {
+    const api = "/api/api_adminFanManage.php";
 
     this.$http
-    .post(api) // 將api承接到的資料post出去
-    .then(res => {
+      .post(api) // 將api承接到的資料post出去
+      .then(res => {
+        this.data = res.data;
 
-      this.data = res.data;
-    })
-    .catch(err => console.log(err));
+        // 資料型別轉換
+        res.data.forEach(i => {
+          i.status = parseInt(i.status);
+        });
+      });
+  },
+  methods: {
+    toggleStatus(no, status) {
+      const api = "/api/api_adminMemberUpdate.php";
+      let s;
+
+      // 如果狀態是 1 (停權) 則切換成 0 (正常)
+      if (status == 1) {
+        s = 0;
+      } else if (status == 0) {
+        s = 1;
+      }
+
+      // 發送到 DB 更新果粉的狀態
+      this.$http.post(api, JSON.stringify({ no: no, status: s }));
+    }
   }
 };
 </script>
