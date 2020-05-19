@@ -15,10 +15,17 @@ try {
     $addAdmin-> execute();
 
     // 跑sql既有資料，看acc是否有重複
+    if ($addAdmin->rowCount() == 0) {
+        echo "1";
+    } else {
+
+        echo "0";
+    }
     
-    $no = $pdo->lastInsertId();
     
-    echo json_encode($addAdminInfo); // 以上處理完後，將物件轉json檔
+    // $no = $pdo->lastInsertId();
+    
+    // echo json_encode($addAdminInfo); // 以上處理完後，將物件轉json檔
     
 } catch (PDOException $e) {
    echo "錯誤原因 : ", $e->getMessage(), "<br>";
