@@ -64,6 +64,7 @@
 export default {
   data() {
     return {
+      gender: "",
       member: {
         no: "",
         acc: "",
@@ -81,7 +82,7 @@ export default {
     };
   },
   created() {
-    const api = "/api/api_memberStatus.php";
+    const api = "/api/api_farmStatus.php";
     this.$http.post(api).then((res) => {
       const data = res.data;
       if (data != "") {
