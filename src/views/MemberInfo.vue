@@ -64,7 +64,7 @@ export default {
       email: "",
     };
   },
-  mounted() {
+  created() {
     const api = "/api/api_memberStatus.php";
 
     this.$http
