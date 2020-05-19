@@ -168,8 +168,7 @@ export default {
         rePsw: "",
         email: "",
         phone: "",
-        gender: "",
-        no: "",
+        gender: ""
       }
     };
   },
