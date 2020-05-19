@@ -566,47 +566,53 @@
                 </router-link>-->
                 <router-link
                   to="/main/blog/landing"
-                  class="blog-post2-small-card"
                   v-for="(i, index) in blogArrFilter"
                   :key="index"
+                  class="blog-post2-small-card-outer"
                 >
-                  <div>
-                    <img src="@/assets/blog-img/post/grape.png" />
+                  <div class="blog-post2-small-card">
                     <div>
+                      <img
+                        src="@/assets/blog-img/post/grape.png"
+                        @click="changePage"
+                      />
                       <div>
-                        <img src="@/assets/blog-img/blog-thumb.png" />
-                      </div>
-                      <div>
-                        <span>100</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <p>{{ i.date }}</p>
-                    <p>{{ i.title }}</p>
-                    <div>
-                      <img src="@/assets/blog-img/blog-tag.png" />
-                      <span>知識類</span>
-                    </div>
-                    <p>{{ i.content }}</p>
-                  </div>
-                  <div>
-                    <div>
-                      <img src="@/assets/blog-img/blog-someoneshead.png" />
-                    </div>
-                    <div>
-                      <span>蓬蓬草莓姨</span>
-                      <div>
-                        <img src="@/assets/blog-img/blog-star.png" />
-                        <img src="@/assets/blog-img/blog-star.png" />
-                        <img src="@/assets/blog-img/blog-star.png" />
-                        <img src="@/assets/blog-img/blog-star.png" />
-                        <img src="@/assets/blog-img/blog-star.png" />
+                        <div>
+                          <img src="@/assets/blog-img/blog-thumb.png" />
+                        </div>
+                        <div>
+                          <span>100</span>
+                        </div>
                       </div>
                     </div>
                     <div>
-                      <span>+追蹤</span>
+                      <p>{{ i.date }}</p>
+                      <p>{{ i.title }}</p>
+                      <div>
+                        <img src="@/assets/blog-img/blog-tag.png" />
+                        <span>知識類</span>
+                      </div>
+                      <p>{{ i.content }}</p>
                     </div>
+                    <div>
+                      <div>
+                        <img src="@/assets/blog-img/blog-someoneshead.png" />
+                      </div>
+                      <div>
+                        <span>蓬蓬草莓姨</span>
+                        <div>
+                          <img src="@/assets/blog-img/blog-star.png" />
+                          <img src="@/assets/blog-img/blog-star.png" />
+                          <img src="@/assets/blog-img/blog-star.png" />
+                          <img src="@/assets/blog-img/blog-star.png" />
+                          <img src="@/assets/blog-img/blog-star.png" />
+                        </div>
+                      </div>
+                      <div>
+                        <span>+追蹤</span>
+                      </div>
+                    </div>
+                    <span class="post2BlogNo">{{ i.no }}</span>
                   </div>
                 </router-link>
               </div>
@@ -628,7 +634,7 @@
                 class="pageBorder"
                 v-for="(i, index) in pageArr"
                 :key="index"
-                v-on="{ click: pageSelect }"
+                v-on="{click: pageSelect}"
               >
                 {{ i }}
               </li>
@@ -766,7 +772,7 @@
   // height: 50vw;
   // padding-bottom: 5%;
   &::before {
-    content: "";
+    content: '';
     border-bottom: #007552 5px solid;
     width: 105%;
     position: absolute;
@@ -786,7 +792,7 @@
   }
   > div:nth-child(1) {
     &::before {
-      content: "";
+      content: '';
       display: inline-block;
       border-right: #6baf9b solid 2px;
       height: 50%;
@@ -807,7 +813,7 @@
       bottom: 0%;
       left: 0%;
       @media (max-width: 1300px) {
-        content: "";
+        content: '';
       }
     }
     // border: 4px solid #000;
@@ -819,12 +825,12 @@
     grid-template-columns: 1.5fr 2fr 1.5fr 3fr;
     grid-template-rows: 0.1fr 1fr 0.5fr 0.5fr 0.4fr 5fr;
     grid-template-areas:
-      "aa1 aa1 aa1 aa1"
-      "aa2 aa2 aa2 aa2 "
-      "aa3 aa4 aa6 aa7"
-      "aa3 aa5 aa6 aa7"
-      "aa8 aa8 aa8 aa8"
-      "aa9 aa9 aa9 aa9";
+      'aa1 aa1 aa1 aa1'
+      'aa2 aa2 aa2 aa2 '
+      'aa3 aa4 aa6 aa7'
+      'aa3 aa5 aa6 aa7'
+      'aa8 aa8 aa8 aa8'
+      'aa9 aa9 aa9 aa9';
     @media (max-width: 1600px) {
       // padding-right: 0%;
       grid-template-columns: 0.9fr 1.3fr 1fr 3fr;
@@ -842,12 +848,12 @@
     }
     @media (max-width: 576px) {
       grid-template-areas:
-        "aa1 aa1 aa1 aa1"
-        "aa2 aa2 aa2 aa2 "
-        "aa3 aa4 aa6 aa6"
-        "aa3 aa5 aa7 aa7"
-        "aa8 aa8 aa8 aa8"
-        "aa9 aa9 aa9 aa9";
+        'aa1 aa1 aa1 aa1'
+        'aa2 aa2 aa2 aa2 '
+        'aa3 aa4 aa6 aa6'
+        'aa3 aa5 aa7 aa7'
+        'aa8 aa8 aa8 aa8'
+        'aa9 aa9 aa9 aa9';
       grid-template-columns: 1fr 1fr 1fr 1fr;
       // border: solid 1px red;
     }
@@ -1003,12 +1009,12 @@
         z-index: 2;
         width: 70%;
         padding-top: 70%;
-        background: url("../assets/blog-img/post/blog_aabbcc.svg") no-repeat
+        background: url('../assets/blog-img/post/blog_aabbcc.svg') no-repeat
           center center;
         background-size: cover;
-        -webkit-mask: url("../assets/blog-img/post/blog_aabbcc.svg") no-repeat
+        -webkit-mask: url('../assets/blog-img/post/blog_aabbcc.svg') no-repeat
           center center;
-        mask: url("../assets/blog-img/post/blog_aabbcc.svg") no-repeat center
+        mask: url('../assets/blog-img/post/blog_aabbcc.svg') no-repeat center
           center;
         @media (max-width: 1600px) {
           width: 100%;
@@ -1069,7 +1075,7 @@
           margin-left: 10px;
         }
         &::before {
-          content: "";
+          content: '';
           position: absolute;
           height: 25px;
           border-right: #a0a0a0 solid 1px;
@@ -1085,7 +1091,7 @@
       position: relative;
       //留言表單
       &::before {
-        content: "";
+        content: '';
         border-top: solid #a0a0a0 1px;
         width: 50rem;
         position: absolute;
@@ -1255,7 +1261,7 @@
 }
 .blog-post-tri {
   //select
-  background: url("../assets/blog-img/post/triangle.png");
+  background: url('../assets/blog-img/post/triangle.png');
   background-repeat: no-repeat;
   background-position: 95% 60%;
   font-size: 15px;
@@ -1465,10 +1471,10 @@
       border-bottom: #a0a0a0 solid 1px;
       // border: chocolate 3px solid;
       grid-template-areas:
-        "aa1 aa2 aa2 aa2"
-        "aa1 aa3 aa3 aa3"
-        "aa1 aa4 aa5 aa7"
-        "aa1 aa4 aa6 aa7";
+        'aa1 aa2 aa2 aa2'
+        'aa1 aa3 aa3 aa3'
+        'aa1 aa4 aa5 aa7'
+        'aa1 aa4 aa6 aa7';
       > div:nth-child(1) {
         grid-area: aa1;
         font-size: 80px;
@@ -1529,7 +1535,7 @@
       //妹妹假蠵龜
       width: 500%;
       padding-top: 310px;
-      background-image: url("../assets/blog-img/post/kidEatsWatermelon.png");
+      background-image: url('../assets/blog-img/post/kidEatsWatermelon.png');
       background-repeat: no-repeat;
       background-size: cover;
       background-position: 0% 50%;
@@ -1618,7 +1624,7 @@
         margin-top: 70px;
         position: relative;
         &::before {
-          content: "";
+          content: '';
           border-top: solid #007552 1.5px;
           width: 100%;
           top: -15px;
@@ -1650,159 +1656,165 @@
       }
     }
   }
+
   .blog-post2-small-card-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-
-    .blog-post2-small-card {
-      &.ml {
-        margin-left: 10px;
-      }
-      &.nine {
-        @media (max-width: 9999px) {
-          display: none;
+    .blog-post2-small-card-outer {
+      text-decoration: none;
+      .blog-post2-small-card {
+        &.ml {
+          margin-left: 10px;
         }
-        @media (max-width: 1896px) {
-          display: inline-block;
+        &.nine {
+          @media (max-width: 9999px) {
+            display: none;
+          }
+          @media (max-width: 1896px) {
+            display: inline-block;
+          }
+          @media (max-width: 1400px) {
+            display: none;
+          }
+          @media (max-width: 1300px) {
+            display: inline-block;
+          }
+          @media (max-width: 900px) {
+            display: none;
+          }
+        }
+        text-decoration: none;
+        color: #000;
+        margin-top: 15px;
+        width: 270px;
+        border: solid #007552 2px;
+        @media (max-width: 1879px) {
+          width: 32%;
         }
         @media (max-width: 1400px) {
-          display: none;
+          width: 48%;
         }
         @media (max-width: 1300px) {
-          display: inline-block;
+          width: 32%;
         }
         @media (max-width: 900px) {
-          display: none;
+          width: 48%;
         }
-      }
-      text-decoration: none;
-      color: #000;
-      margin-top: 15px;
-      width: 270px;
-      border: solid #007552 2px;
-      @media (max-width: 1879px) {
-        width: 32%;
-      }
-      @media (max-width: 1400px) {
-        width: 48%;
-      }
-      @media (max-width: 1300px) {
-        width: 32%;
-      }
-      @media (max-width: 900px) {
-        width: 48%;
-      }
-      @media (max-width: 576px) {
-        width: 100%;
-      }
-      > div:nth-child(1) {
-        //葡萄圖片
-        border-bottom: solid #007552 2px;
-        position: relative;
-        > img:nth-child(1) {
+        @media (max-width: 576px) {
           width: 100%;
         }
-        > div:nth-child(2) {
-          position: absolute;
-          right: 10px;
-          bottom: 10px;
-          display: flex;
-          > div:nth-child(1) {
-            margin-right: 0px;
-            margin-top: 5px;
-            > img:nth-child(1) {
-              width: 80%;
-            }
-          }
-          > div:nth-child(2) {
-            background-color: #f7c845;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            position: relative;
-            > span:nth-child(1) {
-              color: #62bc5a;
-              font-size: 16px;
-              position: absolute;
-              top: 50%;
-              left: 50%;
-              transform: translateX(-50%) translateY(-50%);
-            }
-          }
-        }
-      }
-      > div:nth-child(2) {
-        //日期、標題、標籤、內文
-        border-bottom: #a0a0a0 solid 2px;
-        padding-left: 10px;
-        padding-right: 20px;
-        > p:nth-child(1) {
-          //日期
-          margin-top: 5px;
-          color: #808080;
-        }
-        > p:nth-child(2) {
-          //標題
-          margin-top: 5px;
-          font-size: 16px;
-          // line-height: 1.5;
-        }
-        > div:nth-child(3) {
-          //標籤
-          margin-top: 10px;
-          color: #a0a0a0;
-          font-size: 14px;
-        }
-        > p:nth-child(4) {
-          //內文
-          margin-top: 10px;
-          padding-bottom: 10px;
-          line-height: 1.3;
-          font-size: 16px;
-          // background-color:#000;
-          overflow: hidden;
-          height: 92px;
-          text-overflow: ellipsis;
-          display: -webkit-box;
-          -webkit-box-orient: vertical;
-          -webkit-line-clamp: 5;
-        }
-      }
-      > div:nth-child(3) {
-        // background-color: #000;
-        display: flex;
-        margin-top: 10px;
-        padding-left: 10px;
-        padding-bottom: 10px;
-        //草莓姨
         > div:nth-child(1) {
-          //草莓姨照片
-        }
-        > div:nth-child(2) {
-          //暱稱、星星
-          padding-top: 7px;
-          margin-left: 10px;
-          > span:nth-child(1) {
-            //暱稱
-            font-size: 16px;
+          //葡萄圖片
+          border-bottom: solid #007552 2px;
+          position: relative;
+          > img:nth-child(1) {
+            width: 100%;
           }
           > div:nth-child(2) {
-            //星星
-            margin-top: 3px;
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            display: flex;
+            > div:nth-child(1) {
+              margin-right: 0px;
+              margin-top: 5px;
+              > img:nth-child(1) {
+                width: 80%;
+              }
+            }
+            > div:nth-child(2) {
+              background-color: #f7c845;
+              border-radius: 50%;
+              width: 40px;
+              height: 40px;
+              position: relative;
+              > span:nth-child(1) {
+                color: #62bc5a;
+                font-size: 16px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translateX(-50%) translateY(-50%);
+              }
+            }
+          }
+        }
+        > div:nth-child(2) {
+          //日期、標題、標籤、內文
+          border-bottom: #a0a0a0 solid 2px;
+          padding-left: 10px;
+          padding-right: 20px;
+          > p:nth-child(1) {
+            //日期
+            margin-top: 5px;
+            color: #808080;
+          }
+          > p:nth-child(2) {
+            //標題
+            margin-top: 5px;
+            font-size: 16px;
+            // line-height: 1.5;
+          }
+          > div:nth-child(3) {
+            //標籤
+            margin-top: 10px;
+            color: #a0a0a0;
+            font-size: 14px;
+          }
+          > p:nth-child(4) {
+            //內文
+            margin-top: 10px;
+            padding-bottom: 10px;
+            line-height: 1.3;
+            font-size: 16px;
+            // background-color:#000;
+            overflow: hidden;
+            height: 92px;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 5;
           }
         }
         > div:nth-child(3) {
-          //追蹤
-          padding-top: 10px;
-          padding-left: 30px;
-          > span:nth-child(1) {
-            color: #fbf8ef;
-            background-color: #007552;
-            font-size: 14px;
-            padding: 2px 10px;
-            border-radius: 20px;
+          // background-color: #000;
+          display: flex;
+          margin-top: 10px;
+          padding-left: 10px;
+          padding-bottom: 10px;
+          //草莓姨
+          > div:nth-child(1) {
+            //草莓姨照片
           }
+          > div:nth-child(2) {
+            //暱稱、星星
+            padding-top: 7px;
+            margin-left: 10px;
+            > span:nth-child(1) {
+              //暱稱
+              font-size: 16px;
+            }
+            > div:nth-child(2) {
+              //星星
+              margin-top: 3px;
+            }
+          }
+          > div:nth-child(3) {
+            //追蹤
+            padding-top: 10px;
+            padding-left: 30px;
+            > span:nth-child(1) {
+              color: #fbf8ef;
+              background-color: #007552;
+              font-size: 14px;
+              padding: 2px 10px;
+              border-radius: 20px;
+            }
+          }
+        }
+        .post2BlogNo {
+          display: none;
         }
       }
     }
@@ -1865,7 +1877,7 @@
 </style>
 
 <script>
-import $ from "jquery";
+import $ from 'jquery';
 export default {
   data() {
     return {
@@ -1887,29 +1899,29 @@ export default {
     //   .classList.add("currentPagecolor");
   },
   updated() {
-    let bb = document.getElementsByClassName("blog-post2-small-card")[8];
-    bb.classList.add("nine");
+    let bb = document.getElementsByClassName('blog-post2-small-card')[8];
+    bb.classList.add('nine');
     for (let i = 0; i <= 8; i++) {
       document
-        .getElementsByClassName("pageBorder")
-        [i].setAttribute("class", "pageBorder");
+        .getElementsByClassName('pageBorder')
+        [i].setAttribute('class', 'pageBorder');
       if (
-        document.getElementsByClassName("pageBorder")[i].textContent ==
+        document.getElementsByClassName('pageBorder')[i].textContent ==
         this.currentPage[0]
       ) {
         document
-          .getElementsByClassName("pageBorder")
-          [i].classList.add("currentPagecolor");
+          .getElementsByClassName('pageBorder')
+          [i].classList.add('currentPagecolor');
       }
     }
     // console.log(document.getElementsByClassName("pageBorder"))
   },
   created() {
-    const api = "/api/api_blog.php";
+    const api = '/api/api_blog.php';
     this.$http
       .post(api, JSON.stringify(this.member))
       .then((res) => {
-        if (res.data != "") {
+        if (res.data != '') {
           // console.log(res.data);
 
           // sessionStorage.setItem('abc', JSON.stringify(res.data));
@@ -1970,22 +1982,21 @@ export default {
       }
 
       for (let i = 1; i < 9; i++) {
-        e.target.parentNode.children[i].setAttribute("class", "pageBorder");
+        e.target.parentNode.children[i].setAttribute('class', 'pageBorder');
       }
       // console.log(document.getElementsByClassName("pageBorder"));
-      e.target.parentNode.children[1].setAttribute("class", "pageBorder");
+      e.target.parentNode.children[1].setAttribute('class', 'pageBorder');
       //   document.getElementsByClassName("pageBorder")[0].setAttribute("class","");
     },
-
     PreviousPage() {
       let currentPage1 = this.currentPage[0];
       // this.currentPage = [];
       this.blogArrFilterTop = [];
       this.blogArrFilter = [];
-if (this.currentPage > 1) {
-      this.currentPage = [];
+      if (this.currentPage > 1) {
+        this.currentPage = [];
         this.currentPage.push(currentPage1 - 1);
-      } 
+      }
       // this.currentPage.push(currentPage1 - 1);
       let updatePage = this.currentPage[0];
 
@@ -2006,9 +2017,9 @@ if (this.currentPage > 1) {
       this.blogArrFilterTop = [];
       this.blogArrFilter = [];
       if (this.currentPage < parseInt(this.blogArr.length / 9)) {
-      this.currentPage = [];
+        this.currentPage = [];
         this.currentPage.push(currentPage1 + 1);
-      } 
+      }
       let updatePage = this.currentPage[0];
 
       this.blogArrFilterTop.push(this.blogArr[(updatePage - 1) * 9]);
@@ -2021,6 +2032,14 @@ if (this.currentPage > 1) {
           this.pageArr[index] = this.pageArr[index] + 1;
         });
       }
+    },
+    changePage(e) {
+      // (blog)a. 往父層傳遞一個 event(blogInf) 的值(this.blogArr)
+      // console.log(i);
+      this.$emit('blogInf',{ aa:this.blogArr,bb:e.target.parentNode.parentNode.children[3].textContent});
+    },
+    getThisCard(e) {
+      console.log(e.target.parentNode.parentNode.children[3].textContent);
     },
   },
 };

@@ -11,6 +11,11 @@ if (isset($_SESSION["member_no"])) {
         "acc" => $_SESSION["member_acc"],
         "nick" => $_SESSION["member_nick"],
         "status" => $_SESSION["member_status"],
+        // "address" => $_SESSION["member_address"],
+        // "content" => $_SESSION["member_content"],
+        // "reviewtotal" => $_SESSION["member_review_total"],
+        // "reviewcount" => $_SESSION["member_review_count"],
+        // "memberno" => $_SESSION["member_member_no"],
     );
     echo json_encode($member);
 } else {
