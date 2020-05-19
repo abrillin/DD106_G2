@@ -1880,7 +1880,7 @@ export default {
     };
   },
   beforeMount() {},
-  mounted() {
+  mounted() {npm 
     // console.log(document.getElementsByClassName("pageBorder")[0]);
     // document
     //   .getElementsByClassName("pageBorder")[0]
