@@ -1911,14 +1911,6 @@ export default {
       .post(api, JSON.stringify(this.member))
       .then((res) => {
         if (res.data != "") {
-<<<<<<< HEAD
-=======
-          // console.log(res.data);
-
-          // sessionStorage.setItem('abc', JSON.stringify(res.data));
-          // sessionStorage.clear();
-          // let abc = sessionStorage.getItem('abc');
->>>>>>> 7bd7f4c9c022365742c133ad64f884985dfa4f66
           this.blogArr = res.data;
 
           this.blogArrFilterTop.push(this.blogArr[0]);
