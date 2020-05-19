@@ -16,7 +16,7 @@
             <thead>
               <tr>
                 <th>編號</th>
-                <th>水果名</th>
+                <th>標籤類</th>
                 <th>產季</th>
                 <th>內容</th>
                 <th>編輯</th>
