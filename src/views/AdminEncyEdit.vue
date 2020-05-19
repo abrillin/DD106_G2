@@ -7,19 +7,10 @@
       </h1>
 
       <table class="encyEditTab" cellpadding="0" cellspacing="0" border="0">
-        <!-- <tr>
-          <th>
-            <label for="fruitName">標題</label>
-          </th>
-          <td>
-            <textarea name="fruitName" id="fruitName" v-model="encyEdit.title"></textarea>
-          </td>
-        </tr>-->
-
         <tr>
           <th>標籤</th>
           <td>
-            <select id="fruit" v-model="encyEdit.title">
+            <select name="名字" id="fruit" v-model="encyEdit.title">
               <option value="AllSeason" selected>梅子</option>
               <option value="Spring">李子</option>
               <option value="Summer">桃子</option>

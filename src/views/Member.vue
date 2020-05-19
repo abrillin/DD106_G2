@@ -69,7 +69,6 @@ export default {
     return {
       formData: new FormData(),
       member: {
-        no: "",
         acc: "",
         name: "",
         nick: "",
