@@ -11,7 +11,7 @@
             <thead>
               <tr>
                 <th>編號</th>
-                <th>標籤類</th>
+                <th>標籤</th>
                 <th>產季</th>
                 <th>內容</th>
                 <th>編輯</th>
@@ -25,13 +25,13 @@
             <tbody>
               <tr v-for="row in data" :key="row.no">
                 <td>{{row.no}}</td>
-                <td>{{row.title}}</td>
-                <td>{{row.type}}</td>
+                <td>{{row.title}}</td> <!-- 水果標籤 -->
+                <td>{{row.type}}</td> <!-- 水果產季 -->
                 <td>{{row.content}}</td>
                 <td>
                   <a href="#">
-                    <img class="editImg" src="@/assets/icon/edit_btn.svg" :id="row.no" alt />
-                    <img class="editImg" src="@/assets/icon/edit_pen.svg" :id="row.no" alt />
+                    <img class="editImg" src="@/assets/icon/edit_btn.svg" :id="row.no" ＠click="editPage(':no')" alt />
+                    <img class="editImg" src="@/assets/icon/edit_pen.svg" :id="row.no" ＠click="editPage(':no')" alt />
                   </a>
                 </td>
               </tr>
@@ -62,6 +62,12 @@ export default {
 
       this.data = res.data; // 第一個datad是指data()裡的[];只取res中的data屬性中的資料
     })
+  },
+  methods: {
+    editPage(url, param){
+      this.$router.push({name: url});
+      // this.$router.push({ name: 'Order', params: { userId: 123 }})
+    },
   }
 };
 </script>

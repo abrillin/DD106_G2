@@ -10,7 +10,8 @@
         <tr>
           <th>標籤</th>
           <td>
-            <select name="名字" id="fruit" v-model="encyEdit.title">
+            <select name="fruitName" id="fruitName" data-placeholder="Add tools" v-model="encyEdit.title">
+              <span>春</span>
               <option value="AllSeason" selected>梅子</option>
               <option value="Spring">李子</option>
               <option value="Summer">桃子</option>
@@ -34,6 +35,7 @@
             </select>
           </td>
         </tr>
+
 
         <tr>
           <th>

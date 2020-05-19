@@ -70,13 +70,13 @@
 
             }
 
-            #encyIntro, #encyQ, #encyA, #fruitName, #videoLink {
+            #encyIntro, #encyQ, #encyA, #videoLink {
                 resize: none;
                 font-size: $contentSize;
                 font-family: myFont;
                 width: 90%;
             }
-            #fruitName, #videoLink {
+            #videoLink {
                 height: 14px;
                 overflow: hidden;
                 padding: 5px;
