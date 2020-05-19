@@ -574,7 +574,7 @@
                     <div>
                       <img
                         src="@/assets/blog-img/post/grape.png"
-                        @click="changePage"
+                        @click="changePage(i)"
                       />
                       <div>
                         <div>
@@ -2039,7 +2039,12 @@ export default {
     changePage(e) {
       // (blog)a. 往父層傳遞一個 event(blogInf) 的值(this.blogArr)
       // console.log(i);
-      this.$emit('blogInf',{ aa:this.blogArr,bb:e.target.parentNode.parentNode.children[3].textContent});
+      // this.$emit('blogInf', {
+      //   aa: this.blogArr,
+      //   bb: e.target.parentNode.parentNode.children[3].textContent,
+      // });
+
+      this.$emit('blogInf', e);
     },
     getThisCard(e) {
       console.log(e.target.parentNode.parentNode.children[3].textContent);

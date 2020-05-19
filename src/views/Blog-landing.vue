@@ -845,10 +845,10 @@
 </style>
 <script>
 export default {
-  props: {blogInfProps: Array,c:String},
+  props: {blogInfProps: Object, c: String},
   methods: {
     test() {
-      console.log(this.blogInfProps,this.c);
+      console.log(this.blogInfProps, this.c);
     },
   },
 };
