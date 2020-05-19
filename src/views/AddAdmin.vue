@@ -21,7 +21,7 @@
             <label for="addAdminAccount">帳號</label>
           </th>
           <td>
-            <input id="addAdminAccount" type="text" v-model="addAdmin.acc" />
+            <input id="addAdminAccount" type="text" placeholder="請輸入帳號" v-model="addAdmin.acc" />
           </td>
         </tr>
         <tr>
@@ -29,17 +29,28 @@
             <label for="addAdminPSW">密碼</label>
           </th>
           <td>
-            <input id="addAdminPSW" type="password" v-model="addAdmin.psw" />
+            <input 
+            id="addAdminPSW" 
+            type="password" 
+            placeholder="請輸入密碼" 
+            v-model="addAdmin.psw"
+             @change="checkPsw" />
           </td>
         </tr>
-        <!-- <tr>
+        <tr>
           <th>
             <label for="addAdminPSWcheck">密碼確認</label>
           </th>
           <td>
-            <input id="addAdminPSWsubmit" type="text" value />
+            <input
+              id="addAdminPSWcheck"
+              type="password"
+              placeholder="請再次輸入密碼"
+              v-model="addAdmin.checkpsw"
+               @change="checkPsw"
+            />
           </td>
-        </tr>-->
+        </tr>
 
         <tr>
           <th></th>
@@ -67,7 +78,9 @@ export default {
       addAdmin: {
         name: "",
         acc: "",
-        psw: ""
+        psw: "",
+        checkpsw: "",
+
       }
     };
   },
@@ -76,16 +89,50 @@ export default {
     addAdminF: function() {
       const api = "/api/api_addAdmin.php";
 
+      for (let i in this.addAdmin) {
+        if (this.addAdmin[i] == "") {
+          alert(" (｡ŏ_ŏ) 有欄位未填，請確實填寫！ ");
+          return;
+        }
+      }
+
       this.$http
         .post(api, JSON.stringify(this.addAdmin))
+        // $http.post(url,data)
+        // 用post把從addAdmin來的js物件資料轉為json字串，傳給api背後的那支php
         .then(res => {
-          this.data = res.data;
+           const data = res.data; // this.data = res.data; // 
+
+          if (data.error) {
+            console.log(data.error);
+          }
+
+          if (data == 1) { // 資料有一筆
           alert(" 資料新增完成 ٩(･ิᴗ･ิ๑)۶ ");
           this.$router.go(-1);
-        })
-        .catch(err => console.log(err));
-    }
-  }
+        
+          } else if (data == 0) {
+          alert(" 你慢了，此帳號已被註冊 ┐(´д`)┌ ");
+        }
+        
+        });
+        // .catch(err => console.log(err));
+    },
+
+    checkPsw: function() {
+      const addAdmin = this.addAdmin;
+      if (addAdmin.checkpsw != "" && addAdmin.psw != "" && addAdmin.checkpsw != addAdmin.psw) {
+         alert(" 兩次輸入的密碼不一致，請重新確認 ಠ_ಠ ");
+        document.getElementById("addAdminPSW").style.backgroundColor = "#F7C845";
+        document.getElementById("addAdminPSWcheck").style.backgroundColor = "#F7C845";
+      } else {
+        document.getElementById("addAdminPSW").style.backgroundColor = "";
+        document.getElementById("addAdminPSWcheck").style.backgroundColor = "";
+      }
+    },
+
+
+  },
 };
 </script>
 

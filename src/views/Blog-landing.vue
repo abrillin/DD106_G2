@@ -1,11 +1,11 @@
 <template>
   <div class="blog-landing-outer">
     <img src="@/assets/blog-img/blog-bar.png" /><br />
-    <div class="blog-landing-container">
+    <div class="blog-landing-container-new">
       <div>
         <div>
           <!--果農日誌LOGO-->
-          <img src="@/assets/blog-img/blog_logo.svg" />
+          <img src="@/assets/blog-img/blog_logo.svg" @click="test" />
         </div>
         <div>
           <div>
@@ -69,7 +69,7 @@
       <div>
         <div>
           <div>
-            <div>2020-04-10</div>
+            <div>{{ this.blogInfProps.date }}</div>
             <div>
               <img src="@/assets/blog-img/blog-tag.png" />
               <span> 草莓 </span>
@@ -79,7 +79,7 @@
           </div>
           <div></div>
           <div>
-            <span>“ 親子輕旅行 台北白石湖採草莓、踏青一日遊”</span>
+            <span>{{ this.blogInfProps.title }}</span>
           </div>
           <div>
             <img src="@/assets/blog-img/blog-bendingbar2.png" />
@@ -192,7 +192,7 @@
               <img src="@/assets/blog-img/blog-someoneshead.png" />
             </div>
             <div>
-              <div>howhowhasnofriend</div>
+              <div @click.prevent="comment">howhowhasnofriend</div>
               <div>2020-4-14 12:00</div>
             </div>
             <div style="font-size:15px;">這炒飯好吃?我賣水果欸!?鳳梨炒飯?</div>
@@ -202,16 +202,15 @@
           </div>
         </div>
         <div>
-          <form action="" method="get">
+          <form action="" method="get" @click.prevent="prevent">
             <label for="">
               留言:
               <textarea name="" id=""> </textarea>
             </label>
             <br />
-            <button-more
-              class="blog-landing-button-more"
-              msg="送出"
-            ></button-more>
+            <div class="blog-landing-button-more" @click.prevent="comment">
+              <button-more msg="送出"></button-more>
+            </div>
           </form>
         </div>
       </div>
@@ -234,7 +233,7 @@
     }
   }
 }
-.blog-landing-container {
+.blog-landing-container-new {
   padding-top: 1%;
   width: 95%;
   margin-left: 2.5%;
@@ -312,20 +311,20 @@
     grid-template-columns: 0.3fr 1fr;
   }
   @media (max-width: 1300px) {
-  margin-left: 2%;
-      grid-template-columns: 1fr;
-      grid-template-rows: 0.04fr 1fr;
+    margin-left: 2%;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.04fr 1fr;
   }
   @media (max-width: 768px) {
-  margin-left: 1.5%;
-      grid-template-columns: 1fr;
-      grid-template-rows: 0.04fr 1fr;
+    margin-left: 1.5%;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.04fr 1fr;
   }
   @media (max-width: 576px) {
-  margin-left: 1%;
+    margin-left: 1%;
   }
   @media (max-width: 350px) {
-  margin-left: 0.5%;
+    margin-left: 0.5%;
   }
   > div:nth-child(1) {
     //會員區1
@@ -343,13 +342,12 @@
       display: grid;
       grid-template-columns: 0.5fr 1.2fr 1fr;
       padding: 30% 50px 0px 50px;
-      @media (max-width: 1500px)  {
-      padding: 30% 10px 0px 10px;
+      @media (max-width: 1500px) {
+        padding: 30% 10px 0px 10px;
       }
-      @media (max-width: 1300px)  {
-      border-bottom:solid #007552 2px ;
-      padding: 30% 10px 10px 10px;
-
+      @media (max-width: 1300px) {
+        border-bottom: solid #007552 2px;
+        padding: 30% 10px 10px 10px;
       }
       .blog-landing-aunt {
         width: 100%;
@@ -361,7 +359,7 @@
           display: flex;
           flex-wrap: wrap;
           justify-content: center;
-          
+
           .blog-landing-aunt {
             width: 100%;
           }
@@ -582,7 +580,7 @@
           // margin-bottom: 10rem;
           position: relative;
           &::before {
-            content: "";
+            content: '';
             width: 90%;
             border-bottom: solid #007552 2px;
             position: absolute;
@@ -599,7 +597,7 @@
             }
           }
           &::after {
-            content: "";
+            content: '';
             width: 75%;
             border-bottom: solid #007552 2px;
             position: absolute;
@@ -629,27 +627,28 @@
         right: 0%;
         bottom: 15%;
         @media (max-width: 1700px) {
-            // position: relative;
-            right: -2.5%;
-            bottom: 5%;
+          // position: relative;
+          right: -2.5%;
+          bottom: 5%;
         }
         @media (max-width: 1500px) {
-            position: relative;
-            right: -2.5%;
-            bottom: 0%;
+          position: relative;
+          right: -2.5%;
+          bottom: 0%;
         }
         > div:nth-child(1) {
           text-align: right;
           // position: relative;
           @media (max-width: 1500px) {
-              text-align: left;
-              // display: none;
+            text-align: left;
+            // display: none;
           }
           > img:nth-child(1) {
             // border: solid #000 3px;
             // height: 100%;
-            @media (max-width: 1500px) {//梯形
-                display: none;
+            @media (max-width: 1500px) {
+              //梯形
+              display: none;
             }
           }
           > div:nth-child(2) {
@@ -694,7 +693,7 @@
       padding-bottom: 20px;
       position: relative;
       &::after {
-        content: "";
+        content: '';
         width: 90%;
         border-top: 2px solid #007552;
         position: absolute;
@@ -702,7 +701,7 @@
         right: 5%;
       }
       &::before {
-        content: "";
+        content: '';
         width: 90%;
         border-top: 2px solid #007552;
         position: absolute;
@@ -745,8 +744,8 @@
           grid-template-columns: 15% 75% 10%;
           grid-template-rows: repeat(2, 1fr);
           grid-template-areas:
-            "aa1 aa2 aa4"
-            "aa1 aa3 aa4";
+            'aa1 aa2 aa4'
+            'aa1 aa3 aa4';
         }
         > div:nth-child(1) {
           // background-color: #000;
@@ -768,7 +767,7 @@
             grid-area: aa2;
           }
           &::after {
-            content: "";
+            content: '';
             position: absolute;
             top: 0px;
             right: 10%;
@@ -780,15 +779,14 @@
           }
           @media (max-width: 576px) {
             &::before {
-              content: "";
+              content: '';
               position: absolute;
               top: 3px;
               left: -10px;
               border-right: solid 1px #a0a0a0;
               height: 30px;
               @media (max-width: 576px) {
-              left: -5px;
-                
+                left: -5px;
               }
             }
           }
@@ -844,3 +842,46 @@
   }
 }
 </style>
+<script>
+export default {
+  props: {blogInfProps: Object, c: String},
+  data() {
+    return {
+      msgobj: {
+        content: null,
+        date: null,
+        blogNo: null,
+      },
+    };
+  },
+  methods: {
+    test() {
+      console.log(this.blogInfProps, this.c);
+    },
+    prevent() {},
+    comment() {
+      let msg = document.getElementsByTagName('textarea')[0].value;
+      var nStartTime = new Date(Date.now());
+      this.msgobj.content = msg;
+      let today = `${nStartTime.getFullYear()}-${nStartTime.getMonth() +
+        1}-${nStartTime.getDate()}`;
+      this.msgobj.date = today;
+      let blogNo = this.blogInfProps.no;
+      this.msgobj.blogNo = blogNo;
+      // console.log(this.msgobj);
+
+      const api = '/api/api_blog_msg.php';
+
+      this.$http
+        .post(api, JSON.stringify(this.msgobj))
+        .then((res) => {
+          if (res.data != '') {
+            console.log(res.data);
+          } else {
+          }
+        })
+        .catch((err) => console.log(err));
+    },
+  },
+};
+</script>

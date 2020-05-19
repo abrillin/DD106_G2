@@ -16,7 +16,7 @@
         </div>
       </div>
     </div>
-    <div class="fruit_video fruit_video_year">
+    <div class="fruit_video">
       <video controls>
         <source
           src="https://www.youtube.com/watch?time_continue=9&v=oHbnP7yBgJo&feature=emb_logo"

@@ -14,17 +14,18 @@
 
     .addAdminTab {
         display: inline-block;
-        width: 100%;
-        height: auto; //
+        width: 540px;
+        height: auto;
         margin-bottom: 70px; 
 
         th {
-            width: 15%;
+            width: 20%;
             padding: 20px 20px;
             text-align: center;
             color: $contentColor;
             background: $formTtlBg;
             font-size: $title2Size;
+            vertical-align: middle;
         }
 
         td {
@@ -36,38 +37,21 @@
             background-color: #fff;
             // border: 1px solid green;
 
-            #addAdminName {
+            #addAdminName, #addAdminAccount, #addAdminPSW, #addAdminPSWcheck {
                 // resize: none;
                 font-size: $contentSize;
                 font-family: myFont;
-                // width: 90%;
+                width: 180px;
                 height: $contentSize;
                 letter-spacing: 1px;
                 padding: 3px;
-            }
-
-            #addAdminAccount {
-                // resize: none;
-                font-size: $contentSize;
-                font-family: myFont;
-                // width: 90%;
-                height: $contentSize;
-                letter-spacing: 1px;
-                padding: 3px;
-            }
-            #addAdminPSW {
-                // resize: none;
-                font-size: $contentSize;
-                font-family: myFont;
-                // width: 90%;
-                height: $contentSize;
-                letter-spacing: 1px;
-                padding: 3px;
+                box-shadow: none;
             }
 
             .adAdminBtnSec {
                 display: inline-block;
-                margin-left: 50%;
+                margin-left: 55%;
+                text-align: right;
 
                 #addAdminCancel, #addAdminSubmit {
                     color: $btnColor;
@@ -78,9 +62,6 @@
                     transition: ease-in-out .3s;
 
                     &:hover {
-                        // position: relative;
-                        // top: .1rem;
-                        // left: .1rem;
                         background-color: $attention;
                     }
                 }
@@ -93,7 +74,6 @@
                 #addAdminSubmit {
                     background-color: $btnBgcolor;
                     margin: 0px 5px;
-                  
                 }
 
             }

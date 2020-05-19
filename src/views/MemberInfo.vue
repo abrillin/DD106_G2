@@ -11,8 +11,7 @@
           <ul>
             <li>果粉編號</li>
             <li>帳號</li>
-            <!-- <li>密碼</li> -->
-            <!-- <li>修改密碼</li> -->
+
             <li>果粉姓名</li>
             <li>暱稱</li>
             <li>性別</li>
@@ -42,16 +41,6 @@
           <span>
             <p>{{ email }}</p></span
           >
-
-          <!-- <p>XXXXXXXXXX</p> -->
-          <!-- <input type="text" /> -->
-          <!-- <br /> -->
-
-          <div class="submit_button">
-            <div class="correct">
-              <p>確定</p>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -70,7 +59,7 @@ export default {
       email: "",
     };
   },
-  mounted() {
+  created() {
     const api = "/api/api_memberStatus.php";
 
     this.$http
@@ -87,7 +76,7 @@ export default {
             this.gender = "男";
           } else if (data.gender == 2) {
             this.gender = "女";
-          } else if (data.gender == 3) {
+          } else if (data.gender == 0) {
             this.gender = "其它";
           }
           this.phone = data.phone;

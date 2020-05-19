@@ -2,6 +2,7 @@
   <div class="bk_All">
     <!-- 7. 接收到 pageType() 的回傳值給子元件的自定義變數 contentType -->
     <!-- 元件有 BookSeasonIndex.vue、BookSeasonPage1.vue、BookSeasonPage2.vue -->
+    <!-- (page) 10. 接收到 pageNum() 的回傳值給子元件(BookSeasonPage1.vue)的自定義變數 pageNum-->
     <component
       :pageId="pageId"
       :page="currentTab.page"
@@ -21,7 +22,8 @@ import index from "@/views/BookSeasonIndex";
 import page1 from "@/views/BookSeasonPage1";
 import page2 from "@/views/BookSeasonPage2";
 export default {
-  // 5. 接收父元件(Book.vue)的自定義變數 contentIndex 的值
+  // 5. 接收父層(Book.vue)的自定義變數 contentIndex 的值
+  // 8. 接收父層(Book.vue)的自定義變數 pageId 的值
   props: { contentIndex: Number, pageId: Number },
   data() {
     return {
@@ -40,11 +42,21 @@ export default {
       ]
     };
   },
-  mounted() {
+  created() {
     this.currentTab = {
       index: "index",
       page: 0
     };
+  },
+  mounted() {
+    if (this.currentTab.page > 0) {
+      this.tabs[0].status = true;
+      this.tabs[1].status = true;
+      this.currentTab = {
+        index: "page1",
+        page: this.pageId
+      };
+    }
   },
   computed: {
     // 6. 偵聽到 contentIndex 值的更新，觸發 rePage() 並回傳 pageType() 值給上面的元件
@@ -52,6 +64,7 @@ export default {
       this.rePage();
       return this.contentIndex;
     },
+    // (page) 9. 偵聽到 pageId 值的更新，觸發 changePage() 並回傳 pageNum() 值給上面的元件
     pageNum: function() {
       this.changePage();
       return this.pageId;
@@ -119,12 +132,16 @@ export default {
         page: 0
       };
     },
+    // (page) 10. 執行頁面位子的計算
     changePage: function() {
-      this.tabs[1].status = true;
-      this.currentTab = {
-        index: "page1",
-        page: this.pageId * 2 + 1
-      };
+      
+      if (this.pageId > 0) {
+        this.tabs[1].status = true;
+        this.currentTab = {
+          index: "page1",
+          page: this.pageId
+        };
+      }
     }
   },
   components: {

@@ -66,6 +66,7 @@
         <img :src="require('@/assets/book_img/' + i.img)" />
       </div>
       <ul>
+        <!-- (page) 1. 觸發 changePage 方法 -->
         <li
           v-for="(j, index) in i.item"
           :key="index"
@@ -195,8 +196,9 @@ export default {
     };
   },
   methods: {
+    // (page) 2. 傳遞 changePage 事件及 {} 的值給父層 
     changePage: function(i, d, n) {
-      this.$emit("changePage", { type: i, id: d, name: n });
+      this.$emit("changePage", { type: i, id: d * 2 + 1});
     }
   }
 };

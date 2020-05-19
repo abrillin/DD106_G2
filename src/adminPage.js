@@ -1,6 +1,6 @@
-import Vue from 'vue';
-import App from './admin.vue';
-import router from './router';
+import Vue from "vue";
+import App from "./admin.vue";
+import router from "./router/admin";
 import axios from "axios";
 
 import "@/js/components";
@@ -12,5 +12,7 @@ Vue.prototype.$http = axios;
 
 new Vue({
   router,
-  render: function (h) { return h(App); }
-}).$mount('#app');
+  render: function(h) {
+    return h(App);
+  },
+}).$mount("#app");
