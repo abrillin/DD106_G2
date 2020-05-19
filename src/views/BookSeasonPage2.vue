@@ -29,7 +29,7 @@
               </div>
             </div>
             <div class="bk_blog_rpt_button">
-              <button @click="follow">＋追蹤</button>
+              <button>＋追蹤</button>
             </div>
             <!-- 標籤 -->
             <div class="bk_blog_tag">
@@ -89,7 +89,7 @@ export default {
   methods: {
     content: function() {
       console.log(this.page);
-    }
+    },
   }
 };
 </script>

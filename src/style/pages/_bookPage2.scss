@@ -1,663 +1,780 @@
-.bk_ct_left_2 {
-    //display: none;
-    //border: 1px solid blue;
-    box-sizing: border-box;
-    width: 50%;
-
-    &::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: 0;
-
-        width: 100%;
-        height: 30px;
-        z-index: -1;
-        background-color: rgba(255, 208, 191, 1);
-
-        @include rwd(small) {
-            display: none;
-        }
-    }
-
-    a {
-        text-decoration: none;
-
-        &:hover h2 {
-            color: $color-green;
-        }
-
-        h2 {
-            //border: 1px solid red;
-            font-size: 1.6rem;
-            font-weight: bold;
-            color: $min-color;
-            margin: 20px 0 5px;
-            padding-left: 15px;
-
-            @include rwd(small) {
-                padding-left: 25px;
-                font-size: 1.8rem;
-            }
-        }
-
-    }
-
-
-    .bk_blog_line1 {
-        width: 100%;
-        box-sizing: border-box;
-        border: 2px solid $min-color;
-        margin-bottom: 3px;
-    }
-
-    .bk_blog_line2 {
-        width: 100%;
-        box-sizing: border-box;
-        border: .5px solid $min-color;
-    }
-
-    //blog內容開始
-    #bk_blog_knowledge {
-        box-sizing: border-box;
-        width: 100%;
-        height: auto;
-        display: flex;
-        flex-wrap: wrap;
-        overflow-x: auto;
-
-        &::-webkit-scrollbar {
-            display: none;
-        }
-
-        p {
-            // border: 1px solid blue;
-            font-size: 1.2rem;
-            padding: 0 0 0 20px;
-            margin-top: 10px;
-            color: gray;
-            width: 100%;
-
-            @include rwd(small) {
-                font-size: 1.4rem;
-                padding-left: 25px;
-            }
-        }
-
-        h3 {
-            // border: 1px solid red;
-            font-size: 2rem;
-            font-weight: bolder;
-            padding-left: 15px;
-            margin-bottom: 10px;
-            position: relative;
-            z-index: 1;
-            width: 100%;
-
-            &::before {
-                content: "";
-                width: 50%;
-                height: 20px;
-                background-color: #f38e8e6c;
-                position: absolute;
-                z-index: -1;
-
-            }
-
-            @include rwd(small) {
-                padding-left: 25px;
-            }
-
-        }
-
-        .bk_blog_up {
-            // border: 1px solid green;
-            width: 100%;
-            height: auto;
-            overflow: hidden;
-
-            //reporter
-            .bk_blog_reporter {
-                //border: 1px solid red;
-                box-sizing: border-box;
-                display: inline-block;
-                vertical-align: top;
-                margin: 0 10px 0 15px;
-                width: auto;
-
-                .bk_blog_rpt_img {
-                    //border: 1px solid red;
+#bk_content {
+    @mixin bookPage2 {
+        .bk_All {
+            .book_layout {
+                .bk_ct_left_2 {
                     box-sizing: border-box;
-                    display: inline-block;
-                    width: 40px;
-                    height: 40px;
-                    border-radius: 50%;
-                    overflow: hidden;
+                    width: 50%;
 
-                    img {
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        left: 0;
+                        bottom: 0;
+
                         width: 100%;
+                        height: 30px;
+                        z-index: -1;
+                        background-color: rgba(255, 208, 191, 1);
+
+                        @include rwd(small) {
+                            display: none;
+                        }
                     }
                 }
 
-                .bk_blog_rpt_name {
+                .bk_ct_right_2 {
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        left: 0;
+                        bottom: 0;
 
-                    //border: 1px solid red;
-                    display: inline-block;
-                    vertical-align: top;
+                        width: 100%;
+                        height: 30px;
+                        z-index: -1;
+                        background-color: rgba(255, 208, 191, 1);
 
-                    margin-left: 10px;
+                        @include rwd(small) {
+                            display: none;
+                        }
+                    }
 
-                    a {
+                    .bk_product {
+                        .bk_pd1 {
+                            box-sizing: border-box;
+                            position: relative;
+                            left: 0%;
+                            top: 10%;
+
+                            &::before {
+                                content: "";
+                                width: 150px;
+                                height: 150px;
+                                background-color: #f38e8e;
+                                position: absolute;
+                                left: -10%;
+                                top: -20%;
+                                z-index: -1;
+
+                                @include rwd(small) {
+                                    width: 160px;
+                                    height: 160px;
+                                }
+
+                            }
+                        }
+
+                        .bk_pd2 {
+                            position: relative;
+                            width: 150px;
+                            height: 150px;
+                            &::after {
+                                content: "";
+                                width: 145px;
+                                height: 140px;
+                                background-color: #f38e8e;
+                                position: absolute;
+                                right: -11%;
+                                bottom: -10%;
+                                z-index: -1;
+    
+                                @include rwd(medium) {
+                                    width: 130px;
+                                    height: 150px;
+                                }
+    
+                                @include rwd(small) {
+                                    width: 160px;
+                                    height: 160px;
+                                    right: -14%;
+                                    bottom: -5%;
+                                }
+                            }
+                            img {
+                                width: 100%;
+                            }
+    
+                            @include rwd(medium) {
+                                right: 0px;
+                            }
+    
+                            @include rwd(small) {
+                                width: 200px;
+                                height: 200px;
+                            }
+
+                        }
+                    }
+                }
+
+                @content;
+            }
+        }
+    }
+
+    &.spring {
+        @include bookPage2();
+    }
+
+    &.summer {
+        @include bookPage2 {
+
+            .bk_ct_left_2,
+            .bk_ct_right_2 {
+                &::after {
+                    background-color: #ffe398;
+                }
+                .bk_product {
+                    .bk_pd1 {
+                        &::before {
+                            background-color: #ffe398;
+                        }
+                    }
+                    .bk_pd2{
+                        &::after{
+                            background-color: #ffe398;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.fall {
+        @include bookPage2 {
+
+            .bk_ct_left_2,
+            .bk_ct_right_2 {
+                &::after {
+                    background-color: #f0a97a;
+                }
+                .bk_product {
+                    .bk_pd1 {
+                        &::before {
+                            background-color: #f0a97a;
+                        }
+                    }
+                    .bk_pd2{
+                        &::after{
+                            background-color: #f0a97a;
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+    &.winter {
+        @include bookPage2 {
+
+            .bk_ct_left_2,
+            .bk_ct_right_2 {
+                &::after {
+                    background-color: #fcfbf7;
+                }
+                .bk_product {
+                    .bk_pd1 {
+                        &::before {
+                            background-color: #87b0e78a;
+                        }
+                    }
+                    .bk_pd2{
+                        &::after{
+                            background-color: #87b0e78a;
+                        }
+                    }
+                }
+                
+            }
+        }
+    }
+
+    &.year {
+        @include bookPage2 {
+
+            .bk_ct_left_2,
+            .bk_ct_right_2 {
+                &::after {
+                    background-color: #f0faa7;
+                }
+                .bk_product {
+                    .bk_pd1 {
+                        &::before {
+                            background-color: #f0faa7;
+                        }
+                    }
+                    .bk_pd2{
+                        &::after{
+                            background-color: #f0faa7;
+                        }
+                    }
+                    
+                }
+            }
+        }
+    }
+
+
+    .bk_All {
+        .book_layout {
+            .bk_ct_left_2 {
+                a {
+                    text-decoration: none;
+
+                    &:hover h2 {
+                        color: $color-green;
+                    }
+
+                    h2 {
                         //border: 1px solid red;
-                        color: black;
-                        padding: 0;
+                        font-size: 1.6rem;
+                        font-weight: bold;
+                        color: $min-color;
+                        margin: 20px 0 5px;
+                        padding-left: 15px;
 
-                        font-size: 1.4rem;
-                        text-decoration: none;
+                        @include rwd(small) {
+                            padding-left: 25px;
+                            font-size: 1.8rem;
+                        }
+                    }
 
-                        &:hover {
-                            text-decoration: underline;
+                }
+
+                .bk_blog_line1 {
+                    width: 100%;
+                    box-sizing: border-box;
+                    border: 2px solid $min-color;
+                    margin-bottom: 3px;
+                }
+
+                .bk_blog_line2 {
+                    width: 100%;
+                    box-sizing: border-box;
+                    border: .5px solid $min-color;
+                }
+
+                //blog內容開始
+                #bk_blog_knowledge {
+                    box-sizing: border-box;
+                    width: 100%;
+                    height: auto;
+                    display: flex;
+                    flex-wrap: wrap;
+                    overflow-x: auto;
+
+                    &::-webkit-scrollbar {
+                        display: none;
+                    }
+
+                    p {
+                        // border: 1px solid blue;
+                        font-size: 1.2rem;
+                        padding: 0 0 0 20px;
+                        margin-top: 10px;
+                        color: gray;
+                        width: 100%;
+
+                        @include rwd(small) {
+                            font-size: 1.4rem;
+                            padding-left: 25px;
+                        }
+                    }
+
+                    h3 {
+                        // border: 1px solid red;
+                        font-size: 2rem;
+                        font-weight: bolder;
+                        padding-left: 15px;
+                        margin-bottom: 10px;
+                        position: relative;
+                        z-index: 1;
+                        width: 100%;
+
+                        &::before {
+                            content: "";
+                            width: 50%;
+                            height: 20px;
+                            background-color: #f38e8e6c;
+                            position: absolute;
+                            z-index: -1;
 
                         }
 
                         @include rwd(small) {
-                            font-size: 1.6rem;
+                            padding-left: 25px;
                         }
+
                     }
 
-                    .bk_blog_star {
-                        margin-top: 5px;
-                        height: 15px;
+                    .bk_blog_up {
+                        // border: 1px solid green;
+                        width: 100%;
+                        height: auto;
                         overflow: hidden;
 
-                        img {
-                            height: 100%;
+                        //reporter
+                        .bk_blog_reporter {
+                            //border: 1px solid red;
+                            box-sizing: border-box;
+                            display: inline-block;
+                            vertical-align: top;
+                            margin: 0 10px 0 15px;
+                            width: auto;
+
+                            .bk_blog_rpt_img {
+                                //border: 1px solid red;
+                                box-sizing: border-box;
+                                display: inline-block;
+                                width: 40px;
+                                height: 40px;
+                                border-radius: 50%;
+                                overflow: hidden;
+
+                                img {
+                                    width: 100%;
+                                }
+                            }
+
+                            .bk_blog_rpt_name {
+
+                                //border: 1px solid red;
+                                display: inline-block;
+                                vertical-align: top;
+
+                                margin-left: 10px;
+
+                                a {
+                                    //border: 1px solid red;
+                                    color: black;
+                                    padding: 0;
+
+                                    font-size: 1.4rem;
+                                    text-decoration: none;
+
+                                    &:hover {
+                                        text-decoration: underline;
+
+                                    }
+
+                                    @include rwd(small) {
+                                        font-size: 1.6rem;
+                                    }
+                                }
+
+                                .bk_blog_star {
+                                    margin-top: 5px;
+                                    height: 15px;
+                                    overflow: hidden;
+
+                                    img {
+                                        height: 100%;
+                                    }
+                                }
+
+                                @include rwd(small) {
+                                    margin: 0 10px;
+                                }
+                            }
+
+                            .bk_blog_rpt_button {
+                                // border: 1px solid red;
+                                display: inline-block;
+                                vertical-align: top;
+
+                                button {
+                                    // border: 1px solid red;
+                                    //margin-left: 10px;
+                                    display: inline-block;
+                                    border-radius: 10px;
+                                    color: white;
+                                    background-color: $min-color;
+
+                                    &:hover {
+                                        background-color: #62bc5a;
+                                    }
+
+                                    @include rwd(small) {
+                                        font-size: 1.2rem;
+                                        border-radius: 15px;
+                                    }
+                                }
+                            }
+
+                            @include rwd(medium) {
+                                width: 100%;
+                            }
+
+                            @include rwd(small) {
+                                width: auto;
+                                margin: 0 10px 0 25px;
+                            }
+                        }
+
+                        //標籤
+                        .bk_blog_tag {
+                            // border: 1px solid blue;
+                            margin-top: 20%;
+
+                            a {
+                                // border: 1px solid red;
+                                display: block;
+                                color: gray;
+                                font-size: 1.2rem;
+                                width: 80px;
+                                margin: 5px 0;
+
+                                &:hover {
+                                    color: #404040;
+                                }
+
+                                img {
+                                    width: 20px;
+                                    height: 20px;
+                                }
+
+                                @include rwd(small) {
+                                    margin: 0;
+                                    width: auto;
+                                    display: inline-block;
+                                }
+
+                                @include rwd(mobile) {
+                                    margin: 0 5px;
+                                    width: auto;
+                                    display: inline-block;
+                                }
+                            }
+
+                            @include rwd(medium) {
+                                display: inline-block;
+                                width: auto;
+                                margin: 0 0 0 10px;
+                            }
+
+                            @include rwd(small) {
+                                display: block;
+                                margin: 20px 0 0 0px;
+                                font-size: 1.6rem;
+                            }
+
+                            @include rwd(mobile) {
+                                vertical-align: top;
+                                display: inline-block;
+                                margin: 0 10px 0 10px;
+                            }
+
+                        }
+
+                        .bk_blog_img {
+                            // border: 1px solid purple;
+                            box-sizing: border-box;
+                            display: inline-block;
+                            height: auto;
+                            width: 45%;
+                            min-width: 100px;
+                            overflow: hidden;
+
+                            img {
+                                width: 100%;
+                                height: auto;
+                            }
+
+                            @include rwd(medium) {
+                                display: block;
+                                margin: 0 auto;
+                                width: 90%;
+                                height: 100px;
+                            }
+
+                            @include rwd(small) {
+                                display: inline-block;
+                                width: 48%;
+                                height: auto;
+                            }
+
+                            @include rwd(mobile) {
+                                display: block;
+                                width: 100%;
+                                height: auto;
+                            }
+
+                        }
+
+                        @include rwd(medium) {
+                            display: inline-block;
                         }
                     }
 
-                    @include rwd(small) {
-                        margin: 0 10px;
+                    .bk_blog_line3 {
+                        width: 90%;
+                        margin: 20px auto 0;
+
+                        @include rwd (medium) {
+                            margin: 5px;
+                        }
+
+                        @include rwd (small) {
+                            margin: 20px 30px 0 30px;
+                        }
                     }
                 }
 
-                .bk_blog_rpt_button {
+                //部落格文章
+                #bk_blog_content {
                     // border: 1px solid red;
-                    display: inline-block;
-                    vertical-align: top;
+                    box-sizing: border-box;
+                    width: 100%;
+                    height: 40%;
+                    overflow-x: auto;
+                    padding-left: 15px;
 
-                    button {
-                        // border: 1px solid red;
-                        //margin-left: 10px;
+                    p {
+                        //border: 1px solid blue;
+                        box-sizing: border-box;
                         display: inline-block;
-                        border-radius: 10px;
-                        color: white;
-                        background-color: $min-color;
+                        width: 95%;
+                        height: 100%;
+                        font-size: 1.4rem;
+                        white-space: pre-wrap;
+                        line-height: 1.8;
+                        vertical-align: top;
+                        //欄位數
+                        column-count: 2;
 
-                        &:hover {
-                            background-color: #62bc5a;
+                        @include rwd (medium) {
+                            column-count: 1;
+                        }
+
+                        @include rwd (small) {
+                            width: 100%;
+                            font-size: 1.6rem;
+                            column-count: 2;
+                            height: auto;
+                            padding: 15px;
+                        }
+
+                        @include rwd (mobile) {
+                            column-count: 1;
+                        }
+                    }
+
+                    @include rwd(medium) {
+                        height: 45%;
+                    }
+
+                    @include rwd (small) {
+                        height: auto;
+                        padding: 10px;
+                    }
+                }
+
+                @include rwd(small) {
+                    width: 100%;
+                    height: auto;
+                    margin-bottom: 90px;
+                }
+            }
+
+            //市集
+            .bk_ct_right_2 {
+                //border: 1px solid blue;
+                box-sizing: border-box;
+                width: 50%;
+                position: relative;
+
+                &::before {
+                    content: "";
+                    position: absolute;
+                    left: 50%;
+                    top: 45%;
+                    transform: translate(-50%, -50%);
+                    width: 100px;
+                    height: 70px;
+                    background-image: url("../assets/book_img/bk_market_line.svg");
+                    background-repeat: no-repeat;
+                }
+
+                a {
+                    text-decoration: none;
+
+                    &:hover h2 {
+                        color: $color-green;
+                    }
+
+                    h2 {
+                        //border: 1px solid red;
+                        font-size: 1.6rem;
+                        font-weight: bold;
+                        color: $min-color;
+                        margin: 20px 0 5px;
+                        padding-left: 15px;
+
+                        @include rwd(small) {
+                            //border: 1px solid red;
+                            font-size: 1.8rem;
+                            padding: 0;
+                            margin-bottom: 20px;
+                        }
+                    }
+                }
+
+                .bk_product {
+                    //border: 1px solid red;
+                    box-sizing: border-box;
+                    width: 100%;
+                    height: 35%;
+                    text-align: center;
+                    margin-top: 10px;
+                    display: flex;
+                    padding: 15px;
+
+                    .bk_product_img {
+                        // border: 1px solid green;
+                        box-sizing: border-box;
+                        display: inline-block;
+                        width: 150px;
+                        height: 150px;
+
+                        img {
+                            width: 100%;
+                            height: auto;
                         }
 
                         @include rwd(small) {
-                            font-size: 1.2rem;
-                            border-radius: 15px;
+                            width: 200px;
+                            height: 200px;
                         }
                     }
-                }
 
-                @include rwd(medium) {
-                    width: 100%;
-                }
+                    @mixin bkpdtext {
+                        h4 {
+                            font-size: 1.4rem;
+                            font-weight: bold;
+                            text-align: left;
+                            @content;
+                        }
 
-                @include rwd(small) {
-                    width: auto;
-                    margin: 0 10px 0 25px;
-                }
-            }
+                        p {
+                            font-size: 1.4rem;
+                            font-weight: bold;
+                            color: #f38e8e;
+                            margin-top: 10px;
+                            text-align: left;
+                            @content;
+                        }
 
-            //標籤
-            .bk_blog_tag {
-                // border: 1px solid blue;
-                margin-top: 20%;
-
-                a {
-                    // border: 1px solid red;
-                    display: block;
-                    color: gray;
-                    font-size: 1.2rem;
-                    width: 80px;
-                    margin: 5px 0;
-
-                    &:hover {
-                        color: #404040;
                     }
 
-                    img {
-                        width: 20px;
-                        height: 20px;
+                    @mixin bkprouductlink {
+                        text-decoration: none;
+                        font-size: 1.2rem;
+                        padding: 0;
+                        margin: 0;
+                        font-weight: bold;
+                        color: $min-color;
+                        background: none;
+                        border: none;
+                        @content;
+
+                        &:hover {
+                            color: $color-green;
+                        }
+                    }
+
+                    .bk_pd_description {
+                        //border: 1px solid blue;
+                        box-sizing: border-box;
+                        display: inline-block;
+                        position: relative;
+                        top: 10%;
+                        left: 0%;
+                        margin-left: 20px;
+                        text-align: left;
+                        @include bkpdtext;
+
+                        a {
+                            @include bkprouductlink;
+                        }
                     }
 
                     @include rwd(small) {
-                        margin: 0;
-                        width: auto;
-                        display: inline-block;
+                        .bk_pd_description {
+                            h4 {
+                                font-size: 1.6rem;
+                            }
+
+                            p {
+                                font-size: 1.6rem;
+                            }
+
+                            a {
+                                font-size: 1.6rem;
+                            }
+                        }
                     }
+
+                    .bk_pd_description2 {
+                        //border: 1px solid blue;
+                        box-sizing: border-box;
+                        display: inline-block;
+                        text-align: left;
+                        margin-right: 20px;
+
+                        @include bkpdtext;
+
+                        a {
+                            @include bkprouductlink;
+                        }
+
+                        @include rwd(medium) {
+                            margin-left: 0%;
+                        }
+
+                    }
+
+                    @include rwd(small) {
+                        .bk_pd_description2 {
+                            h4 {
+                                font-size: 1.6rem;
+                            }
+
+                            p {
+                                font-size: 1.6rem;
+                            }
+
+                            a {
+                                font-size: 1.6rem;
+                            }
+                        }
+                    }
+
+                    @include rwd(small) {
+                        padding: 0px;
+                        height: 200px;
+                    }
+
                 }
 
-                @include rwd(medium) {
-                    display: inline-block;
-                    width: auto;
-                    margin: 0 0 0 10px;
+                .bk_product2 {
+                    margin-top: 80px;
+                    justify-content: flex-end;
                 }
 
                 @include rwd(small) {
-                    display: block;
-                    margin: 20px 0 0 0px;
-                    font-size: 1.6rem;
+                    //margin-top: 100px;
+                    width: 100%;
+                    padding: 20px 25px 30px;
+                    height: auto;
                 }
 
                 @include rwd(mobile) {
-                    display: inline-block;
-                    margin: 0 0 0 10px;
+                    padding: 20px 25px 180px;
                 }
 
-            }
-
-            .bk_blog_img {
-                // border: 1px solid purple;
-                box-sizing: border-box;
-                display: inline-block;
-                height: auto;
-                width: 45%;
-                min-width: 100px;
-                overflow: hidden;
-
-                img {
-                    width: 100%;
-                    height: auto;
-                }
-
-                @include rwd(medium) {
-                    display: block;
-                    margin: 0 auto;
-                    width: 90%;
-                    height: 100px;
-                }
-
-                @include rwd(small) {
-                    display: inline-block;
-                    width: 48%;
-                    height: auto;
-                }
-
-                @include rwd(mobile) {
-                    display: block;
-                    width: 100%;
-                    height: auto;
-                }
-
-            }
-
-            @include rwd(medium) {
-                display: inline-block;
-            }
-        }
-
-        .bk_blog_line3 {
-            width: 90%;
-            margin: 20px auto 0;
-
-            @include rwd (medium) {
-                margin: 5px;
-            }
-
-            @include rwd (small) {
-                margin: 20px 30px 0 30px;
-            }
-        }
-    }
-
-    //部落格文章
-    #bk_blog_content {
-        // border: 1px solid red;
-        box-sizing: border-box;
-        width: 100%;
-        height: 40%;
-        overflow-x: auto;
-        padding-left: 15px;
-
-        p {
-            //border: 1px solid blue;
-            box-sizing: border-box;
-            display: inline-block;
-            width: 95%;
-            height: 100%;
-            font-size: 1.4rem;
-            white-space: pre-wrap;
-            line-height: 1.8;
-            vertical-align: top;
-            //欄位數
-            column-count: 2;
-
-            @include rwd (medium) {
-                column-count: 1;
-            }
-
-            @include rwd (small) {
-                width: 100%;
-                font-size: 1.6rem;
-                column-count: 2;
-                height: auto;
-                padding: 15px;
-            }
-
-            @include rwd (mobile) {
-                column-count: 1;
-            }
-        }
-
-        @include rwd(medium) {
-            height: 45%;
-        }
-
-        @include rwd (small) {
-            height: auto;
-            padding: 10px;
-        }
-    }
-
-    @include rwd(small) {
-        width: 100%;
-        height: auto;
-        margin-bottom: 90px;
-    }
-}
-
-//市集
-.bk_ct_right_2 {
-    // border: 1px solid blue;
-    box-sizing: border-box;
-    width: 50%;
-    position: relative;
-
-    &::before {
-        content: "";
-        position: absolute;
-        left: 50%;
-        top: 45%;
-        transform: translate(-50%, -50%);
-        width: 100px;
-        height: 70px;
-        background-image: url("../assets/book_img/bk_market_line.svg");
-        background-repeat: no-repeat;
-    }
-
-    &::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: 0;
-
-        width: 100%;
-        height: 30px;
-        z-index: -1;
-        background-color: rgba(255, 208, 191, 1);
-
-        @include rwd(small) {
-            display: none;
-        }
-    }
-
-    a {
-        text-decoration: none;
-
-        &:hover h2 {
-            color: $color-green;
-        }
-
-        h2 {
-            //border: 1px solid red;
-            font-size: 1.6rem;
-            font-weight: bold;
-            color: $min-color;
-            margin: 20px 0 5px;
-            padding-left: 15px;
-
-            @include rwd(small) {
-                font-size: 1.8rem;
-                padding: 0;
             }
         }
     }
-
-    .bk_product {
-        //border: 1px solid red;
-        box-sizing: border-box;
-        width: 100%;
-        height: 35%;
-        text-align: center;
-        margin-top: 10px;
-        display: flex;
-        padding: 15px;
-
-        .bk_product_img {
-            // border: 1px solid green;
-            box-sizing: border-box;
-            display: inline-block;
-
-            width: 150px;
-            height: 150px;
-
-            img {
-                width: 100%;
-                height: auto;
-            }
-
-            @include rwd(small) {
-                width: 200px;
-                height: 200px;
-            }
-        }
-
-        .bk_pd1 {
-            //border: 1px solid red;
-            box-sizing: border-box;
-
-            position: relative;
-            left: 0%;
-            top: 10%;
-
-            &::before {
-                content: "";
-                width: 150px;
-                height: 150px;
-                background-color: #f38e8e;
-                position: absolute;
-                left: -10%;
-                top: -20%;
-                z-index: -1;
-
-                @include rwd(small) {
-                    width: 160px;
-                    height: 160px;
-                }
-
-            }
-        }
-
-        @mixin bkpdtext {
-            h4 {
-                font-size: 1.4rem;
-                font-weight: bold;
-                text-align: left;
-                @content;
-            }
-
-            p {
-                font-size: 1.4rem;
-                font-weight: bold;
-                color: #f38e8e;
-                margin-top: 10px;
-                text-align: left;
-                @content;
-            }
-
-        }
-
-        @mixin bkprouductlink {
-            text-decoration: none;
-            font-size: 1.2rem;
-            padding: 0;
-            margin: 0;
-            font-weight: bold;
-            color: $min-color;
-            background: none;
-            border: none;
-
-
-
-            @content;
-
-            &:hover {
-                color: $color-green;
-            }
-        }
-
-        .bk_pd_description {
-            //border: 1px solid blue;
-            box-sizing: border-box;
-            display: inline-block;
-            position: relative;
-            top: 10%;
-            left: 0%;
-            margin-left: 20px;
-            text-align: left;
-            @include bkpdtext;
-
-            a {
-                @include bkprouductlink;
-            }
-        }
-
-        @include rwd(small) {
-            .bk_pd_description {
-                h4 {
-                    font-size: 1.6rem;
-                }
-
-                p {
-                    font-size: 1.6rem;
-                }
-
-                a {
-                    font-size: 1.6rem;
-                }
-            }
-        }
-
-        .bk_pd2 {
-            //border: 1px solid red;
-            position: relative;
-            width: 150px;
-            height: 150px;
-
-            &::after {
-                content: "";
-                width: 145px;
-                height: 140px;
-                background-color: #f38e8e;
-                position: absolute;
-                right: -11%;
-                bottom: -10%;
-                z-index: -1;
-
-                @include rwd(medium) {
-                    width: 130px;
-                    height: 150px;
-                }
-
-                @include rwd(small) {
-                    width: 160px;
-                    height: 160px;
-                    right: -14%;
-                    bottom: -5%;
-                }
-            }
-
-            img {
-                width: 100%;
-            }
-
-            @include rwd(medium) {
-                right: 0px;
-            }
-
-            @include rwd(small) {
-                width: 200px;
-                height: 200px;
-            }
-        }
-
-
-        .bk_pd_description2 {
-            //border: 1px solid blue;
-            box-sizing: border-box;
-            display: inline-block;
-            text-align: left;
-            margin-right: 20px;
-
-            @include bkpdtext;
-
-            a {
-                @include bkprouductlink;
-            }
-
-            @include rwd(medium) {
-                margin-left: 0%;
-            }
-
-        }
-
-        @include rwd(small) {
-            .bk_pd_description2 {
-                h4 {
-                    font-size: 1.6rem;
-                }
-
-                p {
-                    font-size: 1.6rem;
-                }
-
-                a {
-                    font-size: 1.6rem;
-                }
-            }
-        }
-
-        @include rwd(small) {
-            padding: 0px;
-            height: 200px;
-        }
-
-    }
-
-    .bk_product2 {
-        margin-top: 80px;
-        justify-content: flex-end;
-    }
-
-    @include rwd(small) {
-        margin-top: 100px;
-        width: 100%;
-        padding: 20px 25px 30px;
-        height: auto;
-    }
-
-    @include rwd(mobile) {
-        padding: 20px 25px 180px;
-    }
-
 }
-
-// @mixin bkBlog {
-// .bk_ct_right_2{}
-// }
