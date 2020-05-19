@@ -114,7 +114,6 @@ export default {
         } else if (data.gender == 0) {
           this.gender = "其它";
         }
-        console.log(this.member);
       }
     });
   },

@@ -152,7 +152,7 @@ export default {
     },
     updateSession: function() {
       const api = "/api/api_farmUpdateSession.php";
-      console.log(this.member);
+
       this.$http
         .post(api, JSON.stringify(this.member))
         .then((res) => {

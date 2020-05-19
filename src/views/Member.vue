@@ -185,7 +185,7 @@ export default {
     },
     changeFarm: function() {
       const api = "/api/api_checkFarm.php";
-      console.log(this.member);
+
       this.$http.post(api, JSON.stringify(this.member)).then((res) => {
         const data = res.data;
 
