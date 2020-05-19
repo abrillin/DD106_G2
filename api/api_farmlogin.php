@@ -9,36 +9,36 @@ try {
 
     // 操作DB
     $sql = "select a.*, b.`address`,b.`content`,b.`review_total`,b.`review_count`,b.`member_no` FROM `member` as a LEFT JOIN `seller` as b on a.no =:no&&b.member_no=:no";
-    $member = $pdo->prepare($sql);
+    $seller = $pdo->prepare($sql);
 
-    $memberInfo = json_decode(file_get_contents("php://input"));
+    $sellerInfo = json_decode(file_get_contents("php://input"));
 
-    $member->bindValue(":no", $memberInfo->no);
+    $seller->bindValue(":no", $sellerInfo->no);
     
 
     // 返回data
-    $member->execute();
+    $seller->execute();
 
-    if ($member->rowCount() == 0) {
+    if ($seller->rowCount() == 0) {
         // 查無此人
         echo "";
     } else {
         // 登入成功
         // 自資料庫中取回資料
-        $memRow = $member->fetch(PDO::FETCH_ASSOC);
+        $selRow = $seller->fetch(PDO::FETCH_ASSOC);
 
         // 寫入session
         $item = array("no", "name", "phone", "email", "gender", "img", "acc", "psw", "nick", "status","address","content","review_total","review_count","member_no");
 
         for ($i = 0; $i < count($item); $i++) {
 
-            $_SESSION["member_" . $item[$i]] = $memRow[$item[$i]];
+            $_SESSION["seller_" . $item[$i]] = $selRow[$item[$i]];
         }
 
         // 送出登入者的姓名資料
-        $member = array("name" => $_SESSION["member_name"], "nick" => $_SESSION["member_nick"], "status" => $_SESSION["member_status"]);
+        $seller = array("name" => $_SESSION["seller_name"], "nick" => $_SESSION["seller_nick"], "status" => $_SESSION["seller_status"]);
 
-        echo json_encode($memRow);
+        echo json_encode($selRow);
 
     }
 } catch (PDOException $e) {
