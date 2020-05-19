@@ -101,20 +101,20 @@ export default {
         // $http.post(url,data)
         // 用post把從addAdmin來的js物件資料轉為json字串，傳給api背後的那支php
         .then(res => {
-           const data = res.data; //this.data = res.data;
+           const data = res.data; // this.data = res.data; // 
 
           if (data.error) {
             console.log(data.error);
           }
 
-          if (data == 0) {
+          if (data == 1) { // 資料有一筆
           alert(" 資料新增完成 ٩(･ิᴗ･ิ๑)۶ ");
           this.$router.go(-1);
         
-          } else if (data == 1) {
-          alert(" 你慢了，此帳號已經被註冊過 ┐(´д`)┌ ");
+          } else if (data == 0) {
+          alert(" 你慢了，此帳號已被註冊 ┐(´д`)┌ ");
         }
-   
+        
         });
         // .catch(err => console.log(err));
     },

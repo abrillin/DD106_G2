@@ -6,8 +6,8 @@ try {
 
     require_once("connectDB.php");
 
-    // 查詢帳號是否已經被註冊過
-    $sql = "insert into `member` (`no`, `name`, `nick`, `acc`, `psw`, `img`, `gender`, `phone`, `email`, `status`) values(null, :name, :nick, :acc, :psw, null, :gender, :phone, :email, '1')";
+    // 還沒做禁止重複註冊
+    $sql = "insert into `member` (`no`, `name`, `nick`, `acc`, `psw`, `img`, `gender`, `phone`, `email`, `status`) values(null, :name, :nick, :acc, :psw, '', :gender, :phone, :email, '0')";
     $member = $pdo->prepare($sql);
 
     $memberInfo = json_decode(file_get_contents("php://input"));
@@ -23,7 +23,6 @@ try {
     $member->execute();
 
     if ($member->rowCount() == 0) {
-
         echo "1";
     } else {
 
@@ -33,3 +32,4 @@ try {
     $error = ["error" => $e->getMessage()];
     echo json_encode($error);
 }
+
