@@ -6,7 +6,7 @@ session_start();
 try {
     require_once("connectDB.php");
 
-    $sql = "select a.*, b.`address`,b.`content`,b.`review_total`,b.`review_count`,b.`member_no` FROM `member` as a LEFT JOIN `seller` as b on a.no =:no&&b.member_no=:memberno";
+    $sql = "select a.*, b.`address`,b.`content`,b.`review_total`,b.`review_count`,b.`member_no` FROM `member` a,`seller` b WHERE b.member_no=:memberno && a.no=:no";
     $seller = $pdo->prepare($sql);
 
     $sellerInfo = json_decode(file_get_contents("php://input"));
@@ -22,7 +22,7 @@ try {
 
         $selRow = $seller->fetch(PDO::FETCH_ASSOC);
 
-        $item = array("no", "name", "phone", "email", "gender", "img", "acc", "psw", "nick", "status");
+        $item = array("no", "name", "phone", "email", "gender", "img", "acc", "psw", "nick", "status","address","content","review_total","review_count","member_no");
 
         for ($i = 0; $i < count($item); $i++) {
 

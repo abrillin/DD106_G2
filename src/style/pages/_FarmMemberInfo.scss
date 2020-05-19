@@ -117,7 +117,7 @@ div.farminfo {
 
     > .bottom_form {
       display: inline-block;
-      width: 492px;
+      width: 490px;
       border: 1px solid #666;
 
       @include rwd(small) {
@@ -160,7 +160,7 @@ div.farminfo {
         padding-left: 30px;
         padding-right: 30px;
         width: 340px;
-        height: 450px;
+        height: 500px;
         line-height: 3.5;
 
         @include rwd(medium) {
@@ -168,7 +168,7 @@ div.farminfo {
         }
         @include rwd(small) {
           width: 70%;
-          height: 400px;
+          height: 450px;
         }
 
         > p {

@@ -185,7 +185,7 @@ export default {
     },
     changeFarm: function() {
       const api = "/api/api_checkFarm.php";
-
+      console.log(this.member);
       this.$http.post(api, JSON.stringify(this.member)).then((res) => {
         const data = res.data;
 
@@ -193,6 +193,11 @@ export default {
           alert("還不是果農了喔");
           this.$router.go(-1);
         } else {
+          const api2 = "/api/api_farmlogin.php";
+
+          this.$http.post(api2, JSON.stringify(this.member)).then((res) => {
+            const data = res.data;
+          });
         }
       });
     },
