@@ -51,7 +51,7 @@
       </div>
       <div class="member_button">
         <div class="changefarm" @click="changeFarm">
-          <router-link to="/farm/info">
+          <router-link to="/main/farm/info">
             <button-more class="goto_farmer" msg="切換果農"></button-more>
           </router-link>
         </div>
@@ -193,11 +193,6 @@ export default {
           alert("還不是果農了喔");
           this.$router.go(-1);
         } else {
-          const api2 = "/api/api_farmlogin.php";
-
-          this.$http.post(api2, JSON.stringify(this.member)).then((res) => {
-            const data = res.data;
-          });
         }
       });
     },
