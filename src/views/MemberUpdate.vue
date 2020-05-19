@@ -32,24 +32,9 @@
           <input type="text" v-model="member.nick" />
           <br />
           <div>
-            <input
-              type="radio"
-              v-model="member.gender"
-              value="1"
-              name="gender"
-            />男
-            <input
-              type="radio"
-              v-model="member.gender"
-              value="2"
-              name="gender"
-            />女
-            <input
-              type="radio"
-              v-model="member.gender"
-              value="0"
-              name="gender"
-            />其它
+            <input type="radio" v-model="member.gender" value="1" name="gender" />男
+            <input type="radio" v-model="member.gender" value="2" name="gender" />女
+            <input type="radio" v-model="member.gender" value="0" name="gender" />其它
           </div>
 
           <!-- <p>{{ member.gender }}</p>-->
@@ -83,40 +68,36 @@ export default {
         nick: "",
         gender: "",
         phone: "",
-        email: "",
-      },
+        email: ""
+      }
     };
   },
   created() {
     const api = "/api/api_memberStatus.php";
 
-    this.$http
-      .post(api)
-      .then((res) => {
-        const data = res.data;
+    this.$http.post(api).then(res => {
+      const data = res.data;
 
-        if (data != "") {
-          this.member = {
-            no: data.no,
-            acc: data.acc,
-            name: data.name,
-            nick: data.nick,
-            phone: 0 + data.phone,
-            email: data.email,
-            gender: data.gender,
-          };
+      if (data != "") {
+        this.member = {
+          no: data.no,
+          acc: data.acc,
+          name: data.name,
+          nick: data.nick,
+          phone: 0 + data.phone,
+          email: data.email,
+          gender: data.gender
+        };
 
-          // if (data.gender == 1) {
-          //   this.member.gender = "男";
-          // } else if (data.gender == 2) {
-          //   this.member.gender = "女";
-          // } else if (data.gender == 3) {
-          //   this.member.gender = "其它";
-          // }
-        }
-      })
-      // eslint-disable-next-line no-console
-      .catch((err) => console.log(err));
+        // if (data.gender == 1) {
+        //   this.member.gender = "男";
+        // } else if (data.gender == 2) {
+        //   this.member.gender = "女";
+        // } else if (data.gender == 3) {
+        //   this.member.gender = "其它";
+        // }
+      }
+    });
   },
   methods: {
     update: function() {
@@ -129,36 +110,16 @@ export default {
         }
       }
 
-      this.$http
-        .post(api, JSON.stringify(this.member))
-        .then((res) => {
-          const data = res.data;
+      this.$http.post(api, JSON.stringify(this.member)).then(res => {
+        const data = res.data;
 
-          if (data == 0) {
-            alert("修改成功！");
+        if (data == 1) {
+          alert("修改成功！");
 
-            this.updateSession();
-            this.$router.go(0);
-          }
-        })
-        // eslint-disable-next-line no-console
-        .catch((err) => console.log(err));
-    },
-    updateSession: function() {
-      const api = "/api/api_memberUpdateSession.php";
-
-      this.$http
-        .post(api, JSON.stringify(this.member))
-        .then((res) => {
-          const data = res.data;
-
-          if (data == 1) {
-            // this.$emit("update", true);
-          }
-        })
-        // eslint-disable-next-line no-console
-        .catch((err) => console.log(err));
-    },
-  },
+          this.$router.go(0);
+        }
+      });
+    }
+  }
 };
 </script>

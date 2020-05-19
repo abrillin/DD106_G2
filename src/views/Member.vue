@@ -135,7 +135,7 @@ export default {
       reader.readAsDataURL(img.files[0]);
 
       this.formData.append("file", img.files[0]);
-      this.member.img = "../../api/MemPic/member" + img.files[0].name;
+      this.member.img = "/api/MemPic/member" + img.files[0].name;
 
       this.$http
         .post("/api/api_changeMemPic.php", this.formData)
