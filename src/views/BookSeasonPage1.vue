@@ -4,7 +4,7 @@
       <!-- 9. 接收到 contentType、page 的值，傳值到元件的自定義變數 type、page -->
       <component :is="'PageLeft'+this.left" :type="contentType" :page="page"></component>
       <div class="fruit_intro">
-        <p>{{ooo + xxx}}</p>
+        <p>{{ooo}}</p>
       </div>
     </div>
     <component :is="'PageRight'+this.right" :type="contentType"></component>
