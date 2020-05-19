@@ -15,93 +15,60 @@
         </div>
         <div class="FarmBlog_bottom">
             <div class="list_1">
-                <div class="Blognum">
-                    <p class="title">商品編號</p>
-                    <p>xxxx</p>
-                    <p>xxxx</p>
-                    <p>xxxx</p>
-                    <p>xxxx</p>
-                    <p>xxxx</p>
-                    <p>xxxx</p>
-                    <p>xxxx</p>
-                    <p>xxxx</p>
-                    <p>xxxx</p>
-                    <p>xxxx</p>
-                    <p>xxxx</p>
-                    <p>xxxx</p>
+                <div class="bottomheader">
+                    <table class="orderTab">
+                        <thead>
+                            <tr>
+                                <th>日誌編號</th>
+                                <th>標題</th>
+                                <th>內容</th>
+                                <th>發文時間</th>
+                                <th>狀態</th>
+                            </tr>
+                        </thead>
+                    </table>
                 </div>
-                <div class="Blogname">
-                    <p class="title">名稱</p>
-                    <p>出發囉！賞螢採梅尋浪... </p>
-                    <p>出發囉！賞螢採梅尋浪... </p>
-                    <p>出發囉！賞螢採梅尋浪... </p>
-                    <p>出發囉！賞螢採梅尋浪... </p>
-                    <p>出發囉！賞螢採梅尋浪... </p>
-                    <p>出發囉！賞螢採梅尋浪... </p>
-                    <p>出發囉！賞螢採梅尋浪... </p>
-                    <p>出發囉！賞螢採梅尋浪... </p>
-                    <p>出發囉！賞螢採梅尋浪... </p>
-                    <p>出發囉！賞螢採梅尋浪... </p>
-                    <p>出發囉！賞螢採梅尋浪... </p>
-                    <p>出發囉！賞螢採梅尋浪... </p>
+                <div class="bottomcontent">
+                    <table class="orderTab">
+                        <tbody>
+                            <tr>
+                                <td>xxxx</td>
+                                <td>出發囉！賞螢採梅尋浪...</td>
+                                <td>台南梅嶺，這是一個有...</td>
+                                <td>2020-04-16 11:22</td>
+                                <!-- <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
+                                        for="switch">Toggle<div class="after"></div></label></p> -->
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="Blogcontent">
-                    <p class="title">內容</p>
-                    <p>台南梅嶺，這是一個有...</p>
-                    <p>台南梅嶺，這是一個有...</p>
-                    <p>台南梅嶺，這是一個有...</p>
-                    <p>台南梅嶺，這是一個有...</p>
-                    <p>台南梅嶺，這是一個有...</p>
-                    <p>台南梅嶺，這是一個有...</p>
-                    <p>台南梅嶺，這是一個有...</p>
-                    <p>台南梅嶺，這是一個有...</p>
-                    <p>台南梅嶺，這是一個有...</p>
-                    <p>台南梅嶺，這是一個有...</p>
-                    <p>台南梅嶺，這是一個有...</p>
-                    <p>台南梅嶺，這是一個有...</p>
-                </div>
-                <div class="Blogtime">
-                    <p class="title">發文時間</p>
-                    <p>2020-04-16 11:22</p>
-                    <p>2020-04-16 11:22</p>
-                    <p>2020-04-16 11:22</p>
-                    <p>2020-04-16 11:22</p>
-                    <p>2020-04-16 11:22</p>
-                    <p>2020-04-16 11:22</p>
-                    <p>2020-04-16 11:22</p>
-                    <p>2020-04-16 11:22</p>
-                    <p>2020-04-16 11:22</p>
-                    <p>2020-04-16 11:22</p>
-                    <p>2020-04-16 11:22</p>
-                    <p>2020-04-16 11:22</p>
-                </div>
-                <div class="Blogputon">
+                <!-- <div class="Blogputon">
                     <p class="title">狀態</p>
                     <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle</label></p>
+                            for="switch">Toggle<div class="after"></div></label></p>
                     <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle</label></p>
+                            for="switch">Toggle<div class="after"></div></label></p>
                     <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle</label></p>
+                            for="switch">Toggle<div class="after"></div></label></p>
                     <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle</label></p>
+                            for="switch">Toggle<div class="after"></div></label></p>
                     <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle</label></p>
+                            for="switch">Toggle<div class="after"></div></label></p>
                     <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle</label></p>
+                            for="switch">Toggle<div class="after"></div></label></p>
                     <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle</label></p>
+                            for="switch">Toggle<div class="after"></div></label></p>
                     <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle</label></p>
+                            for="switch">Toggle<div class="after"></div></label></p>
                     <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle</label></p>
+                            for="switch">Toggle<div class="after"></div></label></p>
                     <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle</label></p>
+                            for="switch">Toggle<div class="after"></div></label></p>
                     <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle</label></p>
+                            for="switch">Toggle<div class="after"></div></label></p>
                     <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle</label></p>
-                </div>
+                            for="switch">Toggle<div class="after"></div></label></p>
+                </div> -->
 
             </div>
 
@@ -125,3 +92,21 @@
         </div>
     </div>
 </template>
+<script>
+import $ from "jquery";
+export default{
+    mounted(){
+        $('.statuslable').click(function(){
+        $('.after').removeClass('scrol');
+         $(this).find('.after').toggleClass('scrol');
+        if($('.after').hasClass('scrol')){         
+            $('.statuslable').removeClass('color');
+            $(this).addClass('color');
+        }else{       
+            $(this).removeClass('color');
+        }
+    })
+        
+    },
+}
+</script>

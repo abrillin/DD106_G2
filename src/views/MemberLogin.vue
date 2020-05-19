@@ -194,7 +194,7 @@ export default {
         email: '',
         phone: '',
         gender: '',
-      },
+      }
     };
   },
   methods: {
@@ -251,8 +251,8 @@ export default {
           console.log(data.error);
         }
 
-        if (data == 0) {
-          alert('註冊完成！');
+        if (data == 1) {
+          alert("註冊完成！");
 
           this.form = {
             name: '',
@@ -265,11 +265,11 @@ export default {
             gender: '',
           };
 
-          $('.movebox').css('transform', 'translateX(-10%)');
-          $('.signup').addClass('nodisplay');
-          $('.signin').removeClass('nodisplay');
-        } else if (data == 1) {
-          alert('此帳號已經被註冊過！');
+          $(".movebox").css("transform", "translateX(-10%)");
+          $(".signup").addClass("nodisplay");
+          $(".signin").removeClass("nodisplay");
+        } else if (data == 0) {
+          alert("此帳號已經被註冊過！");
         }
       });
     },

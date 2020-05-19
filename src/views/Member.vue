@@ -51,7 +51,7 @@
       </div>
       <div class="member_button">
         <div class="changefarm" @click="changeFarm">
-          <router-link to="/farm/info">
+          <router-link to="/main/farm/info">
             <button-more class="goto_farmer" msg="切換果農"></button-more>
           </router-link>
         </div>
@@ -69,7 +69,6 @@ export default {
     return {
       formData: new FormData(),
       member: {
-        no: "",
         acc: "",
         name: "",
         nick: "",
@@ -136,7 +135,7 @@ export default {
       reader.readAsDataURL(img.files[0]);
 
       this.formData.append("file", img.files[0]);
-      this.member.img = "../../api/MemPic/member" + img.files[0].name;
+      this.member.img = "/api/MemPic/member" + img.files[0].name;
 
       this.$http
         .post("/api/api_changeMemPic.php", this.formData)
@@ -194,11 +193,6 @@ export default {
           alert("還不是果農了喔");
           this.$router.go(-1);
         } else {
-          const api2 = "/api/api_farmlogin.php";
-
-          this.$http.post(api2, JSON.stringify(this.member)).then((res) => {
-            const data = res.data;
-          });
         }
       });
     },
