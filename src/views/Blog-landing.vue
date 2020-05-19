@@ -69,7 +69,7 @@
       <div>
         <div>
           <div>
-            <div>2020-04-10</div>
+            <div>{{ this.blogInfProps.date }}</div>
             <div>
               <img src="@/assets/blog-img/blog-tag.png" />
               <span> 草莓 </span>
@@ -79,7 +79,7 @@
           </div>
           <div></div>
           <div>
-            <span>“ 親子輕旅行 台北白石湖採草莓、踏青一日遊”</span>
+            <span>{{ this.blogInfProps.title }}</span>
           </div>
           <div>
             <img src="@/assets/blog-img/blog-bendingbar2.png" />
@@ -192,7 +192,7 @@
               <img src="@/assets/blog-img/blog-someoneshead.png" />
             </div>
             <div>
-              <div>howhowhasnofriend</div>
+              <div @click.prevent="comment">howhowhasnofriend</div>
               <div>2020-4-14 12:00</div>
             </div>
             <div style="font-size:15px;">這炒飯好吃?我賣水果欸!?鳳梨炒飯?</div>
@@ -202,16 +202,15 @@
           </div>
         </div>
         <div>
-          <form action="" method="get">
+          <form action="" method="get" @click.prevent="prevent">
             <label for="">
               留言:
               <textarea name="" id=""> </textarea>
             </label>
             <br />
-            <button-more
-              class="blog-landing-button-more"
-              msg="送出"
-            ></button-more>
+            <div class="blog-landing-button-more" @click.prevent="comment">
+              <button-more msg="送出"></button-more>
+            </div>
           </form>
         </div>
       </div>
@@ -846,9 +845,42 @@
 <script>
 export default {
   props: {blogInfProps: Object, c: String},
+  data() {
+    return {
+      msgobj: {
+        content: null,
+        date: null,
+        blogNo: null,
+      },
+    };
+  },
   methods: {
     test() {
       console.log(this.blogInfProps, this.c);
+    },
+    prevent() {},
+    comment() {
+      let msg = document.getElementsByTagName('textarea')[0].value;
+      var nStartTime = new Date(Date.now());
+      this.msgobj.content = msg;
+      let today = `${nStartTime.getFullYear()}-${nStartTime.getMonth() +
+        1}-${nStartTime.getDate()}`;
+      this.msgobj.date = today;
+      let blogNo = this.blogInfProps.no;
+      this.msgobj.blogNo = blogNo;
+      // console.log(this.msgobj);
+
+      const api = '/api/api_blog_msg.php';
+
+      this.$http
+        .post(api, JSON.stringify(this.msgobj))
+        .then((res) => {
+          if (res.data != '') {
+            console.log(res.data);
+          } else {
+          }
+        })
+        .catch((err) => console.log(err));
     },
   },
 };
