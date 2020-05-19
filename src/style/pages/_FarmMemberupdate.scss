@@ -116,7 +116,7 @@ div.farmupdate {
     > .bottom_form {
       display: inline-block;
       border: 1px solid #666;
-      width: 492px;
+      width: 490px;
       @include rwd(small) {
         line-height: normal;
         width: 352px;
@@ -165,7 +165,7 @@ div.farmupdate {
         }
         @include rwd(small) {
           width: 70%;
-          height: 500px;
+          height: 550px;
           line-height: 3;
           font-size: 1.4rem;
         }
