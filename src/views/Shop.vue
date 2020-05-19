@@ -175,148 +175,29 @@
             </div>
           </div>
           <div class="commodity-flex">
-            <div class="commodity">
+            <div class="commodity" v-for="(i, index) in shopcommodity" :key="index">
               <div class="card_img_box">
-                <img src="../assets/ia_300000017.jpg" width="100%" height="100%" title="蜜蕉乾 零添加" />
+                <img
+                  src="../assets/ia_300000017.jpg"
+                  width="100%"
+                  height="100%"
+                  title="蜜蕉乾 零添加"
+                  @click="changePage(i)"
+                />
               </div>
 
               <div class="card_content">
                 <div class="commodity_title">
-                  <div class="commodity_title_text">{{item.itemName}}</div>
+                  <div class="commodity_title_text">{{i.name}}</div>
                 </div>
 
                 <div class="card_tag">
                   <img src="../assets/icon/tag.svg" alt width="16px" height="16px" class="tag_icon" />
-                  <span class="card_tag_text">24hr宅配到府</span>
+                  <span class="card_tag_text">{{i}}</span>
                 </div>
 
                 <div class="card_price">
-                  <span class="money">{{item.money}}</span>
-                </div>
-
-                <div class="buy">
-                  <a href="#" class="card_btn">加入購物籃</a>
-                  <a href="#" class="card_btn">直接購買</a>
-                </div>
-              </div>
-            </div>
-            <div class="commodity">
-              <div class="card_img_box">
-                <img src="../assets/ia_300000017.jpg" width="100%" height="100%" />
-              </div>
-
-              <div class="card_content">
-                <div class="commodity_title">
-                  <div class="commodity_title_text">蜜蕉乾 零添加</div>
-                </div>
-
-                <div class="card_tag">
-                  <img src="../assets/icon/tag.svg" alt width="16px" height="16px" class="tag_icon" />
-                  <span class="card_tag_text">24hr宅配到府</span>
-                </div>
-
-                <div class="card_price">
-                  <span class="money">550</span>
-                </div>
-
-                <div class="buy">
-                  <a href="#" class="card_btn">加入購物籃</a>
-                  <a href="#" class="card_btn">直接購買</a>
-                </div>
-              </div>
-            </div>
-            <div class="commodity">
-              <div class="card_img_box">
-                <img src="../assets/ia_300000017.jpg" width="100%" height="100%" />
-              </div>
-
-              <div class="card_content">
-                <div class="commodity_title">
-                  <div class="commodity_title_text">蜜蕉乾 零添加</div>
-                </div>
-
-                <div class="card_tag">
-                  <img src="../assets/icon/tag.svg" alt width="16px" height="16px" class="tag_icon" />
-                  <span class="card_tag_text">24hr宅配到府</span>
-                </div>
-
-                <div class="card_price">
-                  <span class="money">550</span>
-                </div>
-
-                <div class="buy">
-                  <a href="#" class="card_btn">加入購物籃</a>
-                  <a href="#" class="card_btn">直接購買</a>
-                </div>
-              </div>
-            </div>
-            <div class="commodity">
-              <div class="card_img_box">
-                <img src="../assets/ia_300000017.jpg" width="100%" height="100%" />
-              </div>
-
-              <div class="card_content">
-                <div class="commodity_title">
-                  <div class="commodity_title_text">蜜蕉乾 零添加</div>
-                </div>
-
-                <div class="card_tag">
-                  <img src="../assets/icon/tag.svg" alt width="16px" height="16px" class="tag_icon" />
-                  <span class="card_tag_text">24hr宅配到府</span>
-                </div>
-
-                <div class="card_price">
-                  <span class="money">550</span>
-                </div>
-
-                <div class="buy">
-                  <a href="#" class="card_btn">加入購物籃</a>
-                  <a href="#" class="card_btn">直接購買</a>
-                </div>
-              </div>
-            </div>
-            <div class="commodity">
-              <div class="card_img_box">
-                <img src="../assets/ia_300000017.jpg" width="100%" height="100%" />
-              </div>
-
-              <div class="card_content">
-                <div class="commodity_title">
-                  <div class="commodity_title_text">蜜蕉乾 零添加</div>
-                </div>
-
-                <div class="card_tag">
-                  <img src="../assets/icon/tag.svg" alt width="16px" height="16px" class="tag_icon" />
-                  <span class="card_tag_text">24hr宅配到府</span>
-                </div>
-
-                <div class="card_price">
-                  <span class="money">550</span>
-                </div>
-
-                <div class="buy">
-                  <a href="#" class="card_btn">加入購物籃</a>
-                  <a href="#" class="card_btn">直接購買</a>
-                </div>
-              </div>
-            </div>
-            <div class="commodity">
-              <div class="card_img_box">
-                <img src="../assets/ia_300000017.jpg" width="100%" height="100%" />
-              </div>
-
-              <div class="card_content">
-                <div class="commodity_title">
-                  <div class="commodity_title_text">蜜蕉乾 零添加</div>
-                </div>
-
-                <div class="card_tag">
-                  <img src="../assets/icon/tag.svg" alt width="16px" height="16px" class="tag_icon" />
-                  <span class="card_tag_text">24hr宅配到府</span>
-                </div>
-
-                <div class="card_price">
-                  <span class="money">550</span>
+                  <span class="money">{{i.price}}</span>
                 </div>
 
                 <div class="buy">
@@ -483,7 +364,7 @@
         <li class="page-item pageborder">
           <a class="page-link" href="#">1</a>
         </li>
-        <li class="page-item">
+        <!--  <li class="page-item">
           <a class="page-link" href="#">2</a>
         </li>
         <li class="page-item">
@@ -506,7 +387,7 @@
         </li>
         <li class="page-item">
           <a class="page-link" href="#">9</a>
-        </li>
+        </li>-->
         <li class="page-item page-right">
           <a class="page-link" href="#">
             <img src="../assets/product_button_right.svg" alt height="40" width="30" />
@@ -526,10 +407,8 @@ import { gsap, TweenMax, Power1, Power3, TimelineMax, Linear } from "gsap";
 export default {
   data() {
     return {
-      item: {
-        money: 0,
-        itemName: ""
-      }
+      shopcommodity: {},
+      tags: []
     };
   },
   mounted() {
@@ -662,14 +541,24 @@ export default {
 
     const api = "/api/api_item.php";
 
-    this.$http
-      .post(api)
-      .then(res => {
-        const data = res.data;
-        this.item.itemName = data.name;
-        this.item.money = data.price;
-      })
-      .catch(err => console.log(err));
+    this.$http.post(api).then(res => {
+      // const data = res.data;
+      // this.item.itemName = data.name;
+      // this.item.money = data.price;
+
+
+      this.shopcommodity = res.data;
+      // this.tags = res.data;
+
+      // console.log(res.data);
+      // console.log(res.error);
+    });
+  },
+
+  methods: {
+    changePage: function(i) {
+      console.log(i);
+    }
   }
 };
 </script>

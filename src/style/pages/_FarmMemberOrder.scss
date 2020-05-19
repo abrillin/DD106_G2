@@ -46,8 +46,6 @@ div.FarmOrder {
 
     .FarmOrder_bottom {
         display: block;
-        padding-top: 100px;
-        margin: 0 auto;
         text-align: center;
 
         @include rwd(medium) {
@@ -58,9 +56,9 @@ div.FarmOrder {
 
         >.list_1 {
             display: flex;
+            justify-content: center;
             height: auto;
             text-align: start;
-            margin-left: 30%;
 
             @include rwd(large) {
                 margin-left: 25%;
@@ -247,7 +245,7 @@ div.FarmOrder {
                     top: 6px;
                 }
 
-                .statuslable:after {
+                .after {
                     content: '';
                     position: absolute;
                     top: 1.5px;
@@ -258,17 +256,15 @@ div.FarmOrder {
                     border-radius: 90px;
                     transition: 0.3s;
                 }
-
-                .statusBtn:checked+.statuslable {
-                    background: #bada55;
+                .color{
+                        background: #bada55;
                 }
-
-                .statusBtn:checked+.statuslable:after {
+                
+                .scrol{
                     left: calc(100% - 2px);
                     transform: translateX(-100%);
                 }
-
-                .statuslable:active:after {
+                .statuslable:active + .after {
                     width: 20px;
                 }
             }

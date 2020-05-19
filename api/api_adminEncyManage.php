@@ -2,12 +2,12 @@
 try {
     require_once("connectDB.php");
     
-	$sql = "select * from `admin`";
-	$admin = $pdo->query($sql);
-    $adminInfo = $admin->fetchAll(PDO::FETCH_ASSOC);
-    $admin->execute();
+	$sql = "select * from `encyclopedia`";
+	$encyEdit = $pdo->query($sql);
+    $encyEditInfo = $encyEdit->fetchAll(PDO::FETCH_ASSOC);
+    $encyEdit->execute();
 
-    echo json_encode($adminInfo);
+    echo json_encode($encyEditInfo);
     
 } catch (PDOException $e) {
 
