@@ -226,7 +226,7 @@ export default {
           console.log(data.error);
         }
 
-        if (data == 0) {
+        if (data == 1) {
           alert("註冊完成！");
 
           this.form = {
@@ -243,7 +243,7 @@ export default {
           $(".movebox").css("transform", "translateX(-10%)");
           $(".signup").addClass("nodisplay");
           $(".signin").removeClass("nodisplay");
-        } else if (data == 1) {
+        } else if (data == 0) {
           alert("此帳號已經被註冊過！");
         }
       });
