@@ -31,8 +31,17 @@
                 <td>{{row.acc}}</td>
                 <td>{{row.psw}}</td>
                 <td>
-                  <input class="statusBtn" type="checkbox" :id="'switch'+row.no" />
-                  <label class="statusBtnLabel" :for="'switch'+row.no">Toggle</label>
+                  <input
+                    class="statusBtn"
+                    type="checkbox"
+                    :id="'switch'+row.no"
+                    v-model="row.status"
+                  />
+                  <label
+                    class="statusBtnLabel"
+                    :for="'switch'+row.no"
+                    @click="toggleStatus(row.no, row.status)"
+                  >Toggle</label>
                 </td>
               </tr>
             </tbody>
@@ -53,22 +62,36 @@ export default {
       data: []
     };
   },
-  created(){
-    const api ="/api/api_adminManage.php";
+  created() {
+    const api = "/api/api_adminManage.php";
 
     this.$http // $http 是將axios封裝後的promise寫法
-    .post(api) // 用axios post info到此api
-    .then(res => { // 如果可以傳送出去的話會response資料回來
+      .post(api) // 用axios post info到此api
+      .then(res => {
+        // 如果可以傳送出去的話會response資料回來
+        this.data = res.data; // 只取res中的data屬性中的資料
 
-      this.data = res.data; // 只取res中的data屬性中的資料
+        // 資料型別轉換
+        res.data.forEach(i => {
+          i.status = parseInt(i.status);
+        });
+      });
+  },
+  methods: {
+    toggleStatus(no, status) {
+      const api = "/api/api_adminUpdate.php";
+      let s;
 
-      // this.no = data[0].no;
-      // this.name = data[0].name;
-      // this.acc = data[0].acc;
-      // this.psw = data[0].psw;
-      
-    })
-    // .catch(err => console.log(err));
+      // 如果狀態是 1 (停權) 則切換成 0 (正常)
+      if (status == 1) {
+        s = 0;
+      } else if (status == 0) {
+        s = 1;
+      }
+
+      // 發送到 DB 更新管理員的狀態
+      this.$http.post(api, JSON.stringify({ no: no, status: s }));
+    }
   }
 };
 </script>

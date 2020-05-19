@@ -44,8 +44,6 @@ div.FarmList {
 
     .FarmList_bottom {
         display: block;
-        padding-top: 100px;
-        margin: 0 auto;
         text-align: center;
 
         @include rwd(medium) {
@@ -55,11 +53,11 @@ div.FarmList {
         }
 
         >.list_1 {
-
             display: flex;
+            justify-content: center;
             height: auto;
             text-align: start;
-            margin-left: 30%;
+
             @include rwd(large) {
                 margin-left: 13%;
             }
@@ -89,7 +87,7 @@ div.FarmList {
                 >.title {
                     background-color: #F7C845;
                     padding: 20px 0px 20px 0px;
-                    margin-bottom: 44px;
+                    margin-bottom: 22px;
                     @include rwd(mobile) {
                         margin-bottom: 44px;
                         padding: 20px 0px 20px 0px;
@@ -137,7 +135,7 @@ div.FarmList {
                 >.title {
                     background-color: #F7C845;
                     padding: 20px 0px 20px 0px;
-                    margin-bottom: 66px;
+                    margin-bottom: 44px;
                     @include rwd(medium){
                         padding: 20px 0px 20px 0px;
                     }
@@ -176,7 +174,7 @@ div.FarmList {
                 >.title {
                     background-color: #F7C845;
                     padding: 20px 0px 20px 0px;
-                    margin-bottom: 66px;
+                    margin-bottom: 44px;
                     @include rwd(mobile) {
                         padding: 28px 0px 28px 0px;
                         margin-bottom: 44px;
@@ -224,7 +222,7 @@ div.FarmList {
                 >.title {
                     background-color: #F7C845;
                     padding: 20px 0px 20px 0px;
-                    margin-bottom: 66px;
+                    margin-bottom: 44px;
                     @include rwd(mobile) {
                         padding: 28px 0px 28px 0px;
                         margin-bottom: 44px;
@@ -271,7 +269,7 @@ div.FarmList {
                 >.title {
                     background-color: #F7C845;
                     padding: 20px 0px 20px 0px;
-                    margin-bottom: 66px;
+                    margin-bottom: 44px;
                     @include rwd(mobile) {
                         padding: 20px 0px 20px 0px;
                         margin-bottom: 36px;
@@ -318,7 +316,7 @@ div.FarmList {
                 >.title {
                     background-color: #F7C845;
                     padding: 20px 0px 20px 0px;
-                    margin-bottom: 66px;
+                    margin-bottom: 44px;
                     @include rwd(mobile) {
                         padding: 20px 0px 20px 0px;
                         margin-bottom: 36px;
@@ -364,8 +362,8 @@ div.FarmList {
 
                 >.title {
                     background-color: #F7C845;
-                    padding: 20px 0px 36px 0px;
-                    margin-bottom: 66px;
+                    padding: 20px 0px 37px 0px;
+                    margin-bottom: 44px;
                     @include rwd(mobile) {
                         padding: 20px 0px 52px 0px;
                         margin-bottom: 0;

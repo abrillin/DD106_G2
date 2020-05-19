@@ -38,8 +38,10 @@ div.MemberUpdate_right {
     > .bottom_form {
       display: inline-block;
       border: 1px solid #666;
+      width: 490px;
       @include rwd(small) {
         line-height: normal;
+        width: 352px;
       }
 
       > .update_left {
@@ -78,14 +80,14 @@ div.MemberUpdate_right {
         padding-left: 30px;
         padding-right: 30px;
         width: 340px;
-        height: 570px;
+        height: 620px;
         line-height: 3.5;
         @include rwd(medium) {
           width: 340px;
         }
         @include rwd(small) {
           width: 70%;
-          height: 450px;
+          height: 500px;
           line-height: 3;
           font-size: 1.4rem;
         }

@@ -46,8 +46,6 @@ div.FarmBlog {
 
     .FarmBlog_bottom {
         display: block;
-        padding-top: 100px;
-        margin: 0 auto;
         text-align: center;
 
         @include rwd(medium) {
@@ -58,9 +56,9 @@ div.FarmBlog {
         >.list_1 {
 
             display: flex;
+            justify-content: center;
             height: auto;
             text-align: start;
-            margin-left: 30%;
 
             @include rwd(large) {
                 margin-left: 25%;
