@@ -15,7 +15,7 @@
     <div class="FarmBlog_bottom">
       <div class="list_1">
         <div class="bottomheader">
-          <table class="orderTab">
+          <table class="blogTab">
             <thead>
               <tr>
                 <th>日誌編號</th>
@@ -24,23 +24,19 @@
                 <th>發文時間</th>
                 <th>狀態</th>
               </tr>
-            </thead>
-          </table>
-        </div>
-        <div class="bottomcontent">
-          <table class="orderTab">
-            <tbody>
               <tr>
                 <td>xxxx</td>
                 <td>出發囉！賞螢採梅尋浪...</td>
                 <td>台南梅嶺，這是一個有...</td>
                 <td>2020-04-16 11:22</td>
+                <td></td>
                 <!-- <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
                                         for="switch">Toggle<div class="after"></div></label></p> -->
               </tr>
-            </tbody>
+            </thead>
           </table>
         </div>
+
         <!-- <div class="Blogputon">
                     <p class="title">狀態</p>
                     <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
@@ -70,7 +66,7 @@
                 </div> -->
       </div>
 
-      <div class="pagination_block">
+      <!-- <div class="pagination_block">
         <ul class="pagination">
           <li><a href="#">&lt;</a></li>
           <li><a href="#" class="-on">1</a></li>
@@ -85,7 +81,7 @@
           <li><a href="#">10</a></li>
           <li><a href="#">&gt;</a></li>
         </ul>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
