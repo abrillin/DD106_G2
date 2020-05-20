@@ -530,7 +530,7 @@ export default {
 
     this.$http.post(api).then(res => {
       this.shopcommodity = res.data;
-      this.tags = res.data;
+      // this.tags = res.data;
 
       for (let i = 1; i < 9; i++) {
         this.shopcommodityfilter.push(this.shopcommodity["pro"][i]);

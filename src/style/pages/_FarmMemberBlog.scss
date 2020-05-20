@@ -46,24 +46,27 @@ div.FarmBlog {
 
     .FarmBlog_bottom {
         display: block;
-        padding-top: 100px;
-        margin: 0 auto;
         text-align: center;
 
         @include rwd(medium) {
             display: block;
             width: 100%;
             padding-top: 10%;
+            @include rwd(small){
+                padding-top: 0%;
+            }
         }
         >.list_1 {
 
             display: flex;
+            flex-direction: column;
+            margin: auto;
+            justify-content: center;
+            align-items: center;
             height: auto;
-            text-align: start;
-            margin-left: 30%;
 
             @include rwd(large) {
-                margin-left: 25%;
+                margin-left: 0%;
             }
 
             @include rwd(medium) {
@@ -71,232 +74,68 @@ div.FarmBlog {
             }
 
             @include rwd(small) {
-                margin-left: 18%;
+                margin-left: 2%;
             }
 
             @include rwd(mobile) {
                 margin-left: 4%;
             }
 
-            >.Blognum {
-                width: 15%;
-                text-align: center;
-                background-color: white;
-
-                @include rwd(mobile) {
-                    width: 20%;
+            .bottomheader {
+                display: flex;
+                background: #f7c845;
+                width: 90%;
+                @include rwd(large){
+                    width: 100%;
                 }
-
-                >.title {
-                    background-color: #F7C845;
-                    padding: 20px 0px 20px 0px;
-
-                    @include rwd(mobile) {
-                        padding: 20px 0px 20px 0px;
-                    }
-                }
-
-                >p {
-                    padding: 20px 0px 20px 0px;
-                    @include rwd(large){
-                        padding: 20px 0px 36.8px 0px; 
-                    }
-                    @include rwd(medium){
-                        padding: 20px 0px 54px 0px;
-                    }
-                    @include rwd(mobile) {
-                        padding: 20px 0px 91px 0px;
-                    }
+                @include rwd(small){
+                    width: 100%;
                 }
             }
 
-            >.Blogname {
-                width: 17%;
-                text-align: center;
-                background-color: white;
-
-                @include rwd(large) {
-                    width: 19.3%;
+            .bottomcontent {
+                display: flex;
+                background-color: #fff;
+                height: 80%;
+                margin-top: 0;
+                width: 90%;
+                @include rwd(large){
+                    width: 100%;
                 }
-
-                @include rwd(medium) {
-                    width: 23.4%;
-                }
-
-                @include rwd(small) {
-                    width: 28.5%;
-                }
-
-                @include rwd(mobile) {
-                    width: 20%;
-                }
-
-                >.title {
-                    background-color: #F7C845;
-                    padding: 20px 0px 20px 0px;
-                    @include rwd(medium){
-                        padding: 20px 0px 20px 0px;
-                    }
-                    @include rwd(mobile) {
-                        padding: 20px 0px 20px 0px;
-                    }
-                }
-
-                >p {
-                    padding: 20px 0px 20px 0px;
-                    @include rwd(medium){
-                        padding: 20px 0px 37px 0px;
-                    }
-                    @include rwd(mobile){
-                        padding: 20px 0px 55px 0px;
-                    }
+                @include rwd(small){
+                    width: 100%;
                 }
             }
 
-            >.Blogcontent {
-                width: 17%;
+            .blogTab {
+                table-layout: auto;
+            }
+
+            th {
+                width: 287px;
+                padding: 15px 0;
                 text-align: center;
-                background-color: white;
-
-                @include rwd(mobile) {
-                    width: 20%;
+                @include rwd(large){
+                    width: 130px;
                 }
-
-                >.title {
-                    background-color: #F7C845;
-
-                    @include rwd(mobile) {
-                        padding: 20px 0px 20px 0px;
-                    }
-                }
-
-                >p {
-                    padding: 20px 0px 20px 0px;
-
-                    @include rwd(mobile) {
-                        padding: 36px 0px 38px 0px;
-                    }
+                @include rwd(mobile){
+                    width: 55px;
+                    font-size: 13px;
                 }
             }
 
-            >.Blogtime {
-                width: 15%;
+            td {
+                width: 287px;
+                padding: 15px 0;
                 text-align: center;
-                background-color: white;
-
-                @include rwd(large) {
-                    width: 16.8%;
+                vertical-align: middle;
+                font-size: 16px;
+                @include rwd(large){
+                    width: 130px;
                 }
-
-                @include rwd(medium) {
-                    width: 20.3%;
-                }
-
-                @include rwd(small) {
-                    width: 24.7%;
-                }
-
-                @include rwd(mobile) {
-                    width: 20%;
-                }
-
-                >.title {
-                    background-color: #F7C845;
-                    padding: 20px 0px 20px 0px;
-                    @include rwd(mobile) {
-                        padding: 20px 0px 20px 0px;
-                    }
-                }
-
-                >p {
-                    padding: 20px 0px 20px 0px;
-                    @include rwd(medium){
-                        padding: 20px 0px 38px 0px;
-                    }
-                    @include rwd(mobile){
-                        padding: 20px 0px 55px 0px;
-                    }
-                }
-            }
-
-            >.Blogputon {
-                width: 10%;
-                text-align: center;
-                background-color: white;
-                @include rwd(medium){
-                    width: 11%;
-                }
-                @include rwd(small) {
-                    width: 12%;
-                }
-
-                @include rwd(mobile) {
-                    width: 19%;
-                }
-
-                >.title {
-                    background-color: #F7C845;
-                    padding: 20px 0;
-
-                    @include rwd(mobile) {
-                        padding: 20px 0px 20px 0px;
-                    }
-                }
-
-                >p {
-                    padding: 15.3px 0px 22.4px 0px;
-                    @include rwd(large){
-                        padding: 15.3px 0px 40px 0px;
-                    }
-                    @include rwd(medium){
-                        padding: 15.3px 0px 58px 0px;
-                    }
-                    @include rwd(mobile) {
-                        padding: 36px 0px 71px 0px;
-                    }
-                }
-
-                .statusBtn[type='checkbox'] {
-                    height: 0;
-                    width: 0;
-                    visibility: hidden;
-                }
-
-                .statuslable {
-                    cursor: pointer;
-                    text-indent: -9999px;
-                    width: 35px;
-                    height: 19px;
-                    background: rgb(161, 161, 161);
-                    display: inline-block;
-                    border-radius: 100px;
-                    position: relative;
-                    top: 6px;
-                }
-
-                .statuslable:after {
-                    content: '';
-                    position: absolute;
-                    top: 1.5px;
-                    left: 2px;
-                    width: 15px;
-                    height: 15px;
-                    background: #fff;
-                    border-radius: 90px;
-                    transition: 0.3s;
-                }
-
-                .statusBtn:checked+.statuslable {
-                    background: #bada55;
-                }
-
-                .statusBtn:checked+.statuslable:after {
-                    left: calc(100% - 2px);
-                    transform: translateX(-100%);
-                }
-
-                .statuslable:active:after {
-                    width: 20px;
+                @include rwd(mobile){
+                    width: 55px;
+                    font-size: 13px;
                 }
             }
 
@@ -308,6 +147,9 @@ div.FarmBlog {
             margin: auto;
             margin-top: 20px;
             margin-left: 13%;
+            @include rwd(large){
+                margin-left: 3%;
+            }
             @include rwd(medium) {
                 margin-left: 0px;
                 margin-bottom: 10px;
@@ -317,8 +159,9 @@ div.FarmBlog {
                 text-align: center;
                 margin-left: 30px;
             }
-            @include rwd(small){
-                margin-left: 13%;
+
+            @include rwd(small) {
+                margin-left: 4%;
             }
             >ul.pagination {
                 list-style: none;

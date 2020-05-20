@@ -7,6 +7,7 @@ div.FarmList {
     vertical-align: top;
     box-sizing: border-box;
     padding: 60px 40px;
+
     @include rwd(medium) {
         float: right;
         width: calc(100% - 200px);
@@ -17,6 +18,7 @@ div.FarmList {
         width: 100vw;
         padding: 10% 5%;
     }
+
     .FarmList_head {
         color: #f7c845;
         font-size: 3rem;
@@ -25,7 +27,7 @@ div.FarmList {
     .plusbutton {
         display: block;
         padding: 10px 0;
-        
+
         >.plus {
             display: inline-block;
             border: 1px solid #007552;
@@ -44,8 +46,6 @@ div.FarmList {
 
     .FarmList_bottom {
         display: block;
-        padding-top: 100px;
-        margin: 0 auto;
         text-align: center;
 
         @include rwd(medium) {
@@ -54,344 +54,114 @@ div.FarmList {
             padding-top: 10%;
         }
 
-        >.list_1 {
+        @include rwd(small) {
+            padding-top: 0%;
+        }
+        @include rwd(mobile){
+            width: 105%;
+        }
 
+        >.list_1 {
             display: flex;
+            flex-direction: column;
+            margin: auto;
+            justify-content: center;
+            align-items: center;
             height: auto;
-            text-align: start;
-            margin-left: 30%;
+
             @include rwd(large) {
-                margin-left: 13%;
+                margin-left: 0%;
             }
 
             @include rwd(medium) {
-                margin-left: 13%;
+                margin-left: 25%;
             }
 
             @include rwd(small) {
-                margin-left: 13%;
+                margin-left: 2%;
             }
 
             @include rwd(mobile) {
                 margin-left: 4%;
             }
-            >.Listnum {
-                width: 10%;
-                text-align: center;
-                background-color: white;
-                @include rwd(small){
-                    width: 16%;
-                }
-                @include rwd(mobile) {
-                    width: 13%;
-                }
 
-                >.title {
-                    background-color: #F7C845;
-                    padding: 20px 0px 20px 0px;
-                    margin-bottom: 44px;
-                    @include rwd(mobile) {
-                        margin-bottom: 44px;
-                        padding: 20px 0px 20px 0px;
-                    }
-                }
-
-                >p {
-                    padding: 20px 0px 36px 0px;
-                    @include rwd(large){
-                        padding: 0px 0px 36.8px 0px; 
-                    }
-                    @include rwd(medium){
-                        padding: 0px 0px 54.1px 0px;
-                    }
-                    @include rwd(small){
-                        padding: 0px 0px 70px 0px;
-                    }
-                    @include rwd(mobile) {
-                        padding: 0px 0px 123px 0px;
-                    }
-                }
-            }
-
-            >.Listdate {
-                width: 14%;
-                text-align: center;
-                background-color: white;
+            .bottomheader {
+                display: flex;
+                background: #f7c845;
+                width: 90%;
 
                 @include rwd(large) {
-                    width: 19.3%;
-                }
-
-                @include rwd(medium) {
-                    width: 23.4%;
+                    width: 100%;
                 }
 
                 @include rwd(small) {
-                    width: 28.5%;
-                }
-
-                @include rwd(mobile) {
-                    width: 13%;
-                }
-
-                >.title {
-                    background-color: #F7C845;
-                    padding: 20px 0px 20px 0px;
-                    margin-bottom: 66px;
-                    @include rwd(medium){
-                        padding: 20px 0px 20px 0px;
-                    }
-                    @include rwd(mobile) {
-                        margin-bottom: 28px;
-                        padding: 20px 0px 20px 0px;
-                    }
-                }
-
-                >p {
-                    padding: 0px 0px 56px 0px;
-                    @include rwd(large){
-                        padding: 0px 0px 37px 0px;
-                    }
-                    @include rwd(medium){
-                        padding: 0px 0px 54.1px 0px;
-                    }
-                    @include rwd(small){
-                        padding: 0px 0px 54.1px 0px;
-                    }
-                    @include rwd(mobile){
-                        padding: 0px 0px 91px 0px;
-                    }
+                    width: 100%;
                 }
             }
 
-            >.Listprice {
-                width: 10%;
-                text-align: center;
-                background-color: white;
-
-                @include rwd(mobile) {
-                    width: 14%;
-                }
-
-                >.title {
-                    background-color: #F7C845;
-                    padding: 20px 0px 20px 0px;
-                    margin-bottom: 66px;
-                    @include rwd(mobile) {
-                        padding: 28px 0px 28px 0px;
-                        margin-bottom: 44px;
-                    }
-                }
-
-                >p {
-                    padding: 0px 0px 56px 0px;
-                    @include rwd(large){
-                        padding: 0px 0px 37px 0px;
-                    }
-                    @include rwd(medium){
-                        padding: 0px 0px 54.1px 0px;
-                    }
-                    @include rwd(small){
-                        padding: 0px 0px 70px 0px;
-                    }
-                    @include rwd(mobile) {
-                        padding: 0px 0px 123px 0px;
-                    }
-                }
-            }
-
-            >.Listname {
-                width: 10%;
-                text-align: center;
-                background-color: white;
+            .bottomcontent {
+                display: flex;
+                background-color: #fff;
+                height: 80%;
+                margin-top: 0;
+                width: 90%;
 
                 @include rwd(large) {
-                    width: 16.8%;
-                }
-
-                @include rwd(medium) {
-                    width: 20.3%;
+                    width: 100%;
                 }
 
                 @include rwd(small) {
-                    width: 24.7%;
-                }
-
-                @include rwd(mobile) {
-                    width: 14%;
-                }
-
-                >.title {
-                    background-color: #F7C845;
-                    padding: 20px 0px 20px 0px;
-                    margin-bottom: 66px;
-                    @include rwd(mobile) {
-                        padding: 28px 0px 28px 0px;
-                        margin-bottom: 44px;
-                    }
-                }
-
-                >p {
-                    padding: 0px 0px 56px 0px;
-                    @include rwd(large){
-                        padding: 0px 0px 37px 0px;
-                    }
-                    @include rwd(medium){
-                        padding: 0px 0px 54.1px 0px;
-                    }
-                    @include rwd(small){
-                        padding: 0px 0px 70px 0px;
-                    }
-                    @include rwd(mobile){
-                        padding: 0px 0px 123px 0px;
-                    }
+                    width: 100%;
                 }
             }
-            >.Listpay {
-                width: 10%;
+
+            .blogTab {
+                table-layout: auto;
+            }
+
+            th {
+                width: 200px;
+                padding: 15px 0;
                 text-align: center;
-                background-color: white;
 
                 @include rwd(large) {
-                    width: 16.8%;
-                }
-
-                @include rwd(medium) {
-                    width: 20.3%;
-                }
-
-                @include rwd(small) {
-                    width: 24.7%;
+                    width: 120px;
                 }
 
                 @include rwd(mobile) {
-                    width: 13%;
-                }
-
-                >.title {
-                    background-color: #F7C845;
-                    padding: 20px 0px 20px 0px;
-                    margin-bottom: 66px;
-                    @include rwd(mobile) {
-                        padding: 20px 0px 20px 0px;
-                        margin-bottom: 36px;
-                    }
-                }
-
-                >p {
-                    padding: 0px 0px 56px 0px;
-                    @include rwd(large){
-                        padding: 0px 0px 37px 0px;
-                    }
-                    @include rwd(medium){
-                        padding: 0px 0px 54.1px 0px;
-                    }
-                    @include rwd(small){
-                        padding: 0px 0px 70px 0px;
-                    }
-                    @include rwd(mobile){
-                        padding: 0px 0px 107px 0px;
-                    }
+                    width: 43px;
+                    font-size: 13px;
                 }
             }
-            >.Liststatus {
-                width: 10%;
+
+            td {
+                width: 200px;
+                padding: 15px 0;
                 text-align: center;
-                background-color: white;
+                vertical-align: middle;
+                font-size: 16px;
+                // white-space: nowrap;
+
+                // overflow: hidden;
+                // text-overflow: ellipsis;
 
                 @include rwd(large) {
-                    width: 16.8%;
-                }
-
-                @include rwd(medium) {
-                    width: 20.3%;
-                }
-
-                @include rwd(small) {
-                    width: 24.7%;
+                    width: 120px;
                 }
 
                 @include rwd(mobile) {
-                    width: 13%;
+                    // white-space: nowrap;
+
+                    // overflow: hidden;
+                    // text-overflow: ellipsis;
+                    width: 43px;
+                    font-size: 13px;
                 }
 
-                >.title {
-                    background-color: #F7C845;
-                    padding: 20px 0px 20px 0px;
-                    margin-bottom: 66px;
-                    @include rwd(mobile) {
-                        padding: 20px 0px 20px 0px;
-                        margin-bottom: 36px;
-                    }
-                }
-
-                >p {
-                    padding: 0px 0px 56px 0px;
-                    @include rwd(large){
-                        padding: 0px 0px 37px 0px;
-                    }
-                    @include rwd(medium){
-                        padding: 0px 0px 54.1px 0px;
-                    }
-                    @include rwd(small){
-                        padding: 0px 0px 70px 0px;
-                    }
-                    @include rwd(mobile){
-                        padding: 0px 0px 107px 0px;
-                    }
-                }
-            }
-            >.Listdetail {
-                width: 15%;
-                text-align: center;
-                background-color: white;
-
-                @include rwd(large) {
-                    width: 16.8%;
-                }
-
-                @include rwd(medium) {
-                    width: 20.3%;
-                }
-
-                @include rwd(small) {
-                    width: 24.7%;
-                }
-
-                @include rwd(mobile) {
-                    width: 18.6%;
-                }
-
-                >.title {
-                    background-color: #F7C845;
-                    padding: 20px 0px 36px 0px;
-                    margin-bottom: 66px;
-                    @include rwd(mobile) {
-                        padding: 20px 0px 52px 0px;
-                        margin-bottom: 0;
-                    }
-                }
-
-                >a{
+                a {
                     text-decoration: none;
-                    color: black;
-                    >p {
-                        padding: 0px 0px 56px 0px;
-                        @include rwd(large){
-                            padding: 20px 0px 37px 0px;
-                        }
-                        @include rwd(medium){
-                            padding: 20px 0px 54.1px 0px;
-                        }
-                        @include rwd(small){
-                            padding: 20px 0px 70px 0px;
-                        }
-                        @include rwd(mobile){
-                            padding: 47px 0px 76px 0px;
-                        }
-                    }
+                    color: #007552;
                 }
-                
             }
 
         }
@@ -402,6 +172,7 @@ div.FarmList {
             margin: auto;
             margin-top: 20px;
             margin-left: 13%;
+
             @include rwd(medium) {
                 margin-left: 0px;
                 margin-bottom: 10px;
@@ -411,9 +182,11 @@ div.FarmList {
                 text-align: center;
                 margin-left: 30px;
             }
-            @include rwd(small){
-                margin-left: 13%;
+
+            @include rwd(small) {
+                margin-left: 4%;
             }
+
             >ul.pagination {
                 list-style: none;
                 display: inline-block;
@@ -437,6 +210,7 @@ div.FarmList {
                         padding: 5px 10px;
                         font-size: 1rem;
                         color: black;
+
                         @include rwd(mobile) {
                             padding: 5px 5px;
                         }

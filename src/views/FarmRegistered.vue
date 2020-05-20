@@ -25,25 +25,25 @@
         </div>
         <div class="Registered_right">
           <span>
-            <p>{{member.no}}</p>
+            <p>{{ member.no }}</p>
           </span>
           <span>
-            <p>{{member.acc}}</p>
+            <p>{{ member.acc }}</p>
           </span>
           <span>
-            <p>{{member.name}}</p>
+            <p>{{ member.name }}</p>
           </span>
           <span>
-            <p>{{member.nick}}</p>
+            <p>{{ member.nick }}</p>
           </span>
           <span>
-            <p>{{member.gender}}</p>
+            <p>{{ member.gender }}</p>
           </span>
           <span>
-            <p>0{{member.phone}}</p>
+            <p>0{{ member.phone }}</p>
           </span>
           <span>
-            <p>{{member.email}}</p>
+            <p>{{ member.email }}</p>
           </span>
           <!-- <label for>
             <input type="radio" />男
@@ -55,10 +55,9 @@
             <input type="radio" />其他
           </label>
           <br /> -->
-          
-          
+
           <input type="text" v-model="member.add" />
-          <div class="submit_button">
+          <div class="submit_button" @click="registered">
             <div class="correct">
               <p>確定</p>
             </div>
@@ -79,8 +78,10 @@ export default {
         nick: "",
         gender: "",
         phone: "",
-        email: ""
-      }
+        email: "",
+        img: "",
+        add: "",
+      },
     };
   },
   created() {
@@ -88,7 +89,7 @@ export default {
 
     this.$http
       .post(api)
-      .then(res => {
+      .then((res) => {
         const data = res.data;
 
         if (data != "") {
@@ -98,20 +99,38 @@ export default {
             name: data.name,
             nick: data.nick,
             phone: 0 + data.phone,
-            email: data.email
+            email: data.email,
+            img: data.img,
           };
 
           if (data.gender == 1) {
             this.member.gender = "男";
           } else if (data.gender == 2) {
             this.member.gender = "女";
-          } else if (data.gender == 3) {
+          } else if (data.gender == 0) {
             this.member.gender = "其它";
           }
         }
       })
       // eslint-disable-next-line no-console
-      .catch(err => console.log(err));
-  }
+      .catch((err) => console.log(err));
+  },
+  methods: {
+    registered() {
+      const api = "/api/api_farmSignup.php";
+
+      this.$http.post(api, JSON.stringify(this.member)).then((res) => {
+        const data = res.data;
+
+        if (data.error) {
+          // console.log(data.error);
+        }
+
+        if (data == 0) {
+          alert("註冊完成！");
+        }
+      });
+    },
+  },
 };
 </script>

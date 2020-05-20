@@ -89,7 +89,7 @@ export default {
   methods: {
     content: function() {
       console.log(this.page);
-    }
+    },
   }
 };
 </script>

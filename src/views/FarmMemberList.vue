@@ -7,135 +7,64 @@
         </div>
         <div class="FarmList_bottom">
             <div class="list_1">
-                <div class="Listnum">
-                    <p class="title">訂單編號</p>
-                    <p>xxxx</p>
-                    <p>xxxx</p>
-                    <p>xxxx</p>
-                    <p>xxxx</p>
-                    <p>xxxx</p>
-                    <p>xxxx</p>
-                    <p>xxxx</p>
-                    <p>xxxx</p>
-                    <p>xxxx</p>
-                    <p>xxxx</p>
-                    <p>xxxx</p>
-                    <p>xxxx</p>
+                <div class="bottomheader">
+                    <table class="orderTab">
+                        <thead>
+                            <tr>
+                                <th>訂單編號</th>
+                                <th>成立日期</th>
+                                <th>總金額</th>
+                                <th>姓名</th>
+                                <th>付款狀態</th>
+                                <th>訂單狀態</th>
+                            </tr>
+                        </thead>
+                    </table>
                 </div>
-                <div class="Listdate">
-                    <p class="title">成立日期</p>
-                    <p>2020-04-17 13:14</p>
-                    <p>2020-04-17 13:14</p>
-                    <p>2020-04-17 13:14</p>
-                    <p>2020-04-17 13:14</p>
-                    <p>2020-04-17 13:14</p>
-                    <p>2020-04-17 13:14</p>
-                    <p>2020-04-17 13:14</p>
-                    <p>2020-04-17 13:14</p>
-                    <p>2020-04-17 13:14</p>
-                    <p>2020-04-17 13:14</p>
-                    <p>2020-04-17 13:14</p>
-                    <p>2020-04-17 13:14</p>
+                <div class="bottomcontent">
+                    <table class="orderTab">
+                        <tbody>
+                            <tr>
+                                <td>xxxx</td>
+                                <td>2020-04-17 13:14</td>
+                                <td>$1380</td>
+                                <td>某某某</td>
+                                <td>已付款</td>
+                                <td>完成</td>
+                                <td><router-link to="/farm/listupdate">查看詳情</router-link></td>
+                                <!-- <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
+                                        for="switch">Toggle<div class="after"></div></label></p> -->
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="Listprice">
-                    <p class="title">總金額</p>
-                    <p>$1380</p>
-                    <p>$1380</p>
-                    <p>$1380</p>
-                    <p>$1380</p>
-                    <p>$1380</p>
-                    <p>$1380</p>
-                    <p>$1380</p>
-                    <p>$1380</p>
-                    <p>$1380</p>
-                    <p>$1380</p>
-                    <p>$1380</p>
-                    <p>$1380</p>
-                </div>
-                <div class="Listname">
-                    <p class="title">姓名</p>
-                    <p>某某某</p>
-                    <p>某某某</p>
-                    <p>某某某</p>
-                    <p>某某某</p>
-                    <p>某某某</p>
-                    <p>某某某</p>
-                    <p>某某某</p>
-                    <p>某某某</p>
-                    <p>某某某</p>
-                    <p>某某某</p>
-                    <p>某某某</p>
-                    <p>某某某</p>
-                </div>
-                <div class="Listpay">
-                    <p class="title">付款狀態</p>
-                    <p>已付款</p>
-                    <p>已付款</p>
-                    <p>已付款</p>
-                    <p>已付款</p>
-                    <p>已付款</p>
-                    <p>已付款</p>
-                    <p>已付款</p>
-                    <p>已付款</p>
-                    <p>已付款</p>
-                    <p>已付款</p>
-                    <p>已付款</p>
-                    <p>已付款</p>
-                </div>
-                <div class="Liststatus">
-                    <p class="title">訂單狀態</p>
-                    <p>已出貨</p>
-                    <p>已出貨</p>
-                    <p>已出貨</p>
-                    <p>已出貨</p>
-                    <p>已出貨</p>
-                    <p>已出貨</p>
-                    <p>已出貨</p>
-                    <p>已出貨</p>
-                    <p>已出貨</p>
-                    <p>已出貨</p>
-                    <p>已出貨</p>
-                    <p>已出貨</p>
-                </div>
-                <div class="Listdetail">
-                    <p class="title"></p>
-                    <router-link to="/farm/Listupdate">
-                        <p>查看詳情</p>
-                    </router-link>
-                    <router-link to="/farm/Listupdate">
-                        <p>查看詳情</p>
-                    </router-link>
-                    <router-link to="/farm/Listupdate">
-                        <p>查看詳情</p>
-                    </router-link>
-                    <router-link to="/farm/Listupdate">
-                        <p>查看詳情</p>
-                    </router-link>
-                    <router-link to="/farm/Listupdate">
-                        <p>查看詳情</p>
-                    </router-link>
-                    <router-link to="/farm/Listupdate">
-                        <p>查看詳情</p>
-                    </router-link>
-                    <router-link to="/farm/Listupdate">
-                        <p>查看詳情</p>
-                    </router-link>
-                    <router-link to="/farm/Listupdate">
-                        <p>查看詳情</p>
-                    </router-link>
-                    <router-link to="/farm/Listupdate">
-                        <p>查看詳情</p>
-                    </router-link>
-                    <router-link to="/farm/Listupdate">
-                        <p>查看詳情</p>
-                    </router-link>
-                    <router-link to="/farm/Listupdate">
-                        <p>查看詳情</p>
-                    </router-link>
-                    <router-link to="/farm/Listupdate">
-                        <p>查看詳情</p>
-                    </router-link>
-                </div>
+                <!-- <div class="Blogputon">
+                    <p class="title">狀態</p>
+                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
+                            for="switch">Toggle<div class="after"></div></label></p>
+                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
+                            for="switch">Toggle<div class="after"></div></label></p>
+                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
+                            for="switch">Toggle<div class="after"></div></label></p>
+                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
+                            for="switch">Toggle<div class="after"></div></label></p>
+                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
+                            for="switch">Toggle<div class="after"></div></label></p>
+                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
+                            for="switch">Toggle<div class="after"></div></label></p>
+                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
+                            for="switch">Toggle<div class="after"></div></label></p>
+                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
+                            for="switch">Toggle<div class="after"></div></label></p>
+                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
+                            for="switch">Toggle<div class="after"></div></label></p>
+                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
+                            for="switch">Toggle<div class="after"></div></label></p>
+                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
+                            for="switch">Toggle<div class="after"></div></label></p>
+                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
+                            for="switch">Toggle<div class="after"></div></label></p>
+                </div> -->
             </div>
 
 
