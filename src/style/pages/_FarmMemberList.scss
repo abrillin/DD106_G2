@@ -7,6 +7,7 @@ div.FarmList {
     vertical-align: top;
     box-sizing: border-box;
     padding: 60px 40px;
+
     @include rwd(medium) {
         float: right;
         width: calc(100% - 200px);
@@ -17,6 +18,7 @@ div.FarmList {
         width: 100vw;
         padding: 10% 5%;
     }
+
     .FarmList_head {
         color: #f7c845;
         font-size: 3rem;
@@ -25,7 +27,7 @@ div.FarmList {
     .plusbutton {
         display: block;
         padding: 10px 0;
-        
+
         >.plus {
             display: inline-block;
             border: 1px solid #007552;
@@ -52,6 +54,13 @@ div.FarmList {
             padding-top: 10%;
         }
 
+        @include rwd(small) {
+            padding-top: 0%;
+        }
+        @include rwd(mobile){
+            width: 105%;
+        }
+
         >.list_1 {
             display: flex;
             flex-direction: column;
@@ -61,11 +70,11 @@ div.FarmList {
             height: auto;
 
             @include rwd(large) {
-                margin-left: 3%;
+                margin-left: 0%;
             }
 
             @include rwd(medium) {
-                margin-left: 13%;
+                margin-left: 25%;
             }
 
             @include rwd(small) {
@@ -75,12 +84,18 @@ div.FarmList {
             @include rwd(mobile) {
                 margin-left: 4%;
             }
+
             .bottomheader {
                 display: flex;
                 background: #f7c845;
-                width: 800px;
-                @include rwd(small){
-                    width: 700px;
+                width: 90%;
+
+                @include rwd(large) {
+                    width: 100%;
+                }
+
+                @include rwd(small) {
+                    width: 100%;
                 }
             }
 
@@ -89,9 +104,14 @@ div.FarmList {
                 background-color: #fff;
                 height: 80%;
                 margin-top: 0;
-                width: 800px;
-                @include rwd(small){
-                    width: 700px;
+                width: 90%;
+
+                @include rwd(large) {
+                    width: 100%;
+                }
+
+                @include rwd(small) {
+                    width: 100%;
                 }
             }
 
@@ -100,18 +120,45 @@ div.FarmList {
             }
 
             th {
-                width: 160px;
+                width: 200px;
                 padding: 15px 0;
                 text-align: center;
+
+                @include rwd(large) {
+                    width: 120px;
+                }
+
+                @include rwd(mobile) {
+                    width: 43px;
+                    font-size: 13px;
+                }
             }
 
             td {
-                width: 161px;
+                width: 200px;
                 padding: 15px 0;
                 text-align: center;
                 vertical-align: middle;
                 font-size: 16px;
-                a{
+                // white-space: nowrap;
+
+                // overflow: hidden;
+                // text-overflow: ellipsis;
+
+                @include rwd(large) {
+                    width: 120px;
+                }
+
+                @include rwd(mobile) {
+                    // white-space: nowrap;
+
+                    // overflow: hidden;
+                    // text-overflow: ellipsis;
+                    width: 43px;
+                    font-size: 13px;
+                }
+
+                a {
                     text-decoration: none;
                     color: #007552;
                 }
@@ -125,6 +172,7 @@ div.FarmList {
             margin: auto;
             margin-top: 20px;
             margin-left: 13%;
+
             @include rwd(medium) {
                 margin-left: 0px;
                 margin-bottom: 10px;
@@ -134,9 +182,11 @@ div.FarmList {
                 text-align: center;
                 margin-left: 30px;
             }
-            @include rwd(small){
-                margin-left: 13%;
+
+            @include rwd(small) {
+                margin-left: 4%;
             }
+
             >ul.pagination {
                 list-style: none;
                 display: inline-block;
@@ -160,6 +210,7 @@ div.FarmList {
                         padding: 5px 10px;
                         font-size: 1rem;
                         color: black;
+
                         @include rwd(mobile) {
                             padding: 5px 5px;
                         }

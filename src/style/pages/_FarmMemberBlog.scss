@@ -52,6 +52,9 @@ div.FarmBlog {
             display: block;
             width: 100%;
             padding-top: 10%;
+            @include rwd(small){
+                padding-top: 0%;
+            }
         }
         >.list_1 {
 
@@ -63,7 +66,7 @@ div.FarmBlog {
             height: auto;
 
             @include rwd(large) {
-                margin-left: 3%;
+                margin-left: 0%;
             }
 
             @include rwd(medium) {
@@ -81,9 +84,12 @@ div.FarmBlog {
             .bottomheader {
                 display: flex;
                 background: #f7c845;
-                width: 800px;
+                width: 90%;
+                @include rwd(large){
+                    width: 100%;
+                }
                 @include rwd(small){
-                    width: 700px;
+                    width: 100%;
                 }
             }
 
@@ -92,9 +98,12 @@ div.FarmBlog {
                 background-color: #fff;
                 height: 80%;
                 margin-top: 0;
-                width: 800px;
+                width: 90%;
+                @include rwd(large){
+                    width: 100%;
+                }
                 @include rwd(small){
-                    width: 700px;
+                    width: 100%;
                 }
             }
 
@@ -103,17 +112,31 @@ div.FarmBlog {
             }
 
             th {
-                width: 160px;
+                width: 287px;
                 padding: 15px 0;
                 text-align: center;
+                @include rwd(large){
+                    width: 130px;
+                }
+                @include rwd(mobile){
+                    width: 55px;
+                    font-size: 13px;
+                }
             }
 
             td {
-                width: 161px;
+                width: 287px;
                 padding: 15px 0;
                 text-align: center;
                 vertical-align: middle;
                 font-size: 16px;
+                @include rwd(large){
+                    width: 130px;
+                }
+                @include rwd(mobile){
+                    width: 55px;
+                    font-size: 13px;
+                }
             }
 
         }
@@ -124,6 +147,9 @@ div.FarmBlog {
             margin: auto;
             margin-top: 20px;
             margin-left: 13%;
+            @include rwd(large){
+                margin-left: 3%;
+            }
             @include rwd(medium) {
                 margin-left: 0px;
                 margin-bottom: 10px;
@@ -133,8 +159,9 @@ div.FarmBlog {
                 text-align: center;
                 margin-left: 30px;
             }
-            @include rwd(small){
-                margin-left: 13%;
+
+            @include rwd(small) {
+                margin-left: 4%;
             }
             >ul.pagination {
                 list-style: none;

@@ -31,7 +31,7 @@
                                 <td>某某某</td>
                                 <td>已付款</td>
                                 <td>完成</td>
-                                <td><router-link to="farm/listupdate">查看詳情</router-link></td>
+                                <td><router-link to="/farm/listupdate">查看詳情</router-link></td>
                                 <!-- <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
                                         for="switch">Toggle<div class="after"></div></label></p> -->
                             </tr>

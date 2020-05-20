@@ -12,21 +12,31 @@
                         <p>訂單編號: xxxxx</p>
                     </div>
                     <div class="memberorder">
-                        <div class="memberOrder_time">
-                            <p class="title">成立時間</p>
-                            <p>2020-04-17</p>
+                        <div class="orderheader">
+                            <table class="orderTab">
+                                <thead>
+                                    <tr>
+                                        <th>成立時間</th>
+                                        <th>總金額</th>
+                                        <th>付款狀態</th>
+                                        <th>訂單狀態</th>
+                                    </tr>
+                                </thead>
+                            </table>
                         </div>
-                        <div class="memberOrder_price">
-                            <p class="title">總金額</p>
-                            <p>$1380</p>
-                        </div>
-                        <div class="memberOrder_payment">
-                            <p class="title">付款狀態</p>
-                            <p>已付款</p>
-                        </div>
-                        <div class="memberOrder_status">
-                            <p class="title">訂單狀態</p>
-                            <p>完成</p>
+                        <div class="ordercontent">
+                            <table class="orderTab">
+                                <thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>2020-04-17</td>
+                                            <td>$1380</td>
+                                            <td>已付款</td>
+                                            <td>完成</td>
+                                        </tr>
+                                    </tbody>
+                                </thead>
+                            </table>
                         </div>
                     </div>
 
@@ -36,40 +46,31 @@
                     </div>
                     <div class="slide display">
                         <div class="OrderDetail">
-                            <div class="orderdetail_num">
-                                <p class="title">商品編號</p>
-                                <p>xxxxx</p>
-                                <p>xxxxx</p>
-                                <p>xxxxx</p>
-                                <p>xxxxx</p>
+                            <div class="detailheader">
+                                <table class="orderTab">
+                                    <thead>
+                                        <tr>
+                                            <th>商品編號</th>
+                                            <th>名稱</th>
+                                            <th>價格</th>
+                                            <th>數量</th>
+                                            <th>小計</th>
+                                        </tr>
+                                    </thead>
+                                </table>
                             </div>
-                            <div class="orderdetail_name">
-                                <p class="title">名稱</p>
-                                <p>台南麻豆文旦</p>
-                                <p>本月熱賣!屏東香蕉</p>
-                                <p>本月熱賣!屏東香蕉</p>
-                                <p>保證有甜!屏東甘蔗</p>
-                            </div>
-                            <div class="orderdetail_price">
-                                <p class="title">價格</p>
-                                <p>$50</p>
-                                <p>$50</p>
-                                <p>$50</p>
-                                <p>$60</p>
-                            </div>
-                            <div class="orderdetail_amount">
-                                <p class="title">數量</p>
-                                <p>10</p>
-                                <p>10</p>
-                                <p>10</p>
-                                <p>10</p>
-                            </div>
-                            <div class="orderdetail_subtotal">
-                                <p class="title">小計</p>
-                                <p>$500</p>
-                                <p>$500</p>
-                                <p>$500</p>
-                                <p>$600</p>
+                            <div class="detailcontent">
+                                <table class="orderTab">
+                                    <tbody>
+                                        <tr>
+                                            <td>xxxxx</td>
+                                            <td>台南麻豆文旦</td>
+                                            <td>$50</td>
+                                            <td>10</td>
+                                            <td>$500</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
 

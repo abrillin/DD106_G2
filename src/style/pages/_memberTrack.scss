@@ -6,6 +6,7 @@ div.track {
   vertical-align: top;
   box-sizing: border-box;
   padding: 60px 40px;
+  padding-left: 11px;
   @include rwd(medium) {
     float: right;
     width: calc(100% - 200px);
@@ -24,7 +25,7 @@ div.track {
   .track_bottom {
     display: block;
     text-align: center;
-    padding-top: 100px;
+    padding-left: 29px;
     margin: 0 auto;
     @include rwd(medium){
       display: block;
@@ -41,7 +42,7 @@ div.track {
         background-color: white;
         box-shadow: 10px -9px #007552;
         width: 260px;
-        margin-right: 173px;
+        margin-right: 120px;
         font-size: 17px;
         
         @include rwd(large) {
@@ -174,7 +175,7 @@ div.track {
 
     .pagination_block {
       display: inline-block;
-      margin-top: 20px;
+      margin-top: 30px;
       margin-bottom: 20px;
 
       >ul.pagination {
