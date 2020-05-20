@@ -175,7 +175,7 @@
             </div>
           </div>
           <div class="commodity-flex">
-            <div class="commodity" v-for="(i, index) in shopcommodity" :key="index">
+            <div class="commodity" v-for="(i, index) in shopcommodityfilter" :key="index">
               <div class="card_img_box">
                 <img
                   src="../assets/ia_300000017.jpg"
@@ -191,9 +191,9 @@
                   <div class="commodity_title_text">{{i.name}}</div>
                 </div>
 
-                <div class="card_tag">
+                <div class="card_tag" v-for="(j,index) in i.tags" :key="index">
                   <img src="../assets/icon/tag.svg" alt width="16px" height="16px" class="tag_icon" />
-                  <span class="card_tag_text">{{i}}</span>
+                  <span class="card_tag_text">標籤陣列文字需處理</span>
                 </div>
 
                 <div class="card_price">
@@ -356,42 +356,25 @@
 
     <nav class="Page_navigation">
       <ul class="pagination justify-content-center">
-        <li class="page-item page-left">
-          <a class="page-link" href="#">
+        <li @click="pageLeft">
+          <div class="page-link pageLeft">
             <img src="../assets/prouduct_button_left.svg" alt height="40" width="30" />
-          </a>
+          </div>
         </li>
-        <li class="page-item pageborder">
-          <a class="page-link" href="#">1</a>
+
+        <li
+          class="page-item"
+          v-for="(i, index) in pageArr"
+          :key="index"
+          v-on="{ click: pageSelect }"
+        >
+          <div class="page-link">{{i}}</div>
         </li>
-        <!--  <li class="page-item">
-          <a class="page-link" href="#">2</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">3</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">4</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">5</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">6</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">7</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">8</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">9</a>
-        </li>-->
-        <li class="page-item page-right">
-          <a class="page-link" href="#">
+
+        <li class="page-right" @click="nextPage">
+          <div class="page-link">
             <img src="../assets/product_button_right.svg" alt height="40" width="30" />
-          </a>
+          </div>
         </li>
       </ul>
     </nav>
@@ -407,8 +390,12 @@ import { gsap, TweenMax, Power1, Power3, TimelineMax, Linear } from "gsap";
 export default {
   data() {
     return {
-      shopcommodity: {},
-      tags: []
+      shopcommodity: [],
+      shopcommodityfilter: [],
+      tags: [],
+      pageArr: [],
+      currentPage: [],
+      seller: {}
     };
   },
   mounted() {
@@ -542,22 +529,129 @@ export default {
     const api = "/api/api_item.php";
 
     this.$http.post(api).then(res => {
-      // const data = res.data;
-      // this.item.itemName = data.name;
-      // this.item.money = data.price;
-
-
       this.shopcommodity = res.data;
       // this.tags = res.data;
 
-      // console.log(res.data);
-      // console.log(res.error);
+      for (let i = 1; i < 9; i++) {
+        this.shopcommodityfilter.push(this.shopcommodity["pro"][i]);
+      }
+
+      this.currentPage.push(1);
+      for (let i = 1; i < 10; i++) {
+        this.pageArr.push(i);
+      }
+      this.seller = res.data;
+      console.log(res.data["mem"]);
     });
   },
 
+  updated() {
+    for (let i = 0; i <= 8; i++) {
+      document
+        .getElementsByClassName("page-item")
+        [i].setAttribute("class", "page-item");
+      if (
+        document.getElementsByClassName("page-item")[i].textContent ==
+        this.currentPage[0]
+      ) {
+        document
+          .getElementsByClassName("page-item")
+          [i].classList.add("currentPagecolor");
+      }
+    }
+    // console.log(document.getElementsByClassName("page-item"));
+  },
+
   methods: {
-    changePage: function(i) {
-      console.log(i);
+    // changePage: function(i) {
+    //   console.log(i);
+    // }
+
+    pageSelect(e) {
+      let pageNum = parseInt(e.target.textContent);
+      // console.log(pageNum);
+      this.shopcommodityfilter = [];
+      this.currentPage = [];
+      // console.log(parseInt(this.shopcommodity.length / 9));
+      if (
+        pageNum > 5 &&
+        pageNum < parseInt(this.shopcommodity.length / 8) - 5
+      ) {
+        this.pageArr = [];
+        for (let i = pageNum - 4; i < pageNum + 5; i++) {
+          this.pageArr.push(i);
+        }
+      } else if (pageNum >= parseInt(this.shopcommodity.length / 8) - 5) {
+        this.pageArr = [];
+        for (
+          let i = parseInt(this.shopcommodity.length / 8) - 7;
+          i <= parseInt(this.shopcommodity.length / 7);
+          i++
+        ) {
+          this.pageArr.push(i);
+        }
+      } else {
+        this.pageArr = [];
+        for (let i = 1; i < 10; i++) {
+          this.pageArr.push(i);
+        }
+      }
+
+      this.currentPage.push(pageNum);
+      let currentPage1 = this.currentPage[0];
+
+      for (let i = (currentPage1 - 1) * 8 + 1; i < currentPage1 * 8 + 1; i++) {
+        this.shopcommodityfilter.push(this.shopcommodity[i]);
+      }
+
+      for (let i = 1; i < 9; i++) {
+        e.target.parentNode.children[i].setAttribute("class", "page-item");
+      }
+      // console.log(document.getElementsByClassName("pageBorder"));
+      e.target.parentNode.children[1].setAttribute("class", "page-item");
+      //   document.getElementsByClassName("pageBorder")[0].setAttribute("class","");
+    },
+
+    pageLeft() {
+      let currentPage1 = this.currentPage[0];
+      // this.currentPage = [];
+      this.shopcommodityfilter = [];
+      if (this.currentPage > 1) {
+        this.currentPage = [];
+        this.currentPage.push(currentPage1 - 1);
+      }
+      // this.currentPage.push(currentPage1 - 1);
+      let updatePage = this.currentPage[0];
+
+      for (let i = (updatePage - 1) * 8 + 1; i < updatePage * 8 + 1; i++) {
+        this.shopcommodityfilter.push(this.shopcommodity[i]);
+      }
+      if (this.pageArr[0] > 1) {
+        this.pageArr.forEach((item, index, array) => {
+          this.pageArr[index] = this.pageArr[index] - 1;
+        });
+      }
+    },
+
+    nextPage() {
+      console.log("123");
+      let currentPage1 = this.currentPage[0];
+      // this.currentPage = [];
+      this.shopcommodityfilter = [];
+      if (this.currentPage < parseInt(this.shopcommodity.length / 8)) {
+        this.currentPage = [];
+        this.currentPage.push(currentPage1 + 1);
+      }
+      let updatePage = this.currentPage[0];
+
+      for (let i = (updatePage - 1) * 8 + 1; i < updatePage * 8 + 1; i++) {
+        this.shopcommodityfilter.push(this.shopcommodity[i]);
+      }
+      if (this.pageArr[8] < parseInt(this.shopcommodity.length / 8)) {
+        this.pageArr.forEach((item, index, array) => {
+          this.pageArr[index] = this.pageArr[index] + 1;
+        });
+      }
     }
   }
 };
