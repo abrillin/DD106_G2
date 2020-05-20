@@ -106,20 +106,34 @@ export default {
   },
   mounted() {
     if (window.innerWidth < 768) {
-      $("aside.left").addClass("popover");
-      $("button.btn_drawer").on("click", function() {
-        $("aside.left").toggleClass("popover");
-      });
-    }
-
-    $(window).resize(function() {
-      if (window.innerWidth < 768) {
+      if ($("aside.left").hasClass("popover")) {
+        $("button.btn_drawer").on("click", function() {
+          $("aside.left").removeClass("popover");
+        });
+      } else {
         $("aside.left").addClass("popover");
         $("button.btn_drawer").on("click", function() {
           $("aside.left").toggleClass("popover");
         });
+      }
+    } else {
+      $("aside.left").removeClass("popover");
+    }
+
+    $(window).resize(function() {
+      if (window.innerWidth < 768) {
+        if ($("aside.left").hasClass("popover")) {
+          $("button.btn_drawer").on("click", function() {
+            $("aside.left").toggleClass("popover");
+          });
+        } else {
+          $("aside.left").addClass("popover");
+        }
       } else {
         $("aside.left").removeClass("popover");
+        $("button.btn_drawer").on("click", function() {
+          $("aside.left").toggleClass("popover");
+        });
       }
     });
   },
@@ -193,6 +207,11 @@ export default {
           alert("還不是果農了喔");
           this.$router.go(-1);
         } else {
+          const api2 = "/api/api_farmlogin.php";
+
+          this.$http.post(api2, JSON.stringify(this.member)).then((res) => {
+            const data = res.data;
+          });
         }
       });
     },

@@ -8,12 +8,13 @@ try {
     require_once("connectDB.php");
 
     // 操作DB
-    $sql = "select a.*, b.`address`,b.`content`,b.`review_total`,b.`review_count`,b.`member_no` FROM `member` as a LEFT JOIN `seller` as b on a.no =:no&&b.member_no=:no";
+    $sql = "select a.*, b.`address`,b.`content`,b.`review_total`,b.`review_count`,b.`member_no` FROM `member` a,`seller` b WHERE b.member_no=:no && a.acc=:acc";
     $seller = $pdo->prepare($sql);
 
     $sellerInfo = json_decode(file_get_contents("php://input"));
 
     $seller->bindValue(":no", $sellerInfo->no);
+    $seller->bindValue(":acc", $sellerInfo->acc);
     
 
     // 返回data

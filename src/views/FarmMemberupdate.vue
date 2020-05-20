@@ -144,7 +144,7 @@ export default {
             alert("修改成功！");
 
             this.updateSession();
-            this.$router.go(1);
+            this.$router.go(0);
           }
         })
         // eslint-disable-next-line no-console
