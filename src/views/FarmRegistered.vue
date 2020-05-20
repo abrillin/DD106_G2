@@ -40,7 +40,7 @@
             <p>{{ member.gender }}</p>
           </span>
           <span>
-            <p>0{{ member.phone }}</p>
+            <p>{{ member.phone }}</p>
           </span>
           <span>
             <p>{{ member.email }}</p>
@@ -111,9 +111,7 @@ export default {
             this.member.gender = "其它";
           }
         }
-      })
-      // eslint-disable-next-line no-console
-      .catch((err) => console.log(err));
+      });
   },
   methods: {
     registered() {

@@ -3,10 +3,7 @@
     <homePage />
   </div>
 </template>
-
 <script>
-// @ is an alias to /src
-// import "@/js/home";
 import homePage from "@/components/homePage";
 import $ from "jquery";
 import * as THREE from "three";
@@ -44,7 +41,7 @@ import fruitboxline01 from "@/assets/fruitboxline.png";
 export default {
   name: "Home",
   components: {
-    homePage,
+    homePage
   },
   mounted() {
     gsap.registerPlugin(MotionPathPlugin);
@@ -97,42 +94,42 @@ export default {
         map: loader.load(cloudWhite),
         transparent: true,
         depthWrite: false,
-        alphaTest: 0.7,
+        alphaTest: 0.7
       });
       materialcloud1.map.minFilter = THREE.LinearFilter;
       var materialcloud2 = new THREE.MeshBasicMaterial({
         map: loader.load(cloud2White),
         transparent: true,
         depthWrite: false,
-        alphaTest: 0.2,
+        alphaTest: 0.2
       });
       materialcloud2.map.minFilter = THREE.LinearFilter;
       var materialcloud3 = new THREE.MeshBasicMaterial({
         map: loader.load(cloudGreen),
         transparent: true,
         depthWrite: false,
-        alphaTest: 0,
+        alphaTest: 0
       });
       materialcloud3.map.minFilter = THREE.LinearFilter;
       var materialcloud4 = new THREE.MeshBasicMaterial({
         map: loader.load(cloud2Green),
         transparent: true,
         depthWrite: false,
-        alphaTest: 0.8,
+        alphaTest: 0.8
       });
       materialcloud4.map.minFilter = THREE.LinearFilter;
       var materialcloud5 = new THREE.MeshBasicMaterial({
         map: loader.load(cloudSkin),
         transparent: true,
         depthWrite: false,
-        alphaTest: 0.5,
+        alphaTest: 0.5
       });
       materialcloud5.map.minFilter = THREE.LinearFilter;
       var materialcloud6 = new THREE.MeshBasicMaterial({
         map: loader.load(cloudPink),
         transparent: true,
         depthWrite: false,
-        alphaTest: 0.6,
+        alphaTest: 0.6
       });
       materialcloud6.map.minFilter = THREE.LinearFilter;
 
@@ -140,7 +137,7 @@ export default {
         map: loader.load(cloudsmoke),
         transparent: true,
         depthWrite: false,
-        alphaTest: 0.8,
+        alphaTest: 0.8
       });
       materialcloud7.map.minFilter = THREE.LinearFilter;
 
@@ -151,7 +148,7 @@ export default {
         alphaTest: 0,
         blending: THREE.CustomBlending,
         blendSrc: THREE.OneFactor,
-        blendDst: THREE.OneMinusSrcAlphaFactor,
+        blendDst: THREE.OneMinusSrcAlphaFactor
       });
 
       var materialcloudlight2 = new THREE.MeshBasicMaterial({
@@ -161,7 +158,7 @@ export default {
         alphaTest: 0,
         blending: THREE.CustomBlending,
         blendSrc: THREE.OneFactor,
-        blendDst: THREE.OneMinusSrcAlphaFactor,
+        blendDst: THREE.OneMinusSrcAlphaFactor
       });
 
       // instantiate a loader
@@ -173,7 +170,7 @@ export default {
         x: 400,
         repeat: -1,
         yoyo: true,
-        ease: Linear.easeIn,
+        ease: Linear.easeIn
       });
 
       let cloud2 = new THREE.Mesh(
@@ -209,7 +206,7 @@ export default {
         x: -300,
         repeat: -1,
         yoyo: true,
-        ease: Linear.easeIn,
+        ease: Linear.easeIn
       });
 
       let cloud6 = new THREE.Mesh(
@@ -223,7 +220,7 @@ export default {
         x: -300,
         repeat: -1,
         yoyo: true,
-        ease: Linear.easeIn,
+        ease: Linear.easeIn
       });
 
       let cloudlight = new THREE.Mesh(
@@ -243,7 +240,7 @@ export default {
         x: -100,
         repeat: -1,
         yoyo: true,
-        ease: Linear.easeIn,
+        ease: Linear.easeIn
       });
 
       let cloud8 = new THREE.Mesh(
@@ -257,7 +254,7 @@ export default {
         x: -320,
         repeat: -1,
         yoyo: true,
-        ease: Linear.easeIn,
+        ease: Linear.easeIn
       });
 
       let cloud9 = new THREE.Mesh(
@@ -271,7 +268,7 @@ export default {
         x: 400,
         repeat: -1,
         yoyo: true,
-        ease: Linear.easeIn,
+        ease: Linear.easeIn
       });
 
       let cloud10 = new THREE.Mesh(
@@ -292,7 +289,7 @@ export default {
         x: -900,
         repeat: -1,
         yoyo: true,
-        ease: Linear.easeIn,
+        ease: Linear.easeIn
       });
 
       let cloud12 = new THREE.Mesh(
@@ -320,7 +317,7 @@ export default {
         x: 400,
         repeat: -1,
         yoyo: true,
-        ease: Linear.easeIn,
+        ease: Linear.easeIn
       });
 
       let cloudlight2 = new THREE.Mesh(
@@ -416,7 +413,7 @@ export default {
         map: loader.load(taiwan),
         transparent: true,
         depthWrite: false,
-        opacity: 0.5,
+        opacity: 0.5
       });
       planeMaterial.map.minFilter = THREE.LinearFilter;
       let plane = new THREE.Mesh(planeGeometry, planeMaterial);
@@ -444,7 +441,7 @@ export default {
         map: loader.load(knowledgeHead),
         transparent: true,
         depthWrite: false,
-        opacity: 0.9,
+        opacity: 0.9
       });
       planeMaterialknowledgehead.map.minFilter = THREE.LinearFilter;
       var knowledgehead = new THREE.Mesh(
@@ -462,13 +459,13 @@ export default {
           x: 50,
           z: -448,
           repeat: -1,
-          yoyo: true,
+          yoyo: true
         },
         {
           x: 51,
           z: -449,
           repeat: -1,
-          yoyo: true,
+          yoyo: true
         }
       );
 
@@ -477,7 +474,7 @@ export default {
         map: loader.load(knowledge01),
         transparent: true,
         depthWrite: false,
-        opacity: 0.9,
+        opacity: 0.9
       });
       planeMaterialknowledge.map.minFilter = THREE.LinearFilter;
       var knowledge = new THREE.Mesh(
@@ -495,7 +492,7 @@ export default {
         map: loader.load(memberLeft),
         transparent: true,
         depthWrite: false,
-        opacity: 0.9,
+        opacity: 0.9
       });
       planeMaterialmember.map.minFilter = THREE.LinearFilter;
       var member = new THREE.Mesh(planeGeometrymember, planeMaterialmember);
@@ -508,7 +505,7 @@ export default {
         map: loader.load(memberRight01),
         transparent: true,
         depthWrite: false,
-        opacity: 0.9,
+        opacity: 0.9
       });
       planeMaterialmemberRight.map.minFilter = THREE.LinearFilter;
       var memberRight = new THREE.Mesh(
@@ -526,7 +523,7 @@ export default {
         map: loader.load(market01),
         transparent: true,
         depthWrite: false,
-        opacity: 0.9,
+        opacity: 0.9
       });
       planeMaterialshop.map.minFilter = THREE.LinearFilter;
       var shop = new THREE.Mesh(planeGeometryshop, planeMaterialshop);
@@ -539,7 +536,7 @@ export default {
         map: loader.load(marketfruit03),
         transparent: true,
         depthWrite: false,
-        opacity: 0.9,
+        opacity: 0.9
       });
       planeMaterialshopfruit.map.minFilter = THREE.LinearFilter;
       var shopfruit = new THREE.Mesh(
@@ -557,13 +554,13 @@ export default {
           z: -100,
           repeat: -1,
           yoyo: true,
-          ease: Power1.easeOut,
+          ease: Power1.easeOut
         },
         {
           z: -130,
           repeat: -1,
           yoyo: true,
-          ease: Power1.easeOut,
+          ease: Power1.easeOut
         }
       );
 
@@ -572,7 +569,7 @@ export default {
         map: loader.load(marketfruit04),
         transparent: true,
         depthWrite: false,
-        opacity: 0.9,
+        opacity: 0.9
       });
       planeMaterialmarketfruit02.map.minFilter = THREE.LinearFilter;
       var marketfruit02 = new THREE.Mesh(
@@ -589,7 +586,7 @@ export default {
         map: loader.load(mont001),
         transparent: true,
         depthWrite: false,
-        opacity: 0.9,
+        opacity: 0.9
       });
       planeMaterialmont01.map.minFilter = THREE.LinearFilter;
       var mont01 = new THREE.Mesh(planeGeometrymont01, planeMaterialmont01);
@@ -602,7 +599,7 @@ export default {
         map: loader.load(mont002),
         transparent: true,
         depthWrite: false,
-        opacity: 0.9,
+        opacity: 0.9
       });
       planeMaterialmont02.map.minFilter = THREE.LinearFilter;
       var mont02 = new THREE.Mesh(planeGeometrymont02, planeMaterialmont02);
@@ -615,7 +612,7 @@ export default {
         map: loader.load(mont003),
         transparent: true,
         depthWrite: false,
-        opacity: 0.9,
+        opacity: 0.9
       });
       planeMaterialmont03.map.minFilter = THREE.LinearFilter;
       var mont03 = new THREE.Mesh(planeGeometrymont03, planeMaterialmont03);
@@ -630,7 +627,7 @@ export default {
         map: loader.load(tree001),
         transparent: true,
         depthWrite: false,
-        opacity: 0.9,
+        opacity: 0.9
       });
       planeMaterialtree01.map.minFilter = THREE.LinearFilter;
       var tree01 = new THREE.Mesh(planeGeometrytree01, planeMaterialtree01);
@@ -643,7 +640,7 @@ export default {
         map: loader.load(tree002),
         transparent: true,
         depthWrite: false,
-        opacity: 0.9,
+        opacity: 0.9
       });
       planeMaterialtree02.map.minFilter = THREE.LinearFilter;
       var tree02 = new THREE.Mesh(planeGeometrytree02, planeMaterialtree02);
@@ -657,7 +654,7 @@ export default {
         map: loader.load(blog01),
         transparent: true,
         depthWrite: false,
-        opacity: 0.9,
+        opacity: 0.9
       });
       planeMaterialblog.map.minFilter = THREE.LinearFilter;
       var blog = new THREE.Mesh(planeGeometryblog, planeMaterialblog);
@@ -670,7 +667,7 @@ export default {
         map: loader.load(blogwatermelon01),
         transparent: true,
         depthWrite: false,
-        opacity: 0.9,
+        opacity: 0.9
       });
       planeMaterialblogwatermelon.map.minFilter = THREE.LinearFilter;
       var blogwatermelon = new THREE.Mesh(
@@ -688,13 +685,13 @@ export default {
           z: -115,
           repeat: -1,
           yoyo: true,
-          ease: Power1.easeOut,
+          ease: Power1.easeOut
         },
         {
           z: -130,
           repeat: -1,
           yoyo: true,
-          ease: Power1.easeOut,
+          ease: Power1.easeOut
         }
       );
 
@@ -704,7 +701,7 @@ export default {
         map: loader.load(waterpear01),
         transparent: true,
         depthWrite: false,
-        opacity: 0.9,
+        opacity: 0.9
       });
       planeMaterialwaterpear.map.minFilter = THREE.LinearFilter;
       var waterpear = new THREE.Mesh(
@@ -720,7 +717,7 @@ export default {
         map: loader.load(waterpearline01),
         transparent: true,
         depthWrite: false,
-        opacity: 0.9,
+        opacity: 0.9
       });
       planeMaterialwaterpearline.map.minFilter = THREE.LinearFilter;
       var waterpearline = new THREE.Mesh(
@@ -737,7 +734,7 @@ export default {
         map: loader.load(fruitbox01),
         transparent: true,
         depthWrite: false,
-        opacity: 0.9,
+        opacity: 0.9
       });
       planeMaterialfruitbox.map.minFilter = THREE.LinearFilter;
       var fruitbox = new THREE.Mesh(
@@ -753,7 +750,7 @@ export default {
         map: loader.load(fruitboxline01),
         transparent: true,
         depthWrite: false,
-        opacity: 0.9,
+        opacity: 0.9
       });
       planeMaterialfruitboxline.map.minFilter = THREE.LinearFilter;
       var fruitboxline = new THREE.Mesh(
@@ -784,7 +781,7 @@ export default {
       var triggerOffset = document.documentElement.clientHeight / 2;
       var tl = new TimelineMax({
         paused: true,
-        useFrames: true,
+        useFrames: true
       })
         .to(
           camera.position,
@@ -803,7 +800,7 @@ export default {
             },
             x: 0,
             y: 900,
-            z: 0,
+            z: 0
           },
           0
         )
@@ -818,7 +815,7 @@ export default {
             },
             x: 22,
             y: 300,
-            z: -420,
+            z: -420
           },
           4000
         )
@@ -833,7 +830,7 @@ export default {
 
             x: 22,
             y: 300,
-            z: -420,
+            z: -420
           },
           6500
         )
@@ -846,27 +843,27 @@ export default {
               path: [
                 {
                   x: 70,
-                  z: -300,
+                  z: -300
                 },
                 {
                   x: 40,
-                  z: -250,
+                  z: -250
                 },
                 {
                   x: 10,
-                  z: -200,
+                  z: -200
                 },
                 {
                   x: -20,
-                  z: -150,
+                  z: -150
                 },
                 {
                   x: -45,
-                  z: -120,
-                },
+                  z: -120
+                }
               ],
-              curviness: 1,
-            },
+              curviness: 1
+            }
           },
           8500
         )
@@ -880,7 +877,7 @@ export default {
             },
             x: -200,
             y: 300,
-            z: -100,
+            z: -100
           },
           8500
         )
@@ -894,23 +891,23 @@ export default {
               path: [
                 {
                   x: -80,
-                  z: -190,
+                  z: -190
                 },
                 {
                   x: 0,
-                  z: -180,
+                  z: -180
                 },
                 {
                   x: 30,
-                  z: -165,
+                  z: -165
                 },
                 {
                   x: 110,
-                  z: -180,
-                },
+                  z: -180
+                }
               ],
-              curviness: 1,
-            },
+              curviness: 1
+            }
           },
           13500
         )
@@ -924,7 +921,7 @@ export default {
             },
             x: 180,
             y: 300,
-            z: -100,
+            z: -100
           },
           13500
         )
@@ -938,15 +935,15 @@ export default {
               path: [
                 {
                   x: 90,
-                  z: -50,
+                  z: -50
                 },
                 {
                   x: 0,
-                  z: 70,
-                },
+                  z: 70
+                }
               ],
-              curviness: 1,
-            },
+              curviness: 1
+            }
           },
           19500
         )
@@ -961,7 +958,7 @@ export default {
 
             x: -100,
             y: 300,
-            z: 200,
+            z: 200
           },
           19500
         )
@@ -971,7 +968,7 @@ export default {
             ease: Power1.easeInOut,
             duration: 2000,
 
-            x: -250,
+            x: -250
           },
           20500
         )
@@ -981,7 +978,7 @@ export default {
             ease: Power1.easeInOut,
             duration: 2000,
 
-            x: 50,
+            x: 50
           },
           20500
         )
@@ -996,7 +993,7 @@ export default {
 
             x: -100,
             y: 900,
-            z: 200,
+            z: 200
           },
           25500
         )
@@ -1011,7 +1008,7 @@ export default {
 
             x: 0,
             y: 900,
-            z: 0,
+            z: 0
           },
           25500
         )
@@ -1026,7 +1023,7 @@ export default {
 
             x: 0,
             y: 900,
-            z: 1400,
+            z: 1400
           },
           28500
         );
@@ -1041,7 +1038,7 @@ export default {
         if (window.pageYOffset > 5500 && window.pageYOffset < 7500) {
           $("#knowledge_container").fadeIn();
           $(".home_title::before").css({
-            bottom: "-19px",
+            bottom: "-19px"
           });
         } else {
           $("#knowledge_container").fadeOut();
@@ -1306,6 +1303,6 @@ export default {
         setTimeout(scrollbtnStop, 2000);
       });
     });
-  },
+  }
 };
 </script>

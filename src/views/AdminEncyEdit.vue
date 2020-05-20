@@ -171,8 +171,7 @@ export default {
           this.data = res.data;
           alert(" 資料新增完成 ٩(･ิᴗ･ิ๑)۶ ");
           this.$router.go(-1);
-        })
-        .catch(err => console.log(err));
+        });
     },
     fileSelect(e) {
       let file = e.target.files.item(0);

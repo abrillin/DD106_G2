@@ -50,7 +50,10 @@
               <label></label>貨到付款
             </p>
           </div>
-          <div class="btn-box"></div>
+          <div class="btn-box">
+            <button type="button" class="btn">上一步</button>
+            <button type="button" class="btn">下一步</button>
+          </div>
         </div>
       </div>
     </div>

@@ -81,8 +81,8 @@ export default {
       .then((res) => {
         // 如果可以傳送出去的話會response資料回來
 
-        this.data = res.data; // 第一個datad是指data()裡的[];只取res中的data屬性中的資料
-      });
-  },
+      this.data = res.data; // 第一個datad是指data()裡的[];只取res中的data屬性中的資料
+    });
+  }
 };
 </script>

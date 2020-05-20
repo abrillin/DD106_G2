@@ -165,10 +165,6 @@ export default {
 
                 // 如果更新成功
                 if (r == 0) {
-                  const api = "/api/api_memberUpdateSession.php";
-
-                  // 觸發更新 session 的API
-                  this.$http.post(api, JSON.stringify(this.member));
                   alert("上傳成功！");
                   this.$router.go(0);
                 } else if (r == 1) {
@@ -193,9 +189,7 @@ export default {
             alert("已經是果農了");
             this.$router.go(-1);
           }
-        })
-
-        .catch((err) => console.log(err));
+        });
     },
     changeFarm: function() {
       const api = "/api/api_checkFarm.php";
