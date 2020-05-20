@@ -409,6 +409,7 @@ export default {
       })
       .catch(err => console.log(err));
   }
+  
   //資料庫連結
 };
 </script>
