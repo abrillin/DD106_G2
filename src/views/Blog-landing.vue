@@ -69,7 +69,7 @@
       <div>
         <div>
           <div>
-            <div>{{ this.blogInfProps.date }}</div>
+            <div>{{ this.previousValue.date }}</div>
             <div>
               <img src="@/assets/blog-img/blog-tag.png" />
               <span> 草莓 </span>
@@ -79,7 +79,7 @@
           </div>
           <div></div>
           <div>
-            <span>{{ this.blogInfProps.title }}</span>
+            <span>{{ this.previousValue.title }}</span>
           </div>
           <div>
             <img src="@/assets/blog-img/blog-bendingbar2.png" />
@@ -578,6 +578,8 @@
         > div:nth-child(1) {
           //文章一區
           // margin-bottom: 10rem;
+          // background-color: #000;
+          height: 385px;
           position: relative;
           &::before {
             content: '';
@@ -616,6 +618,7 @@
         }
         > div:nth-child(2) {
           //文章二區
+          height: 385px;
           padding-bottom: 11%;
         }
       }
@@ -852,7 +855,36 @@ export default {
         date: null,
         blogNo: null,
       },
+      previousValue: null,
     };
+  },
+  created() {
+    this.previousValue = this.blogInfProps;
+    this.msgobj.content = this.blogInfProps.content;
+    this.msgobj.blogNo = this.blogInfProps.no;
+    var nStartTime = new Date(Date.now());
+    let today = `${nStartTime.getFullYear()}-${nStartTime.getMonth() +
+      1}-${nStartTime.getDate()}`;
+    this.msgobj.date = today;
+    console.log(this.previousValue);
+
+    let api = '/api/api_get_msg.php';
+
+    this.$http
+      .post(api, JSON.stringify(this.msgobj))
+      .then((res) => {
+        if (res.data != '') {
+          console.log(res.data);
+        } else {
+        }
+      })
+      .catch((err) => console.log(err));
+  },
+  computed: {
+    loadComment() {
+      this.comment();
+      return this.blogInfProps.no;
+    },
   },
   methods: {
     test() {
@@ -861,22 +893,19 @@ export default {
     prevent() {},
     comment() {
       let msg = document.getElementsByTagName('textarea')[0].value;
-      var nStartTime = new Date(Date.now());
       this.msgobj.content = msg;
-      let today = `${nStartTime.getFullYear()}-${nStartTime.getMonth() +
-        1}-${nStartTime.getDate()}`;
-      this.msgobj.date = today;
-      let blogNo = this.blogInfProps.no;
-      this.msgobj.blogNo = blogNo;
+
+      // let blogNo = this.blogInfProps.no;
+      // this.msgobj.blogNo = blogNo;
       // console.log(this.msgobj);
 
-      const api = '/api/api_blog_msg.php';
+      let api = '/api/api_blog_msg.php';
 
       this.$http
         .post(api, JSON.stringify(this.msgobj))
         .then((res) => {
           if (res.data != '') {
-            console.log(res.data);
+            // console.log(res.data);
           } else {
           }
         })
