@@ -28,7 +28,12 @@
                 <input type="text" v-model="form.nick" />
                 <div class="from_gender">
                   男
-                  <input type="radio" name="gender" v-model="form.gender" value="1" />
+                  <input
+                    type="radio"
+                    name="gender"
+                    v-model="form.gender"
+                    value="1"
+                  />
                   女
                   <input
                     type="radio"
@@ -46,8 +51,18 @@
                 </div>
 
                 <input type="text" v-model="form.acc" />
-                <input id="signupPsw" type="password" v-model="form.psw" @blur="checkPsw" />
-                <input id="signupRePsw" type="password" v-model="form.rePsw" @blur="checkPsw" />
+                <input
+                  id="signupPsw"
+                  type="password"
+                  v-model="form.psw"
+                  @blur="checkPsw"
+                />
+                <input
+                  id="signupRePsw"
+                  type="password"
+                  v-model="form.rePsw"
+                  @blur="checkPsw"
+                />
                 <input type="text" v-model="form.email" />
                 <input type="text" v-model="form.phone" />
               </form>
@@ -69,7 +84,11 @@
             <input type="text" placeholder="請輸入帳號" v-model="member.acc" />
             <br />
             <label>密碼:</label>
-            <input type="password" placeholder="請輸入密碼" v-model="member.psw" />
+            <input
+              type="password"
+              placeholder="請輸入密碼"
+              v-model="member.psw"
+            />
             <br />
             <div class="signinsubmit" @click="login">
               <p>登入</p>
@@ -83,7 +102,13 @@
       </div>
       <div class="leftbox">
         <h1>已經是果粉了?</h1>
-        <img class="loginbutton" id="signin" src="@/assets/login.png" @click="changeSignin" alt />
+        <img
+          class="loginbutton"
+          id="signin"
+          src="@/assets/login.png"
+          @click="changeSignin"
+          alt
+        />
       </div>
       <div class="rightbox">
         <h1>還不是果粉嗎?</h1>
@@ -93,132 +118,132 @@
   </div>
 </template>
 <script>
-import $ from "jquery";
+import $ from 'jquery';
 export default {
   mounted() {
     $(window).resize(function() {
       if (window.innerWidth > 767) {
-        if ($(".signin").hasClass("nodisplay") == false) {
-          $(".movebox").css("left", "5%");
+        if ($('.signin').hasClass('nodisplay') == false) {
+          $('.movebox').css('left', '5%');
         } else {
-          $(".movebox").css("left", "45%");
+          $('.movebox').css('left', '45%');
         }
-        $("#signup").click(function() {
-          $(".movebox").css("left", "45%");
-          $(".signin").addClass("nodisplay");
-          $(".signup").removeClass("nodisplay");
+        $('#signup').click(function() {
+          $('.movebox').css('left', '45%');
+          $('.signin').addClass('nodisplay');
+          $('.signup').removeClass('nodisplay');
         });
 
-        $("#signin").click(function() {
-          $(".movebox").css("left", "5%");
-          $(".signup").addClass("nodisplay");
-          $(".signin").removeClass("nodisplay");
+        $('#signin').click(function() {
+          $('.movebox').css('left', '5%');
+          $('.signup').addClass('nodisplay');
+          $('.signin').removeClass('nodisplay');
         });
       } else {
-        $(".movebox").css("left", "0");
+        $('.movebox').css('left', '0');
 
-        $("#switch_signin").click(function() {
-          $(".signin").addClass("nodisplay");
-          $(".signup").removeClass("nodisplay");
+        $('#switch_signin').click(function() {
+          $('.signin').addClass('nodisplay');
+          $('.signup').removeClass('nodisplay');
         });
 
-        $("#switch_signup").click(function() {
-          $(".signup").addClass("nodisplay");
-          $(".signin").removeClass("nodisplay");
+        $('#switch_signup').click(function() {
+          $('.signup').addClass('nodisplay');
+          $('.signin').removeClass('nodisplay');
         });
       }
     });
     if (window.innerWidth > 767) {
-      $("#signup").click(function() {
-        $(".movebox").css("left", "45%");
-        $(".signin").toggleClass("nodisplay");
-        $(".signup").removeClass("nodisplay");
+      $('#signup').click(function() {
+        $('.movebox').css('left', '45%');
+        $('.signin').toggleClass('nodisplay');
+        $('.signup').removeClass('nodisplay');
       });
 
-      $("#signin").click(function() {
-        $(".movebox").css("left", "5%");
-        $(".signup").addClass("nodisplay");
-        $(".signin").removeClass("nodisplay");
+      $('#signin').click(function() {
+        $('.movebox').css('left', '5%');
+        $('.signup').addClass('nodisplay');
+        $('.signin').removeClass('nodisplay');
       });
     } else {
-      $(".movebox").css("left", "0");
+      $('.movebox').css('left', '0');
 
-      $("#switch_signin").click(function() {
-        $(".signin").addClass("nodisplay");
-        $(".signup").removeClass("nodisplay");
+      $('#switch_signin').click(function() {
+        $('.signin').addClass('nodisplay');
+        $('.signup').removeClass('nodisplay');
       });
 
-      $("#switch_signup").click(function() {
-        $(".signup").addClass("nodisplay");
-        $(".signin").removeClass("nodisplay");
+      $('#switch_signup').click(function() {
+        $('.signup').addClass('nodisplay');
+        $('.signin').removeClass('nodisplay');
       });
     }
   },
   data() {
     return {
       member: {
-        acc: "",
-        psw: ""
+        acc: '',
+        psw: '',
       },
       form: {
-        name: "",
-        nick: "",
-        acc: "",
-        psw: "",
-        rePsw: "",
-        email: "",
-        phone: "",
-        gender: ""
+        name: '',
+        nick: '',
+        acc: '',
+        psw: '',
+        rePsw: '',
+        email: '',
+        phone: '',
+        gender: '',
       }
     };
   },
   methods: {
     login: function() {
-      const api = "/api/api_memberLogin.php";
+      const api = '/api/api_memberLogin.php';
 
-      this.$http.post(api, JSON.stringify(this.member)).then(res => {
+      this.$http.post(api, JSON.stringify(this.member)).then((res) => {
         const data = res.data;
 
-        if (data == "") {
-          alert("痾喔，帳號或密碼輸入錯誤。請重新再試一次！");
+        if (data == '') {
+          alert('痾喔，帳號或密碼輸入錯誤。請重新再試一次！');
         } else if (data == 2) {
-          alert("此帳號已經停權！");
+          alert('此帳號已經停權！');
           return;
         } else {
-          alert(data.nick + " 您好，歡迎回來！");
+          alert(data.nick + ' 您好，歡迎回來！');
 
           // 1. 傳遞登入狀態到父層
-          this.$emit("loginStatus", true);
+          this.$emit('loginStatus', true);
 
           // 清除表單
-          this.member = { acc: "", psw: "" };
+          this.member = {acc: '', psw: ''};
           this.$router.go(-1);
         }
       });
     },
     changeSignin: function() {
       this.form = {
-        name: "",
-        nick: "",
-        acc: "",
-        psw: "",
-        rePsw: "",
-        email: "",
-        phone: "",
-        gender: ""
+        name: '',
+        nick: '',
+        acc: '',
+        psw: '',
+        rePsw: '',
+        email: '',
+        phone: '',
+        gender: '',
       };
     },
     signup: function() {
-      const api = "/api/api_memberSignup.php";
+      const api = '/api/api_memberSignup.php';
 
       for (let i in this.form) {
-        if (this.form[i] == "") {
-          alert("請檢查是否所有欄位都有輸入資料");
+        if (this.form[i] == '') {
+          alert('請檢查是否所有欄位都有輸入資料');
           return;
         }
       }
 
-      this.$http.post(api, JSON.stringify(this.form)).then(res => {
+      this.$http.post(api, JSON.stringify(this.form)).then((res) => {
         const data = res.data;
 
         if (data.error) {
@@ -230,14 +255,14 @@ export default {
           alert("註冊完成！");
 
           this.form = {
-            name: "",
-            nick: "",
-            acc: "",
-            psw: "",
-            rePsw: "",
-            email: "",
-            phone: "",
-            gender: ""
+            name: '',
+            nick: '',
+            acc: '',
+            psw: '',
+            rePsw: '',
+            email: '',
+            phone: '',
+            gender: '',
           };
 
           $(".movebox").css("transform", "translateX(-10%)");
@@ -252,13 +277,13 @@ export default {
       const form = this.form;
 
       if (form.rePsw != form.psw) {
-        document.getElementById("signupPsw").style.backgroundColor = "red";
-        document.getElementById("signupRePsw").style.backgroundColor = "red";
+        document.getElementById('signupPsw').style.backgroundColor = 'red';
+        document.getElementById('signupRePsw').style.backgroundColor = 'red';
       } else {
-        document.getElementById("signupPsw").style.backgroundColor = "";
-        document.getElementById("signupRePsw").style.backgroundColor = "";
+        document.getElementById('signupPsw').style.backgroundColor = '';
+        document.getElementById('signupRePsw').style.backgroundColor = '';
       }
-    }
-  }
+    },
+  },
 };
 </script>

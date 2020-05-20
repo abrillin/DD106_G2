@@ -38,7 +38,7 @@ div.information {
 
     > .bottom_form {
       display: inline-block;
-      width: 492px;
+      width: 490px;
       border: 1px solid #666;
 
       @include rwd(small) {
@@ -90,7 +90,7 @@ div.information {
         }
         @include rwd(small) {
           width: 70%;
-          height: 400px;
+          height: 450px;
         }
 
         span {

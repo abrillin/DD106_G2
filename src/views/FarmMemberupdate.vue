@@ -6,7 +6,7 @@
       </div>
     </div>
     <div class="farmupdate_bottom">
-      <div class="top_card">
+      <!--<div class="top_card">
         <div class="card">
           <div class="up">
             <div class="imgbox">
@@ -30,7 +30,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div>-->
       <div class="bottom_form">
         <div class="person_left">
           <ul>
@@ -48,39 +48,19 @@
         <div class="person_right">
           <p>{{ member.no }}</p>
           <p>{{ member.acc }}</p>
-          <input type="text" v-model="member.name" />
-          <input type="text" v-model="member.nick" />
-          <div>
-            <input
-              type="radio"
-              name="gender"
-              value="1"
-              v-model="member.gender"
-            />男
-            <input
-              type="radio"
-              name="gender"
-              value="2"
-              v-model="member.gender"
-            />女
-            <input
-              type="radio"
-              name="gender"
-              value="0"
-              v-model="member.gender"
-            />其它
-          </div>
+          <p>{{ member.name }}</p>
+          <p>{{ member.nick }}</p>
+          <p>{{ gender }}</p>
+          <p>{{ member.phone }}</p>
+          <p>{{ member.email }}</p>
+          <input type="text" v-model="member.address" />
 
-          <p>0912-345678</p>
-          <p>you_go33@yahoo.com</p>
-          <input type="text" />
-
-          <textarea name="" id="" cols="20" rows="5"></textarea>
-          <div class="submit_button">
+          <textarea name="farmIntro" v-model="member.content"></textarea>
+          <button class="submit_button" @click="update">
             <div class="correct">
               <p>確定</p>
             </div>
-          </div>
+          </button>
         </div>
       </div>
     </div>
@@ -91,6 +71,7 @@ import { log } from "three";
 export default {
   data() {
     return {
+      gender: "",
       member: {
         no: "",
         acc: "",
@@ -132,8 +113,58 @@ export default {
         } else {
           this.member.img = data.img;
         }
+
+        if (data.gender == 1) {
+          this.gender = "男";
+        } else if (data.gender == 2) {
+          this.gender = "女";
+        } else if (data.gender == 0) {
+          this.gender = "其它";
+        }
       }
     });
+  },
+  methods: {
+    update: function() {
+      const api = "/api/api_farmUpdate.php";
+
+      for (let i in this.member) {
+        if (this.member[i] == "") {
+          alert("請檢查是否所有欄位都有輸入資料");
+          return;
+        }
+      }
+
+      this.$http
+        .post(api, JSON.stringify(this.member))
+        .then((res) => {
+          const data = res.data;
+
+          if (data == 0) {
+            alert("修改成功！");
+
+            this.updateSession();
+            this.$router.go(0);
+          }
+        })
+        // eslint-disable-next-line no-console
+        .catch((err) => console.log(err));
+    },
+    updateSession: function() {
+      const api = "/api/api_farmUpdateSession.php";
+
+      this.$http
+        .post(api, JSON.stringify(this.member))
+        .then((res) => {
+          const data = res.data;
+
+          if (data == 1) {
+            // this.$emit("update", true);
+          }
+        })
+        // eslint-disable-next-line no-console
+        .catch((err) => console.log(err));
+    },
   },
 };
 </script>

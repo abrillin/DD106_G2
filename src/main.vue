@@ -12,7 +12,6 @@
         @blogInf="blogInfMethod"
         :blogInfProps="blog"
         :c="c"
-        
       />
     </keep-alive>
   </div>
@@ -23,7 +22,7 @@ export default {
     return {
       login: false,
       blog: [],
-      c:"",
+      c: '',
     };
   },
   methods: {
@@ -33,8 +32,9 @@ export default {
     },
     // 3. c.(blog) 接到 blogInf 的值（b），傳給 this.blog
     blogInfMethod(b) {
-      this.blog = b.aa;
-      this.c=b.bb
+      // this.blog = b.aa;
+      // this.c=b.bb
+      this.blog = b;
     },
   },
 };

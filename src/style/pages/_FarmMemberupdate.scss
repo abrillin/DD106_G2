@@ -1,214 +1,204 @@
 div.farmupdate {
-    display: inline-block;
-    color: #007552;
-    background-color: #FBF8EF;
-    width: calc(100% - 250px);
-    height: 100vh;
-    vertical-align: top;
-    box-sizing: border-box;
-    padding: 60px 40px;
-    @include rwd(medium) {
-        float: right;
-        width: calc(100% - 200px);
-      }
-    
-      @include rwd(small) {
-        float: none;
-        width: 100vw;
-        padding: 10% 5%;
-      }
-    .farmupdate_head {
-        color: #f7c845;
+  display: inline-block;
+  color: #007552;
+  background-color: #fbf8ef;
+  width: calc(100% - 250px);
+  height: 100vh;
+  vertical-align: top;
+  box-sizing: border-box;
+  padding: 60px 40px;
+  @include rwd(medium) {
+    float: right;
+    width: calc(100% - 200px);
+  }
+
+  @include rwd(small) {
+    float: none;
+    width: 100vw;
+    padding: 10% 5%;
+  }
+
+  .farmupdate_head {
+    color: #f7c845;
     font-size: 3rem;
+  }
+
+  .farmupdate_bottom {
+    display: block;
+    text-align: center;
+    padding-top: 100px;
+    margin: 0 auto;
+    @include rwd(medium) {
+      display: block;
+      width: 100%;
+      padding-top: 10%;
     }
 
-    .farmupdate_bottom {
-        display: block;
-        text-align: center;
-        padding-top: 100px;
-        margin: 0 auto;
+    // > .top_card {
+    //   display: inline-block;
+    //   border: 3px solid #007552;
+    //   box-shadow: 5px 5px #007552;
+    //   background-color: white;
+    //   text-align: start;
+    //   width: 660px;
+    //   height: 360px;
+    //   margin: auto;
+    //   background-image: url(../assets/membercard3.png);
+    //   background-position: center bottom;
+    //   background-repeat: no-repeat;
+    //   background-size: 690px;
+    //   overflow: hidden;
+
+    //   @include rwd(medium) {
+    //     width: 610px;
+    //     height: 360px;
+    //   }
+
+    //   @include rwd(small) {
+    //     width: 480px;
+    //     height: 360px;
+    //   }
+
+    //   @include rwd(mobile) {
+    //     width: 330px;
+    //     height: 577px;
+    //   }
+
+    //   > .card {
+    //     display: block;
+    //     padding-top: 20px;
+    //     padding-right: 40px;
+    //     padding-left: 40px;
+
+    //     > .up {
+    //       display: inline-block;
+    //       vertical-align: top;
+    //       margin-bottom: 20px;
+
+    //       > .imgbox {
+    //         display: inline-block;
+    //         width: 100px;
+    //         height: 100px;
+    //         margin-right: 20px;
+
+    //         > img {
+    //           width: 100%;
+    //           height: 100%;
+    //         }
+    //       }
+
+    //       > .uptext {
+    //         display: inline-block;
+    //         text-align: start;
+    //         line-height: 2;
+    //         vertical-align: top;
+
+    //         > .underline {
+    //           border-bottom: 1px solid #007552;
+    //           width: 200px;
+    //           height: 26px;
+    //         }
+    //       }
+    //     }
+
+    //     > .down {
+    //       display: inline-block;
+
+    //       > .downtext {
+    //         > p {
+    //           line-height: 2;
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
+
+    > .bottom_form {
+      display: inline-block;
+      border: 1px solid #666;
+      width: 490px;
+      @include rwd(small) {
+        line-height: normal;
+        width: 352px;
+      }
+
+      > .person_left {
+        vertical-align: top;
+        display: inline-block;
+        background-color: #f7c845;
+        width: 150px;
+        height: 620px;
+        padding-top: 50px;
+        @include rwd(small) {
+          width: 30%;
+          height: 500px;
+        }
+
+        > ul {
+          > li {
+            font-size: 1.8rem;
+            color: #666;
+            line-height: 3.3;
+            @include rwd(small) {
+              font-size: 1.4rem;
+              line-height: 3;
+            }
+          }
+        }
+      }
+
+      > .person_right {
+        display: inline-block;
+        text-align: start;
+
+        background-color: white;
+        box-sizing: border-box;
+        padding-top: 50px;
+        padding-left: 30px;
+        padding-right: 30px;
+        width: 340px;
+        height: 670px;
+        line-height: 3.5;
+
         @include rwd(medium) {
-            display: block;
-            width: 100%;
-            padding-top: 10%;
+          width: 340px;
+        }
+        @include rwd(small) {
+          width: 70%;
+          height: 550px;
+          line-height: 3;
+          font-size: 1.4rem;
         }
 
-        >.top_card {
-            display: inline-block;
-            border: 3px solid #007552;
-            box-shadow: 5px 5px #007552;
-            background-color: white;
-            text-align: start;
-            width: 660px;
-            height: 360px;
-            margin: auto;
-            background-image: url(../assets/membercard3.png);
-            background-position: center bottom;
-            background-repeat: no-repeat;
-            background-size: 690px;
-            overflow: hidden;
-
-            @include rwd(medium) {
-                width: 610px;
-                height: 360px;
-            }
-
-            @include rwd(small) {
-                width: 480px;
-                height: 360px;
-            }
-
-            @include rwd(mobile){
-                width: 330px;
-                height: 577px;
-                }
-
-            >.card {
-                display: block;
-                padding-top: 20px;
-                padding-right: 40px;
-                padding-left: 40px;
-
-                >.up {
-                    display: inline-block;
-                    vertical-align: top;
-                    margin-bottom: 20px;
-
-                    >.imgbox {
-                        display: inline-block;
-                        width: 100px;
-                        height: 100px;
-                        margin-right: 20px;
-
-                        >img {
-                            width: 100%;
-                            height: 100%;
-                        }
-                    }
-
-                    >.uptext {
-                        display: inline-block;
-                        text-align: start;
-                        line-height: 2;
-                        vertical-align: top;
-
-                        >.underline {
-                            border-bottom: 1px solid #007552;
-                            width: 200px;
-                            height: 26px;
-                        }
-                    }
-
-                }
-
-                >.down {
-                    display: inline-block;
-
-                    >.downtext {
-                        >p {
-                            line-height: 2;
-                        }
-                    }
-                }
-            }
-
+        textarea {
+          width: 215px;
+          height: 70px;
+          resize: none;
+          @include rwd(small) {
+            width: 170px;
+          }
         }
 
-        >.bottom_form {
-            margin-top: 60px;
-            margin-bottom: 10px;
-            line-height: 1.9;
+        > .submit_button {
+          text-align: center;
+          float: right;
+          border: none;
+          margin-top: 20px;
+          display: inline-block;
+          border-radius: 5px;
+          background-color: #007552;
+          color: white;
+          width: 80px;
+          line-height: 2.3;
+          cursor: pointer;
+          font-size: 1.6rem;
 
-            @include rwd(small) {
-                margin-top: 40px;
-                line-height: 1.8;
-            }
-
-            @include rwd(mobile) {
-                display: flex;
-                width: 100%;
-                margin-top: 40px;
-                margin-bottom: 10px;
-                padding-left: 14px;
-                line-height: 2;
-                font-size: 16px;
-            }
-
-            >.person_left {
-                vertical-align: top;
-                display: inline-block;
-                background-color: #F7C845;
-                width: 260px;
-                height: 500px;
-                padding: 50px 0px;
-
-                @include rwd(medium) {
-                    width: 200px;
-                }
-
-                @include rwd(small) {
-                    width: 100px;
-                }
-
-                @include rwd(mobile) {
-                    width: 25%;
-                }
-
-                >ul {
-                    >li {
-                        padding: 11.5px 0;
-                    }
-                }
-            }
-
-            >.person_right {
-                display: inline-block;
-                position: relative;
-                text-align: start;
-                background-color: white;
-                padding-right: 145px;
-                padding: 50px;
-                height: 500px;
-                width: 260px;
-                line-height: 3.3;
-
-                @include rwd(medium) {
-                    width: 200px;
-                    line-height: 3.3;
-                }
-
-                @include rwd(small) {
-                    padding-right: 120px;
-                    width: 143px;
-                    height: 500px;
-                    line-height: 3.1;
-                }
-
-                @include rwd(mobile) {
-                    padding: 0;
-                    padding-right: 84.8px;
-                    padding-bottom: 54px;
-                    padding-top: 47px;
-                    padding-left: 5px;
-                    width: 40%;
-                    line-height: 3.5;
-                }
-
-                >label {
-                    margin-right: 10px;
-                }
-
-                >.submit_button {
-                    position: absolute;
-                    border-radius: 5px;
-                    background-color: #007552;
-                    color: white;
-                    padding: 0px 20px;
-                    right: 30px;
-                    bottom: 10px;
-                    line-height: 2.3;
-                }
-            }
+          &:hover {
+            background-color: #fca87c;
+            color: #fbf8ef;
+          }
         }
+      }
     }
+  }
 }

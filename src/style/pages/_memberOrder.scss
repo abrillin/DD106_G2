@@ -7,16 +7,18 @@
    box-sizing: border-box;
    padding: 60px 40px;
    padding-top: 20px;
-   @include rwd(medium) {
-    float: right;
-    width: calc(100% - 200px);
-  }
 
-  @include rwd(small) {
-    float: none;
-    width: 100vw;
-    padding: 10% 5%;
-  }
+   @include rwd(medium) {
+     float: right;
+     width: calc(100% - 200px);
+   }
+
+   @include rwd(small) {
+     float: none;
+     width: 100vw;
+     padding: 10% 5%;
+   }
+
    .Order_head {
      color: #F7C845;
      font-size: 3rem;
@@ -26,21 +28,26 @@
      display: block;
      text-align: center;
      margin: 0 auto;
+
      >.Orderlist {
        margin-top: 40px;
        margin-left: 70px;
        line-height: 2;
+       @include rwd(large){
+        margin-top: 40px;
+        margin-left: 0;
+        line-height: 2;
+      }
+      @include rwd(small) {
+        margin-left: 0px;
+      }
 
-       @include rwd(small) {
-         margin-left: 90px;
-       }
-
-       @include rwd(mobile) {
-         margin-top: 40px;
-         margin-left: 0;
-         line-height: 2;
-         padding-left: 20px;
-       }
+      @include rwd(mobile) {
+        margin-top: 40px;
+        margin-left: 0;
+        line-height: 2;
+        padding-left: 0px;
+      }
 
        >.list_1 {
          display: inline-block;
@@ -52,80 +59,64 @@
          font-size: 17px;
          transition: .5s ease;
 
-         @include rwd(medium) {
-           width: 720px;
-           height: auto;
-         }
+         @include rwd(large){
+          width: 700px;
+        }
+        @include rwd(medium) {
+          width: 700px;
+          height: auto;
+        }
 
-         @include rwd(small) {
-           width: 620px;
-           height: auto;
-         }
+        @include rwd(small) {
+          width: 620px;
+          height: auto;
+        }
 
-         @include rwd(mobile) {
-           width: 320px;
-           height: auto;
-           padding: 0 5px;
-         }
+        @include rwd(mobile) {
+          width: 280px;
+          height: auto;
+          padding: 0 5px;
+        }
 
          >.memberorder {
            display: flex;
+           flex-direction: column;
            width: 94%;
            margin-left: 20px;
            text-align: center;
            border: 1px solid #F7C845;
-          @include rwd(mobile){
-            width: 97%;
-            margin-left: 5px;
-          }
-           >.memberOrder_time {
-             width: 30%;
-             text-align: center;
-             background-color: white;
-            @include rwd(mobile){
-              width: 46%;
-            }
-             >.title {
-               background-color: #F7C845;
-               padding: 10px 0px 10px 0px;
-             }
+
+           @include rwd(mobile) {
+             width: 97%;
+             margin-left: 0px;
            }
 
-           >.memberOrder_price {
-             width: 30%;
-             text-align: center;
-             background-color: white;
-
-             >.title {
-               background-color: #F7C845;
-               padding: 10px 0px 10px 0px;
-             }
+           .orderheader {
+             display: flex;
+             background: #f7c845;
            }
-
-           >.memberOrder_payment {
-             width: 30%;
-             text-align: center;
-             background-color: white;
-            @include rwd(mobile){
-              width: 33%;
-            }
-             >.title {
-               background-color: #F7C845;
-               padding: 10px 0px 10px 0px;
-             }
+           .ordercontent{
+             display: flex;
+             background: #fff;
            }
-
-           >.memberOrder_status {
-             width: 30%;
+           .orderTab{
+             table-layout: auto;
+           }
+           th{
+             width: 180px;
+             padding: 10px 0;
              text-align: center;
-             background-color: white;
-            @include rwd(mobile){
-              width: 32%;
+             @include rwd(mobile){
+              font-size: 13px;
             }
-             >.title {
-               background-color: #F7C845;
-               padding: 10px 0px 10px 0px;
-             }
+           }
+           td{
+             width: 180px;
+             padding: 5px 0;
+             text-align: center;
+             @include rwd(mobile){
+              font-size: 13px;
+            }
            }
          }
 
@@ -153,74 +144,46 @@
 
            >.OrderDetail {
              display: flex;
+             flex-direction: column;
              width: 94%;
              margin-left: 20px;
              text-align: center;
              border: 1px solid #F7C845;
-            @include rwd(mobile){
-              width: 100%;
-              margin-left: 0px;
-            }
-             >.orderdetail_num {
-               width: 30%;
-               text-align: center;
-               background-color: white;
-                @include rwd(small){
-                  width: 34%;
-                }
-               >.title {
-                 background-color: #F7C845;
-                 padding: 10px 0px 10px 0px;
-               }
+
+             @include rwd(mobile) {
+               width: 100%;
+               margin-left: 0px;
              }
-             >.orderdetail_name {
-              width: 30%;
-              text-align: center;
-              background-color: white;
-              @include rwd(small){
-                width: 70%;
+             .detailheader{
+               display: flex;
+               background: #f7c845;
+             }
+             .detailcontent{
+               display: flex;
+               height: 80%;
+               margin-top: 0;
+               background: #fff;
+             }
+             .orderTab{
+               table-layout: auto;
+             }
+             th{
+               width: 145px;
+               padding: 15px 0;
+               text-align: center;
+               @include rwd(mobile){
+                font-size: 13px;
               }
-              >.title {
-                background-color: #F7C845;
-                padding: 10px 0px 10px 0px;
+             }
+             td{
+               width: 145px;
+               padding: 10px 0;
+               text-align: center;
+               @include rwd(mobile){
+                font-size: 13px;
               }
-            }
-            >.orderdetail_price {
-              width: 30%;
-              text-align: center;
-              background-color: white;
-              @include rwd(small){
-                width: 17%;
-              }
-              >.title {
-                background-color: #F7C845;
-                padding: 10px 0px 10px 0px;
-              }
-            }
-            >.orderdetail_amount {
-              width: 30%;
-              text-align: center;
-              background-color: white;
-              @include rwd(small){
-                width: 17%;
-              }
-              >.title {
-                background-color: #F7C845;
-                padding: 10px 0px 10px 0px;
-              }
-            }
-            >.orderdetail_subtotal {
-              width: 30%;
-              text-align: center;
-              background-color: white;
-              @include rwd(small){
-                width: 21%;
-              }
-              >.title {
-                background-color: #F7C845;
-                padding: 10px 0px 10px 0px;
-              }
-            }
+             }
+             
            }
          }
 
@@ -232,7 +195,9 @@
            display: block;
            background-color: #FFD3C1;
            margin: 20px 20px;
-
+          @include rwd(mobile){
+            margin: 20px 10px;
+          }
            >p {
              text-align: end;
              padding-right: 10px;
@@ -253,7 +218,9 @@
            display: block;
            background-color: #FFD3C1;
            margin: 20px 20px;
-
+          @include rwd(mobile){
+            margin: 20px 10px;
+          }
            >.address_left {
              display: inline-block;
 
@@ -282,7 +249,9 @@
            background-color: #DCE07A;
            margin: 20px 20px;
            padding: 10px;
-
+           @include rwd(mobile){
+            margin: 20px 10px;
+          }
            >.star {
              display: block;
              background-color: #FBF8EF;
@@ -349,15 +318,23 @@
 
      .pagination_block {
        display: inline-block;
-       margin-top: 20px;
-       margin-bottom: 20px;
+       margin-top: 40px;
+       margin-left: 100px;
 
-       @include rwd(mobile) {
-         display: inline-block;
-         margin-top: 20px;
-         margin-bottom: 20px;
-         padding-left: 42px;
-       }
+       @include rwd(large){
+        margin-left: 10px;
+      }
+      @include rwd(small){
+        margin-left: 0px;
+      }
+      @include rwd(mobile) {
+        display: inline-block;
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        margin-left: 0;
+        padding-left: 2px;
+      }
 
        >ul.pagination {
          list-style: none;
