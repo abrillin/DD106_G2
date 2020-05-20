@@ -211,6 +211,8 @@ export default {
 
           this.$http.post(api2, JSON.stringify(this.member)).then((res) => {
             const data = res.data;
+
+            this.$router.go(0);
           });
         }
       });

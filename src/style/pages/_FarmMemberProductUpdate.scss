@@ -1,219 +1,218 @@
 div.product {
-    display: inline-block;
-    color: #007552;
-    background-color: #fbf8ef;
-    width: calc(100% - 250px);
-    height: 100vh;
-    vertical-align: top;
-    box-sizing: border-box;
-    padding: 60px 40px;
+  display: inline-block;
+  color: #007552;
+  background-color: #fbf8ef;
+  width: calc(100% - 250px);
+  height: 100vh;
+  vertical-align: top;
+  box-sizing: border-box;
+  padding: 60px 40px;
+
+  @include rwd(medium) {
+    float: right;
+    width: calc(100% - 200px);
+  }
+
+  @include rwd(small) {
+    float: none;
+    width: 100vw;
+    padding: 10% 5%;
+  }
+
+  .product_right_head {
+    color: #f7c845;
+    font-size: 3rem;
+
+    > .product_right_head_text {
+      span.new {
+        margin-left: 10px;
+        color: #ffd3c1;
+        font-size: 20px;
+      }
+    }
+  }
+
+  .product_right_bottom {
+    display: block;
+    text-align: center;
+    padding-top: 100px;
+    margin: 0 auto;
 
     @include rwd(medium) {
-        float: right;
-        width: calc(100% - 200px);
+      display: block;
+      width: 100%;
+      padding-top: 10%;
     }
 
-    @include rwd(small) {
-        float: none;
-        width: 100vw;
-        padding: 10% 5%;
-    }
+    > .bottom_form {
+      display: inline-block;
 
-    .product_right_head {
-        color: #f7c845;
-        font-size: 3rem;
+      border: 1px solid #666;
 
-        >.product_right_head_text {
-            span.new {
-                margin-left: 10px;
-                color: #FFD3C1;
-                font-size: 20px;
-            }
-        }
-    }
+      @include rwd(small) {
+        line-height: normal;
+      }
 
-    .product_right_bottom {
-        display: block;
-        text-align: center;
-        padding-top: 100px;
-        margin: 0 auto;
+      > .person_left {
+        vertical-align: top;
+        display: inline-block;
+        background-color: #f7c845;
+        width: 150px;
+        height: 550px;
+        padding-top: 50px;
 
-        @include rwd(medium) {
-            display: block;
-            width: 100%;
-            padding-top: 10%;
+        @include rwd(small) {
+          width: 30%;
+          height: 400px;
         }
 
-        >.bottom_form {
-            display: inline-block;
-
-            border: 1px solid #666;
+        > ul {
+          > li {
+            font-size: 1.8rem;
+            color: #666;
+            line-height: 3.3;
 
             @include rwd(small) {
-                line-height: normal;
+              font-size: 1.4rem;
+              line-height: 3;
             }
-
-            >.person_left {
-                vertical-align: top;
-                display: inline-block;
-                background-color: #f7c845;
-                width: 150px;
-                height: 550px;
-                padding-top: 50px;
-
-                @include rwd(small) {
-                    width: 30%;
-                    height: 400px;
-                }
-
-                >ul {
-                    >li {
-                        font-size: 1.8rem;
-                        color: #666;
-                        line-height: 3.3;
-
-                        @include rwd(small) {
-                            font-size: 1.4rem;
-                            line-height: 3;
-                        }
-                    }
-                }
-
-            }
-
-            >.person_right {
-                display: inline-block;
-                position: relative;
-                text-align: start;
-                background-color: white;
-                color: black;
-                padding: 50px;
-                padding-right: 140px;
-                height: 500px;
-                width: 350px;
-                line-height: 3.14;
-
-                @include rwd(medium) {
-                    width: 42%;
-                    line-height: 3.3;
-                }
-
-                @include rwd(small) {
-                    padding-right: 120px;
-                    width: 40%;
-                    height: 500px;
-                    line-height: 3.1;
-                }
-
-                @include rwd(mobile) {
-                    padding: 0;
-                    padding-right: 60px;
-                    padding-bottom: 77px;
-                    padding-top: 47px;
-                    padding-left: 5px;
-                    width: 55%;
-                    line-height: 3.3;
-                }
-
-                >.tag {
-                    display: block;
-                    color: black;
-                    line-height: 2;
-                    margin-top: 12px;
-
-                    >.tap1 {
-                        display: inline-block;
-                        background-color: #E2E2E2;
-                        border-radius: 20px;
-                        text-align: center;
-                        width: 50px;
-                        padding: 0;
-                        margin-right: 4px;
-                        margin-bottom: 10px;
-                    }
-
-                    >.tap2 {
-                        display: inline-block;
-                        background-color: #E2E2E2;
-                        border-radius: 20px;
-                        text-align: center;
-                        width: 70px;
-                        padding: 0;
-                        margin-right: 4px;
-                        margin-bottom: 10px;
-                    }
-
-                    >.tap3 {
-                        display: inline-block;
-                        display: inline-block;
-                        background-color: #E2E2E2;
-                        border-radius: 20px;
-                        text-align: center;
-                        width: 70px;
-                        padding: 0;
-                        margin-right: 4px;
-                        margin-bottom: 10px;
-                    }
-
-                    >.tap4 {
-                        display: inline-block;
-                        background-color: #E2E2E2;
-                        border-radius: 20px;
-                        text-align: center;
-                        width: 70px;
-                        padding: 0;
-                        margin-right: 4px;
-                        margin-bottom: 10px;
-                    }
-
-                    >.tap5 {
-                        display: inline-block;
-                        background-color: #E2E2E2;
-                        border-radius: 20px;
-                        text-align: center;
-                        width: 70px;
-                        padding: 0;
-                        margin-right: 4px;
-                        margin-bottom: 10px;
-
-                        @include rwd(medium) {
-                            width: 74px;
-                        }
-                    }
-                }
-
-                >.submit_button {
-                    position: absolute;
-                    right: 30px;
-                    bottom: 10px;
-                    line-height: 2;
-
-                    >.cancel {
-                        display: inline-block;
-                        border-radius: 10px;
-                        background-color: #007552;
-                        color: white;
-                        padding: 0px 20px;
-                        margin-right: 20px;
-
-                        &:hover {
-                            background-color: #62B45A;
-                        }
-                    }
-
-                    >.correct {
-                        display: inline-block;
-                        border-radius: 10px;
-                        background-color: #007552;
-                        color: white;
-                        padding: 0px 20px;
-
-                        &:hover {
-                            background-color: #62B45A;
-                        }
-                    }
-                }
-            }
+          }
         }
+      }
+
+      > .person_right {
+        display: inline-block;
+        position: relative;
+        text-align: start;
+        background-color: white;
+        color: black;
+        padding: 50px;
+        padding-right: 140px;
+        height: 500px;
+        width: 350px;
+        line-height: 3.14;
+
+        @include rwd(medium) {
+          width: 42%;
+          line-height: 3.3;
+        }
+
+        @include rwd(small) {
+          padding-right: 120px;
+          width: 40%;
+          height: 500px;
+          line-height: 3.1;
+        }
+
+        @include rwd(mobile) {
+          padding: 0;
+          padding-right: 60px;
+          padding-bottom: 77px;
+          padding-top: 47px;
+          padding-left: 5px;
+          width: 55%;
+          line-height: 3.3;
+        }
+
+        > .tag {
+          display: block;
+          color: black;
+          line-height: 2;
+          margin-top: 12px;
+
+          > .tap1 {
+            display: inline-block;
+            background-color: #e2e2e2;
+            border-radius: 20px;
+            text-align: center;
+            width: 50px;
+            padding: 0;
+            margin-right: 4px;
+            margin-bottom: 10px;
+          }
+
+          > .tap2 {
+            display: inline-block;
+            background-color: #e2e2e2;
+            border-radius: 20px;
+            text-align: center;
+            width: 70px;
+            padding: 0;
+            margin-right: 4px;
+            margin-bottom: 10px;
+          }
+
+          > .tap3 {
+            display: inline-block;
+            display: inline-block;
+            background-color: #e2e2e2;
+            border-radius: 20px;
+            text-align: center;
+            width: 70px;
+            padding: 0;
+            margin-right: 4px;
+            margin-bottom: 10px;
+          }
+
+          > .tap4 {
+            display: inline-block;
+            background-color: #e2e2e2;
+            border-radius: 20px;
+            text-align: center;
+            width: 70px;
+            padding: 0;
+            margin-right: 4px;
+            margin-bottom: 10px;
+          }
+
+          > .tap5 {
+            display: inline-block;
+            background-color: #e2e2e2;
+            border-radius: 20px;
+            text-align: center;
+            width: 70px;
+            padding: 0;
+            margin-right: 4px;
+            margin-bottom: 10px;
+
+            @include rwd(medium) {
+              width: 74px;
+            }
+          }
+        }
+
+        > .submit_button {
+          position: absolute;
+          right: 30px;
+          bottom: 10px;
+          line-height: 2;
+
+          > .cancel {
+            display: inline-block;
+            border-radius: 10px;
+            background-color: #007552;
+            color: white;
+            padding: 0px 20px;
+            margin-right: 20px;
+
+            &:hover {
+              background-color: #62b45a;
+            }
+          }
+
+          > .correct {
+            display: inline-block;
+            border-radius: 10px;
+            background-color: #007552;
+            color: white;
+            padding: 0px 20px;
+
+            &:hover {
+              background-color: #62b45a;
+            }
+          }
+        }
+      }
     }
+  }
 }
