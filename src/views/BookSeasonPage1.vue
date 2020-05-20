@@ -108,7 +108,9 @@ export default {
 
     this.$http.post(api, JSON.stringify({type: this.contentType, index: Math.round(this.page / 2)})).then(res => {
 
-      console.log(res.data);
+      // console.log(Math.floor(this.page / 2));
+      
+      console.log(res.data[Math.floor(this.page / 2)]);
       
     });
 
