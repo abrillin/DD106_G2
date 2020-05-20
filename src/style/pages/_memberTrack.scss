@@ -23,9 +23,13 @@ div.track {
   }
 
   .track_bottom {
-    display: block;
+    display: grid;
+    grid-template-columns: repeat(4, 0.1fr);
+    grid-template-areas: "aa1 aa1 aa1 aa1"
+                          "aa1 aa1 aa1 aa1"
+                          "aa2 aa3 aa3 aa5";
     text-align: center;
-    padding-left: 29px;
+    padding-left: 70px;
     margin: 0 auto;
     @include rwd(medium){
       display: block;
@@ -42,7 +46,8 @@ div.track {
         background-color: white;
         box-shadow: 10px -9px #007552;
         width: 260px;
-        margin-right: 120px;
+        margin-right: 50px;
+        margin-left: 50px;
         font-size: 17px;
         
         @include rwd(large) {
@@ -174,6 +179,7 @@ div.track {
     }
 
     .pagination_block {
+      grid-area: aa3;
       display: inline-block;
       margin-top: 30px;
       margin-bottom: 20px;
@@ -200,7 +206,7 @@ div.track {
             /* 留意：將全部的右邊框都移除 */
 
             text-align: center;
-            padding: 5px 10px;
+            padding: 5px 5px;
             font-size: 1rem;
             color: black;
 
