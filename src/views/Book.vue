@@ -53,6 +53,7 @@
                     :contentIndex="index"
                     :pageId="page"
                     @addType="addIndex"
+                    @changePage="changePage"
                   ></Content>
                   <!-- (page) 3. 接收子層 changePage 事件值給 changePage 方法  -->
                   <Index v-if="change == true" @changePage="changePage"></Index>
@@ -114,7 +115,7 @@ export default {
     };
   },
   mounted() {
-    window.addEventListener("scroll", this.imgMoveToRight, true);
+    // window.addEventListener("scroll", this.imgMoveToRight, true);
   },
   methods: {
     imgMoveToRight() {
@@ -162,7 +163,7 @@ export default {
         this.type = "index";
         this.change = true;
         this.page = 0;
-      }
+      }      
     },
     // (page) 4. 用 p 接收值 (p = {type: type, id: id})
     changePage: function(p) {

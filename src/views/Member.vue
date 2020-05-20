@@ -193,9 +193,7 @@ export default {
             alert("已經是果農了");
             this.$router.go(-1);
           }
-        })
-
-        .catch((err) => console.log(err));
+        });
     },
     changeFarm: function() {
       const api = "/api/api_checkFarm.php";
