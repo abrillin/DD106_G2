@@ -53,9 +53,19 @@
           <p>{{ gender }}</p>
           <p>{{ member.phone }}</p>
           <p>{{ member.email }}</p>
-          <input type="text" v-model="member.address" />
+          <input
+            type="text"
+            v-model="member.address"
+            maxlength="20"
+            placeholder="字數限制20"
+          />
 
-          <textarea name="farmIntro" v-model="member.content"></textarea>
+          <textarea
+            name="farmIntro"
+            v-model="member.content"
+            maxlength="100"
+            placeholder="字數限制100"
+          ></textarea>
           <button class="submit_button" @click="update">
             <div class="correct">
               <p>確定</p>

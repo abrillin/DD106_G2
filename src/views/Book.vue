@@ -114,6 +114,13 @@ export default {
       page: 0
     };
   },
+  created() {
+    const api = "/api/api_bookType.php";
+
+    this.$http.post(api).then(res => {
+      console.log(res.data);
+    });
+  },
   mounted() {
     // window.addEventListener("scroll", this.imgMoveToRight, true);
   },
@@ -163,7 +170,7 @@ export default {
         this.type = "index";
         this.change = true;
         this.page = 0;
-      }      
+      }
     },
     // (page) 4. 用 p 接收值 (p = {type: type, id: id})
     changePage: function(p) {

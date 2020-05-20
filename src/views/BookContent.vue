@@ -4,7 +4,6 @@
     <!-- 元件有 BookSeasonIndex.vue、BookSeasonPage1.vue、BookSeasonPage2.vue -->
     <!-- (page) 10. 接收到 pageNum() 的回傳值給子元件(BookSeasonPage1.vue)的自定義變數 pageNum-->
     <component
-      :pageId="pageId"
       :page="currentTab.page"
       :contentType="pageType"
       :is="currentTab.index"
