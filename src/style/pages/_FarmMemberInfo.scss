@@ -1,12 +1,11 @@
 div.farminfo {
-  display: inline-block;
+  display: block;
   color: #007552;
   background-color: #fbf8ef;
   width: calc(100% - 250px);
-  height: 100vh;
-  vertical-align: top;
   box-sizing: border-box;
   padding: 60px 40px;
+  float: right;
 
   @include rwd(medium) {
     float: right;
@@ -161,7 +160,7 @@ div.farminfo {
         padding-right: 30px;
         width: 340px;
         height: 500px;
-        line-height: 3.5;
+        line-height: 3.3;
 
         @include rwd(medium) {
           width: 340px;
@@ -169,6 +168,7 @@ div.farminfo {
         @include rwd(small) {
           width: 70%;
           height: 450px;
+          line-height: 3.5;
         }
 
         > p {

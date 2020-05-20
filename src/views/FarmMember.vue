@@ -90,7 +90,8 @@ export default {
       },
     };
   },
-  created() {
+  created() {},
+  mounted() {
     const api = "/api/api_farmStatus.php";
     this.$http.post(api).then((res) => {
       const data = res.data;
@@ -100,7 +101,7 @@ export default {
           acc: data.acc,
           name: data.name,
           nick: data.nick,
-          phone: 0 + data.phone,
+          phone: data.phone,
           email: data.email,
           gender: data.gender,
           address: data.address,
@@ -117,9 +118,7 @@ export default {
         }
       }
     });
-  },
-  mounted() {
-    if (window.innerWidth < 768) {
+    if (window.innerWidth < 991) {
       if ($("aside.left").hasClass("popover")) {
         $("button.btn_drawer").on("click", function() {
           $("aside.left").removeClass("popover");
@@ -135,7 +134,7 @@ export default {
     }
 
     $(window).resize(function() {
-      if (window.innerWidth < 768) {
+      if (window.innerWidth < 991) {
         if ($("aside.left").hasClass("popover")) {
           $("button.btn_drawer").on("click", function() {
             $("aside.left").toggleClass("popover");
