@@ -57,7 +57,8 @@ div.FarmList {
         @include rwd(small) {
             padding-top: 0%;
         }
-        @include rwd(mobile){
+
+        @include rwd(mobile) {
             width: 105%;
         }
 
@@ -68,6 +69,7 @@ div.FarmList {
             justify-content: center;
             align-items: center;
             height: auto;
+            margin-top: 50px;
 
             @include rwd(large) {
                 margin-left: 0%;
@@ -82,7 +84,7 @@ div.FarmList {
             }
 
             @include rwd(mobile) {
-                margin-left: 4%;
+                margin-left: 0%;
             }
 
             .bottomheader {
@@ -106,6 +108,9 @@ div.FarmList {
                 margin-top: 0;
                 width: 90%;
 
+                // overflow: hidden;
+                // text-overflow: ellipsis;
+                // white-space: nowrap;
                 @include rwd(large) {
                     width: 100%;
                 }
@@ -116,7 +121,10 @@ div.FarmList {
             }
 
             .blogTab {
-                table-layout: auto;
+                table-layout: fixed;
+            }
+            tr{
+                height: 1em;
             }
 
             th {
@@ -140,20 +148,11 @@ div.FarmList {
                 text-align: center;
                 vertical-align: middle;
                 font-size: 16px;
-                // white-space: nowrap;
-
-                // overflow: hidden;
-                // text-overflow: ellipsis;
-
                 @include rwd(large) {
                     width: 120px;
                 }
 
                 @include rwd(mobile) {
-                    // white-space: nowrap;
-
-                    // overflow: hidden;
-                    // text-overflow: ellipsis;
                     width: 43px;
                     font-size: 13px;
                 }
@@ -162,6 +161,16 @@ div.FarmList {
                     text-decoration: none;
                     color: #007552;
                 }
+            }
+            #target{
+                border: 0;
+                display: block;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                position: absolute\9;
+                position: static;
+                padding-top: 21px;
             }
 
         }
