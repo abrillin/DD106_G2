@@ -533,8 +533,9 @@ export default {
       this.tags = res.data;
 
       for (let i = 1; i < 9; i++) {
-        this.shopcommodityfilter.push(this.shopcommodity[i]);
+        this.shopcommodityfilter.push(this.shopcommodity["pro"][i]);
       }
+
       this.currentPage.push(1);
       for (let i = 1; i < 10; i++) {
         this.pageArr.push(i);
