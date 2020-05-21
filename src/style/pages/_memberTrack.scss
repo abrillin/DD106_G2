@@ -31,10 +31,32 @@ div.track {
     text-align: center;
     padding-left: 70px;
     margin: 0 auto;
+    @include rwd(large){
+      grid-template-columns: 0.1fr 0.1fr;
+      grid-template-areas: "aa1 aa1"
+                          "aa1 aa1"
+                          "aa1 aa1"
+                          "aa1 aa1"
+                          "aa3 aa3";
+                          
+    }
     @include rwd(medium){
       display: block;
       width: 100%;
       padding-top: 10%;
+    }
+    @include rwd(mobile){
+      grid-template-columns: 1fr;
+      grid-template-areas: "aa1"
+                          "aa1"
+                          "aa1"
+                          "aa1"
+                          "aa1"
+                          "aa1"
+                          "aa1"
+                          "aa1"
+                          "aa3";
+      padding-left: 0;                      
     }
     >.trackcard {
       display: inline-block;
@@ -64,10 +86,10 @@ div.track {
         }
 
         @include rwd(mobile) {
-          width: 260px;
-          margin-right: 0px;
-          margin-left: 0px;
-          font-size: 17px;
+          width: 230px;
+          margin-right: 34px;
+          margin-left: 34px;
+          font-size: 15px;
         }
 
         >.front_top {
@@ -191,7 +213,7 @@ div.track {
         font-size: 0;
 
         @include rwd(mobile) {
-          margin-left: 20px;
+          margin-left: 3px;
         }
 
         >li {

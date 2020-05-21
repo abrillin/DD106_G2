@@ -46,11 +46,12 @@ div.product {
 
         >.bottom_form {
             display: inline-block;
-
+            width: 490px;
             border: 1px solid #666;
 
             @include rwd(small) {
                 line-height: normal;
+                width: 352px;
             }
 
             >.person_left {
@@ -58,12 +59,12 @@ div.product {
                 display: inline-block;
                 background-color: #f7c845;
                 width: 150px;
-                height: 550px;
+                height: 620px;
                 padding-top: 50px;
 
                 @include rwd(small) {
                     width: 30%;
-                    height: 400px;
+                    height: 500px;
                 }
 
                 >ul {
@@ -83,38 +84,46 @@ div.product {
 
             >.person_right {
                 display: inline-block;
-                position: relative;
                 text-align: start;
+                position: relative;
                 background-color: white;
-                color: black;
-                padding: 50px;
-                padding-right: 140px;
-                height: 500px;
-                width: 350px;
-                line-height: 3.14;
+                box-sizing: border-box;
+                padding-top: 50px;
+                padding-left: 30px;
+                padding-right: 30px;
+                height: 670px;
+                width: 340px;
+                line-height: 3.5;
 
                 @include rwd(medium) {
-                    width: 42%;
-                    line-height: 3.3;
+                    width: 340px;
                 }
 
                 @include rwd(small) {
                     padding-right: 120px;
-                    width: 40%;
-                    height: 500px;
+                    width: 70%;
+                    height: 550px;
+                    font-size: 1.4rem;
                     line-height: 3.1;
                 }
 
-                @include rwd(mobile) {
-                    padding: 0;
-                    padding-right: 60px;
-                    padding-bottom: 77px;
-                    padding-top: 47px;
-                    padding-left: 5px;
-                    width: 55%;
-                    line-height: 3.3;
-                }
-
+                // @include rwd(mobile) {
+                //     padding: 0;
+                //     padding-right: 60px;
+                //     padding-bottom: 77px;
+                //     padding-top: 47px;
+                //     padding-left: 5px;
+                //     width: 55%;
+                //     line-height: 3.3;
+                // }
+                    textarea{
+                        width: 215px;
+                        height: 70px;
+                        resize: none;
+                        @include rwd(small) {
+                            width: 170px;
+                          }
+                    }
                 >.tag {
                     display: block;
                     color: black;
@@ -184,8 +193,8 @@ div.product {
 
                 >.submit_button {
                     position: absolute;
-                    right: 30px;
-                    bottom: 10px;
+                    right: 20px;
+                    bottom: 20px;
                     line-height: 2;
 
                     >.cancel {
