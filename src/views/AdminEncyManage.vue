@@ -40,8 +40,8 @@
                 <td>{{row.content}}</td>
                 <td>
                   <a href="#">
-                    <img class="editImg" src="@/assets/icon/edit_btn.svg" :id="row.no" ＠click="editPage(':no')" alt />
-                    <img class="editImg" src="@/assets/icon/edit_pen.svg" :id="row.no" ＠click="editPage(':no')" alt />
+                    <img class="editImg" src="@/assets/icon/edit_btn.svg" :id="row.no" alt />
+                    
                   </a>
                 </td>
               </tr>
