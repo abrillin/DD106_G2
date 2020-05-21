@@ -246,7 +246,12 @@
         <div class="hot_commodity_filter-status">
           <div class="hot_commoditystatus_text">明星農民</div>
         </div>
-        <div class="hotCommoditySeller" v-for="(s, index) in seller" :key="index">
+        <div
+          class="hotCommoditySeller"
+          v-for="(s, index) in seller"
+          :key="index"
+          @mouseenter="SellerM"
+        >
           <a href="#">
             <div class="seller_box">
               <img
@@ -319,36 +324,154 @@ export default {
     };
   },
 
-  // methods: {
-  //   SellerM: function() {
-  //     //觸發追蹤商品效果
-  //     $(".hotCommoditySeller").hover(function() {
-  //       var sellermove = $(this);
-  //       TweenMax.to(sellermove, 0.5, {
-  //         x: -25,
-  //         width: "100% + 25px"
-  //       });
-  //       var sellermove2 = $(this).find(".track-btn");
-  //       TweenMax.to(sellermove2, 1, {
-  //         x: 70,
-  //         autoAlpha: 1
-  //       });
-  //     });
-  //     //反觸發追蹤商品效果
-  //     $(".hotCommoditySeller").mouseleave(function() {
-  //       var sellermove = $(this);
-  //       TweenMax.to(sellermove, 0.5, {
-  //         x: 0,
-  //         width: "100%"
-  //       });
-  //       var sellermove2 = $(this).find(".track-btn");
-  //       TweenMax.to(sellermove2, 1, {
-  //         x: 0,
-  //         autoAlpha: 0
-  //       });
-  //     });
-  //   }
-  // },
+  created() {
+    const api = "/api/api_item.php";
+
+    this.$http.post(api).then(res => {
+      this.shopcommodity = res.data;
+
+      for (let i = 1; i < 9; i++) {
+        this.shopcommodityfilter.push(this.shopcommodity["pro"][i]);
+      }
+
+      this.currentPage.push(1);
+      for (let i = 1; i < 10; i++) {
+        this.pageArr.push(i);
+      }
+
+      this.seller = res.data["mem"];
+      // console.log(res.data["mem"]);
+    });
+  },
+  updated() {
+    for (let i = 0; i <= 8; i++) {
+      document
+        .getElementsByClassName("page-item")
+        [i].setAttribute("class", "page-item");
+      if (
+        document.getElementsByClassName("page-item")[i].textContent ==
+        this.currentPage[0]
+      ) {
+        document
+          .getElementsByClassName("page-item")
+          [i].classList.add("currentPagecolor");
+      }
+    }
+    // console.log(document.getElementsByClassName("page-item"));
+  },
+  methods: {
+    SellerM: function() {
+      //觸發追蹤商品效果
+      $(".hotCommoditySeller").hover(function() {
+        var sellermove = $(this);
+        TweenMax.to(sellermove, 0.5, {
+          x: -25,
+          width: "100% + 25px"
+        });
+        var sellermove2 = $(this).find(".track-btn");
+        TweenMax.to(sellermove2, 1, {
+          x: 70,
+          autoAlpha: 1
+        });
+      });
+      //反觸發追蹤商品效果
+      $(".hotCommoditySeller").mouseleave(function() {
+        var sellermove = $(this);
+        TweenMax.to(sellermove, 0.5, {
+          x: 0,
+          width: "100%"
+        });
+        var sellermove2 = $(this).find(".track-btn");
+        TweenMax.to(sellermove2, 1, {
+          x: 0,
+          autoAlpha: 0
+        });
+      });
+    },
+    pageLeft() {
+      let currentPage1 = this.currentPage[0];
+      // this.currentPage = [];
+      this.shopcommodityfilter = [];
+      if (this.currentPage > 1) {
+        this.currentPage = [];
+        this.currentPage.push(currentPage1 - 1);
+      }
+      let updatePage = this.currentPage[0];
+
+      for (let i = (updatePage - 1) * 8 + 1; i < updatePage * 8 + 1; i++) {
+        this.shopcommodityfilter.push(this.shopcommodity.pro[i]);
+      }
+      console.log(this.shopcommodity);
+      if (this.pageArr[0] > 1) {
+        this.pageArr.forEach((item, index, array) => {
+          this.pageArr[index] = this.pageArr[index] - 1;
+        });
+      }
+    },
+    nextPage() {
+      let currentPage1 = this.currentPage[0];
+      this.shopcommodityfilter = [];
+      if (this.currentPage < parseInt(this.shopcommodity.length / 8)) {
+        this.currentPage = [];
+        this.currentPage.push(currentPage1 + 1);
+      }
+      let updatePage = this.currentPage[0];
+
+      for (let i = (updatePage - 1) * 8 + 1; i < updatePage * 8 + 1; i++) {
+        this.shopcommodityfilter.push(this.shopcommodity.pro[i]);
+      }
+      if (this.pageArr[8] < parseInt(this.shopcommodity.length / 8)) {
+        this.pageArr.forEach((item, index, array) => {
+          this.pageArr[index] = this.pageArr[index] + 1;
+        });
+      }
+    },
+
+    pageSelect(e) {
+      let pageNum = parseInt(e.target.textContent);
+      // console.log(pageNum);
+      this.shopcommodityfilter = [];
+      this.currentPage = [];
+      // console.log(parseInt(this.shopcommodity.length / 9));
+      if (
+        pageNum > 5 &&
+        pageNum < parseInt(this.shopcommodity.length / 8) - 5
+      ) {
+        this.pageArr = [];
+        for (let i = pageNum - 4; i < pageNum + 5; i++) {
+          this.pageArr.push(i);
+        }
+      } else if (pageNum >= parseInt(this.shopcommodity.length / 8) - 5) {
+        this.pageArr = [];
+        for (
+          let i = parseInt(this.shopcommodity.length / 8) - 7;
+          i <= parseInt(this.shopcommodity.length / 7);
+          i++
+        ) {
+          this.pageArr.push(i);
+        }
+      } else {
+        this.pageArr = [];
+        for (let i = 1; i < 10; i++) {
+          this.pageArr.push(i);
+        }
+      }
+
+      this.currentPage.push(pageNum);
+      let currentPage1 = this.currentPage[0];
+
+      for (let i = (currentPage1 - 1) * 8 + 1; i < currentPage1 * 8 + 1; i++) {
+        this.shopcommodityfilter.push(this.shopcommodity["pro"][i]);
+      }
+
+      for (let i = 1; i < 9; i++) {
+        e.target.parentNode.children[i].setAttribute("class", "page-item");
+      }
+      // console.log(document.getElementsByClassName("pageBorder"));
+      e.target.parentNode.children[1].setAttribute("class", "page-item");
+      //   document.getElementsByClassName("pageBorder")[0].setAttribute("class","");
+    }
+  },
   mounted() {
     function showHideHam() {
       let filterPanel = document.getElementById("filterPanel");
@@ -469,104 +592,6 @@ export default {
       this.seller = res.data["mem"];
       // console.log(res.data["mem"]);
     });
-  },
-
-  updated() {
-    for (let i = 0; i <= 8; i++) {
-      document
-        .getElementsByClassName("page-item")
-        [i].setAttribute("class", "page-item");
-      if (
-        document.getElementsByClassName("page-item")[i].textContent ==
-        this.currentPage[0]
-      ) {
-        document
-          .getElementsByClassName("page-item")
-          [i].classList.add("currentPagecolor");
-      }
-    }
-  },
-
-  pageSelect(e) {
-    let pageNum = parseInt(e.target.textContent);
-    // console.log(pageNum);
-    this.shopcommodityfilter = [];
-    this.currentPage = [];
-    // console.log(parseInt(this.shopcommodity.length / 9));
-    if (pageNum > 5 && pageNum < parseInt(this.shopcommodity.length / 8) - 5) {
-      this.pageArr = [];
-      for (let i = pageNum - 4; i < pageNum + 5; i++) {
-        this.pageArr.push(i);
-      }
-    } else if (pageNum >= parseInt(this.shopcommodity.length / 8) - 5) {
-      this.pageArr = [];
-      for (
-        let i = parseInt(this.shopcommodity.length / 8) - 7;
-        i <= parseInt(this.shopcommodity.length / 7);
-        i++
-      ) {
-        this.pageArr.push(i);
-      }
-    } else {
-      this.pageArr = [];
-      for (let i = 1; i < 10; i++) {
-        this.pageArr.push(i);
-      }
-    }
-
-    this.currentPage.push(pageNum);
-    let currentPage1 = this.currentPage[0];
-
-    for (let i = (currentPage1 - 1) * 8 + 1; i < currentPage1 * 8 + 1; i++) {
-      this.shopcommodityfilter.push(this.shopcommodity["pro"][i]);
-    }
-
-    for (let i = 1; i < 9; i++) {
-      e.target.parentNode.children[i].setAttribute("class", "page-item");
-    }
-    // console.log(document.getElementsByClassName("pageBorder"));
-    e.target.parentNode.children[1].setAttribute("class", "page-item");
-    //   document.getElementsByClassName("pageBorder")[0].setAttribute("class","");
-  },
-
-  pageLeft() {
-    let currentPage1 = this.currentPage[0];
-    // this.currentPage = [];
-    this.shopcommodityfilter = [];
-    if (this.currentPage > 1) {
-      this.currentPage = [];
-      this.currentPage.push(currentPage1 - 1);
-    }
-    let updatePage = this.currentPage[0];
-
-    for (let i = (updatePage - 1) * 8 + 1; i < updatePage * 8 + 1; i++) {
-      this.shopcommodityfilter.push(this.shopcommodity.pro[i]);
-    }
-    console.log(this.shopcommodity);
-    if (this.pageArr[0] > 1) {
-      this.pageArr.forEach((item, index, array) => {
-        this.pageArr[index] = this.pageArr[index] - 1;
-      });
-    }
-  },
-
-  nextPage() {
-    let currentPage1 = this.currentPage[0];
-    this.shopcommodityfilter = [];
-    if (this.currentPage < parseInt(this.shopcommodity.length / 8)) {
-      this.currentPage = [];
-      this.currentPage.push(currentPage1 + 1);
-    }
-    let updatePage = this.currentPage[0];
-
-    for (let i = (updatePage - 1) * 8 + 1; i < updatePage * 8 + 1; i++) {
-      this.shopcommodityfilter.push(this.shopcommodity.pro[i]);
-    }
-    if (this.pageArr[8] < parseInt(this.shopcommodity.length / 8)) {
-      this.pageArr.forEach((item, index, array) => {
-        this.pageArr[index] = this.pageArr[index] + 1;
-      });
-    }
-  },
+  }
 };
 </script>
