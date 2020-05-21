@@ -47,19 +47,19 @@
     .enct-header {
       display: flex;
       background: $formTtlBg;
-      width: 900px;
+      width: 810px;
     }
 
     .enct-content {
       display: flex;
       background-color: #fff;
       height: 80%;
-      width: 900px;
+      width: 810px;
       //overflow-x: auto;
       //margin-top: 0px;
     }
 
-    th {
+    th, td {
       width: 180px;
       padding: 15px 0px;
       text-align: center;
@@ -68,39 +68,19 @@
 
       &:first-child,
       &:nth-child(3) {
-        width: 90px;
+        width: 70px;
       }
 
       &:nth-child(4) {
-        width: 440px;
+        width: 400px;
       }
 
       &:last-child {
-        width: 100px;
+        width: 90px;
       }
     }
 
     td {
-      width: 180px;
-      padding: 15px 0px;
-      text-align: center;
-      vertical-align: middle;
-      color: $contentColor;
-      box-sizing: border-box;
-
-      &:first-child,
-      &:nth-child(3) {
-        width: 90px;
-      }
-
-      &:nth-child(4) {
-        width: 440px;
-      }
-
-      &:last-child {
-        width: 100px;
-      }
-
       .editImg {
         width: 15px;
         transition: opacity ease-in-out .3s;
