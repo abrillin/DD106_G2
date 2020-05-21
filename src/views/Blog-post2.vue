@@ -1599,7 +1599,7 @@ export default {
     };
   },
   beforeMount() {},
-  mounted() {npm 
+  mounted() {
     // console.log(document.getElementsByClassName("pageBorder")[0]);
     // document
     //   .getElementsByClassName("pageBorder")[0]
@@ -1635,7 +1635,7 @@ export default {
           // sessionStorage.setItem('abc', JSON.stringify(res.data));
           // sessionStorage.clear();
           // let abc = sessionStorage.getItem('abc');
-          
+
           this.blogArr = res.data;
 
           this.blogArrFilterTop.push(this.blogArr[0]);
@@ -1753,7 +1753,20 @@ export default {
       // });
 
       this.$emit('blogInf', e);
-      // console.log(e)
+      // console.log(e);
+
+      let api = '/api/api_session_blog_no.php';
+
+      this.$http
+        .post(api, JSON.stringify(e))
+        .then((res) => {
+          if (res.data != '') {
+            console.log(res.data);
+          } else {
+            console.log(res.error);
+          }
+        })
+        .catch((err) => console.log(err));
     },
     getThisCard(e) {
       console.log(e.target.parentNode.parentNode.children[3].textContent);

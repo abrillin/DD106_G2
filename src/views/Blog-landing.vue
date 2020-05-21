@@ -69,7 +69,7 @@
       <div>
         <div>
           <div>
-            <div>{{ this.previousValue.date }}</div>
+            <div></div>
             <div>
               <img src="@/assets/blog-img/blog-tag.png" />
               <span> 草莓 </span>
@@ -79,7 +79,7 @@
           </div>
           <div></div>
           <div>
-            <span>{{ this.previousValue.title }}</span>
+            <span></span>
           </div>
           <div>
             <img src="@/assets/blog-img/blog-bendingbar2.png" />
@@ -859,26 +859,33 @@ export default {
     };
   },
   created() {
-    this.previousValue = this.blogInfProps;
+    // this.previousValue = this.blogInfProps;
     this.msgobj.content = this.blogInfProps.content;
     this.msgobj.blogNo = this.blogInfProps.no;
     var nStartTime = new Date(Date.now());
     let today = `${nStartTime.getFullYear()}-${nStartTime.getMonth() +
       1}-${nStartTime.getDate()}`;
     this.msgobj.date = today;
-    console.log(this.previousValue);
+    // console.log(this.previousValue);
 
     let api = '/api/api_get_msg.php';
 
-    this.$http
-      .post(api, JSON.stringify(this.msgobj))
-      .then((res) => {
-        if (res.data != '') {
-          console.log(res.data);
-        } else {
-        }
-      })
-      .catch((err) => console.log(err));
+    this.$http.post(api, JSON.stringify(this.msgobj)).then((res) => {
+      if (res.data != '') {
+        // console.log(res.data);
+      } else {
+      }
+    });
+
+    let api2 = '/api/api_get_blog_content.php';
+
+    this.$http.post(api2).then((res) => {
+      if (res.data != '') {
+        this.previousValue = res.data;
+        console.log(this.previousValue[0]);
+      } else {
+      }
+    });
   },
   computed: {
     loadComment() {
@@ -901,15 +908,12 @@ export default {
 
       let api = '/api/api_blog_msg.php';
 
-      this.$http
-        .post(api, JSON.stringify(this.msgobj))
-        .then((res) => {
-          if (res.data != '') {
-            // console.log(res.data);
-          } else {
-          }
-        })
-        .catch((err) => console.log(err));
+      this.$http.post(api, JSON.stringify(this.msgobj)).then((res) => {
+        if (res.data != '') {
+          console.log(res.data);
+        } else {
+        }
+      });
     },
   },
 };
