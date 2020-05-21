@@ -4,7 +4,7 @@
       <div class="form">
         <div class="form-content">
           <p class="title">購物籃明細：</p>
-          <div v-for="data in arr" :key="data.seller">
+          <div class="box" v-for="data in arr" :key="data.seller">
             <p class="seller">{{ data.seller }}</p>
             <div class="tr head-bar">
               <div class="td check-box"></div>
@@ -78,9 +78,9 @@ export default {
         {
           seller: "蓬蓬草莓姨",
           item: [
-            { id: 1, name: "草莓", price: 100, amount: 1 },
-            { id: 2, name: "草莓", price: 150, amount: 1 },
-            { id: 3, name: "草莓", price: 300, amount: 1 },
+            { id: 4, name: "草莓", price: 100, amount: 1 },
+            { id: 5, name: "草莓", price: 150, amount: 1 },
+            { id: 6, name: "草莓", price: 300, amount: 1 },
           ],
           total: 0,
         },
