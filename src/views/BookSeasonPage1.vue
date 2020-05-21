@@ -110,7 +110,7 @@ export default {
 
       // console.log(Math.floor(this.page / 2));
       
-      console.log(res.data[Math.floor(this.page / 2)]);
+      console.log(res.data[Math.round(this.page / 2)]);
       
     });
 
@@ -122,7 +122,7 @@ export default {
   computed: {
     content: function() {
       this.changeContent();
-      return this.index[this.contentType].item[Math.floor(this.page / 2)];
+      return this.index[this.contentType].item[Math.round(this.page / 2)];
     }
   },
   methods: {
