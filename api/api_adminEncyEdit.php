@@ -9,15 +9,12 @@ try {
     // 使用file_get_contents獲取php://input內容，由json檔轉為物件/陣列
     // 前面表單輸入進來的資料會在以下被處理
     
-	$sql = "insert into `encyclopedia` (`no`, `title`, `type`, `content`, `video`, `tag`) values(null, :title, :type, :content, '1')";
-    // $addAdmin = $pdo->query($sql);
+	$sql = "insert into `encyclopedia` (`no`, `title`, `type`, `content`, `title_img`, `video`, `tag`) values(null, :title, :type, :content, :titleImg, :video, :tag)";
     $editEncy = $pdo->prepare($sql);
     $editEncy -> bindValue(":title", $editEncyInfo->title);
     $editEncy -> bindValue(":type", $editEncyInfo->type);
     $editEncy -> bindValue(":content", $editEncyInfo->content);
     $editEncy -> execute();
-
-    // 跑sql既有資料，看acc是否有重複
     
     $no = $pdo->lastInsertId();
     

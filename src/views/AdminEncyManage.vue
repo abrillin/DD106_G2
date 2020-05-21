@@ -58,9 +58,9 @@ export default {
 
     this.$http // $http 是將axios封裝後的promise寫法
     .post(api) // 用axios post info到此api
-    .then(res => { // 如果可以傳送出去的話會response資料回來
+    .then(res => { // 如果可以傳送出去的話會response data: []裡的資料回來
 
-      this.data = res.data; // 第一個datad是指data()裡的[];只取res中的data屬性中的資料
+      this.data = res.data; // 第一個data是指data()裡的data[]; res.data 代表只取res中的data屬性中的資料
     })
   },
   methods: {
