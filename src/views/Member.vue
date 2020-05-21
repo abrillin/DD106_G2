@@ -44,14 +44,14 @@
       </div>
       <div v-if="farmStatus == false" class="member_button">
         <div class="befarm">
-          <router-link :to="{name:'FarmRegistered'}">
+          <router-link :to="{ name: 'FarmRegistered' }">
             <button-more class="become_farmer" msg="成為果農"></button-more>
           </router-link>
         </div>
       </div>
       <div v-else class="member_button">
         <div class="changefarm">
-          <router-link :to="{name:'Info'}">
+          <router-link :to="{ name: 'Info' }">
             <button-more class="goto_farmer" msg="切換果農"></button-more>
           </router-link>
         </div>
@@ -75,15 +75,15 @@ export default {
         gender: "",
         phone: "",
         email: "",
-        img: ""
+        img: "",
       },
-      farmStatus: false
+      farmStatus: false,
     };
   },
   created() {
     const api = "/api/api_memberStatus.php";
 
-    this.$http.post(api).then(res => {
+    this.$http.post(api).then((res) => {
       const data = res.data;
 
       if (data != "") {
@@ -94,13 +94,13 @@ export default {
           nick: data.nick,
           phone: 0 + data.phone,
           email: data.email,
-          gender: data.gender
+          gender: data.gender,
         };
 
         // 檢查是否註冊過果農身分
         const apiCheck = "/api/api_checkFarm.php";
 
-        this.$http.post(apiCheck, JSON.stringify(this.member)).then(res => {
+        this.$http.post(apiCheck, JSON.stringify(this.member)).then((res) => {
           const data = res.data;
 
           if (data == 0) {
@@ -162,31 +162,32 @@ export default {
 
       reader.readAsDataURL(img.files[0]);
 
-      this.formData.append("file", img.files[0]);
       this.member.img = "/api/MemPic/member" + img.files[0].name;
+      this.formData.append("file", img.files[0]);
+      this.$http
+        .post("/api/api_changeMemPic.php", this.formData)
+        .then((res) => {
+          const data = res.data;
 
-      this.$http.post("/api/api_changeMemPic.php", this.formData).then(res => {
-        const data = res.data;
+          // 如果上傳成功
+          if (data == 0) {
+            this.$http
+              .post("/api/api_getMemPic.php", JSON.stringify(this.member))
+              .then((res) => {
+                const r = res.data;
 
-        // 如果上傳成功
-        if (data == 0) {
-          this.$http
-            .post("/api/api_getMemPic.php", JSON.stringify(this.member))
-            .then(res => {
-              const r = res.data;
-
-              // 如果更新成功
-              if (r == 0) {
-                alert("上傳成功！");
-                this.$router.go(0);
-              } else if (r == 1) {
-                alert("資料庫更新錯誤");
-              }
-            });
-        } else if (data == 1) {
-          alert("上傳失敗！");
-        }
-      });
+                // 如果更新成功
+                if (r == 0) {
+                  alert("上傳成功！");
+                  this.$router.go(0);
+                } else if (r == 1) {
+                  alert("資料庫更新錯誤");
+                }
+              });
+          } else if (data == 1) {
+            alert("上傳失敗！");
+          }
+        });
     },
     // checkFarm: function() {
     //   const api = "/api/api_checkFarm.php";
@@ -221,6 +222,6 @@ export default {
     //     }
     //   });
     // }
-  }
+  },
 };
 </script>
