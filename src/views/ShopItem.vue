@@ -156,7 +156,7 @@
 
     <!--輪播-->
     <div id="carouselWrap">
-      <h2>相關商品：</h2>
+      <h2>推薦商品：</h2>
       <ul id="CommodityCarouselList">
         <li class="CommodityCarouselConten" v-for="(i, index) in shopseller.items" :key="index">
           <div class="CommodityCarousel commodity">
