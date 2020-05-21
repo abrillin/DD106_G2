@@ -404,7 +404,7 @@
 
                 </div>
             </div>
-            <div class="pagination_block">
+            <!-- <div class="pagination_block">
                 <ul class="pagination">
                     <li><a href="#">&lt;</a></li>
                     <li><a href="#" class="-on">1</a></li>
@@ -419,7 +419,7 @@
                     <li><a href="#">10</a></li>
                     <li><a href="#">&gt;</a></li>
                 </ul>
-            </div>
+            </div> -->
         </div>
     </div>
 </template>

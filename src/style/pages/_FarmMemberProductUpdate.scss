@@ -1,12 +1,15 @@
 div.product {
-  display: inline-block;
+  display: block;
   color: #007552;
   background-color: #fbf8ef;
   width: calc(100% - 250px);
-  height: 100vh;
-  vertical-align: top;
+  height: 100%;
   box-sizing: border-box;
-  padding: 60px 40px;
+  padding-top: 60px;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 60px;
+  float: right;
 
   @include rwd(medium) {
     float: right;
@@ -23,7 +26,7 @@ div.product {
     color: #f7c845;
     font-size: 3rem;
 
-    > .product_right_head_text {
+    >.product_right_head_text {
       span.new {
         margin-left: 10px;
         color: #ffd3c1;
@@ -44,7 +47,7 @@ div.product {
       padding-top: 10%;
     }
 
-    > .bottom_form {
+    >.bottom_form {
       display: inline-block;
 
       border: 1px solid #666;
@@ -53,21 +56,21 @@ div.product {
         line-height: normal;
       }
 
-      > .person_left {
+      >.person_left {
         vertical-align: top;
         display: inline-block;
         background-color: #f7c845;
         width: 150px;
-        height: 550px;
+        height: 620px;
         padding-top: 50px;
 
         @include rwd(small) {
           width: 30%;
-          height: 400px;
+          height: 500px;
         }
 
-        > ul {
-          > li {
+        >ul {
+          >li {
             font-size: 1.8rem;
             color: #666;
             line-height: 3.3;
@@ -79,63 +82,124 @@ div.product {
           }
         }
       }
-
-      > .person_right {
+      >.person_right {
         display: inline-block;
-        position: relative;
         text-align: start;
+        position: relative;
         background-color: white;
-        color: black;
-        padding: 50px;
-        padding-right: 140px;
-        height: 500px;
-        width: 350px;
-        line-height: 3.14;
+        box-sizing: border-box;
+        padding-top: 50px;
+        padding-left: 30px;
+        padding-right: 30px;
+        height: 670px;
+        width: 340px;
+        line-height: 3.5;
 
         @include rwd(medium) {
-          width: 42%;
-          line-height: 3.3;
+          width: 340px;
         }
 
-        >.bottom_form {
-            display: inline-block;
-            width: 490px;
-            border: 1px solid #666;
+        @include rwd(small) {
+          padding-right: 120px;
+          width: 70%;
+          height: 550px;
+          font-size: 1.4rem;
+          line-height: 3.1;
+        }
 
-            @include rwd(small) {
-                line-height: normal;
-                width: 352px;
+        // @include rwd(mobile) {
+        //     padding: 0;
+        //     padding-right: 60px;
+        //     padding-bottom: 77px;
+        //     padding-top: 47px;
+        //     padding-left: 5px;
+        //     width: 55%;
+        //     line-height: 3.3;
+        // }
+        textarea {
+          width: 215px;
+          height: 70px;
+          resize: none;
+
+          @include rwd(small) {
+            width: 170px;
+          }
+        }
+
+        >.tag {
+          display: block;
+          color: black;
+          line-height: 2;
+          margin-top: 12px;
+
+          >.tap1 {
+            display: inline-block;
+            background-color: #E2E2E2;
+            border-radius: 20px;
+            text-align: center;
+            width: 50px;
+            padding: 0;
+            margin-right: 4px;
+            margin-bottom: 10px;
+          }
+
+          >.tap2 {
+            display: inline-block;
+            background-color: #E2E2E2;
+            border-radius: 20px;
+            text-align: center;
+            width: 70px;
+            padding: 0;
+            margin-right: 4px;
+            margin-bottom: 10px;
+          }
+
+          >.tap3 {
+            display: inline-block;
+            display: inline-block;
+            background-color: #E2E2E2;
+            border-radius: 20px;
+            text-align: center;
+            width: 70px;
+            padding: 0;
+            margin-right: 4px;
+            margin-bottom: 10px;
+          }
+
+          >.tap4 {
+            display: inline-block;
+            background-color: #E2E2E2;
+            border-radius: 20px;
+            text-align: center;
+            width: 70px;
+            padding: 0;
+            margin-right: 4px;
+            margin-bottom: 10px;
+          }
+
+          >.tap5 {
+            display: inline-block;
+            background-color: #E2E2E2;
+            border-radius: 20px;
+            text-align: center;
+            width: 70px;
+            padding: 0;
+            margin-right: 4px;
+            margin-bottom: 10px;
+
+            @include rwd(medium) {
+              width: 74px;
             }
           }
         }
 
-            >.person_left {
-                vertical-align: top;
-                display: inline-block;
-                background-color: #f7c845;
-                width: 150px;
-                height: 620px;
-                padding-top: 50px;
+        >.submit_button {
+          position: absolute;
+          right: 20px;
+          bottom: 20px;
+          line-height: 2;
 
-                @include rwd(small) {
-                    width: 30%;
-                    height: 500px;
-                }
-
-                >ul {
-                    >li {
-                        font-size: 1.8rem;
-                        color: #666;
-                        line-height: 3.3;
-
-                        @include rwd(small) {
-                            font-size: 1.4rem;
-                            line-height: 3;
-                        }
-                    }
-                }
-
-          > .cancel {
+          >.cancel {
             display: inline-block;
             border-radius: 10px;
             background-color: #007552;
@@ -144,161 +208,24 @@ div.product {
             margin-right: 20px;
 
             &:hover {
-              background-color: #62b45a;
+              background-color: #62B45A;
             }
           }
 
-          > .correct {
+          >.correct {
             display: inline-block;
             border-radius: 10px;
             background-color: #007552;
             color: white;
             padding: 0px 20px;
 
-            >.person_right {
-                display: inline-block;
-                text-align: start;
-                position: relative;
-                background-color: white;
-                box-sizing: border-box;
-                padding-top: 50px;
-                padding-left: 30px;
-                padding-right: 30px;
-                height: 670px;
-                width: 340px;
-                line-height: 3.5;
-
-                @include rwd(medium) {
-                    width: 340px;
-                }
-
-                @include rwd(small) {
-                    padding-right: 120px;
-                    width: 70%;
-                    height: 550px;
-                    font-size: 1.4rem;
-                    line-height: 3.1;
-                }
-
-                // @include rwd(mobile) {
-                //     padding: 0;
-                //     padding-right: 60px;
-                //     padding-bottom: 77px;
-                //     padding-top: 47px;
-                //     padding-left: 5px;
-                //     width: 55%;
-                //     line-height: 3.3;
-                // }
-                    textarea{
-                        width: 215px;
-                        height: 70px;
-                        resize: none;
-                        @include rwd(small) {
-                            width: 170px;
-                          }
-                    }
-                >.tag {
-                    display: block;
-                    color: black;
-                    line-height: 2;
-                    margin-top: 12px;
-
-                    >.tap1 {
-                        display: inline-block;
-                        background-color: #E2E2E2;
-                        border-radius: 20px;
-                        text-align: center;
-                        width: 50px;
-                        padding: 0;
-                        margin-right: 4px;
-                        margin-bottom: 10px;
-                    }
-
-                    >.tap2 {
-                        display: inline-block;
-                        background-color: #E2E2E2;
-                        border-radius: 20px;
-                        text-align: center;
-                        width: 70px;
-                        padding: 0;
-                        margin-right: 4px;
-                        margin-bottom: 10px;
-                    }
-
-                    >.tap3 {
-                        display: inline-block;
-                        display: inline-block;
-                        background-color: #E2E2E2;
-                        border-radius: 20px;
-                        text-align: center;
-                        width: 70px;
-                        padding: 0;
-                        margin-right: 4px;
-                        margin-bottom: 10px;
-                    }
-
-                    >.tap4 {
-                        display: inline-block;
-                        background-color: #E2E2E2;
-                        border-radius: 20px;
-                        text-align: center;
-                        width: 70px;
-                        padding: 0;
-                        margin-right: 4px;
-                        margin-bottom: 10px;
-                    }
-
-                    >.tap5 {
-                        display: inline-block;
-                        background-color: #E2E2E2;
-                        border-radius: 20px;
-                        text-align: center;
-                        width: 70px;
-                        padding: 0;
-                        margin-right: 4px;
-                        margin-bottom: 10px;
-
-                        @include rwd(medium) {
-                            width: 74px;
-                        }
-                    }
-                }
-
-                >.submit_button {
-                    position: absolute;
-                    right: 20px;
-                    bottom: 20px;
-                    line-height: 2;
-
-                    >.cancel {
-                        display: inline-block;
-                        border-radius: 10px;
-                        background-color: #007552;
-                        color: white;
-                        padding: 0px 20px;
-                        margin-right: 20px;
-
-                        &:hover {
-                            background-color: #62B45A;
-                        }
-                    }
-
-                    >.correct {
-                        display: inline-block;
-                        border-radius: 10px;
-                        background-color: #007552;
-                        color: white;
-                        padding: 0px 20px;
-
-                        &:hover {
-                            background-color: #62B45A;
-                        }
-                    }
-                }
+            &:hover {
+              background-color: #62B45A;
             }
           }
         }
       }
+      
     }
   }
-
+}
