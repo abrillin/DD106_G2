@@ -176,15 +176,11 @@
           </div>
           <div class="commodity-flex">
             <div class="commodity" v-for="(i, index) in shopcommodityfilter" :key="index">
-              <div class="card_img_box">
-                <img
-                  src="../assets/ia_300000017.jpg"
-                  width="100%"
-                  height="100%"
-                  @click="changePage(i)"
-                />
-              </div>
-
+              <router-link to="/main/shopitem" >
+                <div class="card_img_box" @click="changePage(i)">
+                  <img src="../assets/ia_300000017.jpg" width="100%" height="100%" />
+                </div>
+              </router-link>
               <div class="card_content">
                 <div class="commodity_title">
                   <div class="commodity_title_text">{{i.name}}</div>
@@ -200,8 +196,8 @@
                 </div>
 
                 <div class="buy">
-                  <a href="#" class="card_btn">加入購物籃</a>
-                  <a href="#" class="card_btn">直接購買</a>
+                  <a href="#" class="card_btn" @mouseenter="btnFun">加入購物籃</a>
+                  <a href="#" class="card_btn" @mouseenter="btnFun">直接購買</a>
                 </div>
               </div>
             </div>
@@ -343,6 +339,7 @@ export default {
       // console.log(res.data["mem"]);
     });
   },
+
   updated() {
     for (let i = 0; i <= 8; i++) {
       document
@@ -359,6 +356,7 @@ export default {
     }
     // console.log(document.getElementsByClassName("page-item"));
   },
+
   methods: {
     SellerM: function() {
       //觸發追蹤商品效果
@@ -388,6 +386,50 @@ export default {
         });
       });
     },
+
+    btnFun: function() {
+      //觸發按鈕效果
+      $(".card_btn").hover(function() {
+        var cbtn = $(this);
+        TweenMax.to(cbtn, 0.3, {
+          css: {
+            backgroundColor: "#ffa978",
+            color: "white"
+          }
+        });
+      });
+      //反觸發按鈕效果
+      $(".card_btn").mouseleave(function() {
+        var cbtn = $(this);
+        TweenMax.to(cbtn, 0.3, {
+          css: {
+            backgroundColor: "#fbf8ef",
+            color: "#007552"
+          }
+        });
+      });
+      //觸發item按鈕效果
+      $(".item_btn").hover(function() {
+        var ibtn = $(this);
+        TweenMax.to(ibtn, 0.3, {
+          css: {
+            backgroundColor: "#ffa978",
+            color: "white"
+          }
+        });
+      });
+      //反觸發item按鈕效果
+      $(".item_btn").mouseleave(function() {
+        var ibtn = $(this);
+        TweenMax.to(ibtn, 0.3, {
+          css: {
+            backgroundColor: "#fbf8ef",
+            color: "#007552"
+          }
+        });
+      });
+    },
+
     pageLeft() {
       let currentPage1 = this.currentPage[0];
       // this.currentPage = [];
@@ -470,8 +512,23 @@ export default {
       // console.log(document.getElementsByClassName("pageBorder"));
       e.target.parentNode.children[1].setAttribute("class", "page-item");
       //   document.getElementsByClassName("pageBorder")[0].setAttribute("class","");
+    },
+    changePage(e) {
+      let api = "/api/api_item_no.php";
+      console.log(e);
+      this.$http
+        .post(api, JSON.stringify(e))
+        .then(res => {
+          if (res.data != "") {
+            console.log(JSON.parse(res.data));
+          } else {
+            console.log(res.error);
+          }
+        })
+        .catch(err => console.log(err));
     }
   },
+
   mounted() {
     function showHideHam() {
       let filterPanel = document.getElementById("filterPanel");
@@ -511,46 +568,6 @@ export default {
       });
     });
 
-    //觸發按鈕效果
-    $(".card_btn").hover(function() {
-      var cbtn = $(this);
-      TweenMax.to(cbtn, 0.3, {
-        css: {
-          backgroundColor: "#ffa978",
-          color: "white"
-        }
-      });
-    });
-    //反觸發按鈕效果
-    $(".card_btn").mouseleave(function() {
-      var cbtn = $(this);
-      TweenMax.to(cbtn, 0.3, {
-        css: {
-          backgroundColor: "#fbf8ef",
-          color: "#007552"
-        }
-      });
-    });
-    //觸發item按鈕效果
-    $(".item_btn").hover(function() {
-      var ibtn = $(this);
-      TweenMax.to(ibtn, 0.3, {
-        css: {
-          backgroundColor: "#ffa978",
-          color: "white"
-        }
-      });
-    });
-    //反觸發item按鈕效果
-    $(".item_btn").mouseleave(function() {
-      var ibtn = $(this);
-      TweenMax.to(ibtn, 0.3, {
-        css: {
-          backgroundColor: "#fbf8ef",
-          color: "#007552"
-        }
-      });
-    });
     //反觸發itembuynow按鈕效果
     $(".buyNow").mouseleave(function() {
       var buybtn = $(this);
@@ -573,24 +590,6 @@ export default {
       TweenMax.to(".shopItemImg", 0.5, {
         y: 0
       });
-    });
-
-    const api = "/api/api_item.php";
-
-    this.$http.post(api).then(res => {
-      this.shopcommodity = res.data;
-
-      for (let i = 1; i < 9; i++) {
-        this.shopcommodityfilter.push(this.shopcommodity["pro"][i]);
-      }
-
-      this.currentPage.push(1);
-      for (let i = 1; i < 10; i++) {
-        this.pageArr.push(i);
-      }
-
-      this.seller = res.data["mem"];
-      // console.log(res.data["mem"]);
     });
   }
 };
