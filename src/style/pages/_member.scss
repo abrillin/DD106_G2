@@ -2,12 +2,8 @@ div.membercontain {
   display: block;
   width: 100%;
   height: 100%;
-<<<<<<< HEAD
-  font-size: 1.7rem;
-=======
   font-size: 1.8rem;
   overflow: hidden;
->>>>>>> 8297bb544dfbf746627023b425729235836ca521
 
   @include rwd(large) {
     height: auto;
