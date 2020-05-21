@@ -1599,7 +1599,7 @@ export default {
     };
   },
   beforeMount() {},
-  mounted() {
+  mounted() {npm 
     // console.log(document.getElementsByClassName("pageBorder")[0]);
     // document
     //   .getElementsByClassName("pageBorder")[0]
@@ -1635,6 +1635,7 @@ export default {
           // sessionStorage.setItem('abc', JSON.stringify(res.data));
           // sessionStorage.clear();
           // let abc = sessionStorage.getItem('abc');
+          
           this.blogArr = res.data;
 
           this.blogArrFilterTop.push(this.blogArr[0]);

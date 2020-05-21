@@ -6,13 +6,13 @@
       </div>
     </div>
     <div class="farminfo_bottom">
-      <div class="top_card">
+      <!-- <div class="top_card">
         <div class="card">
-          <div class="up">
+            <div class="up">
             <div class="imgbox">
               <img src="@/assets/ia_2300000010.jpg" alt="" />
             </div>
-            <div class="uptext">
+          <div class="uptext">
               <p>暱稱:蓬蓬草莓姨</p>
               <span>評價</span>
               <p>果園地址</p>
@@ -31,7 +31,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div>-->
       <div class="bottom_form">
         <div class="person_left">
           <ul>
@@ -64,6 +64,7 @@
 export default {
   data() {
     return {
+      gender: "",
       member: {
         no: "",
         acc: "",
@@ -81,7 +82,7 @@ export default {
     };
   },
   created() {
-    const api = "/api/api_memberStatus.php";
+    const api = "/api/api_farmStatus.php";
     this.$http.post(api).then((res) => {
       const data = res.data;
       if (data != "") {
@@ -90,7 +91,7 @@ export default {
           acc: data.acc,
           name: data.name,
           nick: data.nick,
-          phone: 0 + data.phone,
+          phone: data.phone,
           email: data.email,
           gender: data.gender,
           address: data.address,

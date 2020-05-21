@@ -52,15 +52,15 @@ export default {
     return {
       member: {
         acc: "",
-        psw: ""
-      }
+        psw: "",
+      },
     };
   },
   methods: {
     login: function() {
       const login = "/api/api_adminLogin.php";
 
-      this.$http.post(login, JSON.stringify(this.member)).then(res => {
+      this.$http.post(login, JSON.stringify(this.member)).then((res) => {
         const data = res.data;
         if (data.status == 1) {
           alert("此帳號已經停用");
@@ -69,10 +69,10 @@ export default {
         } else {
           alert(data.name + " 您好，歡迎回來巡視果園｡ヽ(*´∀`)ﾉﾟ ");
 
-          this.$router.push("/center/manage");
+          this.$router.push("/admin/center/manage");
         }
       });
-    }
-  }
+    },
+  },
 };
 </script>

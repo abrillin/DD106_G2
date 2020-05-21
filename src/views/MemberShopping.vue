@@ -1,12 +1,11 @@
 <template>
   <div class="shopping">
     <div class="content">
-      <div class="step-box"></div>
       <div class="form">
         <div class="form-content">
           <p class="title">購物籃明細：</p>
           <div v-for="data in arr" :key="data.seller">
-            <p class="seller">{{data.seller}}</p>
+            <p class="seller">{{ data.seller }}</p>
             <div class="tr head-bar">
               <div class="td check-box"></div>
               <div class="td img">圖片</div>
@@ -30,25 +29,32 @@
                   <label :for="'checkbox' + item.id"></label>
                 </div>
               </div>
+
               <div class="td img">
                 <img src="@/assets/shop/item_001.png" />
               </div>
-              <div class="td name">{{item.name}}</div>
-              <div class="td price">$ {{item.price}}</div>
+              <div class="td name">{{ item.name }}</div>
+              <div class="td price">$ {{ item.price }}</div>
               <div class="td amount">
                 <div class="input">
-                  <input type="number" v-model="item.amount" @keydown="setAmount(data, item)" />
+                  <input
+                    type="number"
+                    v-model="item.amount"
+                    @keydown="setAmount(data, item)"
+                  />
                   <div class="button">
                     <button @click="addAmount(data, item)">+</button>
                     <button @click="subAmount(data, item)">-</button>
                   </div>
                 </div>
               </div>
-              <div class="td subtotal">$ {{item.amount * item.price}}</div>
-              <div class="td operating">商品詳細 刪除</div>
+              <div class="td subtotal">$ {{ item.amount * item.price }}</div>
+              <div class="td operating">刪除</div>
             </div>
-            <p class="total">總金額 {{data.total}} 元</p>
-            <router-link to="/main/member/checkInfo" type="button" class="btn">進行結帳</router-link>
+            <p class="total">總金額 {{ data.total }} 元</p>
+            <router-link to="/main/member/checkInfo" type="button" class="btn"
+              >進行結帳</router-link
+            >
           </div>
         </div>
       </div>
@@ -65,22 +71,22 @@ export default {
           item: [
             { id: 1, name: "愛文芒果", price: 1920, amount: 1 },
             { id: 2, name: "愛文芒果", price: 135, amount: 1 },
-            { id: 3, name: "愛文芒果", price: 1000, amount: 1 }
+            { id: 3, name: "愛文芒果", price: 1000, amount: 1 },
           ],
-          total: 0
+          total: 0,
         },
         {
           seller: "蓬蓬草莓姨",
           item: [
             { id: 1, name: "草莓", price: 100, amount: 1 },
             { id: 2, name: "草莓", price: 150, amount: 1 },
-            { id: 3, name: "草莓", price: 300, amount: 1 }
+            { id: 3, name: "草莓", price: 300, amount: 1 },
           ],
-          total: 0
-        }
+          total: 0,
+        },
       ],
       cart: [],
-      status: []
+      status: [],
     };
   },
   computed: {
@@ -94,10 +100,7 @@ export default {
     // }
   },
   methods: {
-    setAmount: function(data, item) {
-
-
-    },
+    setAmount: function(data, item) {},
     addAmount: function(data, item) {
       item.amount++;
 
@@ -136,7 +139,7 @@ export default {
 
         data.total -= item.amount * item.price;
       }
-    }
-  }
+    },
+  },
 };
 </script>

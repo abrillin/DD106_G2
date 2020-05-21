@@ -1,49 +1,51 @@
 div.track {
-  display: inline-block;
+  display: block;
   background-color: #fbf8ef;
   width: calc(100% - 250px);
-  height: 100vh;
-  vertical-align: top;
+  float: right;
   box-sizing: border-box;
   padding: 60px 40px;
   @include rwd(medium) {
-    float: right;
     width: calc(100% - 200px);
   }
 
   @include rwd(small) {
     float: none;
-    width: 100vw;
+    width: 100%;
     padding: 10% 5%;
   }
   .track_head {
-    color: #F7C845;
+    color: #f7c845;
     font-size: 3rem;
   }
 
   .track_bottom {
-    display: block;
-    text-align: center;
-    padding-top: 100px;
-    margin: 0 auto;
-    @include rwd(medium){
+    display: grid;
+    grid-template-columns: repeat(4, 0.1fr);
+    grid-template-areas:
+      "aa1 aa1 aa1 aa1"
+      "aa1 aa1 aa1 aa1"
+      "aa2 aa3 aa3 aa5";
+    justify-content: center;
+    margin-top: 50px;
+
+    @include rwd(medium) {
       display: block;
       width: 100%;
-      padding-top: 10%;
     }
-    >.trackcard {
-      display: inline-block;
+    > .trackcard {
       margin-top: 40px;
       line-height: 2;
 
-      >.cardfront {
+      > .cardfront {
         border: 3px solid #007552;
         background-color: white;
         box-shadow: 10px -9px #007552;
         width: 260px;
-        margin-right: 173px;
+        margin-right: 50px;
+        margin-left: 50px;
         font-size: 17px;
-        
+
         @include rwd(large) {
           width: 260px;
           margin-right: 40px;
@@ -64,21 +66,21 @@ div.track {
           font-size: 17px;
         }
 
-        >.front_top {
-          >.closeimg {
+        > .front_top {
+          > .closeimg {
             width: 30px;
             height: 30px;
             position: relative;
             top: 10px;
             left: 80%;
 
-            >.img {
+            > .img {
               width: 100%;
               height: 100%;
             }
           }
 
-          >.frontimg {
+          > .frontimg {
             width: 70px;
             height: 70px;
             padding: 30px;
@@ -86,41 +88,41 @@ div.track {
             margin: 0 auto;
             text-align: center;
 
-            >img {
+            > img {
               width: 100%;
               height: 100%;
             }
           }
 
-          >.star {
+          > .star {
             display: block;
 
-            >.starimg {
+            > .starimg {
               display: inline-block;
               width: 10px;
               height: 10px;
 
-              >img {
+              > img {
                 width: 100%;
                 height: 100%;
               }
             }
 
-            >span {
+            > span {
               color: #007552;
             }
           }
         }
 
-        >.front_bottom {
+        > .front_bottom {
           display: inline-block;
           text-align: start;
           margin-bottom: 20%;
           padding: 5px 9px 0px 9px;
-          .frontbutton{
+          .frontbutton {
             display: block;
             text-align: center;
-            >.track_button{
+            > .track_button {
               display: inline-block;
               border-radius: 5px;
               padding: 0 5px;
@@ -128,11 +130,11 @@ div.track {
               color: white;
               cursor: pointer;
               margin-right: 5px;
-              &:hover{
+              &:hover {
                 background-color: #fca87c;
               }
             }
-            >.track_button2{
+            > .track_button2 {
               display: inline-block;
               border-radius: 5px;
               padding: 0 5px;
@@ -140,15 +142,12 @@ div.track {
               color: white;
               cursor: pointer;
               margin-left: 5px;
-              &:hover{
+              &:hover {
                 background-color: #fca87c;
               }
             }
           }
-
         }
-
-        
 
         // >.cardinfo{
         //   display: block;
@@ -169,15 +168,15 @@ div.track {
         //   }
         // }
       }
-
     }
 
     .pagination_block {
+      grid-area: aa3;
       display: inline-block;
-      margin-top: 20px;
-      margin-bottom: 20px;
+      margin: 0 auto;
+      margin-top: 100px;
 
-      >ul.pagination {
+      > ul.pagination {
         list-style: none;
         margin: 0;
         padding: 0;
@@ -187,10 +186,10 @@ div.track {
           margin-left: 20px;
         }
 
-        >li {
+        > li {
           display: inline-block;
 
-          >a {
+          > a {
             display: inline-block;
             text-decoration: none;
 
@@ -199,7 +198,7 @@ div.track {
             /* 留意：將全部的右邊框都移除 */
 
             text-align: center;
-            padding: 5px 10px;
+            padding: 5px 5px;
             font-size: 1rem;
             color: black;
 
@@ -208,43 +207,42 @@ div.track {
             }
           }
 
-          >a.-on {
-            background-color: #FFD3C1;
+          > a.-on {
+            background-color: #ffd3c1;
             color: #007552;
           }
 
-          >a:hover {
-            background-color: #FFD3C1;
+          > a:hover {
+            background-color: #ffd3c1;
             color: #007552;
           }
         }
 
-        >li:first-child>a {
+        > li:first-child > a {
           display: inline-block;
           margin-right: 10px;
           background-color: #007552;
           color: white;
         }
 
-        >li:first-child>a:hover {
+        > li:first-child > a:hover {
           background-color: #007552;
           color: white;
         }
 
-        >li:last-child>a {
+        > li:last-child > a {
           border-right: 1px solid #007552;
           margin-left: 10px;
           background-color: #007552;
           color: white;
         }
 
-        >li:last-child>a:hover {
+        > li:last-child > a:hover {
           background-color: #007552;
           color: white;
         }
       }
     }
-
   }
 }
 
@@ -258,7 +256,6 @@ div.track {
 //     width: 0px;
 //     height: 0px;
 // }
-
 
 /* 留意: 將最後一個 li 裡的 a，右邊框加回來 */
 /* 留意: 將最後一個 li 裡的 a，加上圓角 */
