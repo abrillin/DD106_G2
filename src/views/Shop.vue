@@ -246,12 +246,7 @@
         <div class="hot_commodity_filter-status">
           <div class="hot_commoditystatus_text">明星農民</div>
         </div>
-        <div
-          class="hotCommoditySeller"
-          v-for="(s, index) in seller"
-          :key="index"
-          @mouseenter="SellerM"
-        >
+        <div class="hotCommoditySeller" v-for="(s, index) in seller" :key="index">
           <a href="#">
             <div class="seller_box">
               <img
@@ -320,59 +315,40 @@ export default {
       shopcommodityfilter: [],
       pageArr: [],
       currentPage: [],
-      seller: {}
+      seller: []
     };
   },
 
-  created() {
-    const api = "/api/api_item.php";
-
-    this.$http.post(api).then(res => {
-      this.shopcommodity = res.data;
-
-      for (let i = 1; i < 9; i++) {
-        this.shopcommodityfilter.push(this.shopcommodity["pro"][i]);
-      }
-
-      this.currentPage.push(1);
-      for (let i = 1; i < 10; i++) {
-        this.pageArr.push(i);
-      }
-
-      this.seller = res.data["mem"];
-      // console.log(res.data["mem"]);
-    });
-  },
-  methods: {
-    SellerM: function() {
-      //觸發追蹤商品效果
-      $(".hotCommoditySeller").hover(function() {
-        var sellermove = $(this);
-        TweenMax.to(sellermove, 0.5, {
-          x: -25,
-          width: "100% + 25px"
-        });
-        var sellermove2 = $(this).find(".track-btn");
-        TweenMax.to(sellermove2, 1, {
-          x: 70,
-          autoAlpha: 1
-        });
-      });
-      //反觸發追蹤商品效果
-      $(".hotCommoditySeller").mouseleave(function() {
-        var sellermove = $(this);
-        TweenMax.to(sellermove, 0.5, {
-          x: 0,
-          width: "100%"
-        });
-        var sellermove2 = $(this).find(".track-btn");
-        TweenMax.to(sellermove2, 1, {
-          x: 0,
-          autoAlpha: 0
-        });
-      });
-    }
-  },
+  // methods: {
+  //   SellerM: function() {
+  //     //觸發追蹤商品效果
+  //     $(".hotCommoditySeller").hover(function() {
+  //       var sellermove = $(this);
+  //       TweenMax.to(sellermove, 0.5, {
+  //         x: -25,
+  //         width: "100% + 25px"
+  //       });
+  //       var sellermove2 = $(this).find(".track-btn");
+  //       TweenMax.to(sellermove2, 1, {
+  //         x: 70,
+  //         autoAlpha: 1
+  //       });
+  //     });
+  //     //反觸發追蹤商品效果
+  //     $(".hotCommoditySeller").mouseleave(function() {
+  //       var sellermove = $(this);
+  //       TweenMax.to(sellermove, 0.5, {
+  //         x: 0,
+  //         width: "100%"
+  //       });
+  //       var sellermove2 = $(this).find(".track-btn");
+  //       TweenMax.to(sellermove2, 1, {
+  //         x: 0,
+  //         autoAlpha: 0
+  //       });
+  //     });
+  //   }
+  // },
   mounted() {
     function showHideHam() {
       let filterPanel = document.getElementById("filterPanel");
@@ -475,6 +451,24 @@ export default {
         y: 0
       });
     });
+
+    const api = "/api/api_item.php";
+
+    this.$http.post(api).then(res => {
+      this.shopcommodity = res.data;
+
+      for (let i = 1; i < 9; i++) {
+        this.shopcommodityfilter.push(this.shopcommodity["pro"][i]);
+      }
+
+      this.currentPage.push(1);
+      for (let i = 1; i < 10; i++) {
+        this.pageArr.push(i);
+      }
+
+      this.seller = res.data["mem"];
+      // console.log(res.data["mem"]);
+    });
   },
 
   updated() {
@@ -491,7 +485,6 @@ export default {
           [i].classList.add("currentPagecolor");
       }
     }
-    // console.log(document.getElementsByClassName("page-item"));
   },
 
   pageSelect(e) {
@@ -574,6 +567,6 @@ export default {
         this.pageArr[index] = this.pageArr[index] + 1;
       });
     }
-  }
+  },
 };
 </script>
