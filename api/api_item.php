@@ -38,7 +38,8 @@ try {
         $total = (int)  $val['review_total'];
         $count = (int)  $val['review_count'];
         $val['Starsaverage'] = $total / $count;
-        $val['itemRows'] = $itemRows;
+
+        // $val['itemRows'] = $itemRows;
     }
 
     echo json_encode(array('pro' => $itemRows, 'mem' =>  $output));
