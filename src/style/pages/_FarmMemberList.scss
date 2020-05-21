@@ -1,269 +1,102 @@
 div.FarmList {
-    display: inline-block;
-    color: #007552;
-    background-color: #fbf8ef;
-    width: calc(100% - 250px);
-    height: 100vh;
-    vertical-align: top;
-    box-sizing: border-box;
-    padding: 60px 40px;
+  display: block;
+  color: #007552;
+  background-color: #fbf8ef;
+  width: calc(100% - 250px);
+  float: right;
+  box-sizing: border-box;
+  padding: 60px 40px;
+
+  @include rwd(medium) {
+    width: 100%;
+  }
+
+  @include rwd(small) {
+    float: none;
+    width: 100%;
+    padding: 10% 5%;
+  }
+
+  .FarmList_head {
+    color: #f7c845;
+    font-size: 3rem;
+  }
+
+  .plusbutton {
+    display: block;
+    padding: 10px 0;
+
+    > .plus {
+      display: inline-block;
+      border: 1px solid #007552;
+      background-color: #007552;
+      border-radius: 5px;
+      text-align: center;
+      padding: 10px;
+      margin-top: 50px;
+      color: white;
+      @include rwd(mobile) {
+        margin-top: 20px;
+      }
+      > a {
+        text-decoration: none;
+        color: white;
+      }
+    }
+  }
+
+  .FarmList_bottom {
+    display: block;
+    text-align: center;
+    width: 100%;
 
     @include rwd(medium) {
-        float: right;
-        width: calc(100% - 200px);
+      padding-top: 10%;
     }
-
     @include rwd(small) {
-        float: none;
-        width: 100vw;
-        padding: 10% 5%;
+      padding-top: 0%;
     }
 
-    .FarmList_head {
-        color: #f7c845;
-        font-size: 3rem;
-    }
+    > .list_1 {
+      width: 100%;
 
-    .plusbutton {
-        display: block;
-        padding: 10px 0;
-
-        >.plus {
-            display: inline-block;
-            border: 1px solid #007552;
-            background-color: #007552;
-            border-radius: 5px;
-            text-align: center;
-            padding: 10px;
-            color: white;
-
-            >a {
-                text-decoration: none;
-                color: white;
-            }
+      .bottomheader {
+        margin-top: 100px;
+        width: 100%;
+        @include rwd(mobile) {
+          margin-top: 40px;
         }
-    }
+      }
 
-    .FarmList_bottom {
-        display: block;
+      .listTab {
+        width: 100%;
+      }
+
+      th {
+        background: #f7c845;
+        width: 14%;
+        padding: 15px 0;
         text-align: center;
-
-        @include rwd(medium) {
-            display: block;
-            width: 100%;
-            padding-top: 10%;
-        }
-
-        @include rwd(small) {
-            padding-top: 0%;
-        }
+        color: #333;
 
         @include rwd(mobile) {
-            width: 105%;
+          font-size: 1.2rem;
         }
+      }
 
-        >.list_1 {
-            display: flex;
-            flex-direction: column;
-            margin: auto;
-            justify-content: center;
-            align-items: center;
-            height: auto;
-            margin-top: 50px;
-
-            @include rwd(large) {
-                margin-left: 0%;
-            }
-
-            @include rwd(medium) {
-                margin-left: 25%;
-            }
-
-            @include rwd(small) {
-                margin-left: 2%;
-            }
-
-            @include rwd(mobile) {
-                margin-left: 0%;
-            }
-
-            .bottomheader {
-                display: flex;
-                background: #f7c845;
-                width: 90%;
-
-                @include rwd(large) {
-                    width: 100%;
-                }
-
-                @include rwd(small) {
-                    width: 100%;
-                }
-            }
-
-            .bottomcontent {
-                display: flex;
-                background-color: #fff;
-                height: 80%;
-                margin-top: 0;
-                width: 90%;
-
-                // overflow: hidden;
-                // text-overflow: ellipsis;
-                // white-space: nowrap;
-                @include rwd(large) {
-                    width: 100%;
-                }
-
-                @include rwd(small) {
-                    width: 100%;
-                }
-            }
-
-            .blogTab {
-                table-layout: fixed;
-            }
-            tr{
-                height: 1em;
-            }
-
-            th {
-                width: 200px;
-                padding: 15px 0;
-                text-align: center;
-
-                @include rwd(large) {
-                    width: 120px;
-                }
-
-                @include rwd(mobile) {
-                    width: 43px;
-                    font-size: 13px;
-                }
-            }
-
-            td {
-                width: 200px;
-                padding: 15px 0;
-                text-align: center;
-                vertical-align: middle;
-                font-size: 16px;
-                @include rwd(large) {
-                    width: 120px;
-                }
-
-                @include rwd(mobile) {
-                    width: 43px;
-                    font-size: 13px;
-                }
-
-                a {
-                    text-decoration: none;
-                    color: #007552;
-                }
-            }
-            #target{
-                border: 0;
-                display: block;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-                position: absolute\9;
-                position: static;
-                padding-top: 21px;
-            }
-
+      td {
+        background-color: white;
+        width: 14%;
+        padding: 15px 0;
+        text-align: center;
+        word-wrap: break-word;
+        @include rwd(mobile) {
+          font-size: 1.2rem;
         }
-
-
-        .pagination_block {
-            display: block;
-            margin: auto;
-            margin-top: 20px;
-            margin-left: 13%;
-
-            @include rwd(medium) {
-                margin-left: 0px;
-                margin-bottom: 10px;
-            }
-
-            @include rwd(mobile) {
-                text-align: center;
-                margin-left: 30px;
-            }
-
-            @include rwd(small) {
-                margin-left: 4%;
-            }
-
-            >ul.pagination {
-                list-style: none;
-                display: inline-block;
-                margin: 0;
-                padding: 0;
-                font-size: 0;
-                text-align: center;
-
-                >li {
-                    display: inline-block;
-
-                    >a {
-                        display: inline-block;
-                        text-decoration: none;
-
-                        border: 1px solid #007552;
-                        /* 留意 */
-                        /* 留意：將全部的右邊框都移除 */
-
-                        text-align: center;
-                        padding: 5px 10px;
-                        font-size: 1rem;
-                        color: black;
-
-                        @include rwd(mobile) {
-                            padding: 5px 5px;
-                        }
-                    }
-
-                    >a.-on {
-                        background-color: #FFD3C1;
-                        color: #007552;
-                    }
-
-                    >a:hover {
-                        background-color: #FFD3C1;
-                        color: #007552;
-                    }
-                }
-
-                >li:first-child>a {
-                    display: inline-block;
-                    margin-right: 10px;
-                    background-color: #007552;
-                    color: white;
-                }
-
-                >li:first-child>a:hover {
-                    background-color: #007552;
-                    color: white;
-                }
-
-                >li:last-child>a {
-                    border-right: 1px solid #007552;
-                    margin-left: 10px;
-                    background-color: #007552;
-                    color: white;
-                }
-
-                >li:last-child>a:hover {
-                    background-color: #007552;
-                    color: white;
-                }
-            }
-        }
+      }
     }
+  }
 }
-
 
 // div.Order>.Order_bottom>.Orderlist>.list_1>span.triangle{
 //     display: inline-block;
@@ -275,7 +108,6 @@ div.FarmList {
 //     width: 0px;
 //     height: 0px;
 // }
-
 
 /* 留意: 將最後一個 li 裡的 a，右邊框加回來 */
 /* 留意: 將最後一個 li 裡的 a，加上圓角 */

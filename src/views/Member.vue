@@ -105,7 +105,7 @@ export default {
     });
   },
   mounted() {
-    if (window.innerWidth < 768) {
+    if (window.innerWidth < 991) {
       if ($("aside.left").hasClass("popover")) {
         $("button.btn_drawer").on("click", function() {
           $("aside.left").removeClass("popover");
@@ -121,7 +121,7 @@ export default {
     }
 
     $(window).resize(function() {
-      if (window.innerWidth < 768) {
+      if (window.innerWidth < 991) {
         if ($("aside.left").hasClass("popover")) {
           $("button.btn_drawer").on("click", function() {
             $("aside.left").toggleClass("popover");
@@ -179,17 +179,15 @@ export default {
     checkFarm: function() {
       const api = "/api/api_checkFarm.php";
 
-      this.$http
-        .post(api, JSON.stringify(this.member))
-        .then((res) => {
-          const data = res.data;
+      this.$http.post(api, JSON.stringify(this.member)).then((res) => {
+        const data = res.data;
 
-          if (data == "") {
-          } else {
-            alert("已經是果農了");
-            this.$router.go(-1);
-          }
-        });
+        if (data == "") {
+        } else {
+          alert("已經是果農了");
+          this.$router.go(-1);
+        }
+      });
     },
     changeFarm: function() {
       const api = "/api/api_checkFarm.php";
