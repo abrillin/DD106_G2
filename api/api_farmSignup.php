@@ -8,7 +8,7 @@ try {
     require_once("connectDB.php");
 
     // 新增帳號
-    $sql = "insert into `seller` (`no`, `address`, `content`, `review_total`, `review_count`, `status`, `member_no`) values(null,:add,0,0,0,1,:no )";
+    $sql = "insert into `seller` (`no`, `address`, `content`, `review_total`, `review_count`, `status`, `member_no`) values(null,:add,0,0,0,0,:no )";
     $member = $pdo->prepare($sql);
 
     $memberInfo = json_decode(file_get_contents("php://input"));

@@ -84,9 +84,9 @@ export default {
   },
   created() {
     const api = "/api/api_memberStatus.php";
-    const apiCheck = "/api/api_farmStatus";
+    const apiCheck = "/api/api_farmStatus.php";
 
-    this.$http.post(api).then(res => {
+    this.$http.post(apiCheck).then(res => {
       const data = res.data;
 
       if (res.data != "") {
