@@ -23,20 +23,6 @@ $btnRadius: 5px;
 $tagBGcolor: #E2E2E2;
 
 .msContainer {
-  // display: flex;
-  // flex-flow: row wrap;
-  // background: $bgColor;
-  // // height: 100vh;
-  // max-width: 100%;
-  // margin: 0 auto;
-  // border: 1px solid #000;
-  // box-sizing: border-box;
-
-  // .msFrame {
-  // display: flex;
-  // width: 100%;
-  // border: 1px solid blue;
-  // box-sizing: border-box;
 
   .msSideBar {
     // margin: auto;
@@ -61,9 +47,15 @@ $tagBGcolor: #E2E2E2;
       color: $title2Color;
       position: relative;
       top: 15px;
-      left: 25%;
       font-size: $title2Size;
+      .adminNameColor {
+        color: #333;
+        text-decoration: underline wavy #DCE07A;
+        
+      }
     }
+
+    
 
     li {
       position: relative;
