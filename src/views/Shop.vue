@@ -166,24 +166,26 @@
               </button>
               <label class="dropdown" for="states">最新商品</label>
               <div class="button dropdown-content">
-                <select id="colorselector" class="select-reset">
-                  <option value="price-high-to-low">價錢高到低</option>
-                  <option value="high-to-low">評價高到低</option>
-                  <option value="new-to old" selected>由新到舊</option>
+                <select id="colorselector" class="select-reset" v-model="v" @change="itemchange(v)">
+                  <option
+                    v-for="(changeitems,index) in changeitem"
+                    :key="changeitems"
+                    :value="index"
+                  >{{changeitems}}</option>
                 </select>
               </div>
             </div>
           </div>
           <div class="commodity-flex">
             <div class="commodity" v-for="(i, index) in shopcommodityfilter" :key="index">
-              <router-link to="/main/shopitem" >
+              <router-link to="/main/shopitem">
                 <div class="card_img_box" @click="changePage(i)">
                   <img src="../assets/ia_300000017.jpg" width="100%" height="100%" />
                 </div>
               </router-link>
               <div class="card_content">
                 <div class="commodity_title">
-                  <div class="commodity_title_text">{{i.name}}</div>
+                  <div class="commodity_title_text">{{i.no}}</div>
                 </div>
 
                 <div class="card_tag" v-for="(t,dex) in shopcommodityfilter[index].tags" :key="dex">
@@ -192,7 +194,7 @@
                 </div>
 
                 <div class="card_price">
-                  <span class="money">{{i.no}}</span>
+                  <span class="money">{{i.price}}</span>
                 </div>
 
                 <div class="buy">
@@ -316,7 +318,9 @@ export default {
       shopcommodityfilter: [],
       pageArr: [],
       currentPage: [],
-      seller: []
+      seller: [],
+      changeitem: ["價錢高到低", "評價高到低", "由新到舊"],
+      v: 0
     };
   },
 
@@ -526,6 +530,22 @@ export default {
           }
         })
         .catch(err => console.log(err));
+    },
+
+    itemchange(t) {
+      console.log(t);
+      const api = "/api/api_item.php";
+
+      this.$http.post(api, JSON.stringify(t)).then(res => {
+        // this.shopcommodity = "";
+        this.shopcommodity = res.data;
+
+        this.shopcommodityfilter = [];
+
+        for (let i = 1; i < 9; i++) {
+          this.shopcommodityfilter.push(this.shopcommodity["pro"][i]);
+        }
+      });
     }
   },
 
