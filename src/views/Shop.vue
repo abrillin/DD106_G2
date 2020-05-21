@@ -371,6 +371,60 @@ export default {
           autoAlpha: 0
         });
       });
+    },
+    pageLeft() {
+      let currentPage1 = this.currentPage[0];
+      // this.currentPage = [];
+      this.shopcommodityfilter = [];
+      if (this.currentPage > 1) {
+        this.currentPage = [];
+        this.currentPage.push(currentPage1 - 1);
+      }
+      let updatePage = this.currentPage[0];
+
+      for (let i = (updatePage - 1) * 8 + 1; i < updatePage * 8 + 1; i++) {
+        this.shopcommodityfilter.push(this.shopcommodity.pro[i]);
+      }
+      console.log(this.shopcommodity);
+      if (this.pageArr[0] > 1) {
+        this.pageArr.forEach((item, index, array) => {
+          this.pageArr[index] = this.pageArr[index] - 1;
+        });
+      }
+    },
+    nextPage() {
+      let currentPage1 = this.currentPage[0];
+      this.shopcommodityfilter = [];
+      if (this.currentPage < parseInt(this.shopcommodity.length / 8)) {
+        this.currentPage = [];
+        this.currentPage.push(currentPage1 + 1);
+      }
+      let updatePage = this.currentPage[0];
+
+      for (let i = (updatePage - 1) * 8 + 1; i < updatePage * 8 + 1; i++) {
+        this.shopcommodityfilter.push(this.shopcommodity.pro[i]);
+      }
+      if (this.pageArr[8] < parseInt(this.shopcommodity.length / 8)) {
+        this.pageArr.forEach((item, index, array) => {
+          this.pageArr[index] = this.pageArr[index] + 1;
+        });
+      }
+    },
+    updated() {
+      for (let i = 0; i <= 8; i++) {
+        document
+          .getElementsByClassName("page-item")
+          [i].setAttribute("class", "page-item");
+        if (
+          document.getElementsByClassName("page-item")[i].textContent ==
+          this.currentPage[0]
+        ) {
+          document
+            .getElementsByClassName("page-item")
+            [i].classList.add("currentPagecolor");
+        }
+      }
+      // console.log(document.getElementsByClassName("page-item"));
     }
   },
   mounted() {
@@ -476,24 +530,6 @@ export default {
       });
     });
   },
-
-  updated() {
-    for (let i = 0; i <= 8; i++) {
-      document
-        .getElementsByClassName("page-item")
-        [i].setAttribute("class", "page-item");
-      if (
-        document.getElementsByClassName("page-item")[i].textContent ==
-        this.currentPage[0]
-      ) {
-        document
-          .getElementsByClassName("page-item")
-          [i].classList.add("currentPagecolor");
-      }
-    }
-    // console.log(document.getElementsByClassName("page-item"));
-  },
-
   pageSelect(e) {
     let pageNum = parseInt(e.target.textContent);
     // console.log(pageNum);
