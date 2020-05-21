@@ -90,6 +90,10 @@ div.FarmList {
         padding: 15px 0;
         text-align: center;
         word-wrap: break-word;
+        a{
+          text-decoration: none;
+          color: #007552;
+        }
         @include rwd(mobile) {
           font-size: 1.2rem;
         }

@@ -320,7 +320,7 @@ export default {
       shopcommodityfilter: [],
       pageArr: [],
       currentPage: [],
-      seller: {}
+      seller: []
     };
   },
 
@@ -342,6 +342,22 @@ export default {
       this.seller = res.data["mem"];
       // console.log(res.data["mem"]);
     });
+  },
+  updated() {
+    for (let i = 0; i <= 8; i++) {
+      document
+        .getElementsByClassName("page-item")
+        [i].setAttribute("class", "page-item");
+      if (
+        document.getElementsByClassName("page-item")[i].textContent ==
+        this.currentPage[0]
+      ) {
+        document
+          .getElementsByClassName("page-item")
+          [i].classList.add("currentPagecolor");
+      }
+    }
+    // console.log(document.getElementsByClassName("page-item"));
   },
   methods: {
     SellerM: function() {
@@ -410,21 +426,50 @@ export default {
         });
       }
     },
-    updated() {
-      for (let i = 0; i <= 8; i++) {
-        document
-          .getElementsByClassName("page-item")
-          [i].setAttribute("class", "page-item");
-        if (
-          document.getElementsByClassName("page-item")[i].textContent ==
-          this.currentPage[0]
+
+    pageSelect(e) {
+      let pageNum = parseInt(e.target.textContent);
+      // console.log(pageNum);
+      this.shopcommodityfilter = [];
+      this.currentPage = [];
+      // console.log(parseInt(this.shopcommodity.length / 9));
+      if (
+        pageNum > 5 &&
+        pageNum < parseInt(this.shopcommodity.length / 8) - 5
+      ) {
+        this.pageArr = [];
+        for (let i = pageNum - 4; i < pageNum + 5; i++) {
+          this.pageArr.push(i);
+        }
+      } else if (pageNum >= parseInt(this.shopcommodity.length / 8) - 5) {
+        this.pageArr = [];
+        for (
+          let i = parseInt(this.shopcommodity.length / 8) - 7;
+          i <= parseInt(this.shopcommodity.length / 7);
+          i++
         ) {
-          document
-            .getElementsByClassName("page-item")
-            [i].classList.add("currentPagecolor");
+          this.pageArr.push(i);
+        }
+      } else {
+        this.pageArr = [];
+        for (let i = 1; i < 10; i++) {
+          this.pageArr.push(i);
         }
       }
-      // console.log(document.getElementsByClassName("page-item"));
+
+      this.currentPage.push(pageNum);
+      let currentPage1 = this.currentPage[0];
+
+      for (let i = (currentPage1 - 1) * 8 + 1; i < currentPage1 * 8 + 1; i++) {
+        this.shopcommodityfilter.push(this.shopcommodity["pro"][i]);
+      }
+
+      for (let i = 1; i < 9; i++) {
+        e.target.parentNode.children[i].setAttribute("class", "page-item");
+      }
+      // console.log(document.getElementsByClassName("pageBorder"));
+      e.target.parentNode.children[1].setAttribute("class", "page-item");
+      //   document.getElementsByClassName("pageBorder")[0].setAttribute("class","");
     }
   },
   mounted() {
@@ -529,87 +574,24 @@ export default {
         y: 0
       });
     });
-  },
-  pageSelect(e) {
-    let pageNum = parseInt(e.target.textContent);
-    // console.log(pageNum);
-    this.shopcommodityfilter = [];
-    this.currentPage = [];
-    // console.log(parseInt(this.shopcommodity.length / 9));
-    if (pageNum > 5 && pageNum < parseInt(this.shopcommodity.length / 8) - 5) {
-      this.pageArr = [];
-      for (let i = pageNum - 4; i < pageNum + 5; i++) {
-        this.pageArr.push(i);
+
+    const api = "/api/api_item.php";
+
+    this.$http.post(api).then(res => {
+      this.shopcommodity = res.data;
+
+      for (let i = 1; i < 9; i++) {
+        this.shopcommodityfilter.push(this.shopcommodity["pro"][i]);
       }
-    } else if (pageNum >= parseInt(this.shopcommodity.length / 8) - 5) {
-      this.pageArr = [];
-      for (
-        let i = parseInt(this.shopcommodity.length / 8) - 7;
-        i <= parseInt(this.shopcommodity.length / 7);
-        i++
-      ) {
-        this.pageArr.push(i);
-      }
-    } else {
-      this.pageArr = [];
+
+      this.currentPage.push(1);
       for (let i = 1; i < 10; i++) {
         this.pageArr.push(i);
       }
-    }
 
-    this.currentPage.push(pageNum);
-    let currentPage1 = this.currentPage[0];
-
-    for (let i = (currentPage1 - 1) * 8 + 1; i < currentPage1 * 8 + 1; i++) {
-      this.shopcommodityfilter.push(this.shopcommodity["pro"][i]);
-    }
-
-    for (let i = 1; i < 9; i++) {
-      e.target.parentNode.children[i].setAttribute("class", "page-item");
-    }
-    // console.log(document.getElementsByClassName("pageBorder"));
-    e.target.parentNode.children[1].setAttribute("class", "page-item");
-    //   document.getElementsByClassName("pageBorder")[0].setAttribute("class","");
-  },
-
-  pageLeft() {
-    let currentPage1 = this.currentPage[0];
-    // this.currentPage = [];
-    this.shopcommodityfilter = [];
-    if (this.currentPage > 1) {
-      this.currentPage = [];
-      this.currentPage.push(currentPage1 - 1);
-    }
-    let updatePage = this.currentPage[0];
-
-    for (let i = (updatePage - 1) * 8 + 1; i < updatePage * 8 + 1; i++) {
-      this.shopcommodityfilter.push(this.shopcommodity.pro[i]);
-    }
-    console.log(this.shopcommodity);
-    if (this.pageArr[0] > 1) {
-      this.pageArr.forEach((item, index, array) => {
-        this.pageArr[index] = this.pageArr[index] - 1;
-      });
-    }
-  },
-
-  nextPage() {
-    let currentPage1 = this.currentPage[0];
-    this.shopcommodityfilter = [];
-    if (this.currentPage < parseInt(this.shopcommodity.length / 8)) {
-      this.currentPage = [];
-      this.currentPage.push(currentPage1 + 1);
-    }
-    let updatePage = this.currentPage[0];
-
-    for (let i = (updatePage - 1) * 8 + 1; i < updatePage * 8 + 1; i++) {
-      this.shopcommodityfilter.push(this.shopcommodity.pro[i]);
-    }
-    if (this.pageArr[8] < parseInt(this.shopcommodity.length / 8)) {
-      this.pageArr.forEach((item, index, array) => {
-        this.pageArr[index] = this.pageArr[index] + 1;
-      });
-    }
+      this.seller = res.data["mem"];
+      // console.log(res.data["mem"]);
+    });
   }
 };
 </script>
