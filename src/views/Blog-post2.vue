@@ -1751,22 +1751,20 @@ export default {
       //   aa: this.blogArr,
       //   bb: e.target.parentNode.parentNode.children[3].textContent,
       // });
-
+      console.log(e);
+      console.log('123');
       this.$emit('blogInf', e);
       // console.log(e);
 
       let api = '/api/api_session_blog_no.php';
 
-      this.$http
-        .post(api, JSON.stringify(e))
-        .then((res) => {
-          if (res.data != '') {
-            console.log(res.data);
-          } else {
-            console.log(res.error);
-          }
-        })
-        .catch((err) => console.log(err));
+      this.$http.post(api, JSON.stringify(e)).then((res) => {
+        if (res.data != '') {
+          console.log(res.data);
+        } else {
+          console.log(res.error);
+        }
+      });
     },
     getThisCard(e) {
       console.log(e.target.parentNode.parentNode.children[3].textContent);

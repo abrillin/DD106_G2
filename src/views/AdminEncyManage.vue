@@ -39,9 +39,8 @@
                 <td>{{row.type}}</td> <!-- 水果產季 -->
                 <td>{{row.content}}</td>
                 <td>
-                  <a href="#">
+                  <a href="#" style="outline: none;">
                     <img class="editImg" src="@/assets/icon/edit_btn.svg" :id="row.no" alt />
-                    
                   </a>
                 </td>
               </tr>

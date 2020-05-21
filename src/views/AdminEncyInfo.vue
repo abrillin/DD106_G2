@@ -12,7 +12,7 @@
             <label for="fruitTag">標籤</label>
           </th>
           <td>
-            <select name="fruitTag" id="fruitTag" data-selected v-model="encyEdit.title">
+            <select name="fruitTag" id="fruitTag" data-selected :="encyEdit.title">
               <option value selected="selected" disabled="disabled">請選擇</option>
               <optgroup label="常年">
                 <option value="木瓜">木瓜</option> 
@@ -54,7 +54,7 @@
             <label for="fruitSeason">產季</label>
           </th>
           <td>
-            <select name="fruitSeason" id="fruitSeason" data-selected v-model="encyEdit.type">
+            <select name="fruitSeason" id="fruitSeason" data-selected :="encyEdit.type">
               <option value selected="selected" disabled="disabled">請選擇</option>
               <option value="0">常年</option>
               <option value="1">春季</option>
@@ -70,7 +70,7 @@
             <label for="encyIntro">介紹</label>
           </th>
           <td>
-            <textarea name="encyIntro" id="encyIntro" v-model="encyEdit.content"></textarea>
+            <textarea name="encyIntro" id="encyIntro" :="encyEdit.content"></textarea>
           </td>
         </tr>
         <tr>
@@ -78,7 +78,7 @@
             <label for="encyQ">農知識問題</label>
           </th>
           <td>
-            <textarea name="encyQ" id="encyQ" v-model="encyEdit.question"></textarea>
+            <textarea name="encyQ" id="encyQ" :="encyEdit.question"></textarea>
           </td>
         </tr>
         <tr>
@@ -86,7 +86,7 @@
             <label for="encyA">農知識答案</label>
           </th>
           <td>
-            <textarea name="encyA" id="encyA" v-model="encyEdit.answer"></textarea>
+            <textarea name="encyA" id="encyA" :="encyEdit.answer"></textarea>
           </td>
         </tr>
 
@@ -96,31 +96,31 @@
           <td>
             <label for="encyPic01">
               圖01：
-              <input type="file" id="encyPic01" name="upFile[]" @change="fileSelect" />
+              <input type="file" id="encyPic01" name="upFile[]" :="fileSelect" />
             </label>
             <img src style="max-width: 400px;max-height: 400px;" />
             <br />
 
             <label for="encyPic02">
               圖02：
-              <input type="file" id="encyPic02" name="upFile[]" @change="fileSelect" />
+              <input type="file" id="encyPic02" name="upFile[]" :="fileSelect" />
             </label>
             <br />
             <label for="encyPic03">
               圖03：
-              <input type="file" id="encyPic03" name="upFile[]" @change="fileSelect" />
+              <input type="file" id="encyPic03" name="upFile[]" :="fileSelect" />
             </label>
             <br />
 
             <label for="encyPic04">
               圖04：
-              <input type="file" id="encyPic04" name="upFile[]" @change="fileSelect" />
+              <input type="file" id="encyPic04" name="upFile[]" :="fileSelect" />
             </label>
             <br />
 
             <label for="encyPic05">
               圖05：
-              <input type="file" id="encyPic05" name="upFile[]" @change="fileSelect" />
+              <input type="file" id="encyPic05" name="upFile[]" :="fileSelect" />
             </label>
             <br />
           </td>
@@ -130,7 +130,7 @@
             <label for="videoLink">影片</label>
           </th>
           <td>
-            <input type="text" id="videoLink" v-model="encyEdit.video" />
+            <input type="text" id="videoLink" :="encyEdit.video" />
           </td>
         </tr>
 
@@ -214,7 +214,7 @@ export default {
         // 用post把從encyEdit來的js物件資料轉為json字串，傳給api背後的那支php
         .then(res => {
           this.data = res.data;
-          alert(" 資料新增完成 ٩(･ิᴗ･ิ๑)۶ ");
+          alert(" 資料修改完成 ٩(･ิᴗ･ิ๑)۶ ");
           this.$router.go(-1);
         });
     }
