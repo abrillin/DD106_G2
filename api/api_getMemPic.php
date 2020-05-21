@@ -24,6 +24,22 @@ try {
         echo "1";
     } else {
         // 有
+        $sql = "select * from `member` where `no`=:no";
+        $updateMember = $pdo->prepare($sql);
+
+        $updateMember->bindValue(":no", $memberInfo->no);
+
+        $updateMember->execute();
+
+        $memRow = $updateMember->fetch(PDO::FETCH_ASSOC);
+
+        $item = array("no", "name", "phone", "email", "gender", "img", "acc", "psw", "nick", "status");
+
+        for ($i = 0; $i < count($item); $i++) {
+
+            $_SESSION["member_" . $item[$i]] = $memRow[$item[$i]];
+        }
+
         echo "0";
     }
 } catch (PDOException $e) {

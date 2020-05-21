@@ -91,7 +91,7 @@ export default {
           acc: data.acc,
           name: data.name,
           nick: data.nick,
-          phone: 0 + data.phone,
+          phone: data.phone,
           email: data.email,
           gender: data.gender,
           address: data.address,

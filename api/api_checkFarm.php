@@ -21,9 +21,9 @@ try {
 
     if ($seller->rowCount() == 0) {
         // 查無此人
-        echo "";
+        echo "0";
     }else{
-        echo 1;
+        echo "1";
     }
     
        

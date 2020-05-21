@@ -1,21 +1,19 @@
 div.information {
-  display: inline-block;
+  display: block;
   color: #007552;
   background-color: #fbf8ef;
   width: calc(100% - 250px);
-  height: 100vh;
-  vertical-align: top;
+  float: right;
   box-sizing: border-box;
   padding: 60px 40px;
 
   @include rwd(medium) {
-    float: right;
     width: calc(100% - 200px);
   }
 
   @include rwd(small) {
     float: none;
-    width: 100vw;
+    width: 100%;
     padding: 10% 5%;
   }
 
@@ -53,7 +51,7 @@ div.information {
         width: 150px;
         height: 500px;
         padding-top: 50px;
-
+        line-height: 3.3;
         @include rwd(small) {
           width: 30%;
           height: 400px;
@@ -63,7 +61,7 @@ div.information {
           > li {
             font-size: 1.8rem;
             color: #666;
-            line-height: 3.3;
+
             @include rwd(small) {
               font-size: 1.4rem;
               line-height: 3;
@@ -75,15 +73,14 @@ div.information {
       > .information_right {
         display: inline-block;
         text-align: start;
-
         background-color: white;
         box-sizing: border-box;
         padding-top: 50px;
-
         padding-left: 30px;
         padding-right: 30px;
         width: 340px;
         height: 550px;
+        line-height: 3.3;
 
         @include rwd(medium) {
           width: 340px;
@@ -95,7 +92,7 @@ div.information {
 
         span {
           display: block;
-          line-height: 3.5;
+
           @include rwd(small) {
             line-height: 3;
           }

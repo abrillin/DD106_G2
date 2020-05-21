@@ -24,23 +24,19 @@
                 <th>上傳時間</th>
                 <th>上架狀態</th>
               </tr>
-            </thead>
-          </table>
-        </div>
-        <div class="bottomcontent">
-          <table class="orderTab">
-            <tbody>
               <tr>
                 <td>xxxx</td>
                 <td>慶中秋!台南玉璽文旦...</td>
                 <td>200</td>
                 <td>2020-04-16 11:22</td>
+                <td></td>
                 <!-- <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
                                         for="switch">Toggle<div class="after"></div></label></p> -->
               </tr>
-            </tbody>
+            </thead>
           </table>
         </div>
+
         <!-- <div class="Orderputon">
                     
                    
@@ -68,7 +64,7 @@
                 </div> -->
       </div>
 
-      <div class="pagination_block">
+      <!-- <div class="pagination_block">
         <ul class="pagination">
           <li><a href="#">&lt;</a></li>
           <li><a href="#" class="-on">1</a></li>
@@ -83,7 +79,7 @@
           <li><a href="#">10</a></li>
           <li><a href="#">&gt;</a></li>
         </ul>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
