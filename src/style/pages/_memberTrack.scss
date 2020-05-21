@@ -22,24 +22,6 @@ div.track {
   .track_bottom {
     display: grid;
     grid-template-columns: repeat(4, 0.1fr);
-<<<<<<< HEAD
-    grid-template-areas: "aa1 aa1 aa1 aa1"
-                          "aa1 aa1 aa1 aa1"
-                          "aa2 aa3 aa3 aa5";
-    text-align: center;
-    padding-left: 70px;
-    margin: 0 auto;
-    @include rwd(large){
-      grid-template-columns: 0.1fr 0.1fr;
-      grid-template-areas: "aa1 aa1"
-                          "aa1 aa1"
-                          "aa1 aa1"
-                          "aa1 aa1"
-                          "aa3 aa3";
-                          
-    }
-    @include rwd(medium){
-=======
     grid-template-areas:
       "aa1 aa1 aa1 aa1"
       "aa1 aa1 aa1 aa1"
@@ -48,29 +30,10 @@ div.track {
     margin-top: 50px;
 
     @include rwd(medium) {
->>>>>>> 8297bb544dfbf746627023b425729235836ca521
       display: block;
       width: 100%;
     }
-<<<<<<< HEAD
-    @include rwd(mobile){
-      grid-template-columns: 1fr;
-      grid-template-areas: "aa1"
-                          "aa1"
-                          "aa1"
-                          "aa1"
-                          "aa1"
-                          "aa1"
-                          "aa1"
-                          "aa1"
-                          "aa3";
-      padding-left: 0;                      
-    }
-    >.trackcard {
-      display: inline-block;
-=======
     > .trackcard {
->>>>>>> 8297bb544dfbf746627023b425729235836ca521
       margin-top: 40px;
       line-height: 2;
 
