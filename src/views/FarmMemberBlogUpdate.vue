@@ -29,7 +29,7 @@
               placeholder="最大字數限制20"
             />
             <label for="blogMainImg" class="blogMainImg" @change="changeMainPic"
-              ><span>上傳主圖片</span>
+              ><span>上傳主要圖片</span>
               <input type="file" id="blogMainImg" accept="image/*" />
               <div>
                 <img src="" id="mainPic" />

@@ -145,7 +145,7 @@ div.membercontain {
     > button.btn_drawer {
       display: none;
 
-      @include rwd(small) {
+      @include rwd(medium) {
         background: none;
         background-color: #ffd3c1;
         position: absolute;
