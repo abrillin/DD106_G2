@@ -17,9 +17,7 @@
             <li>連絡電話</li>
             <li>e-mail</li>
             <li>
-              <span>
-                果農地址
-              </span>
+              <span>果農地址</span>
             </li>
           </ul>
         </div>
@@ -40,7 +38,7 @@
             <p>{{ member.gender }}</p>
           </span>
           <span>
-            <p>0{{ member.phone }}</p>
+            <p>{{ member.phone }}</p>
           </span>
           <span>
             <p>{{ member.email }}</p>
@@ -54,7 +52,7 @@
           <label for>
             <input type="radio" />其他
           </label>
-          <br /> -->
+          <br />-->
 
           <input type="text" v-model="member.add" />
           <div class="submit_button" @click="registered">
@@ -80,46 +78,51 @@ export default {
         phone: "",
         email: "",
         img: "",
-        add: "",
-      },
+        add: ""
+      }
     };
   },
   created() {
     const api = "/api/api_memberStatus.php";
+    const apiCheck = "/api/api_farmStatus.php";
 
-    this.$http
-      .post(api)
-      .then((res) => {
-        const data = res.data;
+    this.$http.post(apiCheck).then(res => {
+      const data = res.data;
 
-        if (data != "") {
-          this.member = {
-            no: data.no,
-            acc: data.acc,
-            name: data.name,
-            nick: data.nick,
-            phone: 0 + data.phone,
-            email: data.email,
-            img: data.img,
-          };
+      if (res.data != "") {
+        this.$router.push("/main/farm/info");
+      }
+    });
 
-          if (data.gender == 1) {
-            this.member.gender = "男";
-          } else if (data.gender == 2) {
-            this.member.gender = "女";
-          } else if (data.gender == 0) {
-            this.member.gender = "其它";
-          }
+    this.$http.post(api).then(res => {
+      const data = res.data;
+
+      if (data != "") {
+        this.member = {
+          no: data.no,
+          acc: data.acc,
+          name: data.name,
+          nick: data.nick,
+          phone: 0 + data.phone,
+          email: data.email,
+          img: data.img
+        };
+
+        if (data.gender == 1) {
+          this.member.gender = "男";
+        } else if (data.gender == 2) {
+          this.member.gender = "女";
+        } else if (data.gender == 0) {
+          this.member.gender = "其它";
         }
-      })
-      // eslint-disable-next-line no-console
-      .catch((err) => console.log(err));
+      }
+    });
   },
   methods: {
     registered() {
       const api = "/api/api_farmSignup.php";
 
-      this.$http.post(api, JSON.stringify(this.member)).then((res) => {
+      this.$http.post(api, JSON.stringify(this.member)).then(res => {
         const data = res.data;
 
         if (data.error) {
@@ -128,9 +131,10 @@ export default {
 
         if (data == 0) {
           alert("註冊完成！");
+          this.$router.push("/main/farm/info");
         }
       });
-    },
-  },
+    }
+  }
 };
 </script>

@@ -19,12 +19,12 @@
                     </ul>
                 </div>
                 <div class="person_right">
-                    <p>XXX</p>
-                    <input type="text">
+                    <p>{{member.no}}</p>
+                    <input type="text" v-model="member.name">
                     <br>
-                    <input type="text">
+                    <input type="text" v-model="member.price">
                     <br>
-                    <textarea name="" id="" cols="20" rows="6"></textarea>
+                    <textarea name="" id="" cols="20" rows="6" v-model="member.description"></textarea>
                     <br>
                     <button>選擇檔案</button>
                     <span>未選擇任何檔案</span>
@@ -50,3 +50,32 @@
     </div>
 
 </template>
+<script>
+    import {log} from "three";
+    export default{
+        data(){
+            return{
+                member:{
+                    no: "",
+                    name: "",
+                    price: "",
+                    description: "",
+                },
+            };
+        },
+        created(){
+            const api = "/api/api_farmitem.php";
+            this.$http.post(api).then((res) => {
+                const data = res.data;
+                if(data != ""){
+                    this.member = {
+                        no: data.no,
+                        name: data.name,
+                        price: data.price,
+                        description: data.description,
+                    };
+                }
+            });
+        },
+    }
+</script>

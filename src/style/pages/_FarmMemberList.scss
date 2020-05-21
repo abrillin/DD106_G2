@@ -1,484 +1,102 @@
 div.FarmList {
-    display: inline-block;
-    color: #007552;
-    background-color: #fbf8ef;
-    width: calc(100% - 250px);
-    height: 100vh;
-    vertical-align: top;
-    box-sizing: border-box;
-    padding: 60px 40px;
+  display: block;
+  color: #007552;
+  background-color: #fbf8ef;
+  width: calc(100% - 250px);
+  float: right;
+  box-sizing: border-box;
+  padding: 60px 40px;
+
+  @include rwd(medium) {
+    width: 100%;
+  }
+
+  @include rwd(small) {
+    float: none;
+    width: 100%;
+    padding: 10% 5%;
+  }
+
+  .FarmList_head {
+    color: #f7c845;
+    font-size: 3rem;
+  }
+
+  .plusbutton {
+    display: block;
+    padding: 10px 0;
+
+    > .plus {
+      display: inline-block;
+      border: 1px solid #007552;
+      background-color: #007552;
+      border-radius: 5px;
+      text-align: center;
+      padding: 10px;
+      margin-top: 50px;
+      color: white;
+      @include rwd(mobile) {
+        margin-top: 20px;
+      }
+      > a {
+        text-decoration: none;
+        color: white;
+      }
+    }
+  }
+
+  .FarmList_bottom {
+    display: block;
+    text-align: center;
+    width: 100%;
+
     @include rwd(medium) {
-        float: right;
-        width: calc(100% - 200px);
+      padding-top: 10%;
     }
-
     @include rwd(small) {
-        float: none;
-        width: 100vw;
-        padding: 10% 5%;
-    }
-    .FarmList_head {
-        color: #f7c845;
-        font-size: 3rem;
+      padding-top: 0%;
     }
 
-    .plusbutton {
-        display: block;
-        padding: 10px 0;
-        
-        >.plus {
-            display: inline-block;
-            border: 1px solid #007552;
-            background-color: #007552;
-            border-radius: 5px;
-            text-align: center;
-            padding: 10px;
-            color: white;
+    > .list_1 {
+      width: 100%;
 
-            >a {
-                text-decoration: none;
-                color: white;
-            }
+      .bottomheader {
+        margin-top: 100px;
+        width: 100%;
+        @include rwd(mobile) {
+          margin-top: 40px;
         }
-    }
+      }
 
-    .FarmList_bottom {
-        display: block;
+      .listTab {
+        width: 100%;
+      }
+
+      th {
+        background: #f7c845;
+        width: 14%;
+        padding: 15px 0;
         text-align: center;
+        color: #333;
 
-        @include rwd(medium) {
-            display: block;
-            width: 100%;
-            padding-top: 10%;
+        @include rwd(mobile) {
+          font-size: 1.2rem;
         }
+      }
 
-        >.list_1 {
-            display: flex;
-            justify-content: center;
-            height: auto;
-            text-align: start;
-
-            @include rwd(large) {
-                margin-left: 13%;
-            }
-
-            @include rwd(medium) {
-                margin-left: 13%;
-            }
-
-            @include rwd(small) {
-                margin-left: 13%;
-            }
-
-            @include rwd(mobile) {
-                margin-left: 4%;
-            }
-            >.Listnum {
-                width: 10%;
-                text-align: center;
-                background-color: white;
-                @include rwd(small){
-                    width: 16%;
-                }
-                @include rwd(mobile) {
-                    width: 13%;
-                }
-
-                >.title {
-                    background-color: #F7C845;
-                    padding: 20px 0px 20px 0px;
-                    margin-bottom: 22px;
-                    @include rwd(mobile) {
-                        margin-bottom: 44px;
-                        padding: 20px 0px 20px 0px;
-                    }
-                }
-
-                >p {
-                    padding: 20px 0px 36px 0px;
-                    @include rwd(large){
-                        padding: 0px 0px 36.8px 0px; 
-                    }
-                    @include rwd(medium){
-                        padding: 0px 0px 54.1px 0px;
-                    }
-                    @include rwd(small){
-                        padding: 0px 0px 70px 0px;
-                    }
-                    @include rwd(mobile) {
-                        padding: 0px 0px 123px 0px;
-                    }
-                }
-            }
-
-            >.Listdate {
-                width: 14%;
-                text-align: center;
-                background-color: white;
-
-                @include rwd(large) {
-                    width: 19.3%;
-                }
-
-                @include rwd(medium) {
-                    width: 23.4%;
-                }
-
-                @include rwd(small) {
-                    width: 28.5%;
-                }
-
-                @include rwd(mobile) {
-                    width: 13%;
-                }
-
-                >.title {
-                    background-color: #F7C845;
-                    padding: 20px 0px 20px 0px;
-                    margin-bottom: 44px;
-                    @include rwd(medium){
-                        padding: 20px 0px 20px 0px;
-                    }
-                    @include rwd(mobile) {
-                        margin-bottom: 28px;
-                        padding: 20px 0px 20px 0px;
-                    }
-                }
-
-                >p {
-                    padding: 0px 0px 56px 0px;
-                    @include rwd(large){
-                        padding: 0px 0px 37px 0px;
-                    }
-                    @include rwd(medium){
-                        padding: 0px 0px 54.1px 0px;
-                    }
-                    @include rwd(small){
-                        padding: 0px 0px 54.1px 0px;
-                    }
-                    @include rwd(mobile){
-                        padding: 0px 0px 91px 0px;
-                    }
-                }
-            }
-
-            >.Listprice {
-                width: 10%;
-                text-align: center;
-                background-color: white;
-
-                @include rwd(mobile) {
-                    width: 14%;
-                }
-
-                >.title {
-                    background-color: #F7C845;
-                    padding: 20px 0px 20px 0px;
-                    margin-bottom: 44px;
-                    @include rwd(mobile) {
-                        padding: 28px 0px 28px 0px;
-                        margin-bottom: 44px;
-                    }
-                }
-
-                >p {
-                    padding: 0px 0px 56px 0px;
-                    @include rwd(large){
-                        padding: 0px 0px 37px 0px;
-                    }
-                    @include rwd(medium){
-                        padding: 0px 0px 54.1px 0px;
-                    }
-                    @include rwd(small){
-                        padding: 0px 0px 70px 0px;
-                    }
-                    @include rwd(mobile) {
-                        padding: 0px 0px 123px 0px;
-                    }
-                }
-            }
-
-            >.Listname {
-                width: 10%;
-                text-align: center;
-                background-color: white;
-
-                @include rwd(large) {
-                    width: 16.8%;
-                }
-
-                @include rwd(medium) {
-                    width: 20.3%;
-                }
-
-                @include rwd(small) {
-                    width: 24.7%;
-                }
-
-                @include rwd(mobile) {
-                    width: 14%;
-                }
-
-                >.title {
-                    background-color: #F7C845;
-                    padding: 20px 0px 20px 0px;
-                    margin-bottom: 44px;
-                    @include rwd(mobile) {
-                        padding: 28px 0px 28px 0px;
-                        margin-bottom: 44px;
-                    }
-                }
-
-                >p {
-                    padding: 0px 0px 56px 0px;
-                    @include rwd(large){
-                        padding: 0px 0px 37px 0px;
-                    }
-                    @include rwd(medium){
-                        padding: 0px 0px 54.1px 0px;
-                    }
-                    @include rwd(small){
-                        padding: 0px 0px 70px 0px;
-                    }
-                    @include rwd(mobile){
-                        padding: 0px 0px 123px 0px;
-                    }
-                }
-            }
-            >.Listpay {
-                width: 10%;
-                text-align: center;
-                background-color: white;
-
-                @include rwd(large) {
-                    width: 16.8%;
-                }
-
-                @include rwd(medium) {
-                    width: 20.3%;
-                }
-
-                @include rwd(small) {
-                    width: 24.7%;
-                }
-
-                @include rwd(mobile) {
-                    width: 13%;
-                }
-
-                >.title {
-                    background-color: #F7C845;
-                    padding: 20px 0px 20px 0px;
-                    margin-bottom: 44px;
-                    @include rwd(mobile) {
-                        padding: 20px 0px 20px 0px;
-                        margin-bottom: 36px;
-                    }
-                }
-
-                >p {
-                    padding: 0px 0px 56px 0px;
-                    @include rwd(large){
-                        padding: 0px 0px 37px 0px;
-                    }
-                    @include rwd(medium){
-                        padding: 0px 0px 54.1px 0px;
-                    }
-                    @include rwd(small){
-                        padding: 0px 0px 70px 0px;
-                    }
-                    @include rwd(mobile){
-                        padding: 0px 0px 107px 0px;
-                    }
-                }
-            }
-            >.Liststatus {
-                width: 10%;
-                text-align: center;
-                background-color: white;
-
-                @include rwd(large) {
-                    width: 16.8%;
-                }
-
-                @include rwd(medium) {
-                    width: 20.3%;
-                }
-
-                @include rwd(small) {
-                    width: 24.7%;
-                }
-
-                @include rwd(mobile) {
-                    width: 13%;
-                }
-
-                >.title {
-                    background-color: #F7C845;
-                    padding: 20px 0px 20px 0px;
-                    margin-bottom: 44px;
-                    @include rwd(mobile) {
-                        padding: 20px 0px 20px 0px;
-                        margin-bottom: 36px;
-                    }
-                }
-
-                >p {
-                    padding: 0px 0px 56px 0px;
-                    @include rwd(large){
-                        padding: 0px 0px 37px 0px;
-                    }
-                    @include rwd(medium){
-                        padding: 0px 0px 54.1px 0px;
-                    }
-                    @include rwd(small){
-                        padding: 0px 0px 70px 0px;
-                    }
-                    @include rwd(mobile){
-                        padding: 0px 0px 107px 0px;
-                    }
-                }
-            }
-            >.Listdetail {
-                width: 15%;
-                text-align: center;
-                background-color: white;
-
-                @include rwd(large) {
-                    width: 16.8%;
-                }
-
-                @include rwd(medium) {
-                    width: 20.3%;
-                }
-
-                @include rwd(small) {
-                    width: 24.7%;
-                }
-
-                @include rwd(mobile) {
-                    width: 18.6%;
-                }
-
-                >.title {
-                    background-color: #F7C845;
-                    padding: 20px 0px 37px 0px;
-                    margin-bottom: 44px;
-                    @include rwd(mobile) {
-                        padding: 20px 0px 52px 0px;
-                        margin-bottom: 0;
-                    }
-                }
-
-                >a{
-                    text-decoration: none;
-                    color: black;
-                    >p {
-                        padding: 0px 0px 56px 0px;
-                        @include rwd(large){
-                            padding: 20px 0px 37px 0px;
-                        }
-                        @include rwd(medium){
-                            padding: 20px 0px 54.1px 0px;
-                        }
-                        @include rwd(small){
-                            padding: 20px 0px 70px 0px;
-                        }
-                        @include rwd(mobile){
-                            padding: 47px 0px 76px 0px;
-                        }
-                    }
-                }
-                
-            }
-
+      td {
+        background-color: white;
+        width: 14%;
+        padding: 15px 0;
+        text-align: center;
+        word-wrap: break-word;
+        @include rwd(mobile) {
+          font-size: 1.2rem;
         }
-
-
-        .pagination_block {
-            display: block;
-            margin: auto;
-            margin-top: 20px;
-            margin-left: 13%;
-            @include rwd(medium) {
-                margin-left: 0px;
-                margin-bottom: 10px;
-            }
-
-            @include rwd(mobile) {
-                text-align: center;
-                margin-left: 30px;
-            }
-            @include rwd(small){
-                margin-left: 13%;
-            }
-            >ul.pagination {
-                list-style: none;
-                display: inline-block;
-                margin: 0;
-                padding: 0;
-                font-size: 0;
-                text-align: center;
-
-                >li {
-                    display: inline-block;
-
-                    >a {
-                        display: inline-block;
-                        text-decoration: none;
-
-                        border: 1px solid #007552;
-                        /* 留意 */
-                        /* 留意：將全部的右邊框都移除 */
-
-                        text-align: center;
-                        padding: 5px 10px;
-                        font-size: 1rem;
-                        color: black;
-                        @include rwd(mobile) {
-                            padding: 5px 5px;
-                        }
-                    }
-
-                    >a.-on {
-                        background-color: #FFD3C1;
-                        color: #007552;
-                    }
-
-                    >a:hover {
-                        background-color: #FFD3C1;
-                        color: #007552;
-                    }
-                }
-
-                >li:first-child>a {
-                    display: inline-block;
-                    margin-right: 10px;
-                    background-color: #007552;
-                    color: white;
-                }
-
-                >li:first-child>a:hover {
-                    background-color: #007552;
-                    color: white;
-                }
-
-                >li:last-child>a {
-                    border-right: 1px solid #007552;
-                    margin-left: 10px;
-                    background-color: #007552;
-                    color: white;
-                }
-
-                >li:last-child>a:hover {
-                    background-color: #007552;
-                    color: white;
-                }
-            }
-        }
+      }
     }
+  }
 }
-
 
 // div.Order>.Order_bottom>.Orderlist>.list_1>span.triangle{
 //     display: inline-block;
@@ -490,7 +108,6 @@ div.FarmList {
 //     width: 0px;
 //     height: 0px;
 // }
-
 
 /* 留意: 將最後一個 li 裡的 a，右邊框加回來 */
 /* 留意: 將最後一個 li 裡的 a，加上圓角 */
