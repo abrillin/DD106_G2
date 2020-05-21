@@ -268,13 +268,14 @@
                 </router-link>
 
                 -->
+
                 <router-link
                   to="/main/blog/landing"
                   v-for="(i, index) in blogArrFilter"
                   :key="index"
-                  class="blog-post2-small-card-outer"
+                  class="blog-post2-small-card"
                 >
-                  <div class="blog-post2-small-card" @click="changePage(i)">
+                  <div @click="changePage(i)">
                     <div>
                       <img src="@/assets/blog-img/post/grape.png" />
                       <div>
@@ -313,7 +314,6 @@
                         <span>+追蹤</span>
                       </div>
                     </div>
-                    <span class="post2BlogNo">{{ i.no }}</span>
                   </div>
                 </router-link>
               </div>
@@ -1368,49 +1368,52 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    .blog-post2-small-card-outer {
+    > a:nth-child(9) {
+      @media (max-width: 9999px) {
+        display: none;
+      }
+      @media (max-width: 1896px) {
+        display: inline-block;
+      }
+      @media (max-width: 1400px) {
+        display: none;
+      }
+      @media (max-width: 1300px) {
+        display: inline-block;
+      }
+      @media (max-width: 900px) {
+        display: none;
+      }
+    }
+    > .blog-post2-small-card {
+      display: inline-block;
       text-decoration: none;
-      .blog-post2-small-card {
+      color: #000;
+      margin-top: 15px;
+      width: 270px;
+      border: solid #007552 2px;
+      @media (max-width: 1879px) {
+        width: 32%;
+      }
+      @media (max-width: 1400px) {
+        width: 48%;
+      }
+      @media (max-width: 1300px) {
+        width: 32%;
+      }
+      @media (max-width: 900px) {
+        width: 48%;
+      }
+      @media (max-width: 576px) {
+        width: 100%;
+      }
+      > div:nth-child(1) {
         &.ml {
           margin-left: 10px;
         }
         &.nine {
-          @media (max-width: 9999px) {
-            display: none;
-          }
-          @media (max-width: 1896px) {
-            display: inline-block;
-          }
-          @media (max-width: 1400px) {
-            display: none;
-          }
-          @media (max-width: 1300px) {
-            display: inline-block;
-          }
-          @media (max-width: 900px) {
-            display: none;
-          }
         }
-        text-decoration: none;
-        color: #000;
-        margin-top: 15px;
-        width: 270px;
-        border: solid #007552 2px;
-        @media (max-width: 1879px) {
-          width: 32%;
-        }
-        @media (max-width: 1400px) {
-          width: 48%;
-        }
-        @media (max-width: 1300px) {
-          width: 32%;
-        }
-        @media (max-width: 900px) {
-          width: 48%;
-        }
-        @media (max-width: 576px) {
-          width: 100%;
-        }
+
         > div:nth-child(1) {
           //葡萄圖片
           border-bottom: solid #007552 2px;
@@ -1520,9 +1523,6 @@
             }
           }
         }
-        .post2BlogNo {
-          display: none;
-        }
       }
     }
   }
@@ -1606,8 +1606,8 @@ export default {
     //   .classList.add("currentPagecolor");
   },
   updated() {
-    let bb = document.getElementsByClassName('blog-post2-small-card')[8];
-    bb.classList.add('nine');
+    // let bb = document.getElementsByClassName('blog-post2-small-card')[8];
+    // bb.classList.add('nine');
     for (let i = 0; i <= 8; i++) {
       document
         .getElementsByClassName('pageBorder')
@@ -1753,6 +1753,7 @@ export default {
       // });
 
       this.$emit('blogInf', e);
+      // console.log(e)
     },
     getThisCard(e) {
       console.log(e.target.parentNode.parentNode.children[3].textContent);
