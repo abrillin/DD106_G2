@@ -90,8 +90,7 @@ export default {
       },
     };
   },
-  created() {},
-  mounted() {
+  created() {
     const api = "/api/api_farmStatus.php";
     this.$http.post(api).then((res) => {
       const data = res.data;

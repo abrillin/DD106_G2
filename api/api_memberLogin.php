@@ -44,6 +44,25 @@ try {
             // 送出登入者的姓名資料
             $member = array("name" => $_SESSION["member_name"], "nick" => $_SESSION["member_nick"], "status" => $_SESSION["member_status"]);
 
+            $sql = "select * from `seller` where member_no = :no";
+            $seller = $pdo->prepare($sql);
+
+            $seller->bindValue(":no", $memRow["no"]);
+
+            $seller->execute();
+
+            if ($seller->rowCount() != 0) {
+
+                $sellerRow = $seller->fetch(PDO::FETCH_ASSOC);
+
+                $item = array("no", "status", "address", "content", "review_total", "review_count", "member_no");
+
+                for ($i = 0; $i < count($item); $i++) {
+
+                    $_SESSION["seller_" . $item[$i]] = $sellerRow[$item[$i]];
+                }
+            }
+
             echo json_encode($memRow);
         }
     }
@@ -51,6 +70,3 @@ try {
     $error = ["error" => $e->getMessage()];
     echo json_encode($error);
 }
-
-?>
-

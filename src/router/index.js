@@ -128,12 +128,12 @@ const routes = [
       },
       {
         path: "update",
-        name: "Update",
+        name: "FarmUpdate",
         component: () => import("@/views/FarmMemberupdate.vue"),
       },
       {
         path: "order",
-        name: "Order",
+        name: "FarmOrder",
         component: () => import("@/views/FarmMemberOrder.vue"),
       },
       {
@@ -143,7 +143,7 @@ const routes = [
       },
       {
         path: "blog",
-        name: "Blog",
+        name: "FarmBlog",
         component: () => import("@/views/FarmMemberBlog.vue"),
       },
       {
