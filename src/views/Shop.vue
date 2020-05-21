@@ -175,13 +175,12 @@
             </div>
           </div>
           <div class="commodity-flex">
-            <div class="commodity" v-for="(i, index) in shopcommodity" :key="index">
+            <div class="commodity" v-for="(i, index) in shopcommodityfilter" :key="index">
               <div class="card_img_box">
                 <img
                   src="../assets/ia_300000017.jpg"
                   width="100%"
                   height="100%"
-                  title="蜜蕉乾 零添加"
                   @click="changePage(i)"
                 />
               </div>
@@ -191,13 +190,13 @@
                   <div class="commodity_title_text">{{i.name}}</div>
                 </div>
 
-                <div class="card_tag">
+                <div class="card_tag" v-for="(t,dex) in shopcommodityfilter[index].tags" :key="dex">
                   <img src="../assets/icon/tag.svg" alt width="16px" height="16px" class="tag_icon" />
-                  <span class="card_tag_text">{{i}}</span>
+                  <span class="card_tag_text">{{shopcommodityfilter[index].tags[dex].tagname}}</span>
                 </div>
 
                 <div class="card_price">
-                  <span class="money">{{i.price}}</span>
+                  <span class="money">{{i.no}}</span>
                 </div>
 
                 <div class="buy">
@@ -247,11 +246,16 @@
         <div class="hot_commodity_filter-status">
           <div class="hot_commoditystatus_text">明星農民</div>
         </div>
-        <div class="hot_commodity_seller">
+        <div
+          class="hotCommoditySeller"
+          v-for="(s, index) in seller"
+          :key="index"
+          @mouseenter="SellerM"
+        >
           <a href="#">
             <div class="seller_box">
               <img
-                src="../assets/howhow.jpg"
+                :src="'../assets/shop/' + seller[index].img"
                 alt
                 height="50"
                 width="50"
@@ -261,85 +265,7 @@
           </a>
           <div class="seller_content">
             <div class="seller_content-box">
-              <p>內湖金城武</p>
-              <div class="star-box">
-                <img src="../assets/icon/star.svg" alt width="14" height="14" />
-                <img src="../assets/icon/star.svg" alt width="14" height="14" />
-                <img src="../assets/icon/star.svg" alt width="14" height="14" />
-                <img src="../assets/icon/star.svg" alt width="14" height="14" />
-                <img src="../assets/icon/star.svg" alt width="14" height="14" />
-              </div>
-            </div>
-            <div class="track-btn">＋追蹤</div>
-          </div>
-        </div>
-        <div class="hot_commodity_seller">
-          <a href="#">
-            <div class="seller_box">
-              <img
-                src="../assets/howhow.jpg"
-                alt
-                height="50"
-                width="50"
-                style="border-radius: 30px;"
-              />
-            </div>
-          </a>
-          <div class="seller_content">
-            <div class="seller_content-box">
-              <p>內湖金城武</p>
-              <div class="star-box">
-                <img src="../assets/icon/star.svg" alt width="14" height="14" />
-                <img src="../assets/icon/star.svg" alt width="14" height="14" />
-                <img src="../assets/icon/star.svg" alt width="14" height="14" />
-                <img src="../assets/icon/star.svg" alt width="14" height="14" />
-                <img src="../assets/icon/star.svg" alt width="14" height="14" />
-              </div>
-            </div>
-            <div class="track-btn">＋追蹤</div>
-          </div>
-        </div>
-        <div class="hot_commodity_seller seller_topborder">
-          <a href="#">
-            <div class="seller_box">
-              <img
-                src="../assets/howhow.jpg"
-                alt
-                height="50"
-                width="50"
-                style="border-radius: 30px;"
-              />
-            </div>
-          </a>
-          <div class="seller_content">
-            <div class="seller_content-box">
-              <p>內湖金城武</p>
-              <div class="star-box">
-                <img src="../assets/icon/star.svg" alt width="14" height="14" />
-                <img src="../assets/icon/star.svg" alt width="14" height="14" />
-                <img src="../assets/icon/star.svg" alt width="14" height="14" />
-                <img src="../assets/icon/star.svg" alt width="14" height="14" />
-                <img src="../assets/icon/star.svg" alt width="14" height="14" />
-              </div>
-            </div>
-            <div class="track-btn">＋追蹤</div>
-          </div>
-        </div>
-        <div class="hot_commodity_seller seller_topborder">
-          <a href="#">
-            <div class="seller_box">
-              <img
-                src="../assets/howhow.jpg"
-                alt
-                height="50"
-                width="50"
-                style="border-radius: 30px;"
-              />
-            </div>
-          </a>
-          <div class="seller_content">
-            <div class="seller_content-box">
-              <p>內湖金城武</p>
+              <p>{{s.name}}</p>
               <div class="star-box">
                 <img src="../assets/icon/star.svg" alt width="14" height="14" />
                 <img src="../assets/icon/star.svg" alt width="14" height="14" />
@@ -356,42 +282,25 @@
 
     <nav class="Page_navigation">
       <ul class="pagination justify-content-center">
-        <li class="page-item page-left">
-          <a class="page-link" href="#">
+        <li @click="pageLeft">
+          <div class="page-link pageLeft">
             <img src="../assets/prouduct_button_left.svg" alt height="40" width="30" />
-          </a>
+          </div>
         </li>
-        <li class="page-item pageborder">
-          <a class="page-link" href="#">1</a>
+
+        <li
+          class="page-item"
+          v-for="(i, index) in pageArr"
+          :key="index"
+          v-on="{ click: pageSelect }"
+        >
+          <div class="page-link">{{i}}</div>
         </li>
-        <!--  <li class="page-item">
-          <a class="page-link" href="#">2</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">3</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">4</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">5</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">6</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">7</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">8</a>
-        </li>
-        <li class="page-item">
-          <a class="page-link" href="#">9</a>
-        </li>-->
-        <li class="page-item page-right">
-          <a class="page-link" href="#">
+
+        <li class="page-right" @click="nextPage">
+          <div class="page-link">
             <img src="../assets/product_button_right.svg" alt height="40" width="30" />
-          </a>
+          </div>
         </li>
       </ul>
     </nav>
@@ -407,9 +316,116 @@ import { gsap, TweenMax, Power1, Power3, TimelineMax, Linear } from "gsap";
 export default {
   data() {
     return {
-      shopcommodity: {},
-      tags: []
+      shopcommodity: [],
+      shopcommodityfilter: [],
+      pageArr: [],
+      currentPage: [],
+      seller: {}
     };
+  },
+
+  created() {
+    const api = "/api/api_item.php";
+
+    this.$http.post(api).then(res => {
+      this.shopcommodity = res.data;
+
+      for (let i = 1; i < 9; i++) {
+        this.shopcommodityfilter.push(this.shopcommodity["pro"][i]);
+      }
+
+      this.currentPage.push(1);
+      for (let i = 1; i < 10; i++) {
+        this.pageArr.push(i);
+      }
+
+      this.seller = res.data["mem"];
+      // console.log(res.data["mem"]);
+    });
+  },
+  methods: {
+    SellerM: function() {
+      //觸發追蹤商品效果
+      $(".hotCommoditySeller").hover(function() {
+        var sellermove = $(this);
+        TweenMax.to(sellermove, 0.5, {
+          x: -25,
+          width: "100% + 25px"
+        });
+        var sellermove2 = $(this).find(".track-btn");
+        TweenMax.to(sellermove2, 1, {
+          x: 70,
+          autoAlpha: 1
+        });
+      });
+      //反觸發追蹤商品效果
+      $(".hotCommoditySeller").mouseleave(function() {
+        var sellermove = $(this);
+        TweenMax.to(sellermove, 0.5, {
+          x: 0,
+          width: "100%"
+        });
+        var sellermove2 = $(this).find(".track-btn");
+        TweenMax.to(sellermove2, 1, {
+          x: 0,
+          autoAlpha: 0
+        });
+      });
+    },
+    pageLeft() {
+      let currentPage1 = this.currentPage[0];
+      // this.currentPage = [];
+      this.shopcommodityfilter = [];
+      if (this.currentPage > 1) {
+        this.currentPage = [];
+        this.currentPage.push(currentPage1 - 1);
+      }
+      let updatePage = this.currentPage[0];
+
+      for (let i = (updatePage - 1) * 8 + 1; i < updatePage * 8 + 1; i++) {
+        this.shopcommodityfilter.push(this.shopcommodity.pro[i]);
+      }
+      console.log(this.shopcommodity);
+      if (this.pageArr[0] > 1) {
+        this.pageArr.forEach((item, index, array) => {
+          this.pageArr[index] = this.pageArr[index] - 1;
+        });
+      }
+    },
+    nextPage() {
+      let currentPage1 = this.currentPage[0];
+      this.shopcommodityfilter = [];
+      if (this.currentPage < parseInt(this.shopcommodity.length / 8)) {
+        this.currentPage = [];
+        this.currentPage.push(currentPage1 + 1);
+      }
+      let updatePage = this.currentPage[0];
+
+      for (let i = (updatePage - 1) * 8 + 1; i < updatePage * 8 + 1; i++) {
+        this.shopcommodityfilter.push(this.shopcommodity.pro[i]);
+      }
+      if (this.pageArr[8] < parseInt(this.shopcommodity.length / 8)) {
+        this.pageArr.forEach((item, index, array) => {
+          this.pageArr[index] = this.pageArr[index] + 1;
+        });
+      }
+    },
+    updated() {
+      for (let i = 0; i <= 8; i++) {
+        document
+          .getElementsByClassName("page-item")
+          [i].setAttribute("class", "page-item");
+        if (
+          document.getElementsByClassName("page-item")[i].textContent ==
+          this.currentPage[0]
+        ) {
+          document
+            .getElementsByClassName("page-item")
+            [i].classList.add("currentPagecolor");
+        }
+      }
+      // console.log(document.getElementsByClassName("page-item"));
+    }
   },
   mounted() {
     function showHideHam() {
@@ -449,32 +465,7 @@ export default {
         autoAlpha: 0
       });
     });
-    //觸發追蹤商品效果
-    $(".hot_commodity_seller").hover(function() {
-      var howhow = $(this);
-      TweenMax.to(howhow, 0.5, {
-        x: -25,
-        width: "100% + 25px"
-      });
-      var howhow2 = $(this).find(".track-btn");
-      TweenMax.to(howhow2, 1, {
-        x: 70,
-        autoAlpha: 1
-      });
-    });
-    //反觸發追蹤商品效果
-    $(".hot_commodity_seller").mouseleave(function() {
-      var howhow = $(this);
-      TweenMax.to(howhow, 0.5, {
-        x: 0,
-        width: "100%"
-      });
-      var howhow2 = $(this).find(".track-btn");
-      TweenMax.to(howhow2, 1, {
-        x: 0,
-        autoAlpha: 0
-      });
-    });
+
     //觸發按鈕效果
     $(".card_btn").hover(function() {
       var cbtn = $(this);
@@ -538,26 +529,86 @@ export default {
         y: 0
       });
     });
+  },
+  pageSelect(e) {
+    let pageNum = parseInt(e.target.textContent);
+    // console.log(pageNum);
+    this.shopcommodityfilter = [];
+    this.currentPage = [];
+    // console.log(parseInt(this.shopcommodity.length / 9));
+    if (pageNum > 5 && pageNum < parseInt(this.shopcommodity.length / 8) - 5) {
+      this.pageArr = [];
+      for (let i = pageNum - 4; i < pageNum + 5; i++) {
+        this.pageArr.push(i);
+      }
+    } else if (pageNum >= parseInt(this.shopcommodity.length / 8) - 5) {
+      this.pageArr = [];
+      for (
+        let i = parseInt(this.shopcommodity.length / 8) - 7;
+        i <= parseInt(this.shopcommodity.length / 7);
+        i++
+      ) {
+        this.pageArr.push(i);
+      }
+    } else {
+      this.pageArr = [];
+      for (let i = 1; i < 10; i++) {
+        this.pageArr.push(i);
+      }
+    }
 
-    const api = "/api/api_item.php";
+    this.currentPage.push(pageNum);
+    let currentPage1 = this.currentPage[0];
 
-    this.$http.post(api).then(res => {
-      // const data = res.data;
-      // this.item.itemName = data.name;
-      // this.item.money = data.price;
+    for (let i = (currentPage1 - 1) * 8 + 1; i < currentPage1 * 8 + 1; i++) {
+      this.shopcommodityfilter.push(this.shopcommodity["pro"][i]);
+    }
 
-
-      this.shopcommodity = res.data;
-      // this.tags = res.data;
-
-      // console.log(res.data);
-      // console.log(res.error);
-    });
+    for (let i = 1; i < 9; i++) {
+      e.target.parentNode.children[i].setAttribute("class", "page-item");
+    }
+    // console.log(document.getElementsByClassName("pageBorder"));
+    e.target.parentNode.children[1].setAttribute("class", "page-item");
+    //   document.getElementsByClassName("pageBorder")[0].setAttribute("class","");
   },
 
-  methods: {
-    changePage: function(i) {
-      console.log(i);
+  pageLeft() {
+    let currentPage1 = this.currentPage[0];
+    // this.currentPage = [];
+    this.shopcommodityfilter = [];
+    if (this.currentPage > 1) {
+      this.currentPage = [];
+      this.currentPage.push(currentPage1 - 1);
+    }
+    let updatePage = this.currentPage[0];
+
+    for (let i = (updatePage - 1) * 8 + 1; i < updatePage * 8 + 1; i++) {
+      this.shopcommodityfilter.push(this.shopcommodity.pro[i]);
+    }
+    console.log(this.shopcommodity);
+    if (this.pageArr[0] > 1) {
+      this.pageArr.forEach((item, index, array) => {
+        this.pageArr[index] = this.pageArr[index] - 1;
+      });
+    }
+  },
+
+  nextPage() {
+    let currentPage1 = this.currentPage[0];
+    this.shopcommodityfilter = [];
+    if (this.currentPage < parseInt(this.shopcommodity.length / 8)) {
+      this.currentPage = [];
+      this.currentPage.push(currentPage1 + 1);
+    }
+    let updatePage = this.currentPage[0];
+
+    for (let i = (updatePage - 1) * 8 + 1; i < updatePage * 8 + 1; i++) {
+      this.shopcommodityfilter.push(this.shopcommodity.pro[i]);
+    }
+    if (this.pageArr[8] < parseInt(this.shopcommodity.length / 8)) {
+      this.pageArr.forEach((item, index, array) => {
+        this.pageArr[index] = this.pageArr[index] + 1;
+      });
     }
   }
 };

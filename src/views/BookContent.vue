@@ -4,11 +4,11 @@
     <!-- 元件有 BookSeasonIndex.vue、BookSeasonPage1.vue、BookSeasonPage2.vue -->
     <!-- (page) 10. 接收到 pageNum() 的回傳值給子元件(BookSeasonPage1.vue)的自定義變數 pageNum-->
     <component
-      :pageId="pageId"
       :page="currentTab.page"
       :contentType="pageType"
       :is="currentTab.index"
       :pageNum="pageNum"
+      @changePage="sendPage"
     ></component>
     <div class="change_bookpage">
       <div v-for="tab in tabs" :key="tab.name" :class="'changebutton' + tab.class">
@@ -23,7 +23,7 @@ import page1 from "@/views/BookSeasonPage1";
 import page2 from "@/views/BookSeasonPage2";
 export default {
   // 5. 接收父層(Book.vue)的自定義變數 contentIndex 的值
-  // 8. 接收父層(Book.vue)的自定義變數 pageId 的值
+  // (page) 8. 接收父層(Book.vue)的自定義變數 pageId 的值
   props: { contentIndex: Number, pageId: Number },
   data() {
     return {
@@ -134,14 +134,23 @@ export default {
     },
     // (page) 10. 執行頁面位子的計算
     changePage: function() {
-      
       if (this.pageId > 0) {
         this.tabs[1].status = true;
+        this.tabs[0].status = true;
         this.currentTab = {
           index: "page1",
           page: this.pageId
         };
+      } else if (this.pageId == 0) {
+        this.tabs[0].status = false;
+        this.currentTab = {
+          index: "index",
+          page: this.pageId
+        };
       }
+    },
+    sendPage(e) {
+      this.$emit("changePage", e);
     }
   },
   components: {

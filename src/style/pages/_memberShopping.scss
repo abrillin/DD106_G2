@@ -1,231 +1,216 @@
 .shopping {
+  display: block;
+  float: right;
+  width: calc(100% - 250px);
+  box-sizing: border-box;
+  padding: 60px 40px;
+  @include rwd(medium) {
+    width: 100%;
+  }
+  @include rwd(small) {
+    padding: 60px 10px;
+  }
 
-    display: inline-block;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
-    height: 100vh;
-    width: calc(100% - 250px);
+  .content {
+    display: flex;
+    flex-direction: column;
 
-    box-sizing: border-box;
-    overflow-y: scroll;
+    height: 100%;
 
-    &::-webkit-scrollbar {
+    .form {
+      flex-grow: 1;
+      padding: 0 5%;
 
-        display: none;
-    }
-
-    .content {
-
+      .form-content {
         display: flex;
         flex-direction: column;
 
         height: 100%;
 
-        .step-box {
+        box-sizing: border-box;
 
-            height: 175px;
+        .seller {
+          font-size: 2rem;
+          line-height: 2;
+          margin-top: 20px;
+          text-align: center;
+          color: $min-color;
         }
 
-        .form {
+        .title {
+          margin-top: 1.6rem;
 
-            flex-grow: 1;
-            padding: 0 5%;
+          font-size: 1.6rem;
+          line-height: 2;
+        }
 
-            .form-content {
+        .tr {
+          display: flex;
+          align-items: center;
 
+          height: 75px;
+          line-height: 75px;
+
+          &.head-bar {
+            height: 32px;
+            line-height: 32px;
+            background: $orange-light;
+          }
+
+          .td {
+            height: 100%;
+            font-size: 1.6rem;
+
+            text-align: center;
+
+            box-sizing: border-box;
+            @include rwd(medium) {
+              font-size: 1.4rem;
+            }
+
+            @include rwd(small) {
+              font-size: 1.2rem;
+            }
+
+            &.check-box {
+              width: 5%;
+              @include rwd(medium) {
+                width: 10%;
+              }
+            }
+
+            &.img {
+              width: 150px;
+              @include rwd(medium) {
+                display: none;
+              }
+              img {
+                width: 100%;
+              }
+            }
+
+            &.name {
+              flex: 1;
+            }
+
+            &.price {
+              width: 100px;
+              @include rwd(medium) {
+                width: 15%;
+              }
+            }
+
+            &.subtotal {
+              width: 100px;
+              @include rwd(medium) {
+                width: 20%;
+              }
+            }
+
+            &.operating {
+              width: 150px;
+              @include rwd(medium) {
+                width: 15%;
+              }
+            }
+
+            &.amount {
+              width: 75px;
+              @include rwd(medium) {
+                width: 20%;
+              }
+
+              .input {
                 display: flex;
-                flex-direction: column;
+                align-items: center;
+
+                padding: 20px 10px;
 
                 height: 100%;
 
                 box-sizing: border-box;
 
-                .seller {
+                input {
+                  flex-grow: 1;
 
-                    font-size: 2rem;
-                    line-height: 2;
+                  margin: 0;
+                  padding: 0;
 
-                    text-align: center;
-                    color: $min-color;
+                  height: 100%;
+                  width: 35px;
+
+                  text-align: center;
+
+                  border-top: 1px solid $min-color;
+                  border-left: 1px solid $min-color;
+                  border-bottom: 1px solid $min-color;
+                  border-right: 0px;
+                  box-sizing: border-box;
+                  &::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                  }
                 }
 
-                .title {
+                .button {
+                  display: flex;
+                  flex-direction: column;
 
-                    margin-top: 1.6rem;
+                  padding: 0;
+                  margin: 0;
 
-                    font-size: 1.6rem;
-                    line-height: 2;
-                }
+                  height: 100%;
 
-                .tr {
+                  box-sizing: border-box;
 
-                    display: flex;
-                    align-items: center;
+                  button {
+                    padding: 0px;
+                    margin: 0px;
 
-                    height: 75px;
-                    line-height: 75px;
+                    height: 50%;
+                    width: 20px;
 
-                    &.head-bar {
+                    background: transparent;
+                    border: 1px solid $min-color;
 
-                        height: 32px;
-                        line-height: 32px;
-                        background: $orange-light;
+                    box-sizing: border-box;
+
+                    &:nth-child(2) {
+                      font-size: 1.5rem;
+                      line-height: 0;
                     }
-
-                    .td {
-
-                        height: 100%;
-                        font-size: 1.6rem;
-
-                        text-align: center;
-
-                        box-sizing: border-box;
-
-                        &.check-box {
-
-                            width: 5%;
-                        }
-
-                        &.img {
-
-                            width: 150px;
-
-                            @include rwd (medium) {
-
-                                display: none;
-                            }
-                        }
-
-                        &.name {
-
-                            flex-grow: 1;
-                            min-width: 100px;
-                        }
-
-                        &.seller {
-
-                            width: 150px;
-                        }
-
-                        &.price {
-
-                            width: 100px;
-                        }
-
-                        &.amount {
-
-                            width: 75px;
-
-                            .input {
-
-                                display: flex;
-                                align-items: center;
-
-                                padding: 20px 10px;
-
-                                height: 100%;
-
-                                box-sizing: border-box;
-
-                                input {
-
-                                    flex-grow: 1;
-
-                                    margin: 0;
-                                    padding: 0;
-
-                                    height: 100%;
-                                    width: 35px;
-
-                                    text-align: center;
-
-                                    border-top: 1px solid $min-color;
-                                    border-left: 1px solid $min-color;
-                                    border-bottom: 1px solid $min-color;
-                                    border-right: 0px;
-                                    box-sizing: border-box;
-
-                                    &::-webkit-inner-spin-button {
-
-                                        -webkit-appearance: none;
-                                    }
-                                }
-
-                                .button {
-
-                                    display: flex;
-                                    flex-direction: column;
-
-                                    padding: 0;
-                                    margin: 0;
-
-                                    height: 100%;
-
-                                    box-sizing: border-box;
-
-                                    button {
-
-                                        padding: 0px;
-                                        margin: 0px;
-
-                                        height: 50%;
-                                        width: 20px;
-
-                                        background: transparent;
-                                        border: 1px solid $min-color;
-
-                                        box-sizing: border-box;
-
-                                        &:nth-child(2) {
-
-                                            font-size: 1.5rem;
-                                            line-height: 0;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-
-                        &.subtotal {
-
-                            width: 100px;
-                        }
-
-                        &.operating {
-
-                            width: 150px;
-                        }
-
-                        img {
-
-                            max-width: 100px;
-                        }
-                    }
+                  }
                 }
-
-                .total {
-
-                    font-size: 1.6rem;
-                    line-height: 2;
-
-                    text-align: right;
-                }
+              }
             }
-            .btn {
 
-                float: right;
-
-                height: 40px;
-                line-height: 40px;
-                width: 120px;
-
-                text-align: center;
-                text-decoration: none;
-
-                font-size: 1.6rem;
-                color: black;
-
-                background: rgba($orange, .75);
+            img {
+              max-width: 100px;
             }
+          }
         }
+
+        .btn {
+          float: right;
+          height: 40px;
+          line-height: 40px;
+          width: 120px;
+          text-align: center;
+          text-decoration: none;
+          font-size: 1.6rem;
+          color: black;
+          background: rgba($orange, 0.75);
+        }
+        .total {
+          font-size: 1.6rem;
+          line-height: 2;
+
+          text-align: right;
+        }
+      }
     }
+  }
 }

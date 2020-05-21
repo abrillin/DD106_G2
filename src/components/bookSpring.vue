@@ -49,48 +49,48 @@ export default {
         {
           item: [
             {
-              name: "秋水果1"
+              name: "柿子"
             },
             {
-              name: "秋水果2"
+              name: "梨子"
             },
             {
-              name: "秋水果3"
+              name: "柚子"
             },
             {
-              name: "秋水果4"
+              name: "百香果"
             }
           ]
         },
         {
           item: [
             {
-              name: "冬水果1"
+              name: "草莓"
             },
             {
-              name: "冬水果2"
+              name: "柳丁"
             },
             {
-              name: "冬水果3"
+              name: "番茄"
             },
             {
-              name: "冬水果4"
+              name: "棗子"
             }
           ]
         },
         {
           item: [
-            {
-              name: "常年1"
+             {
+              name: "木瓜"
             },
             {
-              name: "常年2"
+              name: "鳳梨"
             },
             {
-              name: "常年3"
+              name: "香蕉"
             },
             {
-              name: "常年4"
+              name: "芭樂"
             }
           ]
         }

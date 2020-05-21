@@ -11,8 +11,7 @@
           <ul>
             <li>果粉編號</li>
             <li>帳號</li>
-            <!-- <li>密碼</li> -->
-            <!-- <li>修改密碼</li> -->
+
             <li>果粉姓名</li>
             <li>暱稱</li>
             <li>性別</li>
@@ -42,10 +41,6 @@
           <span>
             <p>{{ email }}</p></span
           >
-
-          <!-- <p>XXXXXXXXXX</p> -->
-          <!-- <input type="text" /> -->
-          <!-- <br /> -->
         </div>
       </div>
     </div>
@@ -87,9 +82,7 @@ export default {
           this.phone = data.phone;
           this.email = data.email;
         }
-      })
-      // eslint-disable-next-line no-console
-      .catch((err) => console.log(err));
+      });
   },
 };
 </script>

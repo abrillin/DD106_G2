@@ -2,12 +2,17 @@
   <div>
     <main class="EncyMainContent">
       <h1 class="manageTitle">知識百科 管理中心</h1>
-      <router-link class to="/center/encyEdit">
+      <router-link class to="/admin/center/encyEdit">
         <button class="editEncy">新增百科內容</button>
       </router-link>
       <section class="EncytableSection">
         <div class="enct-header">
-          <table class="EncymanageTab" cellpadding="0" cellspacing="0" border="0">
+          <table
+            class="EncymanageTab"
+            cellpadding="0"
+            cellspacing="0"
+            border="0"
+          >
             <thead>
               <tr>
                 <th>編號</th>
@@ -21,7 +26,12 @@
         </div>
 
         <div class="enct-content">
-          <table class="EncymanageTab" cellpadding="0" cellspacing="0" border="0">
+          <table
+            class="EncymanageTab"
+            cellpadding="0"
+            cellspacing="0"
+            border="0"
+          >
             <tbody>
               <tr v-for="row in data" :key="row.no">
                 <td>{{row.no}}</td>
@@ -50,11 +60,11 @@ export default {
       title: "",
       type: "",
       content: "",
-      data: []
+      data: [],
     };
   },
-  created(){
-    const api ="/api/api_adminEncyManage.php";
+  created() {
+    const api = "/api/api_adminEncyManage.php";
 
     this.$http // $http 是將axios封裝後的promise寫法
     .post(api) // 用axios post info到此api
@@ -67,8 +77,7 @@ export default {
     editPage(url, param){
       this.$router.push({name: url});
       // this.$router.push({ name: 'Order', params: { userId: 123 }})
-    },
+    }
   }
 };
 </script>
-
