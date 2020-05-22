@@ -168,6 +168,10 @@ export default {
       if (this.arr[i].item.length == 0) {
         this.arr.splice(i, 1);
       }
+
+      itemArr.splice(index, 1);
+
+      storage["itemNo"] = itemArr.toString() + ",";
     }
   }
 };

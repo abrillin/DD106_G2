@@ -124,6 +124,7 @@
               圖01：
               <input type="file" id="encyPic01" @change="fileSelect" multiple />
             </label>
+=======
             <img
               class="encyImg"
               src=""
@@ -149,6 +150,7 @@
               src=""
               style="max-width: 200px;max-height: 200px;"
             />
+
             <!--
                   <img id:"encyImg" :src="encyEdit.titleImg" style="max-width: 200px;max-height: 200px;" />
                   -->
@@ -243,6 +245,7 @@ export default {
       }
 
       // this.formData.append("file", titleImg.files[0]);
+
     },
 
     // video資料
