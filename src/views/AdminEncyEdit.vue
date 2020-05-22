@@ -121,10 +121,10 @@
 
           <td>
             <label for="encyPic01">
-              圖01：
+             請傳3-5張圖：
               <input type="file" id="encyPic01" @change="fileSelect" multiple />
             </label>
-=======
+
             <img
               class="encyImg"
               src=""
