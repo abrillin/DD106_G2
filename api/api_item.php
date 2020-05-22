@@ -49,7 +49,17 @@ try {
     foreach ($output as $key => $val) {
         $total = (int)  $val['review_total'];
         $count = (int)  $val['review_count'];
-        $val['Starsaverage'] = $total / $count;
+
+        if ($count == 0) {
+
+            $val["starsaverage"] = 0;
+        } else {
+
+            $val['Starsaverage'] = $total / $count;
+        }
+
+
+        // $val['itemRows'] = $itemRows;
     }
 
     echo json_encode(array('pro' => $itemRows, 'mem' =>  $output, 'key' =>  $_SESSION["key"]));
