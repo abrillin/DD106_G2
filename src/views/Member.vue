@@ -7,7 +7,7 @@
         </div>
         <ul>
           <li>
-            <label for="upMemberPic" @change="changeMemPic">
+            <label for="upMemberPic" @change="changeMemPic($event)">
               設定頭像
               <input type="file" id="upMemberPic" style="display: none;" />
             </label>
@@ -154,23 +154,22 @@ export default {
   methods: {
     changeMemPic: function(e) {
       let reader = new FileReader();
-      const img = e.target;
+      const img = e.target.files[0];
 
       reader.onload = function(e) {
         document.getElementById("MemberPic").src = e.target.result;
       };
+      reader.readAsDataURL(img);
 
-      reader.readAsDataURL(img.files[0]);
+      this.formData.append("file", img);
 
-      this.member.img = "/api/MemPic/member" + img.files[0].name;
-      this.formData.append("file", img.files[0]);
       this.$http
         .post("/api/api_changeMemPic.php", this.formData)
         .then((res) => {
           const data = res.data;
-
+          this.member.img = "/api/" + data[1];
           // 如果上傳成功
-          if (data == 0) {
+          if (data[0] == 0) {
             this.$http
               .post("/api/api_getMemPic.php", JSON.stringify(this.member))
               .then((res) => {
@@ -184,7 +183,7 @@ export default {
                   alert("資料庫更新錯誤");
                 }
               });
-          } else if (data == 1) {
+          } else {
             alert("上傳失敗！");
           }
         });

@@ -9,13 +9,22 @@
       <table class="encyEditTab" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <th>
+            <label for="encyNo">編號</label>
+          </th>
+          <td>
+            {{ encyEdit.no }}
+          </td>
+        </tr>
+
+        <tr>
+          <th>
             <label for="fruitTag">標籤</label>
           </th>
           <td>
-            <select name="fruitTag" id="fruitTag" data-selected :="encyEdit.title">
+            <select name="fruitTag" id="fruitTag" data-selected v-model="encyEdit.title">
               <option value selected="selected" disabled="disabled">請選擇</option>
               <optgroup label="常年">
-                <option value="木瓜">木瓜</option> 
+                <option value="木瓜">木瓜</option>
                 <option value="鳳梨">鳳梨</option>
                 <option value="蓮霧">蓮霧</option>
                 <option value="香蕉">香蕉</option>
@@ -54,7 +63,7 @@
             <label for="fruitSeason">產季</label>
           </th>
           <td>
-            <select name="fruitSeason" id="fruitSeason" data-selected :="encyEdit.type">
+            <select name="fruitSeason" id="fruitSeason" data-selected v-model="encyEdit.type">
               <option value selected="selected" disabled="disabled">請選擇</option>
               <option value="0">常年</option>
               <option value="1">春季</option>
@@ -70,7 +79,7 @@
             <label for="encyIntro">介紹</label>
           </th>
           <td>
-            <textarea name="encyIntro" id="encyIntro" :="encyEdit.content"></textarea>
+            <textarea name="encyIntro" id="encyIntro" v-model="encyEdit.content"></textarea>
           </td>
         </tr>
         <tr>
@@ -78,7 +87,7 @@
             <label for="encyQ">農知識問題</label>
           </th>
           <td>
-            <textarea name="encyQ" id="encyQ" :="encyEdit.question"></textarea>
+            <textarea name="encyQ" id="encyQ" v-model="encyEdit.question"></textarea>
           </td>
         </tr>
         <tr>
@@ -86,7 +95,7 @@
             <label for="encyA">農知識答案</label>
           </th>
           <td>
-            <textarea name="encyA" id="encyA" :="encyEdit.answer"></textarea>
+            <textarea name="encyA" id="encyA" v-model="encyEdit.answer"></textarea>
           </td>
         </tr>
 
@@ -96,31 +105,31 @@
           <td>
             <label for="encyPic01">
               圖01：
-              <input type="file" id="encyPic01" name="upFile[]" :="fileSelect" />
+              <input type="file" id="encyPic01" name="upFile[]" @change="fileSelect" />
             </label>
             <img src style="max-width: 400px;max-height: 400px;" />
             <br />
 
             <label for="encyPic02">
               圖02：
-              <input type="file" id="encyPic02" name="upFile[]" :="fileSelect" />
+              <input type="file" id="encyPic02" name="upFile[]" @change="fileSelect" />
             </label>
             <br />
             <label for="encyPic03">
               圖03：
-              <input type="file" id="encyPic03" name="upFile[]" :="fileSelect" />
+              <input type="file" id="encyPic03" name="upFile[]" @change="fileSelect" />
             </label>
             <br />
 
             <label for="encyPic04">
               圖04：
-              <input type="file" id="encyPic04" name="upFile[]" :="fileSelect" />
+              <input type="file" id="encyPic04" name="upFile[]" @change="fileSelect" />
             </label>
             <br />
 
             <label for="encyPic05">
               圖05：
-              <input type="file" id="encyPic05" name="upFile[]" :="fileSelect" />
+              <input type="file" id="encyPic05" name="upFile[]" @change="fileSelect" />
             </label>
             <br />
           </td>
@@ -130,7 +139,7 @@
             <label for="videoLink">影片</label>
           </th>
           <td>
-            <input type="text" id="videoLink" :="encyEdit.video" />
+            <input type="text" id="videoLink" v-model="encyEdit.video" />
           </td>
         </tr>
 
@@ -144,7 +153,7 @@
                 onclick="javascript:history.back(1)"
                 value="取消"
               />
-              <input id="ecnyEditSubmit" type="submit" value="送出" @click="editEncyI" />
+              <input id="ecnyEditSubmit" type="submit" value="送出" @click="update" />
             </div>
           </td>
         </tr>
@@ -170,53 +179,46 @@ export default {
       }
     };
   },
+   created() {
+    const api = "/api/adminEncyInfo.php";
+
+    this.$http.post(api).then(res => {
+      const data = res.data;
+
+      if (data != "") {
+        this.encyEdit = {
+          no: data.no,
+          title: data.title,
+          type: data.type,
+          content: data.content,
+          question: data.question,
+          answer: data.answer,
+          titleImg: data.titleImg,
+          video: data.video,
+        };
+      }
+    });
+  },
   methods: {
-    // title 資料
-    // type 資料
+    update: function() {
+      const api = "/api/api_adminEncyInfo.php";
 
-    // content 資料
-    setContent(e) {
-      this.content = e.target.value;
-    },
-    // question 資料
-    setQusetion(e) {
-      this.question = e.target.value;
-    },
-    // answer 資料
-    setAnswer(e) {
-      this.answer = e.target.value;
-    },
+      for (let i in this.encyEdit) {
+        if (this.encyEdit[i] == "") {
+          alert("有欄位空白，請再檢查一次 ﾚ(ﾟ∀ﾟ;)ﾍ ");
+          return;
+        }
+      }
 
-    // titleImg資料，取得圖片訊息
-    fileSelect(e) {
-      let file = e.target.files.item(0);
-      let readFile = new FileReader();
-      readFile.readAsDataURL(file);
-      readFile.addEventListener("load", this.loadImage);
-    },
-    loadImage(e) {
-      this.titleImg = e.target.result;
-    },
+      this.$http.post(api, JSON.stringify(this.encyEdit)).then(res => {
+        const data = res.data;
 
-    // video資料
-     setVideo(e) {
-      this.video = e.target.value;
-    },
+        if (data == 1) {
+          alert(" 修改成功 ᕦ(ò_óˇ)ᕤ ");
 
-    // 資料撈完後傳到php
-
-    editEncyI: function() {
-      const api = "/api/api_adminEncyEdit.php";
-
-      this.$http
-        .post(api, JSON.stringify(this.encyEdit))
-        // $http.post(url,data)
-        // 用post把從encyEdit來的js物件資料轉為json字串，傳給api背後的那支php
-        .then(res => {
-          this.data = res.data;
-          alert(" 資料修改完成 ٩(･ิᴗ･ิ๑)۶ ");
-          this.$router.go(-1);
-        });
+          this.$router.go(0);
+        }
+      });
     }
   }
 };
