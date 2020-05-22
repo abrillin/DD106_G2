@@ -1,6 +1,7 @@
+
 <template>
-  <main class="wrapper">
-    <div class="market_header">
+  <main class="wrapper ItemWrapper">
+    <div class="market_header" style="background-color: #fbf8ef;">
       <div class="market_title"></div>
     </div>
 
@@ -44,15 +45,18 @@
     <section class="CommodityWrapper">
       <div class="CommodityContent">
         <div class="CommodityContentImgBox">
-          <img src alt class="CommodityContentImg" />
-          <img src alt class="CommodityContentImg" />
-          <img src alt class="CommodityContentImg" />
-          <!--  <img src="../assets/shop/market_showImg_front.svg" alt class="commodityContentImg" /> -->
+          <div class="CommodityContentImgMain">
+            <img src="../assets/shop/ia_300000013.jpg" alt class="CommodityContentImg" />
+          </div>
+          <div class="CommodityContentImgChangeBox">
+            <img src="../assets/ia_300000017.jpg" alt class="CommodityContentChangeImg" />
+            <img src="../assets/ia_300000011.jpg" alt class="CommodityContentChangeImg" />
+          </div>
         </div>
         <div class="CommodityContenText">
           <div class="CommodityContenTextBox">
             <div class="CommodityTitle">
-              <h1>木瓜乾 零添加</h1>
+              <h1>{{this.shopitem[0].name}}</h1>
             </div>
 
             <div class="CommodityNarrative">
@@ -89,17 +93,17 @@
             </div>
 
             <div class="CommodityItemMoneyBox">
-              <span class="CommodityItemMoney">550</span>
+              <span class="CommodityItemMoney">{{this.shopitem[0].price}}</span>
             </div>
 
             <div class="CommodityItemBuyBox">
-              <a href="#" class="CommodityItemBuyBtn">加入購物籃</a>Î
+              <a href="#" class="CommodityItemBuyBtn">加入購物籃</a>
               <a href="#" class="CommodityItemBuyBtn Buynow">直接購買</a>
             </div>
 
             <div class="CommodityDetailsBox">
               <h2 class="CommodityDetailsTitle">商品詳情：</h2>
-              <p>2020年頂級愛文芒果 愛文ドライマンゴー （アップルマンゴー）嚴選台灣出產高甜度愛文芒果，為夏季芒果推薦“TOP 1” 因果皮紅潤且果肉金黃，又有“太陽果”之稱。</p>
+              <p>{{this.shopitem[0].description}}</p>
             </div>
 
             <div class="CommodityDetailsBox">
@@ -120,14 +124,299 @@
           </div>
         </div>
       </div>
+      <div class="SellerInformationBox">
+        <div class="SellerInformation">
+          <img
+            :src="'../assets/shop/' + shopseller.img"
+            alt
+            height="60px"
+            width="60px"
+            style="border-radius: 100%;"
+          />
+          <p>{{shopseller.name}}</p>
+          <div class="TrackBtn">＋追蹤</div>
+        </div>
+        <div class="SellerReviewsBox">
+          <div class="SellerReviews">
+            <div class="Reviews">{{shopseller.Starsaverage}}</div>
+            <div class="StarBox">
+              <img src="../assets/icon/star.svg" alt width="20" height="20" />
+              <img src="../assets/icon/star.svg" alt width="20" height="20" />
+              <img src="../assets/icon/star.svg" alt width="20" height="20" />
+              <img src="../assets/icon/star.svg" alt width="20" height="20" />
+              <img src="../assets/icon/star.svg" alt width="20" height="20" />
+            </div>
+          </div>
+        </div>
+        <div class="SellerInformationTextBox">
+          <p>{{shopseller.content}}</p>
+        </div>
+      </div>
     </section>
 
-    <!-- <div class="footer-box">
+    <!--輪播-->
+    <div id="carouselWrap">
+      <h2>推薦商品：</h2>
+      <ul id="CommodityCarouselList">
+        <li class="CommodityCarouselConten" v-for="(i, index) in shopseller.items" :key="index">
+          <div class="CommodityCarousel commodity">
+            <div class="card_img_box">
+              <img src="../assets/ia_300000017.jpg" width="100%" height="100%" title="蜜蕉乾 零添加" />
+            </div>
+
+            <div class="card_content">
+              <div class="commodity_title">
+                <div class="commodity_title_text">{{i.name}}</div>
+              </div>
+
+              <div class="card_tag">
+                <img src="../assets/icon/tag.svg" alt width="16px" height="16px" class="tag_icon" />
+                <span class="card_tag_text">24hr宅配到府</span>
+              </div>
+
+              <div class="card_price">
+                <span class="money">{{i.no}}</span>
+              </div>
+
+              <div class="buy">
+                <a href="#" class="card_btn">加入購物籃</a>
+                <a href="#" class="card_btn">直接購買</a>
+              </div>
+            </div>
+          </div>
+        </li>
+        <!--     <li class="CommodityCarouselConten">
+          <div class="CommodityCarousel commodity">
+            <div class="card_img_box">
+              <img src="../assets/ia_300000017.jpg" width="100%" height="100%" title="蜜蕉乾 零添加" />
+            </div>
+
+            <div class="card_content">
+              <div class="commodity_title">
+                <div class="commodity_title_text">蜜蕉乾 零添加</div>
+              </div>
+
+              <div class="card_tag">
+                <img src="../assets/icon/tag.svg" alt width="16px" height="16px" class="tag_icon" />
+                <span class="card_tag_text">24hr宅配到府</span>
+              </div>
+
+              <div class="card_price">
+                <span class="money">550</span>
+              </div>
+
+              <div class="buy">
+                <a href="#" class="card_btn">加入購物籃</a>
+                <a href="#" class="card_btn">直接購買</a>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="CommodityCarouselConten">
+          <div class="CommodityCarousel commodity">
+            <div class="card_img_box">
+              <img src="../assets/ia_300000017.jpg" width="100%" height="100%" title="蜜蕉乾 零添加" />
+            </div>
+
+            <div class="card_content">
+              <div class="commodity_title">
+                <div class="commodity_title_text">蜜蕉乾 零添加</div>
+              </div>
+
+              <div class="card_tag">
+                <img src="../assets/icon/tag.svg" alt width="16px" height="16px" class="tag_icon" />
+                <span class="card_tag_text">24hr宅配到府</span>
+              </div>
+
+              <div class="card_price">
+                <span class="money">550</span>
+              </div>
+
+              <div class="buy">
+                <a href="#" class="card_btn">加入購物籃</a>
+                <a href="#" class="card_btn">直接購買</a>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="CommodityCarouselConten">
+          <div class="CommodityCarousel commodity">
+            <div class="card_img_box">
+              <img src="../assets/ia_300000017.jpg" width="100%" height="100%" title="蜜蕉乾 零添加" />
+            </div>
+
+            <div class="card_content">
+              <div class="commodity_title">
+                <div class="commodity_title_text">蜜蕉乾 零添加</div>
+              </div>
+
+              <div class="card_tag">
+                <img src="../assets/icon/tag.svg" alt width="16px" height="16px" class="tag_icon" />
+                <span class="card_tag_text">24hr宅配到府</span>
+              </div>
+
+              <div class="card_price">
+                <span class="money">550</span>
+              </div>
+
+              <div class="buy">
+                <a href="#" class="card_btn">加入購物籃</a>
+                <a href="#" class="card_btn">直接購買</a>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="CommodityCarousel">
+          <div class="CommodityCarouselConten commodity">
+            <div class="card_img_box">
+              <img src="../assets/ia_300000017.jpg" width="100%" height="100%" title="蜜蕉乾 零添加" />
+            </div>
+
+            <div class="card_content">
+              <div class="commodity_title">
+                <div class="commodity_title_text">蜜蕉乾 零添加</div>
+              </div>
+
+              <div class="card_tag">
+                <img src="../assets/icon/tag.svg" alt width="16px" height="16px" class="tag_icon" />
+                <span class="card_tag_text">24hr宅配到府</span>
+              </div>
+
+              <div class="card_price">
+                <span class="money">550</span>
+              </div>
+
+              <div class="buy">
+                <a href="#" class="card_btn">加入購物籃</a>
+                <a href="#" class="card_btn">直接購買</a>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="CommodityCarousel">
+          <div class="CommodityCarouselConten commodity">
+            <div class="card_img_box">
+              <img src="../assets/ia_300000017.jpg" width="100%" height="100%" title="蜜蕉乾 零添加" />
+            </div>
+
+            <div class="card_content">
+              <div class="commodity_title">
+                <div class="commodity_title_text">蜜蕉乾 零添加</div>
+              </div>
+
+              <div class="card_tag">
+                <img src="../assets/icon/tag.svg" alt width="16px" height="16px" class="tag_icon" />
+                <span class="card_tag_text">24hr宅配到府</span>
+              </div>
+
+              <div class="card_price">
+                <span class="money">550</span>
+              </div>
+
+              <div class="buy">
+                <a href="#" class="card_btn">加入購物籃</a>
+                <a href="#" class="card_btn">直接購買</a>
+              </div>
+            </div>
+          </div>
+        </li>-->
+      </ul>
+      <!--左右按鍵-->
+      <input
+        type="button"
+        id="arrowleft"
+        value="<"
+        style="font-weight:bold;font-size:20px"
+        disabled
+      />
+      <input type="button" id="arrowright" value=">" style="font-weight:bold;font-size:20px" />
+    </div>
+
+    <div class="footer-box">
       <Footer />
-    </div>-->
+    </div>
   </main>
 </template>
-// <script>
-// import "../js/shop";
-// export default {};
+
+<script>
+let panelView = -1127;
+let maxIndex = 1;
+window.addEventListener("resize", function() {
+  if (window.innerWidth >= 1200) {
+    panelView = -1127;
+    maxIndex = 1;
+  } else if (window.innerWidth > 991) {
+    panelView = -840;
+    maxIndex = 2;
+  } else if (window.innerWidth > 767) {
+    panelView = -503;
+    maxIndex = 5;
+  } else {
+    panelView = -528;
+    maxIndex = 5;
+  }
+  console.log(panelView);
+});
+
+import $ from "jquery";
+import { gsap, TweenMax, Power1, Power3, TimelineMax, Linear } from "gsap";
+export default {
+  data() {
+    return {
+      shopseller: [],
+      shopitem: "null"
+    };
+  },
+  mounted() {
+    function $id(id) {
+      return document.getElementById(id);
+    }
+    let wrap = document.getElementById("CommodityCarouselList");
+    var curIndex = 0;
+    $id("arrowleft").onclick = function() {
+      console.log(panelView);
+      curIndex--;
+      wrap.style.left = panelView * curIndex + "px";
+      $id("arrowright").disabled = false;
+      if (curIndex == 0) {
+        $id("arrowleft").disabled = true;
+      }
+    };
+
+    $id("arrowright").onclick = function() {
+      // console.log(n);
+
+      curIndex++;
+      wrap.style.left = panelView * curIndex + "px";
+      $id("arrowleft").disabled = false;
+      if (curIndex == maxIndex) {
+        $id("arrowright").disabled = true;
+      }
+    };
+
+    //資料庫連結
+    const api = "/api/api_shopseller.php";
+
+    this.$http
+      .post(api)
+      .then(res => {
+        // const data = res.data;
+        // this.item.itemName = data.name;
+        // this.item.money = data.price;
+
+        // this.shopcommodity = res.data;
+        this.shopseller = res.data["mem"];
+        console.log(res.data);
+
+        if (res.data != "") {
+          this.shopitem = res.data["itemContent"];
+          console.log(this.shopitem[0]);
+        } else {
+        }
+      })
+      .catch(err => console.log(err));
+  }
+
+  //資料庫連結
+};
 </script>

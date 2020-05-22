@@ -1,7 +1,7 @@
 .book_main {
    width: 100vw;
    height: 100vh;
-  
+
 
    #Page_horizen {
       overflow-y: scroll;
@@ -77,11 +77,12 @@
                   position: absolute;
                   left: 28%;
                   top: 4%;
+                  z-index: 333;
 
                   img {
                      width: 100%;
                      height: auto;
-                     //  border: 1px solid purple;
+                     //border: 1px solid purple;
                   }
                }
             }
@@ -100,21 +101,23 @@
 
                }
             }
-            @keyframes jump{
-               0%{
+
+            @keyframes jump {
+               0% {
                   bottom: 10px;
                }
-              
-               50%{
+
+               50% {
                   bottom: 20px;
                }
-               100%{
+
+               100% {
                   bottom: 0px;
                }
-              
+
             }
-            
-            &::after{
+
+            &::after {
                content: "scroll";
                padding: 10px;
                font-size: 1.3rem;
@@ -130,12 +133,13 @@
                animation-name: jump;
                animation-duration: 1.5s;
                animation-iteration-count: infinite;
-               @include rwd(small){
+
+               @include rwd(small) {
                   animation: none;
-                  
+
                   transform: rotate(270deg);
                }
-            }          
+            }
          }
 
          //middle
@@ -148,6 +152,7 @@
             position: relative;
             background-color: #438b6d;
             vertical-align: top;
+            //z-index: -1;
          }
 
          // 右page
@@ -160,6 +165,7 @@
             position: relative;
             background-color: #438b6d;
             vertical-align: top;
+            //z-index: -1;
 
             &::before {
                content: "";
@@ -173,18 +179,18 @@
             }
 
             .bookContain {
-              position: relative;
-              top: 50%;
-              transform: translateY(-50%);
-               border: 1px solid red;
+               position: relative;
+               top: 50%;
+               transform: translateY(-50%);
+               //border: 1px solid red;
 
                .bkbk_content {
-                   border: 1px solid black;
+                  //border: 1px solid black;
                   box-sizing: border-box;
                   display: block;
                   width: 70%;
-                
-                  margin:0 auto;
+
+                  margin: 0 auto;
 
                   //tag
                   .book_tag {
@@ -197,7 +203,6 @@
                      width: 100%;
 
                      .index {
-                        //border: 1px solid red;
                         background-color: #485349;
                         color: white;
                         box-sizing: border-box;
@@ -207,22 +212,29 @@
                         left: 5%;
                         width: 70px;
                         height: 35px;
-                        padding: 10px 0;
                         text-align: center;
                         font-size: 1.6rem;
                         transition: 0.5s;
-
+                        border-bottom: none;
+                        cursor: pointer;
                         &:hover {
-
                            top: 0;
                         }
 
                         .book_link {
-                           padding: 10px;
+                           vertical-align: top;
                            color: $bg-color;
                            text-decoration: none;
+                           cursor: pointer;
+                           padding: 10px;
+                         
+                        }
+
+                        @include rwd(mobile) {
+                           left: 0;
                         }
                      }
+
 
                      ul.tag {
                         //border: 1px solid red;
@@ -231,8 +243,6 @@
                         right: 3%;
 
                         li {
-                           //border: 1px solid green;
-                           background-color: $bg-color;
                            box-sizing: border-box;
                            border-radius: 10px 10px 0 0;
                            width: 70px;
@@ -242,82 +252,58 @@
                            transform: translate(0, 10px);
                            font-size: 1.6rem;
                            transition: 0.5s;
-
-                         @mixin taglink {
-                           padding: 10px 20px;
-                           color: black;
-                           text-decoration: none;
-                           @content;
-                         }
+                           border-bottom: none;
+                           cursor: pointer;
+                           &:hover{
+                              color: $min-color;
+                           }
 
                            &:nth-child(1) {
                               background-color: #f38e8e;
-
-                              .book_link {
-                               @include taglink;
-                              }
                            }
 
                            &:nth-child(2) {
                               background-color: #f6d16b;
-                              .book_link {
-                                 @include taglink;
-                              }
                            }
 
                            &:nth-child(3) {
                               background-color: #e19b6b;
-                              .book_link {
-                                 @include taglink;
-                              }
                            }
 
                            &:nth-child(4) {
                               background-color: #87b0e7;
-                              .book_link {
-                                 @include taglink;
-                              }
                            }
 
                            &:nth-child(5) {
                               background-color: #c5ce7c;
-                              .book_link { 
-                                 @include taglink;
-                              }
                            }
 
                            &:hover {
                               transform: translate(0, 0px);
                            }
-
-                           // &.tag1 {
-                           //    transform: translate(0, 0px);
-                           // }
-                        }
-
-                        //r-991
-                        @include rwd(medium) {
-                           li {
+                           @include rwd(medium){
                               width: 55px;
-
                            }
+                        }
+                        @include rwd(mobile){
+                           right: 0;
                         }
                      }
                   }
 
                   //book本體
                   .Book {
-                      border: 1px solid $min-color;
+                     //border: 1px solid $min-color;
                      background: #fcfbf7;
                      box-sizing: border-box;
                      display: inline-block;
                      width: 100%;
-                     //max-height: 650px;
                      margin: 0 auto;
                      position: relative;
                      left: 50%;
                      transform: translateX(-50%);
                      z-index: 2;
+
                      .page_decoration {
                         border: 0.5px solid $min-color;
                         box-sizing: border-box;
@@ -325,6 +311,7 @@
                         width: 3%;
                         height: 80vh;
                         max-height: 650px;
+                        min-height: 470px;
                         vertical-align: top;
 
                         .pagepaper {
@@ -336,9 +323,10 @@
                            position: relative;
                         }
                      }
-                     @include rwd(mobile){
-                        .page_decoration{
-                          display: none;
+
+                     @include rwd(mobile) {
+                        .page_decoration {
+                           display: none;
                         }
                      }
 
@@ -351,6 +339,7 @@
                         width: 94%;
                         height: 80vh;
                         max-height: 650px;
+                        min-height: 470px;
                         position: relative;
 
 
@@ -366,7 +355,6 @@
                            background-repeat: no-repeat;
                            width: 7%;
                            height: 10%;
-
 
                         }
 
@@ -388,53 +376,58 @@
 
                         }
 
-                        .change_bookpage{
+                        .change_bookpage {
                            //border: 1px solid purple;
                            position: absolute;
                            width: 100%;
                            bottom: 0;
                            z-index: 2;
-                           .changebuttonleft{
+
+                           .changebuttonleft {
                               display: inline-block;
                               position: relative;
                               left: 10px;
                               bottom: 0;
-                              button{
+
+                              button {
                                  width: 70px;
                                  height: 30px;
                                  background: none;
                                  border: none;
-                                background-image: url("../assets/book_img/frontpage.svg");
-                                background-size: contain;
-                                background-repeat: no-repeat;      
-                                &:hover{
-                                 background-image: url("../assets/book_img/frontpagehover.svg");
-                                 
-                                }
+                                 background-image: url("../assets/book_img/frontpage.svg");
+                                 background-size: contain;
+                                 background-repeat: no-repeat;
+
+                                 &:hover {
+                                    background-image: url("../assets/book_img/frontpagehover.svg");
+
+                                 }
                               }
                            }
 
-                           .changebuttonright{
+                           .changebuttonright {
                               display: inline-block;
                               position: absolute;
                               right: 10px;
                               bottom: 0;
-                              button{
+
+                              button {
                                  width: 70px;
                                  height: 30px;
                                  background: none;
                                  border: none;
-                                background-image: url("../assets/book_img/nextpage.svg");
-                                background-size: contain;
-                                background-repeat: no-repeat;      
-                                &:hover{
-                                 background-image: url("../assets/book_img/nextpagehover.svg");
-                                 
-                                }
+                                 background-image: url("../assets/book_img/nextpage.svg");
+                                 background-size: contain;
+                                 background-repeat: no-repeat;
+
+                                 &:hover {
+                                    background-image: url("../assets/book_img/nextpagehover.svg");
+
+                                 }
                               }
                            }
 
-         
+
                         }
 
                         @include rwd (small) {
@@ -448,106 +441,97 @@
                         }
 
                         @include rwd (small) {
-                           .bk_Spring {
+                           .bk_All {
                               overflow-y: scroll;
+                           }
+                        }
+                        &.summer{
+                           &::after{
+                              background-color: #ffe398;
+                           }
+                        }
+                        &.fall{
+                           &::after{
+                              background-color: #f0a97a;
+                           }
+                        }
+                        &.winter{
+                           &::after{
+                              background-color: #fcfbf7;
+                           }
+                        }
+                        &.year{
+                           &::after{
+                              background-color: #f0faa7;
                            }
                         }
                      }
 
+
                      @include rwd(mobile) {
                         #bk_content {
                            width: 100%;
-                           height: 100vh;  
+                           height: 85vh;
+                           max-height: none;
                         }
                      }
                   }
-
-               }
-             
-
-               @include rwd (medium) {
-                  .bkbk_content {
+                  @include rwd (medium){
                      width: 80%;
                   }
-               }
-
-               @include rwd (small) {
-                  .bkbk_content {
+                  @include rwd (small){
                      width: 90%;
                   }
+                  @include rwd (mobile){
+                     width: 100%;
+                     height: 100vh;
+                  }
                }
-
-               @include rwd (mobile) {
-                 
-                     .bkbk_content {
-                        width: 100%;
-                        height: 100vh;
-                     }
-                  
-                
-               }
-            }
-            @include rwd(mobile){
-               .bookContain{
+               @include rwd(mobile){
                   margin-top: 60px;
                }
             }
          }
 
-         @media (min-height:700px) {
-            h2{
-               font-size:1.8rem ;
+         @media (min-height:700px)and(min-width:1350px) {
+            h2 {
+               font-size: 1.8rem;
             }
-            h3{
+
+            h3 {
                font-size: 2.5rem;
             }
-            h4{
+
+            h4 {
                font-size: 1.8rem;
             }
-            h5{
+
+            h5 {
                font-size: 1.8rem;
             }
-            p{
+
+            p {
                font-size: 1.6rem;
             }
-            a{
+
+            a {
                font-size: 1.6rem;
             }
-            button{
+
+            button {
                font-size: 1.4rem;
             }
+
             // li{
             //    font-size: 1.6rem;
             // }
 
-            
+
          }
-         
-      }
 
-      // #book_footer {
-      // position: fixed;
-      // transform: rotate(90deg) translate(34%, -50%);
-      // width: 200vh;
-      // // bottom: -100vh;
-      // right: 0;
-      // top: 0;
-
-      // }
-   }
-   #book_footer {
-      position: absolute;
-      box-sizing: border-box;
-      width: 100vw;
-      //max-height: 100px;
-      background-color: black;
-      bottom: 0;
-      padding-top: 10px;
-      overflow: hidden;
-      display: none;
-      @media (min-height:950px){
-         display: block;       
       }
+    
    }
+
 
 }

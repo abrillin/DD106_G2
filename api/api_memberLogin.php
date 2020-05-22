@@ -27,18 +27,44 @@ try {
         // 自資料庫中取回資料
         $memRow = $member->fetch(PDO::FETCH_ASSOC);
 
-        // 寫入session
-        $item = array("no", "name", "phone", "email", "gender", "img", "acc", "psw", "nick", "status");
+        // 檢查果粉是否被停權
+        if ($memRow["status"] == 1) {
 
-        for ($i = 0; $i < count($item); $i++) {
+            echo "2";
+        } else {
 
-            $_SESSION[$item[$i]] = $memRow[$item[$i]];
+            // 寫入session
+            $item = array("no", "name", "phone", "email", "gender", "img", "acc", "psw", "nick", "status");
+
+            for ($i = 0; $i < count($item); $i++) {
+
+                $_SESSION["member_" . $item[$i]] = $memRow[$item[$i]];
+            }
+
+            // 送出登入者的姓名資料
+            $member = array("name" => $_SESSION["member_name"], "nick" => $_SESSION["member_nick"], "status" => $_SESSION["member_status"]);
+
+            $sql = "select * from `seller` where member_no = :no";
+            $seller = $pdo->prepare($sql);
+
+            $seller->bindValue(":no", $memRow["no"]);
+
+            $seller->execute();
+
+            if ($seller->rowCount() != 0) {
+
+                $sellerRow = $seller->fetch(PDO::FETCH_ASSOC);
+
+                $item = array("no", "status", "address", "content", "review_total", "review_count", "member_no");
+
+                for ($i = 0; $i < count($item); $i++) {
+
+                    $_SESSION["seller_" . $item[$i]] = $sellerRow[$item[$i]];
+                }
+            }
+
+            echo json_encode($memRow);
         }
-
-        // 送出登入者的姓名資料
-        $member = array("name" => $_SESSION["name"], "nick" => $_SESSION["nick"], "status" => $_SESSION["status"]);
-
-        echo json_encode($memRow);
     }
 } catch (PDOException $e) {
     $error = ["error" => $e->getMessage()];

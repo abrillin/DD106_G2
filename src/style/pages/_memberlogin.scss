@@ -1,174 +1,293 @@
 body {
-    background-color: #FBF8EF;
-
+  background-color: #fbf8ef;
 }
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200;300;400;500;600;700;900&display=swap");
 
 .login {
-    margin: auto;
-    width: 650px;
-    height: 550px;
-    position: relative;
-    font-family: jf open 粉圓1.1;
+  font-family: jf open 粉圓1.1;
+  position: fixed;
+  width: 100%;
+  height: 100%;
 }
 
 .welcome {
-    background-color: #62B45A;
-    width: 800px;
-    height: 415px;
+  background-color: #62b45a;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 150px 30px;
+  border-radius: 5px;
+  width: 800px;
+  @include rwd(small) {
+    padding: 0;
+    width: 300px;
+    padding: 10px;
+  }
+
+  > .leftbox,
+  .rightbox {
+    width: 400px;
+    transition: 1s all ease;
+    text-align: center;
+    display: inline-block;
+    @include rwd(small) {
+      display: none;
+    }
+
+    > h1 {
+      color: #666;
+      padding: 0;
+      margin: 0;
+      font-size: 2em;
+      padding-bottom: 50px;
+    }
+  }
+
+  > .leftbox {
+    > img.loginbutton {
+      width: 150px;
+      height: 80px;
+      cursor: pointer;
+    }
+  }
+
+  > .rightbox {
+    float: right;
+
+    > img.signupbutton {
+      width: 150px;
+      height: 80px;
+      cursor: pointer;
+    }
+  }
+
+  > .movebox {
     position: absolute;
-    top: 40%;
+    top: -10%;
+    left: 5%;
+    background-color: #dce07a;
+    box-sizing: border-box;
+    padding: 30px 0px;
+    height: 550px;
     border-radius: 5px;
-
-    >.leftbox,
-    .rightbox {
-        position: absolute;
-        width: 50%;
-        transition: 1s all ease;
-
-        >h1 {
-            text-align: center;
-            margin-top: 40%;
-            font-size: 2em;
-        }
+    transition: all 0.5s ease-in-out;
+    z-index: 2;
+    @include rwd(small) {
+      position: static;
+      padding: 20px 0px;
+      width: 300px;
+      height: 530px;
+      margin: 0 auto;
     }
 
-    >.leftbox {
-        left: -2%;
-
-        >img.loginbutton {
-            position: absolute;
-            width: 150px;
-            height: 80px;
-            top: 104%;
-            left: 32%;
-        }
+    > form {
+      display: flex;
+      flex-direction: column;
     }
 
-    >.rightbox {
-        right: -2%;
+    > .signup {
+      text-align: center;
 
-        >img.signupbutton {
-            position: absolute;
-            width: 150px;
-            height: 80px;
-            top: 104%;
-            left: 30%;
+      > h1 {
+        color: #333;
+        font-weight: 700;
+        font-size: 3.5rem;
+      }
+
+      > form.less-padding {
+        line-height: 2;
+        text-align: center;
+
+        > .formarea {
+          margin-top: 30px;
+          display: flex;
+          justify-content: center;
+
+          > .formtext {
+            text-align: end;
+            line-height: 2.5;
+            width: 140px;
+            @include rwd(small) {
+              width: 120px;
+            }
+            label {
+              color: #666;
+              font-size: 1.6rem;
+              @include rwd(small) {
+                font-size: 1.4rem;
+              }
+            }
+          }
+
+          > form.forminputbox {
+            width: 280px;
+            line-height: 2.6;
+            font-size: 1.6rem;
+            @include rwd(small) {
+              width: 260px;
+              line-height: 2.4;
+            }
+
+            .from_gender {
+              line-height: 2;
+              margin: 0 auto;
+              font-size: 1.6rem;
+              color: #666;
+              text-align: left;
+              width: 150px;
+              @include rwd(small) {
+                line-height: 2;
+                font-size: 1.6rem;
+              }
+            }
+          }
         }
+
+        > .signupsubmit {
+          background-color: white;
+          box-shadow: 10px 7px #007552;
+          margin: 0 auto;
+          margin-top: 20px;
+          width: 30%;
+          height: 60px;
+          z-index: 3;
+          transition: 0.3s ease;
+          border: 2px solid #007552;
+          cursor: pointer;
+
+          transition: 0.3s ease;
+          cursor: pointer;
+          @include rwd(small) {
+            width: 100px;
+            height: 60px;
+          }
+          > p {
+            display: inline-block;
+            line-height: 60px;
+            font-size: 2rem;
+          }
+        }
+
+        .switch_btn {
+          margin-top: 20px;
+          display: none;
+          @include rwd(small) {
+            display: block;
+          }
+          span {
+            font-size: 1.6rem;
+            color: #333;
+          }
+          #switch_signup {
+            font-size: 1.6rem;
+            text-decoration: underline;
+            cursor: pointer;
+            color: #007552;
+          }
+        }
+
+        > .signupsubmit:hover {
+          outline: 0;
+          border: 2px solid #007552;
+          background-color: white;
+          transform: translate(10px, 7px);
+          box-shadow: 0 0 0 0 #007552;
+        }
+      }
     }
 
-    >.movebox {
-        position: absolute;
-        top: -10%;
-        left: 5%;
-        background-color: #DCE07A;
-        width: 53%;
-        height: 500px;
-        border-radius: 5px;
-        transition: all .5s ease-in-out;
-        z-index: 2;
-
-        >form {
-            display: flex;
-            flex-direction: column;
-        }
-
-        >.signup {
-            text-align: center;
-            height: 100%;
-
-            >img.signuptitle {
-                width: 120px;
-                height: 75px;
-            }
-
-            >form.less-padding {
-
-                font-size: 20px;
-                line-height: 3;
-                text-align: center;
-
-                >.formarea {
-                    display: flex;
-                    justify-content: center;
-
-                    >.formtext {
-                        width: 300px;
-                        height: 300px;
-                        text-align: end;
-                        line-height: 3;
-                    }
-
-                    >form.forminputbox {
-                        width: 300px;
-                        height: 300px;
-                        margin-left: 15px;
-                        margin-right: 15px;
-                    }
-                }
-
-                >.signupsubmit {
-                    background-color: white;
-                    box-shadow: 10px 7px #007552;
-                    margin-left: 140px;
-                    width: 30%;
-                    height: 10%;
-                    z-index: 3;
-                    font-size: 16px;
-                    transition: .3s ease;
-                }
-
-                >.signupsubmit:hover {
-                    outline: 0;
-                    border: 2px solid #007552;
-                    background-color: white;
-                    transform: translate(10px, 7px);
-                    box-shadow: 0 0 0 0 #007552;
-                }
-            }
-        }
-
-        >.nodisplay {
-            display: none;
-            transition: all .5s ease;
-        }
-
-        >.signin {
-            text-align: center;
-            height: 100%;
-
-            >img.logintitle {
-                width: 120px;
-                height: 78px;
-            }
-
-            >form.more-padding {
-                font-size: 20px;
-                line-height: 3;
-
-                >.signinsubmit {
-                    background-color: white;
-                    box-shadow: 10px 7px #007552;
-                    margin-left: 140px;
-                    margin-top: 30px;
-                    width: 30%;
-                    height: 10%;
-                    z-index: 3;
-                    transition: .3s ease;
-
-                    >p {
-                        display: inline-block;
-                    }
-                }
-
-                >.signinsubmit:hover {
-                    outline: 0;
-                    border: 2px solid #007552;
-                    background-color: white;
-                    transform: translate(10px, 7px);
-                    box-shadow: 0 0 0 0 #007552;
-                }
-            }
-
-        }
+    > .nodisplay {
+      display: none;
+      // transition: all .5s ease;
     }
+
+    > .signin {
+      text-align: center;
+
+      > h1 {
+        color: #333;
+        font-weight: 700;
+        font-size: 3.5rem;
+      }
+
+      > form.more-padding {
+        font-size: 20px;
+        margin-top: 30px;
+        width: 420px;
+        line-height: 3;
+        padding-bottom: 171px;
+        @include rwd(small) {
+          width: auto;
+          padding-bottom: 100px;
+        }
+        label {
+          color: #666;
+          line-height: 3;
+          font-size: 1.6rem;
+          width: 120px;
+          @include rwd(small) {
+            width: 60px;
+          }
+        }
+        input {
+          margin-left: 20px;
+          @include rwd(small) {
+            width: 200px;
+          }
+        }
+
+        > .signinsubmit {
+          background-color: white;
+          box-shadow: 10px 7px #007552;
+          margin: 0 auto;
+          margin-top: 20px;
+          width: 30%;
+          height: 60px;
+          z-index: 3;
+          transition: 0.3s ease;
+          border: 2px solid #007552;
+          cursor: pointer;
+          @include rwd(small) {
+            width: 100px;
+            height: 60px;
+          }
+          > p {
+            display: inline-block;
+            font-size: 2rem;
+          }
+        }
+
+        > .signinsubmit:hover {
+          outline: 0;
+          background-color: white;
+          transform: translate(10px, 7px);
+          box-shadow: 0 0 0 0 #007552;
+        }
+
+        .switch_btn {
+          margin-top: 20px;
+          display: none;
+          @include rwd(small) {
+            display: block;
+          }
+          span {
+            font-size: 1.6rem;
+            color: #333;
+          }
+          #switch_signin {
+            font-size: 1.6rem;
+            text-decoration: underline;
+            cursor: pointer;
+            color: #007552;
+          }
+        }
+      }
+    }
+  }
+}
+
+.nodisplayblock {
+  display: block;
+  // transition: all .5s ease;
 }

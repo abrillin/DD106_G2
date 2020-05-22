@@ -6,12 +6,9 @@
     --spacer: 1rem;
 }
 
-.adminLoginBody{
+.adminLoginBody {
     height: 100vh;
     box-sizing: border-box;
-}
-
-.adminLoginBody {
     display: grid;
     place-items: center;
     background: var(--bgColor);
@@ -43,18 +40,18 @@
 .form-item {
     margin-top: 1rem;
     line-height: 1.5rem;
+
     >.adminLoginBody+.adminLoginBody {
         margin-top: 0.5rem;
     }
 }
 
 
-
 .adminLoginLabel,
 .adminLoginInput,
 .adminLoginBtn {
-    font-size: 1rem;
-    font-family: monospace;
+    font-size: 1.4rem;
+    font-family: myFont;
     color: var(--inputColor);
 
     &:focus {
@@ -81,12 +78,27 @@
     padding: 0.75rem 1.25rem;
     color: var(--bgColor);
     background-color: var(--inputColor);
-    box-shadow: 4px 4px 0 rgba(247, 207, 99, 0.842);
+    box-shadow: 4px 5px 0 var(--beamColor);
+    border: 2px solid transparent;
+    transition: 0.2s;
+
+    &:hover {
+        position: relative;
+        top: 1px;
+        left: 1px;
+        color: black;
+        background-color: var(--beamColor);
+        box-shadow: 4px 5px 0 var(--inputColor);
+        border: 2px solid var(--inputColor);
+
+    }
 
     &:active {
         transform: translateY(1px);
     }
-  
+
+
+
 }
 
 .input-wrapper {

@@ -34,6 +34,7 @@ $color5: #ffa978;
     background-image: url(./../assets/shop/market_header.svg);
     background-position: center;
     background-size: contain;
+    background-color: $color1;
     width: 100%;
     height: 150px;
     @include rwd(large) {
@@ -237,8 +238,16 @@ $color5: #ffa978;
               }
             }
             .buyNow{
-              background-color: $color5;
-              color: white;
+              position: relative;
+              transition: 0.5s;
+              box-shadow: 5px 5px 0px $color2;
+              background-color: #ffa978;
+              color: #404040;
+              &:hover{
+                transform: translate(2px,2px);
+                box-shadow: 0px 0px 0px $color2;
+                color: $color2;
+              }
             }
           }
           // .details-box {
@@ -292,9 +301,7 @@ $color5: #ffa978;
       width: 500px;
     }
     @include rwd(small) {
-      margin: 0;
-    }
-    @include rwd(small) {
+      margin: 40px 0 0 0;
       width: 100%;
     }
     .searchbar {
@@ -406,6 +413,7 @@ $color5: #ffa978;
 //下拉式選單
       .dropdown-box-flex {
         padding: 0 40px;
+        margin-bottom: 10px;
         .dropdown-box {
           display: inline-block;
         @include ts-center(16);
@@ -443,6 +451,7 @@ $color5: #ffa978;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     margin: 0 50px;
+    gap: 20px;
   @media (max-width: 1605px){
           grid-template-columns: 1fr 1fr 1fr;
       }
@@ -454,75 +463,10 @@ $color5: #ffa978;
       }
       @include rwd(small) {
         grid-template-columns: 1fr;
-      }
-    //商品卡
-    .commodity {
-      width: 90%;
-      border: 1px solid gray;
-      font-size: 0;
-      margin: 10px ;
-      display: flex;
-      flex-direction: column;
-      @include rwd(small) {
-        margin: 20px 20px;
-        flex-direction: row;
-      }
-      .card_content {
-        padding: 10px;
-        .commodity_title {
-          font-size: 18px;
-        }
+        width: 90%;
+        gap: 0;
       }
 
-      .card_tag {
-        display: flex;
-        align-items: center;
-
-        .tag_icon {
-          margin-right: 10px;
-        }
-
-        .card_tag_text {
-          font-size: 14px;
-          color: #a9a9a9;
-          line-height: 24px;
-        }
-      }
-
-      .card_price {
-        font-size: 16px;
-        text-align: right;
-
-        .money {
-          line-height: 30px;
-        }
-
-        .money::before {
-          content: "$";
-          padding: 0 5px;
-        }
-
-        .money::after {
-          content: " / 包";
-        }
-      }
-
-      .buy {
-        display: flex;
-        justify-content: space-around;
-        margin: 10px 0;
-        @include rwd(small) {
-          margin: 100px 0 0 0 ;
-        }
-        @include rwd(mobile) {
-          margin: 20px 10px 0 0;
-        }
-
-        .card_btn {
-          @include shop-btn(16);
-        }
-      }
-    }
   }
 }//商品內容結束
   }  
@@ -676,7 +620,7 @@ $color5: #ffa978;
       }
     }
   }
-  .hot_commodity_seller {
+  .hotCommoditySeller {
     display: flex;
     height: 80px;
     align-items: center;
@@ -689,7 +633,7 @@ $color5: #ffa978;
     @include rwd(medium) {
       border-right: none;
     }
-   
+
     a {
       .seller_box {
         display: inline-flex;
@@ -743,17 +687,24 @@ $color5: #ffa978;
 
 //頁面navbar
 .Page_navigation {
-  padding-bottom: 360px;
+  margin-top: 20px;
+  padding-bottom: 10vw;
   background-color: $color4;
   display: flex;
   justify-content: center;
   .pagination {
     display: inline-flex;
+
 //頁面navbar第一頁左邊邊框
     .pageborder {
       border-left: 1px solid $color2;
     }//頁面navbar第一頁左邊邊框結束
     .page-item {
+      cursor: pointer;
+      &:nth-child(2) {
+        border-left: 1px solid $color2;
+      }
+
       .page-link {
         display: flex;
         flex-wrap: wrap;
@@ -761,32 +712,37 @@ $color5: #ffa978;
         align-items: center;
         font-size: 16px;
         text-decoration: none;
-        border: 1px solid $color2;
-        border-left-width: 0;
+        border-bottom: 1px solid $color2;
+        border-top: 1px solid $color2;
+        border-right: 1px solid $color2;
         min-width: 30px;
         min-height: 40px;
         color: $color2;
-
+        
       }
+
       .page-link:hover {
         font-size: 20px;
         background-color: $color1;
       }
+
     }
-    .page-left {
+    .pageLeft {
+      cursor: pointer;
       margin-right: 20px;
       @include rwd(small) {
         margin: 0;
       }
     }
     .page-right {
+      cursor: pointer;
       margin-left: 20px;
       @include rwd(small) {
         margin: 0;
       }
     }
   }
-  .page-left:hover {
+  .pageLeft:hover {
     opacity: 0.5;
   }
   .page-right:hover {
@@ -797,7 +753,7 @@ $color5: #ffa978;
 
 //footer
 .footer-box {
-  position: absolute;
+  // position: absolute;
   bottom: -30px;
   width: 100%;
 }//footerEnd
@@ -809,4 +765,75 @@ $color5: #ffa978;
 
 
 
+    //商品卡
+    .commodity {
+      width: 100%;
+      border: 1px solid gray;
+      font-size: 0;
+      // margin: 10px ;
+      display: flex;
+      flex-direction: column;
+      @include rwd(small) {
+        margin: 20px 20px;
+        flex-direction: row;
+      }
+      .card_content {
+        padding: 10px;
+        .commodity_title {
+          font-size: 18px;
+        }
+      }
 
+      .card_tag {
+        display: inline-flex;
+        align-items: center;
+
+        .tag_icon {
+          margin: 0 5px 0 10px;
+        }
+
+        .card_tag_text {
+          font-size: 14px;
+          color: #a9a9a9;
+          line-height: 24px;
+        }
+      }
+
+      .card_price {
+        font-size: 16px;
+        text-align: right;
+
+        .money {
+          line-height: 30px;
+        }
+
+        .money::before {
+          content: "$";
+          padding: 0 5px;
+        }
+
+        .money::after {
+          content: " / 包";
+        }
+      }
+
+      .buy {
+        display: flex;
+        justify-content: space-around;
+        margin: 10px 0;
+        @include rwd(small) {
+          margin: 100px 0 0 0 ;
+        }
+        @include rwd(mobile) {
+          margin: 20px 10px 0 0;
+        }
+
+        .card_btn {
+          @include shop-btn(16);
+        }
+      }
+    }
+    .currentPagecolor{
+      font-size: 20px;
+      background-color: $color1;
+    }

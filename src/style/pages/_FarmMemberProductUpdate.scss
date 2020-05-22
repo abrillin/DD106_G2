@@ -1,148 +1,223 @@
 div.product {
-    display: inline-block;
-    color: #007552;
-    background-color: #FBF8EF;
-    width: 87.2%;
-    height: 100vh;
-    vertical-align: top;
+  display: block;
+  color: #007552;
+  background-color: #fbf8ef;
+  height: 100%;
+  width: calc(100% - 250px);
+  box-sizing: border-box;
+  padding: 60px 40px;
+  float: right;
+  @include rwd(medium) {
+    width: 100%;
+  }
 
-    .product_right_head {
-        color: #F7C845;
-        margin-top: 40px;
-        margin-left: 40px;
-        font-size: 30px;
+  @include rwd(small) {
+    width: 100%;
+    padding: 10% 5%;
+  }
 
-        >.product_right_head_text {
-            span.new {
-                margin-left: 10px;
-                color: #FFD3C1;
-                font-size: 20px;
-            }
-        }
+  .product_right_head {
+    color: #f7c845;
+    font-size: 3rem;
+
+    > .product_right_head_text {
+      span.new {
+        margin-left: 10px;
+        color: #ffd3c1;
+        font-size: 20px;
+      }
+    }
+  }
+
+  .product_right_bottom {
+    display: block;
+    text-align: center;
+    padding-top: 100px;
+
+    @include rwd(medium) {
+      display: block;
+      width: 100%;
+      padding-top: 10%;
     }
 
-    .product_right_bottom {
-        display: block;
-        height: auto;
-        text-align: center;
+    > .bottom_form {
+      display: inline-block;
+      border: 1px solid #666;
+      width: 500px;
 
-        >.bottom_form {
-            
-            margin-top: 150px;
-            line-height: 3;
+      @include rwd(small) {
+        width: 320px;
+        font-size: 1.4rem;
+      }
 
-            >.person_left {
-                display: inline-block;
-                background-color: #F7C845;
-                vertical-align: top;
-                >ul {
-                    display: block;
-                    padding-left: 40px;
-                        padding-right: 40px;
-                    >.p_num {
-                        padding-top: 50px;
-                    }
-
-                    >.p_text {
-                        padding-bottom: 56px;
-                    }
-
-                    >.p_tag {
-                        padding-bottom: 56px;
-                    }
-                }
-
-            }
-
-            >.person_right {
-                display: inline-block;
-                position: relative;
-                text-align: start;
-                background-color: white;
-                color: black;
-                padding: 50px;
-                padding-left: 50px;
-                padding-right: 100px;
-                >.tag{
-                    display: block;
-                    color: black;
-                    >.tap1{
-                        display: inline-block;
-                        background-color: #E2E2E2;
-                        border-radius: 20px;
-                        text-align: center;
-                        width: 60px;
-                        padding: 0;
-                        margin-right: 10px;
-                        margin-bottom: 10px;
-                    }
-                    >.tap2{
-                        display: inline-block;
-                        display: inline-block;
-                        background-color: #E2E2E2;
-                        border-radius: 20px;
-                        text-align: center;
-                        width: 60px;
-                        padding: 0;
-                        margin-right: 10px;
-                        margin-bottom: 10px;
-                    }
-                    >.tap3{
-                        display: inline-block;
-                        display: inline-block;
-                        background-color: #E2E2E2;
-                        border-radius: 20px;
-                        text-align: center;
-                        width: 60px;
-                        padding: 0;
-                        margin-right: 10px;
-                        margin-bottom: 10px;
-                    }
-                    >.tap4{
-                        display: inline-block;
-                        display: inline-block;
-                        background-color: #E2E2E2;
-                        border-radius: 20px;
-                        text-align: center;
-                        width: 60px;
-                        padding: 0;
-                        margin-right: 10px;
-                        margin-bottom: 10px;
-                    }
-                    >.tap5{
-                        display: inline-block;
-                        display: inline-block;
-                        background-color: #E2E2E2;
-                        border-radius: 20px;
-                        text-align: center;
-                        width: 60px;
-                        padding: 0;
-                        margin-right: 10px;
-                        margin-bottom: 10px;
-                    }
-                }
-
-                >.submit_button {
-                    position: absolute;
-                    right: 30px;
-                    bottom: 10px;
-                    >.cancel{
-                        display: inline-block;
-                        border-radius: 10px;
-                    background-color: #007552;
-                    color: white;
-                    padding: 0px 20px;
-                        margin-right: 20px;
-                    }
-                    >.correct{
-                        display: inline-block;
-                        border-radius: 10px;
-                    background-color: #007552;
-                    color: white;
-                    padding: 0px 20px;
-                    }
-                }
-            }
+      > .person_left {
+        vertical-align: top;
+        display: inline-block;
+        background-color: #f7c845;
+        width: 150px;
+        height: 720px;
+        padding-top: 50px;
+        @include rwd(small) {
+          width: 100px;
+          height: 700px;
         }
+        > ul {
+          > li {
+            padding-bottom: 50px;
+            font-size: 1.8rem;
+            color: #666;
+
+            @include rwd(small) {
+              font-size: 1.4rem;
+            }
+          }
+          li:nth-child(4) {
+            padding-bottom: 80px;
+          }
+          li:nth-child(5) {
+            padding-bottom: 80px;
+          }
+        }
+
+        > .cancel {
+          display: inline-block;
+          border-radius: 10px;
+          background-color: #007552;
+          color: white;
+          padding: 0px 20px;
+          margin-right: 20px;
+
+          &:hover {
+            background-color: #62b45a;
+          }
+        }
+
+        > .correct {
+          display: inline-block;
+          border-radius: 10px;
+          background-color: #007552;
+          color: white;
+          padding: 0px 20px;
+        }
+      }
+      > .person_right {
+        display: inline-block;
+        text-align: left;
+        position: relative;
+        background-color: white;
+        box-sizing: border-box;
+        padding: 50px;
+        height: 670px;
+        width: 350px;
+        @include rwd(small) {
+          width: 220px;
+          padding: 20px 10px;
+          height: 750px;
+        }
+
+        p {
+          padding-bottom: 45px;
+          @include rwd(small) {
+            padding-top: 29px;
+            padding-bottom: 47px;
+          }
+        }
+
+        #productName {
+          margin-bottom: 43px;
+          display: block;
+        }
+
+        #productPrice {
+          margin-bottom: 45px;
+          width: 50px;
+          @include rwd(small) {
+            margin-bottom: 47px;
+          }
+        }
+
+        label {
+          padding-bottom: 19px;
+          display: block;
+          cursor: pointer;
+          @include rwd(small) {
+            padding-bottom: 38px;
+          }
+          span {
+            background-color: #007552;
+            color: #fbf8ef;
+            border-radius: 5px;
+            border: 1px solid #007552;
+            padding: 2px 5px;
+          }
+          #productMainPic {
+            display: none;
+          }
+          #productOtherPic {
+            display: none;
+          }
+          div {
+            img {
+              width: 50px;
+              height: 50px;
+              margin-top: 10px;
+              margin-left: 10px;
+              @include rwd(small) {
+                width: 30px;
+                height: 30px;
+              }
+            }
+          }
+        }
+
+        #productTags {
+          margin-bottom: 45px;
+          @include rwd(small) {
+            margin-bottom: 12px;
+          }
+        }
+
+        #productContent {
+          display: block;
+          width: 95%;
+          height: 150px;
+          @include rwd(small) {
+            margin-top: 32px;
+            height: 180px;
+          }
+        }
+
+        .submit_button {
+          text-align: right;
+          padding-top: 20px;
+          font-size: 1.8rem;
+          @include rwd(small) {
+            font-size: 1.4rem;
+          }
+          #productCancel {
+            border: 1px solid #007552;
+            background-color: #fbf8ef;
+            padding: 2px 5px;
+            color: #007552;
+            border-radius: 5px;
+            margin-right: 20px;
+            @include rwd(small) {
+              margin-right: 10px;
+            }
+          }
+          #productSubmit {
+            border: 1px solid #007552;
+            background-color: #007552;
+            padding: 2px 8px;
+            color: #fbf8ef;
+            border-radius: 5px;
+            margin-right: 20px;
+            @include rwd(small) {
+              margin-right: 10px;
+            }
+          }
+        }
+      }
     }
+  }
 }

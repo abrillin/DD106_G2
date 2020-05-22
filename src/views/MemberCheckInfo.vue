@@ -38,21 +38,40 @@
           <p class="title">選擇付款方式：</p>
           <div class="pay-box input">
             <p>
-              <input type="checkbox" class="checkbox" name id />
-              <label></label>信用卡
+              <input id="card" name="pay" type="radio" class="checkbox" v-model="pay" />
+              <label for="card">信用卡</label>
             </p>
             <p>
-              <input type="checkbox" class="checkbox" name id />
-              <label></label>ATM轉帳
+              <input id="atm" name="pay"  type="radio" class="checkbox" v-model="pay" />
+              <label for="atm">ATM轉帳</label>
             </p>
             <p>
-              <input type="checkbox" class="checkbox" name id />
-              <label></label>貨到付款
+              <input id="pay" name="pay" type="radio" class="checkbox" v-model="pay" />
+              <label for="pay">貨到付款</label>
             </p>
           </div>
-          <div class="btn-box"></div>
+          <div class="btn-box">
+            <button type="button" class="btn" @click="prevPage">上一步</button>
+            <button type="button" class="btn">下一步</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      card: false,
+      atm: false,
+      pay: false
+    };
+  },
+  methods: {
+    prevPage() {
+      this.$router.go(-1);
+    }
+  }
+};
+</script>

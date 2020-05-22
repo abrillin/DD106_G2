@@ -1,11 +1,11 @@
 <template>
   <div class="blog-landing-outer">
     <img src="@/assets/blog-img/blog-bar.png" /><br />
-    <div class="blog-landing-container">
+    <div class="blog-landing-container-new">
       <div>
         <div>
           <!--果農日誌LOGO-->
-          <img src="@/assets/blog-img/blog_logo.svg" />
+          <img src="@/assets/blog-img/blog_logo.svg" @click="test" />
         </div>
         <div>
           <div>
@@ -69,7 +69,7 @@
       <div>
         <div>
           <div>
-            <div>2020-04-10</div>
+            <div>{{ this.previousValue[0].date }}</div>
             <div>
               <img src="@/assets/blog-img/blog-tag.png" />
               <span> 草莓 </span>
@@ -79,7 +79,7 @@
           </div>
           <div></div>
           <div>
-            <span>“ 親子輕旅行 台北白石湖採草莓、踏青一日遊”</span>
+            <span>{{ this.previousValue[0].title }}</span>
           </div>
           <div>
             <img src="@/assets/blog-img/blog-bendingbar2.png" />
@@ -91,28 +91,10 @@
         <div>
           <div>
             <div>
-              白石湖是大台北難得仍保存農業風味的鄉村地區，當地多產白色沉積砂岩石塊故而得名，近年轉型成為休閒農業區，區內種植草莓聞名，每年12月至5月的草莓產季來臨，絡繹不絕的人潮湧入內湖一帶的草莓園。我們一早就來到莓圃休閒農園，是個擁有果園、菜園和庭園咖啡等多元場域，其中溫室草莓園吸引家長帶著孩子體驗採果樂，不用擔心腳底褲管沾到泥巴。
-              <br />
-              <br />
-              特別提醒台北內湖的莓園幾乎是假日上午11點開放，當天採摘到一定數量便掛上「本日已採完」的告示牌，若想採草莓的朋友建議早點排隊。
-              <br />
-              <br />
-              採完草莓不過癮，還可以參加糖霜餅乾手做課程。工作人員拿出台北世大運吉祥物「熊讚」草莓餅乾，孩子們吵著也要做一隻熊讚帶回家。「我們先用軟糖霜劃出外圍形狀，從中間一圈一圈慢慢補滿，擠完糖霜後，餅乾表面可能會不平，再利用牙籤撥勻，或用手掌輕拍均勻」，大家跟著老師依樣畫葫蘆，以牙籤沾芝麻妝點眼睛、白糖霜親手描繪各自作品，創作他們心目中的熊讚。
-              <br />
-              <br />
-              除了草莓，莓圃也提供其他蔬果的體驗，6-11月有百香果、火龍果、番茄；7-8月則有水果玉米、小番茄等，讓小朋友一整年都可以體驗小農夫的樂趣。大人們也可以坐在綠意盎然的庭園休憩用餐，享受田園悠閒的氛圍。
+              {{ this.previousValue[0].content }}
             </div>
             <div>
-              白石湖是大台北難得仍保存農業風味的鄉村地區，當地多產白色沉積砂岩石塊故而得名，近年轉型成為休閒農業區，區內種植草莓聞名，每年12月至5月的草莓產季來臨，絡繹不絕的人潮湧入內湖一帶的草莓園。我們一早就來到莓圃休閒農園，是個擁有果園、菜園和庭園咖啡等多元場域，其中溫室草莓園吸引家長帶著孩子體驗採果樂，不用擔心腳底褲管沾到泥巴。
-              <br />
-              <br />
-              特別提醒台北內湖的莓園幾乎是假日上午11點開放，當天採摘到一定數量便掛上「本日已採完」的告示牌，若想採草莓的朋友建議早點排隊。
-              <br />
-              <br />
-              採完草莓不過癮，還可以參加糖霜餅乾手做課程。工作人員拿出台北世大運吉祥物「熊讚」草莓餅乾，孩子們吵著也要做一隻熊讚帶回家。「我們先用軟糖霜劃出外圍形狀，從中間一圈一圈慢慢補滿，擠完糖霜後，餅乾表面可能會不平，再利用牙籤撥勻，或用手掌輕拍均勻」，大家跟著老師依樣畫葫蘆，以牙籤沾芝麻妝點眼睛、白糖霜親手描繪各自作品，創作他們心目中的熊讚。
-              <br />
-              <br />
-              除了草莓，莓圃也提供其他蔬果的體驗，6-11月有百香果、火龍果、番茄；7-8月則有水果玉米、小番茄等，讓小朋友一整年都可以體驗小農夫的樂趣。大人們也可以坐在綠意盎然的庭園休憩用餐，享受田園悠閒的氛圍。
+              {{ this.previousValue[0].content }}
             </div>
           </div>
           <div>
@@ -129,13 +111,33 @@
         </div>
         <div>
           <div>
-            <span> 留言5筆 </span>
+            <span> 留言{{ blogMsg.length }}筆 </span>
             <img src="@/assets/blog-img/blog-thumb.png" />
             <span> 301 </span>
           </div>
         </div>
         <div>
-          <div>
+          <div v-for="(i, index) in blogMsgFilter" :key="index">
+            <div>
+              <img src="@/assets/blog-img/blog-someoneshead.png" />
+            </div>
+            <div>
+              <div>{{ i.nick }}</div>
+              <div>{{ i.date }}</div>
+            </div>
+            <div style="font-size:16px;">{{ i.content }}</div>
+            <div>
+              <img
+                @click="report(i)"
+                src="@/assets/blog-img/blog-report.png"
+                class="report"
+              />
+            </div>
+          </div>
+          <span @click="loadMoreMsg" id="loadMoreMsg">
+            <span>載入更多留言...</span>
+          </span>
+          <!--<div>
             <div>
               <img src="@/assets/blog-img/blog-someoneshead.png" />
             </div>
@@ -179,40 +181,64 @@
               <img src="@/assets/blog-img/blog-someoneshead.png" />
             </div>
             <div>
-              <div>howhowhasnofriend</div>
+              <div @click.prevent="comment">howhowhasnofriend</div>
               <div>2020-4-14 12:00</div>
             </div>
             <div style="font-size:15px;">這炒飯好吃?我賣水果欸!?鳳梨炒飯?</div>
             <div>
               <img src="@/assets/blog-img/blog-report.png" alt="" />
             </div>
-          </div>
-          <div>
-            <div>
-              <img src="@/assets/blog-img/blog-someoneshead.png" />
-            </div>
-            <div>
-              <div>howhowhasnofriend</div>
-              <div>2020-4-14 12:00</div>
-            </div>
-            <div style="font-size:15px;">這炒飯好吃?我賣水果欸!?鳳梨炒飯?</div>
-            <div>
-              <img src="@/assets/blog-img/blog-report.png" alt="" />
-            </div>
-          </div>
+          </div>-->
         </div>
         <div>
-          <form action="" method="get">
+          <form action="" method="get" @click.prevent="prevent">
             <label for="">
               留言:
               <textarea name="" id=""> </textarea>
             </label>
             <br />
-            <button-more
-              class="blog-landing-button-more"
-              msg="送出"
-            ></button-more>
+            <div class="blog-landing-button-more" @click.prevent="comment">
+              <button-more
+                class="blog-landing-button-more2"
+                msg="送出"
+              ></button-more>
+            </div>
           </form>
+        </div>
+      </div>
+    </div>
+    <div class="reportLightBox">
+      <div>
+        <span @click="closeLightBox">X</span>
+        <div>
+          <input
+            type="radio"
+            name=""
+            id="r1"
+            value="0"
+            v-model="reportRadio"
+          />&emsp; <label for="r1">仇恨言論</label><br /><br />
+          <input
+            type="radio"
+            name=""
+            id="r2"
+            value="1"
+            v-model="reportRadio"
+          />&emsp; <label for="r2">侵權</label><br /><br />
+          <input
+            type="radio"
+            name=""
+            id="r3"
+            value="2"
+            v-model="reportRadio"
+          />&emsp; <label for="r3">色情內容</label><br /><br />
+          <input
+            type="radio"
+            name=""
+            id="r4"
+            value="3"
+            v-model="reportRadio"
+          />&emsp; <label for="r4">與本網站無關</label><br /><br />
         </div>
       </div>
     </div>
@@ -234,7 +260,7 @@
     }
   }
 }
-.blog-landing-container {
+.blog-landing-container-new {
   padding-top: 1%;
   width: 95%;
   margin-left: 2.5%;
@@ -312,20 +338,20 @@
     grid-template-columns: 0.3fr 1fr;
   }
   @media (max-width: 1300px) {
-  margin-left: 2%;
-      grid-template-columns: 1fr;
-      grid-template-rows: 0.04fr 1fr;
+    margin-left: 2%;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.04fr 1fr;
   }
   @media (max-width: 768px) {
-  margin-left: 1.5%;
-      grid-template-columns: 1fr;
-      grid-template-rows: 0.04fr 1fr;
+    margin-left: 1.5%;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.04fr 1fr;
   }
   @media (max-width: 576px) {
-  margin-left: 1%;
+    margin-left: 1%;
   }
   @media (max-width: 350px) {
-  margin-left: 0.5%;
+    margin-left: 0.5%;
   }
   > div:nth-child(1) {
     //會員區1
@@ -343,13 +369,12 @@
       display: grid;
       grid-template-columns: 0.5fr 1.2fr 1fr;
       padding: 30% 50px 0px 50px;
-      @media (max-width: 1500px)  {
-      padding: 30% 10px 0px 10px;
+      @media (max-width: 1500px) {
+        padding: 30% 10px 0px 10px;
       }
-      @media (max-width: 1300px)  {
-      border-bottom:solid #007552 2px ;
-      padding: 30% 10px 10px 10px;
-
+      @media (max-width: 1300px) {
+        border-bottom: solid #007552 2px;
+        padding: 30% 10px 10px 10px;
       }
       .blog-landing-aunt {
         width: 100%;
@@ -361,7 +386,7 @@
           display: flex;
           flex-wrap: wrap;
           justify-content: center;
-          
+
           .blog-landing-aunt {
             width: 100%;
           }
@@ -580,9 +605,11 @@
         > div:nth-child(1) {
           //文章一區
           // margin-bottom: 10rem;
+          // background-color: #000;
+          height: 385px;
           position: relative;
           &::before {
-            content: "";
+            content: '';
             width: 90%;
             border-bottom: solid #007552 2px;
             position: absolute;
@@ -599,7 +626,7 @@
             }
           }
           &::after {
-            content: "";
+            content: '';
             width: 75%;
             border-bottom: solid #007552 2px;
             position: absolute;
@@ -618,6 +645,7 @@
         }
         > div:nth-child(2) {
           //文章二區
+          height: 385px;
           padding-bottom: 11%;
         }
       }
@@ -629,27 +657,28 @@
         right: 0%;
         bottom: 15%;
         @media (max-width: 1700px) {
-            // position: relative;
-            right: -2.5%;
-            bottom: 5%;
+          // position: relative;
+          right: -2.5%;
+          bottom: 5%;
         }
         @media (max-width: 1500px) {
-            position: relative;
-            right: -2.5%;
-            bottom: 0%;
+          position: relative;
+          right: -2.5%;
+          bottom: 0%;
         }
         > div:nth-child(1) {
           text-align: right;
           // position: relative;
           @media (max-width: 1500px) {
-              text-align: left;
-              // display: none;
+            text-align: left;
+            // display: none;
           }
           > img:nth-child(1) {
             // border: solid #000 3px;
             // height: 100%;
-            @media (max-width: 1500px) {//梯形
-                display: none;
+            @media (max-width: 1500px) {
+              //梯形
+              display: none;
             }
           }
           > div:nth-child(2) {
@@ -694,7 +723,7 @@
       padding-bottom: 20px;
       position: relative;
       &::after {
-        content: "";
+        content: '';
         width: 90%;
         border-top: 2px solid #007552;
         position: absolute;
@@ -702,7 +731,7 @@
         right: 5%;
       }
       &::before {
-        content: "";
+        content: '';
         width: 90%;
         border-top: 2px solid #007552;
         position: absolute;
@@ -729,7 +758,16 @@
       display: grid;
       grid-template-columns: 1fr;
       // background-color: rgb(0, 0, 0);
-
+      > #loadMoreMsg {
+        > span {
+          // border: steelblue 2px solid;
+          color: #808080;
+        }
+        font-size: 16px;
+        margin-top: 2%;
+        margin-left: 10%;
+        cursor: pointer;
+      }
       > div {
         padding-left: 20px;
         display: grid;
@@ -745,8 +783,8 @@
           grid-template-columns: 15% 75% 10%;
           grid-template-rows: repeat(2, 1fr);
           grid-template-areas:
-            "aa1 aa2 aa4"
-            "aa1 aa3 aa4";
+            'aa1 aa2 aa4'
+            'aa1 aa3 aa4';
         }
         > div:nth-child(1) {
           // background-color: #000;
@@ -768,7 +806,7 @@
             grid-area: aa2;
           }
           &::after {
-            content: "";
+            content: '';
             position: absolute;
             top: 0px;
             right: 10%;
@@ -780,15 +818,14 @@
           }
           @media (max-width: 576px) {
             &::before {
-              content: "";
+              content: '';
               position: absolute;
               top: 3px;
               left: -10px;
               border-right: solid 1px #a0a0a0;
               height: 30px;
               @media (max-width: 576px) {
-              left: -5px;
-                
+                left: -5px;
               }
             }
           }
@@ -838,9 +875,166 @@
           @media (max-width: 992px) {
             margin-left: 35%;
           }
+          > .blog-landing-button-more2 {
+            width: 100%;
+          }
         }
       }
     }
   }
 }
+.blog-landing-outer {
+  position: relative;
+  > .reportLightBox {
+    display: none;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    background-color: rgba(0, 0, 0, 0.582);
+    width: 100%;
+    height: 100%;
+    > div:nth-child(1) {
+      position: relative;
+      background-color: #fff;
+      width: 320px;
+      height: 320px;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      // padding-top: 10%;
+      > span:nth-child(1) {
+        position: absolute;
+        top: 2%;
+        right: 2%;
+        font-size: 25px;
+        cursor: pointer;
+      }
+      > div:nth-child(2) {
+        // background-color: #fff;
+        padding-top: 35%;
+        padding-left: 30%;
+        font-size: 16px;
+      }
+    }
+  }
+}
 </style>
+<script>
+import $ from 'jquery';
+export default {
+  props: {blogInfProps: Object, c: String},
+  data() {
+    return {
+      msgobj: {
+        content: null,
+        date: null,
+        blogNo: null,
+      },
+      blogMsg: null,
+      blogMsgFilter: [],
+      blogMsgCount: 1,
+      previousValue: null,
+      reportRadio: null,
+    };
+  },
+  created() {
+    // this.previousValue = this.blogInfProps;
+    this.msgobj.content = this.blogInfProps.content;
+    this.msgobj.blogNo = this.blogInfProps.no;
+    var nStartTime = new Date(Date.now());
+    let today = `${nStartTime.getFullYear()}-${nStartTime.getMonth() +
+      1}-${nStartTime.getDate()}`;
+    this.msgobj.date = today;
+    // console.log(this.previousValue);
+
+    let api = '/api/api_get_msg.php';
+
+    this.$http.post(api, JSON.stringify(this.msgobj)).then((res) => {
+      if (res.data != '') {
+        this.blogMsg = res.data[0];
+        console.log(this.blogMsg);
+        if (this.blogMsg.length < 5) {
+          for (let i = 0; i <= this.blogMsg.length - 1; i++) {
+            this.blogMsgFilter.push(this.blogMsg[i]);
+          }
+        } else {
+          for (let i = 0; i < 5; i++) {
+            this.blogMsgFilter.push(this.blogMsg[i]);
+          }
+        }
+      } else {
+      }
+    });
+
+    let api2 = '/api/api_get_blog_content.php';
+
+    this.$http.post(api2).then((res) => {
+      if (res.data != '') {
+        this.previousValue = res.data;
+        // console.log(this.previousValue[0]);
+      } else {
+      }
+    });
+  },
+  computed: {
+    // loadComment() {
+    //   this.comment();
+    //   return this.blogInfProps.no;
+    // },
+  },
+  methods: {
+    test() {
+      console.log(this.blogInfProps, this.c);
+    },
+    prevent() {},
+    comment() {
+      let msg = document.getElementsByTagName('textarea')[0].value;
+      this.msgobj.content = msg;
+
+      // let blogNo = this.blogInfProps.no;
+      // this.msgobj.blogNo = blogNo;
+      // console.log(this.msgobj);
+
+      let api = '/api/api_blog_msg.php';
+
+      this.$http.post(api, JSON.stringify(this.msgobj)).then((res) => {
+        if (res.data != '') {
+          console.log(res.data);
+        } else {
+        }
+      });
+      var pathtopage = window.location.href;
+
+      history.go(0);
+    },
+    loadMoreMsg() {
+      if (this.blogMsg.length - this.blogMsgFilter.length >= 5) {
+        for (
+          let i = this.blogMsgCount * 5;
+          i <= this.blogMsgCount * 5 + 4;
+          i++
+        ) {
+          this.blogMsgFilter.push(this.blogMsg[i]);
+        }
+      } else {
+        for (let i = this.blogMsgFilter.length; i < this.blogMsg.length; i++) {
+          this.blogMsgFilter.push(this.blogMsg[i]);
+        }
+      }
+
+      this.blogMsgCount++;
+    },
+    report(e) {
+      console.log(e);
+      document
+        .getElementsByClassName('reportLightBox')[0]
+        .setAttribute('style', 'display: block;');
+    },
+    closeLightBox(){
+      document
+        .getElementsByClassName('reportLightBox')[0]
+        .setAttribute('style', 'display: none;');
+    },
+  },
+};
+</script>

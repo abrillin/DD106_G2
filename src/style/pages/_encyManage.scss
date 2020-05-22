@@ -2,16 +2,19 @@
   margin: 0 auto;
   color: $contentColor;
   display: inline-block;
-  // flex-flow: row wrap;
   font-size: $contentSize;
-  min-width: 70%;
+  width: 100vw;
   height: 100%;
   box-sizing: border-box;
   justify-content: center;
   position: fixed;
   left: 25%;
-  margin-right: 4%;
 
+  padding-bottom: 80px;
+  overflow: scroll;
+  scroll-behavior: smooth;
+  // margin-right: 4%;
+  // border: 1px solid red;
 
   .editEncy {
     background: $btnBgcolor;
@@ -39,86 +42,60 @@
 
   .EncytableSection {
     // margin-top: 95px;
-    height: 80%;
+    // height: 80%;
 
     .enct-header {
       display: flex;
       background: $formTtlBg;
+      width: 810px;
     }
 
     .enct-content {
       display: flex;
       background-color: #fff;
       height: 80%;
-      overflow-x: auto;
-      margin-top: 0px;
+      width: 810px;
+      //overflow-x: auto;
+      //margin-top: 0px;
     }
 
-    .EncymanageTab {
-      table-layout: fixed;
-    }
-
-    th {
-      width: 150px;
-      padding: 20px 20px;
-      text-align: left;
+    th, td {
+      width: 180px;
+      padding: 15px 0px;
+      text-align: center;
       color: $contentColor;
+      box-sizing: border-box;
 
-      // &:last-child {
-      //   padding-left: 10%;
-      // }
+      &:first-child,
+      &:nth-child(3) {
+        width: 70px;
+      }
+
+      &:nth-child(4) {
+        width: 400px;
+      }
+
+      &:last-child {
+        width: 90px;
+      }
     }
 
     td {
-      width: 150px;
-      padding: 20px;
-      text-align: left;
-      vertical-align: middle;
-      color: $contentColor;
-
-      // &:last-child {
-      //   padding-left: 10%;
-      // }
-
       .editImg {
         width: 15px;
-        transition: opacity ease-in-out .6s;
-        position: absolute;
+        transition: opacity ease-in-out .3s;
+        // position: relative; // absolute
 
         &:last-child:hover {
-          opacity: 0;
+          position: relative;
+          top: .08rem;
+          left: .08rem;
+          opacity: 0.6;
         }
 
-      
+
       }
     }
 
   }
 }
-
-
-
-
-
-
-
-
-
-// @media (max-width: 767px){
-// // header.header{
-// //   max-width: 100%;
-// // }
-// .main_content{
-//  max-width: 100%;
-//   }
-// .aside{
-//   max-width: 100%;
-//   margin-bottom:10px;
-
-// }
-// .main{
-//   width: 100%;
-//   display: block;
-// }
-
-// }
