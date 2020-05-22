@@ -20,13 +20,14 @@
           </ul>
         </div>
         <div class="person_right">
-          <form action="">
-            <p>{{ member.no }}</p>
+          <form id="sendform" @submit="blogUpdate">
+            <p>{{ blog.sellerno }}</p>
             <input
               type="text"
               id="blogTitle"
               maxlength="20"
               placeholder="最大字數限制20"
+              v-model="blog.title"
             />
             <label for="blogMainImg" class="blogMainImg" @change="changeMainPic"
               ><span>上傳主要圖片</span>
@@ -40,22 +41,33 @@
               class="blogOtherImg"
               @change="changeOtherPic"
               ><span>上傳其他圖片</span>
-              <input type="file" id="blogMainImg" accept="image/*" />
-              <div>
-                <img src="" />
-                <img src="" />
-                <img src="" />
-                <img src="" />
+              <input type="file" id="blogOtherImg" accept="image/*" multiple />
+
+              <div id="otherPic">
+                <img class="otherPic" src="" />
+                <img class="otherPic" src="" />
+                <img class="otherPic" src="" />
+                <img class="otherPic" src="" />
               </div>
             </label>
-            <select id="blogTags">
-              <option value="1">蘋果</option>
-              <option value="2">橘子</option>
-              <option value="3">水梨</option>
-              <option value="4">番茄</option>
+            <select id="blogTags" v-model="blog.selected">
+              <option value="0">請選擇</option>
+              <option v-for="i in productTags" :value="i.no" :key="i.no">{{
+                i.name
+              }}</option>
             </select>
-            <textarea id="blogContent1" placeholder="最大字數限制"></textarea>
-            <textarea id="blogContent2"></textarea>
+            <textarea
+              id="blogContent1"
+              maxlength="500"
+              placeholder="最大字數限制500"
+              v-model="blog.content1"
+            ></textarea>
+            <textarea
+              id="blogContent2"
+              maxlength="500"
+              placeholder="最大字數限制500"
+              v-model="blog.content2"
+            ></textarea>
 
             <div class="submit_button">
               <input type="button" value="取消" id="blogCancel" />
@@ -74,8 +86,18 @@ export default {
   data() {
     return {
       member: {
-        no: 0,
         mainpic: "",
+      },
+      productTags: [],
+      blog: {
+        no: "",
+        content1: "",
+        content2: "",
+        title: "",
+        date: "",
+        img: "",
+        sellerno: "",
+        selected: 0,
       },
     };
   },
@@ -84,7 +106,10 @@ export default {
 
     this.$http.post(api).then((res) => {
       const data = res.data;
-      this.member.no = parseInt(data.no) + 1;
+
+      this.blog.sellerno = parseInt(data[0].no) + 1;
+      this.productTags = data[1];
+      console.log(this.productTags);
     });
   },
   methods: {
@@ -97,7 +122,26 @@ export default {
       };
       reader.readAsDataURL(img.files[0]);
     },
-    changeOtherPic: function() {},
+    changeOtherPic: function(e) {
+      const img = e.target;
+      if (img.files.length > 4) {
+        window.alert("最多上傳四張");
+        return;
+      } else {
+        for (let i = 0; i < img.files.length; i++) {
+          let reader = new FileReader();
+
+          reader.onload = function(e) {
+            document.getElementsByClassName("otherPic")[i].src =
+              e.target.result;
+          };
+          reader.readAsDataURL(img.files[i]);
+        }
+      }
+    },
+    blogUpdate: function(e) {
+      console.log();
+    },
   },
 };
 </script>
