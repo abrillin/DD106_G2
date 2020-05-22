@@ -111,7 +111,7 @@
         </div>
         <div>
           <div>
-            <span> 留言5筆 </span>
+            <span> 留言{{ blogMsg.length }}筆 </span>
             <img src="@/assets/blog-img/blog-thumb.png" />
             <span> 301 </span>
           </div>
@@ -125,12 +125,12 @@
               <div>{{ i.nick }}</div>
               <div>{{ i.date }}</div>
             </div>
-            <div style="font-size:15px;">{{ i.content }}</div>
+            <div style="font-size:16px;">{{ i.content }}</div>
             <div>
               <img
                 @click="report(i)"
                 src="@/assets/blog-img/blog-report.png"
-                alt=""
+                class="report"
               />
             </div>
           </div>
@@ -198,9 +198,47 @@
             </label>
             <br />
             <div class="blog-landing-button-more" @click.prevent="comment">
-              <button-more msg="送出"></button-more>
+              <button-more
+                class="blog-landing-button-more2"
+                msg="送出"
+              ></button-more>
             </div>
           </form>
+        </div>
+      </div>
+    </div>
+    <div class="reportLightBox">
+      <div>
+        <span @click="closeLightBox">X</span>
+        <div>
+          <input
+            type="radio"
+            name=""
+            id="r1"
+            value="0"
+            v-model="reportRadio"
+          />&emsp; <label for="r1">仇恨言論</label><br /><br />
+          <input
+            type="radio"
+            name=""
+            id="r2"
+            value="1"
+            v-model="reportRadio"
+          />&emsp; <label for="r2">侵權</label><br /><br />
+          <input
+            type="radio"
+            name=""
+            id="r3"
+            value="2"
+            v-model="reportRadio"
+          />&emsp; <label for="r3">色情內容</label><br /><br />
+          <input
+            type="radio"
+            name=""
+            id="r4"
+            value="3"
+            v-model="reportRadio"
+          />&emsp; <label for="r4">與本網站無關</label><br /><br />
         </div>
       </div>
     </div>
@@ -837,7 +875,45 @@
           @media (max-width: 992px) {
             margin-left: 35%;
           }
+          > .blog-landing-button-more2 {
+            width: 100%;
+          }
         }
+      }
+    }
+  }
+}
+.blog-landing-outer {
+  position: relative;
+  > .reportLightBox {
+    display: none;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    background-color: rgba(0, 0, 0, 0.582);
+    width: 100%;
+    height: 100%;
+    > div:nth-child(1) {
+      position: relative;
+      background-color: #fff;
+      width: 320px;
+      height: 320px;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      // padding-top: 10%;
+      > span:nth-child(1) {
+        position: absolute;
+        top: 2%;
+        right: 2%;
+        font-size: 25px;
+        cursor: pointer;
+      }
+      > div:nth-child(2) {
+        // background-color: #fff;
+        padding-top: 35%;
+        padding-left: 30%;
+        font-size: 16px;
       }
     }
   }
@@ -858,6 +934,7 @@ export default {
       blogMsgFilter: [],
       blogMsgCount: 1,
       previousValue: null,
+      reportRadio: null,
     };
   },
   created() {
@@ -949,6 +1026,14 @@ export default {
     },
     report(e) {
       console.log(e);
+      document
+        .getElementsByClassName('reportLightBox')[0]
+        .setAttribute('style', 'display: block;');
+    },
+    closeLightBox(){
+      document
+        .getElementsByClassName('reportLightBox')[0]
+        .setAttribute('style', 'display: none;');
     },
   },
 };
