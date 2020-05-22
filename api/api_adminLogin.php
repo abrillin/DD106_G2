@@ -6,7 +6,7 @@ session_start();
 try {
     // 登入DB
     require_once("connectDB.php");
-    
+
     // 操作DB
     $sql = "select * from `admin` where acc=:acc and psw=:psw";
     $member = $pdo->prepare($sql);
