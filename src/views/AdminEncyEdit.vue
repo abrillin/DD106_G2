@@ -98,7 +98,7 @@
               圖01：
               <input type="file" id="encyPic01" @change="fileSelect" />
             </label>
-            <img :src="encyEdit.titleImg" style="max-width: 200px;max-height: 200px;" />
+            <img id="encyImg" src="" style="max-width: 200px;max-height: 200px;" />
             <!--
                   <img id:"encyImg" :src="encyEdit.titleImg" style="max-width: 200px;max-height: 200px;" />
                   -->
@@ -173,15 +173,13 @@ export default {
       let readFile = new FileReader();
 
       const titleImg= e.target;
-      reader.readAsDataURL(titleImg.files[0]);
+      readFile.readAsDataURL(titleImg.files[0]);
       
-      reader.onload = function(e) {
+      readFile.onload = function(e) {
         document.getElementById("encyImg").src = e.target.result;
       };
 
       this.formData.append("file", titleImg.files[0]);
-      this.encyEdit.titleImg = "/api/EncyImg/encyEdit" + titleImg.files[0].name;
-
     
     },
 
