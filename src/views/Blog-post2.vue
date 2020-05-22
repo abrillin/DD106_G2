@@ -1608,7 +1608,12 @@ export default {
   updated() {
     // let bb = document.getElementsByClassName('blog-post2-small-card')[8];
     // bb.classList.add('nine');
-    for (let i = 0; i <= 8; i++) {
+    // alert(document.getElementsByClassName('pageBorder').length);
+    for (
+      let i = 0;
+      i <= document.getElementsByClassName('pageBorder').length;
+      i++
+    ) {
       document
         .getElementsByClassName('pageBorder')
         [i].setAttribute('class', 'pageBorder');
@@ -1621,7 +1626,6 @@ export default {
           [i].classList.add('currentPagecolor');
       }
     }
-    // console.log(document.getElementsByClassName("pageBorder"))
   },
   created() {
     const api = '/api/api_blog.php';
@@ -1643,8 +1647,15 @@ export default {
             this.blogArrFilter.push(this.blogArr[i]);
           }
           this.currentPage.push(1);
-          for (let i = 1; i < 10; i++) {
-            this.pageArr.push(i);
+          if (this.blogArr.length / 9 < 9) {
+            for (let i = 1; i <= parseInt(this.blogArr.length / 9) + 1; i++) {
+              this.pageArr.push(i);
+              // console.log(parseInt(this.blogArr.length / 9) + 1);
+            }
+          } else {
+            for (let i = 1; i < 10; i++) {
+              this.pageArr.push(i);
+            }
           }
         } else {
           // console.log(res.error);
@@ -1658,47 +1669,68 @@ export default {
   methods: {
     pageSelect(e) {
       let pageNum = parseInt(e.target.textContent);
-      // console.log(e.target.textContent)
       this.blogArrFilter = [];
       this.blogArrFilterTop = [];
       this.currentPage = [];
-      // console.log(parseInt(this.blogArr.length / 9));
-      if (pageNum > 5 && pageNum < parseInt(this.blogArr.length / 9) - 5) {
-        this.pageArr = [];
-        for (let i = pageNum - 4; i < pageNum + 5; i++) {
-          this.pageArr.push(i);
-        }
-      } else if (pageNum >= parseInt(this.blogArr.length / 9) - 5) {
-        this.pageArr = [];
-        for (
-          let i = parseInt(this.blogArr.length / 9) - 8;
-          i <= parseInt(this.blogArr.length / 9);
-          i++
-        ) {
-          this.pageArr.push(i);
-        }
-      } else {
-        this.pageArr = [];
-        for (let i = 1; i < 10; i++) {
-          this.pageArr.push(i);
+
+      if (this.blogArr.length / 9 > 9) {
+        if (pageNum > 5 && pageNum < parseInt(this.blogArr.length / 9) - 5) {
+          this.pageArr = [];
+          for (let i = pageNum - 4; i < pageNum + 5; i++) {
+            this.pageArr.push(i);
+          }
+        } else if (pageNum >= parseInt(this.blogArr.length / 9) - 5) {
+          this.pageArr = [];
+          for (
+            let i = parseInt(this.blogArr.length / 9) - 8;
+            i <= parseInt(this.blogArr.length / 9);
+            i++
+          ) {
+            this.pageArr.push(i);
+          }
+        } else {
+          this.pageArr = [];
+          for (let i = 1; i < 10; i++) {
+            this.pageArr.push(i);
+          }
         }
       }
 
       this.currentPage.push(pageNum);
+
+      // alert(this.currentPage[0]);
+      // alert(parseInt(this.blogArr.length / 9) + 1);
+
       let currentPage1 = this.currentPage[0];
       this.blogArrFilterTop.push(this.blogArr[(currentPage1 - 1) * 9]);
 
-      for (let i = (currentPage1 - 1) * 9 + 1; i < currentPage1 * 9 + 1; i++) {
-        this.blogArrFilter.push(this.blogArr[i]);
+      if (this.currentPage[0] == parseInt(this.blogArr.length / 9) + 1) {
+        for (
+          let i = (this.currentPage[0] - 1) * 9 + 1;
+          i < this.blogArr.length;
+          i++
+        ) {
+          this.blogArrFilter.push(this.blogArr[i]);
+        }
+      } else {
+        for (
+          let i = (currentPage1 - 1) * 9 + 1;
+          i < currentPage1 * 9 + 1;
+          i++
+        ) {
+          this.blogArrFilter.push(this.blogArr[i]);
+        }
       }
 
-      for (let i = 1; i < 9; i++) {
-        e.target.parentNode.children[i].setAttribute('class', 'pageBorder');
-      }
-      // console.log(document.getElementsByClassName("pageBorder"));
-      e.target.parentNode.children[1].setAttribute('class', 'pageBorder');
-      //   document.getElementsByClassName("pageBorder")[0].setAttribute("class","");
+      // for (
+      //   let i = 1;
+      //   i < document.getElementsByClassName('pageBorder').length;
+      //   i++
+      // ) {
+      //   e.target.parentNode.children[i].setAttribute('class', 'pageBorder');
+      // }
     },
+
     PreviousPage() {
       let currentPage1 = this.currentPage[0];
       // this.currentPage = [];
@@ -1727,7 +1759,7 @@ export default {
       // this.currentPage = [];
       this.blogArrFilterTop = [];
       this.blogArrFilter = [];
-      if (this.currentPage < parseInt(this.blogArr.length / 9)) {
+      if (this.currentPage < parseInt(this.blogArr.length / 9) + 1) {
         this.currentPage = [];
         this.currentPage.push(currentPage1 + 1);
       }
@@ -1735,9 +1767,16 @@ export default {
 
       this.blogArrFilterTop.push(this.blogArr[(updatePage - 1) * 9]);
 
-      for (let i = (updatePage - 1) * 9 + 1; i < updatePage * 9 + 1; i++) {
-        this.blogArrFilter.push(this.blogArr[i]);
+      if (updatePage == parseInt(this.blogArr.length / 9) + 1) {
+        for (let i = (updatePage - 1) * 9 + 1; i < this.blogArr.length; i++) {
+          this.blogArrFilter.push(this.blogArr[i]);
+        }
+      } else {
+        for (let i = (updatePage - 1) * 9 + 1; i < updatePage * 9 + 1; i++) {
+          this.blogArrFilter.push(this.blogArr[i]);
+        }
       }
+
       if (this.pageArr[8] < parseInt(this.blogArr.length / 9)) {
         this.pageArr.forEach((item, index, array) => {
           this.pageArr[index] = this.pageArr[index] + 1;
