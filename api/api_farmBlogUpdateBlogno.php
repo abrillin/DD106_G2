@@ -6,16 +6,25 @@ try {
     require_once("connectDB.php");
 
     // 操作DB
-    $sql = "select `no` from `blog`";
+    $sql = "select `no` from `blog` order by `no` DESC limit 1";
     $no = $pdo->prepare($sql);
-
-    
-
     $no->execute();
     $nono = $no->fetch(PDO::FETCH_ASSOC);
-    echo json_encode($nono);
+    
+
+    $sql2= "select * from `blogtag_des`";
+    $tags = $pdo->prepare($sql2);
+    $tags->execute();
+    $product = $tags->fetchAll(PDO::FETCH_ASSOC);
+
+    echo json_encode([0=>$nono,1=>$product]);
+    
+   
  
 } catch (PDOException $e) {
     $error = ["error" => $e->getMessage()];
     echo json_encode($error);
 }
+?>
+
+

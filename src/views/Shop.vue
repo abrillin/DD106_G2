@@ -166,28 +166,26 @@
               </button>
               <label class="dropdown" for="states">最新商品</label>
               <div class="button dropdown-content">
-                <select id="colorselector" class="select-reset">
-                  <option value="price-high-to-low">價錢高到低</option>
-                  <option value="high-to-low">評價高到低</option>
-                  <option value="new-to old" selected>由新到舊</option>
+                <select id="colorselector" class="select-reset" v-model="v" @change="itemchange(v)">
+                  <option
+                    v-for="(changeitems,index) in changeitem"
+                    :key="changeitems"
+                    :value="index"
+                  >{{changeitems}}</option>
                 </select>
               </div>
             </div>
           </div>
           <div class="commodity-flex">
             <div class="commodity" v-for="(i, index) in shopcommodityfilter" :key="index">
-              <div class="card_img_box">
-                <img
-                  src="../assets/ia_300000017.jpg"
-                  width="100%"
-                  height="100%"
-                  @click="changePage(i)"
-                />
-              </div>
-
+              <router-link to="/main/shopitem">
+                <div class="card_img_box" @click="changePage(i)">
+                  <img src="../assets/ia_300000017.jpg" width="100%" height="100%" />
+                </div>
+              </router-link>
               <div class="card_content">
                 <div class="commodity_title">
-                  <div class="commodity_title_text">{{i.name}}</div>
+                  <div class="commodity_title_text">{{i.no}}</div>
                 </div>
 
                 <div class="card_tag" v-for="(t,dex) in shopcommodityfilter[index].tags" :key="dex">
@@ -196,12 +194,12 @@
                 </div>
 
                 <div class="card_price">
-                  <span class="money">{{i.no}}</span>
+                  <span class="money">{{i.price}}</span>
                 </div>
 
                 <div class="buy">
-                  <a href="#" class="card_btn">加入購物籃</a>
-                  <a href="#" class="card_btn">直接購買</a>
+                  <a href="#" class="card_btn" @mouseenter="btnFun">加入購物籃</a>
+                  <a href="#" class="card_btn" @mouseenter="btnFun">直接購買</a>
                 </div>
               </div>
             </div>
@@ -320,7 +318,9 @@ export default {
       shopcommodityfilter: [],
       pageArr: [],
       currentPage: [],
-      seller: {}
+      seller: [],
+      changeitem: ["價錢高到低", "評價高到低", "由新到舊"],
+      v: 0
     };
   },
 
@@ -343,6 +343,24 @@ export default {
       // console.log(res.data["mem"]);
     });
   },
+
+  updated() {
+    for (let i = 0; i <= 8; i++) {
+      document
+        .getElementsByClassName("page-item")
+        [i].setAttribute("class", "page-item");
+      if (
+        document.getElementsByClassName("page-item")[i].textContent ==
+        this.currentPage[0]
+      ) {
+        document
+          .getElementsByClassName("page-item")
+          [i].classList.add("currentPagecolor");
+      }
+    }
+    // console.log(document.getElementsByClassName("page-item"));
+  },
+
   methods: {
     SellerM: function() {
       //觸發追蹤商品效果
@@ -372,6 +390,50 @@ export default {
         });
       });
     },
+
+    btnFun: function() {
+      //觸發按鈕效果
+      $(".card_btn").hover(function() {
+        var cbtn = $(this);
+        TweenMax.to(cbtn, 0.3, {
+          css: {
+            backgroundColor: "#ffa978",
+            color: "white"
+          }
+        });
+      });
+      //反觸發按鈕效果
+      $(".card_btn").mouseleave(function() {
+        var cbtn = $(this);
+        TweenMax.to(cbtn, 0.3, {
+          css: {
+            backgroundColor: "#fbf8ef",
+            color: "#007552"
+          }
+        });
+      });
+      //觸發item按鈕效果
+      $(".item_btn").hover(function() {
+        var ibtn = $(this);
+        TweenMax.to(ibtn, 0.3, {
+          css: {
+            backgroundColor: "#ffa978",
+            color: "white"
+          }
+        });
+      });
+      //反觸發item按鈕效果
+      $(".item_btn").mouseleave(function() {
+        var ibtn = $(this);
+        TweenMax.to(ibtn, 0.3, {
+          css: {
+            backgroundColor: "#fbf8ef",
+            color: "#007552"
+          }
+        });
+      });
+    },
+
     pageLeft() {
       let currentPage1 = this.currentPage[0];
       // this.currentPage = [];
@@ -410,23 +472,83 @@ export default {
         });
       }
     },
-    updated() {
-      for (let i = 0; i <= 8; i++) {
-        document
-          .getElementsByClassName("page-item")
-          [i].setAttribute("class", "page-item");
-        if (
-          document.getElementsByClassName("page-item")[i].textContent ==
-          this.currentPage[0]
+
+    pageSelect(e) {
+      let pageNum = parseInt(e.target.textContent);
+      // console.log(pageNum);
+      this.shopcommodityfilter = [];
+      this.currentPage = [];
+      // console.log(parseInt(this.shopcommodity.length / 9));
+      if (
+        pageNum > 5 &&
+        pageNum < parseInt(this.shopcommodity.length / 8) - 5
+      ) {
+        this.pageArr = [];
+        for (let i = pageNum - 4; i < pageNum + 5; i++) {
+          this.pageArr.push(i);
+        }
+      } else if (pageNum >= parseInt(this.shopcommodity.length / 8) - 5) {
+        this.pageArr = [];
+        for (
+          let i = parseInt(this.shopcommodity.length / 8) - 7;
+          i <= parseInt(this.shopcommodity.length / 7);
+          i++
         ) {
-          document
-            .getElementsByClassName("page-item")
-            [i].classList.add("currentPagecolor");
+          this.pageArr.push(i);
+        }
+      } else {
+        this.pageArr = [];
+        for (let i = 1; i < 10; i++) {
+          this.pageArr.push(i);
         }
       }
-      // console.log(document.getElementsByClassName("page-item"));
+
+      this.currentPage.push(pageNum);
+      let currentPage1 = this.currentPage[0];
+
+      for (let i = (currentPage1 - 1) * 8 + 1; i < currentPage1 * 8 + 1; i++) {
+        this.shopcommodityfilter.push(this.shopcommodity["pro"][i]);
+      }
+
+      for (let i = 1; i < 9; i++) {
+        e.target.parentNode.children[i].setAttribute("class", "page-item");
+      }
+      // console.log(document.getElementsByClassName("pageBorder"));
+      e.target.parentNode.children[1].setAttribute("class", "page-item");
+      //   document.getElementsByClassName("pageBorder")[0].setAttribute("class","");
+    },
+    changePage(e) {
+      let api = "/api/api_item_no.php";
+      console.log(e);
+      this.$http
+        .post(api, JSON.stringify(e))
+        .then(res => {
+          if (res.data != "") {
+            console.log(JSON.parse(res.data));
+          } else {
+            console.log(res.error);
+          }
+        })
+        .catch(err => console.log(err));
+    },
+
+    itemchange(t) {
+      console.log(t);
+      const api = "/api/api_item.php";
+
+      this.$http.post(api, JSON.stringify(t)).then(res => {
+        // this.shopcommodity = "";
+        this.shopcommodity = res.data;
+
+        this.shopcommodityfilter = [];
+
+        for (let i = 1; i < 9; i++) {
+          this.shopcommodityfilter.push(this.shopcommodity["pro"][i]);
+        }
+      });
     }
   },
+
   mounted() {
     function showHideHam() {
       let filterPanel = document.getElementById("filterPanel");
@@ -466,46 +588,6 @@ export default {
       });
     });
 
-    //觸發按鈕效果
-    $(".card_btn").hover(function() {
-      var cbtn = $(this);
-      TweenMax.to(cbtn, 0.3, {
-        css: {
-          backgroundColor: "#ffa978",
-          color: "white"
-        }
-      });
-    });
-    //反觸發按鈕效果
-    $(".card_btn").mouseleave(function() {
-      var cbtn = $(this);
-      TweenMax.to(cbtn, 0.3, {
-        css: {
-          backgroundColor: "#fbf8ef",
-          color: "#007552"
-        }
-      });
-    });
-    //觸發item按鈕效果
-    $(".item_btn").hover(function() {
-      var ibtn = $(this);
-      TweenMax.to(ibtn, 0.3, {
-        css: {
-          backgroundColor: "#ffa978",
-          color: "white"
-        }
-      });
-    });
-    //反觸發item按鈕效果
-    $(".item_btn").mouseleave(function() {
-      var ibtn = $(this);
-      TweenMax.to(ibtn, 0.3, {
-        css: {
-          backgroundColor: "#fbf8ef",
-          color: "#007552"
-        }
-      });
-    });
     //反觸發itembuynow按鈕效果
     $(".buyNow").mouseleave(function() {
       var buybtn = $(this);
@@ -529,87 +611,6 @@ export default {
         y: 0
       });
     });
-  },
-  pageSelect(e) {
-    let pageNum = parseInt(e.target.textContent);
-    // console.log(pageNum);
-    this.shopcommodityfilter = [];
-    this.currentPage = [];
-    // console.log(parseInt(this.shopcommodity.length / 9));
-    if (pageNum > 5 && pageNum < parseInt(this.shopcommodity.length / 8) - 5) {
-      this.pageArr = [];
-      for (let i = pageNum - 4; i < pageNum + 5; i++) {
-        this.pageArr.push(i);
-      }
-    } else if (pageNum >= parseInt(this.shopcommodity.length / 8) - 5) {
-      this.pageArr = [];
-      for (
-        let i = parseInt(this.shopcommodity.length / 8) - 7;
-        i <= parseInt(this.shopcommodity.length / 7);
-        i++
-      ) {
-        this.pageArr.push(i);
-      }
-    } else {
-      this.pageArr = [];
-      for (let i = 1; i < 10; i++) {
-        this.pageArr.push(i);
-      }
-    }
-
-    this.currentPage.push(pageNum);
-    let currentPage1 = this.currentPage[0];
-
-    for (let i = (currentPage1 - 1) * 8 + 1; i < currentPage1 * 8 + 1; i++) {
-      this.shopcommodityfilter.push(this.shopcommodity["pro"][i]);
-    }
-
-    for (let i = 1; i < 9; i++) {
-      e.target.parentNode.children[i].setAttribute("class", "page-item");
-    }
-    // console.log(document.getElementsByClassName("pageBorder"));
-    e.target.parentNode.children[1].setAttribute("class", "page-item");
-    //   document.getElementsByClassName("pageBorder")[0].setAttribute("class","");
-  },
-
-  pageLeft() {
-    let currentPage1 = this.currentPage[0];
-    // this.currentPage = [];
-    this.shopcommodityfilter = [];
-    if (this.currentPage > 1) {
-      this.currentPage = [];
-      this.currentPage.push(currentPage1 - 1);
-    }
-    let updatePage = this.currentPage[0];
-
-    for (let i = (updatePage - 1) * 8 + 1; i < updatePage * 8 + 1; i++) {
-      this.shopcommodityfilter.push(this.shopcommodity.pro[i]);
-    }
-    console.log(this.shopcommodity);
-    if (this.pageArr[0] > 1) {
-      this.pageArr.forEach((item, index, array) => {
-        this.pageArr[index] = this.pageArr[index] - 1;
-      });
-    }
-  },
-
-  nextPage() {
-    let currentPage1 = this.currentPage[0];
-    this.shopcommodityfilter = [];
-    if (this.currentPage < parseInt(this.shopcommodity.length / 8)) {
-      this.currentPage = [];
-      this.currentPage.push(currentPage1 + 1);
-    }
-    let updatePage = this.currentPage[0];
-
-    for (let i = (updatePage - 1) * 8 + 1; i < updatePage * 8 + 1; i++) {
-      this.shopcommodityfilter.push(this.shopcommodity.pro[i]);
-    }
-    if (this.pageArr[8] < parseInt(this.shopcommodity.length / 8)) {
-      this.pageArr.forEach((item, index, array) => {
-        this.pageArr[index] = this.pageArr[index] + 1;
-      });
-    }
   }
 };
 </script>

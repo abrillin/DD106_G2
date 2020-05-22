@@ -3,7 +3,7 @@ div.membercontain {
   width: 100%;
   height: 100%;
   font-size: 1.8rem;
-  overflow: hidden;
+  // overflow: hidden;
 
   @include rwd(large) {
     height: auto;
@@ -145,7 +145,7 @@ div.membercontain {
     > button.btn_drawer {
       display: none;
 
-      @include rwd(small) {
+      @include rwd(medium) {
         background: none;
         background-color: #ffd3c1;
         position: absolute;

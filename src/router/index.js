@@ -109,6 +109,11 @@ const routes = [
         component: () => import("@/views/MemberCheckInfo.vue"),
       },
       {
+        path: "payInfo",
+        name: "PayInfo",
+        component: () => import("@/views/MemberPayInfo.vue"),
+      },
+      {
         path: "farmRegistered",
         name: "FarmRegistered",
         component: () => import("@/views/FarmRegistered.vue"),
