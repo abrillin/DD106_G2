@@ -17,6 +17,7 @@
         // width: 900px;
         height: auto;
         margin-bottom: 70px;
+        overflow-x: hidden;
 
         th {
             width: 15%;
@@ -70,13 +71,14 @@
 
             }
 
-            #encyIntro, #encyQ, #encyA, #fruitName, #videoLink {
+            #encyIntro, #encyQ, #encyA, #videoLink {
                 resize: none;
                 font-size: $contentSize;
                 font-family: myFont;
                 width: 90%;
+                border: 1px solid #888;
             }
-            #fruitName, #videoLink {
+            #videoLink {
                 height: 14px;
                 overflow: hidden;
                 padding: 5px;
@@ -117,16 +119,7 @@
 
             }
         }
-
-        #encyTagChange {
-            // border-radius: 25px;
-            background-color: #666;
-            // margin: 3px;
-            // border: hidden;
-            // transition: ease-in-out;
-            // transition-duration: .3s;
-        }
-
+        
     }
 
 

@@ -56,6 +56,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import { log } from "three";
 export default {
@@ -105,7 +106,7 @@ export default {
 
       for (let i in this.member) {
         if (this.member[i] == "") {
-          alert("請檢查是否所有欄位都有輸入資料");
+          alert(" 有欄位空白，請再檢查一次 ( ´Д`)y━･ ");
           return;
         }
       }
@@ -114,7 +115,7 @@ export default {
         const data = res.data;
 
         if (data == 1) {
-          alert("修改成功！");
+          alert("修改成功 ᕦ(ò_óˇ)ᕤ ");
 
           this.$router.go(0);
         }

@@ -1,21 +1,18 @@
 div.product {
-  display: inline-block;
+  display: block;
   color: #007552;
   background-color: #fbf8ef;
+  height: 100%;
   width: calc(100% - 250px);
-  height: 100vh;
-  vertical-align: top;
   box-sizing: border-box;
   padding: 60px 40px;
-
+  float: right;
   @include rwd(medium) {
-    float: right;
-    width: calc(100% - 200px);
+    width: 100%;
   }
 
   @include rwd(small) {
-    float: none;
-    width: 100vw;
+    width: 100%;
     padding: 10% 5%;
   }
 
@@ -36,7 +33,6 @@ div.product {
     display: block;
     text-align: center;
     padding-top: 100px;
-    margin: 0 auto;
 
     @include rwd(medium) {
       display: block;
@@ -46,11 +42,12 @@ div.product {
 
     > .bottom_form {
       display: inline-block;
-
       border: 1px solid #666;
+      width: 500px;
 
       @include rwd(small) {
-        line-height: normal;
+        width: 320px;
+        font-size: 1.4rem;
       }
 
       > .person_left {
@@ -58,157 +55,165 @@ div.product {
         display: inline-block;
         background-color: #f7c845;
         width: 150px;
-        height: 550px;
+        height: 720px;
         padding-top: 50px;
-
         @include rwd(small) {
-          width: 30%;
-          height: 400px;
+          width: 100px;
+          height: 700px;
         }
-
         > ul {
           > li {
+            padding-bottom: 50px;
             font-size: 1.8rem;
             color: #666;
-            line-height: 3.3;
 
             @include rwd(small) {
               font-size: 1.4rem;
-              line-height: 3;
             }
           }
+          li:nth-child(4) {
+            padding-bottom: 80px;
+          }
+          li:nth-child(5) {
+            padding-bottom: 80px;
+          }
+        }
+
+        > .cancel {
+          display: inline-block;
+          border-radius: 10px;
+          background-color: #007552;
+          color: white;
+          padding: 0px 20px;
+          margin-right: 20px;
+
+          &:hover {
+            background-color: #62b45a;
+          }
+        }
+
+        > .correct {
+          display: inline-block;
+          border-radius: 10px;
+          background-color: #007552;
+          color: white;
+          padding: 0px 20px;
         }
       }
-
       > .person_right {
         display: inline-block;
+        text-align: left;
         position: relative;
-        text-align: start;
         background-color: white;
-        color: black;
+        box-sizing: border-box;
         padding: 50px;
-        padding-right: 140px;
-        height: 500px;
+        height: 670px;
         width: 350px;
-        line-height: 3.14;
-
-        @include rwd(medium) {
-          width: 42%;
-          line-height: 3.3;
-        }
-
         @include rwd(small) {
-          padding-right: 120px;
-          width: 40%;
-          height: 500px;
-          line-height: 3.1;
+          width: 220px;
+          padding: 20px 10px;
+          height: 750px;
         }
 
-        @include rwd(mobile) {
-          padding: 0;
-          padding-right: 60px;
-          padding-bottom: 77px;
-          padding-top: 47px;
-          padding-left: 5px;
-          width: 55%;
-          line-height: 3.3;
+        p {
+          padding-bottom: 45px;
+          @include rwd(small) {
+            padding-top: 29px;
+            padding-bottom: 47px;
+          }
         }
 
-        > .tag {
+        #productName {
+          margin-bottom: 43px;
           display: block;
-          color: black;
-          line-height: 2;
-          margin-top: 12px;
+        }
 
-          > .tap1 {
-            display: inline-block;
-            background-color: #e2e2e2;
-            border-radius: 20px;
-            text-align: center;
-            width: 50px;
-            padding: 0;
-            margin-right: 4px;
-            margin-bottom: 10px;
+        #productPrice {
+          margin-bottom: 45px;
+          width: 50px;
+          @include rwd(small) {
+            margin-bottom: 47px;
           }
+        }
 
-          > .tap2 {
-            display: inline-block;
-            background-color: #e2e2e2;
-            border-radius: 20px;
-            text-align: center;
-            width: 70px;
-            padding: 0;
-            margin-right: 4px;
-            margin-bottom: 10px;
+        label {
+          padding-bottom: 19px;
+          display: block;
+          cursor: pointer;
+          @include rwd(small) {
+            padding-bottom: 38px;
           }
-
-          > .tap3 {
-            display: inline-block;
-            display: inline-block;
-            background-color: #e2e2e2;
-            border-radius: 20px;
-            text-align: center;
-            width: 70px;
-            padding: 0;
-            margin-right: 4px;
-            margin-bottom: 10px;
+          span {
+            background-color: #007552;
+            color: #fbf8ef;
+            border-radius: 5px;
+            border: 1px solid #007552;
+            padding: 2px 5px;
           }
-
-          > .tap4 {
-            display: inline-block;
-            background-color: #e2e2e2;
-            border-radius: 20px;
-            text-align: center;
-            width: 70px;
-            padding: 0;
-            margin-right: 4px;
-            margin-bottom: 10px;
+          #productMainPic {
+            display: none;
           }
-
-          > .tap5 {
-            display: inline-block;
-            background-color: #e2e2e2;
-            border-radius: 20px;
-            text-align: center;
-            width: 70px;
-            padding: 0;
-            margin-right: 4px;
-            margin-bottom: 10px;
-
-            @include rwd(medium) {
-              width: 74px;
+          #productOtherPic {
+            display: none;
+          }
+          div {
+            img {
+              width: 50px;
+              height: 50px;
+              margin-top: 10px;
+              margin-left: 10px;
+              @include rwd(small) {
+                width: 30px;
+                height: 30px;
+              }
             }
           }
         }
 
-        > .submit_button {
-          position: absolute;
-          right: 30px;
-          bottom: 10px;
-          line-height: 2;
+        #productTags {
+          margin-bottom: 45px;
+          @include rwd(small) {
+            margin-bottom: 12px;
+          }
+        }
 
-          > .cancel {
-            display: inline-block;
-            border-radius: 10px;
-            background-color: #007552;
-            color: white;
-            padding: 0px 20px;
+        #productContent {
+          display: block;
+          width: 95%;
+          height: 150px;
+          @include rwd(small) {
+            margin-top: 32px;
+            height: 180px;
+          }
+        }
+
+        .submit_button {
+          text-align: right;
+          padding-top: 20px;
+          font-size: 1.8rem;
+          @include rwd(small) {
+            font-size: 1.4rem;
+          }
+          #productCancel {
+            border: 1px solid #007552;
+            background-color: #fbf8ef;
+            padding: 2px 5px;
+            color: #007552;
+            border-radius: 5px;
             margin-right: 20px;
-
-            &:hover {
-              background-color: #62b45a;
+            @include rwd(small) {
+              margin-right: 10px;
             }
           }
-
-          > .correct {
-            display: inline-block;
-            border-radius: 10px;
+          #productSubmit {
+            border: 1px solid #007552;
             background-color: #007552;
-            color: white;
-            padding: 0px 20px;
-
-            &:hover {
-              background-color: #62b45a;
+            padding: 2px 8px;
+            color: #fbf8ef;
+            border-radius: 5px;
+            margin-right: 20px;
+            @include rwd(small) {
+              margin-right: 10px;
             }
           }
         }

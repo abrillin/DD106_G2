@@ -20,16 +20,17 @@
           </ul>
         </div>
         <div class="person_right">
-          <form action="">
-            <p>{{ member.no }}</p>
+          <form id="sendform">
+            <p>{{ blog.no }}</p>
             <input
               type="text"
               id="blogTitle"
               maxlength="20"
               placeholder="最大字數限制20"
+              v-model="blog.title"
             />
             <label for="blogMainImg" class="blogMainImg" @change="changeMainPic"
-              ><span>上傳主圖片</span>
+              ><span>上傳主要圖片</span>
               <input type="file" id="blogMainImg" accept="image/*" />
               <div>
                 <img src="" id="mainPic" />
@@ -40,26 +41,42 @@
               class="blogOtherImg"
               @change="changeOtherPic"
               ><span>上傳其他圖片</span>
-              <input type="file" id="blogMainImg" accept="image/*" />
-              <div>
-                <img src="" />
-                <img src="" />
-                <img src="" />
-                <img src="" />
+              <input type="file" id="blogOtherImg" accept="image/*" multiple />
+
+              <div id="otherPic">
+                <img class="otherPic" src="" />
+                <img class="otherPic" src="" />
+                <img class="otherPic" src="" />
+                <img class="otherPic" src="" />
               </div>
             </label>
-            <select id="blogTags">
-              <option value="1">蘋果</option>
-              <option value="2">橘子</option>
-              <option value="3">水梨</option>
-              <option value="4">番茄</option>
+            <select id="blogTags" v-model="tags.selected">
+              <option value="0">請選擇</option>
+              <option v-for="i in productTags" :value="i.no" :key="i.no">{{
+                i.name
+              }}</option>
             </select>
-            <textarea id="blogContent1" placeholder="最大字數限制"></textarea>
-            <textarea id="blogContent2"></textarea>
+            <textarea
+              id="blogContent1"
+              maxlength="500"
+              placeholder="最大字數限制500"
+              v-model="blog.content1"
+            ></textarea>
+            <textarea
+              id="blogContent2"
+              maxlength="500"
+              placeholder="最大字數限制500"
+              v-model="blog.content2"
+            ></textarea>
 
             <div class="submit_button">
               <input type="button" value="取消" id="blogCancel" />
-              <input type="submit" value="送出" id="blogSubmit" />
+              <input
+                type="button"
+                value="送出"
+                id="blogSubmit"
+                @click="blogUpdate"
+              />
             </div>
           </form>
         </div>
@@ -73,9 +90,21 @@ import $ from "jquery";
 export default {
   data() {
     return {
-      member: {
+      formData: new FormData(),
+
+      productTags: [],
+      tags: {
+        selected: 0,
         no: 0,
-        mainpic: "",
+      },
+      blog: {
+        sellerno: 0,
+        content1: "",
+        content2: "",
+        title: "",
+        date: "",
+        img: "",
+        no: "",
       },
     };
   },
@@ -84,7 +113,17 @@ export default {
 
     this.$http.post(api).then((res) => {
       const data = res.data;
-      this.member.no = parseInt(data.no) + 1;
+      if (data[0].no != null) {
+        this.blog.no = parseInt(data[0].no) + 1;
+      } else {
+        this.blog.no = 1;
+      }
+      this.productTags = data[1];
+    });
+    const api2 = "/api/api_farmStatus.php";
+    this.$http.post(api2).then((res) => {
+      const data = res.data;
+      this.blog.sellerno = data.no;
     });
   },
   methods: {
@@ -97,7 +136,80 @@ export default {
       };
       reader.readAsDataURL(img.files[0]);
     },
-    changeOtherPic: function() {},
+    changeOtherPic: function(e) {
+      const img = e.target;
+      if (img.files.length > 4) {
+        window.alert("最多上傳四張");
+        return;
+      } else {
+        for (let i = 0; i < img.files.length; i++) {
+          let reader = new FileReader();
+
+          reader.onload = function(e) {
+            document.getElementsByClassName("otherPic")[i].src =
+              e.target.result;
+          };
+          reader.readAsDataURL(img.files[i]);
+        }
+      }
+    },
+    blogUpdate: function() {
+      let month = new Date().getMonth() + 1;
+      if (month < 10) {
+        month = "0" + month;
+      }
+      this.blog.date =
+        new Date().getFullYear().toString() +
+        month.toString() +
+        new Date().getDate().toString();
+
+      this.formData.append(
+        "mainImg",
+        document.getElementById("blogMainImg").files[0]
+      );
+
+      for (
+        let i = 0;
+        i < document.getElementById("blogOtherImg").files.length;
+        i++
+      ) {
+        this.formData.append(
+          "otherImg[]",
+          document.getElementById("blogOtherImg").files[i]
+        );
+      }
+      if (
+        (document.getElementById("blogMainImg").files.length == 0) |
+        (document.getElementById("blogOtherImg").files.length == 0)
+      ) {
+        alert("請上傳圖片");
+        return;
+      } else {
+        this.$http
+          .post("/api/api_uploadBlogFiles.php", this.formData)
+          .then((res) => {
+            this.blog.img = res.data.toString();
+            for (let i in this.blog) {
+              if (this.blog[i] == "") {
+                alert("請檢查是否所有欄位都有輸入資料");
+                return;
+              }
+            }
+            this.$http
+              .post("/api/api_farmBlogUpdate.php", JSON.stringify(this.blog))
+              .then((res) => {
+                const data = res.data;
+                if (data == 0) {
+                  alert("上傳失敗！");
+                  this.$router.go(0);
+                } else if (data == 1) {
+                  alert("上傳成功！");
+                  this.$router.go(-1);
+                }
+              });
+          });
+      }
+    },
   },
 };
 </script>

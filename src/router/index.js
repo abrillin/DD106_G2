@@ -109,6 +109,11 @@ const routes = [
         component: () => import("@/views/MemberCheckInfo.vue"),
       },
       {
+        path: "payInfo",
+        name: "PayInfo",
+        component: () => import("@/views/MemberPayInfo.vue"),
+      },
+      {
         path: "farmRegistered",
         name: "FarmRegistered",
         component: () => import("@/views/FarmRegistered.vue"),
@@ -128,12 +133,12 @@ const routes = [
       },
       {
         path: "update",
-        name: "Update",
+        name: "FarmUpdate",
         component: () => import("@/views/FarmMemberupdate.vue"),
       },
       {
         path: "order",
-        name: "Order",
+        name: "FarmOrder",
         component: () => import("@/views/FarmMemberOrder.vue"),
       },
       {
@@ -143,7 +148,7 @@ const routes = [
       },
       {
         path: "blog",
-        name: "Blog",
+        name: "FarmBlog",
         component: () => import("@/views/FarmMemberBlog.vue"),
       },
       {
@@ -160,58 +165,6 @@ const routes = [
         path: "listupdate",
         name: "ListUpdate",
         component: () => import("@/views/FarmMemberListUpdate.vue"),
-      },
-    ],
-  },
-  {
-    path: "/admin",
-    name: "AdminLogin",
-    component: () => import("@/views/AdminLogin.vue"),
-  },
-  {
-    path: "/center",
-    name: "Center",
-    component: () => import("@/views/AdminCenter.vue"),
-    children: [
-      {
-        path: "manage",
-        name: "Manage",
-        component: () => import("@/views/AdminManage.vue"),
-      },
-      {
-        path: "addAdmin",
-        name: "AddAdmin",
-        component: () => import("@/views/AddAdmin.vue"),
-      },
-      {
-        path: "fan",
-        name: "Fan",
-        component: () => import("@/views/AdminFanManage.vue"),
-      },
-      {
-        path: "seller",
-        name: "Seller",
-        component: () => import("@/views/AdminSellerManage.vue"),
-      },
-      {
-        path: "ency",
-        name: "Ency",
-        component: () => import("@/views/AdminEncyManage.vue"),
-      },
-      {
-        path: "encyEdit",
-        name: "EncyEdit",
-        component: () => import("@/views/AdminEncyEdit.vue"),
-      },
-      {
-        path: "blog",
-        name: "Blog",
-        component: () => import("@/views/AdminBlog.vue"),
-      },
-      {
-        path: "comment",
-        name: "Comment",
-        component: () => import("@/views/AdminComment.vue"),
       },
     ],
   },
