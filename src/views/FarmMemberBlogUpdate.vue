@@ -60,13 +60,13 @@
               id="blogContent1"
               maxlength="500"
               placeholder="最大字數限制500"
-              v-model="content1"
+              v-model="blog.content1"
             ></textarea>
             <textarea
               id="blogContent2"
               maxlength="500"
               placeholder="最大字數限制500"
-              v-model="content2"
+              v-model="blog.content2"
             ></textarea>
 
             <div class="submit_button">
@@ -91,8 +91,7 @@ export default {
   data() {
     return {
       formData: new FormData(),
-      content1: "",
-      content2: "",
+
       productTags: [],
       tags: {
         selected: 0,
@@ -100,11 +99,12 @@ export default {
       },
       blog: {
         sellerno: 0,
-        content: "",
+        content1: "",
+        content2: "",
         title: "",
         date: "",
-        img: [],
-        no: 0,
+        img: "",
+        no: "",
       },
     };
   },
@@ -113,8 +113,11 @@ export default {
 
     this.$http.post(api).then((res) => {
       const data = res.data;
-
-      this.blog.no = parseInt(data[0].no) + 1;
+      if (data[0].no != null) {
+        this.blog.no = parseInt(data[0].no) + 1;
+      } else {
+        this.blog.no = 1;
+      }
       this.productTags = data[1];
     });
     const api2 = "/api/api_farmStatus.php";
@@ -132,7 +135,6 @@ export default {
         document.getElementById("mainPic").src = e.target.result;
       };
       reader.readAsDataURL(img.files[0]);
-      this.blog.img.splice(0, 1, img.files[0].name);
     },
     changeOtherPic: function(e) {
       const img = e.target;
@@ -148,15 +150,24 @@ export default {
               e.target.result;
           };
           reader.readAsDataURL(img.files[i]);
-          this.blog.img.splice(i + 1, 1, img.files[i].name);
         }
       }
     },
     blogUpdate: function() {
+      let month = new Date().getMonth() + 1;
+      if (month < 10) {
+        month = "0" + month;
+      }
+      this.blog.date =
+        new Date().getFullYear().toString() +
+        month.toString() +
+        new Date().getDate().toString();
+
       this.formData.append(
         "mainImg",
         document.getElementById("blogMainImg").files[0]
       );
+
       for (
         let i = 0;
         i < document.getElementById("blogOtherImg").files.length;
@@ -167,43 +178,37 @@ export default {
           document.getElementById("blogOtherImg").files[i]
         );
       }
-
-      this.$http
-        .post("/api/api_uploadBlogFiles.php", this.formData)
-        .then((res) => {
-          console.log(res.data);
-        });
-
-      this.blog.img = this.blog.img.toString();
-      this.blog.content = this.content1 + "$" + this.content2;
-      let month = new Date().getMonth() + 1;
-      if (month < 10) {
-        month = "0" + month;
+      if (
+        (document.getElementById("blogMainImg").files.length == 0) |
+        (document.getElementById("blogOtherImg").files.length == 0)
+      ) {
+        alert("請上傳圖片");
+        return;
+      } else {
+        this.$http
+          .post("/api/api_uploadBlogFiles.php", this.formData)
+          .then((res) => {
+            this.blog.img = res.data.toString();
+            for (let i in this.blog) {
+              if (this.blog[i] == "") {
+                alert("請檢查是否所有欄位都有輸入資料");
+                return;
+              }
+            }
+            this.$http
+              .post("/api/api_farmBlogUpdate.php", JSON.stringify(this.blog))
+              .then((res) => {
+                const data = res.data;
+                if (data == 0) {
+                  alert("上傳失敗！");
+                  // this.$router.go(0);
+                } else if (data == 1) {
+                  alert("上傳成功！");
+                  // this.$router.go(0);
+                }
+              });
+          });
       }
-      this.blog.date =
-        new Date().getFullYear().toString() +
-        month.toString() +
-        new Date().getDate().toString();
-      console.log(this.blog);
-
-      for (let i in this.blog) {
-        if (this.blog[i] == "") {
-          alert("請檢查是否所有欄位都有輸入資料");
-          return;
-        }
-      }
-      this.$http
-        .post("/api/api_farmBlogUpdate.php", JSON.stringify(this.blog))
-        .then((res) => {
-          const data = res.data;
-          if (data == 0) {
-            alert("上傳失敗！");
-            // this.$router.go(0);
-          } else if (data == 1) {
-            alert("上傳成功！");
-            // this.$router.go(0);
-          }
-        });
     },
   },
 };

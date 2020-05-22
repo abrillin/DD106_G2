@@ -7,13 +7,14 @@ try {
 
 
 
-    $sql = "insert into `blog` (`no`, `content`, `title`, `date`, `status`, `img`, `seller_no`) values(:no, :content, :title, :date, 1, :img, :sellerno)";
+    $sql = "insert into `blog` (`no`, `content` ,`content2`, `title`, `date`, `status`, `img`, `seller_no`) values(:no, :content1, :content2, :title, :date, 1, :img, :sellerno)";
     $blog = $pdo->prepare($sql);
     $blogInfo = json_decode(file_get_contents("php://input"));
     $blog ->bindValue(":no", $blogInfo->no);
     $blog ->bindValue(":img", $blogInfo->img);
     $blog ->bindValue(":date", $blogInfo->date);
-    $blog ->bindValue(":content", $blogInfo->content);
+    $blog ->bindValue(":content1", $blogInfo->content1);
+    $blog ->bindValue(":content2", $blogInfo->content2);
     $blog ->bindValue(":title", $blogInfo->title);
     $blog ->bindValue(":sellerno", $blogInfo->sellerno);
 
