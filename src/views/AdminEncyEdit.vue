@@ -15,7 +15,7 @@
             <select name="fruitTag" id="fruitTag" data-selected v-model="encyEdit.title">
               <option value selected="selected" disabled="disabled">請選擇</option>
               <optgroup label="常年">
-                <option value="木瓜">木瓜</option> 
+                <option value="木瓜">木瓜</option>
                 <option value="鳳梨">鳳梨</option>
                 <option value="蓮霧">蓮霧</option>
                 <option value="香蕉">香蕉</option>
@@ -96,32 +96,12 @@
           <td>
             <label for="encyPic01">
               圖01：
-              <input type="file" id="encyPic01" name="upFile[]" @change="fileSelect" />
+              <input type="file" id="encyPic01" @change="fileSelect" />
             </label>
-            <img src style="max-width: 400px;max-height: 400px;" />
-            <br />
-
-            <label for="encyPic02">
-              圖02：
-              <input type="file" id="encyPic02" name="upFile[]" @change="fileSelect" />
-            </label>
-            <br />
-            <label for="encyPic03">
-              圖03：
-              <input type="file" id="encyPic03" name="upFile[]" @change="fileSelect" />
-            </label>
-            <br />
-
-            <label for="encyPic04">
-              圖04：
-              <input type="file" id="encyPic04" name="upFile[]" @change="fileSelect" />
-            </label>
-            <br />
-
-            <label for="encyPic05">
-              圖05：
-              <input type="file" id="encyPic05" name="upFile[]" @change="fileSelect" />
-            </label>
+            <img :src="encyEdit.titleImg" style="max-width: 200px;max-height: 200px;" />
+            <!--
+                  <img id:"encyImg" :src="encyEdit.titleImg" style="max-width: 200px;max-height: 200px;" />
+                  -->
             <br />
           </td>
         </tr>
@@ -158,6 +138,7 @@ import $ from "jquery";
 export default {
   data() {
     return {
+      formData: new FormData(),
       encyEdit: {
         no: "",
         title: "", // 水果名，當標籤用
@@ -167,7 +148,7 @@ export default {
         answer: "", // 農知識答案
         titleImg: "",
         video: ""
-      }
+      },
     };
   },
   methods: {
@@ -189,13 +170,19 @@ export default {
 
     // titleImg資料，取得圖片訊息
     fileSelect(e) {
-      let file = e.target.files.item(0);
       let readFile = new FileReader();
-      readFile.readAsDataURL(file);
-      readFile.addEventListener("load", this.loadImage);
-    },
-    loadImage(e) {
-      this.titleImg = e.target.result;
+
+      const titleImg= e.target;
+      reader.readAsDataURL(titleImg.files[0]);
+      
+      reader.onload = function(e) {
+        document.getElementById("encyImg").src = e.target.result;
+      };
+
+      this.formData.append("file", titleImg.files[0]);
+      this.encyEdit.titleImg = "/api/EncyImg/encyEdit" + titleImg.files[0].name;
+
+    
     },
 
     // video資料

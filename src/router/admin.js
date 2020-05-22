@@ -49,6 +49,11 @@ const routes = [
         component: () => import("@/views/AdminEncyEdit.vue"),
       },
       {
+        path: "encyInfo",
+        name: "EncyInfo",
+        component: () => import("@/views/AdminEncyInfo.vue"),
+      },
+      {
         path: "blog",
         name: "Blog",
         component: () => import("@/views/AdminBlog.vue"),
