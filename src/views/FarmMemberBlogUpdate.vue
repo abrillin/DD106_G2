@@ -72,7 +72,7 @@
             <div class="submit_button">
               <input type="button" value="取消" id="blogCancel" />
               <input
-                type="submit"
+                type="button"
                 value="送出"
                 id="blogSubmit"
                 @click="blogUpdate"

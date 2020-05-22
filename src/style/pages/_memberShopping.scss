@@ -120,10 +120,17 @@
             }
 
             &.operating {
-              width: 150px;
+              flex: 0.5;
 
-              @include rwd(medium) {
-                width: 15%;
+              >.btn {
+
+                >button {
+
+                  background: transparent;
+                  border: 0px;
+                  font-family: myFont;
+                  font-weight: bold;
+                }
               }
             }
 

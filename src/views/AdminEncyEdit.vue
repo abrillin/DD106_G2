@@ -122,11 +122,31 @@
           <td>
             <label for="encyPic01">
               圖01：
-              <input type="file" id="encyPic01" @change="fileSelect" />
+              <input type="file" id="encyPic01" @change="fileSelect" multiple />
             </label>
             <img
-              id="encyImg"
-              :src="encyEdit.titleImg"
+              class="encyImg"
+              src=""
+              style="max-width: 200px;max-height: 200px;"
+            />
+            <img
+              class="encyImg"
+              src=""
+              style="max-width: 200px;max-height: 200px;"
+            />
+            <img
+              class="encyImg"
+              src=""
+              style="max-width: 200px;max-height: 200px;"
+            />
+            <img
+              class="encyImg"
+              src=""
+              style="max-width: 200px;max-height: 200px;"
+            />
+            <img
+              class="encyImg"
+              src=""
               style="max-width: 200px;max-height: 200px;"
             />
             <!--
@@ -205,15 +225,24 @@ export default {
 
     // titleImg資料，取得圖片訊息
     fileSelect(e) {
-      let readFile = new FileReader();
-
       const titleImg = e.target;
+      if (titleImg.files.length > 5) {
+        window.alert("最多上傳五張");
+        return;
+      } else if (titleImg.files.length < 3) {
+        window.alert("最少上傳三張");
+        return;
+      } else {
+        for (let i = 0; i < titleImg.files.length; i++) {
+          let readFile = new FileReader();
+          readFile.onload = function(e) {
+            document.getElementsByClassName("encyImg")[i].src = e.target.result;
+          };
+          readFile.readAsDataURL(titleImg.files[i]);
+        }
+      }
 
-      readFile.onload = function(e) {
-        document.getElementById("encyImg").src = e.target.result;
-      };
-      readFile.readAsDataURL(titleImg.files[0]);
-      this.formData.append("file", titleImg.files[0]);
+      // this.formData.append("file", titleImg.files[0]);
     },
 
     // video資料
@@ -224,17 +253,39 @@ export default {
     // 資料撈完後傳到php
 
     editEncyI: function() {
-      const api = "/api/api_adminEncyEdit.php";
+      for (
+        let i = 0;
+        i < document.getElementById("encyPic01").files.length;
+        i++
+      ) {
+        this.formData.append(
+          "encyPic01[]",
+          document.getElementById("encyPic01").files[i]
+        );
+      }
 
-      this.$http
-        .post(api, JSON.stringify(this.encyEdit))
-        // $http.post(url,data)
-        // 用post把從encyEdit來的js物件資料轉為json字串，傳給api背後的那支php
-        .then((res) => {
-          this.data = res.data;
-          alert(" 資料新增完成 ٩(･ิᴗ･ิ๑)۶ ");
-          this.$router.go(-1);
-        });
+      if (document.getElementById("encyPic01").files == 0) {
+        alert("請上傳圖片");
+        return;
+      } else {
+        this.$http
+          .post("/api/api_adminEncyUpload.php", this.formData)
+          .then((res) => {
+            this.encyEdit.titleImg = res.data.toString();
+
+            const api = "/api/api_adminEncyEdit.php";
+
+            this.$http
+              .post(api, JSON.stringify(this.encyEdit))
+              // $http.post(url,data)
+              // 用post把從encyEdit來的js物件資料轉為json字串，傳給api背後的那支php
+              .then((res) => {
+                this.data = res.data;
+                alert(" 資料新增完成 ٩(･ิᴗ･ิ๑)۶ ");
+                this.$router.go(-1);
+              });
+          });
+      }
     },
   },
 };
