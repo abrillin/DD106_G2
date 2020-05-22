@@ -19,7 +19,13 @@ try {
 
     $total = (int) $output['review_total'];
     $count = (int) $output['review_count'];
-    $output['Starsaverage'] = $total / $count;
+    if ($count == 0) {
+
+        $val["starsaverage"] = 0;
+    } else {
+
+        $val['Starsaverage'] = $total / $count;
+    }
     $output['items'] = $items;
 
     echo json_encode($output);

@@ -190,7 +190,7 @@
 
                 <div class="card_tag" v-for="(t,dex) in shopcommodityfilter[index].tags" :key="dex">
                   <img src="../assets/icon/tag.svg" alt width="16px" height="16px" class="tag_icon" />
-                  <span class="card_tag_text">{{shopcommodityfilter[index].tags[dex].tagname}}</span>
+                  <span class="card_tag_text">{{shopcommodityfilter[index].tags[dex].name}}</span>
                 </div>
 
                 <div class="card_price">
@@ -252,13 +252,7 @@
         >
           <a href="#">
             <div class="seller_box">
-              <img
-                :src="'../assets/shop/' + seller[index].img"
-                alt
-                height="50"
-                width="50"
-                style="border-radius: 30px;"
-              />
+              <img :src="seller[index].img" alt height="50" width="50" style="border-radius: 30px;" />
             </div>
           </a>
           <div class="seller_content">
@@ -292,7 +286,7 @@
           :key="index"
           v-on="{ click: pageSelect }"
         >
-          <div class="page-link">{{i}}</div>
+          <div class="page-link">{{i.no}}</div>
         </li>
 
         <li class="page-right" @click="nextPage">
@@ -330,7 +324,10 @@ export default {
     this.$http.post(api).then(res => {
       this.shopcommodity = res.data;
 
-      for (let i = 1; i < 9; i++) {
+      for (let i = 0; i < this.shopcommodity["pro"].length; i++) {
+        if (i == 8) {
+          return;
+        }
         this.shopcommodityfilter.push(this.shopcommodity["pro"][i]);
       }
 
