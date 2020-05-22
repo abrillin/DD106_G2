@@ -22,7 +22,6 @@ try {
 
         // 如果註冊失敗，回傳 0，註冊成功，回傳 1
     if ($blog ->rowCount() == 0) {
-
         echo "0";
     } else {
 
