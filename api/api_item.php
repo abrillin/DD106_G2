@@ -2,8 +2,11 @@
 header('Access-Control-Allow-Origin:*'); //允許所有來源訪問
 header('Access-Control-Allow-Method:POST,GET'); //允許POST、GET訪問方式
 
+session_start();
+
 try {
     require_once("connectDB.php");
+    $frontInfo = json_decode(file_get_contents("php://input"));
 
     // $sql = "SELECT * FROM item INNER JOIN item_tag INNER JOIN itemtag_des ON item.no = item_tag.item_no AND item_tag.tag_no = itemtag_des.no ";
 
@@ -14,8 +17,17 @@ try {
 
     // echo json_encode($memRow);
     /*PDO*/
+    $_SESSION["key"] = $frontInfo;
 
-    $sql = "select * from `item`";
+    if ($_SESSION["key"] == 0) {
+        $sql = "select * from `item` ORDER BY `price` DESC";
+    } else if ($_SESSION["key"] == 1) {
+        $sql = "select * from `item` ORDER BY `no` DESC";
+    } else if ($_SESSION["key"] == 2) {
+        $sql = "select * from `item` ORDER BY `date` DESC";
+    };
+
+
     $item = $pdo->prepare($sql);
     $item->execute();
     $itemRows = $item->fetchAll(PDO::FETCH_ASSOC);
@@ -50,7 +62,7 @@ try {
         // $val['itemRows'] = $itemRows;
     }
 
-    echo json_encode(array('pro' => $itemRows, 'mem' =>  $output));
+    echo json_encode(array('pro' => $itemRows, 'mem' =>  $output, 'key' =>  $_SESSION["key"]));
 } catch (PDOException $e) {
     echo "錯誤原因 : ", $e->getMessage(), "\n";
     echo "錯誤行號 : ", $e->getLine(), "\n";
