@@ -9,7 +9,7 @@
     justify-content: center;
     position: fixed;
     left: 25%;
-    overflow: scroll;
+    overflow-y: scroll;
     // border: 1px solid red;
 
     .encyEditTab {
@@ -17,7 +17,6 @@
         // width: 900px;
         height: auto;
         margin-bottom: 70px;
-        overflow-x: hidden;
 
         th {
             width: 15%;
