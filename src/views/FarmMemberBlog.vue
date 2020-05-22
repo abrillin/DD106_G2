@@ -24,12 +24,13 @@
                 <th>發文時間</th>
                 <th>狀態</th>
               </tr>
-              <tr>
-                <td>xxxx</td>
-                <td>出發囉！賞螢採梅尋浪...</td>
-                <td>台南梅嶺，這是一個有...</td>
-                <td>2020-04-16 11:22</td>
-                <td></td>
+              <tr v-for="item in member" :key="item.no">
+                <td>{{item.no}}</td>
+                <td>{{item.title}}</td>
+                <td>{{item.content}}</td>
+                <td>{{item.date}}</td>
+                <td><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
+                                        for="switch">Toggle<div class="after"></div></label></td>
                 <!-- <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
                                         for="switch">Toggle<div class="after"></div></label></p> -->
               </tr>
@@ -87,7 +88,27 @@
 </template>
 <script>
 import $ from "jquery";
+import { log } from "three";
 export default {
+  data(){
+    return{
+      member:{
+        no: "",
+        title: "",
+        content: "",
+        date: "",
+      },
+    };
+  },
+  created(){
+    const api = "/api/api_farmblog.php";
+    this.$http.post(api).then((res) =>{
+        const data = res.data;
+        if(data != ""){
+          this.member=data;
+        }
+    });
+  },
   mounted() {
     $(".statuslable").click(function() {
       $(".after").removeClass("scrol");

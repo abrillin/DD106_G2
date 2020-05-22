@@ -21,14 +21,15 @@
         </div>
         <div class="person_right">
           <form action="">
-            <p>1</p>
+            <p> {{member.no}} </p>
             <input
               type="text"
               id="productName"
               maxlength="10"
               placeholder="最大字數限制10"
+              v-model="member.name"
             />
-            <input type="text" id="productPrice" />元
+            <input type="text" id="productPrice" v-model="member.price" />元
 
             <label for="productMainPic">
               <span>上傳主要圖片</span>
@@ -58,6 +59,7 @@
               id="productContent"
               maxlength="100"
               placeholder="最大字數限制100"
+              v-model="member.description"
             ></textarea>
             <div class="submit_button">
               <input type="button" value="取消" id="productCancel" />
