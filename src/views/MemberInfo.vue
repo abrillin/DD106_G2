@@ -82,9 +82,7 @@ export default {
           this.phone = data.phone;
           this.email = data.email;
         }
-      })
-      // eslint-disable-next-line no-console
-      .catch((err) => console.log(err));
+      });
   },
 };
 </script>

@@ -69,7 +69,7 @@
       <div>
         <div>
           <div>
-            <div>{{ this.blogInfProps.date }}</div>
+            <div>{{ this.previousValue[0].date }}</div>
             <div>
               <img src="@/assets/blog-img/blog-tag.png" />
               <span> 草莓 </span>
@@ -79,7 +79,7 @@
           </div>
           <div></div>
           <div>
-            <span>{{ this.blogInfProps.title }}</span>
+            <span>{{ this.previousValue[0].title }}</span>
           </div>
           <div>
             <img src="@/assets/blog-img/blog-bendingbar2.png" />
@@ -91,28 +91,10 @@
         <div>
           <div>
             <div>
-              白石湖是大台北難得仍保存農業風味的鄉村地區，當地多產白色沉積砂岩石塊故而得名，近年轉型成為休閒農業區，區內種植草莓聞名，每年12月至5月的草莓產季來臨，絡繹不絕的人潮湧入內湖一帶的草莓園。我們一早就來到莓圃休閒農園，是個擁有果園、菜園和庭園咖啡等多元場域，其中溫室草莓園吸引家長帶著孩子體驗採果樂，不用擔心腳底褲管沾到泥巴。
-              <br />
-              <br />
-              特別提醒台北內湖的莓園幾乎是假日上午11點開放，當天採摘到一定數量便掛上「本日已採完」的告示牌，若想採草莓的朋友建議早點排隊。
-              <br />
-              <br />
-              採完草莓不過癮，還可以參加糖霜餅乾手做課程。工作人員拿出台北世大運吉祥物「熊讚」草莓餅乾，孩子們吵著也要做一隻熊讚帶回家。「我們先用軟糖霜劃出外圍形狀，從中間一圈一圈慢慢補滿，擠完糖霜後，餅乾表面可能會不平，再利用牙籤撥勻，或用手掌輕拍均勻」，大家跟著老師依樣畫葫蘆，以牙籤沾芝麻妝點眼睛、白糖霜親手描繪各自作品，創作他們心目中的熊讚。
-              <br />
-              <br />
-              除了草莓，莓圃也提供其他蔬果的體驗，6-11月有百香果、火龍果、番茄；7-8月則有水果玉米、小番茄等，讓小朋友一整年都可以體驗小農夫的樂趣。大人們也可以坐在綠意盎然的庭園休憩用餐，享受田園悠閒的氛圍。
+              {{ this.previousValue[0].content }}
             </div>
             <div>
-              白石湖是大台北難得仍保存農業風味的鄉村地區，當地多產白色沉積砂岩石塊故而得名，近年轉型成為休閒農業區，區內種植草莓聞名，每年12月至5月的草莓產季來臨，絡繹不絕的人潮湧入內湖一帶的草莓園。我們一早就來到莓圃休閒農園，是個擁有果園、菜園和庭園咖啡等多元場域，其中溫室草莓園吸引家長帶著孩子體驗採果樂，不用擔心腳底褲管沾到泥巴。
-              <br />
-              <br />
-              特別提醒台北內湖的莓園幾乎是假日上午11點開放，當天採摘到一定數量便掛上「本日已採完」的告示牌，若想採草莓的朋友建議早點排隊。
-              <br />
-              <br />
-              採完草莓不過癮，還可以參加糖霜餅乾手做課程。工作人員拿出台北世大運吉祥物「熊讚」草莓餅乾，孩子們吵著也要做一隻熊讚帶回家。「我們先用軟糖霜劃出外圍形狀，從中間一圈一圈慢慢補滿，擠完糖霜後，餅乾表面可能會不平，再利用牙籤撥勻，或用手掌輕拍均勻」，大家跟著老師依樣畫葫蘆，以牙籤沾芝麻妝點眼睛、白糖霜親手描繪各自作品，創作他們心目中的熊讚。
-              <br />
-              <br />
-              除了草莓，莓圃也提供其他蔬果的體驗，6-11月有百香果、火龍果、番茄；7-8月則有水果玉米、小番茄等，讓小朋友一整年都可以體驗小農夫的樂趣。大人們也可以坐在綠意盎然的庭園休憩用餐，享受田園悠閒的氛圍。
+              {{ this.previousValue[0].content }}
             </div>
           </div>
           <div>
@@ -135,20 +117,27 @@
           </div>
         </div>
         <div>
-          <div>
+          <div v-for="(i, index) in blogMsgFilter" :key="index">
             <div>
               <img src="@/assets/blog-img/blog-someoneshead.png" />
             </div>
             <div>
-              <div>howhowhasnofriend</div>
-              <div>2020-4-14 12:00</div>
+              <div>{{ i.nick }}</div>
+              <div>{{ i.date }}</div>
             </div>
-            <div style="font-size:15px;">這炒飯好吃?我賣水果欸!?鳳梨炒飯?</div>
+            <div style="font-size:15px;">{{ i.content }}</div>
             <div>
-              <img src="@/assets/blog-img/blog-report.png" alt="" />
+              <img
+                @click="report(i)"
+                src="@/assets/blog-img/blog-report.png"
+                alt=""
+              />
             </div>
           </div>
-          <div>
+          <span @click="loadMoreMsg" id="loadMoreMsg">
+            <span>載入更多留言...</span>
+          </span>
+          <!--<div>
             <div>
               <img src="@/assets/blog-img/blog-someoneshead.png" />
             </div>
@@ -199,7 +188,7 @@
             <div>
               <img src="@/assets/blog-img/blog-report.png" alt="" />
             </div>
-          </div>
+          </div>-->
         </div>
         <div>
           <form action="" method="get" @click.prevent="prevent">
@@ -578,6 +567,8 @@
         > div:nth-child(1) {
           //文章一區
           // margin-bottom: 10rem;
+          // background-color: #000;
+          height: 385px;
           position: relative;
           &::before {
             content: '';
@@ -616,6 +607,7 @@
         }
         > div:nth-child(2) {
           //文章二區
+          height: 385px;
           padding-bottom: 11%;
         }
       }
@@ -728,7 +720,16 @@
       display: grid;
       grid-template-columns: 1fr;
       // background-color: rgb(0, 0, 0);
-
+      > #loadMoreMsg {
+        > span {
+          // border: steelblue 2px solid;
+          color: #808080;
+        }
+        font-size: 16px;
+        margin-top: 2%;
+        margin-left: 10%;
+        cursor: pointer;
+      }
       > div {
         padding-left: 20px;
         display: grid;
@@ -843,6 +844,7 @@
 }
 </style>
 <script>
+import $ from 'jquery';
 export default {
   props: {blogInfProps: Object, c: String},
   data() {
@@ -852,7 +854,56 @@ export default {
         date: null,
         blogNo: null,
       },
+      blogMsg: null,
+      blogMsgFilter: [],
+      blogMsgCount: 1,
+      previousValue: null,
     };
+  },
+  created() {
+    // this.previousValue = this.blogInfProps;
+    this.msgobj.content = this.blogInfProps.content;
+    this.msgobj.blogNo = this.blogInfProps.no;
+    var nStartTime = new Date(Date.now());
+    let today = `${nStartTime.getFullYear()}-${nStartTime.getMonth() +
+      1}-${nStartTime.getDate()}`;
+    this.msgobj.date = today;
+    // console.log(this.previousValue);
+
+    let api = '/api/api_get_msg.php';
+
+    this.$http.post(api, JSON.stringify(this.msgobj)).then((res) => {
+      if (res.data != '') {
+        this.blogMsg = res.data[0];
+        console.log(this.blogMsg);
+        if (this.blogMsg.length < 5) {
+          for (let i = 0; i <= this.blogMsg.length - 1; i++) {
+            this.blogMsgFilter.push(this.blogMsg[i]);
+          }
+        } else {
+          for (let i = 0; i < 5; i++) {
+            this.blogMsgFilter.push(this.blogMsg[i]);
+          }
+        }
+      } else {
+      }
+    });
+
+    let api2 = '/api/api_get_blog_content.php';
+
+    this.$http.post(api2).then((res) => {
+      if (res.data != '') {
+        this.previousValue = res.data;
+        // console.log(this.previousValue[0]);
+      } else {
+      }
+    });
+  },
+  computed: {
+    // loadComment() {
+    //   this.comment();
+    //   return this.blogInfProps.no;
+    // },
   },
   methods: {
     test() {
@@ -861,26 +912,43 @@ export default {
     prevent() {},
     comment() {
       let msg = document.getElementsByTagName('textarea')[0].value;
-      var nStartTime = new Date(Date.now());
       this.msgobj.content = msg;
-      let today = `${nStartTime.getFullYear()}-${nStartTime.getMonth() +
-        1}-${nStartTime.getDate()}`;
-      this.msgobj.date = today;
-      let blogNo = this.blogInfProps.no;
-      this.msgobj.blogNo = blogNo;
+
+      // let blogNo = this.blogInfProps.no;
+      // this.msgobj.blogNo = blogNo;
       // console.log(this.msgobj);
 
-      const api = '/api/api_blog_msg.php';
+      let api = '/api/api_blog_msg.php';
 
-      this.$http
-        .post(api, JSON.stringify(this.msgobj))
-        .then((res) => {
-          if (res.data != '') {
-            console.log(res.data);
-          } else {
-          }
-        })
-        .catch((err) => console.log(err));
+      this.$http.post(api, JSON.stringify(this.msgobj)).then((res) => {
+        if (res.data != '') {
+          console.log(res.data);
+        } else {
+        }
+      });
+      var pathtopage = window.location.href;
+
+      history.go(0);
+    },
+    loadMoreMsg() {
+      if (this.blogMsg.length - this.blogMsgFilter.length >= 5) {
+        for (
+          let i = this.blogMsgCount * 5;
+          i <= this.blogMsgCount * 5 + 4;
+          i++
+        ) {
+          this.blogMsgFilter.push(this.blogMsg[i]);
+        }
+      } else {
+        for (let i = this.blogMsgFilter.length; i < this.blogMsg.length; i++) {
+          this.blogMsgFilter.push(this.blogMsg[i]);
+        }
+      }
+
+      this.blogMsgCount++;
+    },
+    report(e) {
+      console.log(e);
     },
   },
 };

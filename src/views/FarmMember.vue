@@ -7,31 +7,20 @@
         </div>
         <ul>
           <li class="nick">
-            暱稱:<span>{{ member.nick }}</span>
+            暱稱:
+            <span>{{ member.nick }}</span>
           </li>
-          <li class="fans">身分別:<span>果農</span></li>
+          <li class="fans">
+            身分別:
+            <span>果農</span>
+          </li>
         </ul>
         <div class="star">
-          <img
-            src="@/assets/Group 720.svg"
-            v-if="member.reviewtotal / member.reviewcount > 0"
-          />
-          <img
-            src="@/assets/Group 720.svg"
-            v-if="member.reviewtotal / member.reviewcount > 1"
-          />
-          <img
-            src="@/assets/Group 720.svg"
-            v-if="member.reviewtotal / member.reviewcount > 2"
-          />
-          <img
-            src="@/assets/Group 720.svg"
-            v-if="member.reviewtotal / member.reviewcount > 3"
-          />
-          <img
-            src="@/assets/Group 720.svg"
-            v-if="member.reviewtotal / member.reviewcount > 4"
-          />
+          <img src="@/assets/Group 720.svg" v-if="member.reviewtotal / member.reviewcount > 0" />
+          <img src="@/assets/Group 720.svg" v-if="member.reviewtotal / member.reviewcount > 1" />
+          <img src="@/assets/Group 720.svg" v-if="member.reviewtotal / member.reviewcount > 2" />
+          <img src="@/assets/Group 720.svg" v-if="member.reviewtotal / member.reviewcount > 3" />
+          <img src="@/assets/Group 720.svg" v-if="member.reviewtotal / member.reviewcount > 4" />
           <span>({{ member.reviewcount }})</span>
         </div>
       </div>
@@ -86,15 +75,19 @@ export default {
         content: "",
         reviewtotal: "",
         reviewcount: "",
-        memberno: "",
-      },
+        memberno: ""
+      }
     };
   },
-  created() {},
-  mounted() {
+  created() {
     const api = "/api/api_farmStatus.php";
-    this.$http.post(api).then((res) => {
+    this.$http.post(api).then(res => {
       const data = res.data;
+      if (data.status == 1) {
+        alert("此身份停權中，請聯繫管理員！");
+
+        this.$router.go(-1);
+      }
       if (data != "") {
         this.member = {
           no: data.no,
@@ -109,7 +102,7 @@ export default {
           content: data.content,
           reviewtotal: data.reviewtotal,
           reviewcount: data.reviewcount,
-          memberno: data.memberno,
+          memberno: data.memberno
         };
         if (data.img == "") {
           this.member.img = require("@/assets/waterpear.png");
@@ -154,7 +147,7 @@ export default {
   methods: {
     update: function() {
       // this.$emit("loginStatus", s);
-    },
-  },
+    }
+  }
 };
 </script>
