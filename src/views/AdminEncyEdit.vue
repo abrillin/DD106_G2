@@ -12,8 +12,15 @@
             <label for="fruitTag">標籤</label>
           </th>
           <td>
-            <select name="fruitTag" id="fruitTag" data-selected v-model="encyEdit.title">
-              <option value selected="selected" disabled="disabled">請選擇</option>
+            <select
+              name="fruitTag"
+              id="fruitTag"
+              data-selected
+              v-model="encyEdit.title"
+            >
+              <option value selected="selected" disabled="disabled"
+                >請選擇</option
+              >
               <optgroup label="常年">
                 <option value="木瓜">木瓜</option>
                 <option value="鳳梨">鳳梨</option>
@@ -54,8 +61,15 @@
             <label for="fruitSeason">產季</label>
           </th>
           <td>
-            <select name="fruitSeason" id="fruitSeason" data-selected v-model="encyEdit.type">
-              <option value selected="selected" disabled="disabled">請選擇</option>
+            <select
+              name="fruitSeason"
+              id="fruitSeason"
+              data-selected
+              v-model="encyEdit.type"
+            >
+              <option value selected="selected" disabled="disabled"
+                >請選擇</option
+              >
               <option value="0">常年</option>
               <option value="1">春季</option>
               <option value="2">夏季</option>
@@ -70,7 +84,11 @@
             <label for="encyIntro">介紹</label>
           </th>
           <td>
-            <textarea name="encyIntro" id="encyIntro" v-model="encyEdit.content"></textarea>
+            <textarea
+              name="encyIntro"
+              id="encyIntro"
+              v-model="encyEdit.content"
+            ></textarea>
           </td>
         </tr>
         <tr>
@@ -78,7 +96,11 @@
             <label for="encyQ">農知識問題</label>
           </th>
           <td>
-            <textarea name="encyQ" id="encyQ" v-model="encyEdit.question"></textarea>
+            <textarea
+              name="encyQ"
+              id="encyQ"
+              v-model="encyEdit.question"
+            ></textarea>
           </td>
         </tr>
         <tr>
@@ -86,7 +108,11 @@
             <label for="encyA">農知識答案</label>
           </th>
           <td>
-            <textarea name="encyA" id="encyA" v-model="encyEdit.answer"></textarea>
+            <textarea
+              name="encyA"
+              id="encyA"
+              v-model="encyEdit.answer"
+            ></textarea>
           </td>
         </tr>
 
@@ -98,7 +124,11 @@
               圖01：
               <input type="file" id="encyPic01" @change="fileSelect" />
             </label>
-            <img :src="encyEdit.titleImg" style="max-width: 200px;max-height: 200px;" />
+            <img
+              id="encyImg"
+              :src="encyEdit.titleImg"
+              style="max-width: 200px;max-height: 200px;"
+            />
             <!--
                   <img id:"encyImg" :src="encyEdit.titleImg" style="max-width: 200px;max-height: 200px;" />
                   -->
@@ -124,7 +154,12 @@
                 onclick="javascript:history.back(1)"
                 value="取消"
               />
-              <input id="ecnyEditSubmit" type="submit" value="送出" @click="editEncyI" />
+              <input
+                id="ecnyEditSubmit"
+                type="submit"
+                value="送出"
+                @click="editEncyI"
+              />
             </div>
           </td>
         </tr>
@@ -147,7 +182,7 @@ export default {
         question: "", // 農知識問題
         answer: "", // 農知識答案
         titleImg: "",
-        video: ""
+        video: "",
       },
     };
   },
@@ -172,21 +207,17 @@ export default {
     fileSelect(e) {
       let readFile = new FileReader();
 
-      const titleImg= e.target;
-      reader.readAsDataURL(titleImg.files[0]);
-      
-      reader.onload = function(e) {
+      const titleImg = e.target;
+
+      readFile.onload = function(e) {
         document.getElementById("encyImg").src = e.target.result;
       };
-
+      readFile.readAsDataURL(titleImg.files[0]);
       this.formData.append("file", titleImg.files[0]);
-      this.encyEdit.titleImg = "/api/EncyImg/encyEdit" + titleImg.files[0].name;
-
-    
     },
 
     // video資料
-     setVideo(e) {
+    setVideo(e) {
       this.video = e.target.value;
     },
 
@@ -199,13 +230,12 @@ export default {
         .post(api, JSON.stringify(this.encyEdit))
         // $http.post(url,data)
         // 用post把從encyEdit來的js物件資料轉為json字串，傳給api背後的那支php
-        .then(res => {
+        .then((res) => {
           this.data = res.data;
           alert(" 資料新增完成 ٩(･ิᴗ･ิ๑)۶ ");
           this.$router.go(-1);
         });
-    }
-  }
+    },
+  },
 };
 </script>
-
