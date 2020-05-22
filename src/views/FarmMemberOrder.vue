@@ -16,7 +16,7 @@
       <div class="list_1">
         <div class="bottomheader">
           <table class="orderTab">
-            <thead>
+            <thead id="thead">
               <tr>
                 <th>商品編號</th>
                 <th>名稱</th>
@@ -24,81 +24,61 @@
                 <th>上傳時間</th>
                 <th>上架狀態</th>
               </tr>
-              <tr>
-                <td>xxxx</td>
-                <td>慶中秋!台南玉璽文旦...</td>
-                <td>200</td>
-                <td>2020-04-16 11:22</td>
-                <td></td>
-                <!-- <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                                        for="switch">Toggle<div class="after"></div></label></p> -->
+              <tr v-for="item in member" :key="item.no">
+                <td>{{item.no}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.price}}</td>
+                <td>{{item.date}}</td>
+                <td><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
+                                        for="switch">Toggle<div class="after"></div></label></td>
               </tr>
             </thead>
           </table>
         </div>
-
-        <!-- <div class="Orderputon">
-                    
-                   
-                    
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                </div> -->
       </div>
 
-      <!-- <div class="pagination_block">
-        <ul class="pagination">
-          <li><a href="#">&lt;</a></li>
-          <li><a href="#" class="-on">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">4</a></li>
-          <li><a href="#">5</a></li>
-          <li><a href="#">6</a></li>
-          <li><a href="#">7</a></li>
-          <li><a href="#">8</a></li>
-          <li><a href="#">9</a></li>
-          <li><a href="#">10</a></li>
-          <li><a href="#">&gt;</a></li>
-        </ul>
-      </div> -->
+
     </div>
   </div>
 </template>
 //
 <script>
-import $ from "jquery";
-export default {
-  mounted() {
-    $(".statuslable").click(function() {
-      $(this)
-        .find(".after")
-        .toggleClass("scrol");
+  import $ from "jquery";
+  export default {
+    data() {
+      return {
+        member: {
+          no: "",
+          name: "",
+          price: "",
+          date: "",
+        },
+      };
+    },
+    created() {
+      const api = "/api/api_farmorder.php";
+      this.$http.post(api).then((res) => {
+        const data = res.data;
+        console.log(res.data)
+        if (data != "") {
+          
+          this.member = data;
+          console.log(this.member)
+        }
+      });
+    },
+    mounted() {
+      $(".statuslable").click(function () {
+        $(this)
+          .find(".after")
+          .toggleClass("scrol");
 
-      if ($(".after").hasClass("scrol")) {
-        $(this).addClass("color");
-      } else {
-        $(this).removeClass("color");
-      }
-    });
-  },
-};
+        if ($(".after").hasClass("scrol")) {
+          $(this).addClass("color");
+        } else {
+          $(this).removeClass("color");
+        }
+      });
+    },
+  };
 </script>

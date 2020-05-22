@@ -90,11 +90,54 @@ div.FarmOrder {
         width: 20%;
         padding: 15px 0;
         text-align: center;
+        vertical-align: middle;
         word-wrap: break-word;
         @include rwd(mobile) {
           font-size: 1.3rem;
         }
       }
+      tr{
+        .statusBtn[type='checkbox']{
+          height: 0;
+          width: 0;
+          visibility: hidden;
+        }
+        .statuslable{
+          cursor: pointer;
+            text-indent: -9999px;
+            width: 35px;
+            height: 19px;
+            background: rgb(161, 161, 161);
+            display: block;
+            border-radius: 100px;
+            position: relative;
+            bottom: 10px;
+            left: 143px;
+        }
+        .after {
+          content: '';
+          position: absolute;
+          top: 1.5px;
+          left: 2px;
+          width: 15px;
+          height: 15px;
+          background: #fff;
+          border-radius: 90px;
+          transition: 0.3s;
+        }
+        .color{
+          background: #62b45a;
+        }
+        .scrol {
+          left: calc(100% - 2px);
+          transform: translateX(-100%);
+        }
+  
+        .statusBtnLabel:active:after {
+          width: 20px;
+        }
+      }
+      
     }
   }
 }
