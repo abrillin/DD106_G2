@@ -20,8 +20,8 @@
           </ul>
         </div>
         <div class="person_right">
-          <form id="sendform" @submit="blogUpdate">
-            <p>{{ blog.sellerno }}</p>
+          <form id="sendform">
+            <p>{{ blog.no }}</p>
             <input
               type="text"
               id="blogTitle"
@@ -50,7 +50,7 @@
                 <img class="otherPic" src="" />
               </div>
             </label>
-            <select id="blogTags" v-model="blog.selected">
+            <select id="blogTags" v-model="tags.selected">
               <option value="0">請選擇</option>
               <option v-for="i in productTags" :value="i.no" :key="i.no">{{
                 i.name
@@ -71,7 +71,12 @@
 
             <div class="submit_button">
               <input type="button" value="取消" id="blogCancel" />
-              <input type="submit" value="送出" id="blogSubmit" />
+              <input
+                type="submit"
+                value="送出"
+                id="blogSubmit"
+                @click="blogUpdate"
+              />
             </div>
           </form>
         </div>
@@ -85,19 +90,21 @@ import $ from "jquery";
 export default {
   data() {
     return {
-      member: {
-        mainpic: "",
-      },
+      formData: new FormData(),
+
       productTags: [],
+      tags: {
+        selected: 0,
+        no: 0,
+      },
       blog: {
-        no: "",
+        sellerno: 0,
         content1: "",
         content2: "",
         title: "",
         date: "",
         img: "",
-        sellerno: "",
-        selected: 0,
+        no: "",
       },
     };
   },
@@ -106,10 +113,17 @@ export default {
 
     this.$http.post(api).then((res) => {
       const data = res.data;
-
-      this.blog.sellerno = parseInt(data[0].no) + 1;
+      if (data[0].no != null) {
+        this.blog.no = parseInt(data[0].no) + 1;
+      } else {
+        this.blog.no = 1;
+      }
       this.productTags = data[1];
-      console.log(this.productTags);
+    });
+    const api2 = "/api/api_farmStatus.php";
+    this.$http.post(api2).then((res) => {
+      const data = res.data;
+      this.blog.sellerno = data.no;
     });
   },
   methods: {
@@ -139,8 +153,62 @@ export default {
         }
       }
     },
-    blogUpdate: function(e) {
-      console.log();
+    blogUpdate: function() {
+      let month = new Date().getMonth() + 1;
+      if (month < 10) {
+        month = "0" + month;
+      }
+      this.blog.date =
+        new Date().getFullYear().toString() +
+        month.toString() +
+        new Date().getDate().toString();
+
+      this.formData.append(
+        "mainImg",
+        document.getElementById("blogMainImg").files[0]
+      );
+
+      for (
+        let i = 0;
+        i < document.getElementById("blogOtherImg").files.length;
+        i++
+      ) {
+        this.formData.append(
+          "otherImg[]",
+          document.getElementById("blogOtherImg").files[i]
+        );
+      }
+      if (
+        (document.getElementById("blogMainImg").files.length == 0) |
+        (document.getElementById("blogOtherImg").files.length == 0)
+      ) {
+        alert("請上傳圖片");
+        return;
+      } else {
+        this.$http
+          .post("/api/api_uploadBlogFiles.php", this.formData)
+          .then((res) => {
+            this.blog.img = res.data.toString();
+            for (let i in this.blog) {
+              if (this.blog[i] == "") {
+                alert("請檢查是否所有欄位都有輸入資料");
+                return;
+              }
+            }
+            this.$http
+              .post("/api/api_farmBlogUpdate.php", JSON.stringify(this.blog))
+              .then((res) => {
+                const data = res.data;
+                if (data == 0) {
+                  alert("上傳失敗！");
+                  // this.$router.go(0);
+                } else if (data == 1) {
+                  alert("上傳成功！");
+                  // this.$router.go(0);
+                }
+              });
+          });
+      }
     },
   },
 };
