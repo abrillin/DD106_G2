@@ -30,11 +30,17 @@
                 <td>{{item.price}}</td>
                 <td>{{item.date}}</td>
                 <td>
-                  <input class="statusBtn" type="checkbox" id="switch" />
-                  <label class="statuslable" for="switch">
-                    Toggle
-                    <div class="after"></div>
-                  </label>
+                  <input
+                    class="statusBtn"
+                    type="checkbox"
+                    :id="'switch' + item.no"
+                    v-model="item.status"
+                  />
+                  <label
+                    class="statusBtnLabel"
+                    :for="'switch' + item.no"
+                    @click="toggleStatus(item.no, item.status)"
+                  >Toggle</label>
                 </td>
               </tr>
             </thead>
@@ -74,6 +80,22 @@ export default {
         $(this).removeClass("color");
       }
     });
+  },
+  methods: {
+    toggleStatus(no, status) {
+      const api = "/api/api_itemUpdate.php";
+      let s;
+
+      // 如果狀態是 1 (上架) 則切換成 0 (下架)
+      if (status == 1) {
+        s = 0;
+      } else if (status == 0) {
+        s = 1;
+      }
+
+      // 發送到 DB 更新管理員的狀態
+      this.$http.post(api, JSON.stringify({ no: no, status: s }));
+    }
   }
 };
 </script>
