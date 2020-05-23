@@ -137,7 +137,7 @@
                 onclick="javascript:history.back(1)"
                 value="取消"
               />
-              <input id="ecnyEditSubmit" type="submit" value="送出" @click="editEncyI" />
+              <input id="ecnyEditSubmit" type="submit" value="送出" @click="update" />
             </div>
           </td>
         </tr>
@@ -185,7 +185,7 @@ export default {
   },
   methods: {
     update: function() {
-      const api = "/api/api_adminEncyInfo.php";
+      const api = "/api/api_adminEncyUpdate.php";
 
       for (let i in this.encyEdit) {
         if (this.encyEdit[i] == "") {
