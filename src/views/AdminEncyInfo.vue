@@ -19,8 +19,15 @@
             <label for="fruitTag">標籤</label>
           </th>
           <td>
-            <select name="fruitTag" id="fruitTag" data-selected v-model="encyEdit.title">
-              <option value selected="selected" disabled="disabled">請選擇</option>
+            <select
+              name="fruitTag"
+              id="fruitTag"
+              data-selected
+              v-model="encyEdit.title"
+            >
+              <option value selected="selected" disabled="disabled"
+                >請選擇</option
+              >
               <optgroup label="常年">
                 <option value="木瓜">木瓜</option>
                 <option value="鳳梨">鳳梨</option>
@@ -61,8 +68,15 @@
             <label for="fruitSeason">產季</label>
           </th>
           <td>
-            <select name="fruitSeason" id="fruitSeason" data-selected v-model="encyEdit.type">
-              <option value selected="selected" disabled="disabled">請選擇</option>
+            <select
+              name="fruitSeason"
+              id="fruitSeason"
+              data-selected
+              v-model="encyEdit.type"
+            >
+              <option value selected="selected" disabled="disabled"
+                >請選擇</option
+              >
               <option value="0">常年</option>
               <option value="1">春季</option>
               <option value="2">夏季</option>
@@ -77,7 +91,11 @@
             <label for="encyIntro">介紹</label>
           </th>
           <td>
-            <textarea name="encyIntro" id="encyIntro" v-model="encyEdit.content"></textarea>
+            <textarea
+              name="encyIntro"
+              id="encyIntro"
+              v-model="encyEdit.content"
+            ></textarea>
           </td>
         </tr>
         <tr>
@@ -85,7 +103,11 @@
             <label for="encyQ">農知識問題</label>
           </th>
           <td>
-            <textarea name="encyQ" id="encyQ" v-model="encyEdit.question"></textarea>
+            <textarea
+              name="encyQ"
+              id="encyQ"
+              v-model="encyEdit.question"
+            ></textarea>
           </td>
         </tr>
         <tr>
@@ -93,7 +115,11 @@
             <label for="encyA">農知識答案</label>
           </th>
           <td>
-            <textarea name="encyA" id="encyA" v-model="encyEdit.answer"></textarea>
+            <textarea
+              name="encyA"
+              id="encyA"
+              v-model="encyEdit.answer"
+            ></textarea>
           </td>
         </tr>
 
@@ -106,11 +132,31 @@
               <input type="file" id="encyPic01" @change="fileSelect" multiple />
             </label>
 
-            <img class="encyImg" src style="max-width: 200px;max-height: 200px;" />
-            <img class="encyImg" src style="max-width: 200px;max-height: 200px;" />
-            <img class="encyImg" src style="max-width: 200px;max-height: 200px;" />
-            <img class="encyImg" src style="max-width: 200px;max-height: 200px;" />
-            <img class="encyImg" src style="max-width: 200px;max-height: 200px;" />
+            <img
+              class="encyImg"
+              src
+              style="max-width: 200px;max-height: 200px;"
+            />
+            <img
+              class="encyImg"
+              src
+              style="max-width: 200px;max-height: 200px;"
+            />
+            <img
+              class="encyImg"
+              src
+              style="max-width: 200px;max-height: 200px;"
+            />
+            <img
+              class="encyImg"
+              src
+              style="max-width: 200px;max-height: 200px;"
+            />
+            <img
+              class="encyImg"
+              src
+              style="max-width: 200px;max-height: 200px;"
+            />
 
             <!--
                   <img id:"encyImg" :src="encyEdit.titleImg" style="max-width: 200px;max-height: 200px;" />
@@ -137,7 +183,12 @@
                 onclick="javascript:history.back(1)"
                 value="取消"
               />
-              <input id="ecnyEditSubmit" type="submit" value="送出" @click="update" />
+              <input
+                id="ecnyEditSubmit"
+                type="button"
+                value="送出"
+                @click="update"
+              />
             </div>
           </td>
         </tr>
@@ -159,14 +210,14 @@ export default {
         question: "", // 農知識問題
         answer: "", // 農知識答案
         titleImg: "",
-        video: ""
-      }
+        video: "",
+      },
     };
   },
   created() {
     const api = "/api/adminEncyInfo.php";
 
-    this.$http.post(api).then(res => {
+    this.$http.post(api).then((res) => {
       const data = res.data;
 
       if (data != "") {
@@ -178,7 +229,7 @@ export default {
           question: data.question,
           answer: data.answer,
           titleImg: data.titleImg,
-          video: data.video
+          video: data.video,
         };
       }
     });
@@ -194,7 +245,7 @@ export default {
         }
       }
 
-      this.$http.post(api, JSON.stringify(this.encyEdit)).then(res => {
+      this.$http.post(api, JSON.stringify(this.encyEdit)).then((res) => {
         const data = res.data;
 
         if (data == 1) {
@@ -203,8 +254,7 @@ export default {
           this.$router.go(0);
         }
       });
-    }
-  }
+    },
+  },
 };
 </script>
-
