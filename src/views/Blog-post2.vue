@@ -1599,7 +1599,7 @@ export default {
     };
   },
   beforeMount() {},
-  mounted() {npm 
+  mounted() {
     // console.log(document.getElementsByClassName("pageBorder")[0]);
     // document
     //   .getElementsByClassName("pageBorder")[0]
@@ -1629,7 +1629,12 @@ export default {
     this.$http
       .post(api, JSON.stringify(this.member))
       .then((res) => {
-        if (res.data != "") {
+        if (res.data != '') {
+          // console.log(res.data);
+
+          // sessionStorage.setItem('abc', JSON.stringify(res.data));
+          // sessionStorage.clear();
+          // let abc = sessionStorage.getItem('abc');
           this.blogArr = res.data;
 
           this.blogArrFilterTop.push(this.blogArr[0]);
