@@ -31,7 +31,7 @@
               </div>
 
               <div class="td img">
-                <img src="@/assets/shop/item_001.png" />
+                <img :src="'/api/'+item.img" />
               </div>
               <div class="td name">{{ item.name }}</div>
               <div class="td price">$ {{ item.price }}</div>
@@ -108,6 +108,7 @@ export default {
         for (let i = 0; i < this.arr.length; i++) {
           for (let j = 0; j < this.arr[i].item.length; j++) {
             this.arr[i].item[j]["sub"] = 0;
+            this.arr[i].item[j]["img"] = data[i].item[j].img.split(",")[0];
           }
         }
       });
