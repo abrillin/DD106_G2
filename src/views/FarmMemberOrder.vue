@@ -29,56 +29,51 @@
                 <td>{{item.name}}</td>
                 <td>{{item.price}}</td>
                 <td>{{item.date}}</td>
-                <td><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                                        for="switch">Toggle<div class="after"></div></label></td>
+                <td>
+                  <input class="statusBtn" type="checkbox" id="switch" />
+                  <label class="statuslable" for="switch">
+                    Toggle
+                    <div class="after"></div>
+                  </label>
+                </td>
               </tr>
             </thead>
           </table>
         </div>
       </div>
-
-
     </div>
   </div>
 </template>
 //
 <script>
-  import $ from "jquery";
-  export default {
-    data() {
-      return {
-        member: {
-          no: "",
-          name: "",
-          price: "",
-          date: "",
-        },
-      };
-    },
-    created() {
-      const api = "/api/api_farmorder.php";
-      this.$http.post(api).then((res) => {
-        const data = res.data;
-        console.log(res.data)
-        if (data != "") {
-          
-          this.member = data;
-          console.log(this.member)
-        }
-      });
-    },
-    mounted() {
-      $(".statuslable").click(function () {
-        $(this)
-          .find(".after")
-          .toggleClass("scrol");
+import $ from "jquery";
+export default {
+  data() {
+    return {
+      member: []
+    };
+  },
+  created() {
+    const api = "/api/api_farmorder.php";
+    this.$http.post(api).then(res => {
+      const data = res.data;
+      if (data != "") {
+        this.member = data;
+      }
+    });
+  },
+  mounted() {
+    $(".statuslable").click(function() {
+      $(this)
+        .find(".after")
+        .toggleClass("scrol");
 
-        if ($(".after").hasClass("scrol")) {
-          $(this).addClass("color");
-        } else {
-          $(this).removeClass("color");
-        }
-      });
-    },
-  };
+      if ($(".after").hasClass("scrol")) {
+        $(this).addClass("color");
+      } else {
+        $(this).removeClass("color");
+      }
+    });
+  }
+};
 </script>
