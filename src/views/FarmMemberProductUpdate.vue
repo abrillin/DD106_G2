@@ -213,7 +213,7 @@ export default {
                 const data = res.data;
                 if (data == 0) {
                   alert("上傳失敗！");
-                  this.$router.go(0);
+                  // this.$router.go(0);
                 } else if (data == 1) {
                   alert("上傳成功！");
                   this.$router.go(-1);

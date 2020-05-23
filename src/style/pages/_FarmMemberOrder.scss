@@ -1,3 +1,9 @@
+$btnBgcolor: #62b45a;
+$btnBgHcolor: #FFA978;
+$btnColor: #fbf8ef;
+$btnRadius: 5px;
+$tagBGcolor: #E2E2E2;
+
 div.FarmOrder {
   display: -block;
   color: #007552;
@@ -26,7 +32,7 @@ div.FarmOrder {
     display: block;
     padding: 10px 0;
 
-    > .plus {
+    >.plus {
       display: inline-block;
       border: 1px solid #007552;
       background-color: #007552;
@@ -35,11 +41,12 @@ div.FarmOrder {
       padding: 10px;
       margin-top: 50px;
       color: white;
+
       @include rwd(mobile) {
         margin-top: 20px;
       }
 
-      > a {
+      >a {
         text-decoration: none;
         color: white;
       }
@@ -54,16 +61,18 @@ div.FarmOrder {
     @include rwd(medium) {
       padding-top: 10%;
     }
+
     @include rwd(small) {
       padding-top: 0%;
     }
 
-    > .list_1 {
+    >.list_1 {
       width: 100%;
 
       .bottomheader {
         margin-top: 50px;
         width: 100%;
+
         @include rwd(mobile) {
           margin-top: 20px;
         }
@@ -71,6 +80,50 @@ div.FarmOrder {
 
       .orderTab {
         width: 100%;
+
+        .statusBtn[type='checkbox'] {
+          height: 0;
+          width: 0;
+          visibility: hidden;
+        }
+
+        .statusBtnLabel {
+          cursor: pointer;
+          text-indent: -9999px;
+          width: 35px;
+          height: 19px;
+          background: rgb(161, 161, 161);
+          display: block;
+          border-radius: 100px;
+          position: relative;
+          top: -6px;
+          left: 52px;
+        }
+
+        .statusBtnLabel:after {
+          content: '';
+          position: absolute;
+          top: 1.5px;
+          left: 2px;
+          width: 15px;
+          height: 15px;
+          background: #fff;
+          border-radius: 90px;
+          transition: 0.3s;
+        }
+
+        .statusBtn:checked+.statusBtnLabel {
+          background: $btnBgcolor;
+        }
+
+        .statusBtn:checked+.statusBtnLabel:after {
+          left: calc(100% - 2px);
+          transform: translateX(-100%);
+        }
+
+        .statusBtnLabel:active:after {
+          width: 20px;
+        }
       }
 
       th {
@@ -92,28 +145,32 @@ div.FarmOrder {
         text-align: center;
         vertical-align: middle;
         word-wrap: break-word;
+
         @include rwd(mobile) {
           font-size: 1.3rem;
         }
       }
-      tr{
-        .statusBtn[type='checkbox']{
+
+      tr {
+        .statusBtn[type='checkbox'] {
           height: 0;
           width: 0;
           visibility: hidden;
         }
-        .statuslable{
+
+        .statuslable {
           cursor: pointer;
-            text-indent: -9999px;
-            width: 35px;
-            height: 19px;
-            background: rgb(161, 161, 161);
-            display: block;
-            border-radius: 100px;
-            position: relative;
-            bottom: 10px;
-            left: 143px;
+          text-indent: -9999px;
+          width: 35px;
+          height: 19px;
+          background: rgb(161, 161, 161);
+          display: block;
+          border-radius: 100px;
+          position: relative;
+          bottom: 10px;
+          left: 143px;
         }
+
         .after {
           content: '';
           position: absolute;
@@ -125,19 +182,21 @@ div.FarmOrder {
           border-radius: 90px;
           transition: 0.3s;
         }
-        .color{
+
+        .color {
           background: #62b45a;
         }
+
         .scrol {
           left: calc(100% - 2px);
           transform: translateX(-100%);
         }
-  
+
         .statusBtnLabel:active:after {
           width: 20px;
         }
       }
-      
+
     }
   }
 }
