@@ -24,7 +24,10 @@
                                                                 <td id="target">{{item.date}}</td>
                                                                 <td>{{item.total}}</td>
                                                                 <td>{{item.name}}</td>
-                                                                <td>{{item.payment}}</td>
+                                                                <td v-if="item.payment == 0">未付款</td>
+                                                                <td v-if="item.payment == 1">已付款</td>
+                                                                <td v-if="item.payment == 2">未完成</td>
+                                                                <td v-if="item.payment == 3">已完成</td>
                                                                 <td>{{item.status}}</td>
                                                                 <td>
                                                                         <router-link to="/farm/listupdate">查看詳情
@@ -38,51 +41,10 @@
                                         </table>
                                 </div>
 
-                                <!-- <div class="Blogputon">
-                    <p class="title">狀態</p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                </div> -->
+
                         </div>
 
-                        <!-- <div class="pagination_block">
-                <ul class="pagination">
-                    <li><a href="#">&lt;</a></li>
-                    <li><a href="#" class="-on">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">6</a></li>
-                    <li><a href="#">7</a></li>
-                    <li><a href="#">8</a></li>
-                    <li><a href="#">9</a></li>
-                    <li><a href="#">10</a></li>
-                    <li><a href="#">&gt;</a></li>
-                </ul>
-            </div> -->
+
                 </div>
         </div>
 </template>
@@ -100,13 +62,15 @@
                                 },
                         };
                 },
-                created(){
+                created() {
                         const api = "/api/api_farmlist.php";
                         this.$http.post(api).then((res) => {
                                 const data = res.data;
-                                if(data != ""){
-                                        this.member=data;
+                                if (data != "") {
+                                        this.member = data;
                                 };
+
+
                         });
                 },
         };
