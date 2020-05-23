@@ -3,7 +3,7 @@
     <main class="encyEdit">
       <h1 class="manageTitle">
         知識百科 管理中心
-        <span class="manageSubTitle">| 百科內容新增/修改</span>
+        <span class="manageSubTitle">| 百科內容新增</span>
       </h1>
 
       <table class="encyEditTab" cellpadding="0" cellspacing="0" border="0">
