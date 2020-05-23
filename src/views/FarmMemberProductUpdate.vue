@@ -74,7 +74,7 @@
             <div class="submit_button">
               <input type="button" value="取消" id="productCancel" />
               <input
-                type="button"
+                type="submit"
                 value="送出"
                 id="productSubmit"
                 @click="itemUpdate"
@@ -113,7 +113,6 @@ export default {
       const data = res.data;
       if (data[0].no != null) {
         this.item.no = parseInt(data[0].no) + 1;
-        this.tags.no = parseInt(data[0].no) + 1;
       } else {
         this.item.no = 1;
       }
@@ -208,39 +207,18 @@ export default {
                 return;
               }
             }
-            if (this.tags.selected == 0) {
-              alert("請選擇標籤");
-              return;
-            } else {
-              this.$http
-                .post(
-                  "/api/api_farmProductUpdate.php",
-                  JSON.stringify(this.item)
-                )
-                .then((res) => {
-                  const data = res.data;
-                  if (data == 0) {
-                    alert("上傳失敗！");
-                    this.$router.go(0);
-                  }
-                  this.$http
-                    .post(
-                      "/api/api_farmProducttagsUpdate.php",
-                      JSON.stringify(this.tags)
-                    )
-                    .then((res) => {
-                      const data = res.data;
-
-                      if (data == 0) {
-                        alert("上傳失敗！");
-                        this.$router.go(0);
-                      } else if (data == 1) {
-                        alert("上傳成功！");
-                        this.$router.go(-1);
-                      }
-                    });
-                });
-            }
+            this.$http
+              .post("/api/api_farmProductUpdate.php", JSON.stringify(this.item))
+              .then((res) => {
+                const data = res.data;
+                if (data == 0) {
+                  alert("上傳失敗！");
+                  this.$router.go(0);
+                } else if (data == 1) {
+                  alert("上傳成功！");
+                  this.$router.go(-1);
+                }
+              });
           });
       }
     },

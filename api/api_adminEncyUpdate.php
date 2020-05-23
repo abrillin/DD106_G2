@@ -25,7 +25,6 @@ try {
     $encyEdit -> bindValue(":answer", $encyEditInfo->answer);
     $encyEdit -> bindValue(":titleImg", $encyEditInfo->titleImg);
     $encyEdit -> bindValue(":video", $encyEditInfo->video);
-
     $encyEdit -> execute();
 
  
@@ -35,9 +34,7 @@ try {
 
         $sql = "select * from `encyclopedia` where no=:no";
         $updateEncy = $pdo->prepare($sql);
-
         $updateEncy->bindValue(":no", $encyEditInfo->no);
-
         $updateEncy->execute();
 
         if ($updateEncy->rowCount() == 0) {

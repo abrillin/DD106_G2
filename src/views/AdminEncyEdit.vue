@@ -225,6 +225,13 @@ export default {
 
             const api = "/api/api_adminEncyEdit.php";
 
+            for (let i in this.encyEdit) {
+              if (this.encyEdit[i] == "") {
+                alert("有欄位空白，請再檢查一次 ﾚ(ﾟ∀ﾟ;)ﾍ ");
+                return;
+              }
+            }
+
             this.$http
               .post(api, JSON.stringify(this.encyEdit))
               // $http.post(url,data)
@@ -234,7 +241,10 @@ export default {
                 alert(" 資料新增完成 ٩(･ิᴗ･ิ๑)۶ ");
                 this.$router.go(-1);
               });
+
+              
           });
+
       }
     }
   }
