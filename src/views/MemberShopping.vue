@@ -23,8 +23,9 @@
                     class="checkbox"
                     :value="data.seller + item.no"
                     v-model="status"
-                    @change="checkbox(data, item)"
+                    @change="checkbox(data, item, data.no + data.seller)"
                     type="checkbox"
+                    :name="data.no + data.seller"
                   />
                   <label :for="'checkbox' + item.no"></label>
                 </div>
@@ -52,12 +53,12 @@
               </div>
             </div>
             <p class="total" v-if="arr[0].seller != ''">總金額 {{ data.total }} 元</p>
-            <router-link
+            <button
               v-if="arr[0].seller != ''"
-              to="/main/member/checkInfo"
               type="button"
               class="btn"
-            >進行結帳</router-link>
+              @click="nextPage(data.no)"
+            >進行結帳</button>
           </div>
         </div>
       </div>
@@ -76,7 +77,8 @@ export default {
         }
       ],
       cart: [],
-      status: []
+      status: [],
+      check: []
     };
   },
   computed: {
@@ -107,7 +109,12 @@ export default {
 
         for (let i = 0; i < this.arr.length; i++) {
           for (let j = 0; j < this.arr[i].item.length; j++) {
-            this.arr[i].item[j]["sub"] = 0;
+            // 新增響應式屬性
+            this.$set(this.arr[i].item[j], "sub", 0);
+            this.$set(this.arr[i].item[j], "amount", 1);
+            // this.arr[i].item[j]["amount"] = 1;
+
+            // 只取第一張圖片
             this.arr[i].item[j]["img"] = data[i].item[j].img.split(",")[0];
           }
         }
@@ -142,7 +149,7 @@ export default {
         }
       }
     },
-    checkbox: function(data, item) {
+    checkbox: function(data, item, name) {
       let index = this.cart.indexOf(item);
 
       if (index < 0) {
@@ -176,6 +183,9 @@ export default {
       itemArr.splice(index, 1);
 
       storage["itemNo"] = itemArr.toString() + ",";
+    },
+    nextPage: function(no) {
+      console.log(this.cart);
     }
   }
 };
