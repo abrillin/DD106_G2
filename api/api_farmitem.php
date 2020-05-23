@@ -1,27 +1,28 @@
 <?php
 header('Access-Control-Allow-Origin:*'); //允許所有來源訪問
 header('Access-Control-Allow-Method:POST,GET'); //允許POST、GET訪問方式
+try {
+    // 登入DB
+    require_once("connectDB.php");
 
-session_start();
-require_once("connectDB.php");
-$sql = "select * from `item`";
- $item = $pdo->prepare($sql);
+    // 操作DB
+    $sql = "select `no` from `item` order by `no` DESC limit 1";
+    $no = $pdo->prepare($sql);
+    $no->execute();
+    $nono = $no->fetch(PDO::FETCH_ASSOC);
+    
 
- $item->execute();
- $memRow = $item->fetch(PDO::FETCH_ASSOC);
- $item = array("no", "name", "price", "description", "status", "img", "date", "seller_no");
-    for($i = 0; $i<count($item); $i++){
-        $_SESSION["item_".$item[$i]] = $memRow[$item[$i]];
-    }
-if(isset($_SESSION["item_no"])){
-    $itemArry = array(
-        "no" => $_SESSION["item_no"],
-        "name" => $_SESSION["item_name"],
-        "price" => $_SESSION["item_price"],
-        "description" => $_SESSION["item_description"],
-    );
-    echo json_encode($itemArry);
-}else{
-    echo "";
+    $sql2= "select * from `itemtag_des`";
+    $tags = $pdo->prepare($sql2);
+    $tags->execute();
+    $product = $tags->fetchAll(PDO::FETCH_ASSOC);
+
+    echo json_encode([0=>$nono,1=>$product]);
+    
+   
+ 
+} catch (PDOException $e) {
+    $error = ["error" => $e->getMessage()];
+    echo json_encode($error);
 }
 ?>
