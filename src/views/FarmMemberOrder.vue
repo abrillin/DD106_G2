@@ -93,7 +93,7 @@ export default {
         s = 1;
       }
 
-      // 發送到 DB 更新管理員的狀態
+      // 發送到 DB 更新商品的狀態
       this.$http.post(api, JSON.stringify({ no: no, status: s }));
     }
   }
