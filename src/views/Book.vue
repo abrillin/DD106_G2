@@ -53,6 +53,7 @@
                     :contentIndex="index"
                     :pageId="page"
                     @addType="addIndex"
+                    @changePage="changePage"
                   ></Content>
                   <!-- (page) 3. 接收子層 changePage 事件值給 changePage 方法  -->
                   <Index v-if="change == true" @changePage="changePage"></Index>
@@ -113,8 +114,15 @@ export default {
       page: 0
     };
   },
+  created() {
+    const api = "/api/api_bookType.php";
+
+    this.$http.post(api).then(res => {
+      console.log(res.data);
+    });
+  },
   mounted() {
-    window.addEventListener("scroll", this.imgMoveToRight, true);
+    // window.addEventListener("scroll", this.imgMoveToRight, true);
   },
   methods: {
     imgMoveToRight() {

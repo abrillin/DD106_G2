@@ -19,9 +19,10 @@
       <div class="fruit_timeline"></div>
     </div>
     <div class="fruit_video">
-      <video controls>
-        <source src="@/assets/video/plum.mp4" type="video/mp4" />
-      </video>
+      <!-- <video controls> -->
+        <!-- <source src="https://www.youtube.com/watch?v=oqJFmQ1HLeE&feature=emb_logo" type="video/mp4" /> -->
+      <!-- </video> -->
+      <iframe src="https://www.youtube.com/embed/oqJFmQ1HLeE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
     <div class="fruit_Q">
       <div class="fruit_question">

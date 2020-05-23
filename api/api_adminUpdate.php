@@ -25,6 +25,7 @@ try {
     $error = ["error" => $e->getMessage()];
     echo json_encode($error);
 }
+
 ?>
 
 

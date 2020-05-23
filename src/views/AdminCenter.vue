@@ -4,7 +4,8 @@
       <aside class="msSideBar">
         <ul>
           <img class="mng_logo" src="@/assets/LOGO.svg" alt />
-          <span class="admin_name">{{admin.name}}</span>
+          <span class="admin_name">園長
+            <span class="adminNameColor">{{admin.name}} </span> 巡邏中</span>
           <li>
             <router-link to="/admin/center/manage">管理員管理</router-link>
           </li>

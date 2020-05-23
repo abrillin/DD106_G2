@@ -1,7 +1,7 @@
 .form-content {
 
     @mixin box {
-        
+
         border: 3px solid $yellow;
 
         padding: 1.6rem 5%;
@@ -21,7 +21,7 @@
             font-size: 1.6rem;
             line-height: 1.5;
 
-            @include rwd(medium){
+            @include rwd(medium) {
 
                 width: 75%;
             }
@@ -91,7 +91,7 @@
 
             margin: 1rem 0;
 
-            label {
+            >input[type="radio"] {
 
                 margin-right: 2.5%;
             }
@@ -102,5 +102,26 @@
 
         height: 40px;
         line-height: 40px;
+
+        margin-top: 2rem;
+
+        text-align: right;
+
+        >.btn {
+            height: 40px;
+            line-height: 40px;
+            width: 115px;
+
+            font-family: myFont;
+            font-weight: 600;
+
+            border: 1px solid $min-color;
+            background: rgba($orange, 0.75);
+
+            &:nth-child(2) {
+
+                margin-left: 2rem;
+            }
+        }
     }
 }

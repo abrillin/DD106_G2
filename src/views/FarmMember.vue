@@ -7,31 +7,20 @@
         </div>
         <ul>
           <li class="nick">
-            暱稱:<span>{{ member.nick }}</span>
+            暱稱:
+            <span>{{ member.nick }}</span>
           </li>
-          <li class="fans">身分別:<span>果農</span></li>
+          <li class="fans">
+            身分別:
+            <span>果農</span>
+          </li>
         </ul>
         <div class="star">
-          <img
-            src="@/assets/Group 720.svg"
-            v-if="member.reviewtotal / member.reviewcount > 0"
-          />
-          <img
-            src="@/assets/Group 720.svg"
-            v-if="member.reviewtotal / member.reviewcount > 1"
-          />
-          <img
-            src="@/assets/Group 720.svg"
-            v-if="member.reviewtotal / member.reviewcount > 2"
-          />
-          <img
-            src="@/assets/Group 720.svg"
-            v-if="member.reviewtotal / member.reviewcount > 3"
-          />
-          <img
-            src="@/assets/Group 720.svg"
-            v-if="member.reviewtotal / member.reviewcount > 4"
-          />
+          <img src="@/assets/Group 720.svg" v-if="member.reviewtotal / member.reviewcount > 0" />
+          <img src="@/assets/Group 720.svg" v-if="member.reviewtotal / member.reviewcount > 1" />
+          <img src="@/assets/Group 720.svg" v-if="member.reviewtotal / member.reviewcount > 2" />
+          <img src="@/assets/Group 720.svg" v-if="member.reviewtotal / member.reviewcount > 3" />
+          <img src="@/assets/Group 720.svg" v-if="member.reviewtotal / member.reviewcount > 4" />
           <span>({{ member.reviewcount }})</span>
         </div>
       </div>
@@ -86,60 +75,71 @@ export default {
         content: "",
         reviewtotal: "",
         reviewcount: "",
-        memberno: "",
-      },
+        memberno: ""
+      }
     };
   },
   created() {
-    const api2 = "/api/api_farmlogin.php";
-
-    this.$http.post(api2, JSON.stringify(this.member)).then((res) => {
+    const api = "/api/api_farmStatus.php";
+    this.$http.post(api).then(res => {
       const data = res.data;
+      if (data.status == 1) {
+        alert("此身份停權中，請聯繫管理員！");
 
-      const api = "/api/api_farmStatus.php";
-      this.$http.post(api).then((res) => {
-        const data = res.data;
-        if (data != "") {
-          this.member = {
-            no: data.no,
-            acc: data.acc,
-            name: data.name,
-            nick: data.nick,
-            phone: 0 + data.phone,
-            email: data.email,
-            gender: data.gender,
-            address: data.address,
-            img: data.img,
-            content: data.content,
-            reviewtotal: data.reviewtotal,
-            reviewcount: data.reviewcount,
-            memberno: data.memberno,
-          };
-          if (data.img == "") {
-            this.member.img = require("@/assets/waterpear.png");
-          } else {
-            this.member.img = data.img;
-          }
+        this.$router.go(-1);
+      }
+      if (data != "") {
+        this.member = {
+          no: data.no,
+          acc: data.acc,
+          name: data.name,
+          nick: data.nick,
+          phone: data.phone,
+          email: data.email,
+          gender: data.gender,
+          address: data.address,
+          img: data.img,
+          content: data.content,
+          reviewtotal: data.reviewtotal,
+          reviewcount: data.reviewcount,
+          memberno: data.memberno
+        };
+        if (data.img == "") {
+          this.member.img = require("@/assets/waterpear.png");
+        } else {
+          this.member.img = data.img;
         }
-      });
+      }
     });
-  },
-  mounted() {
-    if (window.innerWidth < 768) {
-      $("aside.left").addClass("popover");
-      $("button.btn_drawer").on("click", function() {
-        $("aside.left").toggleClass("popover");
-      });
-    }
-
-    $(window).resize(function() {
-      if (window.innerWidth < 768) {
+    if (window.innerWidth < 991) {
+      if ($("aside.left").hasClass("popover")) {
+        $("button.btn_drawer").on("click", function() {
+          $("aside.left").removeClass("popover");
+        });
+      } else {
         $("aside.left").addClass("popover");
         $("button.btn_drawer").on("click", function() {
           $("aside.left").toggleClass("popover");
         });
+      }
+    } else {
+      $("aside.left").removeClass("popover");
+    }
+
+    $(window).resize(function() {
+      if (window.innerWidth < 991) {
+        if ($("aside.left").hasClass("popover")) {
+          $("button.btn_drawer").on("click", function() {
+            $("aside.left").toggleClass("popover");
+          });
+        } else {
+          $("aside.left").addClass("popover");
+        }
       } else {
         $("aside.left").removeClass("popover");
+        $("button.btn_drawer").on("click", function() {
+          $("aside.left").toggleClass("popover");
+        });
       }
     });
   },
@@ -147,7 +147,7 @@ export default {
   methods: {
     update: function() {
       // this.$emit("loginStatus", s);
-    },
-  },
+    }
+  }
 };
 </script>

@@ -56,7 +56,7 @@
         <div class="CommodityContenText">
           <div class="CommodityContenTextBox">
             <div class="CommodityTitle">
-              <h1>標題標題</h1>
+              <h1>{{this.shopitem[0].name}}</h1>
             </div>
 
             <div class="CommodityNarrative">
@@ -93,17 +93,17 @@
             </div>
 
             <div class="CommodityItemMoneyBox">
-              <span class="CommodityItemMoney">550</span>
+              <span class="CommodityItemMoney">{{this.shopitem[0].price}}</span>
             </div>
 
             <div class="CommodityItemBuyBox">
-              <a href="#" class="CommodityItemBuyBtn">加入購物籃</a>Î
+              <a href="#" class="CommodityItemBuyBtn">加入購物籃</a>
               <a href="#" class="CommodityItemBuyBtn Buynow">直接購買</a>
             </div>
 
             <div class="CommodityDetailsBox">
               <h2 class="CommodityDetailsTitle">商品詳情：</h2>
-              <p>詳情</p>
+              <p>{{this.shopitem[0].description}}</p>
             </div>
 
             <div class="CommodityDetailsBox">
@@ -156,7 +156,7 @@
 
     <!--輪播-->
     <div id="carouselWrap">
-      <h2>相關商品：</h2>
+      <h2>推薦商品：</h2>
       <ul id="CommodityCarouselList">
         <li class="CommodityCarouselConten" v-for="(i, index) in shopseller.items" :key="index">
           <div class="CommodityCarousel commodity">
@@ -175,7 +175,7 @@
               </div>
 
               <div class="card_price">
-                <span class="money">{{i.price}}}</span>
+                <span class="money">{{i.no}}</span>
               </div>
 
               <div class="buy">
@@ -363,7 +363,8 @@ import { gsap, TweenMax, Power1, Power3, TimelineMax, Linear } from "gsap";
 export default {
   data() {
     return {
-      shopseller: {}
+      shopseller: [],
+      shopitem: "null"
     };
   },
   mounted() {
@@ -404,11 +405,18 @@ export default {
         // this.item.money = data.price;
 
         // this.shopcommodity = res.data;
-        this.shopseller = res.data;
+        this.shopseller = res.data["mem"];
         console.log(res.data);
+
+        if (res.data != "") {
+          this.shopitem = res.data["itemContent"];
+          console.log(this.shopitem[0]);
+        } else {
+        }
       })
       .catch(err => console.log(err));
   }
+
   //資料庫連結
 };
 </script>

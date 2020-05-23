@@ -1,21 +1,19 @@
 div.Registered {
-  display: inline-block;
+  display: block;
   color: #007552;
   background-color: #fbf8ef;
   width: calc(100% - 250px);
-  height: 100vh;
-  vertical-align: top;
+  float: right;
   box-sizing: border-box;
   padding: 60px 40px;
 
   @include rwd(medium) {
-    float: right;
-    width: calc(100% - 200px);
+    width: 100%;
   }
 
   @include rwd(small) {
     float: none;
-    width: 100vw;
+    width: 100%;
     padding: 10% 5%;
   }
 
@@ -38,11 +36,11 @@ div.Registered {
 
     > .bottom_form {
       display: inline-block;
-      width: 492px;
+      width: 490px;
       border: 1px solid #666;
 
       @include rwd(small) {
-        line-height: normal;
+        width: 300px;
       }
 
       > .Registered_left {
@@ -53,17 +51,16 @@ div.Registered {
         width: 150px;
         height: 600px;
         padding-top: 50px;
-
+        line-height: 3.3;
         @include rwd(small) {
-          width: 30%;
-          height: 400px;
+          width: 100px;
+          height: 500px;
         }
 
         > ul {
           > li {
             font-size: 1.8rem;
             color: #666;
-            line-height: 3.3;
 
             @include rwd(small) {
               font-size: 1.4rem;
@@ -84,38 +81,45 @@ div.Registered {
         padding-right: 30px;
         width: 340px;
         height: 600px;
-        line-height: 3.5;
+        line-height: 3.3;
 
         @include rwd(medium) {
           width: 340px;
         }
 
         @include rwd(small) {
-          width: 70%;
-          height: 400px;
+          height: 500px;
+          width: 200px;
+          line-height: 3;
         }
 
         span {
           display: block;
-          line-height: 3.5;
 
           @include rwd(small) {
-            line-height: 3;
+            font-size: 1.4rem;
           }
 
           p {
             overflow: hidden;
             padding: 0;
+          }
+        }
 
-            @include rwd(small) {
-              font-size: 1.4rem;
-            }
+        input {
+          font-size: 1.8rem;
+          width: 100%;
+          margin: 0;
+          padding: 0;
+
+          @include rwd(small) {
+            font-size: 1.4rem;
           }
         }
 
         > .submit_button {
           margin-top: 20px;
-          display: inline-block;
+          display: block;
           border-radius: 5px;
           background-color: #007552;
           color: white;
@@ -124,6 +128,10 @@ div.Registered {
           float: right;
           cursor: pointer;
           font-size: 1.6rem;
+
+          @include rwd(small) {
+            font-size: 1.4rem;
+          }
 
           &:hover {
             background-color: #fca87c;

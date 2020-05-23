@@ -22,7 +22,7 @@ import PageLeftYear from "@/components/bookSpring";
 
 export default {
   // 8. 接收到父元件的自定義變數 contentType 的值，更新上面的內容顯示
-  props: { pageId: Number, page: Number, contentType: Number },
+  props: { page: Number, contentType: Number },
   data() {
     return {
       index: [
@@ -104,6 +104,16 @@ export default {
     };
   },
   created() {
+    const api = "/api/api_bookContent.php";
+
+    this.$http.post(api, JSON.stringify({type: this.contentType, index: Math.round(this.page / 2)})).then(res => {
+
+      // console.log(Math.floor(this.page / 2));
+      
+      console.log(res.data[Math.round(this.page / 2)]);
+      
+    });
+
     this.changeContent();
 
     this.ooo = this.json[0].intro.split("$")[0];
@@ -112,11 +122,11 @@ export default {
   computed: {
     content: function() {
       this.changeContent();
-      return this.index[this.contentType].item[Math.floor(this.page / 2)];
+      return this.index[this.contentType].item[Math.round(this.page / 2)];
     }
   },
   methods: {
-    changeContent: function() {   
+    changeContent: function() {
       if (this.contentType == 0) {
         this.right = "Others";
         this.left = "Spring";

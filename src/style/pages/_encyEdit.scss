@@ -9,7 +9,7 @@
     justify-content: center;
     position: fixed;
     left: 25%;
-    overflow: scroll;
+    overflow-y: scroll;
     // border: 1px solid red;
 
     .encyEditTab {
@@ -70,13 +70,14 @@
 
             }
 
-            #encyIntro, #encyQ, #encyA, #fruitName, #videoLink {
+            #encyIntro, #encyQ, #encyA, #videoLink {
                 resize: none;
                 font-size: $contentSize;
                 font-family: myFont;
                 width: 90%;
+                border: 1px solid #888;
             }
-            #fruitName, #videoLink {
+            #videoLink {
                 height: 14px;
                 overflow: hidden;
                 padding: 5px;
@@ -84,20 +85,20 @@
             }
             #encyIntro {
                 height: 200px;
-                overflow: scroll;
+                overflow-y: scroll;
                 // letter-spacing: 1px;
                 padding: 10px;
             }
 
             #encyQ {
                 height: 30px;
-                overflow: scroll;
+                overflow-y: scroll;;
                 padding: 10px;
             }
             
             #encyA{
                 height: 50px;
-                overflow: scroll;
+                overflow-y: scroll;;
                 padding: 10px;
             }
 
@@ -117,16 +118,7 @@
 
             }
         }
-
-        #encyTagChange {
-            // border-radius: 25px;
-            background-color: #666;
-            // margin: 3px;
-            // border: hidden;
-            // transition: ease-in-out;
-            // transition-duration: .3s;
-        }
-
+        
     }
 
 

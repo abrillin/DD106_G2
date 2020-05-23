@@ -1,7 +1,7 @@
 div.farmcontain {
-  display: flex;
-  height: auto;
-  font-size: 17px;
+  width: 100%;
+  height: 100%;
+  font-size: 1.8rem;
 
   @include rwd(large) {
     height: auto;
@@ -21,17 +21,19 @@ div.farmcontain {
 
   aside.left {
     display: inline-block;
+    position: fixed;
     color: #007552;
     width: 250px;
-    height: 100vh;
+    height: 100%;
     vertical-align: top;
     background-color: #ffd3c1;
     transition: transform 1s cubic-bezier(0.36, 0, 0.66, 0);
 
     @include rwd(medium) {
       position: fixed;
-      z-index: 50;
+
       width: 200px;
+      z-index: 50;
     }
 
     > .head_portrait {
@@ -45,6 +47,7 @@ div.farmcontain {
 
       > .head_img_box {
         display: inline-block;
+        background-color: #fbf8ef;
         width: 90px;
         height: 90px;
         border-radius: 50%;

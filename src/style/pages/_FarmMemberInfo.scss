@@ -1,12 +1,11 @@
 div.farminfo {
-  display: inline-block;
+  display: block;
   color: #007552;
   background-color: #fbf8ef;
   width: calc(100% - 250px);
-  height: 100vh;
-  vertical-align: top;
   box-sizing: border-box;
   padding: 60px 40px;
+  float: right;
 
   @include rwd(medium) {
     float: right;
@@ -36,88 +35,88 @@ div.farminfo {
       padding-top: 10%;
     }
 
-    > .top_card {
-      display: inline-block;
-      border: 3px solid #007552;
-      box-shadow: 5px 5px #007552;
-      background-color: white;
-      text-align: start;
-      width: 660px;
-      height: 360px;
-      margin: auto;
-      background-image: url(../assets/membercard3.png);
-      background-position: center bottom;
-      background-repeat: no-repeat;
-      background-size: 690px;
-      overflow: hidden;
+    // > .top_card {
+    //   display: inline-block;
+    //   border: 3px solid #007552;
+    //   box-shadow: 5px 5px #007552;
+    //   background-color: white;
+    //   text-align: start;
+    //   width: 660px;
+    //   height: 360px;
+    //   margin: auto;
+    //   background-image: url(../assets/membercard3.png);
+    //   background-position: center bottom;
+    //   background-repeat: no-repeat;
+    //   background-size: 690px;
+    //   overflow: hidden;
 
-      @include rwd(medium) {
-        width: 610px;
-        height: 360px;
-      }
+    //   @include rwd(medium) {
+    //     width: 610px;
+    //     height: 360px;
+    //   }
 
-      @include rwd(small) {
-        width: 480px;
-        height: 360px;
-      }
+    //   @include rwd(small) {
+    //     width: 480px;
+    //     height: 360px;
+    //   }
 
-      @include rwd(mobile) {
-        width: 330px;
-        height: 577px;
-      }
+    //   @include rwd(mobile) {
+    //     width: 330px;
+    //     height: 577px;
+    //   }
 
-      > .card {
-        display: block;
-        padding-top: 20px;
-        padding-right: 40px;
-        padding-left: 40px;
+    //   > .card {
+    //     display: block;
+    //     padding-top: 20px;
+    //     padding-right: 40px;
+    //     padding-left: 40px;
 
-        > .up {
-          display: inline-block;
-          vertical-align: top;
-          margin-bottom: 20px;
+    //     > .up {
+    //       display: inline-block;
+    //       vertical-align: top;
+    //       margin-bottom: 20px;
 
-          > .imgbox {
-            display: inline-block;
-            width: 100px;
-            height: 100px;
-            margin-right: 20px;
+    //       > .imgbox {
+    //         display: inline-block;
+    //         width: 100px;
+    //         height: 100px;
+    //         margin-right: 20px;
 
-            > img {
-              width: 100%;
-              height: 100%;
-            }
-          }
+    //         > img {
+    //           width: 100%;
+    //           height: 100%;
+    //         }
+    //       }
 
-          > .uptext {
-            display: inline-block;
-            text-align: start;
-            line-height: 2;
-            vertical-align: top;
+    //       > .uptext {
+    //         display: inline-block;
+    //         text-align: start;
+    //         line-height: 2;
+    //         vertical-align: top;
 
-            > .underline {
-              border-bottom: 1px solid #007552;
-              width: 200px;
-              height: 26px;
-            }
-          }
-        }
+    //         > .underline {
+    //           border-bottom: 1px solid #007552;
+    //           width: 200px;
+    //           height: 26px;
+    //         }
+    //       }
+    //     }
 
-        > .down {
-          display: inline-block;
+    //     > .down {
+    //       display: inline-block;
 
-          > .downtext {
-            > p {
-              line-height: 2;
-            }
-          }
-        }
-      }
-    }
+    //       > .downtext {
+    //         > p {
+    //           line-height: 2;
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
 
     > .bottom_form {
       display: inline-block;
-      width: 492px;
+      width: 490px;
       border: 1px solid #666;
 
       @include rwd(small) {
@@ -160,15 +159,16 @@ div.farminfo {
         padding-left: 30px;
         padding-right: 30px;
         width: 340px;
-        height: 450px;
-        line-height: 3.5;
+        height: 500px;
+        line-height: 3.3;
 
         @include rwd(medium) {
           width: 340px;
         }
         @include rwd(small) {
           width: 70%;
-          height: 400px;
+          height: 450px;
+          line-height: 3.5;
         }
 
         > p {

@@ -3,17 +3,10 @@
     <!-- 4. 傳遞 memberStatus 的值（login）到子層 -->
     <!-- b. 接到子層的 logout 的值，傳進 checkLogin 方法 -->
     <Navbar :memberStatus="login" @logout="checkLogin" />
-    <keep-alive>
-      <!-- 2. 接到子層的 loginStatus 的值，傳進 checkLogin 方法 -->
-      <!-- (blog)b. 接到子層的 blogInf 的事件，傳進 blogInfMethod 方法 -->
-      <!-- (blog)d. 傳遞 blogInf 的值（blog）到子層的 blogInfProps -->
-      <router-view
-        @loginStatus="checkLogin"
-        @blogInf="blogInfMethod"
-        :blogInfProps="blog"
-        :c="c"
-      />
-    </keep-alive>
+    <!-- 2. 接到子層的 loginStatus 的值，傳進 checkLogin 方法 -->
+    <!-- (blog)b. 接到子層的 blogInf 的事件，傳進 blogInfMethod 方法 -->
+    <!-- (blog)d. 傳遞 blogInf 的值（blog）到子層的 blogInfProps -->
+    <router-view @loginStatus="checkLogin" @blogInf="blogInfMethod" :blogInfProps="blog" :c="c" />
   </div>
 </template>
 <script>
@@ -22,7 +15,7 @@ export default {
     return {
       login: false,
       blog: [],
-      c: '',
+      c: ""
     };
   },
   methods: {
@@ -35,7 +28,7 @@ export default {
       // this.blog = b.aa;
       // this.c=b.bb
       this.blog = b;
-    },
-  },
+    }
+  }
 };
 </script>

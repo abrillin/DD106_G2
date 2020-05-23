@@ -7,7 +7,7 @@
         </div>
         <ul>
           <li>
-            <label for="upMemberPic" @change="changeMemPic">
+            <label for="upMemberPic" @change="changeMemPic($event)">
               設定頭像
               <input type="file" id="upMemberPic" style="display: none;" />
             </label>
@@ -42,16 +42,16 @@
           </li>
         </ul>
       </div>
-      <div class="member_button">
-        <div class="befarm" @click="checkFarm">
-          <router-link to="/main/member/farmRegistered">
+      <div v-if="farmStatus == false" class="member_button">
+        <div class="befarm">
+          <router-link :to="{ name: 'FarmRegistered' }">
             <button-more class="become_farmer" msg="成為果農"></button-more>
           </router-link>
         </div>
       </div>
-      <div class="member_button">
-        <div class="changefarm" @click="changeFarm">
-          <router-link to="/main/farm/info">
+      <div v-else class="member_button">
+        <div class="changefarm">
+          <router-link :to="{ name: 'Info' }">
             <button-more class="goto_farmer" msg="切換果農"></button-more>
           </router-link>
         </div>
@@ -77,6 +77,7 @@ export default {
         email: "",
         img: "",
       },
+      farmStatus: false,
     };
   },
   created() {
@@ -96,6 +97,19 @@ export default {
           gender: data.gender,
         };
 
+        // 檢查是否註冊過果農身分
+        const apiCheck = "/api/api_checkFarm.php";
+
+        this.$http.post(apiCheck, JSON.stringify(this.member)).then((res) => {
+          const data = res.data;
+
+          if (data == 0) {
+            this.farmStatus = false;
+          } else {
+            this.farmStatus = true;
+          }
+        });
+
         if (data.img == "") {
           this.member.img = require("@/assets/waterpear.png");
         } else {
@@ -105,45 +119,57 @@ export default {
     });
   },
   mounted() {
-    if (window.innerWidth < 768) {
-      $("aside.left").addClass("popover");
-      $("button.btn_drawer").on("click", function() {
-        $("aside.left").toggleClass("popover");
-      });
-    }
-
-    $(window).resize(function() {
-      if (window.innerWidth < 768) {
+    if (window.innerWidth < 991) {
+      if ($("aside.left").hasClass("popover")) {
+        $("button.btn_drawer").on("click", function() {
+          $("aside.left").removeClass("popover");
+        });
+      } else {
         $("aside.left").addClass("popover");
         $("button.btn_drawer").on("click", function() {
           $("aside.left").toggleClass("popover");
         });
+      }
+    } else {
+      $("aside.left").removeClass("popover");
+    }
+
+    $(window).resize(function() {
+      if (window.innerWidth < 991) {
+        if ($("aside.left").hasClass("popover")) {
+          $("button.btn_drawer").on("click", function() {
+            $("aside.left").toggleClass("popover");
+          });
+        } else {
+          $("aside.left").addClass("popover");
+        }
       } else {
         $("aside.left").removeClass("popover");
+        $("button.btn_drawer").on("click", function() {
+          $("aside.left").toggleClass("popover");
+        });
       }
     });
   },
   methods: {
     changeMemPic: function(e) {
       let reader = new FileReader();
-      const img = e.target;
+      const img = e.target.files[0];
 
       reader.onload = function(e) {
         document.getElementById("MemberPic").src = e.target.result;
       };
+      reader.readAsDataURL(img);
 
-      reader.readAsDataURL(img.files[0]);
-
-      this.formData.append("file", img.files[0]);
-      this.member.img = "/api/MemPic/member" + img.files[0].name;
+      this.formData.append("file", img);
 
       this.$http
         .post("/api/api_changeMemPic.php", this.formData)
         .then((res) => {
           const data = res.data;
-
+          this.member.img = "/api/" + data[1];
           // 如果上傳成功
-          if (data == 0) {
+          if (data[0] == 0) {
             this.$http
               .post("/api/api_getMemPic.php", JSON.stringify(this.member))
               .then((res) => {
@@ -151,51 +177,50 @@ export default {
 
                 // 如果更新成功
                 if (r == 0) {
-                  const api = "/api/api_memberUpdateSession.php";
-
-                  // 觸發更新 session 的API
-                  this.$http.post(api, JSON.stringify(this.member));
                   alert("上傳成功！");
                   this.$router.go(0);
                 } else if (r == 1) {
                   alert("資料庫更新錯誤");
                 }
               });
-          } else if (data == 1) {
+          } else {
             alert("上傳失敗！");
           }
         });
     },
-    checkFarm: function() {
-      const api = "/api/api_checkFarm.php";
+    // checkFarm: function() {
+    //   const api = "/api/api_checkFarm.php";
 
-      this.$http
-        .post(api, JSON.stringify(this.member))
-        .then((res) => {
-          const data = res.data;
+    //   this.$http.post(api, JSON.stringify(this.member)).then(res => {
+    //     const data = res.data;
 
-          if (data == "") {
-          } else {
-            alert("已經是果農了");
-            this.$router.go(-1);
-          }
-        })
+    //     if (data == "") {
+    //     } else {
+    //       alert("已經是果農了");
+    //       this.$router.push({ name: "Info" });
+    //     }
+    //   });
+    // },
+    // changeFarm: function() {
+    //   const api = "/api/api_checkFarm.php";
 
-        .catch((err) => console.log(err));
-    },
-    changeFarm: function() {
-      const api = "/api/api_checkFarm.php";
+    //   this.$http.post(api, JSON.stringify(this.member)).then(res => {
+    //     const data = res.data;
 
-      this.$http.post(api, JSON.stringify(this.member)).then((res) => {
-        const data = res.data;
+    //     if (data == "") {
+    //       alert("還不是果農了喔");
+    //       this.$router.push({ name: "FarmRegistered" });
+    //     } else {
+    //       const api2 = "/api/api_farmlogin.php";
 
-        if (data == "") {
-          alert("還不是果農了喔");
-          this.$router.go(-1);
-        } else {
-        }
-      });
-    },
+    //       this.$http.post(api2, JSON.stringify(this.member)).then(res => {
+    //         const data = res.data;
+
+    //         this.$router.go(0);
+    //       });
+    //     }
+    //   });
+    // }
   },
 };
 </script>
