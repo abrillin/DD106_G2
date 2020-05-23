@@ -110,7 +110,7 @@ export default {
           }
         });
 
-        if (data.img == "") {
+        if (data.img == null) {
           this.member.img = require("@/assets/waterpear.png");
         } else {
           this.member.img = data.img;

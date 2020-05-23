@@ -9,6 +9,21 @@
       <table class="encyEditTab" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <th>
+            <label for="fruitSeason">產季</label>
+          </th>
+          <td>
+            <select name="fruitSeason" id="fruitSeason" data-selected v-model="encyEdit.type">
+              <option value selected="selected" disabled="disabled">請選擇</option>
+              <option value="0">常年</option>
+              <option value="1">春季</option>
+              <option value="2">夏季</option>
+              <option value="3">秋季</option>
+              <option value="4">冬季</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <th>
             <label for="fruitTag">標籤</label>
           </th>
           <td>
@@ -45,22 +60,6 @@
                 <option value="番茄">番茄</option>
                 <option value="棗子">棗子</option>
               </optgroup>
-            </select>
-          </td>
-        </tr>
-
-        <tr>
-          <th>
-            <label for="fruitSeason">產季</label>
-          </th>
-          <td>
-            <select name="fruitSeason" id="fruitSeason" data-selected v-model="encyEdit.type">
-              <option value selected="selected" disabled="disabled">請選擇</option>
-              <option value="0">常年</option>
-              <option value="1">春季</option>
-              <option value="2">夏季</option>
-              <option value="3">秋季</option>
-              <option value="4">冬季</option>
             </select>
           </td>
         </tr>
