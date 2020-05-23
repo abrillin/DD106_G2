@@ -19,7 +19,7 @@ try {
     // 如果沒有此帳號，進行註冊程序，否則回傳 0
     if ($checkMember->rowCount() == 0) {
 
-        $sql = "insert into `member` (`no`, `name`, `nick`, `acc`, `psw`, `img`, `gender`, `phone`, `email`, `status`) values(null, :name, :nick, :acc, :psw, null, :gender, :phone, :email, '1')";
+        $sql = "insert into `member` (`no`, `name`, `nick`, `acc`, `psw`, `img`, `gender`, `phone`, `email`, `status`) values(null, :name, :nick, :acc, :psw, null, :gender, :phone, :email, '0')";
         $member = $pdo->prepare($sql);
 
         $member->bindValue(":name", $memberInfo->name);

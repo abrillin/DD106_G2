@@ -92,23 +92,26 @@ export default {
   created() {
     // 獲取 localStorage 物件
     let storage = localStorage;
-    // 獲取物件內的 itemNo 欄位值，並用 , 符號切開
-    let itemArr = storage["itemNo"];
-    // 獲取除去最後一個 , 的字串
-    itemArr = itemArr.substr(0, itemArr.length - 1);
 
-    const api = "/api/api_shopping.php";
+    if (storage["itemNo"]) {
+      // 獲取物件內的 itemNo 欄位值，並用 , 符號切開
+      let itemArr = storage["itemNo"];
+      // 獲取除去最後一個 , 的字串
+      itemArr = itemArr.substr(0, itemArr.length - 1);
 
-    this.$http.post(api, JSON.stringify(itemArr)).then(res => {
-      const data = res.data;
-      this.arr = data;
+      const api = "/api/api_shopping.php";
 
-      for (let i = 0; i < this.arr.length; i++) {
-        for (let j = 0; j < this.arr[i].item.length; j++) {
-          this.arr[i].item[j]["sub"] = 0;
+      this.$http.post(api, JSON.stringify(itemArr)).then(res => {
+        const data = res.data;
+        this.arr = data;
+
+        for (let i = 0; i < this.arr.length; i++) {
+          for (let j = 0; j < this.arr[i].item.length; j++) {
+            this.arr[i].item[j]["sub"] = 0;
+          }
         }
-      }
-    });
+      });
+    }
   },
   methods: {
     setAmount: function(data, item) {},

@@ -221,7 +221,7 @@ export default {
           this.status = true;
           this.userName = data.name;
 
-          if (data.img == "") {
+          if (data.img == null) {
             this.img = require("@/assets/waterpear.png");
           } else {
             this.img = data.img;
