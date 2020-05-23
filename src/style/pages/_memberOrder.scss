@@ -330,60 +330,42 @@ div.Order {
         padding: 0;
         font-size: 0;
 
-        > li {
-          display: inline-block;
-
-          > a {
-            display: inline-block;
-            text-decoration: none;
-
-            border: 1px solid #007552;
-            /* 留意 */
-            /* 留意：將全部的右邊框都移除 */
-
-            text-align: center;
-            padding: 5px 10px;
-            font-size: 1rem;
-            color: black;
-
-            @include rwd(mobile) {
-              padding: 5px 6px;
-            }
-          }
-
-          > a.-on {
-            background-color: #ffd3c1;
-            color: #007552;
-          }
-
-          > a:hover {
-            background-color: #ffd3c1;
-            color: #007552;
-          }
-        }
-
-        > li:first-child > a {
+        & > li:first-child {
           display: inline-block;
           margin-right: 10px;
           background-color: #007552;
           color: white;
         }
 
-        > li:first-child > a:hover {
-          background-color: #007552;
-          color: white;
-        }
-
-        > li:last-child > a {
+        & > li:last-child {
           border-right: 1px solid #007552;
           margin-left: 10px;
           background-color: #007552;
           color: white;
         }
 
-        > li:last-child > a:hover {
-          background-color: #007552;
-          color: white;
+        > li {
+          display: inline-block;
+          cursor: pointer;
+          border: 1px solid #007552;
+          background-color: white;
+          text-align: center;
+          padding: 5px 10px;
+
+          font-size: 1.8rem;
+          color: black;
+          @include rwd(mobile) {
+            padding: 5px 6px;
+          }
+
+          &:hover {
+            background-color: #ffd3c1;
+            color: #007552;
+          }
+          &.-on {
+            background-color: #ffd3c1;
+            color: #007552;
+          }
         }
       }
     }

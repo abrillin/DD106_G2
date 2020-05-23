@@ -1,6 +1,5 @@
 <?php
 // 這支是新增百科內容的圖片路徑
-
 if (file_exists("encyPic") == false) {
 	mkdir("encyPic"); //make dir
 }
@@ -14,8 +13,6 @@ for ($i = 0; $i < $count; $i++) {
     array_splice($array,0,0,$to);
     copy($from, $to);
 }
-
-
 
 echo json_encode($array);
 ?>

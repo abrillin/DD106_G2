@@ -9,14 +9,14 @@
             <div class="Orderlist">
                 <div class="list_1">
                     <div class="listnum">
-                        <p>訂單編號: xxxxx</p>
+                        <p>訂單編號:{{this.order[this.i].no}}</p>
                     </div>
                     <div class="memberorder">
                         <div class="orderheader">
                             <table class="orderTab">
                                 <thead>
                                     <tr>
-                                        <th>成立時間</th>
+                                        <th>訂單時間</th>
                                         <th>總金額</th>
                                         <th>付款狀態</th>
                                         <th>訂單狀態</th>
@@ -29,10 +29,12 @@
                                 <thead>
                                     <tbody>
                                         <tr>
-                                            <td>2020-04-17</td>
-                                            <td>$1380</td>
-                                            <td>已付款</td>
-                                            <td>完成</td>
+                                            <td>{{this.order[this.i].date}}</td>
+                                            <td>{{this.order[this.i].total}}</td>
+                                            <td v-if="this.order[this.i].payment_status == 1">完成</td>
+                                            <td v-if="this.order[this.i].payment_status == 0">未完成</td>
+                                            <td v-if="this.order[this.i].status == 1">完成</td>
+                                            <td v-if="this.order[this.i].status == 0">未完成</td>
                                         </tr>
                                     </tbody>
                                 </thead>
@@ -127,18 +129,9 @@
 
             <div class="pagination_block">
                 <ul class="pagination">
-                    <li><a href="#">&lt;</a></li>
-                    <li><a href="#" class="-on">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">6</a></li>
-                    <li><a href="#">7</a></li>
-                    <li><a href="#">8</a></li>
-                    <li><a href="#">9</a></li>
-                    <li><a href="#">10</a></li>
-                    <li><a href="#">&gt;</a></li>
+                    <li>&lt;</li>
+                    <li v-for="i in order" :value="i.no" :key="i.no">{{i.no}}</li>
+                    <li>&gt;</li>
                 </ul>
             </div>
         </div>
@@ -146,21 +139,49 @@
 </template>
 
 <script>
-    import $ from "jquery";
-    export default {
-        mounted() {
-            var i = 0;
-            $(".list_slide").click(function () {
-                if (i == 0) {
-                    $("#ploygon").css("transform", "rotateX(180deg)");
-                    i = 1;
-                } else {
-                    $("#ploygon").css("transform", "rotateX(0deg)");
-                    i = 0;
-                }
+import $ from "jquery";
+export default {
+    data(){
+        return{
+            i:0,
+            memno:"",
+            order:[],
+        };
+    },
+    created(){
 
-                $(".slide").toggleClass("display");
-            });
-        }
-    };
+        const api = "/api/api_memberstatus.php";
+
+        this.$http 
+        .post(api) 
+        .then((res) => { 
+            
+            this.memno = res.data.no;  
+            
+             const api2 = "/api/api_memberOrder.php";
+
+            this.$http 
+            .post(api2,JSON.stringify(this.memno)) 
+            .then((res) => { 
+                this.order = res.data; 
+                console.log(this.order);
+                
+            });           
+        }); 
+    },
+    mounted() {
+        var i = 0;
+        $(".list_slide").click(function () {
+            if (i == 0) {
+                $("#ploygon").css("transform", "rotateX(180deg)");
+                i = 1;
+            } else {
+                $("#ploygon").css("transform", "rotateX(0deg)");
+                i = 0;
+            }
+
+            $(".slide").toggleClass("display");
+        });
+    }
+};
 </script>
