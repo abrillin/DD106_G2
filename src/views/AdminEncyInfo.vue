@@ -212,7 +212,6 @@ export default {
         answer: "", // 農知識答案
         titleImg: "",
         video: "",
-        encyno: "",
       },
     };
   },

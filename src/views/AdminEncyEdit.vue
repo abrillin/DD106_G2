@@ -196,7 +196,6 @@ export default {
     return {
       formData: new FormData(),
       encyEdit: {
-        no: "",
         title: "", // 水果名，當標籤用
         type: "", // 產季
         content: "", // 介紹
