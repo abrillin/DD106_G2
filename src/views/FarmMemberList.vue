@@ -19,7 +19,7 @@
                 <th>訂單狀態</th>
                 <th>功能</th>
               </tr>
-              <tr v-for="item in member" :key="item.no">
+              <tr v-for="(item, index) in member" :key="index">
                 <td>{{item.no}}</td>
                 <td id="target">{{item.date}}</td>
                 <td>{{item.total}}</td>
