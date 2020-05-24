@@ -134,11 +134,11 @@ export default {
           item: [
             {
               id: 0,
-              name: "葡萄"
+              name: "柿子"
             },
             {
               id: 1,
-              name: "柿子"
+              name: "梨子"
             },
             {
               id: 2,
@@ -146,7 +146,7 @@ export default {
             },
             {
               id: 3,
-              name: "梨子"
+              name: "百香果"
             }
           ]
         },
@@ -161,15 +161,15 @@ export default {
             },
             {
               id: 1,
-              name: "橘子"
+              name: "柳丁"
             },
             {
               id: 2,
-              name: "棗子"
+              name: "番茄"
             },
             {
               id: 3,
-              name: "番茄"
+              name: "棗子"
             }
           ]
         },

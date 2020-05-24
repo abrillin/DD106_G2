@@ -47,8 +47,8 @@
                 <router-link class="product-details" to="/main/shopitem">商品詳情...</router-link>
               </p>
               <div class="item_buy-box">
-                <a href="#" class="item_btn">加入購物籃</a>
-                <a href="#" class="item_btn buyNow">直接購買</a>
+                <a href="javascript:" class="item_btn">加入購物籃</a>
+                <a href="javascript:" class="item_btn buyNow">直接購買</a>
               </div>
               <!-- <div class="details-box">
                 <a href="#" class="product-details">商品詳情</a>
@@ -200,7 +200,7 @@
 
                 <div class="card_tag" v-for="(t,dex) in shopcommodityfilter[index].tags" :key="dex">
                   <img src="../assets/icon/tag.svg" alt width="16px" height="16px" class="tag_icon" />
-                  <span class="card_tag_text">{{shopcommodityfilter[index].tags[dex].tagname}}</span>
+                  <span class="card_tag_text">{{shopcommodityfilter[index].tags[dex].name}}</span>
                 </div>
 
                 <div class="card_price">
@@ -208,8 +208,13 @@
                 </div>
 
                 <div class="buy">
-                  <a href="#" class="card_btn" @mouseenter="btnFun">加入購物籃</a>
-                  <a href="#" class="card_btn" @mouseenter="btnFun">直接購買</a>
+                  <a
+                    href="javascript:"
+                    class="card_btn"
+                    @click="addCart(i.no)"
+                    @mouseenter="btnFun"
+                  >加入購物籃</a>
+                  <a href="javascript:" class="card_btn" @mouseenter="btnFun">直接購買</a>
                 </div>
               </div>
             </div>
@@ -263,13 +268,7 @@
         >
           <a href="#">
             <div class="seller_box">
-              <img
-                :src="'../assets/shop/' + seller[index].img"
-                alt
-                height="50"
-                width="50"
-                style="border-radius: 30px;"
-              />
+              <img :src="seller[index].img" alt height="50" width="50" style="border-radius: 30px;" />
             </div>
           </a>
           <div class="seller_content">
@@ -583,7 +582,6 @@ export default {
         })
         .catch(err => console.log(err));
     },
-
     itemchange(t) {
       console.log(t);
       // this.aa[0] = t;
@@ -616,10 +614,39 @@ export default {
         for (let i = 1; i < 9; i++) {
           this.shopcommodityfilter.push(this.shopcommodity["pro"][i]);
         }
+    },
+    addCart(no) {
+      const api = "/api/api_memberStatus.php";
+
+      this.$http.post(api).then(res => {
+        const data = res.data;
+
+        // 檢查有沒有登入
+        if (data == "") {
+          alert("請先登入果粉！");
+          this.$router.push({ name: "LoginMember" });
+        } else {
+          // 宣告 localStorage 物件
+          let storage = localStorage;
+
+          // 檢查 localStorage 有沒有 itemNo 欄位，如果沒有就新增
+          if (storage["itemNo"] == null) {
+            storage["itemNo"] = "";
+          }
+
+          // 獲取 itemNo 欄位的資料，以 , 符號切成陣列
+          const itmeArr = storage["itemNo"].split(",");
+
+          // 如果編號 no 的商品沒有在 itemArr 這個陣列裡面，則新增進去
+          if (itmeArr.indexOf(no) != -1) {
+            alert("已經加入購物車了！");
+          } else {
+            storage["itemNo"] += no + ",";
+          }
+        }
       });
     }
   },
-
   mounted() {
     function showHideHam() {
       let filterPanel = document.getElementById("filterPanel");

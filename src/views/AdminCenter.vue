@@ -18,9 +18,9 @@
           <li>
             <router-link to="/admin/center/ency">知識百科管理</router-link>
           </li>
-          <li>
+          <!-- <li>
             <router-link to="/admin/center/blog">果農日誌管理</router-link>
-          </li>
+          </li> -->
           <li>
             <router-link to="/admin/center/comment">日誌留言管理</router-link>
           </li>
