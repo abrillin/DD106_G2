@@ -77,7 +77,6 @@
             </select>
           </td>
         </tr>
-
         <tr>
           <th>
             <label for="encyIntro">介紹</label>
@@ -114,7 +113,6 @@
             ></textarea>
           </td>
         </tr>
-
         <tr>
           <th>圖片</th>
 
@@ -251,7 +249,6 @@ export default {
     },
 
     // 資料撈完後傳到php
-
     editEncyI: function() {
       for (
         let i = 0;
