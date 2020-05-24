@@ -614,6 +614,7 @@ export default {
         for (let i = 1; i < 9; i++) {
           this.shopcommodityfilter.push(this.shopcommodity["pro"][i]);
         }
+      });
     },
     addCart(no) {
       const api = "/api/api_memberStatus.php";
