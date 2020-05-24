@@ -179,7 +179,7 @@
               >
                 <div class="blog-post2-long-card" @click="changePage(i)">
                   <div>
-                    <img src />
+                    <img :src="i.img[0]" />
                   </div>
                   <div>
                     <div>
@@ -277,7 +277,7 @@
                 >
                   <div @click="changePage(i)">
                     <div>
-                      <img src="@/assets/blog-img/post/grape.png" />
+                      <img :src="i.img[0]" />
                       <div>
                         <div>
                           <img src="@/assets/blog-img/blog-thumb.png" />
@@ -335,7 +335,7 @@
                 class="pageBorder"
                 v-for="(i, index) in pageArr"
                 :key="index"
-                v-on="{click: pageSelect}"
+                v-on="{ click: pageSelect }"
               >
                 {{ i }}
               </li>
@@ -473,7 +473,7 @@
   // height: 50vw;
   // padding-bottom: 5%;
   &::before {
-    content: '';
+    content: "";
     border-bottom: #007552 5px solid;
     width: 105%;
     position: absolute;
@@ -493,7 +493,7 @@
   }
   > div:nth-child(1) {
     &::before {
-      content: '';
+      content: "";
       display: inline-block;
       border-right: #6baf9b solid 2px;
       height: 50%;
@@ -514,7 +514,7 @@
       bottom: 0%;
       left: 0%;
       @media (max-width: 1300px) {
-        content: '';
+        content: "";
       }
     }
     // border: 4px solid #000;
@@ -526,12 +526,12 @@
     grid-template-columns: 1.5fr 2fr 1.5fr 3fr;
     grid-template-rows: 0.1fr 1fr 0.5fr 0.5fr 0.4fr 5fr;
     grid-template-areas:
-      'aa1 aa1 aa1 aa1'
-      'aa2 aa2 aa2 aa2 '
-      'aa3 aa4 aa6 aa7'
-      'aa3 aa5 aa6 aa7'
-      'aa8 aa8 aa8 aa8'
-      'aa9 aa9 aa9 aa9';
+      "aa1 aa1 aa1 aa1"
+      "aa2 aa2 aa2 aa2 "
+      "aa3 aa4 aa6 aa7"
+      "aa3 aa5 aa6 aa7"
+      "aa8 aa8 aa8 aa8"
+      "aa9 aa9 aa9 aa9";
     @media (max-width: 1600px) {
       // padding-right: 0%;
       grid-template-columns: 0.9fr 1.3fr 1fr 3fr;
@@ -549,12 +549,12 @@
     }
     @media (max-width: 576px) {
       grid-template-areas:
-        'aa1 aa1 aa1 aa1'
-        'aa2 aa2 aa2 aa2 '
-        'aa3 aa4 aa6 aa6'
-        'aa3 aa5 aa7 aa7'
-        'aa8 aa8 aa8 aa8'
-        'aa9 aa9 aa9 aa9';
+        "aa1 aa1 aa1 aa1"
+        "aa2 aa2 aa2 aa2 "
+        "aa3 aa4 aa6 aa6"
+        "aa3 aa5 aa7 aa7"
+        "aa8 aa8 aa8 aa8"
+        "aa9 aa9 aa9 aa9";
       grid-template-columns: 1fr 1fr 1fr 1fr;
       // border: solid 1px red;
     }
@@ -710,12 +710,12 @@
         z-index: 2;
         width: 70%;
         padding-top: 70%;
-        background: url('../assets/blog-img/post/blog_aabbcc.svg') no-repeat
+        background: url("../assets/blog-img/post/blog_aabbcc.svg") no-repeat
           center center;
         background-size: cover;
-        -webkit-mask: url('../assets/blog-img/post/blog_aabbcc.svg') no-repeat
+        -webkit-mask: url("../assets/blog-img/post/blog_aabbcc.svg") no-repeat
           center center;
-        mask: url('../assets/blog-img/post/blog_aabbcc.svg') no-repeat center
+        mask: url("../assets/blog-img/post/blog_aabbcc.svg") no-repeat center
           center;
         @media (max-width: 1600px) {
           width: 100%;
@@ -776,7 +776,7 @@
           margin-left: 10px;
         }
         &::before {
-          content: '';
+          content: "";
           position: absolute;
           height: 25px;
           border-right: #a0a0a0 solid 1px;
@@ -792,7 +792,7 @@
       position: relative;
       //留言表單
       &::before {
-        content: '';
+        content: "";
         border-top: solid #a0a0a0 1px;
         width: 50rem;
         position: absolute;
@@ -962,7 +962,7 @@
 }
 .blog-post-tri {
   //select
-  background: url('../assets/blog-img/post/triangle.png');
+  background: url("../assets/blog-img/post/triangle.png");
   background-repeat: no-repeat;
   background-position: 95% 60%;
   font-size: 15px;
@@ -1172,10 +1172,10 @@
       border-bottom: #a0a0a0 solid 1px;
       // border: chocolate 3px solid;
       grid-template-areas:
-        'aa1 aa2 aa2 aa2'
-        'aa1 aa3 aa3 aa3'
-        'aa1 aa4 aa5 aa7'
-        'aa1 aa4 aa6 aa7';
+        "aa1 aa2 aa2 aa2"
+        "aa1 aa3 aa3 aa3"
+        "aa1 aa4 aa5 aa7"
+        "aa1 aa4 aa6 aa7";
       > div:nth-child(1) {
         grid-area: aa1;
         font-size: 80px;
@@ -1237,30 +1237,43 @@
         border-right: solid #007552 1.5px;
         position: relative;
         //妹妹假蠵龜
-        width: 500%;
-        padding-top: 310px;
-        background-image: url('../assets/blog-img/post/kidEatsWatermelon.png');
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: 0% 50%;
-        @media (max-width: 1800px) {
-          width: 550%;
-        }
-        @media (max-width: 1700px) {
-          width: 600%;
-        }
-        @media (max-width: 1500px) {
-          width: 750%;
-        }
-        @media (max-width: 1400px) {
-          width: 1000%;
-        }
-        @media (max-width: 768px) {
-          width: 1200%;
-        }
-        @media (max-width: 700px) {
+        max-width: 40%;
+        min-width: 40%;
+        @media (max-width: 700px)  {
+          max-width: 100%;
+        min-width: 100%;
+          }
+        >img{
           width: 100%;
+
+          @media (max-width: 700px)  {
+          width: 100%;
+          }
         }
+        // width: 500%;
+        // padding-top: 310px;
+        // background-image: url("../assets/blog-img/post/kidEatsWatermelon.png");
+        // background-repeat: no-repeat;
+        // background-size: cover;
+        // background-position: 0% 50%;
+        // @media (max-width: 1800px) {
+        //   width: 550%;
+        // }
+        // @media (max-width: 1700px) {
+        //   width: 600%;
+        // }
+        // @media (max-width: 1500px) {
+        //   width: 750%;
+        // }
+        // @media (max-width: 1400px) {
+        //   width: 1000%;
+        // }
+        // @media (max-width: 768px) {
+        //   width: 1200%;
+        // }
+        // @media (max-width: 700px) {
+        //   width: 100%;
+        // }
       }
       > div:nth-child(2) {
         padding: 3% 3% 0px 3%;
@@ -1329,8 +1342,9 @@
           display: flex;
           margin-top: 70px;
           position: relative;
+          // padding-bottom: 2%;
           &::before {
-            content: '';
+            content: "";
             border-top: solid #007552 1.5px;
             width: 100%;
             top: -15px;
@@ -1584,7 +1598,7 @@
 </style>
 
 <script>
-import $ from 'jquery';
+import $ from "jquery";
 export default {
   data() {
     return {
@@ -1611,43 +1625,78 @@ export default {
     // alert(document.getElementsByClassName('pageBorder').length);
     for (
       let i = 0;
-      i <= document.getElementsByClassName('pageBorder').length;
+      i <= document.getElementsByClassName("pageBorder").length;
       i++
     ) {
       document
-        .getElementsByClassName('pageBorder')
-        [i].setAttribute('class', 'pageBorder');
+        .getElementsByClassName("pageBorder")
+        [i].setAttribute("class", "pageBorder");
       if (
-        document.getElementsByClassName('pageBorder')[i].textContent ==
+        document.getElementsByClassName("pageBorder")[i].textContent ==
         this.currentPage[0]
       ) {
         document
-          .getElementsByClassName('pageBorder')
-          [i].classList.add('currentPagecolor');
+          .getElementsByClassName("pageBorder")
+          [i].classList.add("currentPagecolor");
       }
     }
   },
   created() {
-    const api = '/api/api_blog.php';
+    const api = "/api/api_blog.php";
 
     this.$http
       .post(api, JSON.stringify(this.member))
       .then((res) => {
-        if (res.data != '') {
+        if (res.data != "") {
           // console.log(res.data);
 
           // sessionStorage.setItem('abc', JSON.stringify(res.data));
           // sessionStorage.clear();
           // let abc = sessionStorage.getItem('abc');
 
+
+
           this.blogArr = res.data;
 
+for(let i=0;i<this.blogArr.length;i++){
+  this.blogArr[i].img=this.blogArr[i].img.split(",")
+}
+
+for(let i=0;i<this.blogArr.length;i++){
+  for(let j=0;j<this.blogArr[i].img.length;j++){
+this.blogArr[i].img[j]=`/api/${this.blogArr[i].img[j]}`
+  }
+}
+
+// this.blogArr[0].img.forEach(
+//   item=>item=`/api/${item}`
+// )
+
+// this.blogArr[0].img[0]=`/api/${this.blogArr[0].img[0]}`
+console.log(this.blogArr)
+
+          
+// console.log(this.blogArr)
+
+
+
           this.blogArrFilterTop.push(this.blogArr[0]);
-          for (let i = 1; i < 10; i++) {
-            this.blogArrFilter.push(this.blogArr[i]);
+
+          if (this.blogArr.length <= 9) {
+            for (let i = 1; i < this.blogArr.length; i++) {
+              this.blogArrFilter.push(this.blogArr[i]);
+            }
+          } else {
+            for (let i = 1; i < 10; i++) {
+              this.blogArrFilter.push(this.blogArr[i]);
+            }
           }
+
           this.currentPage.push(1);
-          if (this.blogArr.length / 9 < 9) {
+
+          if (this.blogArr.length <= 9) {
+            this.pageArr.push(1);
+          } else if (this.blogArr.length / 9 < 9) {
             for (let i = 1; i <= parseInt(this.blogArr.length / 9) + 1; i++) {
               this.pageArr.push(i);
               // console.log(parseInt(this.blogArr.length / 9) + 1);
@@ -1791,14 +1840,14 @@ export default {
       //   bb: e.target.parentNode.parentNode.children[3].textContent,
       // });
       console.log(e);
-      console.log('123');
-      this.$emit('blogInf', e);
+      console.log("123");
+      this.$emit("blogInf", e);
       // console.log(e);
 
-      let api = '/api/api_session_blog_no.php';
+      let api = "/api/api_session_blog_no.php";
 
       this.$http.post(api, JSON.stringify(e)).then((res) => {
-        if (res.data != '') {
+        if (res.data != "") {
           console.log(res.data);
         } else {
           console.log(res.error);
