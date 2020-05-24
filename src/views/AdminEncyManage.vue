@@ -92,11 +92,11 @@ export default {
       // this.$router.push({ name: 'Order', params: { userId: 123 }})
     },
     updateSession: function($event) {
-      this.encyno = $event.target.id;
+      this.encyno = $event.target.no;
       const api = "/api/api_adminEncysession.php";
 
       this.$http.post(api, JSON.stringify(this.encyno)).then((res) => {});
-    },
+    }, // end of updateSession
   },
 };
 </script>
