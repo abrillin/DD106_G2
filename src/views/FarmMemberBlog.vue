@@ -56,12 +56,7 @@ import { log } from "three";
 export default {
   data() {
     return {
-      member: {
-        no: "",
-        title: "",
-        content: "",
-        date: ""
-      }
+      member: []
     };
   },
   created() {
