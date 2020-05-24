@@ -103,7 +103,8 @@
           <td>
             <label for="encyPic01">
               請傳3-5張圖：
-              <input type="file" id="encyPic01" @change="fileSelect" multiple />
+              <input type="file" id="encyPic01" multiple />
+               <!-- <input type="file" id="encyPic01" @change="fileSelect" multiple /> -->
             </label>
 
             <img class="encyImg" src style="max-width: 200px;max-height: 200px;" />
@@ -137,7 +138,7 @@
                 onclick="javascript:history.back(1)"
                 value="取消"
               />
-              <input id="ecnyEditSubmit" type="submit" value="送出" @click="update" />
+              <input id="ecnyEditSubmit" type="button" value="送出" @click="update" />
             </div>
           </td>
         </tr>
@@ -164,7 +165,7 @@ export default {
     };
   },
   created() {
-    const api = "/api/adminEncyInfo.php";
+    const api = "/api/api_adminEncyInfo.php";
 
     this.$http.post(api).then(res => {
       const data = res.data;
@@ -184,70 +185,95 @@ export default {
     });
   },
   methods: {
-    fileSelect(e) {
-      const titleImg = e.target;
-      if (titleImg.files.length > 5) {
-        window.alert("最多上傳五張");
-        return;
-      } else if (titleImg.files.length < 3) {
-        window.alert("最少上傳三張");
-        return;
-      } else {
-        for (let i = 0; i < titleImg.files.length; i++) {
-          let readFile = new FileReader();
-          readFile.onload = function(e) {
-            document.getElementsByClassName("encyImg")[i].src = e.target.result;
-          };
-          readFile.readAsDataURL(titleImg.files[i]);
+    update: function() {
+      const api = "/api/api_adminEncyUpload.php";
+
+      for (let i in this.encyEdit) {
+        if (this.encyEdit[i] == "") {
+          alert(" 有欄位空白，請再檢查一次 ( ´Д`)y━･ ");
+          return;
         }
       }
 
-      // this.formData.append("file", titleImg.files[0]);
-    }, // end of fileSelect
+      this.$http.post(api, JSON.stringify(this.encyEdit)).then(res => {
+        const data = res.data;
 
-    update: function() {
-      for (
-        let i = 0;
-        i < document.getElementById("encyPic01").files.length;
-        i++
-      ) {
-        this.formData.append(
-          "encyPic01[]",
-          document.getElementById("encyPic01").files[i]
-        );
-      }
+        if (data == 1) {
+          alert("修改成功 ᕦ(ò_óˇ)ᕤ ");
 
-      if (document.getElementById("encyPic01").files == 0) {
-        alert("請上傳圖片");
-        return;
-      } else {
-        this.$http
-          .post("/api/api_adminEncyUpload.php", this.formData)
-          .then(res => {
-            this.encyEdit.titleImg = res.data.toString();
-
-            const api = "/api/api_adminEncyUpdate.php";
-
-            for (let i in this.encyEdit) {
-              if (this.encyEdit[i] == "") {
-                alert("有欄位空白，請再檢查一次 ﾚ(ﾟ∀ﾟ;)ﾍ ");
-                return;
-              }
-            }
-
-            this.$http.post(api, JSON.stringify(this.encyEdit)).then(res => {
-              const data = res.data;
-
-              if (data == 1) {
-                alert(" 修改成功 ᕦ(ò_óˇ)ᕤ ");
-
-                this.$router.go(0);
-              }
-            });
-          });
-      }
+          this.$router.go(0);
+        }
+      });
     }
   }
+
+
+  // 去掉 ＠change fileselect
+  // methods: {
+  //   fileSelect(e) {
+  //     const titleImg = e.target;
+  //     if (titleImg.files.length > 5) {
+  //       window.alert("最多上傳五張");
+  //       return;
+  //     } else if (titleImg.files.length < 3) {
+  //       window.alert("最少上傳三張");
+  //       return;
+  //     } else {
+  //       for (let i = 0; i < titleImg.files.length; i++) {
+  //         let readFile = new FileReader();
+  //         readFile.onload = function(e) {
+  //           document.getElementsByClassName("encyImg")[i].src = e.target.result;
+  //         };
+  //         readFile.readAsDataURL(titleImg.files[i]);
+  //       }
+  //     }
+
+  //     // this.formData.append("file", titleImg.files[0]);
+  //   }, // end of fileSelect
+
+  //   update: function() {
+  //     for (
+  //       let i = 0;
+  //       i < document.getElementById("encyPic01").files.length;
+  //       i++
+  //     ) {
+  //       this.formData.append(
+  //         "encyPic01[]",
+  //         document.getElementById("encyPic01").files[i]
+  //       );
+  //     }
+
+  //     if (document.getElementById("encyPic01").files == 0) {
+  //       alert("請上傳圖片");
+  //       return;
+  //     } else {
+  //       this.$http
+  //         .post("/api/api_adminEncyUpload.php", this.formData)
+  //         .then(res => {
+  //           this.encyEdit.titleImg = res.data.toString();
+
+  //           const api = "/api/api_adminEncyUpdate.php";
+
+  //           for (let i in this.encyEdit) {
+  //             if (this.encyEdit[i] == "") {
+  //               alert("有欄位空白，請再檢查一次 ﾚ(ﾟ∀ﾟ;)ﾍ ");
+  //               return;
+  //             }
+  //           }
+
+  //           this.$http.post(api, JSON.stringify(this.encyEdit)).then(res => {
+  //             const data = res.data;
+
+  //             if (data == 1) {
+  //               alert(" 修改成功 ᕦ(ò_óˇ)ᕤ ");
+
+  //               this.$router.go(0);
+  //             }
+  //           });
+  //         });
+  //     }
+  //   }
+  // }
 };
 </script>
 
