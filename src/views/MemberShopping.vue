@@ -91,7 +91,7 @@ export default {
     //   return sum;
     // }
   },
-  created() {
+  activated() {
     // 獲取 localStorage 物件
     let storage = localStorage;
 
@@ -153,6 +153,7 @@ export default {
       let index = this.cart.indexOf(item);
 
       if (index < 0) {
+        item["sellerNo"] = data.no;
         this.cart.push(item);
 
         data.total += item.amount * item.price;
@@ -185,7 +186,22 @@ export default {
       storage["itemNo"] = itemArr.toString() + ",";
     },
     nextPage: function(no) {
-      console.log(this.cart);
+      let cart = [];
+      let j = 0;
+
+      for (let i = 0; i < this.cart.length; i++) {
+        if (this.cart[i].sellerNo == no) {
+          cart[j] = this.cart[i];
+          j++;
+        }
+      }
+
+      if (this.cart.length == 0) {
+        alert("請勾選要結帳商品");
+      } else {
+        this.$emit("setCart", this.cart);
+        this.$router.push({ name: "CheckInfo" });
+      }
     }
   }
 };

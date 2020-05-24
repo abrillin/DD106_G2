@@ -59,7 +59,7 @@
       <button type="button" class="btn_drawer">&#9658;</button>
     </aside>
     <keep-alive>
-      <router-view />
+      <router-view @setCart="setCart" :getCart="cart" @setInfo="setInfo" :getInfo="info" />
     </keep-alive>
   </div>
 </template>
@@ -79,7 +79,9 @@ export default {
         email: "",
         img: ""
       },
-      farmStatus: false
+      farmStatus: false,
+      cart: {},
+      info: {}
     };
   },
   created() {
@@ -187,6 +189,12 @@ export default {
           alert("上傳失敗！");
         }
       });
+    },
+    setCart: function(cart) {
+      this.cart = cart;
+    },
+    setInfo: function(info) {
+      this.info = info;
     }
     // checkFarm: function() {
     //   const api = "/api/api_checkFarm.php";
