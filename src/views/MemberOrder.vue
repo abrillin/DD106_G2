@@ -28,7 +28,7 @@
                             <table class="orderTab">
                                 <thead>
                                     <tbody>
-                                        <tr>
+                                        <tr>                                    
                                             <td>{{this.order[this.i].date}}</td>
                                             <td>{{this.order[this.i].total}}</td>
                                             <td v-if="this.order[this.i].payment_status == 1">完成</td>
@@ -64,12 +64,12 @@
                             <div class="detailcontent">
                                 <table class="orderTab">
                                     <tbody>
-                                        <tr>
-                                            <td>xxxxx</td>
-                                            <td>台南麻豆文旦</td>
-                                            <td>$50</td>
-                                            <td>10</td>
-                                            <td>$500</td>
+                                        <tr v-for="i in item" :key="i.no">
+                                            <td>{{i.no}}</td>
+                                            <td>{{i.name}}</td>
+                                            <td>{{i.price}}</td>
+                                            <td>{{i.amount}}</td>
+                                            <td>{{i.amount * i.price}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -78,9 +78,9 @@
 
                     </div>
                     <div class="total">
-                        <p>商品金額 $130</p>
+                        <p><span>商品金額:$</span><span>{{this.order[this.i].total}}</span></p>
                         <p>運費 $80</p>
-                        <p>總金額 $1380</p>
+                        <p><span>總金額:$</span><span>{{parseInt(this.order[this.i].total) + 80}}</span></p>
                     </div>
                     <div class="address">
                         <div class="address_left">
@@ -90,36 +90,32 @@
                             <p>運送方式:</p>
                         </div>
                         <div class="address_right">
-                            <p>資策會DD106</p>
-                            <p>0912-345678</p>
-                            <p>桃園市中壢區中大路300-1號</p>
-                            <p>宅配到府<span>(運送編號:28800118667)</span></p>
+                            <p>{{this.order[this.i].name}}</p>
+                            <p>{{"0" + this.order[this.i].phone}}</p>
+                            <p>{{this.order[this.i].address}}</p>
+                            <p>{{this.order[this.i].transport}}</p>
                         </div>
                     </div>
                     <div class="Evaluation">
                         <div class="Evaluation_top">
-                            <p>訂單已完成，可以給評價囉!</p>
+                            <p class="Evaluation_text">尚未付款</p>
                         </div>
                         <div class="star">
                             <div class="starimg">
-                                <img src="@/assets/memberstar.svg" alt="">
+                                <img :src="this.srcon" value="1" @click="staron($event)" class="staron">
+                                <img :src="this.srcoff" value="2" @click="staron($event)" class="staron">
+                                <img :src="this.srcoff" value="3" @click="staron($event)" class="staron">
+                                <img :src="this.srcoff" value="4" @click="staron($event)" class="staron">
+                                <img :src="this.srcoff" value="5" @click="staron($event)" class="staron">
                             </div>
-                            <div class="starimg">
-                                <img src="@/assets/memberstar.svg" alt="">
-                            </div>
-                            <div class="starimg">
-                                <img src="@/assets/memberstar.svg" alt="">
-                            </div>
-                            <div class="starimg">
-                                <img src="@/assets/memberstar.svg" alt="">
-                            </div>
+                         
                             <div class="Evaluation_submit">
-                                <a href="#">
+                                <!-- <a href="#">
                                     <p>不想給了</p>
-                                </a>
-                                <a href="">
-                                    <p>送出</p>
-                                </a>
+                                </a> -->
+                              
+                                    <button class="starSend" @click="starSend">送出</button>
+                             
                             </div>
                         </div>
                     </div>
@@ -129,9 +125,9 @@
 
             <div class="pagination_block">
                 <ul class="pagination">
-                    <li>&lt;</li>
-                    <li v-for="i in order" :value="i.no" :key="i.no">{{i.no}}</li>
-                    <li>&gt;</li>
+                    <li @click="prevpage($event)">&lt;</li>
+                    <li v-for="(i,index) in order" :key="i.no" @click="changepage($event)" class="pageon">{{index +1}}</li>
+                    <li @click="nextpage($event)">&gt;</li>
                 </ul>
             </div>
         </div>
@@ -140,12 +136,23 @@
 
 <script>
 import $ from "jquery";
+import srcon1 from '@/assets/memberorder/staron.svg'
+import srcoff1 from '@/assets/memberorder/staroff.svg'
 export default {
     data(){
         return{
+            srcon:srcon1,
+            srcoff:srcoff1,
+            star:{
+                star:1,
+                orderno:0,
+                sellerno:0,
+            },
+            total:0,
             i:0,
             memno:"",
-            order:[],
+            order:[[]],
+            item:[],
         };
     },
     created(){
@@ -164,24 +171,122 @@ export default {
             .post(api2,JSON.stringify(this.memno)) 
             .then((res) => { 
                 this.order = res.data; 
-                console.log(this.order);
+             
                 
             });           
         }); 
     },
-    mounted() {
-        var i = 0;
-        $(".list_slide").click(function () {
-            if (i == 0) {
-                $("#ploygon").css("transform", "rotateX(180deg)");
-                i = 1;
-            } else {
-                $("#ploygon").css("transform", "rotateX(0deg)");
-                i = 0;
-            }
+    updated() {
+       
+        const api = "/api/api_orderItem.php";
 
-            $(".slide").toggleClass("display");
+        this.$http 
+        .post(api,JSON.stringify(this.order[this.i].no)) 
+        .then((res) => {
+            this.item = res.data;
         });
-    }
+      
+        if(this.order[this.i].payment_status == 0){
+            $('.starSend').attr('disabled', true);
+        }else if(this.order[this.i].payment_status == 1){
+            $('.Evaluation_text').text("付款完成可以給評價了");  
+            if(this.order[this.i].status  == 1){
+                $('.Evaluation_text').text("評價完成");
+                $('.starSend').attr('disabled', true);  
+            }
+        };
+
+        document.getElementsByClassName('pageon')[this.i].classList.add("-on");
+
+
+             
+    },
+    mounted(){
+
+    },
+    methods:{
+        starSend:function(){
+         
+            this.star.sellerno = this.order[this.i].seller_no;
+            this.star.orderno = this.order[this.i].no;
+             this.$http 
+            .post("/api/api_orderReview.php",JSON.stringify(this.star)) 
+            .then((res) => {
+                if(res.data == 0){
+                    alert("評價成功");
+                    this.$router.go(0);
+                }else{
+                    alert("評價失敗");
+                    this.$router.go(0);
+                }
+                
+            });
+        },
+        changepage:function($event){
+           this.i = $event.target.innerHTML - 1; 
+           $("ul > li").removeClass("-on");
+           $event.target.classList.add("-on");
+        },
+        prevpage:function($event){
+            if(this.i>=1 && this.i<=this.order.length){
+                this.i -- ;
+            }else{
+                this.i = this.i;
+            }
+            $("ul > li").removeClass("-on");
+            document.getElementsByClassName('pageon')[this.i].classList.add("-on");
+        },
+        nextpage:function($event){
+            if(this.i>=0 && this.i<this.order.length -1){
+                this.i ++ ;
+            }else{
+                this.i = this.i;
+            }
+            $("ul > li").removeClass("-on");
+            document.getElementsByClassName('pageon')[this.i].classList.add("-on");
+        },
+        staron:function($event){
+            if($event.target.getAttribute("value") == 1){
+                document.getElementsByClassName('staron')[0].src = this.srcon;
+                document.getElementsByClassName('staron')[1].src = this.srcoff;
+                document.getElementsByClassName('staron')[2].src = this.srcoff;
+                document.getElementsByClassName('staron')[3].src = this.srcoff;
+                document.getElementsByClassName('staron')[4].src = this.srcoff;
+                this.star.star = 1;             
+            }else if($event.target.getAttribute("value") == 2){
+                document.getElementsByClassName('staron')[0].src = this.srcon;
+                document.getElementsByClassName('staron')[1].src = this.srcon;
+                document.getElementsByClassName('staron')[2].src = this.srcoff;
+                document.getElementsByClassName('staron')[3].src = this.srcoff;
+                document.getElementsByClassName('staron')[4].src = this.srcoff; 
+                this.star.star = 2;  
+            }
+            else if($event.target.getAttribute("value") == 3){
+                document.getElementsByClassName('staron')[0].src = this.srcon;
+                document.getElementsByClassName('staron')[1].src = this.srcon;
+                document.getElementsByClassName('staron')[2].src = this.srcon;
+                document.getElementsByClassName('staron')[3].src = this.srcoff;
+                document.getElementsByClassName('staron')[4].src = this.srcoff; 
+                this.star.star = 3;  
+            }
+            else if($event.target.getAttribute("value") == 4){
+                document.getElementsByClassName('staron')[0].src = this.srcon;
+                document.getElementsByClassName('staron')[1].src = this.srcon;
+                document.getElementsByClassName('staron')[2].src = this.srcon;
+                document.getElementsByClassName('staron')[3].src = this.srcon;
+                document.getElementsByClassName('staron')[4].src = this.srcoff;
+                this.star.star = 4;   
+            }
+            else if($event.target.getAttribute("value") == 5){
+                document.getElementsByClassName('staron')[0].src = this.srcon;
+                document.getElementsByClassName('staron')[1].src = this.srcon;
+                document.getElementsByClassName('staron')[2].src = this.srcon;
+                document.getElementsByClassName('staron')[3].src = this.srcon;
+                document.getElementsByClassName('staron')[4].src = this.srcon;
+                this.star.star = 5;   
+            }
+            
+        },
+    },
 };
 </script>
