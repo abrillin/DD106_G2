@@ -31,27 +31,8 @@ try {
     if ($encyEdit->rowCount() == 0) {
         echo "0";
     } else {
-
-        $sql = "select * from `encyclopedia` where no=:encyno";
-        $updateEncy = $pdo->prepare($sql);
-        $updateEncy->bindValue(":no", $encyEditInfo->encyno);
-        $updateEncy->execute();
-
-        if ($updateEncy->rowCount() == 0) {
-            echo "";
-        } else {
-
-            $editRow = $updateEncy->fetch(PDO::FETCH_ASSOC);
-
-            $item = array("no", "title", "type", "content", "question", "answer", "title_img", "video");
-
-            for ($i = 0; $i < count($item); $i++) {
-
-                $_SESSION["ency_" . $item[$i]] = $editRow[$item[$i]];
-            }
-
-            echo "1";
-        }
+        echo "1";
+        
     }
 } catch (PDOException $e) {
     $error = ["error" => $e->getMessage()];

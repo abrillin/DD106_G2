@@ -1,32 +1,39 @@
 <?php 
-$no = $_REQUEST["encyno"];
-$errMsg = "";
+header('Access-Control-Allow-Origin:*'); //允許所有來源訪問
+header('Access-Control-Allow-Method:POST,GET'); //允許POST、GET訪問方式
 
+session_start();
 try {
     require_once("connectDB.php");
     
-	$sql = "select * from `encyclopedia` where `no`=:encyno";
+	$sql = "select * from `encyclopedia` where `no`=:no";
     $encyEdit = $pdo->prepare($sql);
 
     $encyEditInfo = json_decode(file_get_contents("php://input"));
 
-    $encyEdit-> bindValue(":no", $encyEditInfo->encyno);
+    $encyEdit-> bindValue(":no", $encyEditInfo);
 
-    // $encyEdit -> bindValue(":title", $encyEditInfo->title);
-    // $encyEdit -> bindValue(":type", $encyEditInfo->type);
-    // $encyEdit -> bindValue(":content", $encyEditInfo->content);
-    // $encyEdit -> bindValue(":question", $encyEditInfo->question);
-    // $encyEdit -> bindValue(":answer", $encyEditInfo->answer);
-    // $encyEdit -> bindValue(":titleImg", $encyEditInfo->titleImg);
-    // $encyEdit -> bindValue(":video", $encyEditInfo->video);
+
     $encyEdit -> execute();
 
-    $editrow = $encyEdit->fetchObject(); // 抓欲修改的資料內容
+  if ($encyEdit->rowCount() == 0) {
+      echo "0";
+  } else {
 
-    echo json_encode($editrow); // 傳回去帶資料到修改商品的頁面上 AdminEncyInfo
+      $encyRow = $encyEdit->fetch(PDO::FETCH_ASSOC);
+
+      $item = array("no", "title", "content", "title_img", "video", "question", "answer", "type");
+
+      for ($i = 0; $i < count($item); $i++) {
+
+          $_SESSION["ency_" . $item[$i]] = $encyRow[$item[$i]];
+      }
+
+      echo "1";
+  }
 
 }catch(PDOException $e){
-  $errMsg .= "錯誤原因 : ".$e -> getMessage(). "<br>";
-  $errMsg .= "錯誤行號 : ".$e -> getLine(). "<br>";
+  $error = ["error" => $e->getMessage()];
+  echo json_encode($error);
 }
 ?>  
