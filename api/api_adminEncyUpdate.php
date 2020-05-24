@@ -8,7 +8,7 @@ try {
 
     // no不能變其他都可以
 
-    $sql = "update `encyclopedia` set `title`=:title, `type`=:type, `content`=:content, `question`=:question, `answer`=:answer, `title_img`:=title_img, `video`=:video where `no`=:no";
+    $sql = "update `encyclopedia` set `title`=:title, `type`=:type, `content`=:content, `question`=:question, `answer`=:answer, `title_img`:=title_img, `video`=:video where `no`=:encyno";
     
 
     $encyEdit = $pdo->prepare($sql);
@@ -17,7 +17,7 @@ try {
     // 使用file_get_contents獲取php://input內容，由json檔轉為物件/陣列
     // 前面表單輸入進來的資料會在以下被處理
 
-    $encyEdit-> bindValue(":no", $encyEditInfo->no);
+    $encyEdit-> bindValue(":no", $encyEditInfo->encyno);
     $encyEdit -> bindValue(":title", $encyEditInfo->title);
     $encyEdit -> bindValue(":type", $encyEditInfo->type);
     $encyEdit -> bindValue(":content", $encyEditInfo->content);
@@ -32,9 +32,9 @@ try {
         echo "0";
     } else {
 
-        $sql = "select * from `encyclopedia` where no=:no";
+        $sql = "select * from `encyclopedia` where no=:encyno";
         $updateEncy = $pdo->prepare($sql);
-        $updateEncy->bindValue(":no", $encyEditInfo->no);
+        $updateEncy->bindValue(":no", $encyEditInfo->encyno);
         $updateEncy->execute();
 
         if ($updateEncy->rowCount() == 0) {

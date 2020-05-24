@@ -32,7 +32,13 @@
                 <td>{{row.content}}</td>
                 <td>
                   <router-link class to="/admin/center/encyInfo" style="outline: none;">
-                    <img class="editImg" src="@/assets/icon/edit_btn.svg" :id="row.no" alt />
+                    <img
+                      class="editImg"
+                      src="@/assets/icon/edit_btn.svg"
+                      :id="row.no"
+                      alt
+                      @click="updateSession($event)"
+                    />
                   </router-link>
                 </td>
               </tr>
@@ -51,7 +57,8 @@ export default {
       title: "",
       type: "",
       content: "",
-      data: []
+      data: [],
+      encyno: ""
     };
   },
   created() {
@@ -69,7 +76,13 @@ export default {
     editPage(url, param) {
       this.$router.push({ name: url });
       // this.$router.push({ name: 'Order', params: { userId: 123 }})
-    }
+    },
+    updateSession: function($event) {
+      this.encyno = $event.target.no;
+      const api = "/api/api_adminEncysession.php";
+
+      this.$http.post(api, JSON.stringify(this.encyno)).then(res => {});
+    } // end of updateSession
   }
 };
 </script>

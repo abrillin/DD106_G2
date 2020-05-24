@@ -1,8 +1,8 @@
 <?php
 session_start();
-if (isset($_SESSION["ency_no"])) {
+if (isset($_SESSION["ency_encyno"])) {
     $encyEdit = array(
-        "no" => $_SESSION["ency_no"],
+        "no" => $_SESSION["ency_encyno"],
         "title" => $_SESSION["ency_title"],
         "type" => $_SESSION["ency_type"],
         "content" => $_SESSION["ency_content"],
