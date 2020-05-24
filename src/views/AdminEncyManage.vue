@@ -7,7 +7,12 @@
       </router-link>
       <section class="EncytableSection">
         <div class="enct-header">
-          <table class="EncymanageTab" cellpadding="0" cellspacing="0" border="0">
+          <table
+            class="EncymanageTab"
+            cellpadding="0"
+            cellspacing="0"
+            border="0"
+          >
             <thead>
               <tr>
                 <th>編號</th>
@@ -21,17 +26,26 @@
         </div>
 
         <div class="enct-content">
-          <table class="EncymanageTab" cellpadding="0" cellspacing="0" border="0">
+          <table
+            class="EncymanageTab"
+            cellpadding="0"
+            cellspacing="0"
+            border="0"
+          >
             <tbody>
               <tr v-for="row in data" :key="row.no">
-                <td>{{row.no}}</td>
-                <td>{{row.title}}</td>
+                <td>{{ row.no }}</td>
+                <td>{{ row.title }}</td>
                 <!-- 水果標籤 -->
-                <td>{{row.type}}</td>
+                <td>{{ row.type }}</td>
                 <!-- 水果產季 -->
-                <td>{{row.content}}</td>
+                <td>{{ row.content }}</td>
                 <td>
-                  <router-link class to="/admin/center/encyInfo" style="outline: none;">
+                  <router-link
+                    class
+                    to="/admin/center/encyInfo"
+                    style="outline: none;"
+                  >
                     <img
                       class="editImg"
                       src="@/assets/icon/edit_btn.svg"
@@ -66,7 +80,7 @@ export default {
 
     this.$http // $http 是將axios封裝後的promise寫法
       .post(api) // 用axios post info到此api
-      .then(res => {
+      .then((res) => {
         // 如果可以傳送出去的話會response data: []裡的資料回來
 
         this.data = res.data; // 第一個data是指data()裡的data[]; res.data 代表只取res中的data屬性中的資料
