@@ -23,15 +23,16 @@
                     class="checkbox"
                     :value="data.seller + item.no"
                     v-model="status"
-                    @change="checkbox(data, item)"
+                    @change="checkbox(data, item, data.no + data.seller)"
                     type="checkbox"
+                    :name="data.no + data.seller"
                   />
                   <label :for="'checkbox' + item.no"></label>
                 </div>
               </div>
 
               <div class="td img">
-                <img src="@/assets/shop/item_001.png" />
+                <img :src="'/api/'+item.img" />
               </div>
               <div class="td name">{{ item.name }}</div>
               <div class="td price">$ {{ item.price }}</div>
@@ -52,12 +53,12 @@
               </div>
             </div>
             <p class="total" v-if="arr[0].seller != ''">總金額 {{ data.total }} 元</p>
-            <router-link
+            <button
               v-if="arr[0].seller != ''"
-              to="/main/member/checkInfo"
               type="button"
               class="btn"
-            >進行結帳</router-link>
+              @click="nextPage(data.no)"
+            >進行結帳</button>
           </div>
         </div>
       </div>
@@ -76,7 +77,8 @@ export default {
         }
       ],
       cart: [],
-      status: []
+      status: [],
+      check: []
     };
   },
   computed: {
@@ -89,26 +91,35 @@ export default {
     //   return sum;
     // }
   },
-  created() {
+  activated() {
     // 獲取 localStorage 物件
     let storage = localStorage;
-    // 獲取物件內的 itemNo 欄位值，並用 , 符號切開
-    let itemArr = storage["itemNo"];
-    // 獲取除去最後一個 , 的字串
-    itemArr = itemArr.substr(0, itemArr.length - 1);
 
-    const api = "/api/api_shopping.php";
+    if (storage["itemNo"]) {
+      // 獲取物件內的 itemNo 欄位值，並用 , 符號切開
+      let itemArr = storage["itemNo"];
+      // 獲取除去最後一個 , 的字串
+      itemArr = itemArr.substr(0, itemArr.length - 1);
 
-    this.$http.post(api, JSON.stringify(itemArr)).then(res => {
-      const data = res.data;
-      this.arr = data;
+      const api = "/api/api_shopping.php";
 
-      for (let i = 0; i < this.arr.length; i++) {
-        for (let j = 0; j < this.arr[i].item.length; j++) {
-          this.arr[i].item[j]["sub"] = 0;
+      this.$http.post(api, JSON.stringify(itemArr)).then(res => {
+        const data = res.data;
+        this.arr = data;
+
+        for (let i = 0; i < this.arr.length; i++) {
+          for (let j = 0; j < this.arr[i].item.length; j++) {
+            // 新增響應式屬性
+            this.$set(this.arr[i].item[j], "sub", 0);
+            this.$set(this.arr[i].item[j], "amount", 1);
+            // this.arr[i].item[j]["amount"] = 1;
+
+            // 只取第一張圖片
+            this.arr[i].item[j]["img"] = data[i].item[j].img.split(",")[0];
+          }
         }
-      }
-    });
+      });
+    }
   },
   methods: {
     setAmount: function(data, item) {},
@@ -138,10 +149,11 @@ export default {
         }
       }
     },
-    checkbox: function(data, item) {
+    checkbox: function(data, item, name) {
       let index = this.cart.indexOf(item);
 
       if (index < 0) {
+        item["sellerNo"] = data.no;
         this.cart.push(item);
 
         data.total += item.amount * item.price;
@@ -172,6 +184,24 @@ export default {
       itemArr.splice(index, 1);
 
       storage["itemNo"] = itemArr.toString() + ",";
+    },
+    nextPage: function(no) {
+      let cart = [];
+      let j = 0;
+
+      for (let i = 0; i < this.cart.length; i++) {
+        if (this.cart[i].sellerNo == no) {
+          cart[j] = this.cart[i];
+          j++;
+        }
+      }
+
+      if (this.cart.length == 0) {
+        alert("請勾選要結帳商品");
+      } else {
+        this.$emit("setCart", this.cart);
+        this.$router.push({ name: "CheckInfo" });
+      }
     }
   }
 };

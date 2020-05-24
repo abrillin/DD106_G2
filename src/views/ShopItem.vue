@@ -127,7 +127,7 @@
       <div class="SellerInformationBox">
         <div class="SellerInformation">
           <img
-            :src="'../assets/shop/' + shopseller.img"
+            :src="shopseller.img"
             alt
             height="60px"
             width="60px"
