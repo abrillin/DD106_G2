@@ -20,6 +20,14 @@ div.Order {
     font-size: 3rem;
   }
 
+  .order_zero {
+    font-size: 2rem;
+    color: #007552;
+    text-align: center;
+    margin-top: 100px;
+    display: none;
+  }
+
   .Order_bottom {
     display: block;
     text-align: center;

@@ -5,6 +5,7 @@
                 <h2>訂單管理</h2>
             </div>
         </div>
+        <div class="order_zero">目前尚無訂單</div>
         <div class="Order_bottom">
             <div class="Orderlist">
                 <div class="list_1">
@@ -155,8 +156,9 @@ export default {
             item:[],
         };
     },
+  
     created(){
-
+        
         const api = "/api/api_memberstatus.php";
 
         this.$http 
@@ -169,10 +171,14 @@ export default {
 
             this.$http 
             .post(api2,JSON.stringify(this.memno)) 
-            .then((res) => { 
-                this.order = res.data; 
-             
-                
+            .then((res) => {
+                if(res.data = []){
+                    $('.Order_bottom').hide();
+                    $('.order_zero').show();
+                   
+                }else{
+                    this.order = res.data; 
+                }            
             });           
         }); 
     },
