@@ -58,7 +58,7 @@ export default {
       type: "",
       content: "",
       data: [],
-      encyno: ""
+      encyno: "",
     };
   },
   created() {
@@ -77,12 +77,14 @@ export default {
       this.$router.push({ name: url });
       // this.$router.push({ name: 'Order', params: { userId: 123 }})
     },
+    // 按了click之後要將特定百科內容的編號傳Encysession.php連接資料庫找到該編號對應的內容
+    // 將內容在adminInfo.vue上呈現，做動態修改
     updateSession: function($event) {
-      this.encyno = $event.target.no;
+      this.encyno = $event.target.id;
       const api = "/api/api_adminEncysession.php";
 
       this.$http.post(api, JSON.stringify(this.encyno)).then(res => {});
-    } // end of updateSession
-  }
+    }, // end of updateSession
+  },
 };
 </script>

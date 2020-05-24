@@ -63,7 +63,6 @@
             </select>
           </td>
         </tr>
-
         <tr>
           <th>
             <label for="encyIntro">介紹</label>
@@ -88,7 +87,6 @@
             <textarea name="encyA" id="encyA" v-model="encyEdit.answer"></textarea>
           </td>
         </tr>
-
         <tr>
           <th>圖片</th>
 
@@ -201,7 +199,6 @@ export default {
     },
 
     // 資料撈完後傳到php
-
     editEncyI: function() {
       for (
         let i = 0;
@@ -241,10 +238,7 @@ export default {
                 alert(" 資料新增完成 ٩(･ิᴗ･ิ๑)۶ ");
                 this.$router.go(-1);
               });
-
-              
           });
-
       }
     }
   }
