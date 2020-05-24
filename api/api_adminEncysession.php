@@ -23,7 +23,7 @@ try {
 
     $editrow = $encyEdit->fetchObject(); // 抓欲修改的資料內容
 
-    echo json_encode($editrow); // 傳回去帶資料到修改商品的頁面上
+    echo json_encode($editrow); // 傳回去帶資料到修改商品的頁面上 AdminEncyInfo
 
 }catch(PDOException $e){
   $errMsg .= "錯誤原因 : ".$e -> getMessage(). "<br>";

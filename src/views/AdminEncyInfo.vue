@@ -11,7 +11,7 @@
           <th>
             <label for="encyNo">編號</label>
           </th>
-          <td>{{ encyEdit.no }}</td>
+          <td>{{ encyEdit.encyno }}</td>
         </tr>
 
         <tr>
@@ -160,7 +160,8 @@ export default {
         question: "", // 農知識問題
         answer: "", // 農知識答案
         titleImg: "",
-        video: ""
+        video: "",
+        encyno: ""
       }
     };
   },
@@ -186,7 +187,7 @@ export default {
   },
   methods: {
     update: function() {
-      const api = "/api/api_adminEncyUpload.php";
+      const api = "/api/api_adminEncyUpdate.php";
 
       for (let i in this.encyEdit) {
         if (this.encyEdit[i] == "") {
