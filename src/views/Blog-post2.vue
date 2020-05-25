@@ -687,6 +687,7 @@
 
       @media (max-width: 576px) {
         // padding-top: 20%;
+        padding-bottom: 10px;
         text-align: end;
         margin-right: 5px;
       }
@@ -944,11 +945,14 @@
           }
         }
         .blogPost2ButtonMore {
-          width: 10%;
+          width: 14%;
           margin-top: 3%;
           margin-left: 25%;
           @media (max-width: 1600px) {
             margin-left: 45%;
+          }
+          >.btn-more{
+            height: 30px;
           }
         }
       }
