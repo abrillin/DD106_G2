@@ -103,15 +103,17 @@
           <td>
             <label for="encyPic01">
               請傳3-5張圖：
-              <input type="file" id="encyPic01" multiple  @change="fileSelect" />
+              <input type="file" id="encyPic01" multiple @change="fileSelect" />
               <!-- <input type="file" id="encyPic01" @change="fileSelect" multiple /> -->
             </label>
 
-            <img class="encyImg" src style="max-width: 200px;max-height: 200px;" />
-            <img class="encyImg" src style="max-width: 200px;max-height: 200px;" />
-            <img class="encyImg" src style="max-width: 200px;max-height: 200px;" />
-            <img class="encyImg" src style="max-width: 200px;max-height: 200px;" />
-            <img class="encyImg" src style="max-width: 200px;max-height: 200px;" />
+            <div class="UploadImg">
+            <img class="encyImg" src alt />
+            <img class="encyImg" src alt />
+            <img class="encyImg" src alt />
+            <img class="encyImg" src alt />
+            <img class="encyImg" src alt />
+            </div>
 
             <!--
                   <img id:"encyImg" :src="encyEdit.titleImg" style="max-width: 200px;max-height: 200px;" />
@@ -151,9 +153,8 @@
 import $ from "jquery";
 export default {
   data() {
-    
     return {
-      formData:new FormData(),
+      formData: new FormData(),
       encyEdit: {
         no: "",
         title: "", // 水果名，當標籤用
@@ -175,7 +176,7 @@ export default {
     this.$http.post(api).then(res => {
       // 用axios post info到此api
       // 如果可以傳送出去的話會response data: []裡的資料回來
-    
+
       const data = res.data;
       //  res.data 代表只取res中的data屬性中的資料
       // 這裡的第二個data是axios取回資料的內容
@@ -199,18 +200,14 @@ export default {
       let imgArr = imgStr.split(",");
 
       imgArr.forEach((img, index) => {
-        
-        imgList[index].src = "/api/"+imgArr[index];
+        imgList[index].src = "/api/" + imgArr[index];
       });
-      
-      
     });
   },
   methods: {
     // 修改後按下送出，更新內容會傳到另一隻更新資料庫資料的php
     update: function() {
-      
-       for (
+      for (
         let i = 0;
         i < document.getElementById("encyPic01").files.length;
         i++
@@ -221,23 +218,46 @@ export default {
         );
       }
 
-      if(document.getElementById("encyPic01").files.length >=3 && document.getElementById("encyPic01").files.length <=5){
+      if (
+        document.getElementById("encyPic01").files.length >= 3 &&
+        document.getElementById("encyPic01").files.length <= 5
+      ) {
         this.$http
           .post("/api/api_adminEncyUpload.php", this.formData)
-          .then((res) => {
+          .then(res => {
             // console.log(res.data);
-            
+
             this.encyEdit.titleImg = res.data.toString();
 
+            const api = "/api/api_adminEncyUpdate.php";
+
+            // console.log(this.encyEdit);
+
+            this.$http.post(api, JSON.stringify(this.encyEdit)).then(res => {
+              const data = res.data;
+
+              for (let i in this.encyEdit) {
+                if (this.encyEdit[i] == "") {
+                  alert(" 有欄位空白，請再檢查一次 ( ´Д`)y━･ ");
+                  return;
+                }
+              }
+
+              if (data == 1) {
+                alert("修改成功 ᕦ(ò_óˇ)ᕤ ");
+
+                this.$router.go(-1);
+              }
+            });
+          });
+      }
 
       const api = "/api/api_adminEncyUpdate.php";
 
       // console.log(this.encyEdit);
-      
 
       this.$http.post(api, JSON.stringify(this.encyEdit)).then(res => {
         const data = res.data;
-
         for (let i in this.encyEdit) {
           if (this.encyEdit[i] == "") {
             alert(" 有欄位空白，請再檢查一次 ( ´Д`)y━･ ");
@@ -247,49 +267,21 @@ export default {
 
         if (data == 1) {
           alert("修改成功 ᕦ(ò_óˇ)ᕤ ");
-
           this.$router.go(-1);
         }
       });
-          });
+    },
+    fileSelect(e) {
+      for (
+        let i = 0;
+        i < document.getElementsByClassName("encyImg").length;
+        i++
+      ) {
+        document.getElementsByClassName("encyImg")[i].src = "";
       }
 
-      
-
-
-      const api = "/api/api_adminEncyUpdate.php";
-
-      console.log(this.encyEdit);
-      
-
-      this.$http.post(api, JSON.stringify(this.encyEdit)).then(res => {
-        const data = res.data;
-
-        for (let i in this.encyEdit) {
-          if (this.encyEdit[i] == "") {
-            alert(" 有欄位空白，請再檢查一次 ( ´Д`)y━･ ");
-            return;
-          }
-        }
-
-        if (data == 1) {
-          alert("修改成功 ᕦ(ò_óˇ)ᕤ ");
-
-          this.$router.go(-1);
-        }
-      });
-          
-
-
-
-    },
-    fileSelect(e){
-      for(let i = 0 ; i<document.getElementsByClassName('encyImg').length;i++){
-        document.getElementsByClassName('encyImg')[i].src = "";
-      };
-      
       //  var file = event.target.files;
-        const titleImg = e.target;
+      const titleImg = e.target;
       if (titleImg.files.length > 5) {
         window.alert("最多上傳五張");
         return;
@@ -305,7 +297,7 @@ export default {
           readFile.readAsDataURL(titleImg.files[i]);
         }
       }
-    },
+    }
   }
 };
 </script>
