@@ -4,8 +4,12 @@
       <aside class="msSideBar">
         <ul>
           <img class="mng_logo" src="@/assets/LOGO.svg" alt />
-          <span class="admin_name">園長
-            <span class="adminNameColor">{{admin.name}} </span> 巡邏中</span>
+          <span class="admin_name">
+            園長
+            <span class="adminNameColor">{{admin.name}}</span> 巡邏中
+            <button @click="logOut"><span> 下班 </span></button>
+          </span>
+
           <li>
             <router-link to="/admin/center/manage">管理員管理</router-link>
           </li>
@@ -20,7 +24,7 @@
           </li>
           <!-- <li>
             <router-link to="/admin/center/blog">果農日誌管理</router-link>
-          </li> -->
+          </li>-->
           <li>
             <router-link to="/admin/center/comment">日誌留言管理</router-link>
           </li>
@@ -51,10 +55,30 @@ export default {
     });
   },
   methods: {
-    // 3. c. 接到 loginStatus 的值（status），傳給 login
-    checkLogin(status) {
-      this.login = status;
-    },
-  },
+    logOut() {
+      // 抓sessoin裡面的管理員資料
+      // 如果有東西就清除 接著回到導入頁
+      const api = "/api/api_memberStatus.php";
+
+      this.$http.post(api).then(res => {
+        const data = res.data;
+
+        if (data == "") {
+          const api = "/api/api_adminLogOut.php";
+
+          this.$http.post(api);
+          this.login = false;
+          this.name = "";
+          localStorage.clear();
+
+          // this.$emit("logOut", false);
+          // 要跟navbar說我要登出ㄌ 但這邊沒有該父元素所以不用寫
+
+          alert(" 閃人囉，掰掰！！！ (๑´ỏ｀๑)zZ ");
+          this.$router.push("/");
+        }
+      });
+    }
+  }
 };
 </script>
