@@ -21,13 +21,6 @@
           <td>
             <select name="fruitTag" id="fruitTag" data-selected v-model="encyEdit.title">
               <option value selected="selected" disabled="disabled">請選擇</option>
-              <optgroup label="常年">
-                <option value="木瓜">木瓜</option>
-                <option value="鳳梨">鳳梨</option>
-                <option value="蓮霧">蓮霧</option>
-                <option value="香蕉">香蕉</option>
-                <option value="芭樂">芭樂</option>
-              </optgroup>
               <optgroup label="春季">
                 <option value="梅子">梅子</option>
                 <option value="李子">李子</option>
@@ -52,6 +45,13 @@
                 <option value="番茄">番茄</option>
                 <option value="棗子">棗子</option>
               </optgroup>
+               <optgroup label="常年">
+                <option value="木瓜">木瓜</option>
+                <option value="鳳梨">鳳梨</option>
+                <option value="蓮霧">蓮霧</option>
+                <option value="香蕉">香蕉</option>
+                <option value="芭樂">芭樂</option>
+              </optgroup>
             </select>
           </td>
         </tr>
@@ -63,11 +63,11 @@
           <td>
             <select name="fruitSeason" id="fruitSeason" data-selected v-model="encyEdit.type">
               <option value selected="selected" disabled="disabled">請選擇</option>
-              <option value="0">常年</option>
-              <option value="1">春季</option>
-              <option value="2">夏季</option>
-              <option value="3">秋季</option>
-              <option value="4">冬季</option>
+              <option value="0">春季</option>
+              <option value="1">夏季</option>
+              <option value="2">秋季</option>
+              <option value="3">冬季</option>
+              <option value="4">常年</option>
             </select>
           </td>
         </tr>
