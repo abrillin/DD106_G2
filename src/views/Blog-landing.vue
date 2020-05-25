@@ -1030,7 +1030,7 @@ export default {
         .getElementsByClassName('reportLightBox')[0]
         .setAttribute('style', 'display: block;');
     },
-    closeLightBox(){
+    closeLightBox() {
       document
         .getElementsByClassName('reportLightBox')[0]
         .setAttribute('style', 'display: none;');
