@@ -172,7 +172,7 @@ export default {
             this.$http 
             .post(api2,JSON.stringify(this.memno)) 
             .then((res) => {
-                if(res.data = []){
+                if(res.data.length == 0){
                     $('.Order_bottom').hide();
                     $('.order_zero').show();
                    
