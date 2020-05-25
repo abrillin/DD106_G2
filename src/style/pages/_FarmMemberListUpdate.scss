@@ -1,31 +1,28 @@
 div.FarmListUpdate {
-  display: inline-block;
-  background-color: #FBF8EF;
+  display: block;
+  background-color: #fbf8ef;
   width: calc(100% - 250px);
-  height: 100vh;
-  vertical-align: top;
+  float: right;
+
   box-sizing: border-box;
   padding: 60px 40px;
-  padding-top: 20px;
 
   @include rwd(medium) {
-    float: right;
     width: calc(100% - 200px);
   }
 
   @include rwd(small) {
-    float: none;
-    width: 100vw;
+    width: 100%;
     padding: 10% 5%;
   }
 
   .FarmListUpdate_head {
-    color: #F7C845;
+    color: #f7c845;
     font-size: 3rem;
 
-    >.FarmListUpdate_head_text {
-      >span.new {
-        color: #FFA978;
+    > .FarmListUpdate_head_text {
+      > span.new {
+        color: #ffa978;
         font-size: 20px;
         margin-left: 20px;
       }
@@ -37,11 +34,11 @@ div.FarmListUpdate {
     text-align: center;
     margin: 0 auto;
 
-    >.FarmListUpdatelist {
+    > .FarmListUpdatelist {
       margin-top: 40px;
       margin-left: 70px;
       line-height: 2;
-      @include rwd(large){
+      @include rwd(large) {
         margin-top: 40px;
         margin-left: 0;
         line-height: 2;
@@ -57,16 +54,17 @@ div.FarmListUpdate {
         padding-left: 0px;
       }
 
-      >.list_1 {
+      > .list_1 {
         display: inline-block;
-        border: 2px solid #F7C845;
+        border: 2px solid #f7c845;
         background-color: white;
         text-align: start;
         width: 768px;
         height: 100%;
         font-size: 17px;
-        transition: .5s ease;
-        @include rwd(large){
+        transition: 0.5s ease;
+
+        @include rwd(large) {
           width: 700px;
         }
         @include rwd(medium) {
@@ -85,43 +83,43 @@ div.FarmListUpdate {
           padding: 0 5px;
         }
 
-        >.farmlist {
+        > .farmlist {
           display: flex;
           flex-direction: column;
-          width: 94%;
-          margin-left: 20px;
+
           text-align: center;
-          border: 1px solid #F7C845;
+          border: 1px solid #f7c845;
+          width: 94%;
+          margin: 0 auto;
 
           @include rwd(mobile) {
-            width: 97%;
-            margin-left: 0px;
+            width: 100%;
           }
 
-          .listheader{
+          .listheader {
             display: flex;
-            background: #F7C845;
+            background: #f7c845;
           }
-          .listcontent{
+          .listcontent {
             display: flex;
             background: #fff;
           }
-          .orderTab{
-            table-layout: auto;
+          .orderTab {
+            width: 100%;
           }
-          th{
-            width: 180px;
+          th {
+            width: 25%;
             padding: 15px 0;
             text-align: center;
-            @include rwd(mobile){
+            @include rwd(mobile) {
               font-size: 13px;
             }
           }
-          td{
-            width: 180px;
+          td {
+            width: 25%;
             padding: 10px 0;
             text-align: center;
-            @include rwd(mobile){
+            @include rwd(mobile) {
               font-size: 13px;
             }
           }
@@ -129,139 +127,134 @@ div.FarmListUpdate {
 
         .listnum,
         .list_slide {
-          >p {
+          > p {
             padding-left: 10px;
             color: #007552;
           }
         }
 
-        >.list_slide {
+        > .list_slide {
           margin-left: 10px;
 
-          >img {
+          > img {
             margin-right: 5px;
-            transition: .5s ease;
+            transition: 0.5s ease;
           }
         }
 
-
-
-        >.slide {
+        > .slide {
           display: block;
 
-          >.FarmListDetail {
+          > .FarmListDetail {
             display: flex;
             flex-direction: column;
             width: 94%;
             margin-left: 20px;
             text-align: center;
-            border: 1px solid #F7C845;
+            border: 1px solid #f7c845;
 
             @include rwd(mobile) {
               width: 100%;
               margin-left: 0px;
             }
-            .detailheader{
+            .detailheader {
               display: flex;
               background: #f7c845;
             }
-            .detailcontent{
+            .detailcontent {
               display: flex;
               height: 80%;
               margin-top: 0;
               background: #fff;
             }
-            .orderTab{
-              table-layout: auto;
+            .orderTab {
+              width: 100%;
             }
-            th{
-              width: 145px;
+            th {
+              width: 20%;
               padding: 15px 0;
               text-align: center;
-              @include rwd(mobile){
+              @include rwd(mobile) {
                 font-size: 13px;
               }
             }
-            td{
-              width: 145px;
+            td {
+              width: 20%;
               padding: 10px 0;
               text-align: center;
-              @include rwd(mobile){
+              @include rwd(mobile) {
                 font-size: 13px;
               }
             }
-            
           }
         }
 
-        >.display {
+        > .display {
           display: none;
         }
 
         .total {
           display: block;
-          background-color: #FFD3C1;
+          background-color: #ffd3c1;
           margin: 20px 20px;
-          @include rwd(mobile){
+          @include rwd(mobile) {
             margin: 20px 10px;
           }
-          >p {
+          > p {
             text-align: end;
             padding-right: 10px;
             color: #007552;
           }
 
-          >p:first-child {
+          > p:first-child {
             padding-top: 10px;
           }
 
-          >p:last-child {
+          > p:last-child {
             padding-bottom: 10px;
-            color: #CC113C;
+            color: #cc113c;
           }
         }
 
         .address {
           display: block;
-          background-color: #FFD3C1;
+          background-color: #ffd3c1;
           margin: 20px 20px;
-          @include rwd(mobile){
+          @include rwd(mobile) {
             margin: 20px 10px;
           }
-          >.address_left {
+          > .address_left {
             display: inline-block;
 
-            >p {
+            > p {
               padding-left: 10px;
               color: #007552;
             }
           }
 
-          >.address_right {
+          > .address_right {
             display: inline-block;
 
-            >p {
+            > p {
               padding-left: 10px;
 
-              >span {
-                color: #CC113C;
+              > span {
+                color: #cc113c;
               }
             }
-
           }
         }
       }
-
     }
 
     .pagination_block {
       display: block;
       margin-top: 40px;
       margin-left: 100px;
-      @include rwd(large){
+      @include rwd(large) {
         margin-left: 10px;
       }
-      @include rwd(small){
+      @include rwd(small) {
         margin-left: 0px;
       }
       @include rwd(mobile) {
@@ -273,17 +266,17 @@ div.FarmListUpdate {
         padding-left: 2px;
       }
 
-      >ul.pagination {
+      > ul.pagination {
         list-style: none;
         margin: 0;
         padding: 0;
         font-size: 0;
         text-align: center;
 
-        >li {
+        > li {
           display: inline-block;
 
-          >a {
+          > a {
             display: inline-block;
             text-decoration: none;
 
@@ -301,37 +294,37 @@ div.FarmListUpdate {
             }
           }
 
-          >a.-on {
-            background-color: #FFD3C1;
+          > a.-on {
+            background-color: #ffd3c1;
             color: #007552;
           }
 
-          >a:hover {
-            background-color: #FFD3C1;
+          > a:hover {
+            background-color: #ffd3c1;
             color: #007552;
           }
         }
 
-        >li:first-child>a {
+        > li:first-child > a {
           display: inline-block;
           margin-right: 10px;
           background-color: #007552;
           color: white;
         }
 
-        >li:first-child>a:hover {
+        > li:first-child > a:hover {
           background-color: #007552;
           color: white;
         }
 
-        >li:last-child>a {
+        > li:last-child > a {
           border-right: 1px solid #007552;
           margin-left: 10px;
           background-color: #007552;
           color: white;
         }
 
-        >li:last-child>a:hover {
+        > li:last-child > a:hover {
           background-color: #007552;
           color: white;
         }
@@ -350,7 +343,6 @@ div.FarmListUpdate {
 //     width: 0px;
 //     height: 0px;
 // }
-
 
 /* 留意: 將最後一個 li 裡的 a，右邊框加回來 */
 /* 留意: 將最後一個 li 裡的 a，加上圓角 */
