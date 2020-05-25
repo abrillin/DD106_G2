@@ -91,6 +91,7 @@ div.FarmBlog {
         padding: 15px 0;
         text-align: center;
         word-wrap: break-word;
+        position: relative;
         @include rwd(mobile) {
           font-size: 1.3rem;
         }
@@ -109,9 +110,12 @@ div.FarmBlog {
             background: rgb(161, 161, 161);
             display: block;
             border-radius: 100px;
-            position: relative;
-            bottom: 10px;
-            left: 143px;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            margin: auto;
         }
         .after {
           content: '';

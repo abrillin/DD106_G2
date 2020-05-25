@@ -91,12 +91,11 @@ div.FarmOrder {
         padding: 15px 0;
         text-align: center;
         vertical-align: middle;
+        position: relative;
         word-wrap: break-word;
         @include rwd(mobile) {
           font-size: 1.3rem;
         }
-      }
-      tr{
         .statusBtn[type='checkbox']{
           height: 0;
           width: 0;
@@ -110,9 +109,12 @@ div.FarmOrder {
             background: rgb(161, 161, 161);
             display: block;
             border-radius: 100px;
-            position: relative;
-            bottom: 10px;
-            left: 143px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            margin: auto;
         }
         .after {
           content: '';
@@ -137,6 +139,7 @@ div.FarmOrder {
           width: 20px;
         }
       }
+      
       
     }
   }

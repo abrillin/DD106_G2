@@ -30,7 +30,8 @@
                 <td>{{item.price}}</td>
                 <td>{{item.date}}</td>
                 <td><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                                        for="switch">Toggle<div class="after"></div></label></td>
+                                        for="switch" >Toggle<div class="after"></div></label></td>
+                                        <!-- @click="toggleStatus(row.no,row.status)" -->
               </tr>
             </thead>
           </table>
@@ -79,6 +80,22 @@
           $(this).removeClass("color");
         }
       });
+
     },
+
+    // methods:{
+    //   toggleStatus(no,status){
+    //     const api = "/api/api_farmorderUpdate.php";
+    //     let x;
+
+    //     if(status == 1){
+    //       x= 0;
+    //     }else if(status == 1){
+    //       x = 1;
+    //     }
+
+    //     this.$http.post(api, JSON.strinify({no: no, status: x}));
+    //   },
+    // },
   };
 </script>
