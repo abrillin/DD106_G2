@@ -21,7 +21,7 @@ try {
     echo "1";
   } else {
 
-    $sql = "INSERT INTO `report_comment` (`no`, `reason`, `whistleblower_no`, `name`, `date`, `com_no`) VALUES (NULL, :reason, :whistleblower_no, :name1, :date1, :com_no)";
+    $sql = "INSERT INTO `report_comment` (`no`, `reason`, `whistleblower_no`, `name`, `date`, `com_no`, `status`) VALUES (NULL, :reason, :whistleblower_no, :name1, :date1, :com_no, 0)";
     $get_blog_content = $pdo->prepare($sql);
     $get_blog_content->bindValue(":reason", $frontInfo->reason);
     $get_blog_content->bindValue(":whistleblower_no", $_SESSION["member_no"]);
