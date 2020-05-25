@@ -17,7 +17,7 @@ export default {
   //   };
   // },
   // updated() {
-  //   this.img = "/api/" + this.data.img;
+  //   this.img = this.img + this.data.img;
   // }
 };
 </script>

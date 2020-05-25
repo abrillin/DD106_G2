@@ -3,11 +3,11 @@
     <h1>{{data.name}}</h1>
     <div class="summer_pic">
       <div>
-        <img id="big" :src="'/api/'+data.img[0]" />
+        <img id="big" :src="data.img[0]" />
       </div>
       <ul>
         <li v-for="(img, i) in data.img" :key="i">
-          <img :src="'/api/'+img" @click="changeImg($event)" />
+          <img :src="img" @click="changeImg($event)" />
         </li>
         <!-- <li>
           <img src="@/assets/book_img/spring/plum/plum01.jpg" @click="changeImg($event)" />

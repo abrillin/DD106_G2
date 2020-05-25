@@ -426,7 +426,7 @@ export default {
     };
 
     //資料庫連結
-    const api = "/api/api_shopseller.php";
+    const api = this.path + "api_shopseller.php";
 
     this.$http
       .post(api)

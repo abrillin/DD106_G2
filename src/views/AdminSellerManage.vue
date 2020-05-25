@@ -65,7 +65,7 @@ export default {
     };
   },
   created() {
-    const api = "/api/api_adminSellerManage.php";
+    const api = this.path + "api_adminSellerManage.php";
 
     this.$http
       .post(api) // 將api承接到的資料post出去
@@ -80,7 +80,7 @@ export default {
   },
   methods: {
     toggleStatus(no, status) {
-      const api = "/api/api_adminSellerUpdate.php";
+      const api = this.path + "api_adminSellerUpdate.php";
       let s;
 
       // 如果狀態是 1 (停權) 則切換成 0 (正常)

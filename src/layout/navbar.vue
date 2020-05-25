@@ -118,7 +118,7 @@ export default {
     };
   },
   created() {
-    const api = '/api/api_memberStatus.php';
+    const api = this.path + "api_memberStatus.php";
 
     this.$http.post(api).then((res) => {
       const data = res.data;
@@ -195,7 +195,7 @@ export default {
   },
   methods: {
     logout() {
-      const api = '/api/api_memberLogout.php';
+      const api = this.path + "api_memberLogout.php";
 
       this.$http.post(api);
 
@@ -220,7 +220,7 @@ export default {
         .removeClass('pactive');
     },
     login() {
-      const api = '/api/api_memberStatus.php';
+      const api = this.path + "api_memberStatus.php";
 
       this.$http.post(api).then((res) => {
         const data = res.data;

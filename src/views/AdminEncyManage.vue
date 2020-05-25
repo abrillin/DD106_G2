@@ -76,7 +76,7 @@ export default {
     };
   },
   created() {
-    const api = "/api/api_adminEncyManage.php";
+    const api = this.path + "api_adminEncyManage.php";
 
     this.$http // $http 是將axios封裝後的promise寫法
       .post(api) // 用axios post info到此api
@@ -95,7 +95,7 @@ export default {
     // 將內容在adminInfo.vue上呈現，做動態修改
     updateSession: function($event) {
       this.encyno = $event.target.id; // 獲取按的那個圖所代表百科內容的 row.no (事件觸發元素之id)
-      const api = "/api/api_adminEncysession.php";
+      const api = this.path + "api_adminEncysession.php";
       // 將獲取到的id傳到api
       this.$http.post(api, JSON.stringify(this.encyno)).then(res => {});
 

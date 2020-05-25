@@ -77,7 +77,7 @@ export default {
       this.form["transport"] = "宅配到府";
     },
     send() {
-      const apiOrder = "/api/api_addOrder.php";
+      const apiOrder = this.path + "api_addOrder.php";
 
       let detail = [];
       let itemList = [];

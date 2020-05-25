@@ -363,7 +363,7 @@ export default {
   },
 
   created() {
-    const api = "/api/api_item.php";
+    const api = this.path + "api_item.php";
 
     this.$http.post(api).then(res => {
       this.shopcommodity = res.data;
@@ -522,7 +522,7 @@ export default {
       }
     },
     changePage(e) {
-      let api = "/api/api_item_no.php";
+      let api = this.path + "api_item_no.php";
       this.$http
         .post(api, JSON.stringify(e))
         .then(res => {
@@ -535,7 +535,7 @@ export default {
         .catch(err => console.log(err));
     },
     itemchange(t) {
-      const api = "/api/api_item.php";
+      const api = this.path + "api_item.php";
 
       this.$http.post(api, JSON.stringify(t)).then(res => {
         this.shopcommodity = res.data;
@@ -546,7 +546,7 @@ export default {
       });
     },
     checkchange(k) {
-      const api = "/api/api_itemcheckbox.php";
+      const api = this.path + "api_itemcheckbox.php";
       this.$http.post(api, JSON.stringify(k)).then(res => {
         // this.shopcommodity = "";
         this.shopcommodity = res.data;
@@ -557,7 +557,7 @@ export default {
       });
     },
     addCart(no) {
-      const api = "/api/api_memberStatus.php";
+      const api = this.path + "api_memberStatus.php";
 
       this.$http.post(api).then(res => {
         const data = res.data;

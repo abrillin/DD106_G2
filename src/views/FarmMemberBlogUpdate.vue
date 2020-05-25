@@ -108,7 +108,7 @@ export default {
     };
   },
   created() {
-    const api = "/api/api_farmBlogUpdateBlogno.php";
+    const api = this.path + "api_farmBlogUpdateBlogno.php";
 
     this.$http.post(api).then((res) => {
       const data = res.data;
@@ -120,7 +120,7 @@ export default {
       }
       this.productTags = data[1];
     });
-    const api2 = "/api/api_farmStatus.php";
+    const api2 = this.path + "api_farmStatus.php";
     this.$http.post(api2).then((res) => {
       const data = res.data;
       this.blog.sellerno = data.no;
@@ -194,7 +194,7 @@ export default {
         return;
       } else {
         this.$http
-          .post("/api/api_uploadBlogFiles.php", this.formData)
+          .post(this.path + "api_uploadBlogFiles.php", this.formData)
           .then((res) => {
             this.blog.img = res.data.toString();
             for (let i in this.blog) {
@@ -208,7 +208,7 @@ export default {
               return;
             } else {
               this.$http
-                .post("/api/api_farmBlogUpdate.php", JSON.stringify(this.blog))
+                .post(this.path + "api_farmBlogUpdate.php", JSON.stringify(this.blog))
                 .then((res) => {
                   const data = res.data;
                   if (data == 0) {
@@ -217,7 +217,7 @@ export default {
                   }
                   this.$http
                     .post(
-                      "/api/api_farmBlogtagsUpdate.php",
+                      this.path + "api_farmBlogtagsUpdate.php",
                       JSON.stringify(this.tags)
                     )
                     .then((res) => {

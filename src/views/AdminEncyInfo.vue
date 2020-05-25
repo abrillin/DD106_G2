@@ -169,7 +169,7 @@ export default {
   },
   created() {
     // 接收來自資料庫的資料並呈現出來
-    const api = "/api/api_adminEncyInfo.php";
+    const api = this.path + "api_adminEncyInfo.php";
 
     // axios的post()是新增資料
     // patch() 修改某資料
@@ -200,7 +200,7 @@ export default {
       let imgArr = imgStr.split(",");
 
       imgArr.forEach((img, index) => {
-        imgList[index].src = "/api/" + imgArr[index];
+        imgList[index].src = this.img + imgArr[index];
       });
     });
   },
@@ -223,13 +223,17 @@ export default {
         document.getElementById("encyPic01").files.length <= 5
       ) {
         this.$http
-          .post("/api/api_adminEncyUpload.php", this.formData)
+          .post(
+            this.path + "api_adminEncyUpload.php",
+            this.formData
+          )
           .then(res => {
             // console.log(res.data);
 
             this.encyEdit.titleImg = res.data.toString();
 
-            const api = "/api/api_adminEncyUpdate.php";
+            const api =
+              this.path + "api_adminEncyUpdate.php";
 
             // console.log(this.encyEdit);
 
@@ -252,9 +256,9 @@ export default {
           });
       }
 
-      const api = "/api/api_adminEncyUpdate.php";
+      const api = this.path + "api_adminEncyUpdate.php";
 
-      // console.log(this.encyEdit);
+      console.log(this.encyEdit);
 
       this.$http.post(api, JSON.stringify(this.encyEdit)).then(res => {
         const data = res.data;

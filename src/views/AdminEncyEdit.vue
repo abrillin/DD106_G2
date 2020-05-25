@@ -213,11 +213,11 @@ export default {
         return;
       } else {
         this.$http
-          .post("/api/api_adminEncyUpload.php", this.formData)
+          .post(this.path + "api_adminEncyUpload.php", this.formData)
           .then(res => {
             this.encyEdit.titleImg = res.data.toString();
 
-            const api = "/api/api_adminEncyEdit.php";
+            const api = this.path + "api_adminEncyEdit.php";
 
             for (let i in this.encyEdit) {
               if (this.encyEdit[i] == "") {

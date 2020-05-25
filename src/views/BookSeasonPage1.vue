@@ -42,7 +42,7 @@ export default {
     };
   },
   created() {
-    const api = "/api/api_bookContent.php";
+    const api = this.path + "api_bookContent.php";
 
     this.$http
       .post(
@@ -62,15 +62,15 @@ export default {
           const type = this.contentType;
 
           if (type == 0 || type == 2 || type == 4) {
-            this.imgLeft = "/api/" + imgArr[0];
-            this.imgRight = "/api/" + imgArr[1];
+            this.imgLeft = this.img + imgArr[0];
+            this.imgRight = this.img + imgArr[1];
           }
 
           if (type == 1 || type == 3) {
             for (let i = 0; i < 4; i++) {
-              this.imgLeft[i] = "/api/" + imgArr[i];
+              this.imgLeft[i] = this.img + imgArr[i];
             }
-            this.imgRight = "/api/" + imgArr[4];
+            this.imgRight = this.img + imgArr[4];
           }
         }
       });
