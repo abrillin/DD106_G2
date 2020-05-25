@@ -179,7 +179,7 @@
               >
                 <div class="blog-post2-long-card" @click="changePage(i)">
                   <div>
-                    <img src />
+                    <img :src="i.img[0]" />
                   </div>
                   <div>
                     <div>
@@ -277,7 +277,7 @@
                 >
                   <div @click="changePage(i)">
                     <div>
-                      <img src="@/assets/blog-img/post/grape.png" />
+                      <img :src="i.img[0]" />
                       <div>
                         <div>
                           <img src="@/assets/blog-img/blog-thumb.png" />
@@ -1237,30 +1237,43 @@
         border-right: solid #007552 1.5px;
         position: relative;
         //妹妹假蠵龜
-        width: 500%;
-        padding-top: 310px;
-        background-image: url('../assets/blog-img/post/kidEatsWatermelon.png');
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: 0% 50%;
-        @media (max-width: 1800px) {
-          width: 550%;
-        }
-        @media (max-width: 1700px) {
-          width: 600%;
-        }
-        @media (max-width: 1500px) {
-          width: 750%;
-        }
-        @media (max-width: 1400px) {
-          width: 1000%;
-        }
-        @media (max-width: 768px) {
-          width: 1200%;
-        }
+        max-width: 40%;
+        min-width: 40%;
         @media (max-width: 700px) {
-          width: 100%;
+          max-width: 100%;
+          min-width: 100%;
         }
+        > img {
+          width: 100%;
+
+          @media (max-width: 700px) {
+            width: 100%;
+          }
+        }
+        // width: 500%;
+        // padding-top: 310px;
+        // background-image: url("../assets/blog-img/post/kidEatsWatermelon.png");
+        // background-repeat: no-repeat;
+        // background-size: cover;
+        // background-position: 0% 50%;
+        // @media (max-width: 1800px) {
+        //   width: 550%;
+        // }
+        // @media (max-width: 1700px) {
+        //   width: 600%;
+        // }
+        // @media (max-width: 1500px) {
+        //   width: 750%;
+        // }
+        // @media (max-width: 1400px) {
+        //   width: 1000%;
+        // }
+        // @media (max-width: 768px) {
+        //   width: 1200%;
+        // }
+        // @media (max-width: 700px) {
+        //   width: 100%;
+        // }
       }
       > div:nth-child(2) {
         padding: 3% 3% 0px 3%;
@@ -1329,6 +1342,7 @@
           display: flex;
           margin-top: 70px;
           position: relative;
+          // padding-bottom: 2%;
           &::before {
             content: '';
             border-top: solid #007552 1.5px;
@@ -1642,12 +1656,42 @@ export default {
 
           this.blogArr = res.data;
 
-          this.blogArrFilterTop.push(this.blogArr[0]);
-          for (let i = 1; i < 10; i++) {
-            this.blogArrFilter.push(this.blogArr[i]);
+          for (let i = 0; i < this.blogArr.length; i++) {
+            this.blogArr[i].img = this.blogArr[i].img.split(',');
           }
+
+          for (let i = 0; i < this.blogArr.length; i++) {
+            for (let j = 0; j < this.blogArr[i].img.length; j++) {
+              this.blogArr[i].img[j] = `/api/${this.blogArr[i].img[j]}`;
+            }
+          }
+
+          // this.blogArr[0].img.forEach(
+          //   item=>item=`/api/${item}`
+          // )
+
+          // this.blogArr[0].img[0]=`/api/${this.blogArr[0].img[0]}`
+          console.log(this.blogArr);
+
+          // console.log(this.blogArr)
+
+          this.blogArrFilterTop.push(this.blogArr[0]);
+
+          if (this.blogArr.length <= 9) {
+            for (let i = 1; i < this.blogArr.length; i++) {
+              this.blogArrFilter.push(this.blogArr[i]);
+            }
+          } else {
+            for (let i = 1; i < 10; i++) {
+              this.blogArrFilter.push(this.blogArr[i]);
+            }
+          }
+
           this.currentPage.push(1);
-          if (this.blogArr.length / 9 < 9) {
+
+          if (this.blogArr.length <= 9) {
+            this.pageArr.push(1);
+          } else if (this.blogArr.length / 9 < 9) {
             for (let i = 1; i <= parseInt(this.blogArr.length / 9) + 1; i++) {
               this.pageArr.push(i);
               // console.log(parseInt(this.blogArr.length / 9) + 1);

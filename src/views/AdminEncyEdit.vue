@@ -3,10 +3,32 @@
     <main class="encyEdit">
       <h1 class="manageTitle">
         知識百科 管理中心
-        <span class="manageSubTitle">| 百科內容新增/修改</span>
+        <span class="manageSubTitle">| 百科內容新增</span>
       </h1>
 
       <table class="encyEditTab" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <th>
+            <label for="fruitSeason">產季</label>
+          </th>
+          <td>
+            <select
+              name="fruitSeason"
+              id="fruitSeason"
+              data-selected
+              v-model="encyEdit.type"
+            >
+              <option value selected="selected" disabled="disabled"
+                >請選擇</option
+              >
+              <option value="0">常年</option>
+              <option value="1">春季</option>
+              <option value="2">夏季</option>
+              <option value="3">秋季</option>
+              <option value="4">冬季</option>
+            </select>
+          </td>
+        </tr>
         <tr>
           <th>
             <label for="fruitTag">標籤</label>
@@ -55,30 +77,6 @@
             </select>
           </td>
         </tr>
-
-        <tr>
-          <th>
-            <label for="fruitSeason">產季</label>
-          </th>
-          <td>
-            <select
-              name="fruitSeason"
-              id="fruitSeason"
-              data-selected
-              v-model="encyEdit.type"
-            >
-              <option value selected="selected" disabled="disabled"
-                >請選擇</option
-              >
-              <option value="0">常年</option>
-              <option value="1">春季</option>
-              <option value="2">夏季</option>
-              <option value="3">秋季</option>
-              <option value="4">冬季</option>
-            </select>
-          </td>
-        </tr>
-
         <tr>
           <th>
             <label for="encyIntro">介紹</label>
@@ -115,45 +113,44 @@
             ></textarea>
           </td>
         </tr>
-
         <tr>
           <th>圖片</th>
 
           <td>
             <label for="encyPic01">
-              圖01：
+              請傳3-5張圖：
               <input type="file" id="encyPic01" @change="fileSelect" multiple />
             </label>
-=======
+
             <img
               class="encyImg"
-              src=""
+              src
               style="max-width: 200px;max-height: 200px;"
             />
             <img
               class="encyImg"
-              src=""
+              src
               style="max-width: 200px;max-height: 200px;"
             />
             <img
               class="encyImg"
-              src=""
+              src
               style="max-width: 200px;max-height: 200px;"
             />
             <img
               class="encyImg"
-              src=""
+              src
               style="max-width: 200px;max-height: 200px;"
             />
             <img
               class="encyImg"
-              src=""
+              src
               style="max-width: 200px;max-height: 200px;"
             />
 
             <!--
                   <img id:"encyImg" :src="encyEdit.titleImg" style="max-width: 200px;max-height: 200px;" />
-                  -->
+            -->
             <br />
           </td>
         </tr>
@@ -197,7 +194,6 @@ export default {
     return {
       formData: new FormData(),
       encyEdit: {
-        no: "",
         title: "", // 水果名，當標籤用
         type: "", // 產季
         content: "", // 介紹
@@ -245,7 +241,6 @@ export default {
       }
 
       // this.formData.append("file", titleImg.files[0]);
-
     },
 
     // video資料
@@ -254,7 +249,6 @@ export default {
     },
 
     // 資料撈完後傳到php
-
     editEncyI: function() {
       for (
         let i = 0;
@@ -277,6 +271,13 @@ export default {
             this.encyEdit.titleImg = res.data.toString();
 
             const api = "/api/api_adminEncyEdit.php";
+
+            for (let i in this.encyEdit) {
+              if (this.encyEdit[i] == "") {
+                alert("有欄位空白，請再檢查一次 ﾚ(ﾟ∀ﾟ;)ﾍ ");
+                return;
+              }
+            }
 
             this.$http
               .post(api, JSON.stringify(this.encyEdit))

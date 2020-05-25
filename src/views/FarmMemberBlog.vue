@@ -29,60 +29,24 @@
                 <td>{{item.title}}</td>
                 <td>{{item.content}}</td>
                 <td>{{item.date}}</td>
-                <td><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                                        for="switch">Toggle<div class="after"></div></label></td>
-                <!-- <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                                        for="switch">Toggle<div class="after"></div></label></p> -->
+                <td>
+                  <input
+                    class="statusBtn"
+                    type="checkbox"
+                    :id="'switch' + item.no"
+                    v-model="item.status"
+                  />
+                  <label
+                    class="statusBtnLabel"
+                    :for="'switch' + item.no"
+                    @click="toggleStatus(item.no, item.status)"
+                  >Toggle</label>
+                </td>
               </tr>
             </thead>
           </table>
         </div>
-
-        <!-- <div class="Blogputon">
-                    <p class="title">狀態</p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                </div> -->
       </div>
-
-      <!-- <div class="pagination_block">
-        <ul class="pagination">
-          <li><a href="#">&lt;</a></li>
-          <li><a href="#" class="-on">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">4</a></li>
-          <li><a href="#">5</a></li>
-          <li><a href="#">6</a></li>
-          <li><a href="#">7</a></li>
-          <li><a href="#">8</a></li>
-          <li><a href="#">9</a></li>
-          <li><a href="#">10</a></li>
-          <li><a href="#">&gt;</a></li>
-        </ul>
-      </div> -->
     </div>
   </div>
 </template>
@@ -90,23 +54,18 @@
 import $ from "jquery";
 import { log } from "three";
 export default {
-  data(){
-    return{
-      member:{
-        no: "",
-        title: "",
-        content: "",
-        date: "",
-      },
+  data() {
+    return {
+      member: []
     };
   },
-  created(){
+  created() {
     const api = "/api/api_farmblog.php";
-    this.$http.post(api).then((res) =>{
-        const data = res.data;
-        if(data != ""){
-          this.member=data;
-        }
+    this.$http.post(api).then(res => {
+      const data = res.data;
+      if (data != "") {
+        this.member = data;
+      }
     });
   },
   mounted() {
@@ -123,5 +82,21 @@ export default {
       }
     });
   },
+  methods: {
+    toggleStatus(no, status) {
+      const api = "/api/api_blogUpdate.php";
+      let s;
+
+      // 如果狀態是 1 (上架) 則切換成 0 (下架)
+      if (status == 1) {
+        s = 0;
+      } else if (status == 0) {
+        s = 1;
+      }
+
+      // 發送到 DB 更新日誌的狀態
+      this.$http.post(api, JSON.stringify({ no: no, status: s }));
+    }
+  }
 };
 </script>
