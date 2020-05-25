@@ -54,8 +54,6 @@
               <div>
                 <img class="otherPic" src="" />
                 <img class="otherPic" src="" />
-                <img class="otherPic" src="" />
-                <img class="otherPic" src="" />
               </div>
             </label>
             <select id="productTags" v-model="tags.selected">
@@ -74,7 +72,7 @@
             <div class="submit_button">
               <input type="button" value="取消" id="productCancel" />
               <input
-                type="submit"
+                type="button"
                 value="送出"
                 id="productSubmit"
                 @click="itemUpdate"
@@ -158,8 +156,8 @@ export default {
         document.getElementsByClassName("otherPic")[k].src = "";
       }
       const img = e.target;
-      if (img.files.length > 4) {
-        window.alert("最多上傳四張");
+      if (img.files.length > 2) {
+        window.alert("最多上傳兩張其它圖片");
         return;
       } else {
         for (let i = 0; i < img.files.length; i++) {
@@ -215,18 +213,26 @@ export default {
                 return;
               }
             }
-            this.$http
-              .post(this.path + "api_farmProductUpdate.php", JSON.stringify(this.item))
-              .then((res) => {
-                const data = res.data;
-                if (data == 0) {
-                  alert("上傳失敗！");
-                  this.$router.go(0);
-                } else if (data == 1) {
-                  alert("上傳成功！");
-                  this.$router.go(-1);
-                }
-              });
+            if (this.tags.selected == 0) {
+              alert("請選擇標籤");
+              return;
+            } else {
+              this.$http
+                .post(
+                  this.path + "api_farmProductUpdate.php",
+                  JSON.stringify(this.item)
+                )
+                .then((res) => {
+                  const data = res.data;
+                  if (data == 0) {
+                    alert("上傳失敗！");
+                    this.$router.go(0);
+                  } else if (data == 1) {
+                    alert("上傳成功！");
+                    this.$router.go(-1);
+                  }
+                });
+            }
           });
       }
     },

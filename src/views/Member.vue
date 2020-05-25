@@ -180,7 +180,10 @@ export default {
           // 如果上傳成功
           if (data[0] == 0) {
             this.$http
-              .post(this.path + "api_getMemPic.php", JSON.stringify(this.member))
+              .post(
+                this.path + "api_getMemPic.php",
+                JSON.stringify(this.member)
+              )
               .then((res) => {
                 const r = res.data;
 
