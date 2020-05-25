@@ -140,6 +140,7 @@ export default {
       }
     },
     changeMainPic: function(e) {
+      document.getElementById("mainPic").src = "";
       let reader = new FileReader();
       const img = e.target;
 
@@ -149,6 +150,13 @@ export default {
       reader.readAsDataURL(img.files[0]);
     },
     changeOtherPic: function(e) {
+      for (
+        let k = 0;
+        k < document.getElementsByClassName("otherPic").length;
+        k++
+      ) {
+        document.getElementsByClassName("otherPic")[k].src = "";
+      }
       const img = e.target;
       if (img.files.length > 4) {
         window.alert("最多上傳四張");

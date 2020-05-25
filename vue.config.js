@@ -18,8 +18,8 @@ module.exports = {
   devServer: {
     disableHostCheck: true,
     proxy: {
-      '/api': {
-        target: 'http://localhost',
+      "/api": {
+        target: "http://localhost:8888",
         ws: true,
         changeOrigin: true,
         autoRewrite: true,
