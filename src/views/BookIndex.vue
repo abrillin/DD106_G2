@@ -60,18 +60,18 @@
         <li>芭樂</li>
       </ul>
     </div>-->
-    <div v-for="i in index" :key="i.type" class="bk_content1">
-      <h5>{{i.name}}</h5>
+    <div v-for="i in data" :key="i.type" class="bk_content1">
+      <h5>{{i.typeName}}</h5>
       <div class="bk_content_img">
         <img :src="require('@/assets/book_img/' + i.img)" />
       </div>
       <ul>
         <!-- (page) 1. 觸發 changePage 方法 -->
         <li
-          v-for="(j, index) in i.item"
+          v-for="(j, index) in i.title"
           :key="index"
-          @click="changePage(i.type, j.id, j.name)"
-        >{{j.name}}</li>
+          @click="changePage(i.type, j.id)"
+        >{{j.title}}</li>
       </ul>
     </div>
   </div>
@@ -80,125 +80,43 @@
 export default {
   data() {
     return {
-      index: [
-        {
-          type: 0,
-          name: "春季",
-          img: "flower_ct.svg",
-          item: [
-            {
-              id: 0,
-              name: "梅子"
-            },
-            {
-              id: 1,
-              name: "李子"
-            },
-            {
-              id: 2,
-              name: "桃子"
-            },
-            {
-              id: 3,
-              name: "枇杷"
-            }
-          ]
-        },
-        {
-          type: 1,
-          name: "夏季",
-          img: "binbo.svg",
-          item: [
-            {
-              id: 0,
-              name: "西瓜"
-            },
-            {
-              id: 1,
-              name: "火龍果"
-            },
-            {
-              id: 2,
-              name: "荔枝"
-            },
-            {
-              id: 3,
-              name: "芒果"
-            }
-          ]
-        },
-        {
-          type: 2,
-          name: "秋季",
-          img: "leaf.svg",
-          item: [
-            {
-              id: 0,
-              name: "柿子"
-            },
-            {
-              id: 1,
-              name: "梨子"
-            },
-            {
-              id: 2,
-              name: "柚子"
-            },
-            {
-              id: 3,
-              name: "百香果"
-            }
-          ]
-        },
-        {
-          type: 3,
-          name: "冬季",
-          img: "snow.svg",
-          item: [
-            {
-              id: 0,
-              name: "草莓"
-            },
-            {
-              id: 1,
-              name: "柳丁"
-            },
-            {
-              id: 2,
-              name: "番茄"
-            },
-            {
-              id: 3,
-              name: "棗子"
-            }
-          ]
-        },
-        {
-          type: 4,
-          name: "常年",
-          img: "leaf_year.svg",
-          item: [
-            {
-              id: 0,
-              name: "木瓜"
-            },
-            {
-              id: 1,
-              name: "鳳梨"
-            },
-            {
-              id: 2,
-              name: "香蕉"
-            }
-          ]
-        }
-      ]
+      imgs: [
+        "flower_ct.svg",
+        "binbo.svg",
+        "leaf.svg",
+        "snow.svg",
+        "leaf_year.svg"
+      ],
+      data: {}
     };
   },
+  created() {
+    const api = "/api/api_bookType.php";
+
+    this.$http.post(api).then(res => {
+      const data = res.data;
+
+      this.data = data;
+
+      // 百科分類的資料置換(從數字轉成文字)
+      const typeList = ["春季", "夏季", "秋季", "冬季", "常年"];
+
+      this.data.forEach((d, i) => {
+        this.data[i]["typeName"] = typeList[d.type];
+        this.data[i]["img"] = this.imgs[i];
+
+        // 對每個水果新增索引
+        this.data[i]["title"].forEach((t, j) => {
+          this.$set(this.data[i]["title"][j], "id", j);
+          // this.data[i]["title"][j]["id"] = j;
+        });
+      });
+    });
+  },
   methods: {
-    // (page) 2. 傳遞 changePage 事件及 {} 的值給父層 
-    changePage: function(i, d, n) {
-      this.$emit("changePage", { type: i, id: d * 2 + 1});
+    // (page) 2. 傳遞 changePage 事件及 {} 的值給父層
+    changePage: function(i, d) {
+      this.$emit("changePage", { type: i, id: d * 2 + 1 });
     }
   }
 };

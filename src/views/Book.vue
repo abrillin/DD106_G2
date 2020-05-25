@@ -54,6 +54,7 @@
                     :pageId="page"
                     @addType="addIndex"
                     @changePage="changePage"
+                    :pageAmount="pageAmount"
                   ></Content>
                   <!-- (page) 3. 接收子層 changePage 事件值給 changePage 方法  -->
                   <Index v-if="change == true" @changePage="changePage"></Index>
@@ -111,14 +112,19 @@ export default {
       index: 0,
       change: true,
       // (page) 6. 接收到 page 的更新
-      page: 0
+      page: 0,
+      pageAmount: []
     };
   },
   created() {
     const api = "/api/api_bookType.php";
 
     this.$http.post(api).then(res => {
-      console.log(res.data);
+      const data = res.data;
+
+      data.forEach((d, i) => {
+        this.pageAmount[i] = d.count;
+      });
     });
   },
   mounted() {
