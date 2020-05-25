@@ -24,7 +24,7 @@ router.beforeEach((to, from, next) => {
   
   if (to.meta.requiresAuth) {
 
-    const api = "/demo-projects/DD106/DD106G2/api/api_memberStatus.php";
+    const api = Vue.prototype.path + "api_memberStatus.php";
     axios.post(api).then(response => {
 
       if (response.data.no) {
