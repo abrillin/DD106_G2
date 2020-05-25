@@ -32,8 +32,8 @@
                                         <tr>                                    
                                             <td>{{this.order[this.i].date}}</td>
                                             <td>{{this.order[this.i].total}}</td>
-                                            <td v-if="this.order[this.i].payment_status == 1">完成</td>
-                                            <td v-if="this.order[this.i].payment_status == 0">未完成</td>
+                                            <td v-if="this.order[this.i].payment_status == 1">已付款</td>
+                                            <td v-if="this.order[this.i].payment_status == 0">未付款</td>
                                             <td v-if="this.order[this.i].status == 1">完成</td>
                                             <td v-if="this.order[this.i].status == 0">未完成</td>
                                         </tr>
@@ -79,9 +79,9 @@
 
                     </div>
                     <div class="total">
-                        <p><span>商品金額:$</span><span>{{this.order[this.i].total}}</span></p>
-                        <p>運費 $80</p>
-                        <p><span>總金額:$</span><span>{{parseInt(this.order[this.i].total) + 80}}</span></p>
+                        <p><span>商品金額:$</span><span>{{this.order[this.i].total -65}}</span></p>
+                        <p>運費 $65</p>
+                       <!-- <p><span>總金額:$</span><span>{{parseInt(this.order[this.i].total) - 65}}</span></p>-->
                     </div>
                     <div class="address">
                         <div class="address_left">
