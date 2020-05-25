@@ -381,7 +381,7 @@ export default {
   },
 
   updated() {
-    console.log(this.shopcommodityfilter[0].img.split(",")[0]);
+    // console.log(this.shopcommodityfilter[0].img.split(",")[0]);
     for (let i = 0; i < SHOP_INDICATOR_SIZE; i++) {
       document
         .getElementsByClassName("page-item")
@@ -527,12 +527,11 @@ export default {
         .post(api, JSON.stringify(e))
         .then(res => {
           if (res.data != "") {
-            console.log(JSON.parse(res.data));
+            // console.log(JSON.parse(res.data));
           } else {
-            console.log(res.error);
+            // console.log(res.error);
           }
-        })
-        .catch(err => console.log(err));
+        });
     },
     itemchange(t) {
       const api = this.path + "api_item.php";
