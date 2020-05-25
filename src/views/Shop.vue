@@ -178,7 +178,7 @@
             <div class="commodity" v-for="(i, index) in shopcommodityfilter" :key="index">
               <router-link to="/main/shopitem">
                 <div class="card_img_box" @click="changePage(i)">
-                  <img src="../assets/ia_300000017.jpg" width="100%" height="100%" />
+                  <img :src="shopcommodityfilter[index].img" width="100%" height="100%" />
                 </div>
               </router-link>
               <div class="card_content">
