@@ -18,9 +18,9 @@
           <li>
             <router-link to="/admin/center/ency">知識百科管理</router-link>
           </li>
-          <li>
+          <!-- <li>
             <router-link to="/admin/center/blog">果農日誌管理</router-link>
-          </li>
+          </li> -->
           <li>
             <router-link to="/admin/center/comment">日誌留言管理</router-link>
           </li>
@@ -42,7 +42,7 @@ export default {
     };
   },
   created() {
-    const api = "/api/api_adminStatus.php";
+    const api = this.path + "api_adminStatus.php";
 
     this.$http.post(api).then(res => {
       const data = res.data;

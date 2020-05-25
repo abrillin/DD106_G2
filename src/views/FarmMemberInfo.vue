@@ -35,7 +35,7 @@
       <div class="bottom_form">
         <div class="person_left">
           <ul>
-            <li>果粉編號</li>
+            <li>果農編號</li>
             <li>帳號</li>
             <!-- <li>密碼</li> -->
             <!-- <li>修改密碼</li> -->
@@ -82,7 +82,7 @@ export default {
     };
   },
   created() {
-    const api = "/api/api_farmStatus.php";
+    const api = this.path + "api_farmStatus.php";
     this.$http.post(api).then((res) => {
       const data = res.data;
       if (data != "") {

@@ -21,7 +21,7 @@
             <label for="addAdminAccount">帳號</label>
           </th>
           <td>
-            <input id="addAdminAccount" type="text" placeholder="請輸入帳號" v-model="addAdmin.acc" />
+            <input id="addAdminAccount" type="text" placeholder=" " v-model="addAdmin.acc" />
           </td>
         </tr>
         <tr>
@@ -32,7 +32,7 @@
             <input 
             id="addAdminPSW" 
             type="password" 
-            placeholder="請輸入密碼" 
+            placeholder="  " 
             v-model="addAdmin.psw"
              @change="checkPsw" />
           </td>
@@ -87,7 +87,7 @@ export default {
 
   methods: {
     addAdminF: function() {
-      const api = "/api/api_addAdmin.php";
+      const api = this.path + "api_addAdmin.php";
 
       for (let i in this.addAdmin) {
         if (this.addAdmin[i] == "") {

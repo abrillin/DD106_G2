@@ -108,7 +108,7 @@ export default {
     };
   },
   created() {
-    const api = "/api/api_farmitem.php";
+    const api = this.path + "api_farmitem.php";
     this.$http.post(api).then((res) => {
       const data = res.data;
       if (data[0].no != null) {
@@ -119,7 +119,7 @@ export default {
 
       this.itemTags = data[1];
     });
-    const api2 = "/api/api_farmStatus.php";
+    const api2 = this.path + "api_farmStatus.php";
     this.$http.post(api2).then((res) => {
       const data = res.data;
       this.item.sellerno = data.no;
@@ -140,6 +140,7 @@ export default {
       }
     },
     changeMainPic: function(e) {
+      document.getElementById("mainPic").src = "";
       let reader = new FileReader();
       const img = e.target;
 
@@ -149,6 +150,13 @@ export default {
       reader.readAsDataURL(img.files[0]);
     },
     changeOtherPic: function(e) {
+      for (
+        let k = 0;
+        k < document.getElementsByClassName("otherPic").length;
+        k++
+      ) {
+        document.getElementsByClassName("otherPic")[k].src = "";
+      }
       const img = e.target;
       if (img.files.length > 4) {
         window.alert("最多上傳四張");
@@ -198,7 +206,7 @@ export default {
         return;
       } else {
         this.$http
-          .post("/api/api_uploadProductFiles.php", this.formData)
+          .post(this.path + "api_uploadProductFiles.php", this.formData)
           .then((res) => {
             this.item.img = res.data.toString();
             for (let i in this.item) {
@@ -208,7 +216,7 @@ export default {
               }
             }
             this.$http
-              .post("/api/api_farmProductUpdate.php", JSON.stringify(this.item))
+              .post(this.path + "api_farmProductUpdate.php", JSON.stringify(this.item))
               .then((res) => {
                 const data = res.data;
                 if (data == 0) {

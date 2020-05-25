@@ -28,9 +28,9 @@
                 <img src="@/assets/memberstar.svg" />
               </div>
             </div>
-            <div class="bk_blog_rpt_button">
+            <!-- <div class="bk_blog_rpt_button">
               <button>＋追蹤</button>
-            </div>
+            </div> -->
             <!-- 標籤 -->
             <div class="bk_blog_tag">
               <a href>

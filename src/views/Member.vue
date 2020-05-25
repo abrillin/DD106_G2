@@ -34,9 +34,9 @@
           <li>
             <router-link to="/main/member/order">訂單管理</router-link>
           </li>
-          <li>
+          <!--<li>
             <router-link to="/main/member/track">追蹤名單管理</router-link>
-          </li>
+          </li>-->
           <li>
             <router-link to="/main/member/shopping">購物籃</router-link>
           </li>
@@ -58,7 +58,14 @@
       </div>
       <button type="button" class="btn_drawer">&#9658;</button>
     </aside>
-    <router-view />
+    <keep-alive>
+      <router-view
+        @setCart="setCart"
+        :getCart="cart"
+        @setInfo="setInfo"
+        :getInfo="info"
+      />
+    </keep-alive>
   </div>
 </template>
 
@@ -78,10 +85,12 @@ export default {
         img: "",
       },
       farmStatus: false,
+      cart: {},
+      info: {},
     };
   },
   created() {
-    const api = "/api/api_memberStatus.php";
+    const api = this.path + "api_memberStatus.php";
 
     this.$http.post(api).then((res) => {
       const data = res.data;
@@ -98,7 +107,7 @@ export default {
         };
 
         // 檢查是否註冊過果農身分
-        const apiCheck = "/api/api_checkFarm.php";
+        const apiCheck = this.path + "api_checkFarm.php";
 
         this.$http.post(apiCheck, JSON.stringify(this.member)).then((res) => {
           const data = res.data;
@@ -110,7 +119,7 @@ export default {
           }
         });
 
-        if (data.img == "") {
+        if (data.img == null) {
           this.member.img = require("@/assets/waterpear.png");
         } else {
           this.member.img = data.img;
@@ -164,14 +173,14 @@ export default {
       this.formData.append("file", img);
 
       this.$http
-        .post("/api/api_changeMemPic.php", this.formData)
+        .post(this.path + "api_changeMemPic.php", this.formData)
         .then((res) => {
           const data = res.data;
-          this.member.img = "/api/" + data[1];
+          this.member.img = this.img + data[1];
           // 如果上傳成功
           if (data[0] == 0) {
             this.$http
-              .post("/api/api_getMemPic.php", JSON.stringify(this.member))
+              .post(this.path + "api_getMemPic.php", JSON.stringify(this.member))
               .then((res) => {
                 const r = res.data;
 
@@ -188,8 +197,14 @@ export default {
           }
         });
     },
+    setCart: function(cart) {
+      this.cart = cart;
+    },
+    setInfo: function(info) {
+      this.info = info;
+    },
     // checkFarm: function() {
-    //   const api = "/api/api_checkFarm.php";
+    //   const api = this.path + "api_checkFarm.php";
 
     //   this.$http.post(api, JSON.stringify(this.member)).then(res => {
     //     const data = res.data;
@@ -202,7 +217,7 @@ export default {
     //   });
     // },
     // changeFarm: function() {
-    //   const api = "/api/api_checkFarm.php";
+    //   const api = this.path + "api_checkFarm.php";
 
     //   this.$http.post(api, JSON.stringify(this.member)).then(res => {
     //     const data = res.data;
@@ -211,7 +226,7 @@ export default {
     //       alert("還不是果農了喔");
     //       this.$router.push({ name: "FarmRegistered" });
     //     } else {
-    //       const api2 = "/api/api_farmlogin.php";
+    //       const api2 = this.path + "api_farmlogin.php";
 
     //       this.$http.post(api2, JSON.stringify(this.member)).then(res => {
     //         const data = res.data;

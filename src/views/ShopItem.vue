@@ -127,7 +127,7 @@
       <div class="SellerInformationBox">
         <div class="SellerInformation">
           <img
-            :src="'../assets/shop/' + shopseller.img"
+            :src="shopseller.img"
             alt
             height="60px"
             width="60px"
@@ -140,11 +140,46 @@
           <div class="SellerReviews">
             <div class="Reviews">{{shopseller.Starsaverage}}</div>
             <div class="StarBox">
-              <img src="../assets/icon/star.svg" alt width="20" height="20" />
-              <img src="../assets/icon/star.svg" alt width="20" height="20" />
-              <img src="../assets/icon/star.svg" alt width="20" height="20" />
-              <img src="../assets/icon/star.svg" alt width="20" height="20" />
-              <img src="../assets/icon/star.svg" alt width="20" height="20" />
+              <img
+                src="../assets/icon/star.svg"
+                alt
+                width="20"
+                height="20"
+                v-if="shopseller.Starsaverage >= 1"
+              />
+              <img src="../assets/icon/star2.svg" alt width="20" height="20" v-else />
+              <img
+                src="../assets/icon/star.svg"
+                alt
+                width="20"
+                height="20"
+                v-if="shopseller.Starsaverage >= 2"
+              />
+              <img src="../assets/icon/star2.svg" alt width="20" height="20" v-else />
+              <img
+                src="../assets/icon/star.svg"
+                alt
+                width="20"
+                height="20"
+                v-if="shopseller.Starsaverage >= 3"
+              />
+              <img src="../assets/icon/star2.svg" alt width="20" height="20" v-else />
+              <img
+                src="../assets/icon/star.svg"
+                alt
+                width="20"
+                height="20"
+                v-if="shopseller.Starsaverage >= 4"
+              />
+              <img src="../assets/icon/star2.svg" alt width="20" height="20" v-else />
+              <img
+                src="../assets/icon/star.svg"
+                alt
+                width="20"
+                height="20"
+                v-if="shopseller.Starsaverage >= 5"
+              />
+              <img src="../assets/icon/star2.svg" alt width="20" height="20" v-else />
             </div>
           </div>
         </div>
@@ -355,7 +390,6 @@ window.addEventListener("resize", function() {
     panelView = -528;
     maxIndex = 5;
   }
-  console.log(panelView);
 });
 
 import $ from "jquery";
@@ -374,7 +408,6 @@ export default {
     let wrap = document.getElementById("CommodityCarouselList");
     var curIndex = 0;
     $id("arrowleft").onclick = function() {
-      console.log(panelView);
       curIndex--;
       wrap.style.left = panelView * curIndex + "px";
       $id("arrowright").disabled = false;
@@ -384,8 +417,6 @@ export default {
     };
 
     $id("arrowright").onclick = function() {
-      // console.log(n);
-
       curIndex++;
       wrap.style.left = panelView * curIndex + "px";
       $id("arrowleft").disabled = false;
@@ -395,16 +426,11 @@ export default {
     };
 
     //資料庫連結
-    const api = "/api/api_shopseller.php";
+    const api = this.path + "api_shopseller.php";
 
     this.$http
       .post(api)
       .then(res => {
-        // const data = res.data;
-        // this.item.itemName = data.name;
-        // this.item.money = data.price;
-
-        // this.shopcommodity = res.data;
         this.shopseller = res.data["mem"];
         console.log(res.data);
 

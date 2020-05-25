@@ -43,16 +43,12 @@
                 嚴選台灣出產高甜度愛文芒果，為夏季芒果推薦 “TOP 1”
                 因果皮紅潤且果肉金黃，又有“太陽果”之稱。
                 <br />
-                <!-- <a href="#" class="product-details">商品詳情...</a> -->
                 <router-link class="product-details" to="/main/shopitem">商品詳情...</router-link>
               </p>
               <div class="item_buy-box">
-                <a href="javascript:" class="item_btn">加入購物籃</a>
-                <a href="javascript:" class="item_btn buyNow">直接購買</a>
+                <a href="#" class="item_btn card_btn" @mouseenter="btnFun">加入購物籃</a>
+                <a href="#" class="item_btn buyNow">直接購買</a>
               </div>
-              <!-- <div class="details-box">
-                <a href="#" class="product-details">商品詳情</a>
-              </div>-->
             </div>
           </div>
         </div>
@@ -108,17 +104,19 @@
         <form class="filter-group">
           <div class="filter-group_header">運送方式：</div>
           <div class="folding-items">
-            <div class="checkbox-filter">
-              <input type="checkbox" id="24hour" />
-              <label class="checkbox_label">24hr宅配到府</label>
-            </div>
-            <div class="checkbox-filter">
-              <input type="checkbox" id="home" />
-              <label class="checkbox_label">宅配到府</label>
-            </div>
-            <div class="checkbox-filter">
-              <input type="checkbox" id="store" />
-              <label class="checkbox_label">超商取貨</label>
+            <div
+              class="checkbox-filter"
+              v-for="(checkboxitems, index) in checkbox"
+              :key="checkboxitems"
+            >
+              <input
+                :id="'checkinput' + index"
+                type="radio"
+                v-model="v"
+                @click="checkchange(index)"
+                :value="index"
+              />
+              <label class="checkbox_label">{{ checkboxitems }}</label>
             </div>
           </div>
         </form>
@@ -168,10 +166,10 @@
               <div class="button dropdown-content">
                 <select id="colorselector" class="select-reset" v-model="v" @change="itemchange(v)">
                   <option
-                    v-for="(changeitems,index) in changeitem"
+                    v-for="(changeitems, index) in changeitem"
                     :key="changeitems"
                     :value="index"
-                  >{{changeitems}}</option>
+                  >{{ changeitems }}</option>
                 </select>
               </div>
             </div>
@@ -180,21 +178,33 @@
             <div class="commodity" v-for="(i, index) in shopcommodityfilter" :key="index">
               <router-link to="/main/shopitem">
                 <div class="card_img_box" @click="changePage(i)">
-                  <img src="../assets/ia_300000017.jpg" width="100%" height="100%" />
+                  <img
+                    :src="`/api/` + shopcommodityfilter[index].img.split(',')[0]"
+                    width="100%"
+                    height="100%"
+                  />
                 </div>
               </router-link>
               <div class="card_content">
                 <div class="commodity_title">
-                  <div class="commodity_title_text">{{i.no}}</div>
+                  <div class="commodity_title_text">{{ i.name }}</div>
                 </div>
 
-                <div class="card_tag" v-for="(t,dex) in shopcommodityfilter[index].tags" :key="dex">
+                <div
+                  class="card_tag"
+                  v-for="(t, dex) in shopcommodityfilter[index].tags"
+                  :key="dex"
+                >
                   <img src="../assets/icon/tag.svg" alt width="16px" height="16px" class="tag_icon" />
-                  <span class="card_tag_text">{{shopcommodityfilter[index].tags[dex].name}}</span>
+                  <span class="card_tag_text">
+                    {{
+                    shopcommodityfilter[index].tags[dex].name
+                    }}
+                  </span>
                 </div>
 
                 <div class="card_price">
-                  <span class="money">{{i.price}}</span>
+                  <span class="money">{{ i.price }}</span>
                 </div>
 
                 <div class="buy">
@@ -220,29 +230,15 @@
           </div>
         </div>
         <div class="hot_commodity_group">
-          <div class="hot_commodity_items">
-            <div class="hot_commodity_text">木瓜乾 零添加</div>
-            <span>1</span>
-            <div class="hot_commodity_bg"></div>
-          </div>
-          <div class="hot_commodity_items">
-            <div class="hot_commodity_text">木瓜乾 零添加</div>
-            <span>2</span>
-            <div class="hot_commodity_bg"></div>
-          </div>
-          <div class="hot_commodity_items">
-            <div class="hot_commodity_text">木瓜乾 零添加</div>
-            <span>3</span>
-            <div class="hot_commodity_bg"></div>
-          </div>
-          <div class="hot_commodity_items">
-            <div class="hot_commodity_text">木瓜乾 零添加</div>
-            <span>4</span>
-            <div class="hot_commodity_bg"></div>
-          </div>
-          <div class="hot_commodity_items">
-            <div class="hot_commodity_text">木瓜乾 零添加</div>
-            <span>5</span>
+          <div
+            class="hot_commodity_items"
+            v-for="(h, index) in shopcommodity.top"
+            :key="index"
+            @mouseenter="HotCommodityItemsEnter"
+            @mouseleave="HotCommodityItemsLeave"
+          >
+            <div class="hot_commodity_text">{{ h.name }}</div>
+            <span>{{ index + 1 }}</span>
             <div class="hot_commodity_bg"></div>
           </div>
         </div>
@@ -253,25 +249,61 @@
           class="hotCommoditySeller"
           v-for="(s, index) in seller"
           :key="index"
-          @mouseenter="SellerM"
+          @mouseenter="SellerMouseEnter"
+          @mouseleave="SellerMouseLeave"
         >
-          <a href="#">
+          <router-link to="#">
             <div class="seller_box">
               <img :src="seller[index].img" alt height="50" width="50" style="border-radius: 30px;" />
             </div>
-          </a>
+          </router-link>
           <div class="seller_content">
             <div class="seller_content-box">
-              <p>{{s.name}}</p>
+              <p>{{ s.name }}</p>
               <div class="star-box">
-                <img src="../assets/icon/star.svg" alt width="14" height="14" />
-                <img src="../assets/icon/star.svg" alt width="14" height="14" />
-                <img src="../assets/icon/star.svg" alt width="14" height="14" />
-                <img src="../assets/icon/star.svg" alt width="14" height="14" />
-                <img src="../assets/icon/star.svg" alt width="14" height="14" />
+                <img
+                  src="../assets/icon/star.svg"
+                  alt
+                  width="14"
+                  height="14"
+                  v-if="seller[index].review_average >= 1"
+                />
+                <img src="../assets/icon/star2.svg" alt width="14" height="14" v-else />
+                <img
+                  src="../assets/icon/star.svg"
+                  alt
+                  width="14"
+                  height="14"
+                  v-if="seller[index].review_average >= 2"
+                />
+                <img src="../assets/icon/star2.svg" alt width="14" height="14" v-else />
+                <img
+                  src="../assets/icon/star.svg"
+                  alt
+                  width="14"
+                  height="14"
+                  v-if="seller[index].review_average >= 3"
+                />
+                <img src="../assets/icon/star2.svg" alt width="14" height="14" v-else />
+                <img
+                  src="../assets/icon/star.svg"
+                  alt
+                  width="14"
+                  height="14"
+                  v-if="seller[index].review_average >= 4"
+                />
+                <img src="../assets/icon/star2.svg" alt width="14" height="14" v-else />
+                <img
+                  src="../assets/icon/star.svg"
+                  alt
+                  width="14"
+                  height="14"
+                  v-if="seller[index].review_average >= 5"
+                />
+                <img src="../assets/icon/star2.svg" alt width="14" height="14" v-else />
               </div>
             </div>
-            <div class="track-btn">＋追蹤</div>
+            <!-- <div class="track-btn">＋追蹤</div> -->
           </div>
         </div>
       </aside>
@@ -291,7 +323,7 @@
           :key="index"
           v-on="{ click: pageSelect }"
         >
-          <div class="page-link">{{i.no}}</div>
+          <div class="page-link">{{ i + 1 }}</div>
         </li>
 
         <li class="page-right" @click="nextPage">
@@ -310,88 +342,109 @@
 <script>
 import $ from "jquery";
 import { gsap, TweenMax, Power1, Power3, TimelineMax, Linear } from "gsap";
+const SHOP_PAGE_ITEMS = 8;
+const SHOP_INDICATOR_SIZE = 5;
+
 export default {
   data() {
     return {
       shopcommodity: [],
       shopcommodityfilter: [],
       pageArr: [],
-      currentPage: [],
+      currentPage: 0,
+      totalPages: 1,
+      totalItems: 0,
       seller: [],
-      changeitem: ["價錢高到低", "評價高到低", "由新到舊"],
-      v: 0
+      changeitem: ["由新到舊", "評價高到低", "價錢高到低"],
+      checkbox: ["24hr宅配到府", "宅配到府", "超商取貨"],
+      v: 0,
+      checkfilter: []
     };
   },
 
   created() {
-    const api = "/api/api_item.php";
+    const api = this.path + "api_item.php";
 
     this.$http.post(api).then(res => {
       this.shopcommodity = res.data;
+      this.currentPage = 0;
+      this.totalItems = this.shopcommodity.pro.length;
+      this.totalPages = Math.ceil(
+        this.shopcommodity.pro.length / SHOP_PAGE_ITEMS
+      );
 
-      for (let i = 0; i < this.shopcommodity["pro"].length; i++) {
-        if (i == 8) {
-          return;
-        }
-        this.shopcommodityfilter.push(this.shopcommodity["pro"][i]);
-      }
-
-      this.currentPage.push(1);
-      for (let i = 1; i < 10; i++) {
-        this.pageArr.push(i);
-      }
+      this.updatePageItems();
+      this.updatePageIndicator();
 
       this.seller = res.data["mem"];
-      // console.log(res.data["mem"]);
     });
   },
 
   updated() {
-    for (let i = 0; i <= 8; i++) {
+    console.log(this.shopcommodityfilter[0].img.split(",")[0]);
+    for (let i = 0; i < SHOP_INDICATOR_SIZE; i++) {
       document
         .getElementsByClassName("page-item")
         [i].setAttribute("class", "page-item");
       if (
         document.getElementsByClassName("page-item")[i].textContent ==
-        this.currentPage[0]
+        this.currentPage + 1
       ) {
         document
           .getElementsByClassName("page-item")
           [i].classList.add("currentPagecolor");
       }
     }
-    // console.log(document.getElementsByClassName("page-item"));
   },
 
   methods: {
-    SellerM: function() {
+    SellerMouseEnter: function(event) {
       //觸發追蹤商品效果
-      $(".hotCommoditySeller").hover(function() {
-        var sellermove = $(this);
-        TweenMax.to(sellermove, 0.5, {
-          x: -25,
-          width: "100% + 25px"
-        });
-        var sellermove2 = $(this).find(".track-btn");
-        TweenMax.to(sellermove2, 1, {
-          x: 70,
-          autoAlpha: 1
-        });
-      });
-      //反觸發追蹤商品效果
-      $(".hotCommoditySeller").mouseleave(function() {
-        var sellermove = $(this);
-        TweenMax.to(sellermove, 0.5, {
-          x: 0,
-          width: "100%"
-        });
-        var sellermove2 = $(this).find(".track-btn");
-        TweenMax.to(sellermove2, 1, {
-          x: 0,
-          autoAlpha: 0
-        });
+      var sellermove = $(event.target);
+      TweenMax.to(sellermove, 0.5, {
+        x: -25,
+        width: "100% + 25px"
       });
     },
+    SellerMouseLeave: function(event) {
+      //反觸發追蹤商品效果
+      var sellermove = $(event.target);
+      TweenMax.to(sellermove, 0.5, {
+        x: 0,
+        width: "100%"
+      });
+    },
+    HotCommodityItemsEnter: function(event) {
+      var Commoditymove = $(event.target);
+      TweenMax.to(Commoditymove, 0.5, {
+        x: -25,
+        width: "100% + 25px"
+      });
+      var Commoditymove2 = $(event.target).children(".hot_commodity_bg");
+      TweenMax.to(Commoditymove2, 0.5, {
+        autoAlpha: 0.5
+      });
+      var Commoditymove3 = $(event.target).children(".hot_commodity_text");
+      TweenMax.to(Commoditymove3, 0.5, {
+        autoAlpha: 1
+      });
+    },
+    HotCommodityItemsLeave: function(event) {
+      var Commoditymove = $(event.target);
+      TweenMax.to(Commoditymove, 0.5, {
+        x: 0,
+        width: "100%"
+      });
+      var Commoditymove2 = $(event.target).children(".hot_commodity_bg");
+      TweenMax.to(Commoditymove2, 0.5, {
+        autoAlpha: 1
+      });
+      var Commoditymove3 = $(event.target).children(".hot_commodity_text");
+      TweenMax.to(Commoditymove3, 0.5, {
+        autoAlpha: 0
+      });
+    },
+    //------購買按鈕加入購物車按鈕特效------
     btnFun: function() {
       //觸發按鈕效果
       $(".card_btn").hover(function() {
@@ -413,112 +466,63 @@ export default {
           }
         });
       });
-      //觸發item按鈕效果
-      $(".item_btn").hover(function() {
-        var ibtn = $(this);
-        TweenMax.to(ibtn, 0.3, {
-          css: {
-            backgroundColor: "#ffa978",
-            color: "white"
-          }
-        });
-      });
-      //反觸發item按鈕效果
-      $(".item_btn").mouseleave(function() {
-        var ibtn = $(this);
-        TweenMax.to(ibtn, 0.3, {
-          css: {
-            backgroundColor: "#fbf8ef",
-            color: "#007552"
-          }
-        });
-      });
     },
+    //------購買按鈕加入購物車按鈕特效結束------
+    //------頁面切換上一頁------
     pageLeft() {
-      let currentPage1 = this.currentPage[0];
-      // this.currentPage = [];
-      this.shopcommodityfilter = [];
-      if (this.currentPage > 1) {
-        this.currentPage = [];
-        this.currentPage.push(currentPage1 - 1);
-      }
-      let updatePage = this.currentPage[0];
-
-      for (let i = (updatePage - 1) * 8 + 1; i < updatePage * 8 + 1; i++) {
-        this.shopcommodityfilter.push(this.shopcommodity.pro[i]);
-      }
-      console.log(this.shopcommodity);
-      if (this.pageArr[0] > 1) {
-        this.pageArr.forEach((item, index, array) => {
-          this.pageArr[index] = this.pageArr[index] - 1;
-        });
+      if (this.currentPage > 0) {
+        this.currentPage -= 1;
+        this.updatePageItems();
+        this.updatePageIndicator();
       }
     },
+    //------頁面切換上一頁結束------
+    //------頁面切換下一頁------
     nextPage() {
-      let currentPage1 = this.currentPage[0];
-      this.shopcommodityfilter = [];
-      if (this.currentPage < parseInt(this.shopcommodity.length / 8)) {
-        this.currentPage = [];
-        this.currentPage.push(currentPage1 + 1);
-      }
-      let updatePage = this.currentPage[0];
-
-      for (let i = (updatePage - 1) * 8 + 1; i < updatePage * 8 + 1; i++) {
-        this.shopcommodityfilter.push(this.shopcommodity.pro[i]);
-      }
-      if (this.pageArr[8] < parseInt(this.shopcommodity.length / 8)) {
-        this.pageArr.forEach((item, index, array) => {
-          this.pageArr[index] = this.pageArr[index] + 1;
-        });
+      if (this.currentPage < this.totalPages - 1) {
+        this.currentPage += 1;
+        this.updatePageItems();
+        this.updatePageIndicator();
       }
     },
+    //------頁面切換下一頁結束------
     pageSelect(e) {
-      let pageNum = parseInt(e.target.textContent);
-      // console.log(pageNum);
+      const pageNum = parseInt(e.target.textContent, 10) - 1;
+      this.currentPage = pageNum;
+      this.updatePageItems();
+      this.updatePageIndicator();
+    },
+    updatePageItems() {
       this.shopcommodityfilter = [];
-      this.currentPage = [];
-      // console.log(parseInt(this.shopcommodity.length / 9));
-      if (
-        pageNum > 5 &&
-        pageNum < parseInt(this.shopcommodity.length / 8) - 5
-      ) {
-        this.pageArr = [];
-        for (let i = pageNum - 4; i < pageNum + 5; i++) {
-          this.pageArr.push(i);
-        }
-      } else if (pageNum >= parseInt(this.shopcommodity.length / 8) - 5) {
-        this.pageArr = [];
-        for (
-          let i = parseInt(this.shopcommodity.length / 8) - 7;
-          i <= parseInt(this.shopcommodity.length / 7);
-          i++
-        ) {
-          this.pageArr.push(i);
-        }
-      } else {
-        this.pageArr = [];
-        for (let i = 1; i < 10; i++) {
-          this.pageArr.push(i);
-        }
+      const firstItem = this.currentPage * SHOP_PAGE_ITEMS;
+      const lastItem = Math.min(firstItem + 8, this.totalItems);
+      for (let i = firstItem; i < lastItem; i++) {
+        this.shopcommodityfilter.push(this.shopcommodity.pro[i]);
+      }
+    },
+    updatePageIndicator() {
+      let firstItem = 0;
+      let lastItem = SHOP_INDICATOR_SIZE;
+      const SCROLL_OFFSET = Math.ceil(SHOP_INDICATOR_SIZE / 2);
+      if (this.totalPages < SHOP_INDICATOR_SIZE) {
+        lastItem = this.totalPages;
+      } else if (this.currentPage >= SCROLL_OFFSET) {
+        firstItem = this.currentPage - SCROLL_OFFSET + 1;
+        lastItem = firstItem + SHOP_INDICATOR_SIZE;
       }
 
-      this.currentPage.push(pageNum);
-      let currentPage1 = this.currentPage[0];
-
-      for (let i = (currentPage1 - 1) * 8 + 1; i < currentPage1 * 8 + 1; i++) {
-        this.shopcommodityfilter.push(this.shopcommodity["pro"][i]);
+      if (lastItem > this.totalPages) {
+        firstItem = this.totalPages - SHOP_INDICATOR_SIZE;
+        lastItem = this.totalPages;
       }
 
-      for (let i = 1; i < 9; i++) {
-        e.target.parentNode.children[i].setAttribute("class", "page-item");
+      this.pageArr = [];
+      for (let i = firstItem; i < lastItem; i++) {
+        this.pageArr.push(i);
       }
-      // console.log(document.getElementsByClassName("pageBorder"));
-      e.target.parentNode.children[1].setAttribute("class", "page-item");
-      //   document.getElementsByClassName("pageBorder")[0].setAttribute("class","");
     },
     changePage(e) {
-      let api = "/api/api_item_no.php";
-      console.log(e);
+      let api = this.path + "api_item_no.php";
       this.$http
         .post(api, JSON.stringify(e))
         .then(res => {
@@ -531,22 +535,29 @@ export default {
         .catch(err => console.log(err));
     },
     itemchange(t) {
-      console.log(t);
-      const api = "/api/api_item.php";
+      const api = this.path + "api_item.php";
 
       this.$http.post(api, JSON.stringify(t)).then(res => {
+        this.shopcommodity = res.data;
+        this.shopcommodityfilter = [];
+        for (let i = 1; i < 9; i++) {
+          this.shopcommodityfilter.push(this.shopcommodity["pro"][i]);
+        }
+      });
+    },
+    checkchange(k) {
+      const api = this.path + "api_itemcheckbox.php";
+      this.$http.post(api, JSON.stringify(k)).then(res => {
         // this.shopcommodity = "";
         this.shopcommodity = res.data;
-
         this.shopcommodityfilter = [];
-
         for (let i = 1; i < 9; i++) {
           this.shopcommodityfilter.push(this.shopcommodity["pro"][i]);
         }
       });
     },
     addCart(no) {
-      const api = "/api/api_memberStatus.php";
+      const api = this.path + "api_memberStatus.php";
 
       this.$http.post(api).then(res => {
         const data = res.data;
@@ -578,54 +589,14 @@ export default {
     }
   },
   mounted() {
+    //------側邊欄開關------
     function showHideHam() {
       let filterPanel = document.getElementById("filterPanel");
       filterPanel.classList.toggle("hidden");
     }
     document.getElementById("btnHamburger").onclick = showHideHam;
     document.getElementById("btnHamburgerclass").onclick = showHideHam;
-    $(".hot_commodity_items").hover(function() {
-      var tl = $(this);
-      TweenMax.to(tl, 0.5, {
-        x: -25,
-        width: "100% + 25px"
-      });
-      var tl2 = $(this).children(".hot_commodity_bg");
-      TweenMax.to(tl2, 0.5, {
-        autoAlpha: 0.5
-      });
-      var tl3 = $(this).children(".hot_commodity_text");
-      TweenMax.to(tl3, 0.5, {
-        autoAlpha: 1
-      });
-    });
-    //返回明星商品原處
-    $(".hot_commodity_items").mouseleave(function() {
-      var tl = $(this);
-      TweenMax.to(tl, 0.5, {
-        x: 0,
-        width: "100%"
-      });
-      var tl2 = $(this).children(".hot_commodity_bg");
-      TweenMax.to(tl2, 0.5, {
-        autoAlpha: 1
-      });
-      var tl3 = $(this).children(".hot_commodity_text");
-      TweenMax.to(tl3, 0.5, {
-        autoAlpha: 0
-      });
-    });
-
-    //反觸發itembuynow按鈕效果
-    $(".buyNow").mouseleave(function() {
-      var buybtn = $(this);
-      TweenMax.to(buybtn, 0.3, {
-        css: {
-          backgroundColor: "#ffa978",
-          color: "#404040"
-        }
-      });
-    });
+    //------側邊欄開關結束------
 
     //商品效果
     $(".box-top").hover(function() {

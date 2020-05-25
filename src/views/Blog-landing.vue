@@ -85,7 +85,7 @@
             <img src="@/assets/blog-img/blog-bendingbar2.png" />
           </div>
           <div>
-            <img src="@/assets/blog-img/blog-collection.png" />
+            <img :src="this.previousValue[0].img[0]" />
           </div>
         </div>
         <div>
@@ -101,10 +101,11 @@
             <div>
               <img src="../assets/blog-img/blog-trapezoid.png" />
               <div>
-                <img src="@/assets/blog-img/blog-trapimg1.png" />
-                <img src="@/assets/blog-img/blog-trapimg2.png" />
-                <img src="@/assets/blog-img/blog-trapimg3.png" />
-                <img src="@/assets/blog-img/blog-trapimg4.png" />
+                <img :src="this.previousValue[0].img[1]" />
+                <img :src="this.previousValue[0].img[2]" />
+                <img :src="this.previousValue[0].img[3]" />
+                <img :src="this.previousValue[0].img[4]" />
+                <!--<img src="@/assets/blog-img/blog-trapimg2.png" />-->
               </div>
             </div>
           </div>
@@ -615,7 +616,7 @@
           height: 385px;
           position: relative;
           &::before {
-            content: "";
+            content: '';
             width: 90%;
             border-bottom: solid #007552 2px;
             position: absolute;
@@ -632,7 +633,7 @@
             }
           }
           &::after {
-            content: "";
+            content: '';
             width: 75%;
             border-bottom: solid #007552 2px;
             position: absolute;
@@ -674,6 +675,7 @@
         }
         > div:nth-child(1) {
           text-align: right;
+          // background-color: #000;
           // position: relative;
           @media (max-width: 1500px) {
             text-align: left;
@@ -710,6 +712,9 @@
             }
             > img {
               margin-bottom: 4%;
+              width: 100%;
+              max-height: 300px;
+              object-fit: cover;
               @media (max-width: 1500px) {
                 // border: solid 5px #000;
                 margin-bottom: 0%;
@@ -729,7 +734,7 @@
       padding-bottom: 20px;
       position: relative;
       &::after {
-        content: "";
+        content: '';
         width: 90%;
         border-top: 2px solid #007552;
         position: absolute;
@@ -737,7 +742,7 @@
         right: 5%;
       }
       &::before {
-        content: "";
+        content: '';
         width: 90%;
         border-top: 2px solid #007552;
         position: absolute;
@@ -789,8 +794,8 @@
           grid-template-columns: 15% 75% 10%;
           grid-template-rows: repeat(2, 1fr);
           grid-template-areas:
-            "aa1 aa2 aa4"
-            "aa1 aa3 aa4";
+            'aa1 aa2 aa4'
+            'aa1 aa3 aa4';
         }
         > div:nth-child(1) {
           // background-color: #000;
@@ -812,7 +817,7 @@
             grid-area: aa2;
           }
           &::after {
-            content: "";
+            content: '';
             position: absolute;
             top: 0px;
             right: 10%;
@@ -824,7 +829,7 @@
           }
           @media (max-width: 576px) {
             &::before {
-              content: "";
+              content: '';
               position: absolute;
               top: 3px;
               left: -10px;
@@ -938,9 +943,9 @@
 }
 </style>
 <script>
-import $ from "jquery";
+import $ from 'jquery';
 export default {
-  props: { blogInfProps: Object, c: String },
+  props: {blogInfProps: Object, c: String},
   data() {
     return {
       msgobj: {
@@ -966,10 +971,10 @@ export default {
     this.msgobj.date = today;
     // console.log(this.previousValue);
 
-    let api = "/api/api_get_msg.php";
+    let api = this.path + "api_get_msg.php";
 
     this.$http.post(api, JSON.stringify(this.msgobj)).then((res) => {
-      if (res.data != "") {
+      if (res.data != '') {
         this.blogMsg = res.data[0];
 
         // console.log(this.blogMsg);
@@ -987,12 +992,18 @@ export default {
       }
     });
 
-    let api2 = "/api/api_get_blog_content.php";
+    let api2 = this.path + "api_get_blog_content.php";
 
     this.$http.post(api2).then((res) => {
-      if (res.data != "") {
+      if (res.data != '') {
         this.previousValue = res.data;
-        // console.log(this.previousValue[0]);
+
+        this.previousValue[0].img = this.previousValue[0].img.split(',');
+
+        for (let j = 0; j < this.previousValue[0].img.length; j++) {
+          this.previousValue[0].img[j] = `/api/${this.previousValue[0].img[j]}`;
+        }
+        console.log(this.previousValue[0]);
       } else {
       }
     });
@@ -1009,17 +1020,17 @@ export default {
     },
     prevent() {},
     comment() {
-      let msg = document.getElementsByTagName("textarea")[0].value;
+      let msg = document.getElementsByTagName('textarea')[0].value;
       this.msgobj.content = msg;
 
       // let blogNo = this.blogInfProps.no;
       // this.msgobj.blogNo = blogNo;
       // console.log(this.msgobj);
 
-      let api = "/api/api_blog_msg.php";
+      let api = this.path + "api_blog_msg.php";
 
       this.$http.post(api, JSON.stringify(this.msgobj)).then((res) => {
-        if (res.data != "") {
+        if (res.data != '') {
           // console.log(res.data);
         } else {
         }
@@ -1049,15 +1060,15 @@ export default {
       // console.log(e);
       // alert(e)
       document
-        .getElementsByClassName("reportLightBox")[0]
-        .setAttribute("style", "display: block;");
+        .getElementsByClassName('reportLightBox')[0]
+        .setAttribute('style', 'display: block;');
       // this.beReported=null
       this.beReported = e;
     },
     closeLightBox() {
       document
-        .getElementsByClassName("reportLightBox")[0]
-        .setAttribute("style", "display: none;");
+        .getElementsByClassName('reportLightBox')[0]
+        .setAttribute('style', 'display: none;');
     },
     sendReport() {
       var nStartTime = new Date(Date.now());
@@ -1068,12 +1079,12 @@ export default {
       this.beReported.reason = this.reportRadio;
       // console.log(this.beReported);
       if (this.beReported.reason == null) {
-        alert("請填寫原因");
+        alert('請填寫原因');
       } else {
-        let api = "/api/api_report_msg.php";
+        let api = this.path + "api_report_msg.php";
 
         this.$http.post(api, JSON.stringify(this.beReported)).then((res) => {
-          if (res.data != "") {
+          if (res.data != '') {
             console.log(res.data);
           } else {
           }

@@ -24,7 +24,7 @@ import page2 from "@/views/BookSeasonPage2";
 export default {
   // 5. 接收父層(Book.vue)的自定義變數 contentIndex 的值
   // (page) 8. 接收父層(Book.vue)的自定義變數 pageId 的值
-  props: { contentIndex: Number, pageId: Number },
+  props: { contentIndex: Number, pageId: Number, pageAmount: Array },
   data() {
     return {
       currentTab: [],
@@ -113,7 +113,7 @@ export default {
         this.currentTab.page--;
       }
       // 判斷是否翻完該季節的水果頁面
-      if (this.currentTab.page > 8) {
+      if (this.currentTab.page > this.pageAmount[this.contentIndex] * 2) {
         this.currentTab.index = "index";
         this.currentTab.page = 0;
         this.tabs[0].status = false;
