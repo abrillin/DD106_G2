@@ -26,7 +26,7 @@ $itemInfo->execute();
 $itemInfos = $itemInfo->fetchAll(PDO::FETCH_ASSOC);
 
 foreach ($itemInfos as $i => $info) {
-    $sql = "select * from `item` where no={$info["no"]}";
+    $sql = "select i.*, d.amount from `item` i join `detail` d where no={$info["no"]}";
     $item = $pdo->query($sql);
     $info = $item->fetch(PDO::FETCH_ASSOC);
     $orderRow["item"][$i] = $info;
