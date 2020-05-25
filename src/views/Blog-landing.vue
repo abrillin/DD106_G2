@@ -6,7 +6,7 @@
       <div>
         <div>
           <!--果農日誌LOGO-->
-          <img src="@/assets/blog-img/blog_logo.svg" @click="test" />
+          <img src="@/assets/blog-img/blog_logo.svg" />
         </div>
         <div>
           <div>
@@ -67,7 +67,7 @@
       <div>
         <div>
           <div>
-            <div>{{ this.previousValue[0].date }}</div>
+            <div>{{ previousValue[0].date }}</div>
             <div>
               <img src="@/assets/blog-img/blog-tag.png" />
               <span>草莓</span>
@@ -77,28 +77,28 @@
           </div>
           <div></div>
           <div>
-            <span>{{ this.previousValue[0].title }}</span>
+            <span>{{ previousValue[0].title }}</span>
           </div>
           <div>
             <img src="@/assets/blog-img/blog-bendingbar2.png" />
           </div>
           <div>
-            <img :src="this.previousValue[0].img[0]" />
+            <img :src="previousValue[0].img[0]" />
           </div>
         </div>
         <div>
           <div>
-            <div>{{ this.previousValue[0].content }}</div>
-            <div>{{ this.previousValue[0].content }}</div>
+            <div>{{ previousValue[0].content }}</div>
+            <div>{{ previousValue[0].content }}</div>
           </div>
           <div>
             <div>
               <img src="../assets/blog-img/blog-trapezoid.png" />
               <div>
-                <img :src="this.previousValue[0].img[1]" />
-                <img :src="this.previousValue[0].img[2]" />
+                <img v-for="(i, index) in previousValue[0].img" :key="index" :src="i" />
+                <!-- <img :src="this.previousValue[0].img[2]" />
                 <img :src="this.previousValue[0].img[3]" />
-                <img :src="this.previousValue[0].img[4]" />
+                <img :src="this.previousValue[0].img[4]" />-->
                 <!--<img src="@/assets/blog-img/blog-trapimg2.png" />-->
               </div>
             </div>
@@ -182,7 +182,7 @@
           </div>-->
         </div>
         <div>
-          <form action method="get" @click.prevent="prevent">
+          <form action method="get">
             <label for>
               留言:
               <textarea name id></textarea>
@@ -927,6 +927,7 @@ export default {
       blogMsgFilter: [],
       blogMsgCount: 1,
       previousValue: null,
+      previousItem: [],
       reportRadio: null,
       beReported: null
     };
@@ -945,6 +946,7 @@ export default {
 
     this.$http.post(api, JSON.stringify(this.msgobj)).then(res => {
       if (res.data != "") {
+
         this.blogMsg = res.data[0];
 
         // console.log(this.blogMsg);
@@ -955,10 +957,11 @@ export default {
           }
         } else {
           for (let i = 0; i < 5; i++) {
-            this.blogMsgFilter.push(this.blogMsg[i]);
+            if (this.blogMsg[i] != undefined) {
+              this.blogMsgFilter.push(this.blogMsg[i]);
+            }
           }
         }
-      } else {
       }
     });
 
@@ -967,14 +970,13 @@ export default {
     this.$http.post(api2).then(res => {
       if (res.data != "") {
         this.previousValue = res.data;
-
         this.previousValue[0].img = this.previousValue[0].img.split(",");
 
         for (let j = 0; j < this.previousValue[0].img.length; j++) {
-          this.previousValue[0].img[j] = `/api/${this.previousValue[0].img[j]}`;
+
+          this.previousValue[0].img[j] =
+            this.img + this.previousValue[0].img[j];
         }
-        // console.log(this.previousValue[0]);
-      } else {
       }
     });
   },
@@ -985,10 +987,6 @@ export default {
     // },
   },
   methods: {
-    test() {
-      // console.log(this.blogInfProps, this.c);
-    },
-    prevent() {},
     comment() {
       let msg = document.getElementsByTagName("textarea")[0].value;
       this.msgobj.content = msg;
@@ -999,12 +997,7 @@ export default {
 
       let api = this.path + "api_blog_msg.php";
 
-      this.$http.post(api, JSON.stringify(this.msgobj)).then(res => {
-        if (res.data != "") {
-          // console.log(res.data);
-        } else {
-        }
-      });
+      this.$http.post(api, JSON.stringify(this.msgobj));
       var pathtopage = window.location.href;
 
       history.go(0);
