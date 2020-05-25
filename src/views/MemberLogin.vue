@@ -27,27 +27,27 @@
                 <input type="text" v-model="form.name" />
                 <input type="text" v-model="form.nick" />
                 <div class="from_gender">
-                  男
                   <input
                     type="radio"
                     name="gender"
                     v-model="form.gender"
                     value="1"
                   />
-                  女
-                  <input
+                  男
+                   <input
                     type="radio"
                     name="gender"
                     v-model="form.gender"
                     value="2"
                   />
-                  其他
+                  女
                   <input
                     type="radio"
                     name="gender"
                     v-model="form.gender"
                     value="0"
                   />
+                  其他
                 </div>
 
                 <input type="text" v-model="form.acc" />
