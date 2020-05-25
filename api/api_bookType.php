@@ -7,11 +7,18 @@ try {
 
     // 計算每個季節有幾筆資料
     $sql = "select `type`, count(*) count from `encyclopedia` group by `type`";
-    $type = $pdo->prepare($sql);
-    $type->execute();
-    $typeRows = $type->fetchAll(PDO::FETCH_ASSOC);
+    $count = $pdo->prepare($sql);
+    $count->execute();
+    $countRows = $count->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach ($countRows as $i => $infoRow) {
+        $sql = "select title from `encyclopedia` where type = {$infoRow["type"]}";
+        $title = $pdo->query($sql);
+        $titleRows = $title->fetchAll(PDO::FETCH_ASSOC);
+        $countRows[$i]["title"] = $titleRows;
+    }
     
-    echo json_encode($typeRows);
+    echo json_encode($countRows);
 } catch (PDOException $e) {
     $error = ["error" => $e->getMessage()];
     echo json_encode($error);

@@ -27,7 +27,7 @@
                 <td>{{item.payStatus}}</td>
                 <td>{{item.status}}</td>
                 <td>
-                  <a href="javascript:" @click="itemPage(item.item_no)">查看商品</a>
+                  <a href="javascript:" @click="updatePage(item.no)">訂單詳細</a>
                 </td>
               </tr>
             </thead>
@@ -44,8 +44,8 @@ export default {
       member: []
     };
   },
-  created() {
-    const api = "/api/api_farmlist.php";
+  activated() {
+    const api = this.path + "api_farmlist.php";
     this.$http.post(api).then(res => {
       const data = res.data;
       if (data != "") {
@@ -64,11 +64,12 @@ export default {
     });
   },
   methods: {
-    itemPage: function(no) {
-      let api = "/api/api_item_no.php";
-      this.$http
-        .post(api, JSON.stringify({ no: no }))
-        .then(this.$router.push("/main/shopitem"));
+    updatePage(no) {
+      const api = this.path + "api_farmListSession.php";
+
+      this.$http.post(api, JSON.stringify(no));
+      
+      this.$router.push({ name: "ListUpdate" });
     }
   }
 };

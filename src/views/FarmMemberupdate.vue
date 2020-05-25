@@ -99,7 +99,7 @@ export default {
     };
   },
   created() {
-    const api = "/api/api_farmStatus.php";
+    const api = this.path + "api_farmStatus.php";
     this.$http.post(api).then((res) => {
       const data = res.data;
       if (data != "") {
@@ -136,7 +136,7 @@ export default {
   },
   methods: {
     update: function() {
-      const api = "/api/api_farmUpdate.php";
+      const api = this.path + "api_farmUpdate.php";
 
       for (let i in this.member) {
         if (this.member[i] == "") {
@@ -161,7 +161,7 @@ export default {
         .catch((err) => console.log(err));
     },
     updateSession: function() {
-      const api = "/api/api_farmUpdateSession.php";
+      const api = this.path + "api_farmUpdateSession.php";
 
       this.$http
         .post(api, JSON.stringify(this.member))

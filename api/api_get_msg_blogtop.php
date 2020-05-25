@@ -24,14 +24,12 @@ try{
 
   $sql4 = "SELECT b.no,m.img,m.nick,bc.date,bc.content,m.no,bc.no bc_no from blog b JOIN blog_comment_des bcd ON b.no=bcd.blog_no JOIN blog_comment bc ON bcd.blog_comment=bc.no JOIN member m ON m.no=bc.member_no where b.no=:blogNo AND bc.status=1 order by date;"; 
   $get_blog_comment = $pdo->prepare($sql4);
-  $get_blog_comment->bindValue(":blogNo",$_SESSION["blogNo"]);
+  $get_blog_comment->bindValue(":blogNo",$frontInfo);
   
   $get_blog_comment->execute();
   $get_blog_comment_rows = $get_blog_comment->fetchAll(PDO::FETCH_ASSOC);
-  echo json_encode([
-    0=>$get_blog_comment_rows,
-  1=>$_SESSION["blogNo"]
-  ]);
+  echo json_encode($get_blog_comment_rows);
+  // echo json_encode($frontInfo);
 
 
 

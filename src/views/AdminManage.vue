@@ -39,7 +39,8 @@
                 <td>{{ row.no }}</td>
                 <td>{{ row.name }}</td>
                 <td>{{ row.acc }}</td>
-                <td>{{ row.psw }}</td>
+                <td><input type="password" v-model="row.psw" disabled>
+                  </td>
                 <td>
                   <input
                     class="statusBtn"
@@ -74,7 +75,7 @@ export default {
     };
   },
   created() {
-    const api = "/api/api_adminManage.php";
+    const api = this.path + "api_adminManage.php";
 
     this.$http // $http 是將axios封裝後的promise寫法
       .post(api) // 用axios post info到此api
@@ -90,7 +91,7 @@ export default {
   },
   methods: {
     toggleStatus(no, status) {
-      const api = "/api/api_adminUpdate.php";
+      const api = this.path + "api_adminUpdate.php";
       let s;
 
       // 如果狀態是 1 (停權) 則切換成 0 (正常)

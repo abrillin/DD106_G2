@@ -72,7 +72,7 @@ export default {
     };
   },
   created() {
-    const api = "/api/api_adminFanManage.php";
+    const api = this.path + "api_adminFanManage.php";
 
     this.$http
       .post(api) // 將api承接到的資料post出去
@@ -87,7 +87,7 @@ export default {
   },
   methods: {
     toggleStatus(no, status) {
-      const api = "/api/api_adminMemberUpdate.php";
+      const api = this.path + "api_adminMemberUpdate.php";
       let s;
       console.log(status);
 

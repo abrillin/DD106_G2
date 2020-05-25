@@ -9,6 +9,9 @@ import "@/style/main.scss";
 Vue.config.productionTip = false;
 
 Vue.prototype.$http = axios;
+// Vue.prototype.path = "/demo-projects/DD106/DD106G2/api/";
+Vue.prototype.path = "/api/";
+Vue.prototype.img = "/api/";
 
 new Vue({
   router,

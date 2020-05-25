@@ -85,7 +85,7 @@
             <img src="@/assets/blog-img/blog-bendingbar2.png" />
           </div>
           <div>
-            <img src="@/assets/blog-img/blog-collection.png" />
+            <img :src="this.previousValue[0].img[0]" />
           </div>
         </div>
         <div>
@@ -101,10 +101,11 @@
             <div>
               <img src="../assets/blog-img/blog-trapezoid.png" />
               <div>
-                <img src="@/assets/blog-img/blog-trapimg1.png" />
-                <img src="@/assets/blog-img/blog-trapimg2.png" />
-                <img src="@/assets/blog-img/blog-trapimg3.png" />
-                <img src="@/assets/blog-img/blog-trapimg4.png" />
+                <img :src="this.previousValue[0].img[1]" />
+                <img :src="this.previousValue[0].img[2]" />
+                <img :src="this.previousValue[0].img[3]" />
+                <img :src="this.previousValue[0].img[4]" />
+                <!--<img src="@/assets/blog-img/blog-trapimg2.png" />-->
               </div>
             </div>
           </div>
@@ -239,6 +240,12 @@
             value="3"
             v-model="reportRadio"
           />&emsp; <label for="r4">與本網站無關</label><br /><br />
+          <input
+            class="reportBtn"
+            type="button"
+            value="確定"
+            @click="sendReport()"
+          />
         </div>
       </div>
     </div>
@@ -668,6 +675,7 @@
         }
         > div:nth-child(1) {
           text-align: right;
+          // background-color: #000;
           // position: relative;
           @media (max-width: 1500px) {
             text-align: left;
@@ -704,6 +712,9 @@
             }
             > img {
               margin-bottom: 4%;
+              width: 100%;
+              max-height: 300px;
+              object-fit: cover;
               @media (max-width: 1500px) {
                 // border: solid 5px #000;
                 margin-bottom: 0%;
@@ -911,9 +922,21 @@
       }
       > div:nth-child(2) {
         // background-color: #fff;
-        padding-top: 35%;
+        padding-top: 30%;
         padding-left: 30%;
         font-size: 16px;
+        > .reportBtn {
+          color: #fff;
+          background-color: rgb(0, 0, 0);
+          border: none;
+          border-radius: 10px;
+          padding: 2px 10px;
+          font-size: 15px;
+          margin-left: 15%;
+          margin-top: 5%;
+          box-shadow: none;
+          text-decoration: none;
+        }
       }
     }
   }
@@ -935,6 +958,7 @@ export default {
       blogMsgCount: 1,
       previousValue: null,
       reportRadio: null,
+      beReported: null,
     };
   },
   created() {
@@ -947,12 +971,14 @@ export default {
     this.msgobj.date = today;
     // console.log(this.previousValue);
 
-    let api = '/api/api_get_msg.php';
+    let api = this.path + "api_get_msg.php";
 
     this.$http.post(api, JSON.stringify(this.msgobj)).then((res) => {
       if (res.data != '') {
         this.blogMsg = res.data[0];
-        console.log(this.blogMsg);
+
+        // console.log(this.blogMsg);
+        // console.log(res.data);
         if (this.blogMsg.length < 5) {
           for (let i = 0; i <= this.blogMsg.length - 1; i++) {
             this.blogMsgFilter.push(this.blogMsg[i]);
@@ -966,12 +992,18 @@ export default {
       }
     });
 
-    let api2 = '/api/api_get_blog_content.php';
+    let api2 = this.path + "api_get_blog_content.php";
 
     this.$http.post(api2).then((res) => {
       if (res.data != '') {
         this.previousValue = res.data;
-        // console.log(this.previousValue[0]);
+
+        this.previousValue[0].img = this.previousValue[0].img.split(',');
+
+        for (let j = 0; j < this.previousValue[0].img.length; j++) {
+          this.previousValue[0].img[j] = `/api/${this.previousValue[0].img[j]}`;
+        }
+        console.log(this.previousValue[0]);
       } else {
       }
     });
@@ -984,7 +1016,7 @@ export default {
   },
   methods: {
     test() {
-      console.log(this.blogInfProps, this.c);
+      // console.log(this.blogInfProps, this.c);
     },
     prevent() {},
     comment() {
@@ -995,11 +1027,11 @@ export default {
       // this.msgobj.blogNo = blogNo;
       // console.log(this.msgobj);
 
-      let api = '/api/api_blog_msg.php';
+      let api = this.path + "api_blog_msg.php";
 
       this.$http.post(api, JSON.stringify(this.msgobj)).then((res) => {
         if (res.data != '') {
-          console.log(res.data);
+          // console.log(res.data);
         } else {
         }
       });
@@ -1025,15 +1057,40 @@ export default {
       this.blogMsgCount++;
     },
     report(e) {
-      console.log(e);
+      // console.log(e);
+      // alert(e)
       document
         .getElementsByClassName('reportLightBox')[0]
         .setAttribute('style', 'display: block;');
+      // this.beReported=null
+      this.beReported = e;
     },
-    closeLightBox(){
+    closeLightBox() {
       document
         .getElementsByClassName('reportLightBox')[0]
         .setAttribute('style', 'display: none;');
+    },
+    sendReport() {
+      var nStartTime = new Date(Date.now());
+      let today = `${nStartTime.getFullYear()}-${nStartTime.getMonth() +
+        1}-${nStartTime.getDate()}`;
+      this.beReported.date = today;
+      this.beReported.reason = null;
+      this.beReported.reason = this.reportRadio;
+      // console.log(this.beReported);
+      if (this.beReported.reason == null) {
+        alert('請填寫原因');
+      } else {
+        let api = this.path + "api_report_msg.php";
+
+        this.$http.post(api, JSON.stringify(this.beReported)).then((res) => {
+          if (res.data != '') {
+            console.log(res.data);
+          } else {
+          }
+        });
+        this.closeLightBox();
+      }
     },
   },
 };

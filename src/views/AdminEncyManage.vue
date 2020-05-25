@@ -76,14 +76,14 @@ export default {
     };
   },
   created() {
-    const api = "/api/api_adminEncyManage.php";
+    const api = this.path + "api_adminEncyManage.php";
 
     this.$http // $http 是將axios封裝後的promise寫法
       .post(api) // 用axios post info到此api
       .then((res) => {
         // 如果可以傳送出去的話會response data: []裡的資料回來
-
         this.data = res.data; // 第一個data是指data()裡的data[]; res.data 代表只取res中的data屬性中的資料
+        console.log(this.data)
       });
   },
   methods: {
@@ -91,12 +91,15 @@ export default {
       this.$router.push({ name: url });
       // this.$router.push({ name: 'Order', params: { userId: 123 }})
     },
+    // 按了click之後要將特定百科內容的編號傳Encysession.php連接資料庫找到該編號對應的內容
+    // 將內容在adminInfo.vue上呈現，做動態修改
     updateSession: function($event) {
-      this.encyno = $event.target.id;
+      this.encyno = $event.target.id; // 獲取按的那個圖所代表百科內容的 row.no (事件觸發元素之id)
+      const api = this.path + "api_adminEncysession.php";
+      // 將獲取到的id傳到api
+      this.$http.post(api, JSON.stringify(this.encyno)).then(res => {});
 
-      const api = "/api/api_adminEncysession.php";
-
-      this.$http.post(api, JSON.stringify(this.encyno)).then((res) => {});
+  
     }, // end of updateSession
   },
 };

@@ -74,7 +74,7 @@ export default {
     };
   },
   created() {
-    const api = "/api/api_memberStatus.php";
+    const api = this.path + "api_memberStatus.php";
 
     this.$http.post(api).then(res => {
       const data = res.data;
@@ -102,7 +102,7 @@ export default {
   },
   methods: {
     update: function() {
-      const api = "/api/api_memberUpdate.php";
+      const api = this.path + "api_memberUpdate.php";
 
       for (let i in this.member) {
         if (this.member[i] == "") {
