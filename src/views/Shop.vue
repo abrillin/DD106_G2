@@ -6,21 +6,9 @@
     <section class="show_item">
       <div class="show_item-content">
         <div class="shop-imgbox">
-          <img
-            src="../assets/shop/market_showImg_behind.svg"
-            alt
-            class="box-bottom"
-          />
-          <img
-            src="../assets/shop/market_product.svg"
-            alt
-            class="shopItemImg"
-          />
-          <img
-            src="../assets/shop/market_showImg_front.svg"
-            alt
-            class="box-top"
-          />
+          <img src="../assets/shop/market_showImg_behind.svg" alt class="box-bottom" />
+          <img src="../assets/shop/market_product.svg" alt class="shopItemImg" />
+          <img src="../assets/shop/market_showImg_front.svg" alt class="box-top" />
         </div>
         <div class="show_item-text">
           <div class="show_item-content-box">
@@ -55,14 +43,10 @@
                 嚴選台灣出產高甜度愛文芒果，為夏季芒果推薦 “TOP 1”
                 因果皮紅潤且果肉金黃，又有“太陽果”之稱。
                 <br />
-                <router-link class="product-details" to="/main/shopitem"
-                  >商品詳情...</router-link
-                >
+                <router-link class="product-details" to="/main/shopitem">商品詳情...</router-link>
               </p>
               <div class="item_buy-box">
-                <a href="#" class="item_btn card_btn" @mouseenter="btnFun"
-                  >加入購物籃</a
-                >
+                <a href="#" class="item_btn card_btn" @mouseenter="btnFun">加入購物籃</a>
                 <a href="#" class="item_btn buyNow">直接購買</a>
               </div>
             </div>
@@ -72,12 +56,7 @@
     </section>
 
     <div class="search-wrapper">
-      <img
-        src="../assets/search_logo_img.svg"
-        width="170px"
-        height="100px"
-        class="search_logo"
-      />
+      <img src="../assets/search_logo_img.svg" width="170px" height="100px" class="search_logo" />
       <div class="search-section">
         <div class="searchbar">
           <div class="searchbar_main">
@@ -115,10 +94,7 @@
 
     <section class="shop_main">
       <aside class="filter-panel hidden" id="filterPanel">
-        <img
-          src="../assets/market_choose_right_mountain_only.svg"
-          class="mountain"
-        />
+        <img src="../assets/market_choose_right_mountain_only.svg" class="mountain" />
         <div class="filter-status">
           <div class="filter-status_text">條件篩選</div>
           <button id="btnHamburgerclass">
@@ -188,32 +164,22 @@
               </button>
               <label class="dropdown" for="states">最新商品</label>
               <div class="button dropdown-content">
-                <select
-                  id="colorselector"
-                  class="select-reset"
-                  v-model="v"
-                  @change="itemchange(v)"
-                >
+                <select id="colorselector" class="select-reset" v-model="v" @change="itemchange(v)">
                   <option
                     v-for="(changeitems, index) in changeitem"
                     :key="changeitems"
                     :value="index"
-                    >{{ changeitems }}</option
-                  >
+                  >{{ changeitems }}</option>
                 </select>
               </div>
             </div>
           </div>
           <div class="commodity-flex">
-            <div
-              class="commodity"
-              v-for="(i, index) in shopcommodityfilter"
-              :key="index"
-            >
+            <div class="commodity" v-for="(i, index) in shopcommodityfilter" :key="index">
               <router-link to="/main/shopitem">
                 <div class="card_img_box" @click="changePage(i)">
                   <img
-                    :src="shopcommodityfilter[index].img"
+                    :src="`/api/` + shopcommodityfilter[index].img.split(',')[0]"
                     width="100%"
                     height="100%"
                   />
@@ -229,16 +195,12 @@
                   v-for="(t, dex) in shopcommodityfilter[index].tags"
                   :key="dex"
                 >
-                  <img
-                    src="../assets/icon/tag.svg"
-                    alt
-                    width="16px"
-                    height="16px"
-                    class="tag_icon"
-                  />
-                  <span class="card_tag_text">{{
+                  <img src="../assets/icon/tag.svg" alt width="16px" height="16px" class="tag_icon" />
+                  <span class="card_tag_text">
+                    {{
                     shopcommodityfilter[index].tags[dex].name
-                  }}</span>
+                    }}
+                  </span>
                 </div>
 
                 <div class="card_price">
@@ -251,11 +213,8 @@
                     class="card_btn"
                     @click="addCart(i.no)"
                     @mouseenter="btnFun"
-                    >加入購物籃</a
-                  >
-                  <a href="javascript:" class="card_btn" @mouseenter="btnFun"
-                    >直接購買</a
-                  >
+                  >加入購物籃</a>
+                  <a href="javascript:" class="card_btn" @mouseenter="btnFun">直接購買</a>
                 </div>
               </div>
             </div>
@@ -266,10 +225,7 @@
       <aside class="hot_commodity">
         <div class="hot_commodity_filter-status">
           <div class="hot_commoditystatus_text">
-            <img
-              src="../assets/market_choose_right_mountain_only.svg"
-              class="mountain"
-            />
+            <img src="../assets/market_choose_right_mountain_only.svg" class="mountain" />
             明星商品
           </div>
         </div>
@@ -298,13 +254,7 @@
         >
           <router-link to="#">
             <div class="seller_box">
-              <img
-                :src="seller[index].img"
-                alt
-                height="50"
-                width="50"
-                style="border-radius: 30px;"
-              />
+              <img :src="seller[index].img" alt height="50" width="50" style="border-radius: 30px;" />
             </div>
           </router-link>
           <div class="seller_content">
@@ -318,13 +268,7 @@
                   height="14"
                   v-if="seller[index].review_average >= 1"
                 />
-                <img
-                  src="../assets/icon/star2.svg"
-                  alt
-                  width="14"
-                  height="14"
-                  v-else
-                />
+                <img src="../assets/icon/star2.svg" alt width="14" height="14" v-else />
                 <img
                   src="../assets/icon/star.svg"
                   alt
@@ -332,13 +276,7 @@
                   height="14"
                   v-if="seller[index].review_average >= 2"
                 />
-                <img
-                  src="../assets/icon/star2.svg"
-                  alt
-                  width="14"
-                  height="14"
-                  v-else
-                />
+                <img src="../assets/icon/star2.svg" alt width="14" height="14" v-else />
                 <img
                   src="../assets/icon/star.svg"
                   alt
@@ -346,13 +284,7 @@
                   height="14"
                   v-if="seller[index].review_average >= 3"
                 />
-                <img
-                  src="../assets/icon/star2.svg"
-                  alt
-                  width="14"
-                  height="14"
-                  v-else
-                />
+                <img src="../assets/icon/star2.svg" alt width="14" height="14" v-else />
                 <img
                   src="../assets/icon/star.svg"
                   alt
@@ -360,13 +292,7 @@
                   height="14"
                   v-if="seller[index].review_average >= 4"
                 />
-                <img
-                  src="../assets/icon/star2.svg"
-                  alt
-                  width="14"
-                  height="14"
-                  v-else
-                />
+                <img src="../assets/icon/star2.svg" alt width="14" height="14" v-else />
                 <img
                   src="../assets/icon/star.svg"
                   alt
@@ -374,13 +300,7 @@
                   height="14"
                   v-if="seller[index].review_average >= 5"
                 />
-                <img
-                  src="../assets/icon/star2.svg"
-                  alt
-                  width="14"
-                  height="14"
-                  v-else
-                />
+                <img src="../assets/icon/star2.svg" alt width="14" height="14" v-else />
               </div>
             </div>
             <!-- <div class="track-btn">＋追蹤</div> -->
@@ -393,12 +313,7 @@
       <ul class="pagination justify-content-center">
         <li @click="pageLeft">
           <div class="page-link pageLeft">
-            <img
-              src="../assets/prouduct_button_left.svg"
-              alt
-              height="40"
-              width="30"
-            />
+            <img src="../assets/prouduct_button_left.svg" alt height="40" width="30" />
           </div>
         </li>
 
@@ -413,12 +328,7 @@
 
         <li class="page-right" @click="nextPage">
           <div class="page-link">
-            <img
-              src="../assets/product_button_right.svg"
-              alt
-              height="40"
-              width="30"
-            />
+            <img src="../assets/product_button_right.svg" alt height="40" width="30" />
           </div>
         </li>
       </ul>
@@ -448,14 +358,14 @@ export default {
       changeitem: ["由新到舊", "評價高到低", "價錢高到低"],
       checkbox: ["24hr宅配到府", "宅配到府", "超商取貨"],
       v: 0,
-      checkfilter: [],
+      checkfilter: []
     };
   },
 
   created() {
     const api = "/api/api_item.php";
 
-    this.$http.post(api).then((res) => {
+    this.$http.post(api).then(res => {
       this.shopcommodity = res.data;
       this.currentPage = 0;
       this.totalItems = this.shopcommodity.pro.length;
@@ -471,6 +381,7 @@ export default {
   },
 
   updated() {
+    console.log(this.shopcommodityfilter[0].img.split(",")[0]);
     for (let i = 0; i < SHOP_INDICATOR_SIZE; i++) {
       document
         .getElementsByClassName("page-item")
@@ -492,7 +403,7 @@ export default {
       var sellermove = $(event.target);
       TweenMax.to(sellermove, 0.5, {
         x: -25,
-        width: "100% + 25px",
+        width: "100% + 25px"
       });
     },
     SellerMouseLeave: function(event) {
@@ -500,37 +411,37 @@ export default {
       var sellermove = $(event.target);
       TweenMax.to(sellermove, 0.5, {
         x: 0,
-        width: "100%",
+        width: "100%"
       });
     },
     HotCommodityItemsEnter: function(event) {
       var Commoditymove = $(event.target);
       TweenMax.to(Commoditymove, 0.5, {
         x: -25,
-        width: "100% + 25px",
+        width: "100% + 25px"
       });
       var Commoditymove2 = $(event.target).children(".hot_commodity_bg");
       TweenMax.to(Commoditymove2, 0.5, {
-        autoAlpha: 0.5,
+        autoAlpha: 0.5
       });
       var Commoditymove3 = $(event.target).children(".hot_commodity_text");
       TweenMax.to(Commoditymove3, 0.5, {
-        autoAlpha: 1,
+        autoAlpha: 1
       });
     },
     HotCommodityItemsLeave: function(event) {
       var Commoditymove = $(event.target);
       TweenMax.to(Commoditymove, 0.5, {
         x: 0,
-        width: "100%",
+        width: "100%"
       });
       var Commoditymove2 = $(event.target).children(".hot_commodity_bg");
       TweenMax.to(Commoditymove2, 0.5, {
-        autoAlpha: 1,
+        autoAlpha: 1
       });
       var Commoditymove3 = $(event.target).children(".hot_commodity_text");
       TweenMax.to(Commoditymove3, 0.5, {
-        autoAlpha: 0,
+        autoAlpha: 0
       });
     },
     //------購買按鈕加入購物車按鈕特效------
@@ -541,8 +452,8 @@ export default {
         TweenMax.to(cbtn, 0.3, {
           css: {
             backgroundColor: "#ffa978",
-            color: "white",
-          },
+            color: "white"
+          }
         });
       });
       //反觸發按鈕效果
@@ -551,8 +462,8 @@ export default {
         TweenMax.to(cbtn, 0.3, {
           css: {
             backgroundColor: "#fbf8ef",
-            color: "#007552",
-          },
+            color: "#007552"
+          }
         });
       });
     },
@@ -614,19 +525,19 @@ export default {
       let api = "/api/api_item_no.php";
       this.$http
         .post(api, JSON.stringify(e))
-        .then((res) => {
+        .then(res => {
           if (res.data != "") {
             console.log(JSON.parse(res.data));
           } else {
             console.log(res.error);
           }
         })
-        .catch((err) => console.log(err));
+        .catch(err => console.log(err));
     },
     itemchange(t) {
       const api = "/api/api_item.php";
 
-      this.$http.post(api, JSON.stringify(t)).then((res) => {
+      this.$http.post(api, JSON.stringify(t)).then(res => {
         this.shopcommodity = res.data;
         this.shopcommodityfilter = [];
         for (let i = 1; i < 9; i++) {
@@ -636,7 +547,7 @@ export default {
     },
     checkchange(k) {
       const api = "/api/api_itemcheckbox.php";
-      this.$http.post(api, JSON.stringify(k)).then((res) => {
+      this.$http.post(api, JSON.stringify(k)).then(res => {
         // this.shopcommodity = "";
         this.shopcommodity = res.data;
         this.shopcommodityfilter = [];
@@ -648,7 +559,7 @@ export default {
     addCart(no) {
       const api = "/api/api_memberStatus.php";
 
-      this.$http.post(api).then((res) => {
+      this.$http.post(api).then(res => {
         const data = res.data;
 
         // 檢查有沒有登入
@@ -675,7 +586,7 @@ export default {
           }
         }
       });
-    },
+    }
   },
   mounted() {
     //------側邊欄開關------
@@ -690,15 +601,15 @@ export default {
     //商品效果
     $(".box-top").hover(function() {
       TweenMax.to(".shopItemImg", 0.5, {
-        y: -30,
+        y: -30
       });
     });
     //反觸發商品效果
     $(".box-top").mouseleave(function() {
       TweenMax.to(".shopItemImg", 0.5, {
-        y: 0,
+        y: 0
       });
     });
-  },
+  }
 };
 </script>
