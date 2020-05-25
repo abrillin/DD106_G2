@@ -25,10 +25,10 @@
                 <th>上架狀態</th>
               </tr>
               <tr v-for="item in member" :key="item.no">
-                <td>{{item.no}}</td>
-                <td>{{item.name}}</td>
-                <td>{{item.price}}</td>
-                <td>{{item.date}}</td>
+                <td>{{ item.no }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.price }}</td>
+                <td>{{ item.date }}</td>
                 <td>
                   <input
                     class="statusBtn"
@@ -40,7 +40,8 @@
                     class="statusBtnLabel"
                     :for="'switch' + item.no"
                     @click="toggleStatus(item.no, item.status)"
-                  >Toggle</label>
+                    >Toggle</label
+                  >
                 </td>
               </tr>
             </thead>
@@ -56,15 +57,19 @@ import $ from "jquery";
 export default {
   data() {
     return {
-      member: []
+      member: [],
     };
   },
   created() {
     const api = "/api/api_farmorder.php";
-    this.$http.post(api).then(res => {
+    this.$http.post(api).then((res) => {
       const data = res.data;
       if (data != "") {
         this.member = data;
+
+        data.forEach((i) => {
+          i.status = parseInt(i.status);
+        });
       }
     });
   },
@@ -95,7 +100,7 @@ export default {
 
       // 發送到 DB 更新商品的狀態
       this.$http.post(api, JSON.stringify({ no: no, status: s }));
-    }
-  }
+    },
+  },
 };
 </script>
