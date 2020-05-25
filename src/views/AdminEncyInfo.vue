@@ -3,7 +3,7 @@
     <main class="encyEdit">
       <h1 class="manageTitle">
         知識百科 管理中心
-        <span class="manageSubTitle">| 百科內容新增/修改</span>
+        <span class="manageSubTitle">| 百科內容修改</span>
       </h1>
 
       <table class="encyEditTab" cellpadding="0" cellspacing="0" border="0">
@@ -11,9 +11,7 @@
           <th>
             <label for="encyNo">編號</label>
           </th>
-          <td>
-            {{ encyEdit.no }}
-          </td>
+          <td>{{ encyEdit.no }}</td>
         </tr>
 
         <tr>
@@ -104,33 +102,20 @@
 
           <td>
             <label for="encyPic01">
-              圖01：
-              <input type="file" id="encyPic01" name="upFile[]" @change="fileSelect" />
+              請傳3-5張圖：
+              <input type="file" id="encyPic01" multiple  @change="fileSelect" />
+              <!-- <input type="file" id="encyPic01" @change="fileSelect" multiple /> -->
             </label>
-            <img src style="max-width: 400px;max-height: 400px;" />
-            <br />
 
-            <label for="encyPic02">
-              圖02：
-              <input type="file" id="encyPic02" name="upFile[]" @change="fileSelect" />
-            </label>
-            <br />
-            <label for="encyPic03">
-              圖03：
-              <input type="file" id="encyPic03" name="upFile[]" @change="fileSelect" />
-            </label>
-            <br />
+            <img class="encyImg" src style="max-width: 200px;max-height: 200px;" />
+            <img class="encyImg" src style="max-width: 200px;max-height: 200px;" />
+            <img class="encyImg" src style="max-width: 200px;max-height: 200px;" />
+            <img class="encyImg" src style="max-width: 200px;max-height: 200px;" />
+            <img class="encyImg" src style="max-width: 200px;max-height: 200px;" />
 
-            <label for="encyPic04">
-              圖04：
-              <input type="file" id="encyPic04" name="upFile[]" @change="fileSelect" />
-            </label>
-            <br />
-
-            <label for="encyPic05">
-              圖05：
-              <input type="file" id="encyPic05" name="upFile[]" @change="fileSelect" />
-            </label>
+            <!--
+                  <img id:"encyImg" :src="encyEdit.titleImg" style="max-width: 200px;max-height: 200px;" />
+            -->
             <br />
           </td>
         </tr>
@@ -153,7 +138,7 @@
                 onclick="javascript:history.back(1)"
                 value="取消"
               />
-              <input id="ecnyEditSubmit" type="submit" value="送出" @click="update" />
+              <input id="ecnyEditSubmit" type="button" value="送出" @click="update" />
             </div>
           </td>
         </tr>
@@ -166,7 +151,9 @@
 import $ from "jquery";
 export default {
   data() {
+    
     return {
+      formData:new FormData(),
       encyEdit: {
         no: "",
         title: "", // 水果名，當標籤用
@@ -179,11 +166,19 @@ export default {
       }
     };
   },
-   created() {
-    const api = "/api/adminEncyInfo.php";
+  created() {
+    // 接收來自資料庫的資料並呈現出來
+    const api = "/api/api_adminEncyInfo.php";
 
+    // axios的post()是新增資料
+    // patch() 修改某資料
     this.$http.post(api).then(res => {
+      // 用axios post info到此api
+      // 如果可以傳送出去的話會response data: []裡的資料回來
+    
       const data = res.data;
+      //  res.data 代表只取res中的data屬性中的資料
+      // 這裡的第二個data是axios取回資料的內容
 
       if (data != "") {
         this.encyEdit = {
@@ -192,35 +187,125 @@ export default {
           type: data.type,
           content: data.content,
           question: data.question,
-          answer: data.answer,
           titleImg: data.titleImg,
-          video: data.video,
+          answer: data.answer,
+          video: data.video
         };
       }
+
+      const imgList = document.querySelectorAll(".encyImg");
+
+      let imgStr = data.titleImg;
+      let imgArr = imgStr.split(",");
+
+      imgArr.forEach((img, index) => {
+        
+        imgList[index].src = "/api/"+imgArr[index];
+      });
+      
+      
     });
   },
   methods: {
+    // 修改後按下送出，更新內容會傳到另一隻更新資料庫資料的php
     update: function() {
-      const api = "/api/api_adminEncyInfo.php";
-
-      for (let i in this.encyEdit) {
-        if (this.encyEdit[i] == "") {
-          alert("有欄位空白，請再檢查一次 ﾚ(ﾟ∀ﾟ;)ﾍ ");
-          return;
-        }
+      
+       for (
+        let i = 0;
+        i < document.getElementById("encyPic01").files.length;
+        i++
+      ) {
+        this.formData.append(
+          "encyPic01[]",
+          document.getElementById("encyPic01").files[i]
+        );
       }
+
+      if(document.getElementById("encyPic01").files.length >=3 && document.getElementById("encyPic01").files.length <=5){
+        this.$http
+          .post("/api/api_adminEncyUpload.php", this.formData)
+          .then((res) => {
+            // console.log(res.data);
+            
+            this.encyEdit.titleImg = res.data.toString();
+
+
+      const api = "/api/api_adminEncyUpdate.php";
+
+      // console.log(this.encyEdit);
+      
 
       this.$http.post(api, JSON.stringify(this.encyEdit)).then(res => {
         const data = res.data;
 
-        if (data == 1) {
-          alert(" 修改成功 ᕦ(ò_óˇ)ᕤ ");
+        for (let i in this.encyEdit) {
+          if (this.encyEdit[i] == "") {
+            alert(" 有欄位空白，請再檢查一次 ( ´Д`)y━･ ");
+            return;
+          }
+        }
 
-          this.$router.go(0);
+        if (data == 1) {
+          alert("修改成功 ᕦ(ò_óˇ)ᕤ ");
+
+          this.$router.go(-1);
         }
       });
-    }
+          });
+      }
+
+      
+
+
+      const api = "/api/api_adminEncyUpdate.php";
+
+      console.log(this.encyEdit);
+      
+
+      this.$http.post(api, JSON.stringify(this.encyEdit)).then(res => {
+        const data = res.data;
+
+        for (let i in this.encyEdit) {
+          if (this.encyEdit[i] == "") {
+            alert(" 有欄位空白，請再檢查一次 ( ´Д`)y━･ ");
+            return;
+          }
+        }
+
+        if (data == 1) {
+          alert("修改成功 ᕦ(ò_óˇ)ᕤ ");
+
+          this.$router.go(-1);
+        }
+      });
+          
+
+
+
+    },
+    fileSelect(e){
+      for(let i = 0 ; i<document.getElementsByClassName('encyImg').length;i++){
+        document.getElementsByClassName('encyImg')[i].src = "";
+      };
+      
+      //  var file = event.target.files;
+        const titleImg = e.target;
+      if (titleImg.files.length > 5) {
+        window.alert("最多上傳五張");
+        return;
+      } else if (titleImg.files.length < 3) {
+        window.alert("最少上傳三張");
+        return;
+      } else {
+        for (let i = 0; i < titleImg.files.length; i++) {
+          let readFile = new FileReader();
+          readFile.onload = function(e) {
+            document.getElementsByClassName("encyImg")[i].src = e.target.result;
+          };
+          readFile.readAsDataURL(titleImg.files[i]);
+        }
+      }
+    },
   }
 };
 </script>
-

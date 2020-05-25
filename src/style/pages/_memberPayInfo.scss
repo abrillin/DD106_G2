@@ -1,0 +1,99 @@
+.form-content {
+
+
+
+    .info-box.pay {
+
+        padding: 0;
+
+        >.pay-th {
+
+            display: flex;
+            border-bottom: 3px solid $yellow;
+
+            padding: 1rem 5%;
+
+            .name {
+
+                width: 50%;
+            }
+
+            .price {
+
+                width: 20%;
+            }
+
+            .amount {
+
+                width: 10%;
+            }
+
+            .sub {
+
+                flex-grow: 1;
+                text-align: right;
+            }
+        }
+
+        >.pay-tr {
+
+            display: flex;
+
+            padding: 1rem 5%;
+
+            .name {
+
+                width: 50%;
+            }
+
+            .price {
+
+                width: 20%;
+            }
+
+            .amount {
+
+                width: 10%;
+            }
+
+            .sub {
+
+                flex-grow: 1;
+                text-align: right;
+            }
+
+            &.transport {
+
+                border-top: 3px solid $yellow;
+                border-bottom: 3px solid $yellow;
+            }
+
+            .transport {
+
+                text-align: right;
+
+                width: 100%;
+            }
+
+            .total {
+
+                text-align: right;
+
+                width: 100%;
+            }
+        }
+    }
+
+    .info-box.info {
+
+        >.pay-tr {
+
+            padding: 1rem 0;
+        }
+
+        >.address {
+
+            margin: 1rem 0;
+        }
+    }
+}

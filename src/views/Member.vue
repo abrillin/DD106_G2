@@ -34,9 +34,9 @@
           <li>
             <router-link to="/main/member/order">訂單管理</router-link>
           </li>
-          <li>
+          <!--<li>
             <router-link to="/main/member/track">追蹤名單管理</router-link>
-          </li>
+          </li>-->
           <li>
             <router-link to="/main/member/shopping">購物籃</router-link>
           </li>
@@ -58,7 +58,14 @@
       </div>
       <button type="button" class="btn_drawer">&#9658;</button>
     </aside>
-    <router-view />
+    <keep-alive>
+      <router-view
+        @setCart="setCart"
+        :getCart="cart"
+        @setInfo="setInfo"
+        :getInfo="info"
+      />
+    </keep-alive>
   </div>
 </template>
 
@@ -78,6 +85,8 @@ export default {
         img: "",
       },
       farmStatus: false,
+      cart: {},
+      info: {},
     };
   },
   created() {
@@ -110,7 +119,7 @@ export default {
           }
         });
 
-        if (data.img == "") {
+        if (data.img == null) {
           this.member.img = require("@/assets/waterpear.png");
         } else {
           this.member.img = data.img;
@@ -187,6 +196,12 @@ export default {
             alert("上傳失敗！");
           }
         });
+    },
+    setCart: function(cart) {
+      this.cart = cart;
+    },
+    setInfo: function(info) {
+      this.info = info;
     },
     // checkFarm: function() {
     //   const api = "/api/api_checkFarm.php";

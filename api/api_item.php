@@ -50,7 +50,17 @@ try {
     foreach ($output as $key => $val) {
         $total = (int)  $val['review_total'];
         $count = (int)  $val['review_count'];
-        $val['Starsaverage'] = $total / $count;
+
+        if ($count == 0) {
+
+            $val["starsaverage"] = 0;
+        } else {
+
+            $val['Starsaverage'] = $total / $count;
+        }
+
+
+        // $val['itemRows'] = $itemRows;
     }
 
     $sql3 = "SELECT item.*, seller.review_total, seller.review_count,seller.review_total / seller.review_count AS review_average FROM item INNER JOIN seller INNER JOIN member WHERE seller.member_no = member.no AND item.seller_no = seller.no ORDER BY review_average DESC LIMIT 1,5";

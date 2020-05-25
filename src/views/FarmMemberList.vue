@@ -19,69 +19,58 @@
                 <th>訂單狀態</th>
                 <th>功能</th>
               </tr>
-              <tr>
-                <td>xxxx</td>
-                <td id="target">2020-04-17 13:14</td>
-                <td>$1380</td>
-                <td>某某某</td>
-                <td>已付款</td>
-                <td>完成</td>
+              <tr v-for="(item, index) in member" :key="index">
+                <td>{{item.no}}</td>
+                <td id="target">{{item.date}}</td>
+                <td>{{item.total}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.payStatus}}</td>
+                <td>{{item.status}}</td>
                 <td>
-                  <router-link to="/farm/listupdate">查看詳情</router-link>
+                  <a href="javascript:" @click="updatePage(item.no)">訂單詳細</a>
                 </td>
-
-                <!-- <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                                        for="switch">Toggle<div class="after"></div></label></p> -->
               </tr>
             </thead>
           </table>
         </div>
-
-        <!-- <div class="Blogputon">
-                    <p class="title">狀態</p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                    <p><input class="statusBtn" type="checkbox" id="switch" /><label class="statuslable"
-                            for="switch">Toggle<div class="after"></div></label></p>
-                </div> -->
       </div>
-
-      <!-- <div class="pagination_block">
-                <ul class="pagination">
-                    <li><a href="#">&lt;</a></li>
-                    <li><a href="#" class="-on">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">6</a></li>
-                    <li><a href="#">7</a></li>
-                    <li><a href="#">8</a></li>
-                    <li><a href="#">9</a></li>
-                    <li><a href="#">10</a></li>
-                    <li><a href="#">&gt;</a></li>
-                </ul>
-            </div> -->
     </div>
   </div>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      member: []
+    };
+  },
+  activated() {
+    const api = "/api/api_farmlist.php";
+    this.$http.post(api).then(res => {
+      const data = res.data;
+      if (data != "") {
+        this.member = data;
+
+        const payStatusList = ["未付款", "已付款", "已取消", "已完成"];
+        const OrderStatusList = ["等待中", "已出貨", "完成"];
+
+        for (let i = 0; i < this.member.length; i++) {
+          const payStatus = data[i].payment_status;
+          const OrderStatus = data[i].status;
+          this.member[i].payStatus = payStatusList[payStatus];
+          this.member[i].status = OrderStatusList[OrderStatus];
+        }
+      }
+    });
+  },
+  methods: {
+    updatePage(no) {
+      const api = "/api/api_farmListSession.php";
+
+      this.$http.post(api, JSON.stringify(no));
+      
+      this.$router.push({ name: "ListUpdate" });
+    }
+  }
+};
+</script>
