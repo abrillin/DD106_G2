@@ -12,7 +12,7 @@
         <div class="bk_season_pic_package">
           <!-- 9. 偵聽到 contentType 的更新，傳給 data 的 type 物件去更新要顯示的內容 -->
           <div class="bk_season_pic1" v-for="(i, index) in data" :key="index">
-            <img :src="i.img" @click="changePage(content, index)" />
+            <img :src="i.img" @click="changePage(contentType, index)" />
             <span>{{i.title}}</span>
           </div>
         </div>
@@ -32,12 +32,6 @@ export default {
   },
   created() {
     this.changeContent();
-  },
-  computed: {
-    content: function() {
-      this.changeContent();
-      return this.contentType;
-    }
   },
   methods: {
     changePage(t, p) {

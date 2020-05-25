@@ -53,14 +53,13 @@
 </template>
 <script>
 import $ from "jquery";
-import { log } from "three";
 export default {
   data() {
     return {
       member: [],
     };
   },
-  created() {
+  activated() {
     const api = this.path + "api_farmblog.php";
     this.$http.post(api).then((res) => {
       const data = res.data;
@@ -91,7 +90,7 @@ export default {
     toggleStatus(no, status) {
       const api = this.path + "api_blogUpdate.php";
       let s;
-      console.log(status);
+      // console.log(status);
       // 如果狀態是 1 (上架) 則切換成 0 (下架)
       if (status == 1) {
         s = 0;
