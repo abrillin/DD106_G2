@@ -1,142 +1,156 @@
 <template>
-    <div class="FarmListUpdate">
-        <div class="FarmListUpdate_head">
-            <div class="FarmListUpdate_head_text">
-                <span>訂單管理</span>
-                <span class="new">查看 xxxxx 訂單詳情</span>
-            </div>
-        </div>
-        <div class="FarmListUpdate_bottom">
-            <div class="FarmListUpdatelist">
-                <div class="list_1">
-                    <div class="listnum">
-                        <p>訂單編號: xxxxx</p>
-                    </div>
-                    <div class="farmlist">
-                        <div class="listheader">
-                            <table class="orderTab">
-                                <thead>
-                                    <tr>
-                                        <th>成立時間</th>
-                                        <th>總金額</th>
-                                        <th>付款狀態</th>
-                                        <th>訂單狀態</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
-                        <div class="listcontent">
-                            <table class="orderTab">
-                                <tbody>
-                                    <tr>
-                                        <td>2020-04-17</td>
-                                        <td>$1380</td>
-                                        <td>已付款</td>
-                                        <td><select name="country">
-                                                <option value="1">完成</option>
-                                                <option value="2">未完成</option>
-                                                <option value="3">選項3</option>
-                                            </select></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div class="list_slide">
-                        <img id="ploygon" class="plogon" src="@/assets/Polygon 2.svg" alt="">
-                        <span id="ploygon">訂單明細</span>
-                    </div>
-                    <div class="slide display">
-                        <div class="FarmListDetail">
-                            <div class="OrderDetail">
-                                <div class="detailheader">
-                                    <table class="orderTab">
-                                        <thead>
-                                            <tr>
-                                                <th>商品編號</th>
-                                                <th>名稱</th>
-                                                <th>價格</th>
-                                                <th>數量</th>
-                                                <th>小計</th>
-                                            </tr>
-                                        </thead>
-                                    </table>
-                                </div>
-                                <div class="detailcontent">
-                                    <table class="orderTab">
-                                        <tbody>
-                                            <tr>
-                                                <td>xxxxx</td>
-                                                <td>台南麻豆文旦</td>
-                                                <td>$50</td>
-                                                <td>10</td>
-                                                <td>$500</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="total">
-                        <p>商品金額 $130</p>
-                        <p>運費 $80</p>
-                        <p>總金額 $1380</p>
-                    </div>
-                    <div class="address">
-                        <div class="address_left">
-                            <p>收件人:</p>
-                            <p>連絡電話:</p>
-                            <p>收件地址:</p>
-                            <p>運送方式:</p>
-                        </div>
-                        <div class="address_right">
-                            <p>資策會DD106</p>
-                            <p>0912-345678</p>
-                            <p>桃園市中壢區中大路300-1號</p>
-                            <p>宅配到府<span>(運送編號:28800118667)</span></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="pagination_block">
-                <ul class="pagination">
-                    <li><a href="#">&lt;</a></li>
-                    <li><a href="#" class="-on">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">6</a></li>
-                    <li><a href="#">7</a></li>
-                    <li><a href="#">8</a></li>
-                    <li><a href="#">9</a></li>
-                    <li><a href="#">10</a></li>
-                    <li><a href="#">&gt;</a></li>
-                </ul>
-            </div>
-        </div>
+  <div class="FarmListUpdate">
+    <div class="FarmListUpdate_head">
+      <div class="FarmListUpdate_head_text">
+        <span>訂單管理</span>
+      </div>
     </div>
+    <div class="FarmListUpdate_bottom">
+      <div class="FarmListUpdatelist">
+        <div class="list_1">
+          <div class="listnum">
+            <p>訂單編號: {{list.no}}</p>
+          </div>
+          <div class="farmlist">
+            <div class="listheader">
+              <table class="orderTab">
+                <thead>
+                  <tr>
+                    <th>成立時間</th>
+                    <th>總金額</th>
+                    <th>付款狀態</th>
+                    <th>訂單狀態</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+            <div class="listcontent">
+              <table class="orderTab">
+                <tbody>
+                  <tr>
+                    <td>{{list.date}}</td>
+                    <td>$ {{total}}</td>
+                    <td>{{list.paymentStatus}}</td>
+                    <td>
+                      <select name="country">
+                        <option value="1">完成</option>
+                        <option value="2">未完成</option>
+                        <option value="3">選項3</option>
+                      </select>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="list_slide">
+            <img id="ploygon" class="plogon" src="@/assets/Polygon 2.svg" alt />
+            <span id="ploygon">訂單明細</span>
+          </div>
+          <div class="slide display">
+            <div class="FarmListDetail">
+              <div class="OrderDetail">
+                <div class="detailheader">
+                  <table class="orderTab">
+                    <thead>
+                      <tr>
+                        <th>商品編號</th>
+                        <th>名稱</th>
+                        <th>價格</th>
+                        <th>數量</th>
+                        <th>小計</th>
+                      </tr>
+                    </thead>
+                  </table>
+                </div>
+                <div class="detailcontent" v-for="item in list.item" :key="item.no">
+                  <table class="orderTab">
+                    <tbody>
+                      <tr>
+                        <td>{{item.no}}</td>
+                        <td>{{item.name}}</td>
+                        <td>$ {{item.price}}</td>
+                        <td>{{item.amount}}</td>
+                        <td>{{item.price * item.amount}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="total">
+            <p>商品金額 $ {{sub}}</p>
+            <p>運費 $ {{transportMoney}}</p>
+            <!-- <p>總金額 $ {{total}}</p> -->
+          </div>
+          <div class="address">
+            <div class="address_left">
+              <p>收件人:</p>
+              <p>連絡電話:</p>
+              <p>收件地址:</p>
+              <p>運送方式:</p>
+            </div>
+            <div class="address_right">
+              <p>{{list.name}}</p>
+              <p>0{{list.phone}}</p>
+              <p>{{list.address}}</p>
+              <p>{{list.transport}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 <script>
-    import $ from "jquery";
-    export default {
-        mounted() {
-            var i = 0;
-            $(".list_slide").click(function () {
-                if (i == 0) {
-                    $("#ploygon").css("transform", "rotateX(180deg)");
-                    i = 1;
-                } else {
-                    $("#ploygon").css("transform", "rotateX(0deg)");
-                    i = 0;
-                }
-
-                $(".slide").toggleClass("display");
-            });
-        }
+import $ from "jquery";
+export default {
+  props: { sendListNo: Number },
+  data() {
+    return {
+      list: {},
+      sub: 0,
+      transportMoney: 65,
+      total: 0
     };
+  },
+  activated() {
+    const api = "/api/api_farmGetOneList.php";
+
+    this.$http.post(api, JSON.stringify(this.sendListNo)).then(res => {
+      const data = res.data;
+
+      this.list = data;
+
+      const payStatus = ["未付款", "已付款", "已取消", "已完成"];
+
+      if (this.list.paymentStatus != false) {
+        this.list.paymentStatus = payStatus[data.payment_status];
+      }
+
+      if (this.list.item) {
+        this.list.item.forEach(item => {
+          this.sub += item.price * item.amount;
+        });
+
+        this.total = this.transportMoney + this.sub;
+      }
+    });
+
+    var i = 0;
+    $(".list_slide").click(function() {
+      if (i == 0) {
+        $("#ploygon").css("transform", "rotateX(180deg)");
+        i = 1;
+      } else {
+        $("#ploygon").css("transform", "rotateX(0deg)");
+        i = 0;
+      }
+
+      $(".slide").toggleClass("display");
+    });
+  }
+};
 </script>
