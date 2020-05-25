@@ -7,16 +7,13 @@ try {
     require_once("connectDB.php");
 
     // no不能變其他都可以
+    $encyEditInfo = json_decode(file_get_contents("php://input"));
 
-    $sql = "update `encyclopedia` set `title`=:title, `type`=:type, `content`=:content, `question`=:question, `answer`=:answer, `title_img`:=title_img, `video`=:video where `no`=:no";
-    
-
+    $sql = "update `encyclopedia` set `title`=:title, `type`=:type, `content`=:content, `question`=:question, `answer`=:answer, `title_img`=:titleImg, `video`=:video where `no`=:no";
     $encyEdit = $pdo->prepare($sql);
 
-    $encyEditInfo = json_decode(file_get_contents("php://input"));
     // 使用file_get_contents獲取php://input內容，由json檔轉為物件/陣列
     // 前面表單輸入進來的資料會在以下被處理
-
     $encyEdit-> bindValue(":no", $encyEditInfo->no);
     $encyEdit -> bindValue(":title", $encyEditInfo->title);
     $encyEdit -> bindValue(":type", $encyEditInfo->type);
