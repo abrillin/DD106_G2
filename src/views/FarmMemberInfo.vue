@@ -35,7 +35,7 @@
       <div class="bottom_form">
         <div class="person_left">
           <ul>
-            <li>果粉編號</li>
+            <li>果農編號</li>
             <li>帳號</li>
             <!-- <li>密碼</li> -->
             <!-- <li>修改密碼</li> -->

@@ -20,6 +20,14 @@ div.Order {
     font-size: 3rem;
   }
 
+  .order_zero {
+    font-size: 2rem;
+    color: #007552;
+    text-align: center;
+    margin-top: 100px;
+    display: none;
+  }
+
   .Order_bottom {
     display: block;
     text-align: center;
@@ -180,9 +188,9 @@ div.Order {
           }
         }
 
-        > .display {
-          display: none;
-        }
+        // > .display {
+        //   display: none;
+        // }
 
         .total {
           display: block;
@@ -257,46 +265,32 @@ div.Order {
             > .Evaluation_submit {
               text-align: end;
 
-              > a {
-                > p {
-                  display: inline-block;
-                  margin-top: 100px;
-                  margin-right: 10px;
-                  margin-bottom: 10px;
-                  padding: 0 10px;
-                  background-color: #007552;
-                  border-radius: 5px;
-                  color: white;
+              > .starSend {
+                border: 0;
+                cursor: pointer;
+                display: inline-block;
+                margin-top: 30px;
+                margin-right: 10px;
+                margin-bottom: 10px;
+                padding: 5px 10px;
+                background-color: #007552;
+                border-radius: 5px;
+                color: white;
+              }
 
-                  @include rwd(mobile) {
-                    margin-top: 100px;
-                    margin-right: 10px;
-                    margin-bottom: 10px;
-                  }
-                }
-
-                > p:hover {
-                  background-color: #62b45a;
-                  color: white;
-                }
+              > p:hover {
+                background-color: #62b45a;
+                color: white;
               }
             }
 
             > .starimg {
               display: inline-block;
-              width: 50px;
-              height: 50px;
               padding-top: 30px;
-              margin-right: 20px;
-              vertical-align: top;
-
-              @include rwd(mobile) {
-                margin-right: 0px;
-              }
 
               > img {
-                width: 100%;
-                height: 100%;
+                object-fit: cover;
+                width: 40px;
               }
             }
           }
@@ -330,60 +324,42 @@ div.Order {
         padding: 0;
         font-size: 0;
 
-        > li {
-          display: inline-block;
-
-          > a {
-            display: inline-block;
-            text-decoration: none;
-
-            border: 1px solid #007552;
-            /* 留意 */
-            /* 留意：將全部的右邊框都移除 */
-
-            text-align: center;
-            padding: 5px 10px;
-            font-size: 1rem;
-            color: black;
-
-            @include rwd(mobile) {
-              padding: 5px 6px;
-            }
-          }
-
-          > a.-on {
-            background-color: #ffd3c1;
-            color: #007552;
-          }
-
-          > a:hover {
-            background-color: #ffd3c1;
-            color: #007552;
-          }
-        }
-
-        > li:first-child > a {
+        & > li:first-child {
           display: inline-block;
           margin-right: 10px;
           background-color: #007552;
           color: white;
         }
 
-        > li:first-child > a:hover {
-          background-color: #007552;
-          color: white;
-        }
-
-        > li:last-child > a {
+        & > li:last-child {
           border-right: 1px solid #007552;
           margin-left: 10px;
           background-color: #007552;
           color: white;
         }
 
-        > li:last-child > a:hover {
-          background-color: #007552;
-          color: white;
+        > li {
+          display: inline-block;
+          cursor: pointer;
+          border: 1px solid #007552;
+          background-color: white;
+          text-align: center;
+          padding: 5px 10px;
+
+          font-size: 1.8rem;
+          color: black;
+          @include rwd(mobile) {
+            padding: 5px 6px;
+          }
+
+          &:hover {
+            background-color: #ffd3c1;
+            color: #007552;
+          }
+          &.-on {
+            background-color: #ffd3c1;
+            color: #007552;
+          }
         }
       }
     }

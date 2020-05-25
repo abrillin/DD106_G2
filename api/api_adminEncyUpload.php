@@ -1,6 +1,5 @@
-<?
-
-
+<?php
+// 這支是新增百科內容的圖片路徑
 if (file_exists("encyPic") == false) {
 	mkdir("encyPic"); //make dir
 }

@@ -4,7 +4,12 @@
       <h1 class="manageTitle">果粉 管理中心</h1>
       <section class="aFanTableSection">
         <div class="aft-header">
-          <table class="fanManageTab" cellpadding="0" cellspacing="0" border="0">
+          <table
+            class="fanManageTab"
+            cellpadding="0"
+            cellspacing="0"
+            border="0"
+          >
             <thead>
               <tr>
                 <th>編號</th>
@@ -18,26 +23,32 @@
           </table>
         </div>
         <div class="aft-content">
-          <table class="fanManageTab" cellpadding="0" cellspacing="0" border="0">
+          <table
+            class="fanManageTab"
+            cellpadding="0"
+            cellspacing="0"
+            border="0"
+          >
             <tbody>
               <tr v-for="row in data" :key="row.no">
-                <td>{{row.no}}</td>
-                <td>{{row.acc}}</td>
-                <td>{{row.name}}</td>
-                <td>{{row.phone}}</td>
-                <td>{{row.email}}</td>
+                <td>{{ row.no }}</td>
+                <td>{{ row.acc }}</td>
+                <td>{{ row.name }}</td>
+                <td>{{ row.phone }}</td>
+                <td>{{ row.email }}</td>
                 <td>
                   <input
                     class="statusBtn"
                     type="checkbox"
-                    :id="'switch'+row.no"
+                    :id="'switch' + row.no"
                     v-model="row.status"
                   />
                   <label
                     class="statusBtnLabel"
-                    :for="'switch'+row.no"
+                    :for="'switch' + row.no"
                     @click="toggleStatus(row.no, row.status)"
-                  >Toggle</label>
+                    >Toggle</label
+                  >
                 </td>
               </tr>
             </tbody>
@@ -57,7 +68,7 @@ export default {
       phone: "",
       email: "",
 
-      data: []
+      data: [],
     };
   },
   created() {
@@ -65,11 +76,11 @@ export default {
 
     this.$http
       .post(api) // 將api承接到的資料post出去
-      .then(res => {
+      .then((res) => {
         this.data = res.data;
 
         // 資料型別轉換
-        res.data.forEach(i => {
+        res.data.forEach((i) => {
           i.status = parseInt(i.status);
         });
       });
@@ -78,6 +89,7 @@ export default {
     toggleStatus(no, status) {
       const api = "/api/api_adminMemberUpdate.php";
       let s;
+      console.log(status);
 
       // 如果狀態是 1 (停權) 則切換成 0 (正常)
       if (status == 1) {
@@ -88,11 +100,7 @@ export default {
 
       // 發送到 DB 更新果粉的狀態
       this.$http.post(api, JSON.stringify({ no: no, status: s }));
-    }
-  }
+    },
+  },
 };
 </script>
-
-
-
-

@@ -54,7 +54,9 @@
       </div>
       <button type="button" class="btn_drawer">&#9658;</button>
     </aside>
-    <router-view @update="update" />
+    <keep-alive>
+      <router-view />
+    </keep-alive>
   </div>
 </template>
 
@@ -104,13 +106,15 @@ export default {
           reviewcount: data.reviewcount,
           memberno: data.memberno
         };
-        if (data.img == "") {
+        if (data.img == null) {
           this.member.img = require("@/assets/waterpear.png");
         } else {
           this.member.img = data.img;
         }
       }
     });
+  },
+  mounted() {
     if (window.innerWidth < 991) {
       if ($("aside.left").hasClass("popover")) {
         $("button.btn_drawer").on("click", function() {
@@ -142,12 +146,6 @@ export default {
         });
       }
     });
-  },
-
-  methods: {
-    update: function() {
-      // this.$emit("loginStatus", s);
-    }
   }
 };
 </script>

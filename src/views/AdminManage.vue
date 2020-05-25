@@ -39,7 +39,8 @@
                 <td>{{ row.no }}</td>
                 <td>{{ row.name }}</td>
                 <td>{{ row.acc }}</td>
-                <td>{{ row.psw }}</td>
+                <td><input type="password" v-model="row.psw" disabled>
+                  </td>
                 <td>
                   <input
                     class="statusBtn"

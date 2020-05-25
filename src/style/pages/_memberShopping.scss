@@ -94,9 +94,9 @@
                 display: none;
               }
 
-              img {
-                width: 100%;
-              }
+              // img {
+              //   width: 100%;
+              // }
             }
 
             &.name {
@@ -205,8 +205,9 @@
               }
             }
 
-            img {
-              max-width: 100px;
+            >img {
+              height: 100%;
+              vertical-align: top;
             }
           }
         }
@@ -221,6 +222,8 @@
             text-align: center;
             text-decoration: none;
             font-size: 1.6rem;
+            font-family: myFont;
+            font-weight: 600;
             color: black;
             border: 1px solid $min-color;
             background: rgba($orange, 0.75);

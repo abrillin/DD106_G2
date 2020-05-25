@@ -628,7 +628,8 @@ $color5: #ffa978;
     background-color: $color2;
     // box-shadow: 0 0 0 1px white;
     
-    border: 1px solid white;
+    // border: 1px solid white;
+    box-shadow: 0 0 0 1px white;
     border-right: none;
     @include rwd(medium) {
       border-right: none;
