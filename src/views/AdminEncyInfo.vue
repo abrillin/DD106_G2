@@ -21,13 +21,6 @@
           <td>
             <select name="fruitTag" id="fruitTag" data-selected v-model="encyEdit.title">
               <option value selected="selected" disabled="disabled">請選擇</option>
-              <optgroup label="常年">
-                <option value="木瓜">木瓜</option>
-                <option value="鳳梨">鳳梨</option>
-                <option value="蓮霧">蓮霧</option>
-                <option value="香蕉">香蕉</option>
-                <option value="芭樂">芭樂</option>
-              </optgroup>
               <optgroup label="春季">
                 <option value="梅子">梅子</option>
                 <option value="李子">李子</option>
@@ -51,6 +44,13 @@
                 <option value="柳丁">柳丁</option>
                 <option value="番茄">番茄</option>
                 <option value="棗子">棗子</option>
+              </optgroup>
+               <optgroup label="常年">
+                <option value="木瓜">木瓜</option>
+                <option value="鳳梨">鳳梨</option>
+                <option value="蓮霧">蓮霧</option>
+                <option value="香蕉">香蕉</option>
+                <option value="芭樂">芭樂</option>
               </optgroup>
             </select>
           </td>
@@ -107,11 +107,13 @@
               <!-- <input type="file" id="encyPic01" @change="fileSelect" multiple /> -->
             </label>
 
-            <img class="encyImg" src style="max-width: 200px;max-height: 200px;" />
-            <img class="encyImg" src style="max-width: 200px;max-height: 200px;" />
-            <img class="encyImg" src style="max-width: 200px;max-height: 200px;" />
-            <img class="encyImg" src style="max-width: 200px;max-height: 200px;" />
-            <img class="encyImg" src style="max-width: 200px;max-height: 200px;" />
+            <div class="UploadImg">
+            <img class="encyImg" src alt />
+            <img class="encyImg" src alt />
+            <img class="encyImg" src alt />
+            <img class="encyImg" src alt />
+            <img class="encyImg" src alt />
+            </div>
 
             <!--
                   <img id:"encyImg" :src="encyEdit.titleImg" style="max-width: 200px;max-height: 200px;" />
@@ -260,7 +262,6 @@ export default {
 
       this.$http.post(api, JSON.stringify(this.encyEdit)).then(res => {
         const data = res.data;
-
         for (let i in this.encyEdit) {
           if (this.encyEdit[i] == "") {
             alert(" 有欄位空白，請再檢查一次 ( ´Д`)y━･ ");
@@ -270,7 +271,6 @@ export default {
 
         if (data == 1) {
           alert("修改成功 ᕦ(ò_óˇ)ᕤ ");
-
           this.$router.go(-1);
         }
       });

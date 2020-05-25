@@ -95,16 +95,14 @@
               請傳3-5張圖：
               <input type="file" id="encyPic01" @change="fileSelect" multiple />
             </label>
-
-            <img class="encyImg" src style="max-width: 200px;max-height: 200px;" />
-            <img class="encyImg" src style="max-width: 200px;max-height: 200px;" />
-            <img class="encyImg" src style="max-width: 200px;max-height: 200px;" />
-            <img class="encyImg" src style="max-width: 200px;max-height: 200px;" />
-            <img class="encyImg" src style="max-width: 200px;max-height: 200px;" />
-
-            <!--
-                  <img id:"encyImg" :src="encyEdit.titleImg" style="max-width: 200px;max-height: 200px;" />
-            -->
+            <br>
+            <div class="UploadImg">
+              <img class="encyImg" src alt />
+              <img class="encyImg" src alt />
+              <img class="encyImg" src alt />
+              <img class="encyImg" src alt />
+              <img class="encyImg" src alt />
+            </div>
             <br />
           </td>
         </tr>

@@ -36,20 +36,55 @@
       <div class="blogPost2Outer">
         <div class="blogPost2Main">
           <div>
-            <div>2020-04-10</div>
+            <div>{{ blogArrFilterTop[0].date }}</div>
             <div>
-              <span>“ 親子輕旅行 台北白石湖採草莓、踏青一日遊”</span>
+              <span>{{ blogArrFilterTop[0].title }}</span>
             </div>
             <div>
-              <img src="@/assets/blog-img/blog-someoneshead.png" />
+              <img :src="blogArrFilterTop[0].m_img" />
             </div>
-            <div>蓬蓬草苺姨</div>
+            <div>{{ blogArrFilterTop[0].nick }}</div>
             <div>
-              <img src="@/assets/blog-img/blog-star.png" />
-              <img src="@/assets/blog-img/blog-star.png" />
-              <img src="@/assets/blog-img/blog-star.png" />
-              <img src="@/assets/blog-img/blog-star.png" />
-              <img src="@/assets/blog-img/blog-star.png" />
+              <img
+                src="@/assets/Group 720.svg"
+                v-if="
+                  blogArrFilterTop[0].review_total /
+                    blogArrFilterTop[0].review_count >
+                    0
+                "
+              />
+              <img
+                src="@/assets/Group 720.svg"
+                v-if="
+                  blogArrFilterTop[0].review_total /
+                    blogArrFilterTop[0].review_count >
+                    1
+                "
+              />
+              <img
+                src="@/assets/Group 720.svg"
+                v-if="
+                  blogArrFilterTop[0].review_total /
+                    blogArrFilterTop[0].review_count >
+                    2
+                "
+              />
+              <img
+                src="@/assets/Group 720.svg"
+                v-if="
+                  blogArrFilterTop[0].review_total /
+                    blogArrFilterTop[0].review_count >
+                    3
+                "
+              />
+              <img
+                src="@/assets/Group 720.svg"
+                v-if="
+                  blogArrFilterTop[0].review_total /
+                    blogArrFilterTop[0].review_count >
+                    4
+                "
+              />
             </div>
             <div>
               <span>+追蹤</span>
@@ -65,13 +100,8 @@
               <span>300</span>
             </div>
             <div>
-              白石湖是大台北難得仍保存農業風味的鄉村地區，當地多產白色沉積砂岩石塊故而得名，近年轉型成為休閒農業區，區內種植草莓聞名，每年12月至5月的草莓產季來臨，絡繹不絕的人潮湧入內湖一帶的草莓園。我們一早就來到莓圃休閒農園，是個擁有果園、菜園和庭園咖啡等多元場域，其中溫室草莓園吸引家長帶著孩子體驗採果樂，不用擔心腳底褲管沾到泥巴。
-              <br />
-              <br />特別提醒台北內湖的莓園幾乎是假日上午11點開放，當天採摘到一定數量便掛上「本日已採完」的告示牌，若想採草莓的朋友建議早點排隊。
-              <br />
-              <br />採完草莓不過癮，還可以參加糖霜餅乾手做課程。工作人員拿出台北世大運吉祥物「熊讚」草莓餅乾，孩子們吵著也要做一隻熊讚帶回家。「我們先用軟糖霜劃出外圍形狀，從中間一圈一圈慢慢補滿，擠完糖霜後，餅乾表面可能會不平，再利用牙籤撥勻，或用手掌輕拍均勻」，大家跟著老師依樣畫葫蘆，以牙籤沾芝麻妝點眼睛、白糖霜親手描繪各自作品，創作他們心目中的熊讚。
-              <br />
-              <br />除了草莓，莓圃也提供其他蔬果的體驗，6-11月有百香果、火龍果、番茄；7-8月則有水果玉米、小番茄等，讓小朋友一整年都可以體驗小農夫的樂趣。大人們也可以坐在綠意盎然的庭園休憩用餐，享受田園悠閒的氛圍。
+              {{ blogArrFilterTop[0].content }}
+              {{ blogArrFilterTop[0].content2 }}
             </div>
           </div>
           <div>
@@ -81,44 +111,37 @@
               </div>
               <img src="@/assets/blog-img/post/yello-something.png" alt />
             </div>
-            <div class="blog-post2-msg-card">
-              <div>
-                <img src="@/assets/blog-img/blog-someoneshead.png" />
+            <div class="blog-post2-msg-card-box">
+              <div
+                class="blog-post2-msg-card"
+                v-for="(i, index) in topMsg"
+                :key="index"
+              >
+                <div>
+                  <img :src="i.img" />
+                </div>
+                <div>
+                  <p>{{ i.nick }}</p>
+                  <p>{{ i.date }}</p>
+                </div>
+                <div>{{ i.content }}</div>
+                <div>
+                  <img src="@/assets/blog-img/blog-report.png" />
+                </div>
               </div>
-              <div>
-                <p>howhowhasnofriend</p>
-                <p>2020-4-14 12:00</p>
-              </div>
-              <div>炒飯不好吃炒飯不好吃...</div>
-              <div>
-                <img src="@/assets/blog-img/blog-report.png" />
-              </div>
-            </div>
-            <div class="blog-post2-msg-card">
-              <div>
-                <img src="@/assets/blog-img/blog-someoneshead.png" />
-              </div>
-              <div>
-                <p>howhowhasnofriend</p>
-                <p>2020-4-14 12:00</p>
-              </div>
-              <div>炒飯不好吃炒飯不好吃...</div>
-              <div>
-                <img src="@/assets/blog-img/blog-report.png" />
-              </div>
-            </div>
-            <div class="blog-post2-msg-card">
-              <div>
-                <img src="@/assets/blog-img/blog-someoneshead.png" />
-              </div>
-              <div>
-                <p>howhowhasnofriend</p>
-                <p>2020-4-14 12:00</p>
-              </div>
-              <div>炒飯不好吃炒飯不好吃...</div>
-              <div>
-                <img src="@/assets/blog-img/blog-report.png" />
-              </div>
+              <!--<div class="blog-post2-msg-card">
+                <div>
+                  <img src="@/assets/blog-img/blog-someoneshead.png" />
+                </div>
+                <div>
+                  <p>howhowhasnofriend</p>
+                  <p>2020-4-14 12:00</p>
+                </div>
+                <div>炒飯不好吃炒飯不好吃...</div>
+                <div>
+                  <img src="@/assets/blog-img/blog-report.png" />
+                </div>
+              </div>-->
             </div>
             <div>
               <form action method="get">
@@ -199,16 +222,33 @@
                     </div>
                     <div>
                       <div>
-                        <img src="@/assets/blog-img/blog-someoneshead.png" />
+                        <img :src="i.m_img" />
                       </div>
                       <div>
-                        <div>蓬蓬草苺姨</div>
+                        <div>{{ i.nick }}</div>
                         <div>
-                          <img src="@/assets/blog-img/blog-star.png" />
-                          <img src="@/assets/blog-img/blog-star.png" />
-                          <img src="@/assets/blog-img/blog-star.png" />
-                          <img src="@/assets/blog-img/blog-star.png" />
-                          <img src="@/assets/blog-img/blog-star.png" />
+                          <img
+                            src="@/assets/Group 720.svg"
+                            v-if="i.review_total / i.review_count > 0"
+                          />
+                          <img
+                            src="@/assets/Group 720.svg"
+                            v-if="i.review_total / i.review_count > 1"
+                          />
+                          <img
+                            src="@/assets/Group 720.svg"
+                            v-if="i.review_total / i.review_count > 2"
+                          />
+                          <img
+                            src="@/assets/Group 720.svg"
+                            v-if="i.review_total / i.review_count > 3"
+                          />
+                          <img
+                            src="@/assets/Group 720.svg"
+                            v-if="i.review_total / i.review_count > 4"
+                          />
+
+                          <!--<img src="@/assets/blog-img/blog-star.png" />-->
                         </div>
                       </div>
                       <div>
@@ -298,16 +338,31 @@
                     </div>
                     <div>
                       <div>
-                        <img src="@/assets/blog-img/blog-someoneshead.png" />
+                        <img :src="i.m_img" />
                       </div>
                       <div>
-                        <span>蓬蓬草莓姨</span>
+                        <span>{{ i.nick }}</span>
                         <div>
-                          <img src="@/assets/blog-img/blog-star.png" />
-                          <img src="@/assets/blog-img/blog-star.png" />
-                          <img src="@/assets/blog-img/blog-star.png" />
-                          <img src="@/assets/blog-img/blog-star.png" />
-                          <img src="@/assets/blog-img/blog-star.png" />
+                          <img
+                            src="@/assets/Group 720.svg"
+                            v-if="i.review_total / i.review_count > 0"
+                          />
+                          <img
+                            src="@/assets/Group 720.svg"
+                            v-if="i.review_total / i.review_count > 1"
+                          />
+                          <img
+                            src="@/assets/Group 720.svg"
+                            v-if="i.review_total / i.review_count > 2"
+                          />
+                          <img
+                            src="@/assets/Group 720.svg"
+                            v-if="i.review_total / i.review_count > 3"
+                          />
+                          <img
+                            src="@/assets/Group 720.svg"
+                            v-if="i.review_total / i.review_count > 4"
+                          />
                         </div>
                       </div>
                       <div>
@@ -335,7 +390,7 @@
                 class="pageBorder"
                 v-for="(i, index) in pageArr"
                 :key="index"
-                v-on="{ click: pageSelect }"
+                v-on="{click: pageSelect}"
               >
                 {{ i }}
               </li>
@@ -473,7 +528,7 @@
   // height: 50vw;
   // padding-bottom: 5%;
   &::before {
-    content: "";
+    content: '';
     border-bottom: #007552 5px solid;
     width: 105%;
     position: absolute;
@@ -493,7 +548,7 @@
   }
   > div:nth-child(1) {
     &::before {
-      content: "";
+      content: '';
       display: inline-block;
       border-right: #6baf9b solid 2px;
       height: 50%;
@@ -514,7 +569,7 @@
       bottom: 0%;
       left: 0%;
       @media (max-width: 1300px) {
-        content: "";
+        content: '';
       }
     }
     // border: 4px solid #000;
@@ -526,12 +581,12 @@
     grid-template-columns: 1.5fr 2fr 1.5fr 3fr;
     grid-template-rows: 0.1fr 1fr 0.5fr 0.5fr 0.4fr 5fr;
     grid-template-areas:
-      "aa1 aa1 aa1 aa1"
-      "aa2 aa2 aa2 aa2 "
-      "aa3 aa4 aa6 aa7"
-      "aa3 aa5 aa6 aa7"
-      "aa8 aa8 aa8 aa8"
-      "aa9 aa9 aa9 aa9";
+      'aa1 aa1 aa1 aa1'
+      'aa2 aa2 aa2 aa2 '
+      'aa3 aa4 aa6 aa7'
+      'aa3 aa5 aa6 aa7'
+      'aa8 aa8 aa8 aa8'
+      'aa9 aa9 aa9 aa9';
     @media (max-width: 1600px) {
       // padding-right: 0%;
       grid-template-columns: 0.9fr 1.3fr 1fr 3fr;
@@ -549,12 +604,12 @@
     }
     @media (max-width: 576px) {
       grid-template-areas:
-        "aa1 aa1 aa1 aa1"
-        "aa2 aa2 aa2 aa2 "
-        "aa3 aa4 aa6 aa6"
-        "aa3 aa5 aa7 aa7"
-        "aa8 aa8 aa8 aa8"
-        "aa9 aa9 aa9 aa9";
+        'aa1 aa1 aa1 aa1'
+        'aa2 aa2 aa2 aa2 '
+        'aa3 aa4 aa6 aa6'
+        'aa3 aa5 aa7 aa7'
+        'aa8 aa8 aa8 aa8'
+        'aa9 aa9 aa9 aa9';
       grid-template-columns: 1fr 1fr 1fr 1fr;
       // border: solid 1px red;
     }
@@ -592,11 +647,16 @@
     > div:nth-child(3) {
       //頭像
       grid-area: aa3;
-      justify-self: start;
+      justify-self: center;
       align-self: start;
-      padding-top: 0px;
+      padding-top: 15%;
+      width: 50px;
+      height: 50px;
       > img {
-        width: 180%;
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
     }
     > div:nth-child(4) {
@@ -710,12 +770,12 @@
         z-index: 2;
         width: 70%;
         padding-top: 70%;
-        background: url("../assets/blog-img/post/blog_aabbcc.svg") no-repeat
+        background: url('../assets/blog-img/post/blog_aabbcc.svg') no-repeat
           center center;
         background-size: cover;
-        -webkit-mask: url("../assets/blog-img/post/blog_aabbcc.svg") no-repeat
+        -webkit-mask: url('../assets/blog-img/post/blog_aabbcc.svg') no-repeat
           center center;
-        mask: url("../assets/blog-img/post/blog_aabbcc.svg") no-repeat center
+        mask: url('../assets/blog-img/post/blog_aabbcc.svg') no-repeat center
           center;
         @media (max-width: 1600px) {
           width: 100%;
@@ -740,59 +800,126 @@
         }
       }
     }
-    > .blog-post2-msg-card {
-      display: flex;
+    > .blog-post2-msg-card-box {
+      // display: flex;
       background-color: #fff;
-      width: 50rem;
+      width: 52rem;
       align-content: center;
       align-items: center;
       margin-bottom: 10px;
       @media (max-width: 1600px) {
         width: 100%;
       }
-      > div:nth-child(2) {
-        //acc、date
-        margin-left: 10px;
-        > p:nth-child(1) {
-          //acc
-        }
-        > p:nth-child(2) {
-          //date
-          color: #a0a0a0;
-        }
+      height: 160px;
+      overflow-y: scroll;
+      /*控制整个滚动条*/
+      // @media (max-width: 9999px) {
+      //   margin-right: 35%;
+      // }
+      // @media (max-width: 1600px) {
+      //   padding-right: 0px;
+      // }
+      &::-webkit-scrollbar {
+        background-color: lightgray;
+        width: 10px;
+        height: 10px;
+        border-radius: 5px;
+        background-clip: padding-box;
       }
-      > div:nth-child(3) {
-        margin-left: 20px;
-        font-size: 16px;
-        flex-grow: 1;
-        position: relative;
-        @media (max-width: 1300px) {
-          margin-left: 40px;
+
+      /*滚动条两端方向按钮*/
+      &::-webkit-scrollbar-button {
+        background-color: none;
+      }
+
+      /*滚动条中间滑动部分*/
+      &::-webkit-scrollbar-thumb {
+        background-color: #007552;
+        border-radius: 5px;
+      }
+
+      /*滚动条右下角区域*/
+      &::-webkit-scrollbar-corner {
+        background-color: none;
+      }
+
+      > .blog-post2-msg-card {
+        display: flex;
+        background-color: #fff;
+        width: 50rem;
+        align-content: center;
+        align-items: center;
+        margin-bottom: 10px;
+        @media (max-width: 1600px) {
+          width: 100%;
         }
-        @media (max-width: 768px) {
-          margin-left: 20px;
+        > div:nth-child(1) {
+          width: 50px;
+          height: 50px;
+          > img {
+            border-radius: 50%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
         }
-        @media (max-width: 576px) {
+        > div:nth-child(2) {
+          //acc、date
           margin-left: 10px;
+          > p:nth-child(1) {
+            //acc
+          }
+          > p:nth-child(2) {
+            //date
+            color: #a0a0a0;
+          }
         }
-        &::before {
-          content: "";
-          position: absolute;
-          height: 25px;
-          border-right: #a0a0a0 solid 1px;
-          top: -20%;
-          left: -3%;
+        > div:nth-child(3) {
+          max-width: 30rem;
+          margin-left: 20px;
+          font-size: 16px;
+          flex-grow: 1;
+          position: relative;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis; /* 出現省略符號 */
+          @media (max-width: 1300px) {
+            max-width: 80%;
+
+            margin-left: 40px;
+          }
+          @media (max-width: 840px) {
+            // max-width: 50%;
+          }
+          @media (max-width: 768px) {
+            margin-left: 20px;
+          }
+          @media (max-width: 576px) {
+            margin-left: 10px;
+          }
+          &::before {
+            content: '';
+            position: absolute;
+            height: 25px;
+            border-right: #a0a0a0 solid 1px;
+            top: -20%;
+            left: -3%;
+          }
         }
-      }
-      > div:nth-child(4) {
-        margin-right: 5px;
+        > div:nth-child(4) {
+          margin-right: 5px;
+          margin-left: 5px;
+        }
       }
     }
-    > div:nth-child(5) {
+    > div:nth-child(3) {
       position: relative;
+      @media (max-width: 850px) {
+        width: 100%;
+      }
       //留言表單
       &::before {
-        content: "";
+        content: '';
         border-top: solid #a0a0a0 1px;
         width: 50rem;
         position: absolute;
@@ -826,10 +953,10 @@
         }
       }
     }
-    > div:nth-child(6) {
+    > div:nth-child(4) {
       position: absolute;
       bottom: 0%;
-      right: 0%;
+      right: -6%;
       @media (max-width: 1600px) {
         display: none;
       }
@@ -962,7 +1089,7 @@
 }
 .blog-post-tri {
   //select
-  background: url("../assets/blog-img/post/triangle.png");
+  background: url('../assets/blog-img/post/triangle.png');
   background-repeat: no-repeat;
   background-position: 95% 60%;
   font-size: 15px;
@@ -1172,10 +1299,10 @@
       border-bottom: #a0a0a0 solid 1px;
       // border: chocolate 3px solid;
       grid-template-areas:
-        "aa1 aa2 aa2 aa2"
-        "aa1 aa3 aa3 aa3"
-        "aa1 aa4 aa5 aa7"
-        "aa1 aa4 aa6 aa7";
+        'aa1 aa2 aa2 aa2'
+        'aa1 aa3 aa3 aa3'
+        'aa1 aa4 aa5 aa7'
+        'aa1 aa4 aa6 aa7';
       > div:nth-child(1) {
         grid-area: aa1;
         font-size: 80px;
@@ -1237,18 +1364,22 @@
         border-right: solid #007552 1.5px;
         position: relative;
         //妹妹假蠵龜
-        max-width: 40%;
-        min-width: 40%;
-        @media (max-width: 700px)  {
+        // width: 40%;
+        max-width: 30%;
+        min-width: 30%;
+        // max-height: 50%;
+        @media (max-width: 700px) {
           max-width: 100%;
-        min-width: 100%;
-          }
-        >img{
+          min-width: 100%;
+        }
+        > img {
           width: 100%;
+          height: 100%;
+          object-fit: cover;
 
-          @media (max-width: 700px)  {
-          width: 100%;
-          }
+          // @media (max-width: 700px) {
+          //   width: 100%;
+          // }
         }
         // width: 500%;
         // padding-top: 310px;
@@ -1276,7 +1407,8 @@
         // }
       }
       > div:nth-child(2) {
-        padding: 3% 3% 0px 3%;
+        padding: 3% 3% 0% 3%;
+        // background-color: #000;
         //右邊
         > div:nth-child(1) {
           //右上
@@ -1342,18 +1474,28 @@
           display: flex;
           margin-top: 70px;
           position: relative;
-          // padding-bottom: 2%;
+          // top: 5%;
+          padding-bottom: 2%;
           &::before {
-            content: "";
+            content: '';
             border-top: solid #007552 1.5px;
             width: 100%;
             top: -15px;
             position: absolute;
           }
           > div:nth-child(1) {
+            width: 50px;
+            height: 50px;
+            > img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              border-radius: 50%;
+            }
           }
           > div:nth-child(2) {
             > div:nth-child(1) {
+              padding-left: 10px;
               font-size: 16px;
               color: #000;
               padding-top: 10px;
@@ -1432,8 +1574,14 @@
           //葡萄圖片
           border-bottom: solid #007552 2px;
           position: relative;
+          width: 100%;
+          height: 270px;
+          overflow: hidden;
+
           > img:nth-child(1) {
             width: 100%;
+            min-height: 100%;
+            object-fit: cover;
           }
           > div:nth-child(2) {
             position: absolute;
@@ -1510,6 +1658,14 @@
           //草莓姨
           > div:nth-child(1) {
             //草莓姨照片
+            width: 50px;
+            height: 50px;
+            > img {
+              border-radius: 50%;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
           }
           > div:nth-child(2) {
             //暱稱、星星
@@ -1598,7 +1754,7 @@
 </style>
 
 <script>
-import $ from "jquery";
+import $ from 'jquery';
 export default {
   data() {
     return {
@@ -1610,6 +1766,7 @@ export default {
       blogArrFilterTop: [],
       pageArr: [],
       currentPage: [],
+      topMsg: null,
     };
   },
   beforeMount() {},
@@ -1623,23 +1780,37 @@ export default {
     // let bb = document.getElementsByClassName('blog-post2-small-card')[8];
     // bb.classList.add('nine');
     // alert(document.getElementsByClassName('pageBorder').length);
+    // alert(document.getElementsByClassName('pageBorder').length);
     for (
       let i = 0;
-      i <= document.getElementsByClassName("pageBorder").length;
+      i < document.getElementsByClassName('pageBorder').length;
       i++
     ) {
       document
-        .getElementsByClassName("pageBorder")
-        [i].setAttribute("class", "pageBorder");
+        .getElementsByClassName('pageBorder')
+        [i].setAttribute('class', 'pageBorder');
       if (
-        document.getElementsByClassName("pageBorder")[i].textContent ==
+        document.getElementsByClassName('pageBorder')[i].textContent ==
         this.currentPage[0]
       ) {
         document
-          .getElementsByClassName("pageBorder")
-          [i].classList.add("currentPagecolor");
+          .getElementsByClassName('pageBorder')
+          [i].classList.add('currentPagecolor');
       }
     }
+
+    let api = '/api/api_get_msg_blogtop.php';
+
+    this.$http
+      .post(api, JSON.stringify(this.blogArrFilterTop[0].no))
+      .then((res) => {
+        if (res.data != '') {
+          this.topMsg = res.data;
+
+          console.log(res.data);
+        } else {
+        }
+      });
   },
   created() {
     const api = this.path + "api_blog.php";
@@ -1647,38 +1818,34 @@ export default {
     this.$http
       .post(api, JSON.stringify(this.member))
       .then((res) => {
-        if (res.data != "") {
+        if (res.data != '') {
           // console.log(res.data);
 
           // sessionStorage.setItem('abc', JSON.stringify(res.data));
           // sessionStorage.clear();
           // let abc = sessionStorage.getItem('abc');
 
-
-
           this.blogArr = res.data;
 
-for(let i=0;i<this.blogArr.length;i++){
-  this.blogArr[i].img=this.blogArr[i].img.split(",")
-}
+          for (let i = 0; i < this.blogArr.length; i++) {
+            this.blogArr[i].img = this.blogArr[i].img.split(',');
+          }
 
-for(let i=0;i<this.blogArr.length;i++){
-  for(let j=0;j<this.blogArr[i].img.length;j++){
-this.blogArr[i].img[j]=`/api/${this.blogArr[i].img[j]}`
-  }
-}
+          // for (let i = 0; i < this.blogArr.length; i++) {
+          //   for (let j = 0; j < this.blogArr[i].img.length; j++) {
+          //     this.blogArr[i].img[j] = `/api/${this.blogArr[i].img[j]}`;
+          //   }
+          // }
+          this.blogArr.forEach((arr, i) => {
+            arr.img.forEach((item, index) => {
+              this.blogArr[i].img[index] = `/api/${item}`;
+            });
+          });
 
-// this.blogArr[0].img.forEach(
-//   item=>item=`/api/${item}`
-// )
+          // this.blogArr[0].img[0]=`/api/${this.blogArr[0].img[0]}`
+          // console.log(this.blogArr);
 
-// this.blogArr[0].img[0]=`/api/${this.blogArr[0].img[0]}`
-console.log(this.blogArr)
-
-          
-// console.log(this.blogArr)
-
-
+          // console.log(this.blogArr)
 
           this.blogArrFilterTop.push(this.blogArr[0]);
 
@@ -1840,14 +2007,14 @@ console.log(this.blogArr)
       //   bb: e.target.parentNode.parentNode.children[3].textContent,
       // });
       console.log(e);
-      console.log("123");
-      this.$emit("blogInf", e);
+      console.log('123');
+      this.$emit('blogInf', e);
       // console.log(e);
 
       let api = this.path + "api_session_blog_no.php";
 
       this.$http.post(api, JSON.stringify(e)).then((res) => {
-        if (res.data != "") {
+        if (res.data != '') {
           console.log(res.data);
         } else {
           console.log(res.error);

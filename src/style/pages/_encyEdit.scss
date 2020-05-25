@@ -12,11 +12,23 @@
     overflow-y: auto;
     // border: 1px solid red;
 
+
     .encyEditTab {
         display: inline-block;
         // width: 900px;
         height: auto;
         margin-bottom: 70px;
+
+        .UploadImg {
+            display: inline-block;
+            .encyImg {
+                max-width: 50%;
+                height: 95px;
+                margin: 5px;
+                
+            }
+        }
+
 
         th {
             width: 15%;
@@ -37,6 +49,7 @@
             color: $contentColor;
             background-color: #fff;
             // border: 1px solid green;
+
 
             .encyEditBtnSec {
                 display: inline-block;
