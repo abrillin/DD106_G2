@@ -1,28 +1,29 @@
 <template>
   <div class="blog-landing-outer">
-    <img src="@/assets/blog-img/blog-bar.png" /><br />
+    <img src="@/assets/blog-img/blog-bar.png" />
+    <br />
     <div class="blog-landing-container-new">
       <div>
         <div>
           <!--果農日誌LOGO-->
-          <img src="@/assets/blog-img/blog_logo.svg" @click="test" />
+          <img src="@/assets/blog-img/blog_logo.svg" />
         </div>
         <div>
           <div>
             <div>
-              <img src="@/assets/blog-img/blog-dot.png" alt="" />
-              <span> </span>
-              <span> 旅遊</span>
+              <img src="@/assets/blog-img/blog-dot.png" alt />
+              <span></span>
+              <span>旅遊</span>
             </div>
             <div>
-              <img src="@/assets/blog-img/blog-dot.png" alt="" />
-              <span> </span>
-              <span> 水果知識</span>
+              <img src="@/assets/blog-img/blog-dot.png" alt />
+              <span></span>
+              <span>水果知識</span>
             </div>
             <div>
-              <img src="@/assets/blog-img/blog-dot.png" alt="" />
-              <span> </span>
-              <span> 農民樂</span>
+              <img src="@/assets/blog-img/blog-dot.png" alt />
+              <span></span>
+              <span>農民樂</span>
             </div>
           </div>
           <div>
@@ -35,10 +36,7 @@
       <div>
         <div>
           <div>
-            <img
-              src="@/assets/blog-img/blog-someoneshead.png"
-              class="blog-landing-aunt"
-            />
+            <img src="@/assets/blog-img/blog-someoneshead.png" class="blog-landing-aunt" />
           </div>
           <div>
             <div>
@@ -69,42 +67,38 @@
       <div>
         <div>
           <div>
-            <div>{{ this.previousValue[0].date }}</div>
+            <div>{{ previousValue[0].date }}</div>
             <div>
               <img src="@/assets/blog-img/blog-tag.png" />
-              <span> 草莓 </span>
+              <span>草莓</span>
               <img src="@/assets/blog-img/blog-tag.png" />
-              <span> 旅遊日誌 </span>
+              <span>旅遊日誌</span>
             </div>
           </div>
           <div></div>
           <div>
-            <span>{{ this.previousValue[0].title }}</span>
+            <span>{{ previousValue[0].title }}</span>
           </div>
           <div>
             <img src="@/assets/blog-img/blog-bendingbar2.png" />
           </div>
           <div>
-            <img :src="this.previousValue[0].img[0]" />
+            <img :src="previousValue[0].img[0]" />
           </div>
         </div>
         <div>
           <div>
-            <div>
-              {{ this.previousValue[0].content }}
-            </div>
-            <div>
-              {{ this.previousValue[0].content }}
-            </div>
+            <div>{{ previousValue[0].content }}</div>
+            <div>{{ previousValue[0].content }}</div>
           </div>
           <div>
             <div>
               <img src="../assets/blog-img/blog-trapezoid.png" />
               <div>
-                <img :src="this.previousValue[0].img[1]" />
-                <img :src="this.previousValue[0].img[2]" />
+                <img v-for="(i, index) in previousValue[0].img" :key="index" :src="i" />
+                <!-- <img :src="this.previousValue[0].img[2]" />
                 <img :src="this.previousValue[0].img[3]" />
-                <img :src="this.previousValue[0].img[4]" />
+                <img :src="this.previousValue[0].img[4]" />-->
                 <!--<img src="@/assets/blog-img/blog-trapimg2.png" />-->
               </div>
             </div>
@@ -112,9 +106,9 @@
         </div>
         <div>
           <div>
-            <span> 留言{{ blogMsg.length }}筆 </span>
+            <span>留言{{ blogMsg.length }}筆</span>
             <img src="@/assets/blog-img/blog-thumb.png" />
-            <span> 301 </span>
+            <span>301</span>
           </div>
         </div>
         <div>
@@ -128,11 +122,7 @@
             </div>
             <div style="font-size:16px;">{{ i.content }}</div>
             <div>
-              <img
-                @click="report(i)"
-                src="@/assets/blog-img/blog-report.png"
-                class="report"
-              />
+              <img @click="report(i)" src="@/assets/blog-img/blog-report.png" class="report" />
             </div>
           </div>
           <span @click="loadMoreMsg" id="loadMoreMsg">
@@ -192,17 +182,14 @@
           </div>-->
         </div>
         <div>
-          <form action="" method="get" @click.prevent="prevent">
-            <label for="">
+          <form action method="get">
+            <label for>
               留言:
-              <textarea name="" id=""> </textarea>
+              <textarea name id></textarea>
             </label>
             <br />
             <div class="blog-landing-button-more" @click.prevent="comment">
-              <button-more
-                class="blog-landing-button-more2"
-                msg="送出"
-              ></button-more>
+              <button-more class="blog-landing-button-more2" msg="送出"></button-more>
             </div>
           </form>
         </div>
@@ -212,40 +199,23 @@
       <div>
         <span @click="closeLightBox">X</span>
         <div>
-          <input
-            type="radio"
-            name=""
-            id="r1"
-            value="0"
-            v-model="reportRadio"
-          />&emsp; <label for="r1">仇恨言論</label><br /><br />
-          <input
-            type="radio"
-            name=""
-            id="r2"
-            value="1"
-            v-model="reportRadio"
-          />&emsp; <label for="r2">侵權</label><br /><br />
-          <input
-            type="radio"
-            name=""
-            id="r3"
-            value="2"
-            v-model="reportRadio"
-          />&emsp; <label for="r3">色情內容</label><br /><br />
-          <input
-            type="radio"
-            name=""
-            id="r4"
-            value="3"
-            v-model="reportRadio"
-          />&emsp; <label for="r4">與本網站無關</label><br /><br />
-          <input
-            class="reportBtn"
-            type="button"
-            value="確定"
-            @click="sendReport()"
-          />
+          <input type="radio" name id="r1" value="0" v-model="reportRadio" />&emsp;
+          <label for="r1">仇恨言論</label>
+          <br />
+          <br />
+          <input type="radio" name id="r2" value="1" v-model="reportRadio" />&emsp;
+          <label for="r2">侵權</label>
+          <br />
+          <br />
+          <input type="radio" name id="r3" value="2" v-model="reportRadio" />&emsp;
+          <label for="r3">色情內容</label>
+          <br />
+          <br />
+          <input type="radio" name id="r4" value="3" v-model="reportRadio" />&emsp;
+          <label for="r4">與本網站無關</label>
+          <br />
+          <br />
+          <input class="reportBtn" type="button" value="確定" @click="sendReport()" />
         </div>
       </div>
     </div>
@@ -399,10 +369,10 @@
           }
         }
       }
-      > div:nth-child(1) {
-        > img:nth-child(1) {
-        }
-      }
+      // > div:nth-child(1) {
+      //   > img:nth-child(1) {
+      //   }
+      // }
       > div:nth-child(2) {
         // background-color: #000;
         display: grid;
@@ -616,7 +586,7 @@
           height: 385px;
           position: relative;
           &::before {
-            content: '';
+            content: "";
             width: 90%;
             border-bottom: solid #007552 2px;
             position: absolute;
@@ -633,7 +603,7 @@
             }
           }
           &::after {
-            content: '';
+            content: "";
             width: 75%;
             border-bottom: solid #007552 2px;
             position: absolute;
@@ -734,7 +704,7 @@
       padding-bottom: 20px;
       position: relative;
       &::after {
-        content: '';
+        content: "";
         width: 90%;
         border-top: 2px solid #007552;
         position: absolute;
@@ -742,7 +712,7 @@
         right: 5%;
       }
       &::before {
-        content: '';
+        content: "";
         width: 90%;
         border-top: 2px solid #007552;
         position: absolute;
@@ -794,8 +764,8 @@
           grid-template-columns: 15% 75% 10%;
           grid-template-rows: repeat(2, 1fr);
           grid-template-areas:
-            'aa1 aa2 aa4'
-            'aa1 aa3 aa4';
+            "aa1 aa2 aa4"
+            "aa1 aa3 aa4";
         }
         > div:nth-child(1) {
           // background-color: #000;
@@ -817,7 +787,7 @@
             grid-area: aa2;
           }
           &::after {
-            content: '';
+            content: "";
             position: absolute;
             top: 0px;
             right: 10%;
@@ -829,7 +799,7 @@
           }
           @media (max-width: 576px) {
             &::before {
-              content: '';
+              content: "";
               position: absolute;
               top: 3px;
               left: -10px;
@@ -943,22 +913,23 @@
 }
 </style>
 <script>
-import $ from 'jquery';
+import $ from "jquery";
 export default {
-  props: {blogInfProps: Object, c: String},
+  props: { blogInfProps: Array, c: String },
   data() {
     return {
       msgobj: {
         content: null,
         date: null,
-        blogNo: null,
+        blogNo: null
       },
       blogMsg: null,
       blogMsgFilter: [],
       blogMsgCount: 1,
       previousValue: null,
+      previousItem: [],
       reportRadio: null,
-      beReported: null,
+      beReported: null
     };
   },
   created() {
@@ -973,8 +944,9 @@ export default {
 
     let api = this.path + "api_get_msg.php";
 
-    this.$http.post(api, JSON.stringify(this.msgobj)).then((res) => {
-      if (res.data != '') {
+    this.$http.post(api, JSON.stringify(this.msgobj)).then(res => {
+      if (res.data != "") {
+
         this.blogMsg = res.data[0];
 
         // console.log(this.blogMsg);
@@ -985,26 +957,26 @@ export default {
           }
         } else {
           for (let i = 0; i < 5; i++) {
-            this.blogMsgFilter.push(this.blogMsg[i]);
+            if (this.blogMsg[i] != undefined) {
+              this.blogMsgFilter.push(this.blogMsg[i]);
+            }
           }
         }
-      } else {
       }
     });
 
     let api2 = this.path + "api_get_blog_content.php";
 
-    this.$http.post(api2).then((res) => {
-      if (res.data != '') {
+    this.$http.post(api2).then(res => {
+      if (res.data != "") {
         this.previousValue = res.data;
-
-        this.previousValue[0].img = this.previousValue[0].img.split(',');
+        this.previousValue[0].img = this.previousValue[0].img.split(",");
 
         for (let j = 0; j < this.previousValue[0].img.length; j++) {
-          this.previousValue[0].img[j] = `/api/${this.previousValue[0].img[j]}`;
+
+          this.previousValue[0].img[j] =
+            this.img + this.previousValue[0].img[j];
         }
-        console.log(this.previousValue[0]);
-      } else {
       }
     });
   },
@@ -1015,12 +987,8 @@ export default {
     // },
   },
   methods: {
-    test() {
-      // console.log(this.blogInfProps, this.c);
-    },
-    prevent() {},
     comment() {
-      let msg = document.getElementsByTagName('textarea')[0].value;
+      let msg = document.getElementsByTagName("textarea")[0].value;
       this.msgobj.content = msg;
 
       // let blogNo = this.blogInfProps.no;
@@ -1029,12 +997,7 @@ export default {
 
       let api = this.path + "api_blog_msg.php";
 
-      this.$http.post(api, JSON.stringify(this.msgobj)).then((res) => {
-        if (res.data != '') {
-          // console.log(res.data);
-        } else {
-        }
-      });
+      this.$http.post(api, JSON.stringify(this.msgobj));
       var pathtopage = window.location.href;
 
       history.go(0);
@@ -1060,15 +1023,15 @@ export default {
       // console.log(e);
       // alert(e)
       document
-        .getElementsByClassName('reportLightBox')[0]
-        .setAttribute('style', 'display: block;');
+        .getElementsByClassName("reportLightBox")[0]
+        .setAttribute("style", "display: block;");
       // this.beReported=null
       this.beReported = e;
     },
     closeLightBox() {
       document
-        .getElementsByClassName('reportLightBox')[0]
-        .setAttribute('style', 'display: none;');
+        .getElementsByClassName("reportLightBox")[0]
+        .setAttribute("style", "display: none;");
     },
     sendReport() {
       var nStartTime = new Date(Date.now());
@@ -1079,19 +1042,21 @@ export default {
       this.beReported.reason = this.reportRadio;
       // console.log(this.beReported);
       if (this.beReported.reason == null) {
-        alert('請填寫原因');
+        alert("請填寫原因");
       } else {
         let api = this.path + "api_report_msg.php";
 
-        this.$http.post(api, JSON.stringify(this.beReported)).then((res) => {
-          if (res.data != '') {
-            console.log(res.data);
+        this.$http.post(api, JSON.stringify(this.beReported)).then(res => {
+          if (res.data == 1) {
+            alert("您已經檢舉過了！");
+            // console.log(res.data);
           } else {
+            alert("檢舉成功！");
           }
         });
         this.closeLightBox();
       }
-    },
-  },
+    }
+  }
 };
 </script>
