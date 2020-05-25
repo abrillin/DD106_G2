@@ -229,6 +229,7 @@ $color5: #ffa978;
             @include rwd(small) {
               text-align: center;
             }
+            
             .item_btn {
               @include shop-btn();
               margin-right: 10px;
