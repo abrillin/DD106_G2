@@ -1245,6 +1245,9 @@
           }
         >img{
           width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: 50% 50%;
 
           @media (max-width: 700px)  {
           width: 100%;
