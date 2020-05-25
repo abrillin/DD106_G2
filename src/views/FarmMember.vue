@@ -16,26 +16,11 @@
           </li>
         </ul>
         <div class="star">
-          <img
-            src="@/assets/Group 720.svg"
-            v-if="member.reviewtotal / member.reviewcount > 0"
-          />
-          <img
-            src="@/assets/Group 720.svg"
-            v-if="member.reviewtotal / member.reviewcount > 1"
-          />
-          <img
-            src="@/assets/Group 720.svg"
-            v-if="member.reviewtotal / member.reviewcount > 2"
-          />
-          <img
-            src="@/assets/Group 720.svg"
-            v-if="member.reviewtotal / member.reviewcount > 3"
-          />
-          <img
-            src="@/assets/Group 720.svg"
-            v-if="member.reviewtotal / member.reviewcount > 4"
-          />
+          <img src="@/assets/Group 720.svg" v-if="member.reviewtotal / member.reviewcount > 0" />
+          <img src="@/assets/Group 720.svg" v-if="member.reviewtotal / member.reviewcount > 1" />
+          <img src="@/assets/Group 720.svg" v-if="member.reviewtotal / member.reviewcount > 2" />
+          <img src="@/assets/Group 720.svg" v-if="member.reviewtotal / member.reviewcount > 3" />
+          <img src="@/assets/Group 720.svg" v-if="member.reviewtotal / member.reviewcount > 4" />
           <span>({{ member.reviewcount }})</span>
         </div>
       </div>
@@ -69,7 +54,9 @@
       </div>
       <button type="button" class="btn_drawer">&#9658;</button>
     </aside>
-    <router-view @update="update" />
+    <keep-alive>
+      <router-view />
+    </keep-alive>
   </div>
 </template>
 
@@ -90,13 +77,13 @@ export default {
         content: "",
         reviewtotal: "",
         reviewcount: "",
-        memberno: "",
-      },
+        memberno: ""
+      }
     };
   },
   created() {
     const api = "/api/api_farmStatus.php";
-    this.$http.post(api).then((res) => {
+    this.$http.post(api).then(res => {
       const data = res.data;
       if (data.status == 1) {
         alert("此身份停權中，請聯繫管理員！");
@@ -117,7 +104,7 @@ export default {
           content: data.content,
           reviewtotal: data.reviewtotal,
           reviewcount: data.reviewcount,
-          memberno: data.memberno,
+          memberno: data.memberno
         };
         if (data.img == null) {
           this.member.img = require("@/assets/waterpear.png");
@@ -159,11 +146,6 @@ export default {
         });
       }
     });
-  },
-  methods: {
-    update: function() {
-      // this.$emit("loginStatus", s);
-    },
-  },
+  }
 };
 </script>
