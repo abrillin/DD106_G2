@@ -37,7 +37,8 @@
       <div class="fruit_A">
         <p>{{content.ans}}</p>
         <div class="fruit_img">
-          <img :src="'/api/'+content.img" />
+          <img :src="content.img" />
+          <!-- <MyComponent></MyComponent> -->
         </div>
       </div>
     </div>
@@ -45,6 +46,11 @@
 </template>
 <script>
 export default {
-  props: { content: Object }
+  props: { content: Object },
+  // components: {
+  //   myComponent: {
+  //     template: "<img src=/api/encyPic/1590393217ia_200000002.jpg />"
+  //   }
+  // }
 };
 </script>

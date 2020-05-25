@@ -3,13 +3,21 @@
     <h1>{{data.name}}</h1>
     <div class="fruit_start_img">
       <div class="img_content">
-        <img :src="'/api/'+data.img" alt />
+        <img :src="data.img" />
       </div>
     </div>
   </div>
 </template>
 <script>
 export default {
-  props: { data: Object }
+  props: { data: Object },
+  // data() {
+  //   return {
+  //     img: ""
+  //   };
+  // },
+  // updated() {
+  //   this.img = "/api/" + this.data.img;
+  // }
 };
 </script>
