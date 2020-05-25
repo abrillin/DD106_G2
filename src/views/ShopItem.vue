@@ -390,7 +390,6 @@ window.addEventListener("resize", function() {
     panelView = -528;
     maxIndex = 5;
   }
-  console.log(panelView);
 });
 
 import $ from "jquery";
@@ -409,7 +408,6 @@ export default {
     let wrap = document.getElementById("CommodityCarouselList");
     var curIndex = 0;
     $id("arrowleft").onclick = function() {
-      console.log(panelView);
       curIndex--;
       wrap.style.left = panelView * curIndex + "px";
       $id("arrowright").disabled = false;
@@ -419,8 +417,6 @@ export default {
     };
 
     $id("arrowright").onclick = function() {
-      // console.log(n);
-
       curIndex++;
       wrap.style.left = panelView * curIndex + "px";
       $id("arrowleft").disabled = false;
@@ -435,11 +431,6 @@ export default {
     this.$http
       .post(api)
       .then(res => {
-        // const data = res.data;
-        // this.item.itemName = data.name;
-        // this.item.money = data.price;
-
-        // this.shopcommodity = res.data;
         this.shopseller = res.data["mem"];
         console.log(res.data);
 
