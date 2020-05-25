@@ -9,7 +9,7 @@ try{
   // $frontInfo = json_decode(file_get_contents("php://input"));
   // $ec=json_encode($frontInfo);
   // echo $ec;
-  $sql = "select * from `blog`"; 
+  $sql = "SELECT b.content,b.content2,b.date,b.img,b.no,b.title,m.nick,m.img m_img,s.review_total,s.review_count FROM blog  b JOIN seller s ON b.seller_no=s.no JOIN member m ON s.member_no=m.no WHERE b.status=1"; 
   $blog = $pdo->prepare($sql);
   $blog->execute();
   $blogRows = $blog->fetchAll(PDO::FETCH_ASSOC);
