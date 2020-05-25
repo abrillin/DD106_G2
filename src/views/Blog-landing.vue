@@ -239,6 +239,12 @@
             value="3"
             v-model="reportRadio"
           />&emsp; <label for="r4">與本網站無關</label><br /><br />
+          <input
+            class="reportBtn"
+            type="button"
+            value="確定"
+            @click="sendReport()"
+          />
         </div>
       </div>
     </div>
@@ -609,7 +615,7 @@
           height: 385px;
           position: relative;
           &::before {
-            content: '';
+            content: "";
             width: 90%;
             border-bottom: solid #007552 2px;
             position: absolute;
@@ -626,7 +632,7 @@
             }
           }
           &::after {
-            content: '';
+            content: "";
             width: 75%;
             border-bottom: solid #007552 2px;
             position: absolute;
@@ -723,7 +729,7 @@
       padding-bottom: 20px;
       position: relative;
       &::after {
-        content: '';
+        content: "";
         width: 90%;
         border-top: 2px solid #007552;
         position: absolute;
@@ -731,7 +737,7 @@
         right: 5%;
       }
       &::before {
-        content: '';
+        content: "";
         width: 90%;
         border-top: 2px solid #007552;
         position: absolute;
@@ -783,8 +789,8 @@
           grid-template-columns: 15% 75% 10%;
           grid-template-rows: repeat(2, 1fr);
           grid-template-areas:
-            'aa1 aa2 aa4'
-            'aa1 aa3 aa4';
+            "aa1 aa2 aa4"
+            "aa1 aa3 aa4";
         }
         > div:nth-child(1) {
           // background-color: #000;
@@ -806,7 +812,7 @@
             grid-area: aa2;
           }
           &::after {
-            content: '';
+            content: "";
             position: absolute;
             top: 0px;
             right: 10%;
@@ -818,7 +824,7 @@
           }
           @media (max-width: 576px) {
             &::before {
-              content: '';
+              content: "";
               position: absolute;
               top: 3px;
               left: -10px;
@@ -911,18 +917,30 @@
       }
       > div:nth-child(2) {
         // background-color: #fff;
-        padding-top: 35%;
+        padding-top: 30%;
         padding-left: 30%;
         font-size: 16px;
+        > .reportBtn {
+          color: #fff;
+          background-color: rgb(0, 0, 0);
+          border: none;
+          border-radius: 10px;
+          padding: 2px 10px;
+          font-size: 15px;
+          margin-left: 15%;
+          margin-top: 5%;
+          box-shadow: none;
+          text-decoration: none;
+        }
       }
     }
   }
 }
 </style>
 <script>
-import $ from 'jquery';
+import $ from "jquery";
 export default {
-  props: {blogInfProps: Object, c: String},
+  props: { blogInfProps: Object, c: String },
   data() {
     return {
       msgobj: {
@@ -935,6 +953,7 @@ export default {
       blogMsgCount: 1,
       previousValue: null,
       reportRadio: null,
+      beReported: null,
     };
   },
   created() {
@@ -947,12 +966,14 @@ export default {
     this.msgobj.date = today;
     // console.log(this.previousValue);
 
-    let api = '/api/api_get_msg.php';
+    let api = "/api/api_get_msg.php";
 
     this.$http.post(api, JSON.stringify(this.msgobj)).then((res) => {
-      if (res.data != '') {
+      if (res.data != "") {
         this.blogMsg = res.data[0];
-        console.log(this.blogMsg);
+
+        // console.log(this.blogMsg);
+        // console.log(res.data);
         if (this.blogMsg.length < 5) {
           for (let i = 0; i <= this.blogMsg.length - 1; i++) {
             this.blogMsgFilter.push(this.blogMsg[i]);
@@ -966,10 +987,10 @@ export default {
       }
     });
 
-    let api2 = '/api/api_get_blog_content.php';
+    let api2 = "/api/api_get_blog_content.php";
 
     this.$http.post(api2).then((res) => {
-      if (res.data != '') {
+      if (res.data != "") {
         this.previousValue = res.data;
         // console.log(this.previousValue[0]);
       } else {
@@ -984,22 +1005,22 @@ export default {
   },
   methods: {
     test() {
-      console.log(this.blogInfProps, this.c);
+      // console.log(this.blogInfProps, this.c);
     },
     prevent() {},
     comment() {
-      let msg = document.getElementsByTagName('textarea')[0].value;
+      let msg = document.getElementsByTagName("textarea")[0].value;
       this.msgobj.content = msg;
 
       // let blogNo = this.blogInfProps.no;
       // this.msgobj.blogNo = blogNo;
       // console.log(this.msgobj);
 
-      let api = '/api/api_blog_msg.php';
+      let api = "/api/api_blog_msg.php";
 
       this.$http.post(api, JSON.stringify(this.msgobj)).then((res) => {
-        if (res.data != '') {
-          console.log(res.data);
+        if (res.data != "") {
+          // console.log(res.data);
         } else {
         }
       });
@@ -1025,15 +1046,40 @@ export default {
       this.blogMsgCount++;
     },
     report(e) {
-      console.log(e);
+      // console.log(e);
+      // alert(e)
       document
-        .getElementsByClassName('reportLightBox')[0]
-        .setAttribute('style', 'display: block;');
+        .getElementsByClassName("reportLightBox")[0]
+        .setAttribute("style", "display: block;");
+      // this.beReported=null
+      this.beReported = e;
     },
-    closeLightBox(){
+    closeLightBox() {
       document
-        .getElementsByClassName('reportLightBox')[0]
-        .setAttribute('style', 'display: none;');
+        .getElementsByClassName("reportLightBox")[0]
+        .setAttribute("style", "display: none;");
+    },
+    sendReport() {
+      var nStartTime = new Date(Date.now());
+      let today = `${nStartTime.getFullYear()}-${nStartTime.getMonth() +
+        1}-${nStartTime.getDate()}`;
+      this.beReported.date = today;
+      this.beReported.reason = null;
+      this.beReported.reason = this.reportRadio;
+      // console.log(this.beReported);
+      if (this.beReported.reason == null) {
+        alert("請填寫原因");
+      } else {
+        let api = "/api/api_report_msg.php";
+
+        this.$http.post(api, JSON.stringify(this.beReported)).then((res) => {
+          if (res.data != "") {
+            console.log(res.data);
+          } else {
+          }
+        });
+        this.closeLightBox();
+      }
     },
   },
 };

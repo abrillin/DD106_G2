@@ -29,7 +29,12 @@
               placeholder="最大字數限制10"
               v-model="item.name"
             />
-            <input type="text" id="productPrice" v-model="item.price" />元
+            <input
+              type="text"
+              id="productPrice"
+              v-model="item.price"
+              @change="changePrice"
+            />元
 
             <label for="productMainPic" @change="changeMainPic">
               <span>上傳主要圖片</span>
@@ -82,10 +87,10 @@
   </div>
 </template>
 <script>
-import { log } from "three";
 export default {
   data() {
     return {
+      formData: new FormData(),
       tags: {
         selected: 0,
         no: 0,
@@ -94,10 +99,11 @@ export default {
       item: {
         no: 1,
         name: "",
-        price: "",
+        price: 1,
         description: "",
         sellerno: "",
         date: "",
+        img: "",
       },
     };
   },
@@ -105,7 +111,12 @@ export default {
     const api = "/api/api_farmitem.php";
     this.$http.post(api).then((res) => {
       const data = res.data;
-      this.item.no = parseInt(data[0].no) + 1;
+      if (data[0].no != null) {
+        this.item.no = parseInt(data[0].no) + 1;
+      } else {
+        this.item.no = 1;
+      }
+
       this.itemTags = data[1];
     });
     const api2 = "/api/api_farmStatus.php";
@@ -115,6 +126,19 @@ export default {
     });
   },
   methods: {
+    changePrice: function() {
+      let r = /^[0-9]*[1-9][0-9]*$/;
+      if (isNaN(this.item.price)) {
+        alert("輸入必須為數字");
+        this.item.price = 1;
+      } else {
+        if (r.test(this.item.price)) {
+        } else {
+          alert("輸入必須為正整數");
+          this.item.price = 1;
+        }
+      }
+    },
     changeMainPic: function(e) {
       let reader = new FileReader();
       const img = e.target;
@@ -146,45 +170,45 @@ export default {
       if (month < 10) {
         month = "0" + month;
       }
-      this.blog.date =
+      this.item.date =
         new Date().getFullYear().toString() +
         month.toString() +
         new Date().getDate().toString();
 
       this.formData.append(
         "mainImg",
-        document.getElementById("blogMainImg").files[0]
+        document.getElementById("productMainPic").files[0]
       );
 
       for (
         let i = 0;
-        i < document.getElementById("blogOtherImg").files.length;
+        i < document.getElementById("productOtherPic").files.length;
         i++
       ) {
         this.formData.append(
           "otherImg[]",
-          document.getElementById("blogOtherImg").files[i]
+          document.getElementById("productOtherPic").files[i]
         );
       }
       if (
-        (document.getElementById("blogMainImg").files.length == 0) |
-        (document.getElementById("blogOtherImg").files.length == 0)
+        (document.getElementById("productMainPic").files.length == 0) |
+        (document.getElementById("productOtherPic").files.length == 0)
       ) {
         alert("請上傳圖片");
         return;
       } else {
         this.$http
-          .post("/api/api_uploadBlogFiles.php", this.formData)
+          .post("/api/api_uploadProductFiles.php", this.formData)
           .then((res) => {
-            this.blog.img = res.data.toString();
-            for (let i in this.blog) {
-              if (this.blog[i] == "") {
+            this.item.img = res.data.toString();
+            for (let i in this.item) {
+              if (this.item[i] == "") {
                 alert("請檢查是否所有欄位都有輸入資料");
                 return;
               }
             }
             this.$http
-              .post("/api/api_farmBlogUpdate.php", JSON.stringify(this.blog))
+              .post("/api/api_farmProductUpdate.php", JSON.stringify(this.item))
               .then((res) => {
                 const data = res.data;
                 if (data == 0) {

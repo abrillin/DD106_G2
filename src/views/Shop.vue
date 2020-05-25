@@ -108,18 +108,28 @@
         <form class="filter-group">
           <div class="filter-group_header">運送方式：</div>
           <div class="folding-items">
-            <div class="checkbox-filter">
-              <input type="checkbox" id="24hour" />
-              <label class="checkbox_label">24hr宅配到府</label>
+            <div
+              class="checkbox-filter"
+              v-for="(checkboxitems,index) in checkbox"
+              :key="checkboxitems"
+            >
+              <input
+                :id="'checkinput' + index"
+                type="radio"
+                v-model="v"
+                @click="checkchange(index)"
+                :value="index"
+              />
+              <label class="checkbox_label">{{checkboxitems}}</label>
             </div>
-            <div class="checkbox-filter">
+            <!--  <div class="checkbox-filter">
               <input type="checkbox" id="home" />
               <label class="checkbox_label">宅配到府</label>
             </div>
             <div class="checkbox-filter">
               <input type="checkbox" id="store" />
               <label class="checkbox_label">超商取貨</label>
-            </div>
+            </div>-->
           </div>
         </form>
         <form class="filter-group">
@@ -185,7 +195,7 @@
               </router-link>
               <div class="card_content">
                 <div class="commodity_title">
-                  <div class="commodity_title_text">{{i.no}}</div>
+                  <div class="commodity_title_text">{{i.name}}</div>
                 </div>
 
                 <div class="card_tag" v-for="(t,dex) in shopcommodityfilter[index].tags" :key="dex">
@@ -253,7 +263,8 @@
           class="hotCommoditySeller"
           v-for="(s, index) in seller"
           :key="index"
-          @mouseenter="SellerM"
+          @mouseenter="SellerMouseEnter"
+          @mouseleave="SellerMouseLeave"
         >
           <a href="#">
             <div class="seller_box">
@@ -271,7 +282,7 @@
                 <img src="../assets/icon/star.svg" alt width="14" height="14" />
               </div>
             </div>
-            <div class="track-btn">＋追蹤</div>
+            <!-- <div class="track-btn">＋追蹤</div> -->
           </div>
         </div>
       </aside>
@@ -291,7 +302,7 @@
           :key="index"
           v-on="{ click: pageSelect }"
         >
-          <div class="page-link">{{i.no}}</div>
+          <div class="page-link">{{i+1}}</div>
         </li>
 
         <li class="page-right" @click="nextPage">
@@ -310,16 +321,24 @@
 <script>
 import $ from "jquery";
 import { gsap, TweenMax, Power1, Power3, TimelineMax, Linear } from "gsap";
+const SHOP_PAGE_ITEMS = 8;
+const SHOP_INDICATOR_SIZE = 5;
+
 export default {
   data() {
     return {
       shopcommodity: [],
       shopcommodityfilter: [],
       pageArr: [],
-      currentPage: [],
+      currentPage: 0,
+      totalPages: 1,
+      totalItems: 0,
       seller: [],
-      changeitem: ["價錢高到低", "評價高到低", "由新到舊"],
-      v: 0
+      changeitem: ["由新到舊", "評價高到低", "價錢高到低"],
+      checkbox: ["24hr宅配到府", "宅配到府", "超商取貨"],
+      v: 0,
+      checkfilter: []
+      // aa: []
     };
   },
 
@@ -328,18 +347,14 @@ export default {
 
     this.$http.post(api).then(res => {
       this.shopcommodity = res.data;
+      this.currentPage = 0;
+      this.totalItems = this.shopcommodity.pro.length;
+      this.totalPages = Math.ceil(
+        this.shopcommodity.pro.length / SHOP_PAGE_ITEMS
+      );
 
-      for (let i = 0; i < this.shopcommodity["pro"].length; i++) {
-        if (i == 8) {
-          return;
-        }
-        this.shopcommodityfilter.push(this.shopcommodity["pro"][i]);
-      }
-
-      this.currentPage.push(1);
-      for (let i = 1; i < 10; i++) {
-        this.pageArr.push(i);
-      }
+      this.updatePageItems();
+      this.updatePageIndicator();
 
       this.seller = res.data["mem"];
       // console.log(res.data["mem"]);
@@ -347,13 +362,13 @@ export default {
   },
 
   updated() {
-    for (let i = 0; i <= 8; i++) {
+    for (let i = 0; i < SHOP_INDICATOR_SIZE; i++) {
       document
         .getElementsByClassName("page-item")
         [i].setAttribute("class", "page-item");
       if (
         document.getElementsByClassName("page-item")[i].textContent ==
-        this.currentPage[0]
+        this.currentPage + 1
       ) {
         document
           .getElementsByClassName("page-item")
@@ -364,32 +379,21 @@ export default {
   },
 
   methods: {
-    SellerM: function() {
+    SellerMouseEnter: function(event) {
       //觸發追蹤商品效果
-      $(".hotCommoditySeller").hover(function() {
-        var sellermove = $(this);
-        TweenMax.to(sellermove, 0.5, {
-          x: -25,
-          width: "100% + 25px"
-        });
-        var sellermove2 = $(this).find(".track-btn");
-        TweenMax.to(sellermove2, 1, {
-          x: 70,
-          autoAlpha: 1
-        });
+      //console.log(event);
+      var sellermove = $(event.target);
+      TweenMax.to(sellermove, 0.5, {
+        x: -25,
+        width: "100% + 25px"
       });
+    },
+    SellerMouseLeave: function(event) {
       //反觸發追蹤商品效果
-      $(".hotCommoditySeller").mouseleave(function() {
-        var sellermove = $(this);
-        TweenMax.to(sellermove, 0.5, {
-          x: 0,
-          width: "100%"
-        });
-        var sellermove2 = $(this).find(".track-btn");
-        TweenMax.to(sellermove2, 1, {
-          x: 0,
-          autoAlpha: 0
-        });
+      var sellermove = $(event.target);
+      TweenMax.to(sellermove, 0.5, {
+        x: 0,
+        width: "100%"
       });
     },
     btnFun: function() {
@@ -435,62 +439,77 @@ export default {
       });
     },
     pageLeft() {
-      let currentPage1 = this.currentPage[0];
+      if (this.currentPage > 0) {
+        this.currentPage -= 1;
+        this.updatePageItems();
+        this.updatePageIndicator();
+      }
       // this.currentPage = [];
+      /*
       this.shopcommodityfilter = [];
       if (this.currentPage > 1) {
-        this.currentPage = [];
-        this.currentPage.push(currentPage1 - 1);
+        this.currentPage -= 1;
       }
-      let updatePage = this.currentPage[0];
+      let updatePage = this.currentPage;
 
       for (let i = (updatePage - 1) * 8 + 1; i < updatePage * 8 + 1; i++) {
         this.shopcommodityfilter.push(this.shopcommodity.pro[i]);
       }
-      console.log(this.shopcommodity);
       if (this.pageArr[0] > 1) {
         this.pageArr.forEach((item, index, array) => {
           this.pageArr[index] = this.pageArr[index] - 1;
         });
       }
+      */
     },
     nextPage() {
-      let currentPage1 = this.currentPage[0];
-      this.shopcommodityfilter = [];
-      if (this.currentPage < parseInt(this.shopcommodity.length / 8)) {
-        this.currentPage = [];
-        this.currentPage.push(currentPage1 + 1);
+      if (this.currentPage < this.totalPages - 1) {
+        this.currentPage += 1;
+        this.updatePageItems();
+        this.updatePageIndicator();
       }
-      let updatePage = this.currentPage[0];
 
+      /*
+      this.shopcommodityfilter = [];
+      if (this.currentPage < Math.ceil(this.shopcommodity.pro.length / 8)) {
+        this.currentPage += 1;
+      }
+      let updatePage = this.currentPage;
       for (let i = (updatePage - 1) * 8 + 1; i < updatePage * 8 + 1; i++) {
         this.shopcommodityfilter.push(this.shopcommodity.pro[i]);
       }
-      if (this.pageArr[8] < parseInt(this.shopcommodity.length / 8)) {
+      if (this.pageArr[8] < parseInt(this.shopcommodity.pro.length / 8)) {
         this.pageArr.forEach((item, index, array) => {
           this.pageArr[index] = this.pageArr[index] + 1;
         });
       }
+      */
     },
     pageSelect(e) {
+      const pageNum = parseInt(e.target.textContent, 10) - 1;
+      this.currentPage = pageNum;
+      this.updatePageItems();
+      this.updatePageIndicator();
+
+      /*
       let pageNum = parseInt(e.target.textContent);
       // console.log(pageNum);
       this.shopcommodityfilter = [];
-      this.currentPage = [];
+      this.currentPage;
       // console.log(parseInt(this.shopcommodity.length / 9));
       if (
         pageNum > 5 &&
-        pageNum < parseInt(this.shopcommodity.length / 8) - 5
+        pageNum < parseInt(this.shopcommodity.pro.length / 8) - 5
       ) {
         this.pageArr = [];
         for (let i = pageNum - 4; i < pageNum + 5; i++) {
           this.pageArr.push(i);
         }
-      } else if (pageNum >= parseInt(this.shopcommodity.length / 8) - 5) {
+      } else if (pageNum >= parseInt(this.shopcommodity.pro.length / 8) - 5) {
         this.pageArr = [];
         for (
-          let i = parseInt(this.shopcommodity.length / 8) - 7;
-          i <= parseInt(this.shopcommodity.length / 7);
+          let i = parseInt(this.shopcommodity.pro.length / 8) - 7;
+          i <= parseInt(this.shopcommodity.pro.length / 7);
           i++
         ) {
           this.pageArr.push(i);
@@ -502,10 +521,13 @@ export default {
         }
       }
 
-      this.currentPage.push(pageNum);
-      let currentPage1 = this.currentPage[0];
+      this.currentPage = pageNum;
 
-      for (let i = (currentPage1 - 1) * 8 + 1; i < currentPage1 * 8 + 1; i++) {
+      for (
+        let i = (this.currentPage - 1) * 8 + 1;
+        i < this.currentPage * 8 + 1;
+        i++
+      ) {
         this.shopcommodityfilter.push(this.shopcommodity["pro"][i]);
       }
 
@@ -515,6 +537,36 @@ export default {
       // console.log(document.getElementsByClassName("pageBorder"));
       e.target.parentNode.children[1].setAttribute("class", "page-item");
       //   document.getElementsByClassName("pageBorder")[0].setAttribute("class","");
+      */
+    },
+    updatePageItems() {
+      this.shopcommodityfilter = [];
+      const firstItem = this.currentPage * SHOP_PAGE_ITEMS;
+      const lastItem = Math.min(firstItem + 8, this.totalItems);
+      for (let i = firstItem; i < lastItem; i++) {
+        this.shopcommodityfilter.push(this.shopcommodity.pro[i]);
+      }
+    },
+    updatePageIndicator() {
+      let firstItem = 0;
+      let lastItem = SHOP_INDICATOR_SIZE;
+      const SCROLL_OFFSET = Math.ceil(SHOP_INDICATOR_SIZE / 2);
+      if (this.totalPages < SHOP_INDICATOR_SIZE) {
+        lastItem = this.totalPages;
+      } else if (this.currentPage >= SCROLL_OFFSET) {
+        firstItem = this.currentPage - SCROLL_OFFSET + 1;
+        lastItem = firstItem + SHOP_INDICATOR_SIZE;
+      }
+
+      if (lastItem > this.totalPages) {
+        firstItem = this.totalPages - SHOP_INDICATOR_SIZE;
+        lastItem = this.totalPages;
+      }
+
+      this.pageArr = [];
+      for (let i = firstItem; i < lastItem; i++) {
+        this.pageArr.push(i);
+      }
     },
     changePage(e) {
       let api = "/api/api_item_no.php";
@@ -532,9 +584,28 @@ export default {
     },
     itemchange(t) {
       console.log(t);
+      // this.aa[0] = t;
+      // this.aa[1]
       const api = "/api/api_item.php";
 
       this.$http.post(api, JSON.stringify(t)).then(res => {
+        // this.shopcommodity = "";
+        this.shopcommodity = res.data;
+
+        this.shopcommodityfilter = [];
+
+        for (let i = 1; i < 9; i++) {
+          this.shopcommodityfilter.push(this.shopcommodity["pro"][i]);
+        }
+      });
+    },
+    checkchange(k) {
+      console.log(k);
+      // this.aa[1] = k;
+      const api = "/api/api_itemcheckbox.php";
+      // const api = "/api/api_item.php";
+
+      this.$http.post(api, JSON.stringify(k)).then(res => {
         // this.shopcommodity = "";
         this.shopcommodity = res.data;
 

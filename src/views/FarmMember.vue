@@ -16,11 +16,26 @@
           </li>
         </ul>
         <div class="star">
-          <img src="@/assets/Group 720.svg" v-if="member.reviewtotal / member.reviewcount > 0" />
-          <img src="@/assets/Group 720.svg" v-if="member.reviewtotal / member.reviewcount > 1" />
-          <img src="@/assets/Group 720.svg" v-if="member.reviewtotal / member.reviewcount > 2" />
-          <img src="@/assets/Group 720.svg" v-if="member.reviewtotal / member.reviewcount > 3" />
-          <img src="@/assets/Group 720.svg" v-if="member.reviewtotal / member.reviewcount > 4" />
+          <img
+            src="@/assets/Group 720.svg"
+            v-if="member.reviewtotal / member.reviewcount > 0"
+          />
+          <img
+            src="@/assets/Group 720.svg"
+            v-if="member.reviewtotal / member.reviewcount > 1"
+          />
+          <img
+            src="@/assets/Group 720.svg"
+            v-if="member.reviewtotal / member.reviewcount > 2"
+          />
+          <img
+            src="@/assets/Group 720.svg"
+            v-if="member.reviewtotal / member.reviewcount > 3"
+          />
+          <img
+            src="@/assets/Group 720.svg"
+            v-if="member.reviewtotal / member.reviewcount > 4"
+          />
           <span>({{ member.reviewcount }})</span>
         </div>
       </div>
@@ -75,13 +90,13 @@ export default {
         content: "",
         reviewtotal: "",
         reviewcount: "",
-        memberno: ""
-      }
+        memberno: "",
+      },
     };
   },
   created() {
     const api = "/api/api_farmStatus.php";
-    this.$http.post(api).then(res => {
+    this.$http.post(api).then((res) => {
       const data = res.data;
       if (data.status == 1) {
         alert("此身份停權中，請聯繫管理員！");
@@ -102,15 +117,17 @@ export default {
           content: data.content,
           reviewtotal: data.reviewtotal,
           reviewcount: data.reviewcount,
-          memberno: data.memberno
+          memberno: data.memberno,
         };
-        if (data.img == "") {
+        if (data.img == null) {
           this.member.img = require("@/assets/waterpear.png");
         } else {
           this.member.img = data.img;
         }
       }
     });
+  },
+  mounted() {
     if (window.innerWidth < 991) {
       if ($("aside.left").hasClass("popover")) {
         $("button.btn_drawer").on("click", function() {
@@ -143,11 +160,10 @@ export default {
       }
     });
   },
-
   methods: {
     update: function() {
       // this.$emit("loginStatus", s);
-    }
-  }
+    },
+  },
 };
 </script>

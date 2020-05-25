@@ -127,7 +127,7 @@
       <div class="SellerInformationBox">
         <div class="SellerInformation">
           <img
-            :src="'../assets/shop/' + shopseller.img"
+            :src="shopseller.img"
             alt
             height="60px"
             width="60px"
@@ -140,11 +140,46 @@
           <div class="SellerReviews">
             <div class="Reviews">{{shopseller.Starsaverage}}</div>
             <div class="StarBox">
-              <img src="../assets/icon/star.svg" alt width="20" height="20" />
-              <img src="../assets/icon/star.svg" alt width="20" height="20" />
-              <img src="../assets/icon/star.svg" alt width="20" height="20" />
-              <img src="../assets/icon/star.svg" alt width="20" height="20" />
-              <img src="../assets/icon/star.svg" alt width="20" height="20" />
+              <img
+                src="../assets/icon/star.svg"
+                alt
+                width="20"
+                height="20"
+                v-if="shopseller.Starsaverage >= 1"
+              />
+              <img src="../assets/icon/star2.svg" alt width="20" height="20" v-else />
+              <img
+                src="../assets/icon/star.svg"
+                alt
+                width="20"
+                height="20"
+                v-if="shopseller.Starsaverage >= 2"
+              />
+              <img src="../assets/icon/star2.svg" alt width="20" height="20" v-else />
+              <img
+                src="../assets/icon/star.svg"
+                alt
+                width="20"
+                height="20"
+                v-if="shopseller.Starsaverage >= 3"
+              />
+              <img src="../assets/icon/star2.svg" alt width="20" height="20" v-else />
+              <img
+                src="../assets/icon/star.svg"
+                alt
+                width="20"
+                height="20"
+                v-if="shopseller.Starsaverage >= 4"
+              />
+              <img src="../assets/icon/star2.svg" alt width="20" height="20" v-else />
+              <img
+                src="../assets/icon/star.svg"
+                alt
+                width="20"
+                height="20"
+                v-if="shopseller.Starsaverage >= 5"
+              />
+              <img src="../assets/icon/star2.svg" alt width="20" height="20" v-else />
             </div>
           </div>
         </div>
