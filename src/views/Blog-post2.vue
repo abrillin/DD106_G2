@@ -1642,7 +1642,7 @@ export default {
     }
   },
   created() {
-    const api = "/api/api_blog.php";
+    const api = this.path + "api_blog.php";
 
     this.$http
       .post(api, JSON.stringify(this.member))
@@ -1844,7 +1844,7 @@ console.log(this.blogArr)
       this.$emit("blogInf", e);
       // console.log(e);
 
-      let api = "/api/api_session_blog_no.php";
+      let api = this.path + "api_session_blog_no.php";
 
       this.$http.post(api, JSON.stringify(e)).then((res) => {
         if (res.data != "") {

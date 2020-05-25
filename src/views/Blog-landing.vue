@@ -966,7 +966,7 @@ export default {
     this.msgobj.date = today;
     // console.log(this.previousValue);
 
-    let api = "/api/api_get_msg.php";
+    let api = this.path + "api_get_msg.php";
 
     this.$http.post(api, JSON.stringify(this.msgobj)).then((res) => {
       if (res.data != "") {
@@ -987,7 +987,7 @@ export default {
       }
     });
 
-    let api2 = "/api/api_get_blog_content.php";
+    let api2 = this.path + "api_get_blog_content.php";
 
     this.$http.post(api2).then((res) => {
       if (res.data != "") {
@@ -1016,7 +1016,7 @@ export default {
       // this.msgobj.blogNo = blogNo;
       // console.log(this.msgobj);
 
-      let api = "/api/api_blog_msg.php";
+      let api = this.path + "api_blog_msg.php";
 
       this.$http.post(api, JSON.stringify(this.msgobj)).then((res) => {
         if (res.data != "") {
@@ -1070,7 +1070,7 @@ export default {
       if (this.beReported.reason == null) {
         alert("請填寫原因");
       } else {
-        let api = "/api/api_report_msg.php";
+        let api = this.path + "api_report_msg.php";
 
         this.$http.post(api, JSON.stringify(this.beReported)).then((res) => {
           if (res.data != "") {

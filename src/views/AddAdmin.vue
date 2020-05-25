@@ -87,7 +87,7 @@ export default {
 
   methods: {
     addAdminF: function() {
-      const api = "/api/api_addAdmin.php";
+      const api = this.path + "api_addAdmin.php";
 
       for (let i in this.addAdmin) {
         if (this.addAdmin[i] == "") {

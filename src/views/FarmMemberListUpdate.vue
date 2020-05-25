@@ -117,7 +117,7 @@ export default {
     };
   },
   activated() {
-    const api = "/api/api_farmGetOneList.php";
+    const api = this.path + "api_farmGetOneList.php";
 
     this.$http.post(api, JSON.stringify(this.sendListNo)).then(res => {
       const data = res.data;

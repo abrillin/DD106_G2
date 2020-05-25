@@ -61,7 +61,7 @@ export default {
     };
   },
   created() {
-    const api = "/api/api_farmorder.php";
+    const api = this.path + "api_farmorder.php";
     this.$http.post(api).then((res) => {
       const data = res.data;
       if (data != "") {
@@ -88,7 +88,7 @@ export default {
   },
   methods: {
     toggleStatus(no, status) {
-      const api = "/api/api_itemUpdate.php";
+      const api = this.path + "api_itemUpdate.php";
       let s;
 
       // 如果狀態是 1 (上架) 則切換成 0 (下架)

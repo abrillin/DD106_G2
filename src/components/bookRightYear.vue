@@ -8,7 +8,7 @@
       <div class="fruit_A">
         <p>{{content.ans}}</p>
         <div class="fruit_img">
-          <img :src="'/api/'+content.img" />
+          <img :src="content.img" />
         </div>
       </div>
     </div>

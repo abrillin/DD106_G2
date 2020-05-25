@@ -42,7 +42,7 @@ export default {
     };
   },
   created() {
-    const api = "/api/api_adminStatus.php";
+    const api = this.path + "api_adminStatus.php";
 
     this.$http.post(api).then(res => {
       const data = res.data;
