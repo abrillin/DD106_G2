@@ -114,8 +114,17 @@
         <div>
           <div>
             <span>留言{{ blogMsg.length }}筆</span>
-            <img src="@/assets/blog-img/blog-thumb.png" />
-            <span>301</span>
+            <img
+              @click="clap"
+              v-if="imgStatus == true"
+              src="../assets/blog-img/blog-thumb.png"
+            />
+            <img
+              @click="clap"
+              v-else
+              src="../assets/blog-img/hollowThumb.png"
+            />
+            <span>{{ clapQuantity[0].count }}</span>
           </div>
         </div>
         <div>
@@ -988,6 +997,9 @@ export default {
       previousItem: [],
       reportRadio: null,
       beReported: null,
+      imgStatus: false,
+      thumbSrc: '../assets/blog-img/blog-thumb.png',
+      clapQuantity: null,
     };
   },
   created() {
@@ -1035,6 +1047,34 @@ export default {
         }
       }
     });
+
+    let api3 = this.path + 'api_detect_blog_clap.php';
+
+    this.$http.post(api3).then((res) => {
+      if (res.data == 1) {
+        this.imgStatus = true;
+      } else {
+        this.imgStatus = false;
+      }
+      console.log(typeof res.data);
+
+      // console.log(res.data);
+    });
+
+    let api4 = this.path + 'api_blog_clap_count.php';
+
+    this.$http.post(api4).then((res) => {
+      this.clapQuantity = res.data;
+      console.log(this.clapQuantity);
+    });
+  },
+  updated() {
+    // let api = this.path + 'api_blog_clap_count.php';
+
+    // this.$http.post(api).then((res) => {
+    //   this.clapQuantity = res.data;
+    //   console.log(this.clapQuantity);
+    // });
   },
   computed: {
     // loadComment() {
@@ -1106,6 +1146,34 @@ export default {
           }
         });
         this.closeLightBox();
+      }
+    },
+    clap() {
+      if (this.imgStatus == false) {
+        let api = this.path + 'api_blog_clap.php';
+
+        this.$http.post(api).then((res) => {
+          if (res.data != 123) {
+        this.clapQuantity[0].count=parseInt(this.clapQuantity[0].count)+1
+        this.imgStatus = true;
+            
+          }else{
+            alert("請先登入")
+          }
+        });
+      } else {
+        let api = this.path + 'api_blog_unclap.php';
+
+        this.$http.post(api).then((res) => {
+          if (res.data != 123) {
+            this.clapQuantity[0].count=parseInt(this.clapQuantity[0].count)-1
+        this.imgStatus = false;
+          }else{
+            alert("請先登入")
+
+          }
+        });
+        
       }
     },
   },

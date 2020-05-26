@@ -97,7 +97,7 @@
             </div>
             <div>
               <img src="@/assets/blog-img/blog-thumb.png" />
-              <span>300</span>
+              <span>{{blogArrFilterTop[0].clapCount}}</span>
             </div>
             <div>
               {{ blogArrFilterTop[0].content }}
@@ -214,7 +214,7 @@
                       <p>{{ i.title }}</p>
                       <p>
                         <img src="@/assets/blog-img/blog-thumb.png" />
-                        <span>100</span>
+                        <span>{{i.clapCount}}</span>
                         <img src="@/assets/blog-img/blog-tag.png" />
                         <span>西瓜</span>
                         <img src="@/assets/blog-img/blog-tag.png" />
@@ -327,7 +327,7 @@
                           <img src="@/assets/blog-img/blog-thumb.png" />
                         </div>
                         <div>
-                          <span>100</span>
+                          <span>{{i.clapCount}}</span>
                         </div>
                       </div>
                     </div>
@@ -523,7 +523,7 @@
 .blogPost2Main {
   // background-color: #000;
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1.2fr 2fr;
   position: relative;
   padding-bottom: 5%;
   // column-gap: 10%;
@@ -754,9 +754,9 @@
       grid-area: aa9;
       column-count: 2;
       // column-gap: ;
-      letter-spacing: 1.5px;
-      line-height: 1.5;
-      column-gap: 7rem;
+      letter-spacing: 1.3px;
+      line-height: 1.3;
+      column-gap: 6rem;
       padding-top: 30px;
       @media (max-width: 1500px) {
         column-count: 1;
@@ -1838,7 +1838,7 @@ export default {
       });
   },
   created() {
-    const api = this.path + 'api_blog.php';
+    let api = this.path + 'api_blog.php';
 
     this.$http.post(api, JSON.stringify(this.member)).then((res) => {
       if (res.data != '') {
@@ -1860,10 +1860,16 @@ export default {
           });
         });
 
-        // this.blogArr[0].img[0]=`/api/${this.blogArr[0].img[0]}`
-        // console.log(this.blogArr);
 
-        // console.log(this.blogArr)
+        for (let i in this.blogArr) {
+          let api2 = this.path + 'api_get_all_blog_claps.php';
+          this.$http.post(api2, this.blogArr[i].no).then((res) => {
+            if (res.data != '') {
+              this.blogArr[i].clapCount=res.data[0].count
+              console.log(this.blogArr[i].clapCount);
+            }
+          });
+        }
 
         this.blogArrFilterTop.push(this.blogArr[0]);
 
@@ -1884,7 +1890,6 @@ export default {
         } else if (this.blogArr.length / 9 < 9) {
           for (let i = 1; i <= parseInt(this.blogArr.length / 9) + 1; i++) {
             this.pageArr.push(i);
-            // console.log(parseInt(this.blogArr.length / 9) + 1);
           }
         } else {
           for (let i = 1; i < 10; i++) {
