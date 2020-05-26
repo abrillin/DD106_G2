@@ -21,26 +21,27 @@
         </div>
         <div class="information_right">
           <span>
-            <p>{{ no }}</p></span
-          >
+            <p>{{ no }}</p>
+          </span>
           <span>
-            <p>{{ acc }}</p></span
-          >
+            <p>{{ acc }}</p>
+          </span>
           <span>
-            <p>{{ name }}</p></span
-          >
+            <p>{{ name }}</p>
+          </span>
           <span>
-            <p>{{ nick }}</p></span
-          >
+            <p>{{ nick }}</p>
+          </span>
           <span>
-            <p>{{ gender }}</p></span
-          >
+            <p>{{ gender }}</p>
+          </span>
           <span>
-            <p>0{{ phone }}</p></span
-          >
+            <p>0{{ phone }}</p>
+          </span>
           <span>
-            <p>{{ email }}</p></span
-          >
+            <p>{{ email }}</p>
+          </span>
+          <button class="btn" @click="updatePage">修改</button>
         </div>
       </div>
     </div>
@@ -56,33 +57,36 @@ export default {
       nick: "",
       gender: "",
       phone: "",
-      email: "",
+      email: ""
     };
   },
   created() {
     const api = this.path + "api_memberStatus.php";
 
-    this.$http
-      .post(api)
-      .then((res) => {
-        const data = res.data;
+    this.$http.post(api).then(res => {
+      const data = res.data;
 
-        if (data != "") {
-          this.no = data.no;
-          this.acc = data.acc;
-          this.name = data.name;
-          this.nick = data.nick;
-          if (data.gender == 1) {
-            this.gender = "男";
-          } else if (data.gender == 2) {
-            this.gender = "女";
-          } else if (data.gender == 0) {
-            this.gender = "其它";
-          }
-          this.phone = data.phone;
-          this.email = data.email;
+      if (data != "") {
+        this.no = data.no;
+        this.acc = data.acc;
+        this.name = data.name;
+        this.nick = data.nick;
+        if (data.gender == 1) {
+          this.gender = "男";
+        } else if (data.gender == 2) {
+          this.gender = "女";
+        } else if (data.gender == 0) {
+          this.gender = "其它";
         }
-      });
+        this.phone = data.phone;
+        this.email = data.email;
+      }
+    });
   },
+  methods: {
+    updatePage() {
+      this.$router.push("/main/member/update");
+    }
+  }
 };
 </script>

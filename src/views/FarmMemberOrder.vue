@@ -27,7 +27,7 @@
               <tr v-for="item in member" :key="item.no">
                 <td>{{ item.no }}</td>
                 <td>{{ item.name }}</td>
-                <td>{{ item.price }}</td>
+                <td>$ {{ item.price }}</td>
                 <td>{{ item.date }}</td>
                 <td>
                   <input
