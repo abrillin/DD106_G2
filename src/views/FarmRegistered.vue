@@ -83,8 +83,8 @@ export default {
     };
   },
   created() {
-    const api = "/api/api_memberStatus.php";
-    const apiCheck = "/api/api_farmStatus.php";
+    const api = this.path + "api_memberStatus.php";
+    const apiCheck = this.path + "api_farmStatus.php";
 
     this.$http.post(apiCheck).then(res => {
       const data = res.data;
@@ -120,7 +120,7 @@ export default {
   },
   methods: {
     registered() {
-      const api = "/api/api_farmSignup.php";
+      const api = this.path + "api_farmSignup.php";
 
       this.$http.post(api, JSON.stringify(this.member)).then(res => {
         const data = res.data;

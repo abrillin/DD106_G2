@@ -60,7 +60,7 @@ export default {
     };
   },
   created() {
-    const api = "/api/api_memberStatus.php";
+    const api = this.path + "api_memberStatus.php";
 
     this.$http
       .post(api)

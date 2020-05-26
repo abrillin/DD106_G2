@@ -48,14 +48,65 @@ $tagBGcolor: #E2E2E2;
       position: relative;
       top: 15px;
       font-size: $title2Size;
+
       .adminNameColor {
         color: #333;
         text-decoration: underline wavy #DCE07A;
-        
       }
+
+      button {
+        display: block;
+        background: $formTtlBg;
+        border-radius: 2px;
+        border: 0px;
+        text-align: cenetr;
+        text-decoration: none;
+        transition: ease-in-out .3s;
+        width: 85px;
+        margin: 2px;
+        // box-shadow: 3px 3px 2px #88888875;
+
+        span {
+
+          font-family: myFont;
+          font-weight: 700;
+        }
+
+        &:hover {
+          background: $title1Color;
+
+          span {
+            padding-right: 25px;
+            color: #F7C845;
+            font-weight: 700;
+
+            &:after {
+              opacity: 1;
+              right: 0;
+              color: #F7C845;
+            }
+          }
+        }
+
+        span {
+          display: inline-block;
+          position: relative;
+          transition: 0.3s;
+
+          &:after {
+            content: '➜';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.3s;
+          }
+        }
+      }
+
     }
 
-    
+    // end of admin name
 
     li {
       position: relative;
@@ -112,7 +163,7 @@ $tagBGcolor: #E2E2E2;
     // border: 1px solid red;
     padding-bottom: 80px;
 
-    overflow: scroll;
+    overflow: auto;
     scroll-behavior: smooth;
 
     .addAdmin {
@@ -127,7 +178,6 @@ $tagBGcolor: #E2E2E2;
       a {
         text-decoration: none;
         color: $title3Color;
-        
       }
 
       &:hover {
@@ -172,9 +222,6 @@ $tagBGcolor: #E2E2E2;
           padding-left: 20px;
         }
 
-        // &:last-child {
-        //   padding-left: 10%;
-        // }
       }
 
       td {
@@ -188,10 +235,6 @@ $tagBGcolor: #E2E2E2;
           width: 60px;
           padding-left: 20px;
         }
-
-        // &:last-child {
-        //   padding-left: 5%;
-        // }
 
         .statusBtn[type='checkbox'] {
           height: 0;

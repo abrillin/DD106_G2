@@ -190,12 +190,12 @@ export default {
   },
 
   created() {
-    const api = "/api/api_memberstatus.php";
+    const api = this.path + "api_memberstatus.php";
 
     this.$http.post(api).then((res) => {
       this.memno = res.data.no;
 
-      const api2 = "/api/api_memberOrder.php";
+      const api2 = this.path + "api_memberOrder.php";
 
       this.$http.post(api2, JSON.stringify(this.memno)).then((res) => {
         if (res.data.length == 0) {
@@ -208,7 +208,7 @@ export default {
     });
   },
   updated() {
-    const api = "/api/api_orderItem.php";
+    const api = this.path + "api_orderItem.php";
 
     this.$http.post(api, JSON.stringify(this.order[this.i].no)).then((res) => {
       this.item = res.data;
@@ -232,7 +232,7 @@ export default {
       this.star.sellerno = this.order[this.i].seller_no;
       this.star.orderno = this.order[this.i].no;
       this.$http
-        .post("/api/api_orderReview.php", JSON.stringify(this.star))
+        .post(this.path + "api_orderReview.php", JSON.stringify(this.star))
         .then((res) => {
           if (res.data == 0) {
             alert("評價成功");

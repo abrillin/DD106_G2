@@ -95,16 +95,14 @@
               請傳3-5張圖：
               <input type="file" id="encyPic01" @change="fileSelect" multiple />
             </label>
-
-            <img class="encyImg" src style="max-width: 200px;max-height: 200px;" />
-            <img class="encyImg" src style="max-width: 200px;max-height: 200px;" />
-            <img class="encyImg" src style="max-width: 200px;max-height: 200px;" />
-            <img class="encyImg" src style="max-width: 200px;max-height: 200px;" />
-            <img class="encyImg" src style="max-width: 200px;max-height: 200px;" />
-
-            <!--
-                  <img id:"encyImg" :src="encyEdit.titleImg" style="max-width: 200px;max-height: 200px;" />
-            -->
+            <br>
+            <div class="UploadImg">
+              <img class="encyImg" src alt />
+              <img class="encyImg" src alt />
+              <img class="encyImg" src alt />
+              <img class="encyImg" src alt />
+              <img class="encyImg" src alt />
+            </div>
             <br />
           </td>
         </tr>
@@ -215,11 +213,11 @@ export default {
         return;
       } else {
         this.$http
-          .post("/api/api_adminEncyUpload.php", this.formData)
+          .post(this.path + "api_adminEncyUpload.php", this.formData)
           .then(res => {
             this.encyEdit.titleImg = res.data.toString();
 
-            const api = "/api/api_adminEncyEdit.php";
+            const api = this.path + "api_adminEncyEdit.php";
 
             for (let i in this.encyEdit) {
               if (this.encyEdit[i] == "") {

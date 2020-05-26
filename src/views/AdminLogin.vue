@@ -58,12 +58,12 @@ export default {
   },
   methods: {
     login: function() {
-      const login = "/api/api_adminLogin.php";
+      const login = this.path + "api_adminLogin.php";
 
       this.$http.post(login, JSON.stringify(this.member)).then((res) => {
         const data = res.data;
         if (data.status == 1) {
-          alert("此帳號已經停用");
+          alert("此帳號已經停用 ╮(╯_╰)╭ ");
         } else if (data == 0) {
           alert(" Σ(*ﾟдﾟﾉ)ﾉ  帳號或密碼輸入錯誤，請重新再試一次！ ");
         } else {

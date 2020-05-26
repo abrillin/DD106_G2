@@ -101,7 +101,7 @@ export default {
       // 獲取除去最後一個 , 的字串
       itemArr = itemArr.substr(0, itemArr.length - 1);
 
-      const api = "/api/api_shopping.php";
+      const api = this.path + "api_shopping.php";
 
       this.$http.post(api, JSON.stringify(itemArr)).then(res => {
         const data = res.data;

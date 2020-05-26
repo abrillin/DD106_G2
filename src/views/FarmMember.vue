@@ -82,7 +82,7 @@ export default {
     };
   },
   created() {
-    const api = "/api/api_farmStatus.php";
+    const api = this.path + "api_farmStatus.php";
     this.$http.post(api).then(res => {
       const data = res.data;
       if (data.status == 1) {

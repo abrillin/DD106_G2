@@ -3,7 +3,7 @@
     <h1>{{data.name}}</h1>
     <div class="fruit_start_img">
       <div class="img_content">
-        <img :src="'/api/'+data.img" alt />
+        <img :src="data.img" alt />
       </div>
     </div>
   </div>

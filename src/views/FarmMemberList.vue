@@ -45,7 +45,7 @@ export default {
     };
   },
   activated() {
-    const api = "/api/api_farmlist.php";
+    const api = this.path + "api_farmlist.php";
     this.$http.post(api).then(res => {
       const data = res.data;
       if (data != "") {
@@ -65,7 +65,7 @@ export default {
   },
   methods: {
     updatePage(no) {
-      const api = "/api/api_farmListSession.php";
+      const api = this.path + "api_farmListSession.php";
 
       this.$http.post(api, JSON.stringify(no));
       

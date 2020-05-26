@@ -117,7 +117,7 @@ export default {
     };
   },
   created() {
-    const api = "/api/api_bookType.php";
+    const api = this.path + "api_bookType.php";
 
     this.$http.post(api).then(res => {
       const data = res.data;

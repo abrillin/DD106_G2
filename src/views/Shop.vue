@@ -106,7 +106,7 @@
           <div class="folding-items">
             <div
               class="checkbox-filter"
-              v-for="(checkboxitems,index) in checkbox"
+              v-for="(checkboxitems, index) in checkbox"
               :key="checkboxitems"
             >
               <input
@@ -116,7 +116,7 @@
                 @click="checkchange(index)"
                 :value="index"
               />
-              <label class="checkbox_label">{{checkboxitems}}</label>
+              <label class="checkbox_label">{{ checkboxitems }}</label>
             </div>
           </div>
         </form>
@@ -166,10 +166,10 @@
               <div class="button dropdown-content">
                 <select id="colorselector" class="select-reset" v-model="v" @change="itemchange(v)">
                   <option
-                    v-for="(changeitems,index) in changeitem"
+                    v-for="(changeitems, index) in changeitem"
                     :key="changeitems"
                     :value="index"
-                  >{{changeitems}}</option>
+                  >{{ changeitems }}</option>
                 </select>
               </div>
             </div>
@@ -178,21 +178,33 @@
             <div class="commodity" v-for="(i, index) in shopcommodityfilter" :key="index">
               <router-link to="/main/shopitem">
                 <div class="card_img_box" @click="changePage(i)">
-                  <img :src="shopcommodityfilter[index].img" width="100%" height="100%" />
+                  <img
+                    :src="`/api/` + shopcommodityfilter[index].img.split(',')[0]"
+                    width="100%"
+                    height="100%"
+                  />
                 </div>
               </router-link>
               <div class="card_content">
                 <div class="commodity_title">
-                  <div class="commodity_title_text">{{i.name}}</div>
+                  <div class="commodity_title_text">{{ i.name }}</div>
                 </div>
 
-                <div class="card_tag" v-for="(t,dex) in shopcommodityfilter[index].tags" :key="dex">
+                <div
+                  class="card_tag"
+                  v-for="(t, dex) in shopcommodityfilter[index].tags"
+                  :key="dex"
+                >
                   <img src="../assets/icon/tag.svg" alt width="16px" height="16px" class="tag_icon" />
-                  <span class="card_tag_text">{{shopcommodityfilter[index].tags[dex].name}}</span>
+                  <span class="card_tag_text">
+                    {{
+                    shopcommodityfilter[index].tags[dex].name
+                    }}
+                  </span>
                 </div>
 
                 <div class="card_price">
-                  <span class="money">{{i.price}}</span>
+                  <span class="money">{{ i.price }}</span>
                 </div>
 
                 <div class="buy">
@@ -225,8 +237,8 @@
             @mouseenter="HotCommodityItemsEnter"
             @mouseleave="HotCommodityItemsLeave"
           >
-            <div class="hot_commodity_text">{{h.name}}</div>
-            <span>{{index+1}}</span>
+            <div class="hot_commodity_text">{{ h.name }}</div>
+            <span>{{ index + 1 }}</span>
             <div class="hot_commodity_bg"></div>
           </div>
         </div>
@@ -247,7 +259,7 @@
           </router-link>
           <div class="seller_content">
             <div class="seller_content-box">
-              <p>{{s.name}}</p>
+              <p>{{ s.name }}</p>
               <div class="star-box">
                 <img
                   src="../assets/icon/star.svg"
@@ -311,7 +323,7 @@
           :key="index"
           v-on="{ click: pageSelect }"
         >
-          <div class="page-link">{{i+1}}</div>
+          <div class="page-link">{{ i + 1 }}</div>
         </li>
 
         <li class="page-right" @click="nextPage">
@@ -351,7 +363,7 @@ export default {
   },
 
   created() {
-    const api = "/api/api_item.php";
+    const api = this.path + "api_item.php";
 
     this.$http.post(api).then(res => {
       this.shopcommodity = res.data;
@@ -369,6 +381,7 @@ export default {
   },
 
   updated() {
+    // console.log(this.shopcommodityfilter[0].img.split(",")[0]);
     for (let i = 0; i < SHOP_INDICATOR_SIZE; i++) {
       document
         .getElementsByClassName("page-item")
@@ -509,20 +522,19 @@ export default {
       }
     },
     changePage(e) {
-      let api = "/api/api_item_no.php";
+      let api = this.path + "api_item_no.php";
       this.$http
         .post(api, JSON.stringify(e))
         .then(res => {
           if (res.data != "") {
-            console.log(JSON.parse(res.data));
+            // console.log(JSON.parse(res.data));
           } else {
-            console.log(res.error);
+            // console.log(res.error);
           }
-        })
-        .catch(err => console.log(err));
+        });
     },
     itemchange(t) {
-      const api = "/api/api_item.php";
+      const api = this.path + "api_item.php";
 
       this.$http.post(api, JSON.stringify(t)).then(res => {
         this.shopcommodity = res.data;
@@ -533,7 +545,7 @@ export default {
       });
     },
     checkchange(k) {
-      const api = "/api/api_itemcheckbox.php";
+      const api = this.path + "api_itemcheckbox.php";
       this.$http.post(api, JSON.stringify(k)).then(res => {
         // this.shopcommodity = "";
         this.shopcommodity = res.data;
@@ -544,7 +556,7 @@ export default {
       });
     },
     addCart(no) {
-      const api = "/api/api_memberStatus.php";
+      const api = this.path + "api_memberStatus.php";
 
       this.$http.post(api).then(res => {
         const data = res.data;
