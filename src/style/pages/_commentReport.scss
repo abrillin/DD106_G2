@@ -4,10 +4,8 @@
     margin: 0 auto;
     color: $contentColor;
     display: inline-block;
-    // flex-flow: row wrap;
     font-size: $contentSize;
-    // width: 80%;
-    min-width: 70%;
+    min-width: 50%;
     height: 100%;
     box-sizing: border-box;
     justify-content: center;
@@ -32,15 +30,11 @@
         margin-top: 0px;
     }
 
-    .blogComReportManageTab {
-        // width: 70%;
-        table-layout: fixed;
-    }
 
     th {
         width: 80px;
-        padding: 20px 20px;
-        text-align: left;
+        padding: 15px 15px;
+        text-align: center;
         color: $contentColor;
 
         // &:last-child {
@@ -50,8 +44,8 @@
 
     td {
         width: 80px;
-        padding: 20px;
-        text-align: left;
+        padding: 15px 15px;
+        text-align: center;
         vertical-align: middle;
         color: $contentColor;
 
