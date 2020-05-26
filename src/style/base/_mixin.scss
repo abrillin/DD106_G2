@@ -30,3 +30,22 @@
 
 // 請使用 rem 來套用文字大小
 @include font-size();
+
+
+//scrollbar css
+@mixin scrollbar {
+  &::-webkit-scrollbar {
+      width: 5px;
+      border-radius: 10px;
+  }
+  &::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.3); 
+      border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.5); 
+      background: #021A71;
+      @content;
+  }
+}
