@@ -111,8 +111,12 @@ div.farmcontain {
         }
 
         > img {
-          width: 10px;
-          height: 10px;
+          width: 20px;
+          height: 20px;
+          @include rwd(medium) {
+            width: 10px;
+            height: 10px;
+          }
         }
 
         > span {

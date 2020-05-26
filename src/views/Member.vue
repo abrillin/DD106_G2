@@ -130,7 +130,6 @@ export default {
   mounted() {
     if (window.innerWidth < 991) {
       if ($("aside.left").hasClass("popover")) {
-        $("aside.left").addClass("popover");
         $("button.btn_drawer").on("click", function() {
           $("aside.left").removeClass("popover");
         });
@@ -151,6 +150,7 @@ export default {
             $("aside.left").toggleClass("popover");
           });
         } else {
+          $("aside.left").addClass("popover");
           $("button.btn_drawer").on("click", function() {
             $("aside.left").toggleClass("popover");
           });

@@ -128,6 +128,8 @@ export default {
       this.blog.sellerno = data.no;
     });
   },
+
+  mounted() {},
   methods: {
     changeMainPic: function(e) {
       document.getElementById("mainPic").src = "";
@@ -164,6 +166,8 @@ export default {
       }
     },
     blogUpdate: function() {
+      this.blog.content1 = this.blog.content1.replace(/\r?\n/g, "<br />");
+      this.blog.content2 = this.blog.content2.replace(/\r?\n/g, "<br />");
       let month = new Date().getMonth() + 1;
       if (month < 10) {
         month = "0" + month;
