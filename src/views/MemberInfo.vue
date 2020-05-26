@@ -2,7 +2,7 @@
   <div class="information">
     <div class="information_head">
       <div class="information_head_text">
-        <h2>個人資料</h2>
+        <h2>個人資訊</h2>
       </div>
     </div>
     <div class="information_bottom">

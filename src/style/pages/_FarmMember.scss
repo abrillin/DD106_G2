@@ -1,7 +1,7 @@
 div.farmcontain {
   width: 100%;
   height: 100%;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
 
   @include rwd(large) {
     height: auto;
@@ -29,9 +29,10 @@ div.farmcontain {
     background-color: #ffd3c1;
     transition: transform 1s cubic-bezier(0.36, 0, 0.66, 0);
 
-    @include rwd(medium) {
-      position: fixed;
 
+    @include rwd(medium) {
+      font-size: 1.4rem;
+      position: fixed;
       width: 200px;
       z-index: 50;
     }
@@ -88,12 +89,16 @@ div.farmcontain {
         & li:nth-child(1) {
           margin-top: 20px;
           display: block;
-          color: #666;
+          color: #333;
         }
 
         & li:nth-child(2) {
           display: block;
-          color: #666;
+          color: #333;
+        }
+
+        @include rwd(medium) {
+          font-size: 1.4rem;
         }
       }
 
@@ -127,13 +132,14 @@ div.farmcontain {
           margin: 0;
 
           > a {
+            outline: none;
             text-align: left;
             text-decoration: none;
             color: #333;
-            font-size: 2rem;
+            font-size: 1.6rem;
 
             @include rwd(medium) {
-              font-size: 1.8rem;
+              font-size: 1.4rem;
             }
           }
         }
@@ -170,9 +176,9 @@ div.farmcontain {
         right: 0;
         top: 40%;
         transform: translateX(50%);
-        color: #666;
+        color: #333;
         border: 0;
-        font-size: 2rem;
+        font-size: 1.6rem;
         width: 40px;
         height: 60px;
         display: inline-block;
