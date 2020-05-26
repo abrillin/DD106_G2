@@ -87,7 +87,7 @@
               />
             </div>
             <div>
-              <span>+追蹤</span>
+              <span style="display:none;">+追蹤</span>
             </div>
             <div>
               <img src="@/assets/blog-img/blog-tag.png" />
@@ -97,7 +97,7 @@
             </div>
             <div>
               <img src="@/assets/blog-img/blog-thumb.png" />
-              <span>300</span>
+              <span>{{blogArrFilterTop[0].clapCount}}</span>
             </div>
             <div>
               {{ blogArrFilterTop[0].content }}
@@ -147,10 +147,14 @@
               <form action method="get">
                 <label for>
                   留言:
-                  <textarea name id></textarea>
+                  <textarea v-model="topMsgText" name id></textarea>
                 </label>
                 <br />
-                <buttonMore class="blogPost2ButtonMore" msg="送出"></buttonMore>
+
+                <div class="blogPost2ButtonMore" @click.prevent="comment">
+                  <buttonMore class="blogPost2ButtonMore1" msg="送出">
+                  </buttonMore>
+                </div>
               </form>
             </div>
             <div>
@@ -210,7 +214,7 @@
                       <p>{{ i.title }}</p>
                       <p>
                         <img src="@/assets/blog-img/blog-thumb.png" />
-                        <span>100</span>
+                        <span>{{i.clapCount}}</span>
                         <img src="@/assets/blog-img/blog-tag.png" />
                         <span>西瓜</span>
                         <img src="@/assets/blog-img/blog-tag.png" />
@@ -252,7 +256,7 @@
                         </div>
                       </div>
                       <div>
-                        <span>+追蹤</span>
+                        <span style="display:none;">+追蹤</span>
                       </div>
                     </div>
                   </div>
@@ -323,7 +327,7 @@
                           <img src="@/assets/blog-img/blog-thumb.png" />
                         </div>
                         <div>
-                          <span>100</span>
+                          <span>{{i.clapCount}}</span>
                         </div>
                       </div>
                     </div>
@@ -366,7 +370,7 @@
                         </div>
                       </div>
                       <div>
-                        <span>+追蹤</span>
+                        <span style="display:none;">+追蹤</span>
                       </div>
                     </div>
                   </div>
@@ -382,7 +386,7 @@
             <!--頁簽-->
             <!--頁簽-->
             <ul class="page">
-              <li @click="PreviousPage">
+              <li class="pageArrow" @click="PreviousPage">
                 <img src="@/assets/blog-img/post/arrow-left.png" />
               </li>
 
@@ -390,12 +394,12 @@
                 class="pageBorder"
                 v-for="(i, index) in pageArr"
                 :key="index"
-                v-on="{ click: pageSelect }"
+                v-on="{click: pageSelect}"
               >
                 {{ i }}
               </li>
 
-              <li @click="nextPage">
+              <li class="pageArrow" @click="nextPage">
                 <img src="@/assets/blog-img/post/arrow-right.png" />
               </li>
             </ul>
@@ -519,7 +523,7 @@
 .blogPost2Main {
   // background-color: #000;
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1.2fr 2fr;
   position: relative;
   padding-bottom: 5%;
   // column-gap: 10%;
@@ -528,7 +532,7 @@
   // height: 50vw;
   // padding-bottom: 5%;
   &::before {
-    content: "";
+    content: '';
     border-bottom: #007552 5px solid;
     width: 105%;
     position: absolute;
@@ -548,7 +552,7 @@
   }
   > div:nth-child(1) {
     &::before {
-      content: "";
+      content: '';
       display: inline-block;
       border-right: #6baf9b solid 2px;
       height: 50%;
@@ -569,7 +573,7 @@
       bottom: 0%;
       left: 0%;
       @media (max-width: 1300px) {
-        content: "";
+        content: '';
       }
     }
     // border: 4px solid #000;
@@ -581,12 +585,12 @@
     grid-template-columns: 1.5fr 2fr 1.5fr 3fr;
     grid-template-rows: 0.1fr 1fr 0.5fr 0.5fr 0.4fr 5fr;
     grid-template-areas:
-      "aa1 aa1 aa1 aa1"
-      "aa2 aa2 aa2 aa2 "
-      "aa3 aa4 aa6 aa7"
-      "aa3 aa5 aa6 aa7"
-      "aa8 aa8 aa8 aa8"
-      "aa9 aa9 aa9 aa9";
+      'aa1 aa1 aa1 aa1'
+      'aa2 aa2 aa2 aa2 '
+      'aa3 aa4 aa6 aa7'
+      'aa3 aa5 aa6 aa7'
+      'aa8 aa8 aa8 aa8'
+      'aa9 aa9 aa9 aa9';
     @media (max-width: 1600px) {
       // padding-right: 0%;
       grid-template-columns: 0.9fr 1.3fr 1fr 3fr;
@@ -604,12 +608,12 @@
     }
     @media (max-width: 576px) {
       grid-template-areas:
-        "aa1 aa1 aa1 aa1"
-        "aa2 aa2 aa2 aa2 "
-        "aa3 aa4 aa6 aa6"
-        "aa3 aa5 aa7 aa7"
-        "aa8 aa8 aa8 aa8"
-        "aa9 aa9 aa9 aa9";
+        'aa1 aa1 aa1 aa1'
+        'aa2 aa2 aa2 aa2 '
+        'aa3 aa4 aa6 aa6'
+        'aa3 aa5 aa7 aa7'
+        'aa8 aa8 aa8 aa8'
+        'aa9 aa9 aa9 aa9';
       grid-template-columns: 1fr 1.5fr 1fr 1fr;
       // border: solid 1px red;
     }
@@ -750,9 +754,9 @@
       grid-area: aa9;
       column-count: 2;
       // column-gap: ;
-      letter-spacing: 1.5px;
-      line-height: 1.5;
-      column-gap: 7rem;
+      letter-spacing: 1.3px;
+      line-height: 1.3;
+      column-gap: 6rem;
       padding-top: 30px;
       @media (max-width: 1500px) {
         column-count: 1;
@@ -788,12 +792,12 @@
         z-index: 2;
         width: 70%;
         padding-top: 70%;
-        background: url("../assets/blog-img/post/blog_aabbcc.svg") no-repeat
+        background: url('../assets/blog-img/post/blog_aabbcc.svg') no-repeat
           center center;
         background-size: cover;
-        -webkit-mask: url("../assets/blog-img/post/blog_aabbcc.svg") no-repeat
+        -webkit-mask: url('../assets/blog-img/post/blog_aabbcc.svg') no-repeat
           center center;
-        mask: url("../assets/blog-img/post/blog_aabbcc.svg") no-repeat center
+        mask: url('../assets/blog-img/post/blog_aabbcc.svg') no-repeat center
           center;
         @media (max-width: 1600px) {
           width: 100%;
@@ -916,7 +920,7 @@
             margin-left: 10px;
           }
           &::before {
-            content: "";
+            content: '';
             position: absolute;
             height: 25px;
             border-right: #a0a0a0 solid 1px;
@@ -937,7 +941,7 @@
       }
       //留言表單
       &::before {
-        content: "";
+        content: '';
         border-top: solid #a0a0a0 1px;
         width: 50rem;
         position: absolute;
@@ -956,6 +960,7 @@
           > textarea:nth-child(1) {
             width: 50%;
             height: 100px;
+            resize: none;
             @media (max-width: 1600px) {
               width: 85%;
             }
@@ -968,8 +973,9 @@
           @media (max-width: 1600px) {
             margin-left: 45%;
           }
-          > .btn-more {
-            height: 30px;
+          > .blogPost2ButtonMore1 {
+            width: 100%;
+            // height: 30px;
           }
         }
       }
@@ -1110,7 +1116,7 @@
 }
 .blog-post-tri {
   //select
-  background: url("../assets/blog-img/post/triangle.png");
+  background: url('../assets/blog-img/post/triangle.png');
   background-repeat: no-repeat;
   background-position: 95% 60%;
   font-size: 15px;
@@ -1320,10 +1326,10 @@
       border-bottom: #a0a0a0 solid 1px;
       // border: chocolate 3px solid;
       grid-template-areas:
-        "aa1 aa2 aa2 aa2"
-        "aa1 aa3 aa3 aa3"
-        "aa1 aa4 aa5 aa7"
-        "aa1 aa4 aa6 aa7";
+        'aa1 aa2 aa2 aa2'
+        'aa1 aa3 aa3 aa3'
+        'aa1 aa4 aa5 aa7'
+        'aa1 aa4 aa6 aa7';
       > div:nth-child(1) {
         grid-area: aa1;
         font-size: 80px;
@@ -1498,7 +1504,7 @@
           // top: 5%;
           padding-bottom: 2%;
           &::before {
-            content: "";
+            content: '';
             border-top: solid #007552 1.5px;
             width: 100%;
             top: -15px;
@@ -1732,7 +1738,7 @@
       padding: 5px;
     }
   }
-  > li:nth-child(1) {
+  > .pageArrow {
     > img:nth-child(1) {
       width: 95%;
       @media (max-width: 500px) {
@@ -1775,7 +1781,7 @@
 </style>
 
 <script>
-import $ from "jquery";
+import $ from 'jquery';
 export default {
   data() {
     return {
@@ -1788,6 +1794,8 @@ export default {
       pageArr: [],
       currentPage: [],
       topMsg: null,
+      topMsgText: '',
+      sendMsgArr: [],
     };
   },
   beforeMount() {},
@@ -1798,34 +1806,30 @@ export default {
     //   .classList.add("currentPagecolor");
   },
   updated() {
-    // let bb = document.getElementsByClassName('blog-post2-small-card')[8];
-    // bb.classList.add('nine');
-    // alert(document.getElementsByClassName('pageBorder').length);
-    // alert(document.getElementsByClassName('pageBorder').length);
     for (
       let i = 0;
-      i < document.getElementsByClassName("pageBorder").length;
+      i < document.getElementsByClassName('pageBorder').length;
       i++
     ) {
       document
-        .getElementsByClassName("pageBorder")
-        [i].setAttribute("class", "pageBorder");
+        .getElementsByClassName('pageBorder')
+        [i].setAttribute('class', 'pageBorder');
       if (
-        document.getElementsByClassName("pageBorder")[i].textContent ==
+        document.getElementsByClassName('pageBorder')[i].textContent ==
         this.currentPage[0]
       ) {
         document
-          .getElementsByClassName("pageBorder")
-          [i].classList.add("currentPagecolor");
+          .getElementsByClassName('pageBorder')
+          [i].classList.add('currentPagecolor');
       }
     }
 
-    let api = this.path + "api_get_msg_blogtop.php";
+    let api = this.path + 'api_get_msg_blogtop.php';
 
     this.$http
       .post(api, JSON.stringify(this.blogArrFilterTop[0].no))
       .then((res) => {
-        if (res.data != "") {
+        if (res.data != '') {
           this.topMsg = res.data;
 
           // console.log(res.data);
@@ -1834,20 +1838,15 @@ export default {
       });
   },
   created() {
-    const api = this.path + "api_blog.php";
+    let api = this.path + 'api_blog.php';
 
     this.$http.post(api, JSON.stringify(this.member)).then((res) => {
-      if (res.data != "") {
+      if (res.data != '') {
         // console.log(res.data);
-
-        // sessionStorage.setItem('abc', JSON.stringify(res.data));
-        // sessionStorage.clear();
-        // let abc = sessionStorage.getItem('abc');
-
         this.blogArr = res.data;
 
         for (let i = 0; i < this.blogArr.length; i++) {
-          this.blogArr[i].img = this.blogArr[i].img.split(",");
+          this.blogArr[i].img = this.blogArr[i].img.split(',');
         }
 
         // for (let i = 0; i < this.blogArr.length; i++) {
@@ -1861,10 +1860,16 @@ export default {
           });
         });
 
-        // this.blogArr[0].img[0]=`/api/${this.blogArr[0].img[0]}`
-        // console.log(this.blogArr);
 
-        // console.log(this.blogArr)
+        for (let i in this.blogArr) {
+          let api2 = this.path + 'api_get_all_blog_claps.php';
+          this.$http.post(api2, this.blogArr[i].no).then((res) => {
+            if (res.data != '') {
+              this.blogArr[i].clapCount=res.data[0].count
+              console.log(this.blogArr[i].clapCount);
+            }
+          });
+        }
 
         this.blogArrFilterTop.push(this.blogArr[0]);
 
@@ -1885,7 +1890,6 @@ export default {
         } else if (this.blogArr.length / 9 < 9) {
           for (let i = 1; i <= parseInt(this.blogArr.length / 9) + 1; i++) {
             this.pageArr.push(i);
-            // console.log(parseInt(this.blogArr.length / 9) + 1);
           }
         } else {
           for (let i = 1; i < 10; i++) {
@@ -2026,13 +2030,13 @@ export default {
       // });
       // console.log(e);
       // console.log('123');
-      this.$emit("blogInf", e);
+      this.$emit('blogInf', e);
       // console.log(e);
 
-      let api = this.path + "api_session_blog_no.php";
+      let api = this.path + 'api_session_blog_no.php';
 
       this.$http.post(api, JSON.stringify(e)).then((res) => {
-        if (res.data != "") {
+        if (res.data != '') {
           // console.log(res.data);
         } else {
           // console.log(res.error);
@@ -2041,6 +2045,24 @@ export default {
     },
     getThisCard(e) {
       // console.log(e.target.parentNode.parentNode.children[3].textContent);
+    },
+    comment() {
+      let api = this.path + 'api_send_blog_msg_top.php';
+      var nStartTime = new Date(Date.now());
+      let today = `${nStartTime.getFullYear()}-${nStartTime.getMonth() +
+        1}-${nStartTime.getDate()}`;
+      this.sendMsgArr = [];
+      this.sendMsgArr.push(this.topMsgText);
+      this.sendMsgArr.push(this.blogArrFilterTop[0].no);
+      this.sendMsgArr.push(today);
+      this.$http.post(api, JSON.stringify(this.sendMsgArr)).then((res) => {
+        if (res.data != '') {
+          // console.log(res.data);
+        } else {
+          // console.log(res.error);
+        }
+      });
+      this.topMsgText = '';
     },
   },
 };
