@@ -97,7 +97,7 @@
             </div>
 
             <div class="CommodityItemBuyBox">
-              <a href="#" class="CommodityItemBuyBtn">加入購物籃</a>
+              <a href="#" class="CommodityItemBuyBtn card_btn" @mouseenter="btnFun">加入購物籃</a>
               <a href="#" class="CommodityItemBuyBtn Buynow">直接購買</a>
             </div>
 
@@ -127,25 +127,25 @@
       <div class="SellerInformationBox">
         <div class="SellerInformation">
           <img
-            :src="shopseller.img"
+            :src="Commoditycontent.img"
             alt
             height="60px"
             width="60px"
             style="border-radius: 100%;"
           />
-          <p>{{shopseller.name}}</p>
-          <div class="TrackBtn">＋追蹤</div>
+          <p>{{Commoditycontent.name}}</p>
+          <!--  <div class="TrackBtn">＋追蹤</div> -->
         </div>
         <div class="SellerReviewsBox">
           <div class="SellerReviews">
-            <div class="Reviews">{{shopseller.Starsaverage}}</div>
+            <div class="Reviews">{{Commoditycontent.average}}</div>
             <div class="StarBox">
               <img
                 src="../assets/icon/star.svg"
                 alt
                 width="20"
                 height="20"
-                v-if="shopseller.Starsaverage >= 1"
+                v-if="Commoditycontent.average >= 1"
               />
               <img src="../assets/icon/star2.svg" alt width="20" height="20" v-else />
               <img
@@ -153,7 +153,7 @@
                 alt
                 width="20"
                 height="20"
-                v-if="shopseller.Starsaverage >= 2"
+                v-if="Commoditycontent.average >= 2"
               />
               <img src="../assets/icon/star2.svg" alt width="20" height="20" v-else />
               <img
@@ -161,7 +161,7 @@
                 alt
                 width="20"
                 height="20"
-                v-if="shopseller.Starsaverage >= 3"
+                v-if="Commoditycontent.average >= 3"
               />
               <img src="../assets/icon/star2.svg" alt width="20" height="20" v-else />
               <img
@@ -169,7 +169,7 @@
                 alt
                 width="20"
                 height="20"
-                v-if="shopseller.Starsaverage >= 4"
+                v-if="Commoditycontent.average >= 4"
               />
               <img src="../assets/icon/star2.svg" alt width="20" height="20" v-else />
               <img
@@ -177,14 +177,14 @@
                 alt
                 width="20"
                 height="20"
-                v-if="shopseller.Starsaverage >= 5"
+                v-if="Commoditycontent.average >= 5"
               />
               <img src="../assets/icon/star2.svg" alt width="20" height="20" v-else />
             </div>
           </div>
         </div>
         <div class="SellerInformationTextBox">
-          <p>{{shopseller.content}}</p>
+          <p>{{Commoditycontent.content}}</p>
         </div>
       </div>
     </section>
@@ -193,12 +193,21 @@
     <div id="carouselWrap">
       <h2>推薦商品：</h2>
       <ul id="CommodityCarouselList">
-        <li class="CommodityCarouselConten" v-for="(i, index) in shopseller.items" :key="index">
+        <li
+          class="CommodityCarouselConten"
+          v-for="(i, index) in Commoditycontent.items"
+          :key="index"
+        >
           <div class="CommodityCarousel commodity">
-            <div class="card_img_box">
-              <img src="../assets/ia_300000017.jpg" width="100%" height="100%" title="蜜蕉乾 零添加" />
-            </div>
-
+            <router-link to="/main/shopitem">
+              <div class="card_img_box" @click="gotop">
+                <img
+                  :src="`/api/` + Commoditycontent.items[index].img.split(',')[0]"
+                  width="100%"
+                  height="100%"
+                />
+              </div>
+            </router-link>
             <div class="card_content">
               <div class="commodity_title">
                 <div class="commodity_title_text">{{i.name}}</div>
@@ -206,155 +215,28 @@
 
               <div class="card_tag">
                 <img src="../assets/icon/tag.svg" alt width="16px" height="16px" class="tag_icon" />
-                <span class="card_tag_text">24hr宅配到府</span>
+                <span class="card_tag_text">{{i.tag_no}}</span>
               </div>
+              <!--  <div class="card_tag" v-for="(t, dex) in shopseller[index].tags" :key="dex">
+                <img src="../assets/icon/tag.svg" alt width="16px" height="16px" class="tag_icon" />
+                <span class="card_tag_text">
+                  {{
+                  shopseller[index].tags[dex].name
+                  }}
+                </span>
+              </div>-->
 
               <div class="card_price">
                 <span class="money">{{i.no}}</span>
               </div>
 
               <div class="buy">
-                <a href="#" class="card_btn">加入購物籃</a>
-                <a href="#" class="card_btn">直接購買</a>
+                <a href="#" class="card_btn" @mouseenter="btnFun">加入購物籃</a>
+                <a href="#" class="card_btn" @mouseenter="btnFun">直接購買</a>
               </div>
             </div>
           </div>
         </li>
-        <!--     <li class="CommodityCarouselConten">
-          <div class="CommodityCarousel commodity">
-            <div class="card_img_box">
-              <img src="../assets/ia_300000017.jpg" width="100%" height="100%" title="蜜蕉乾 零添加" />
-            </div>
-
-            <div class="card_content">
-              <div class="commodity_title">
-                <div class="commodity_title_text">蜜蕉乾 零添加</div>
-              </div>
-
-              <div class="card_tag">
-                <img src="../assets/icon/tag.svg" alt width="16px" height="16px" class="tag_icon" />
-                <span class="card_tag_text">24hr宅配到府</span>
-              </div>
-
-              <div class="card_price">
-                <span class="money">550</span>
-              </div>
-
-              <div class="buy">
-                <a href="#" class="card_btn">加入購物籃</a>
-                <a href="#" class="card_btn">直接購買</a>
-              </div>
-            </div>
-          </div>
-        </li>
-        <li class="CommodityCarouselConten">
-          <div class="CommodityCarousel commodity">
-            <div class="card_img_box">
-              <img src="../assets/ia_300000017.jpg" width="100%" height="100%" title="蜜蕉乾 零添加" />
-            </div>
-
-            <div class="card_content">
-              <div class="commodity_title">
-                <div class="commodity_title_text">蜜蕉乾 零添加</div>
-              </div>
-
-              <div class="card_tag">
-                <img src="../assets/icon/tag.svg" alt width="16px" height="16px" class="tag_icon" />
-                <span class="card_tag_text">24hr宅配到府</span>
-              </div>
-
-              <div class="card_price">
-                <span class="money">550</span>
-              </div>
-
-              <div class="buy">
-                <a href="#" class="card_btn">加入購物籃</a>
-                <a href="#" class="card_btn">直接購買</a>
-              </div>
-            </div>
-          </div>
-        </li>
-        <li class="CommodityCarouselConten">
-          <div class="CommodityCarousel commodity">
-            <div class="card_img_box">
-              <img src="../assets/ia_300000017.jpg" width="100%" height="100%" title="蜜蕉乾 零添加" />
-            </div>
-
-            <div class="card_content">
-              <div class="commodity_title">
-                <div class="commodity_title_text">蜜蕉乾 零添加</div>
-              </div>
-
-              <div class="card_tag">
-                <img src="../assets/icon/tag.svg" alt width="16px" height="16px" class="tag_icon" />
-                <span class="card_tag_text">24hr宅配到府</span>
-              </div>
-
-              <div class="card_price">
-                <span class="money">550</span>
-              </div>
-
-              <div class="buy">
-                <a href="#" class="card_btn">加入購物籃</a>
-                <a href="#" class="card_btn">直接購買</a>
-              </div>
-            </div>
-          </div>
-        </li>
-        <li class="CommodityCarousel">
-          <div class="CommodityCarouselConten commodity">
-            <div class="card_img_box">
-              <img src="../assets/ia_300000017.jpg" width="100%" height="100%" title="蜜蕉乾 零添加" />
-            </div>
-
-            <div class="card_content">
-              <div class="commodity_title">
-                <div class="commodity_title_text">蜜蕉乾 零添加</div>
-              </div>
-
-              <div class="card_tag">
-                <img src="../assets/icon/tag.svg" alt width="16px" height="16px" class="tag_icon" />
-                <span class="card_tag_text">24hr宅配到府</span>
-              </div>
-
-              <div class="card_price">
-                <span class="money">550</span>
-              </div>
-
-              <div class="buy">
-                <a href="#" class="card_btn">加入購物籃</a>
-                <a href="#" class="card_btn">直接購買</a>
-              </div>
-            </div>
-          </div>
-        </li>
-        <li class="CommodityCarousel">
-          <div class="CommodityCarouselConten commodity">
-            <div class="card_img_box">
-              <img src="../assets/ia_300000017.jpg" width="100%" height="100%" title="蜜蕉乾 零添加" />
-            </div>
-
-            <div class="card_content">
-              <div class="commodity_title">
-                <div class="commodity_title_text">蜜蕉乾 零添加</div>
-              </div>
-
-              <div class="card_tag">
-                <img src="../assets/icon/tag.svg" alt width="16px" height="16px" class="tag_icon" />
-                <span class="card_tag_text">24hr宅配到府</span>
-              </div>
-
-              <div class="card_price">
-                <span class="money">550</span>
-              </div>
-
-              <div class="buy">
-                <a href="#" class="card_btn">加入購物籃</a>
-                <a href="#" class="card_btn">直接購買</a>
-              </div>
-            </div>
-          </div>
-        </li>-->
       </ul>
       <!--左右按鍵-->
       <input
@@ -397,7 +279,7 @@ import { gsap, TweenMax, Power1, Power3, TimelineMax, Linear } from "gsap";
 export default {
   data() {
     return {
-      shopseller: [],
+      Commoditycontent: [],
       shopitem: "null"
     };
   },
@@ -431,18 +313,50 @@ export default {
     this.$http
       .post(api)
       .then(res => {
-        this.shopseller = res.data["mem"];
-        console.log(res.data);
+        this.Commoditycontent = res.data["mem"];
 
         if (res.data != "") {
           this.shopitem = res.data["itemContent"];
-          console.log(this.shopitem[0]);
         } else {
         }
       })
       .catch(err => console.log(err));
-  }
+  },
 
   //資料庫連結
+
+  methods: {
+    btnFun: function() {
+      //觸發按鈕效果
+      $(".card_btn").hover(function() {
+        var cbtn = $(this);
+        TweenMax.to(cbtn, 0.3, {
+          css: {
+            backgroundColor: "#ffa978",
+            color: "white"
+          }
+        });
+      });
+      //反觸發按鈕效果
+      $(".card_btn").mouseleave(function() {
+        var cbtn = $(this);
+        TweenMax.to(cbtn, 0.3, {
+          css: {
+            backgroundColor: "#fbf8ef",
+            color: "#007552"
+          }
+        });
+      });
+    },
+    gotop: function() {
+      $(window).scrollTop(0);
+    }
+  }
 };
 </script>
+
+<!--當前頁面未解決問題-->
+<!--點選輪播圖router不會換頁-->
+<!--輪播圖標籤尚未從後台撈出-->
+<!--商品大圖未能切換-->
+<!--加入購物籃尚未連結-->

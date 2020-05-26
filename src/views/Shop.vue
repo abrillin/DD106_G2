@@ -46,7 +46,7 @@
                 <router-link class="product-details" to="/main/shopitem">商品詳情...</router-link>
               </p>
               <div class="item_buy-box">
-                <a href="#" class="item_btn card_btn" @mouseenter="btnFun">加入購物籃</a>
+                <a href="#" class="item_btn" @mouseenter="btnFun">加入購物籃</a>
                 <a href="#" class="item_btn buyNow">直接購買</a>
               </div>
             </div>
@@ -112,7 +112,7 @@
               <input
                 :id="'checkinput' + index"
                 type="radio"
-                v-model="v"
+                v-model="c"
                 @click="checkchange(index)"
                 :value="index"
               />
@@ -123,33 +123,19 @@
         <form class="filter-group">
           <div class="filter-group_header">分類：</div>
           <div class="folding-items">
-            <div class="checkbox-filter">
-              <input type="checkbox" id="gift_box" />
-              <label class="checkbox_label">禮盒</label>
-            </div>
-            <div class="checkbox-filter">
-              <input type="checkbox" id="promotion" />
-              <label class="checkbox_label">促銷商品</label>
-            </div>
-            <div class="checkbox-filter">
-              <input type="checkbox" id="coming_soon" />
-              <label class="checkbox_label">即將放送</label>
-            </div>
-            <div class="checkbox-filter">
-              <input type="checkbox" id="machining" />
-              <label class="checkbox_label">加工產品</label>
-            </div>
-            <div class="checkbox-filter">
-              <input type="checkbox" id="dried_fruit" />
-              <label class="checkbox_label">果乾</label>
-            </div>
-            <div class="checkbox-filter">
-              <input type="checkbox" id="fresh_fruit" />
-              <label class="checkbox_label">新鮮水果</label>
-            </div>
-            <div class="checkbox-filter">
-              <input type="checkbox" id="organic_fruit" />
-              <label class="checkbox_label">有機水果</label>
+            <div
+              class="checkbox-filter"
+              v-for="(classifications, index) in classification"
+              :key="classifications"
+            >
+              <input
+                :id="'classificationsinput'+ index"
+                type="checkbox"
+                v-model="cc"
+                :value="index"
+                name="input"
+              />
+              <label class="checkbox_label">{{classifications}}</label>
             </div>
           </div>
         </form>
@@ -187,7 +173,7 @@
               </router-link>
               <div class="card_content">
                 <div class="commodity_title">
-                  <div class="commodity_title_text">{{ i.name }}</div>
+                  <div class="commodity_title_text">{{ i.date }}</div>
                 </div>
 
                 <div
@@ -237,9 +223,11 @@
             @mouseenter="HotCommodityItemsEnter"
             @mouseleave="HotCommodityItemsLeave"
           >
-            <div class="hot_commodity_text">{{ h.name }}</div>
+            <router-link to="/main/shopitem">
+              <div class="hot_commodity_text">{{ h.name }}</div>
+            </router-link>
             <span>{{ index + 1 }}</span>
-            <div class="hot_commodity_bg"></div>
+            <img class="hot_commodity_bg" :src="`/api/` + shopcommodity.pro[0].img.split(',')[0]" />
           </div>
         </div>
         <div class="hot_commodity_filter-status">
@@ -357,7 +345,18 @@ export default {
       seller: [],
       changeitem: ["由新到舊", "評價高到低", "價錢高到低"],
       checkbox: ["24hr宅配到府", "宅配到府", "超商取貨"],
+      classification: [
+        "禮盒",
+        "促銷商品",
+        "即將放送",
+        "加工產品",
+        "果乾",
+        "新鮮水果",
+        "有機水果"
+      ],
       v: 0,
+      c: 0,
+      cc: [],
       checkfilter: []
     };
   },
@@ -382,6 +381,7 @@ export default {
 
   updated() {
     // console.log(this.shopcommodityfilter[0].img.split(",")[0]);
+    console.log(this.shopcommodity);
     for (let i = 0; i < SHOP_INDICATOR_SIZE; i++) {
       document
         .getElementsByClassName("page-item")
@@ -424,7 +424,7 @@ export default {
       TweenMax.to(Commoditymove2, 0.5, {
         autoAlpha: 0.5
       });
-      var Commoditymove3 = $(event.target).children(".hot_commodity_text");
+      var Commoditymove3 = $(event.target).find(".hot_commodity_text");
       TweenMax.to(Commoditymove3, 0.5, {
         autoAlpha: 1
       });
@@ -439,7 +439,7 @@ export default {
       TweenMax.to(Commoditymove2, 0.5, {
         autoAlpha: 1
       });
-      var Commoditymove3 = $(event.target).children(".hot_commodity_text");
+      var Commoditymove3 = $(event.target).find(".hot_commodity_text");
       TweenMax.to(Commoditymove3, 0.5, {
         autoAlpha: 0
       });
@@ -523,15 +523,13 @@ export default {
     },
     changePage(e) {
       let api = this.path + "api_item_no.php";
-      this.$http
-        .post(api, JSON.stringify(e))
-        .then(res => {
-          if (res.data != "") {
-            // console.log(JSON.parse(res.data));
-          } else {
-            // console.log(res.error);
-          }
-        });
+      this.$http.post(api, JSON.stringify(e)).then(res => {
+        if (res.data != "") {
+          // console.log(JSON.parse(res.data));
+        } else {
+          // console.log(res.error);
+        }
+      });
     },
     itemchange(t) {
       const api = this.path + "api_item.php";
