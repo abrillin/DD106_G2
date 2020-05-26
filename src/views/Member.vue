@@ -28,9 +28,9 @@
           <li>
             <router-link to="/main/member/information">個人資訊</router-link>
           </li>
-          <li>
+          <!-- <li>
             <router-link to="/main/member/update">個人資料修改</router-link>
-          </li>
+          </li> -->
           <li>
             <router-link to="/main/member/order">訂單管理</router-link>
           </li>

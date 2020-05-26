@@ -6,31 +6,6 @@
       </div>
     </div>
     <div class="farmupdate_bottom">
-      <!--<div class="top_card">
-        <div class="card">
-          <div class="up">
-            <div class="imgbox">
-              <img :src="member.img" alt="" />
-            </div>
-            <div class="uptext">
-              <div>
-                <span>暱稱:</span><span>{{ member.nick }}</span>
-              </div>
-              <div><span>評價:</span><span></span></div>
-              <div>
-                <span>果園地址:</span><span>{{ member.address }}</span>
-              </div>
-              <div class="underline"></div>
-            </div>
-          </div>
-          <div class="dowm">
-            <div class="downtext">
-              <h1>簡介</h1>
-              <p>{{ member.content }}</p>
-            </div>
-          </div>
-        </div>
-      </div>-->
       <div class="bottom_form">
         <div class="person_left">
           <ul>
@@ -53,19 +28,9 @@
           <p>{{ gender }}</p>
           <p>{{ member.phone }}</p>
           <p>{{ member.email }}</p>
-          <input
-            type="text"
-            v-model="member.address"
-            maxlength="20"
-            placeholder="字數限制20"
-          />
+          <input type="text" v-model="member.address" maxlength="20" placeholder="字數限制20" />
 
-          <textarea
-            name="farmIntro"
-            v-model="member.content"
-            maxlength="100"
-            placeholder="字數限制100"
-          ></textarea>
+          <textarea name="farmIntro" v-model="member.content" maxlength="100" placeholder="字數限制100"></textarea>
           <button class="submit_button" @click="update">
             <div class="correct">
               <p>確定</p>
@@ -94,13 +59,13 @@ export default {
         content: "",
         reviewtotal: "",
         reviewcount: "",
-        memberno: "",
-      },
+        memberno: ""
+      }
     };
   },
   created() {
     const api = this.path + "api_farmStatus.php";
-    this.$http.post(api).then((res) => {
+    this.$http.post(api).then(res => {
       const data = res.data;
       if (data != "") {
         this.member = {
@@ -116,7 +81,7 @@ export default {
           content: data.content,
           reviewtotal: data.reviewtotal,
           reviewcount: data.reviewcount,
-          memberno: data.memberno,
+          memberno: data.memberno
         };
         if (data.img == "") {
           this.member.img = require("@/assets/waterpear.png");
@@ -147,25 +112,25 @@ export default {
 
       this.$http
         .post(api, JSON.stringify(this.member))
-        .then((res) => {
+        .then(res => {
           const data = res.data;
 
           if (data == 0) {
             alert("修改成功！");
 
             this.updateSession();
-            this.$router.go(0);
+            this.$router.go(-1);
           }
         })
         // eslint-disable-next-line no-console
-        .catch((err) => console.log(err));
+        .catch(err => console.log(err));
     },
     updateSession: function() {
       const api = this.path + "api_farmUpdateSession.php";
 
       this.$http
         .post(api, JSON.stringify(this.member))
-        .then((res) => {
+        .then(res => {
           const data = res.data;
 
           if (data == 1) {
@@ -173,8 +138,8 @@ export default {
           }
         })
         // eslint-disable-next-line no-console
-        .catch((err) => console.log(err));
-    },
-  },
+        .catch(err => console.log(err));
+    }
+  }
 };
 </script>

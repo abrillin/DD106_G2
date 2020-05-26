@@ -23,7 +23,7 @@
               <tr v-for="item in list" :key="item.no">
                 <td>{{item.no}}</td>
                 <td>{{item.com_no}}</td>
-                <td>{{item.reason}}</td>
+                <td>{{type[item.reason]}}</td>
                 <td>{{item.name}}</td>
                 <td>{{item.date}}</td>
                 <td>
@@ -73,7 +73,8 @@
 export default {
   data() {
     return {
-      list: []
+      list: [],
+      type: ["仇恨言論", "侵權", "色情內容", "與本網站無關"]
     };
   },
   created() {

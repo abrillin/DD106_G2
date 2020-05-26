@@ -12,7 +12,7 @@
             <li>果粉編號</li>
             <li>帳號</li>
             <!-- <li>密碼</li> -->
-            <li>密碼</li>
+            <!-- <li>密碼</li> -->
             <li>果粉姓名</li>
             <li>暱稱</li>
             <li>性別</li>
@@ -25,8 +25,8 @@
           <p>{{ member.acc }}</p>
           <!-- <input type="text">
           <br>-->
-          <button type="button">修改密碼</button>
-          <br />
+          <!-- <button type="button">修改密碼</button> -->
+          <!-- <br /> -->
           <input type="text" v-model="member.name" />
           <br />
           <input type="text" v-model="member.nick" />
