@@ -2,9 +2,9 @@
   <div class="book_layout">
     <!-- knowledge_blog -->
     <div class="bk_ct bk_ct_left_2">
-      <a href>
+      <router-link :to="{name: 'Blog-post2'}">
         <h2>果農日誌 GOGOGO</h2>
-      </a>
+      </router-link>
 
       <div class="bk_blog_line1"></div>
       <div class="bk_blog_line2"></div>
@@ -14,12 +14,12 @@
         <div class="bk_blog_up">
           <div class="bk_blog_reporter">
             <div class="bk_blog_rpt_img">
-              <a href>
+              <a href="javascript:">
                 <img src="@/assets/book_img/reporter.png" />
               </a>
             </div>
             <div class="bk_blog_rpt_name">
-              <a href="#">蓬蓬阿姨</a>
+              <a href="javascript:">蓬蓬阿姨</a>
               <div class="bk_blog_star">
                 <img src="@/assets/memberstar.svg" />
                 <img src="@/assets/memberstar.svg" />
@@ -30,7 +30,7 @@
             </div>
             <!-- <div class="bk_blog_rpt_button">
               <button>＋追蹤</button>
-            </div> -->
+            </div>-->
             <!-- 標籤 -->
             <div class="bk_blog_tag">
               <a href>
@@ -55,9 +55,9 @@
     </div>
     <!-- knowledge_market -->
     <div class="bk_ct bk_ct_right_2">
-      <a href="#">
+      <router-link :to="{name: 'Shop'}">
         <h2>水果市集 GOGOGO</h2>
-      </a>
+      </router-link>
       <div class="bk_product">
         <div class="bk_product_img bk_pd1">
           <img src="@/assets/book_img/plum_pd.png" />
@@ -89,7 +89,7 @@ export default {
   methods: {
     content: function() {
       console.log(this.page);
-    },
+    }
   }
 };
 </script>

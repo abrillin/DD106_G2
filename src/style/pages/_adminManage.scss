@@ -57,13 +57,20 @@ $tagBGcolor: #E2E2E2;
       button {
         display: block;
         background: $formTtlBg;
-        border: 2px;
+        border-radius: 2px;
+        border: 0px;
         text-align: cenetr;
         text-decoration: none;
         transition: ease-in-out .3s;
         width: 85px;
         margin: 2px;
         // box-shadow: 3px 3px 2px #88888875;
+
+        span {
+
+          font-family: myFont;
+          font-weight: 700;
+        }
 
         &:hover {
           background: $title1Color;
