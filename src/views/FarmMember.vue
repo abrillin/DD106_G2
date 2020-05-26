@@ -17,11 +17,26 @@
         </ul>
         <div class="star">
           <span>評價</span>
-          <img src="@/assets/Group 720.svg" v-if="member.reviewtotal / member.reviewcount > 0" />
-          <img src="@/assets/Group 720.svg" v-if="member.reviewtotal / member.reviewcount > 1" />
-          <img src="@/assets/Group 720.svg" v-if="member.reviewtotal / member.reviewcount > 2" />
-          <img src="@/assets/Group 720.svg" v-if="member.reviewtotal / member.reviewcount > 3" />
-          <img src="@/assets/Group 720.svg" v-if="member.reviewtotal / member.reviewcount > 4" />
+          <img
+            src="@/assets/Group 720.svg"
+            v-if="member.reviewtotal / member.reviewcount > 0"
+          />
+          <img
+            src="@/assets/Group 720.svg"
+            v-if="member.reviewtotal / member.reviewcount > 1"
+          />
+          <img
+            src="@/assets/Group 720.svg"
+            v-if="member.reviewtotal / member.reviewcount > 2"
+          />
+          <img
+            src="@/assets/Group 720.svg"
+            v-if="member.reviewtotal / member.reviewcount > 3"
+          />
+          <img
+            src="@/assets/Group 720.svg"
+            v-if="member.reviewtotal / member.reviewcount > 4"
+          />
           <span>({{ member.reviewcount }})</span>
         </div>
       </div>
@@ -78,13 +93,13 @@ export default {
         content: "",
         reviewtotal: "",
         reviewcount: "",
-        memberno: ""
-      }
+        memberno: "",
+      },
     };
   },
   created() {
     const api = this.path + "api_farmStatus.php";
-    this.$http.post(api).then(res => {
+    this.$http.post(api).then((res) => {
       const data = res.data;
       if (data.status == 1) {
         alert("此身份停權中，請聯繫管理員！");
@@ -105,7 +120,7 @@ export default {
           content: data.content,
           reviewtotal: data.reviewtotal,
           reviewcount: data.reviewcount,
-          memberno: data.memberno
+          memberno: data.memberno,
         };
         if (data.img == null) {
           this.member.img = require("@/assets/waterpear.png");
@@ -138,15 +153,14 @@ export default {
             $("aside.left").toggleClass("popover");
           });
         } else {
-          $("aside.left").addClass("popover");
+          $("button.btn_drawer").on("click", function() {
+            $("aside.left").toggleClass("popover");
+          });
         }
       } else {
         $("aside.left").removeClass("popover");
-        $("button.btn_drawer").on("click", function() {
-          $("aside.left").toggleClass("popover");
-        });
       }
     });
-  }
+  },
 };
 </script>

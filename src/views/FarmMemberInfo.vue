@@ -31,10 +31,10 @@
           <p>0{{ member.phone }}</p>
           <p>{{ member.email }}</p>
           <p>{{ member.address }}</p>
-          <p>{{ member.content }}</p>
+          <p class="content_seller">{{ member.content }}</p>
+          <button class="btn" @click="updatePage">修改</button>
         </div>
       </div>
-      <button class="btn" @click="updatePage">修改</button>
     </div>
   </div>
 </template>
@@ -55,13 +55,13 @@ export default {
         content: "",
         reviewtotal: "",
         reviewcount: "",
-        memberno: ""
-      }
+        memberno: "",
+      },
     };
   },
   activated() {
     const api = this.path + "api_farmStatus.php";
-    this.$http.post(api).then(res => {
+    this.$http.post(api).then((res) => {
       const data = res.data;
       if (data != "") {
         this.member = {
@@ -77,7 +77,7 @@ export default {
           content: data.content,
           reviewtotal: data.reviewtotal,
           reviewcount: data.reviewcount,
-          memberno: data.memberno
+          memberno: data.memberno,
         };
         if (data.img == "") {
           this.member.img = require("@/assets/waterpear.png");
@@ -98,7 +98,7 @@ export default {
   methods: {
     updatePage() {
       this.$router.push("/main/farm/update");
-    }
-  }
+    },
+  },
 };
 </script>

@@ -89,21 +89,30 @@ div.farmcontain {
           margin-top: 20px;
           display: block;
           color: #666;
+          @include rwd(medium) {
+            font-size: 1.4rem;
+          }
         }
 
         & li:nth-child(2) {
           display: block;
           color: #666;
+          @include rwd(medium) {
+            font-size: 1.4rem;
+          }
         }
       }
 
       > .star {
         display: block;
         text-align: left;
+        @include rwd(medium) {
+          font-size: 1.4rem;
+        }
 
         > img {
-          width: 20px;
-          height: 20px;
+          width: 10px;
+          height: 10px;
         }
 
         > span {
@@ -145,6 +154,9 @@ div.farmcontain {
       margin: 0 auto;
       padding-top: 50px;
       border-radius: 5px;
+      @include rwd(medium) {
+        padding-top: 30px;
+      }
 
       > .farm {
         a {

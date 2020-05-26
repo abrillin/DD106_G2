@@ -9,11 +9,10 @@ div.farminfo {
 
   @include rwd(medium) {
     float: right;
-    width: calc(100% - 200px);
+    width: 100%;
   }
 
   @include rwd(small) {
-    float: none;
     width: 100vw;
     padding: 10% 5%;
   }
@@ -35,7 +34,7 @@ div.farminfo {
       padding-top: 10%;
     }
 
-    >.bottom_form {
+    > .bottom_form {
       display: inline-block;
       width: 490px;
       border: 1px solid #666;
@@ -44,27 +43,27 @@ div.farminfo {
         width: 287px;
       }
 
-      >.person_left {
+      > .person_left {
         vertical-align: top;
         display: inline-block;
         background-color: #f7c845;
         width: 150px;
-        height: 450px;
+        height: 730px;
         padding-top: 50px;
         line-height: 2;
 
-        @include rwd(small) {
+        @include rwd(medium) {
           width: 30%;
-          height: 400px;
+          height: 580px;
         }
 
-        >ul {
-          >li {
+        > ul {
+          > li {
             font-size: 1.8rem;
             color: #666;
             line-height: 3.3;
 
-            @include rwd(small) {
+            @include rwd(medium) {
               font-size: 1.4rem;
               line-height: 3.5;
             }
@@ -72,7 +71,7 @@ div.farminfo {
         }
       }
 
-      >.person_right {
+      > .person_right {
         display: inline-block;
         text-align: start;
         background-color: white;
@@ -81,29 +80,37 @@ div.farminfo {
         padding-left: 30px;
         padding-right: 30px;
         width: 340px;
-        height: 500px;
+        height: 780px;
         line-height: 3.3;
 
         @include rwd(medium) {
-          width: 340px;
-        }
-
-        @include rwd(small) {
           width: 70%;
-          height: 450px;
+          height: 630px;
           line-height: 3.5;
+          padding-left: 10px;
+          padding-right: 10px;
         }
 
-        >p {
+        > p {
           overflow: hidden;
           padding: 0;
 
-          @include rwd(small) {
+          @include rwd(medium) {
             font-size: 1.4rem;
           }
         }
+        p.content_seller {
+          padding-bottom: 70px;
+          word-break: break-all;
+          padding-top: 20px;
+          line-height: 1.5;
+          @include rwd(medium) {
+            padding-bottom: 20px;
+            padding-top: 15px;
+          }
+        }
 
-        >.submit_button {
+        > .submit_button {
           position: absolute;
           border-radius: 5px;
           background-color: #007552;
@@ -113,28 +120,31 @@ div.farminfo {
           bottom: 10px;
           line-height: 2.3;
         }
-      }
-    }
+        > .btn {
+          font-family: myFont;
+          font-size: 1.6rem;
 
-    >.btn {
+          float: right;
+          border: none;
+          margin-top: 20px;
+          display: block;
+          border-radius: 5px;
+          background-color: #007552;
+          color: white;
+          width: 80px;
+          line-height: 2.3;
+          cursor: pointer;
 
-      font-family: myFont;
-      font-size: 1.6rem;
+          @include rwd(medium) {
+            font-size: 1.4rem;
+            width: 50px;
+          }
 
-      float: right;
-      border: none;
-      margin-top: 20px;
-      display: block;
-      border-radius: 5px;
-      background-color: #007552;
-      color: white;
-      width: 80px;
-      line-height: 2.3;
-      cursor: pointer;
-
-      &:hover {
-        background-color: #fca87c;
-        color: #fbf8ef;
+          &:hover {
+            background-color: #fca87c;
+            color: #fbf8ef;
+          }
+        }
       }
     }
   }

@@ -8,21 +8,20 @@ div.information {
   padding: 60px 40px;
 
   @include rwd(medium) {
-    width: calc(100% - 200px);
+    width: 100%;
   }
 
   @include rwd(small) {
-    float: none;
     width: 100%;
     padding: 10% 5%;
   }
 
-  >.information_head {
+  > .information_head {
     color: #f7c845;
     font-size: 3rem;
   }
 
-  >.information_bottom {
+  > .information_bottom {
     display: block;
     text-align: center;
     padding-top: 100px;
@@ -34,17 +33,16 @@ div.information {
       padding-top: 10%;
     }
 
-    >.bottom_form {
+    > .bottom_form {
       display: inline-block;
       width: 490px;
       border: 1px solid #666;
 
-      @include rwd(small) {
-        line-height: normal;
-        width: 287px;
+      @include rwd(medium) {
+        width: 320px;
       }
 
-      >.person_left {
+      > .person_left {
         vertical-align: top;
         display: inline-block;
         background-color: #f7c845;
@@ -53,17 +51,17 @@ div.information {
         padding-top: 50px;
         line-height: 3.3;
 
-        @include rwd(small) {
-          width: 30%;
-          height: 400px;
+        @include rwd(medium) {
+          width: 100px;
+          height: 380px;
         }
 
-        >ul {
-          >li {
+        > ul {
+          > li {
             font-size: 1.8rem;
             color: #666;
 
-            @include rwd(small) {
+            @include rwd(medium) {
               font-size: 1.4rem;
               line-height: 3;
             }
@@ -71,7 +69,7 @@ div.information {
         }
       }
 
-      >.information_right {
+      > .information_right {
         display: inline-block;
         text-align: start;
         background-color: white;
@@ -84,16 +82,23 @@ div.information {
         line-height: 3.3;
 
         @include rwd(medium) {
-          width: 340px;
-        }
-
-        @include rwd(small) {
           width: 70%;
-          height: 450px;
+          height: 430px;
+          width: 220px;
+          line-height: 3;
+          padding-left: 10px;
+          padding-right: 10px;
         }
 
-        >.btn {
+        span {
+          p {
+            @include rwd(medium) {
+              font-size: 1.4rem;
+            }
+          }
+        }
 
+        > .btn {
           font-family: myFont;
           font-size: 1.6rem;
 
@@ -107,6 +112,11 @@ div.information {
           width: 80px;
           line-height: 2.3;
           cursor: pointer;
+
+          @include rwd(medium) {
+            font-size: 1.4rem;
+            width: 50px;
+          }
 
           &:hover {
             background-color: #fca87c;

@@ -69,6 +69,9 @@ div.membercontain {
         & li:nth-child(1) {
           text-align: center;
           display: block;
+          @include rwd(medium) {
+            font-size: 1.4rem;
+          }
 
           label {
             font-weight: 600;
@@ -91,10 +94,16 @@ div.membercontain {
           margin-top: 20px;
           display: block;
           color: #666;
+          @include rwd(medium) {
+            font-size: 1.4rem;
+          }
         }
         & li:nth-child(3) {
           display: block;
           color: #666;
+          @include rwd(medium) {
+            font-size: 1.4rem;
+          }
         }
       }
     }
