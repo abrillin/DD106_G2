@@ -32,7 +32,7 @@
               </div>
 
               <div class="td img">
-                <img :src="'/api/'+item.img" />
+                <img :src="'./api/'+item.img" />
               </div>
               <div class="td name">{{ item.name }}</div>
               <div class="td price">$ {{ item.price }}</div>

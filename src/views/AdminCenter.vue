@@ -58,13 +58,13 @@ export default {
     logOut() {
       // 抓sessoin裡面的管理員資料
       // 如果有東西就清除 接著回到導入頁
-      const api = "/api/api_memberStatus.php";
+      const api = this.path + "api_memberStatus.php";
 
       this.$http.post(api).then(res => {
         const data = res.data;
 
         if (data == "") {
-          const api = "/api/api_adminLogOut.php";
+          const api = this.path + "api_adminLogOut.php";
 
           this.$http.post(api);
           this.login = false;

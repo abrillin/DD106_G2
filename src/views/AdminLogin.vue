@@ -46,21 +46,47 @@
   </div>
 </template>
 <script>
-import "@/js/adminLogin";
 export default {
   data() {
     return {
       member: {
         acc: "",
-        psw: "",
-      },
+        psw: ""
+      }
     };
+  },
+  mounted() {
+    const root = document.documentElement;
+    const eye = document.getElementById("eyeball");
+    const beam = document.getElementById("beam");
+    const passwordInput = document.getElementById("password");
+
+    const body = document.getElementById("body");
+
+    root.addEventListener("mousemove", e => {
+      let rect = beam.getBoundingClientRect();
+      let mouseX = rect.right + rect.width / 2;
+      let mouseY = rect.top + rect.height / 2;
+      let rad = Math.atan2(mouseX - e.pageX, mouseY - e.pageY);
+      let degrees = rad * (20 / Math.PI) * -1 - 350;
+
+      root.style.setProperty("--beamDegrees", `${degrees}deg`);
+    });
+
+    eye.addEventListener("click", e => {
+      e.preventDefault();
+
+      body.classList.toggle("show-password");
+      passwordInput.type =
+        passwordInput.type === "password" ? "text" : "password";
+      passwordInput.focus();
+    });
   },
   methods: {
     login: function() {
       const login = this.path + "api_adminLogin.php";
 
-      this.$http.post(login, JSON.stringify(this.member)).then((res) => {
+      this.$http.post(login, JSON.stringify(this.member)).then(res => {
         const data = res.data;
         if (data.status == 1) {
           alert("此帳號已經停用 ╮(╯_╰)╭ ");
@@ -72,7 +98,7 @@ export default {
           this.$router.push("/admin/center/manage");
         }
       });
-    },
-  },
+    }
+  }
 };
 </script>

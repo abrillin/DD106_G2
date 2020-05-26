@@ -179,10 +179,11 @@
               <router-link to="/main/shopitem">
                 <div class="card_img_box" @click="changePage(i)">
                   <img
-                    :src="`/api/` + shopcommodityfilter[index].img.split(',')[0]"
+                    :src="'./api/' + shopcommodityfilter[index].img.split(',')[0]"
                     width="100%"
                     height="100%"
                   />
+                  <!-- <img :src="img" width="100%" height="100%" /> -->
                 </div>
               </router-link>
               <div class="card_content">
@@ -523,15 +524,13 @@ export default {
     },
     changePage(e) {
       let api = this.path + "api_item_no.php";
-      this.$http
-        .post(api, JSON.stringify(e))
-        .then(res => {
-          if (res.data != "") {
-            // console.log(JSON.parse(res.data));
-          } else {
-            // console.log(res.error);
-          }
-        });
+      this.$http.post(api, JSON.stringify(e)).then(res => {
+        if (res.data != "") {
+          // console.log(JSON.parse(res.data));
+        } else {
+          // console.log(res.error);
+        }
+      });
     },
     itemchange(t) {
       const api = this.path + "api_item.php";
