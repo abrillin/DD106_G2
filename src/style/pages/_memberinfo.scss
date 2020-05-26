@@ -17,12 +17,12 @@ div.information {
     padding: 10% 5%;
   }
 
-  > .information_head {
+  >.information_head {
     color: #f7c845;
     font-size: 3rem;
   }
 
-  > .information_bottom {
+  >.information_bottom {
     display: block;
     text-align: center;
     padding-top: 100px;
@@ -34,7 +34,7 @@ div.information {
       padding-top: 10%;
     }
 
-    > .bottom_form {
+    >.bottom_form {
       display: inline-block;
       width: 490px;
       border: 1px solid #666;
@@ -44,7 +44,7 @@ div.information {
         width: 287px;
       }
 
-      > .person_left {
+      >.person_left {
         vertical-align: top;
         display: inline-block;
         background-color: #f7c845;
@@ -52,13 +52,14 @@ div.information {
         height: 500px;
         padding-top: 50px;
         line-height: 3.3;
+
         @include rwd(small) {
           width: 30%;
           height: 400px;
         }
 
-        > ul {
-          > li {
+        >ul {
+          >li {
             font-size: 1.8rem;
             color: #666;
 
@@ -70,7 +71,7 @@ div.information {
         }
       }
 
-      > .information_right {
+      >.information_right {
         display: inline-block;
         text-align: start;
         background-color: white;
@@ -85,24 +86,31 @@ div.information {
         @include rwd(medium) {
           width: 340px;
         }
+
         @include rwd(small) {
           width: 70%;
           height: 450px;
         }
 
-        span {
+        >.btn {
+
+          font-family: myFont;
+          font-size: 1.6rem;
+
+          float: right;
+          border: none;
+          margin-top: 20px;
           display: block;
+          border-radius: 5px;
+          background-color: #007552;
+          color: white;
+          width: 80px;
+          line-height: 2.3;
+          cursor: pointer;
 
-          @include rwd(small) {
-            line-height: 3;
-          }
-
-          p {
-            overflow: hidden;
-            padding: 0;
-            @include rwd(small) {
-              font-size: 1.4rem;
-            }
+          &:hover {
+            background-color: #fca87c;
+            color: #fbf8ef;
           }
         }
       }

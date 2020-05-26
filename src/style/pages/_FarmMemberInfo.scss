@@ -35,86 +35,7 @@ div.farminfo {
       padding-top: 10%;
     }
 
-    // > .top_card {
-    //   display: inline-block;
-    //   border: 3px solid #007552;
-    //   box-shadow: 5px 5px #007552;
-    //   background-color: white;
-    //   text-align: start;
-    //   width: 660px;
-    //   height: 360px;
-    //   margin: auto;
-    //   background-image: url(../assets/membercard3.png);
-    //   background-position: center bottom;
-    //   background-repeat: no-repeat;
-    //   background-size: 690px;
-    //   overflow: hidden;
-
-    //   @include rwd(medium) {
-    //     width: 610px;
-    //     height: 360px;
-    //   }
-
-    //   @include rwd(small) {
-    //     width: 480px;
-    //     height: 360px;
-    //   }
-
-    //   @include rwd(mobile) {
-    //     width: 330px;
-    //     height: 577px;
-    //   }
-
-    //   > .card {
-    //     display: block;
-    //     padding-top: 20px;
-    //     padding-right: 40px;
-    //     padding-left: 40px;
-
-    //     > .up {
-    //       display: inline-block;
-    //       vertical-align: top;
-    //       margin-bottom: 20px;
-
-    //       > .imgbox {
-    //         display: inline-block;
-    //         width: 100px;
-    //         height: 100px;
-    //         margin-right: 20px;
-
-    //         > img {
-    //           width: 100%;
-    //           height: 100%;
-    //         }
-    //       }
-
-    //       > .uptext {
-    //         display: inline-block;
-    //         text-align: start;
-    //         line-height: 2;
-    //         vertical-align: top;
-
-    //         > .underline {
-    //           border-bottom: 1px solid #007552;
-    //           width: 200px;
-    //           height: 26px;
-    //         }
-    //       }
-    //     }
-
-    //     > .down {
-    //       display: inline-block;
-
-    //       > .downtext {
-    //         > p {
-    //           line-height: 2;
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
-
-    > .bottom_form {
+    >.bottom_form {
       display: inline-block;
       width: 490px;
       border: 1px solid #666;
@@ -123,7 +44,7 @@ div.farminfo {
         width: 287px;
       }
 
-      > .person_left {
+      >.person_left {
         vertical-align: top;
         display: inline-block;
         background-color: #f7c845;
@@ -137,11 +58,12 @@ div.farminfo {
           height: 400px;
         }
 
-        > ul {
-          > li {
+        >ul {
+          >li {
             font-size: 1.8rem;
             color: #666;
             line-height: 3.3;
+
             @include rwd(small) {
               font-size: 1.4rem;
               line-height: 3.5;
@@ -150,7 +72,7 @@ div.farminfo {
         }
       }
 
-      > .person_right {
+      >.person_right {
         display: inline-block;
         text-align: start;
         background-color: white;
@@ -165,20 +87,23 @@ div.farminfo {
         @include rwd(medium) {
           width: 340px;
         }
+
         @include rwd(small) {
           width: 70%;
           height: 450px;
           line-height: 3.5;
         }
 
-        > p {
+        >p {
           overflow: hidden;
           padding: 0;
+
           @include rwd(small) {
             font-size: 1.4rem;
           }
         }
-        > .submit_button {
+
+        >.submit_button {
           position: absolute;
           border-radius: 5px;
           background-color: #007552;
@@ -188,6 +113,28 @@ div.farminfo {
           bottom: 10px;
           line-height: 2.3;
         }
+      }
+    }
+
+    >.btn {
+
+      font-family: myFont;
+      font-size: 1.6rem;
+
+      float: right;
+      border: none;
+      margin-top: 20px;
+      display: block;
+      border-radius: 5px;
+      background-color: #007552;
+      color: white;
+      width: 80px;
+      line-height: 2.3;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #fca87c;
+        color: #fbf8ef;
       }
     }
   }

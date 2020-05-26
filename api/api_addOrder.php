@@ -9,7 +9,7 @@ try {
     $info = json_decode(file_get_contents("php://input"));
 
     $sql =
-        "insert into `orderMaster` (`no`, `member_no`, `seller_no`, `total`, `date`, `name`, `address`, `phone`, `transport`, `review`, `status`, `payment_status`) values(null, :member_no, :seller_no, :total, :date, :name, :address, :phone, :transport, 0, 0, 0)";
+        "insert into `orderMaster` (`no`, `member_no`, `seller_no`, `total`, `date`, `name`, `address`, `phone`, `transport`, `review`, `status`, `payment_status`) values(null, :member_no, :seller_no, :total, :date, :name, :address, :phone, :transport, 0, 0, 1)";
 
     $order = $pdo->prepare($sql);
 

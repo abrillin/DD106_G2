@@ -85,7 +85,9 @@ $color5: #ffa978;
   @include rwd(small) {
     text-align: center;
   }
- 
+  @include rwd(medium) {
+    height: 100%;
+  }
   .show_item-content {
     height: calc(100% - 150px);
     width: 100%;
@@ -466,6 +468,7 @@ $color5: #ffa978;
         grid-template-columns: 1fr;
         width: 90%;
         gap: 0;
+        margin: 0;
       }
 
   }
@@ -601,19 +604,24 @@ $color5: #ffa978;
         align-items: center;
         font-size: 40px;
         width: 60px;
+        padding: 0 15px;
         background-color: #007552;
         @include rwd(large) {
           width: 50px;
+          padding: 0 10px;
         }
         @include rwd(medium) {
           // left: 0%;
+          padding: 0 5px;
         }
       }
       .hot_commodity_bg {
-        background-image: url(./../assets/ia_300000011.jpg);
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center ;
+        // background-image: url(./../assets/ia_300000011.jpg);
+        // background-size: cover;
+        // background-repeat: no-repeat;
+        // background-position: center ;
+        object-fit: cover;
+        object-position: bottom;
         height: 100%;
         width: 100%;
         position: relative;
@@ -776,8 +784,13 @@ $color5: #ffa978;
       display: flex;
       flex-direction: column;
       @include rwd(small) {
-        margin: 20px 20px;
+        margin: 20px 15px;
         flex-direction: row;
+      }
+      img{
+        @media (max-width: 499px){
+          display: none;
+        }
       }
       .card_content {
         padding: 10px;

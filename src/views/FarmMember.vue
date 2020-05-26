@@ -31,9 +31,9 @@
           <li>
             <router-link to="/main/farm/info">個人資料</router-link>
           </li>
-          <li>
+          <!-- <li>
             <router-link to="/main/farm/update">個人資料修改</router-link>
-          </li>
+          </li> -->
           <li>
             <router-link to="/main/farm/order">商品管理</router-link>
           </li>

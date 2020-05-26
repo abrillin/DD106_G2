@@ -189,17 +189,16 @@ export default {
       let cart = [];
       let j = 0;
 
-      for (let i = 0; i < this.cart.length; i++) {
-        if (this.cart[i].sellerNo == no) {
-          cart[j] = this.cart[i];
-          j++;
-        }
-      }
-
       if (this.cart.length == 0) {
         alert("請勾選要結帳商品");
       } else {
-        this.$emit("setCart", this.cart);
+        for (let i = 0; i < this.cart.length; i++) {
+          if (this.cart[i].sellerNo == no) {
+            cart[j] = this.cart[i];
+            j++;
+          }
+        }
+        this.$emit("setCart", cart);
         this.$router.push({ name: "CheckInfo" });
       }
     }

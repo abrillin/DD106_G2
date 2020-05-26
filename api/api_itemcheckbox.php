@@ -8,14 +8,6 @@ try {
     require_once("connectDB.php");
     $frontInfo = json_decode(file_get_contents("php://input"));
 
-    // $sql = "SELECT * FROM item INNER JOIN item_tag INNER JOIN itemtag_des ON item.no = item_tag.item_no AND item_tag.tag_no = itemtag_des.no ";
-
-    // $member = $pdo->prepare($sql);
-
-    // $member->execute();
-    // $memRow = $member->fetchAll(PDO::FETCH_ASSOC);
-
-    // echo json_encode($memRow);
     /*PDO*/
 
     $_SESSION["key"] = $frontInfo;
