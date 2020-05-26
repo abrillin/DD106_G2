@@ -77,7 +77,6 @@
 
 <style></style>
 <script>
-import "@/js/book";
 import Index from "@/views/BookIndex";
 import Content from "@/views/BookContent";
 export default {

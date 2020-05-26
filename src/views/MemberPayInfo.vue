@@ -115,11 +115,15 @@ export default {
               const index = itemArr.indexOf(this.cart[i].no);
 
               itemArr.splice(index, 1);
-              storage["itemNo"] = itemArr.toString() + ",";
+              if (itemArr.toString() != "") {
+                storage["itemNo"] = itemArr.toString() + ",";
+              } else {
+                storage["itemNo"] = "";
+              }
             }
 
             alert("結帳完成！");
-            this.$router.push({ name: "Shopping" });
+            this.$router.push({ name: "Order" });
           }
         });
     }
