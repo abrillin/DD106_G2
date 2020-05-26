@@ -119,6 +119,7 @@ div.FarmListUpdate {
             width: 25%;
             padding: 10px 0;
             text-align: center;
+            background: #fff;
             @include rwd(mobile) {
               font-size: 13px;
             }
@@ -179,6 +180,7 @@ div.FarmListUpdate {
               }
             }
             td {
+              background: #fff;
               width: 20%;
               padding: 10px 0;
               text-align: center;
