@@ -79,7 +79,7 @@
           </div>
           <div class="total">
             <p>
-              <span>商品金額:$</span
+              <span>商品金額：$</span
               ><span>{{ this.order[this.i].total - 65 }}</span>
             </p>
             <p>運費 $65</p>

@@ -49,14 +49,14 @@
               />
               <label for="card">信用卡</label>
             </p>
-            <p>
+            <!-- <p>
               <input id="atm" name="pay" type="radio" class="checkbox" value="1" v-model="form.pay" />
               <label for="atm">ATM轉帳</label>
             </p>
             <p>
               <input id="pay" name="pay" type="radio" class="checkbox" value="2" v-model="form.pay" />
               <label for="pay">貨到付款</label>
-            </p>
+            </p> -->
           </div>
           <div class="btn-box">
             <button type="button" class="btn" @click="prevPage">上一步</button>
