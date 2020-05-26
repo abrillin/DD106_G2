@@ -1,6 +1,6 @@
 div.farminfo {
   display: block;
-  color: #007552;
+  color: #666;
   background-color: #fbf8ef;
   width: calc(100% - 250px);
   box-sizing: border-box;
@@ -18,7 +18,7 @@ div.farminfo {
     padding: 10% 5%;
   }
 
-  .farminfo_head {
+  .farminfo_head_text {
     color: #f7c845;
     font-size: 3rem;
   }
@@ -49,8 +49,8 @@ div.farminfo {
         display: inline-block;
         background-color: #f7c845;
         width: 150px;
-        height: 450px;
-        padding-top: 50px;
+        height: 590px;
+        padding-top: 10px;
         line-height: 2;
 
         @include rwd(small) {
@@ -60,8 +60,8 @@ div.farminfo {
 
         >ul {
           >li {
-            font-size: 1.8rem;
-            color: #666;
+            font-size: 1.6rem;
+            color: #333;
             line-height: 3.3;
 
             @include rwd(small) {
@@ -73,15 +73,16 @@ div.farminfo {
       }
 
       >.person_right {
+        font-size: 1.6rem;
         display: inline-block;
         text-align: start;
         background-color: white;
         box-sizing: border-box;
-        padding-top: 50px;
+        padding-top: 10px;
         padding-left: 30px;
         padding-right: 30px;
         width: 340px;
-        height: 500px;
+        height: 600px;
         line-height: 3.3;
 
         @include rwd(medium) {
@@ -89,6 +90,7 @@ div.farminfo {
         }
 
         @include rwd(small) {
+          font-size: 1.4rem;
           width: 70%;
           height: 450px;
           line-height: 3.5;
