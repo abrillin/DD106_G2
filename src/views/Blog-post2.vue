@@ -87,7 +87,7 @@
               />
             </div>
             <div>
-              <span>+追蹤</span>
+              <span style="display:none;">+追蹤</span>
             </div>
             <div>
               <img src="@/assets/blog-img/blog-tag.png" />
@@ -147,10 +147,14 @@
               <form action method="get">
                 <label for>
                   留言:
-                  <textarea name id></textarea>
+                  <textarea v-model="topMsgText" name id></textarea>
                 </label>
                 <br />
-                <buttonMore class="blogPost2ButtonMore" msg="送出"></buttonMore>
+
+                <div class="blogPost2ButtonMore" @click.prevent="comment">
+                  <buttonMore class="blogPost2ButtonMore1" msg="送出">
+                  </buttonMore>
+                </div>
               </form>
             </div>
             <div>
@@ -252,7 +256,7 @@
                         </div>
                       </div>
                       <div>
-                        <span>+追蹤</span>
+                        <span style="display:none;">+追蹤</span>
                       </div>
                     </div>
                   </div>
@@ -366,7 +370,7 @@
                         </div>
                       </div>
                       <div>
-                        <span>+追蹤</span>
+                        <span style="display:none;">+追蹤</span>
                       </div>
                     </div>
                   </div>
@@ -382,7 +386,7 @@
             <!--頁簽-->
             <!--頁簽-->
             <ul class="page">
-              <li @click="PreviousPage">
+              <li class="pageArrow" @click="PreviousPage">
                 <img src="@/assets/blog-img/post/arrow-left.png" />
               </li>
 
@@ -395,7 +399,7 @@
                 {{ i }}
               </li>
 
-              <li @click="nextPage">
+              <li class="pageArrow" @click="nextPage">
                 <img src="@/assets/blog-img/post/arrow-right.png" />
               </li>
             </ul>
@@ -939,6 +943,7 @@
           > textarea:nth-child(1) {
             width: 50%;
             height: 100px;
+            resize: none;
             @media (max-width: 1600px) {
               width: 85%;
             }
@@ -951,8 +956,9 @@
           @media (max-width: 1600px) {
             margin-left: 45%;
           }
-          >.btn-more{
-            height: 30px;
+          > .blogPost2ButtonMore1 {
+            width: 100%;
+            // height: 30px;
           }
         }
       }
@@ -1715,7 +1721,7 @@
       padding: 5px;
     }
   }
-  > li:nth-child(1) {
+  > .pageArrow {
     > img:nth-child(1) {
       width: 95%;
       @media (max-width: 500px) {
@@ -1771,6 +1777,8 @@ export default {
       pageArr: [],
       currentPage: [],
       topMsg: null,
+      topMsgText: '',
+      sendMsgArr: [],
     };
   },
   beforeMount() {},
@@ -1781,10 +1789,6 @@ export default {
     //   .classList.add("currentPagecolor");
   },
   updated() {
-    // let bb = document.getElementsByClassName('blog-post2-small-card')[8];
-    // bb.classList.add('nine');
-    // alert(document.getElementsByClassName('pageBorder').length);
-    // alert(document.getElementsByClassName('pageBorder').length);
     for (
       let i = 0;
       i < document.getElementsByClassName('pageBorder').length;
@@ -1803,7 +1807,7 @@ export default {
       }
     }
 
-    let api = this.path + "api_get_msg_blogtop.php";
+    let api = this.path + 'api_get_msg_blogtop.php';
 
     this.$http
       .post(api, JSON.stringify(this.blogArrFilterTop[0].no))
@@ -1817,70 +1821,63 @@ export default {
       });
   },
   created() {
-    const api = this.path + "api_blog.php";
+    const api = this.path + 'api_blog.php';
 
-    this.$http
-      .post(api, JSON.stringify(this.member))
-      .then((res) => {
-        if (res.data != '') {
-          // console.log(res.data);
+    this.$http.post(api, JSON.stringify(this.member)).then((res) => {
+      if (res.data != '') {
+        // console.log(res.data);
+        this.blogArr = res.data;
 
-          // sessionStorage.setItem('abc', JSON.stringify(res.data));
-          // sessionStorage.clear();
-          // let abc = sessionStorage.getItem('abc');
+        for (let i = 0; i < this.blogArr.length; i++) {
+          this.blogArr[i].img = this.blogArr[i].img.split(',');
+        }
 
-          this.blogArr = res.data;
-
-          for (let i = 0; i < this.blogArr.length; i++) {
-            this.blogArr[i].img = this.blogArr[i].img.split(',');
-          }
-
-          // for (let i = 0; i < this.blogArr.length; i++) {
-          //   for (let j = 0; j < this.blogArr[i].img.length; j++) {
-          //     this.blogArr[i].img[j] = `/api/${this.blogArr[i].img[j]}`;
-          //   }
-          // }
-          this.blogArr.forEach((arr, i) => {
-            arr.img.forEach((item, index) => {
-              this.blogArr[i].img[index] = this.img + item;
-            });
+        // for (let i = 0; i < this.blogArr.length; i++) {
+        //   for (let j = 0; j < this.blogArr[i].img.length; j++) {
+        //     this.blogArr[i].img[j] = `/api/${this.blogArr[i].img[j]}`;
+        //   }
+        // }
+        this.blogArr.forEach((arr, i) => {
+          arr.img.forEach((item, index) => {
+            this.blogArr[i].img[index] = this.img + item;
           });
+        });
 
-          // this.blogArr[0].img[0]=`/api/${this.blogArr[0].img[0]}`
-          // console.log(this.blogArr);
+        // this.blogArr[0].img[0]=`/api/${this.blogArr[0].img[0]}`
+        // console.log(this.blogArr);
 
-          // console.log(this.blogArr)
+        // console.log(this.blogArr)
 
-          this.blogArrFilterTop.push(this.blogArr[0]);
+        this.blogArrFilterTop.push(this.blogArr[0]);
 
-          if (this.blogArr.length <= 9) {
-            for (let i = 1; i < this.blogArr.length; i++) {
-              this.blogArrFilter.push(this.blogArr[i]);
-            }
-          } else {
-            for (let i = 1; i < 10; i++) {
-              this.blogArrFilter.push(this.blogArr[i]);
-            }
-          }
-
-          this.currentPage.push(1);
-
-          if (this.blogArr.length <= 9) {
-            this.pageArr.push(1);
-          } else if (this.blogArr.length / 9 < 9) {
-            for (let i = 1; i <= parseInt(this.blogArr.length / 9) + 1; i++) {
-              this.pageArr.push(i);
-              // console.log(parseInt(this.blogArr.length / 9) + 1);
-            }
-          } else {
-            for (let i = 1; i < 10; i++) {
-              this.pageArr.push(i);
-            }
+        if (this.blogArr.length < 9) {
+          for (let i = 1; i < this.blogArr.length; i++) {
+            this.blogArrFilter.push(this.blogArr[i]);
           }
         } else {
-          // console.log(res.error);
+          for (let i = 1; i < 10; i++) {
+            this.blogArrFilter.push(this.blogArr[i]);
+          }
         }
-      });
+
+        this.currentPage.push(1);
+
+        if (this.blogArr.length <= 9) {
+          this.pageArr.push(1);
+        } else if (this.blogArr.length / 9 < 9) {
+          for (let i = 1; i <= parseInt(this.blogArr.length / 9) + 1; i++) {
+            this.pageArr.push(i);
+            // console.log(parseInt(this.blogArr.length / 9) + 1);
+          }
+        } else {
+          for (let i = 1; i < 10; i++) {
+            this.pageArr.push(i);
+          }
+        }
+      } else {
+        // console.log(res.error);
+      }
+    });
   },
   beforeDestroy() {},
   computed: {},
@@ -2014,7 +2011,7 @@ export default {
       this.$emit('blogInf', e);
       // console.log(e);
 
-      let api = this.path + "api_session_blog_no.php";
+      let api = this.path + 'api_session_blog_no.php';
 
       this.$http.post(api, JSON.stringify(e)).then((res) => {
         if (res.data != '') {
@@ -2026,6 +2023,24 @@ export default {
     },
     getThisCard(e) {
       // console.log(e.target.parentNode.parentNode.children[3].textContent);
+    },
+    comment() {
+      let api = this.path + 'api_send_blog_msg_top.php';
+      var nStartTime = new Date(Date.now());
+      let today = `${nStartTime.getFullYear()}-${nStartTime.getMonth() +
+        1}-${nStartTime.getDate()}`;
+      this.sendMsgArr = [];
+      this.sendMsgArr.push(this.topMsgText);
+      this.sendMsgArr.push(this.blogArrFilterTop[0].no);
+      this.sendMsgArr.push(today);
+      this.$http.post(api, JSON.stringify(this.sendMsgArr)).then((res) => {
+        if (res.data != '') {
+          // console.log(res.data);
+        } else {
+          // console.log(res.error);
+        }
+      });
+      this.topMsgText = '';
     },
   },
 };

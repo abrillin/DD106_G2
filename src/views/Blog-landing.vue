@@ -36,7 +36,10 @@
       <div>
         <div>
           <div>
-            <img src="@/assets/blog-img/blog-someoneshead.png" class="blog-landing-aunt" />
+            <img
+              src="@/assets/blog-img/blog-someoneshead.png"
+              class="blog-landing-aunt"
+            />
           </div>
           <div>
             <div>
@@ -51,7 +54,7 @@
             </div>
           </div>
           <div>
-            <span>+追蹤</span>
+            <span style="display:none;">+追蹤</span>
           </div>
           <div class="blog-landing-greenline"></div>
           <div class="blog-landing-greenline"></div>
@@ -89,13 +92,17 @@
         <div>
           <div>
             <div>{{ previousValue[0].content }}</div>
-            <div>{{ previousValue[0].content }}</div>
+            <div>{{ previousValue[0].content2 }}</div>
           </div>
           <div>
             <div>
               <img src="../assets/blog-img/blog-trapezoid.png" />
               <div>
-                <img v-for="(i, index) in previousValue[0].img" :key="index" :src="i" />
+                <img
+                  v-for="(i, index) in previousValue[0].img"
+                  :key="index"
+                  :src="i"
+                />
                 <!-- <img :src="this.previousValue[0].img[2]" />
                 <img :src="this.previousValue[0].img[3]" />
                 <img :src="this.previousValue[0].img[4]" />-->
@@ -114,7 +121,7 @@
         <div>
           <div v-for="(i, index) in blogMsgFilter" :key="index">
             <div>
-              <img src="@/assets/blog-img/blog-someoneshead.png" />
+              <img :src="i.img" />
             </div>
             <div>
               <div>{{ i.nick }}</div>
@@ -122,7 +129,11 @@
             </div>
             <div style="font-size:16px;">{{ i.content }}</div>
             <div>
-              <img @click="report(i)" src="@/assets/blog-img/blog-report.png" class="report" />
+              <img
+                @click="report(i)"
+                src="@/assets/blog-img/blog-report.png"
+                class="report"
+              />
             </div>
           </div>
           <span @click="loadMoreMsg" id="loadMoreMsg">
@@ -189,7 +200,10 @@
             </label>
             <br />
             <div class="blog-landing-button-more" @click.prevent="comment">
-              <button-more class="blog-landing-button-more2" msg="送出"></button-more>
+              <button-more
+                class="blog-landing-button-more2"
+                msg="送出"
+              ></button-more>
             </div>
           </form>
         </div>
@@ -199,23 +213,52 @@
       <div>
         <span @click="closeLightBox">X</span>
         <div>
-          <input type="radio" name id="r1" value="0" v-model="reportRadio" />&emsp;
+          <input
+            type="radio"
+            name
+            id="r1"
+            value="0"
+            v-model="reportRadio"
+          />&emsp;
           <label for="r1">仇恨言論</label>
           <br />
           <br />
-          <input type="radio" name id="r2" value="1" v-model="reportRadio" />&emsp;
+          <input
+            type="radio"
+            name
+            id="r2"
+            value="1"
+            v-model="reportRadio"
+          />&emsp;
           <label for="r2">侵權</label>
           <br />
           <br />
-          <input type="radio" name id="r3" value="2" v-model="reportRadio" />&emsp;
+          <input
+            type="radio"
+            name
+            id="r3"
+            value="2"
+            v-model="reportRadio"
+          />&emsp;
           <label for="r3">色情內容</label>
           <br />
           <br />
-          <input type="radio" name id="r4" value="3" v-model="reportRadio" />&emsp;
+          <input
+            type="radio"
+            name
+            id="r4"
+            value="3"
+            v-model="reportRadio"
+          />&emsp;
           <label for="r4">與本網站無關</label>
           <br />
           <br />
-          <input class="reportBtn" type="button" value="確定" @click="sendReport()" />
+          <input
+            class="reportBtn"
+            type="button"
+            value="確定"
+            @click="sendReport()"
+          />
         </div>
       </div>
     </div>
@@ -585,8 +628,11 @@
           // background-color: #000;
           height: 385px;
           position: relative;
+          @media (max-width: 576px) {
+            height: 600px;
+          }
           &::before {
-            content: "";
+            content: '';
             width: 90%;
             border-bottom: solid #007552 2px;
             position: absolute;
@@ -603,7 +649,7 @@
             }
           }
           &::after {
-            content: "";
+            content: '';
             width: 75%;
             border-bottom: solid #007552 2px;
             position: absolute;
@@ -624,6 +670,9 @@
           //文章二區
           height: 385px;
           padding-bottom: 11%;
+          @media (max-width: 576px) {
+            height: 600px;
+          }
         }
       }
       > div:nth-child(2) {
@@ -704,7 +753,7 @@
       padding-bottom: 20px;
       position: relative;
       &::after {
-        content: "";
+        content: '';
         width: 90%;
         border-top: 2px solid #007552;
         position: absolute;
@@ -712,7 +761,7 @@
         right: 5%;
       }
       &::before {
-        content: "";
+        content: '';
         width: 90%;
         border-top: 2px solid #007552;
         position: absolute;
@@ -764,14 +813,23 @@
           grid-template-columns: 15% 75% 10%;
           grid-template-rows: repeat(2, 1fr);
           grid-template-areas:
-            "aa1 aa2 aa4"
-            "aa1 aa3 aa4";
+            'aa1 aa2 aa4'
+            'aa1 aa3 aa4';
         }
         > div:nth-child(1) {
           // background-color: #000;
+          // border: lightslategrey 2px solid;
+          width: 50px;
+          height: 50px;
           @media (max-width: 992px) {
             grid-area: aa1;
             align-self: center;
+          }
+          > img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
           }
         }
         > div:nth-child(2) {
@@ -787,7 +845,7 @@
             grid-area: aa2;
           }
           &::after {
-            content: "";
+            content: '';
             position: absolute;
             top: 0px;
             right: 10%;
@@ -799,7 +857,7 @@
           }
           @media (max-width: 576px) {
             &::before {
-              content: "";
+              content: '';
               position: absolute;
               top: 3px;
               left: -10px;
@@ -913,15 +971,15 @@
 }
 </style>
 <script>
-import $ from "jquery";
+import $ from 'jquery';
 export default {
-  props: { blogInfProps: Array, c: String },
+  props: {blogInfProps: Array, c: String},
   data() {
     return {
       msgobj: {
         content: null,
         date: null,
-        blogNo: null
+        blogNo: null,
       },
       blogMsg: null,
       blogMsgFilter: [],
@@ -929,7 +987,7 @@ export default {
       previousValue: null,
       previousItem: [],
       reportRadio: null,
-      beReported: null
+      beReported: null,
     };
   },
   created() {
@@ -942,11 +1000,10 @@ export default {
     this.msgobj.date = today;
     // console.log(this.previousValue);
 
-    let api = this.path + "api_get_msg.php";
+    let api = this.path + 'api_get_msg.php';
 
-    this.$http.post(api, JSON.stringify(this.msgobj)).then(res => {
-      if (res.data != "") {
-
+    this.$http.post(api, JSON.stringify(this.msgobj)).then((res) => {
+      if (res.data != '') {
         this.blogMsg = res.data[0];
 
         // console.log(this.blogMsg);
@@ -965,15 +1022,14 @@ export default {
       }
     });
 
-    let api2 = this.path + "api_get_blog_content.php";
+    let api2 = this.path + 'api_get_blog_content.php';
 
-    this.$http.post(api2).then(res => {
-      if (res.data != "") {
+    this.$http.post(api2).then((res) => {
+      if (res.data != '') {
         this.previousValue = res.data;
-        this.previousValue[0].img = this.previousValue[0].img.split(",");
+        this.previousValue[0].img = this.previousValue[0].img.split(',');
 
         for (let j = 0; j < this.previousValue[0].img.length; j++) {
-
           this.previousValue[0].img[j] =
             this.img + this.previousValue[0].img[j];
         }
@@ -988,14 +1044,9 @@ export default {
   },
   methods: {
     comment() {
-      let msg = document.getElementsByTagName("textarea")[0].value;
+      let msg = document.getElementsByTagName('textarea')[0].value;
       this.msgobj.content = msg;
-
-      // let blogNo = this.blogInfProps.no;
-      // this.msgobj.blogNo = blogNo;
-      // console.log(this.msgobj);
-
-      let api = this.path + "api_blog_msg.php";
+      let api = this.path + 'api_blog_msg.php';
 
       this.$http.post(api, JSON.stringify(this.msgobj));
       var pathtopage = window.location.href;
@@ -1023,15 +1074,15 @@ export default {
       // console.log(e);
       // alert(e)
       document
-        .getElementsByClassName("reportLightBox")[0]
-        .setAttribute("style", "display: block;");
+        .getElementsByClassName('reportLightBox')[0]
+        .setAttribute('style', 'display: block;');
       // this.beReported=null
       this.beReported = e;
     },
     closeLightBox() {
       document
-        .getElementsByClassName("reportLightBox")[0]
-        .setAttribute("style", "display: none;");
+        .getElementsByClassName('reportLightBox')[0]
+        .setAttribute('style', 'display: none;');
     },
     sendReport() {
       var nStartTime = new Date(Date.now());
@@ -1042,21 +1093,21 @@ export default {
       this.beReported.reason = this.reportRadio;
       // console.log(this.beReported);
       if (this.beReported.reason == null) {
-        alert("請填寫原因");
+        alert('請填寫原因');
       } else {
-        let api = this.path + "api_report_msg.php";
+        let api = this.path + 'api_report_msg.php';
 
-        this.$http.post(api, JSON.stringify(this.beReported)).then(res => {
+        this.$http.post(api, JSON.stringify(this.beReported)).then((res) => {
           if (res.data == 1) {
-            alert("您已經檢舉過了！");
+            alert('您已經檢舉過了！');
             // console.log(res.data);
           } else {
-            alert("檢舉成功！");
+            alert('檢舉成功！');
           }
         });
         this.closeLightBox();
       }
-    }
-  }
+    },
+  },
 };
 </script>
