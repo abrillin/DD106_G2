@@ -29,7 +29,7 @@
       <div class="Farminfo">
         <ul>
           <li>
-            <router-link to="/main/farm/info">個人資料</router-link>
+            <router-link to="/main/farm/info">個人資訊</router-link>
           </li>
           <!-- <li>
             <router-link to="/main/farm/update">個人資料修改</router-link>
