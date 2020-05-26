@@ -16,7 +16,8 @@
             <li class="p_img">主要圖片</li>
             <li class="p_img">其它圖片</li>
             <li class="p_tag">標籤</li>
-            <li class="p_text">敘述</li>
+            <li class="p_text">商品介紹</li>
+            <li class="p_text">商品敘述</li>
           </ul>
         </div>
         <div class="person_right">
@@ -64,10 +65,19 @@
             </select>
 
             <textarea
+              id="productInfo"
+              maxlength="100"
+              placeholder="最大字數限制100"
+              v-model="item.infor"
+              style="resize:none"
+            ></textarea>
+
+            <textarea
               id="productContent"
               maxlength="100"
               placeholder="最大字數限制100"
               v-model="item.description"
+              style="resize:none"
             ></textarea>
             <div class="submit_button">
               <input type="button" value="取消" id="productCancel" />
@@ -99,6 +109,7 @@ export default {
         name: "",
         price: 1,
         description: "",
+        infor: "",
         sellerno: "",
         date: "",
         img: "",
@@ -123,6 +134,7 @@ export default {
       this.item.sellerno = data.no;
     });
   },
+
   methods: {
     changePrice: function() {
       let r = /^[0-9]*[1-9][0-9]*$/;

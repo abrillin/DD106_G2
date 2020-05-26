@@ -91,7 +91,7 @@
             </div>
             <div>
               <img src="@/assets/blog-img/blog-tag.png" />
-              <span>草莓</span>
+              <span>草莓</span><br />
               <img src="@/assets/blog-img/blog-tag.png" />
               <span>旅遊日誌</span>
             </div>
@@ -614,7 +614,7 @@
         'aa3 aa5 aa7 aa7'
         'aa8 aa8 aa8 aa8'
         'aa9 aa9 aa9 aa9';
-      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1.5fr 1fr 1fr;
       // border: solid 1px red;
     }
     > div:nth-child(1) {
@@ -662,6 +662,9 @@
         height: 100%;
         object-fit: cover;
       }
+      @media (max-width: 576px) {
+        align-self: center;
+      }
     }
     > div:nth-child(4) {
       //暱稱
@@ -670,6 +673,9 @@
       padding-top: 0px;
       margin-left: 10px;
       grid-area: aa4;
+      @media (max-width: 576px) {
+        align-self: end;
+      }
     }
     > div:nth-child(5) {
       //星星
@@ -681,6 +687,13 @@
       > img {
         width: 15px;
       }
+      @media (max-width: 576px) {
+        align-self: center;
+      }
+      @media (max-width: 350px) {
+        position: relative;
+        bottom: 20px;
+      }
     }
     > div:nth-child(6) {
       //追蹤
@@ -691,9 +704,12 @@
 
       @media (max-width: 576px) {
         // padding-top: 20%;
-        padding-bottom: 10px;
+        padding-top: 0px;
+        padding-bottom: 0px;
         text-align: end;
-        margin-right: 5px;
+        margin-right: 0px;
+        align-self: end;
+        position: relative;
       }
       > span {
         background-color: #007552;
@@ -716,6 +732,7 @@
       @media (max-width: 576px) {
         font-size: 16px;
         padding-top: 0px;
+        grid-area: aa8;
       }
     }
     > div:nth-child(8) {
@@ -1850,7 +1867,7 @@ export default {
 
         this.blogArrFilterTop.push(this.blogArr[0]);
 
-        if (this.blogArr.length < 9) {
+        if (this.blogArr.length <= 9) {
           for (let i = 1; i < this.blogArr.length; i++) {
             this.blogArrFilter.push(this.blogArr[i]);
           }

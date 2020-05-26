@@ -279,8 +279,8 @@ export default {
       const form = this.form;
 
       if (form.rePsw != form.psw) {
-        document.getElementById("signupPsw").style.backgroundColor = "red";
-        document.getElementById("signupRePsw").style.backgroundColor = "red";
+        document.getElementById("signupPsw").style.backgroundColor = "#F7C845";
+        document.getElementById("signupRePsw").style.backgroundColor = "#F7C845";
       } else {
         document.getElementById("signupPsw").style.backgroundColor = "";
         document.getElementById("signupRePsw").style.backgroundColor = "";

@@ -7,13 +7,14 @@ try {
 
 
 
-    $sql = "insert into `item` (`no`, `name` ,`price`, `description`, `status`, `img`, `date`, `seller_no`) values(:no, :name, :price, :description, 1, :img, :date, :sellerno)";
+    $sql = "insert into `item` (`no`, `name` ,`price`, `infor`, `description`, `status`, `img`, `date`, `seller_no`) values(:no, :name, :price, :infor, :description, 1, :img, :date, :sellerno)";
     $item = $pdo->prepare($sql);
     $itemInfo = json_decode(file_get_contents("php://input"));
     $item ->bindValue(":no", $itemInfo->no);
     $item ->bindValue(":name", $itemInfo->name);
     $item ->bindValue(":price", $itemInfo->price);
     $item ->bindValue(":description", $itemInfo->description);
+    $item ->bindValue(":infor", $itemInfo->infor);
     $item ->bindValue(":img", $itemInfo->img);
     $item ->bindValue(":date", $itemInfo->date);
     $item ->bindValue(":sellerno", $itemInfo->sellerno);
