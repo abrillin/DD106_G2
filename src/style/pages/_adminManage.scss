@@ -65,13 +65,12 @@ $tagBGcolor: #E2E2E2;
         width: 85px;
         margin: 2px;
         // box-shadow: 3px 3px 2px #88888875;
-
         span {
 
           font-family: myFont;
           font-weight: 700;
         }
-
+        
         &:hover {
           background: $title1Color;
 
