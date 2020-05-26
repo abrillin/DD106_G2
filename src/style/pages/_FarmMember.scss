@@ -31,6 +31,7 @@ div.farmcontain {
 
 
     @include rwd(medium) {
+      font-size: 1.4rem;
       position: fixed;
       width: 200px;
       z-index: 50;
