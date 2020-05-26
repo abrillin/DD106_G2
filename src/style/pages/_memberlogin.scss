@@ -96,7 +96,6 @@ body {
       }
 
       > form.less-padding {
-        line-height: 2;
         text-align: center;
 
         > .formarea {
@@ -107,9 +106,9 @@ body {
           > .formtext {
             text-align: end;
             line-height: 2.5;
-            width: 140px;
+            width: 150px;
             @include rwd(small) {
-              width: 120px;
+              width: 130px;
             }
             label {
               color: #666;
@@ -122,23 +121,24 @@ body {
 
           > form.forminputbox {
             width: 280px;
-            line-height: 2.6;
+            line-height: 2.5;
             font-size: 1.6rem;
             @include rwd(small) {
+              font-size: 1.4rem;
               width: 260px;
-              line-height: 2.4;
+              line-height: 2.5;
             }
 
             .from_gender {
-              line-height: 2;
+              line-height: 2.5;
               margin: 0 auto;
               font-size: 1.6rem;
               color: #666;
               text-align: left;
               width: 150px;
               @include rwd(small) {
-                line-height: 2;
-                font-size: 1.6rem;
+                line-height: 2.5;
+                font-size: 1.4rem;
               }
             }
           }

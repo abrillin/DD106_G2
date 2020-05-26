@@ -61,12 +61,14 @@
               maxlength="500"
               placeholder="最大字數限制500"
               v-model="blog.content1"
+              style="resize:none"
             ></textarea>
             <textarea
               id="blogContent2"
               maxlength="500"
               placeholder="最大字數限制500"
               v-model="blog.content2"
+              style="resize:none"
             ></textarea>
 
             <div class="submit_button">
@@ -208,7 +210,10 @@ export default {
               return;
             } else {
               this.$http
-                .post(this.path + "api_farmBlogUpdate.php", JSON.stringify(this.blog))
+                .post(
+                  this.path + "api_farmBlogUpdate.php",
+                  JSON.stringify(this.blog)
+                )
                 .then((res) => {
                   const data = res.data;
                   if (data == 0) {
