@@ -16,6 +16,7 @@
           </li>
         </ul>
         <div class="star">
+          <span>評價</span>
           <img src="@/assets/Group 720.svg" v-if="member.reviewtotal / member.reviewcount > 0" />
           <img src="@/assets/Group 720.svg" v-if="member.reviewtotal / member.reviewcount > 1" />
           <img src="@/assets/Group 720.svg" v-if="member.reviewtotal / member.reviewcount > 2" />
