@@ -1659,7 +1659,7 @@
             //內文
             margin-top: 10px;
             padding-bottom: 10px;
-            line-height: 1.3;
+            line-height: 1.5;
             font-size: 16px;
             // background-color:#000;
             overflow: hidden;
