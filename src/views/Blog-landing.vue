@@ -1,5 +1,6 @@
 <template>
   <div class="blog-landing-outer">
+    <nav id="navbg"></nav>
     <img src="@/assets/blog-img/blog-bar.png" />
     <br />
     <div class="blog-landing-container-new">
@@ -308,6 +309,21 @@
 </template>
 <style lang="scss">
 .blog-landing-outer {
+  #navbg {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  box-sizing: border-box;
+  padding: 0px 1%;
+  top: 0px;
+  transition: all 0.5s;
+  height: 60px;
+  width: 100%;
+  z-index: 998;
+  background-color: rgba(251, 248, 239, 0.938);
+  }
+
   padding-top: 60px;
   background-color: #fbf8ef;
   box-sizing: border-box;
@@ -1060,6 +1076,7 @@ export default {
 
     this.$http.post(api, JSON.stringify(this.msgobj)).then((res) => {
       if (res.data != '') {
+      
         this.blogMsg = res.data[0];
 
         // console.log(this.blogMsg);
@@ -1081,7 +1098,9 @@ export default {
     let api2 = this.path + 'api_get_blog_content.php';
 
     this.$http.post(api2).then((res) => {
+
       if (res.data != '') {
+      
         this.previousValue = res.data;
         this.sellerNo=this.previousValue[0].s_no
         this.previousValue[0].img = this.previousValue[0].img.split(',');

@@ -8,11 +8,10 @@ div.MemberUpdate_right {
   padding: 60px 40px;
 
   @include rwd(medium) {
-    width: calc(100% - 200px);
+    width: 100%;
   }
 
   @include rwd(small) {
-    float: none;
     width: 100%;
     padding: 10% 5%;
   }
@@ -52,7 +51,7 @@ div.MemberUpdate_right {
 
         @include rwd(small) {
           width: 30%;
-          height: 450px;
+          height: 380px;
         }
 
         > ul {
@@ -74,18 +73,19 @@ div.MemberUpdate_right {
         text-align: start;
         background-color: white;
         box-sizing: border-box;
-        padding-top: 10px;
+        padding-top: 50px;
         padding-left: 30px;
         padding-right: 30px;
         width: 340px;
         height: 490px;
         line-height: 3.3;
+        
         @include rwd(medium) {
           width: 340px;
         }
         @include rwd(small) {
           width: 70%;
-          height: 500px;
+          height: 430px;
           line-height: 3;
           font-size: 1.4rem;
         }
@@ -116,6 +116,11 @@ div.MemberUpdate_right {
           line-height: 2.3;
           cursor: pointer;
           font-size: 1.6rem;
+
+          @include rwd(small) {
+            width: 50px;
+            font-size: 1.4rem;
+          }
 
           &:hover {
             background-color: #fca87c;

@@ -6,6 +6,7 @@
     </div>
 
     <div class="search-wrapper">
+      <nav id="nav_bg"></nav>
       <img src="../assets/search_logo_img.svg" width="170px" height="100px" class="search_logo" />
       <div class="search-section">
         <div class="searchbar">
@@ -97,8 +98,17 @@
             </div>
 
             <div class="CommodityItemBuyBox">
-              <a href="#" class="CommodityItemBuyBtn card_btn" @mouseenter="btnFun">加入購物籃</a>
-              <a href="#" class="CommodityItemBuyBtn Buynow">直接購買</a>
+              <a
+                href="javascript:"
+                class="CommodityItemBuyBtn card_btn"
+                @mouseenter="btnFun"
+                @click="addCart(shopitem[0].no)"
+              >加入購物籃</a>
+              <a
+                href="javascript:"
+                class="CommodityItemBuyBtn Buynow"
+                @click="addCart(shopitem[0].no, 't')"
+              >直接購買</a>
             </div>
 
             <div class="CommodityDetailsBox">
@@ -231,8 +241,18 @@
               </div>
 
               <div class="buy">
-                <a href="#" class="card_btn" @mouseenter="btnFun">加入購物籃</a>
-                <a href="#" class="card_btn" @mouseenter="btnFun">直接購買</a>
+                <a
+                  href="javascript:"
+                  class="card_btn"
+                  @mouseenter="btnFun"
+                  @click="addCart(i.no)"
+                >加入購物籃</a>
+                <a
+                  href="javascript:"
+                  class="card_btn"
+                  @mouseenter="btnFun"
+                  @click="addCart(i.no, 't')"
+                >直接購買</a>
               </div>
             </div>
           </div>
@@ -254,6 +274,24 @@
     </div>
   </main>
 </template>
+
+<style lang="scss" scoped>
+.navbg {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  box-sizing: border-box;
+  padding: 0px 1%;
+  top: 0px;
+  transition: all 0.5s;
+  height: 60px;
+  width: 100%;
+  z-index: 998;
+  background-color: rgba(251, 248, 239, 0.925);
+  transition: ease 0.3s;
+}
+</style>
 
 <script>
 let panelView = -1127;
@@ -284,6 +322,19 @@ export default {
     };
   },
   mounted() {
+    // 如果高度<search-wrapper，navbg就不顯示，>search-wrapper時顯示
+    $(function() {
+      $(window).scroll(function() {
+        var scrollVal = $(this).scrollTop();
+        if (scrollVal > 100) {
+          /* 如果滾動的物件捲動 > 500 則觸發指定的動作。*/
+          $("#nav_bg").addClass("navbg");
+        } else {
+          $("#nav_bg").removeClass("navbg");
+        }
+      });
+    });
+
     function $id(id) {
       return document.getElementById(id);
     }
@@ -310,17 +361,14 @@ export default {
     //資料庫連結
     const api = this.path + "api_shopseller.php";
 
-    this.$http
-      .post(api)
-      .then(res => {
-        this.Commoditycontent = res.data["mem"];
+    this.$http.post(api).then(res => {
+      this.Commoditycontent = res.data["mem"];
 
-        if (res.data != "") {
-          this.shopitem = res.data["itemContent"];
-        } else {
-        }
-      })
-      .catch(err => console.log(err));
+      if (res.data != "") {
+        this.shopitem = res.data["itemContent"];
+      } else {
+      }
+    });
   },
 
   //資料庫連結
@@ -350,6 +398,46 @@ export default {
     },
     gotop: function() {
       $(window).scrollTop(0);
+    },
+    addCart(no, page = "f") {
+      const api = this.path + "api_memberStatus.php";
+
+      this.$http.post(api).then(res => {
+        const data = res.data;
+
+        // 檢查有沒有登入
+        if (data == "") {
+          alert("請先登入果粉！");
+          this.$router.push({ name: "LoginMember" });
+        } else {
+          // 宣告 localStorage 物件
+          let storage = localStorage;
+
+          // 檢查 localStorage 有沒有 itemNo 欄位，如果沒有就新增
+          if (storage["itemNo"] == null) {
+            storage["itemNo"] = "";
+          }
+
+          // 獲取 itemNo 欄位的資料，以 , 符號切成陣列
+          const itmeArr = storage["itemNo"].split(",");
+
+          function change(e) {
+            if (page == "t") {
+              e.push("/main/member/shopping");
+            }
+          }
+
+          // 如果編號 no 的商品沒有在 itemArr 這個陣列裡面，則新增進去
+          if (itmeArr.indexOf(no) != -1) {
+            alert("已經加入購物車了！");
+            change(this.$router);
+          } else {
+            storage["itemNo"] += no + ",";
+            this.$emit("setCart", storage["itemNo"]);
+            change(this.$router);
+          }
+        }
+      });
     }
   }
 };

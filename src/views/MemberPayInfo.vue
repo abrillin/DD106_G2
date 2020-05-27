@@ -117,8 +117,10 @@ export default {
               itemArr.splice(index, 1);
               if (itemArr.toString() != "") {
                 storage["itemNo"] = itemArr.toString() + ",";
+                this.$emit("setCart", storage["itemNo"]);
               } else {
                 storage["itemNo"] = "";
+                this.$emit("setCart", storage["itemNo"]);
               }
             }
 
