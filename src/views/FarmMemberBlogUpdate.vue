@@ -58,15 +58,15 @@
             </select>
             <textarea
               id="blogContent1"
-              maxlength="500"
-              placeholder="最大字數限制500"
+              maxlength="400"
+              placeholder="最大字數限制400"
               v-model="blog.content1"
               style="resize:none"
             ></textarea>
             <textarea
               id="blogContent2"
-              maxlength="500"
-              placeholder="最大字數限制500"
+              maxlength="400"
+              placeholder="最大字數限制400"
               v-model="blog.content2"
               style="resize:none"
             ></textarea>
@@ -77,7 +77,7 @@
                 type="button"
                 value="送出"
                 id="blogSubmit"
-                @click="blogUpdate"
+                @click="blogUpdate($event)"
               />
             </div>
           </form>
@@ -129,7 +129,6 @@ export default {
     });
   },
 
-  mounted() {},
   methods: {
     changeMainPic: function(e) {
       document.getElementById("mainPic").src = "";
@@ -165,6 +164,11 @@ export default {
         }
       }
     },
+
+    // blogContent: function($event) {
+    //   $event.target.value.replace(/\r?\n/g, "<br />");
+    //   console.log($event.target.value);
+    // },
     blogUpdate: function() {
       this.blog.content1 = this.blog.content1.replace(/\r?\n/g, "<br />");
       this.blog.content2 = this.blog.content2.replace(/\r?\n/g, "<br />");
