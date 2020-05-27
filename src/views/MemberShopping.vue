@@ -192,7 +192,18 @@ export default {
 
       itemArr.splice(index, 1);
 
-      storage["itemNo"] = itemArr.toString() + ",";
+      if (itemArr.toString() == "") {
+        storage["itemNo"] = itemArr.toString();
+
+        // console.log(itemArr.toString());
+
+        this.$emit("setCart", storage["itemNo"]);
+      } else {
+        storage["itemNo"] = itemArr.toString() + ",";
+
+        // console.log(itemArr.toString());
+        this.$emit("setCart", storage["itemNo"]);
+      }
     },
     nextPage: function(no) {
       let cart = [];
@@ -207,7 +218,7 @@ export default {
             j++;
           }
         }
-        this.$emit("setCart", cart);
+        this.$emit("setPayCart", cart);
         this.$router.push({ name: "CheckInfo" });
       }
     }

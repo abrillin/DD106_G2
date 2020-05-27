@@ -30,7 +30,7 @@
           </li>
           <!-- <li>
             <router-link to="/main/member/update">個人資料修改</router-link>
-          </li> -->
+          </li>-->
           <li>
             <router-link to="/main/member/order">訂單管理</router-link>
           </li>
@@ -60,8 +60,9 @@
     </aside>
     <keep-alive>
       <router-view
-        @setCart="setCart"
-        :getCart="cart"
+        @setCart="navCart"
+        @setPayCart="setCart"
+        :getCart="payCart"
         @setInfo="setInfo"
         :getInfo="info"
       />
@@ -82,17 +83,17 @@ export default {
         gender: "",
         phone: "",
         email: "",
-        img: "",
+        img: ""
       },
       farmStatus: false,
-      cart: {},
-      info: {},
+      payCart: {},
+      info: {}
     };
   },
   created() {
     const api = this.path + "api_memberStatus.php";
 
-    this.$http.post(api).then((res) => {
+    this.$http.post(api).then(res => {
       const data = res.data;
 
       if (data != "") {
@@ -103,13 +104,13 @@ export default {
           nick: data.nick,
           phone: 0 + data.phone,
           email: data.email,
-          gender: data.gender,
+          gender: data.gender
         };
 
         // 檢查是否註冊過果農身分
         const apiCheck = this.path + "api_checkFarm.php";
 
-        this.$http.post(apiCheck, JSON.stringify(this.member)).then((res) => {
+        this.$http.post(apiCheck, JSON.stringify(this.member)).then(res => {
           const data = res.data;
 
           if (data == 0) {
@@ -174,7 +175,7 @@ export default {
 
       this.$http
         .post(this.path + "api_changeMemPic.php", this.formData)
-        .then((res) => {
+        .then(res => {
           const data = res.data;
           this.member.img = this.img + data[1];
           // 如果上傳成功
@@ -184,7 +185,7 @@ export default {
                 this.path + "api_getMemPic.php",
                 JSON.stringify(this.member)
               )
-              .then((res) => {
+              .then(res => {
                 const r = res.data;
 
                 // 如果更新成功
@@ -201,11 +202,14 @@ export default {
         });
     },
     setCart: function(cart) {
-      this.cart = cart;
+      this.payCart = cart;
     },
     setInfo: function(info) {
       this.info = info;
     },
+    navCart: function(str) {
+      this.$emit("setCart", str);
+    }
     // checkFarm: function() {
     //   const api = this.path + "api_checkFarm.php";
 
@@ -239,6 +243,6 @@ export default {
     //     }
     //   });
     // }
-  },
+  }
 };
 </script>

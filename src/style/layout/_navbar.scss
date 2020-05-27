@@ -25,6 +25,7 @@
 
   div.cart {
     padding: 0px 10px;
+    position: relative;
 
     @include rwd(small) {
       padding: 0 5px;
@@ -42,6 +43,34 @@
       @include rwd(small) {
         width: 32px;
         padding-bottom: 24px;
+      }
+
+      >.cart-amount {
+
+        position: absolute;
+
+        height: 20px;
+        line-height: 20px;
+        width: 20px;
+
+        text-align: center;
+
+        right: -5px;
+        bottom: -5px;
+
+        border-radius: 50%;
+
+        color: white;
+        background: red;
+
+        @include rwd(small) {
+          height: 15px;
+          line-height: 15px;
+          width: 15px;
+
+          right: 0px;
+          bottom: 0px;
+        }
       }
     }
   }
@@ -107,7 +136,7 @@
       }
     }
 
-    > a {
+    >a {
       color: black;
       text-decoration: none;
     }
@@ -377,6 +406,7 @@
   }
 
   .hamburger.is-active {
+
     .hamburger-inner,
     .hamburger-inner::before,
     .hamburger-inner::after {

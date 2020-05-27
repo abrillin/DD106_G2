@@ -166,7 +166,7 @@
               <router-link to="/main/shopitem">
                 <div class="card_img_box" @click="changePage(i)">
                   <img
-                    :src="'./api/' + shopcommodityfilter[index].img.split(',')[0]"
+                    :src="'/api/' + shopcommodityfilter[index].img.split(',')[0]"
                     width="100%"
                     height="100%"
                   />
@@ -202,7 +202,12 @@
                     @click="addCart(i.no)"
                     @mouseenter="btnFun"
                   >加入購物籃</a>
-                  <a href="javascript:" class="card_btn" @mouseenter="btnFun">直接購買</a>
+                  <a
+                    href="javascript:"
+                    class="card_btn"
+                    @mouseenter="btnFun"
+                    @click="addCart(i.no, 't')"
+                  >直接購買</a>
                 </div>
               </div>
             </div>
@@ -229,7 +234,7 @@
               <div class="hot_commodity_text">{{ h.name }}</div>
             </router-link>
             <span>{{ index + 1 }}</span>
-            <img class="hot_commodity_bg" :src="`/api/` + shopcommodity.pro[0].img.split(',')[0]" />
+            <img class="hot_commodity_bg" :src="'/api/' + shopcommodity.pro[0].img.split(',')[0]" />
           </div>
         </div>
         <div class="hot_commodity_filter-status">
@@ -517,8 +522,8 @@ export default {
       const firstItem = this.currentPage * SHOP_PAGE_ITEMS;
       const lastItem = Math.min(firstItem + 8, this.totalItems);
 
-      console.log(firstItem);
-      console.log(lastItem);
+      // console.log(firstItem);
+      // console.log(lastItem);
 
       for (let i = firstItem; i < lastItem; i++) {
         this.shopcommodityfilter.push(this.shopcommodity.pro[i]);
@@ -577,7 +582,7 @@ export default {
         }
       });
     },
-    addCart(no) {
+    addCart(no, page = "f") {
       const api = this.path + "api_memberStatus.php";
 
       this.$http.post(api).then(res => {
@@ -599,11 +604,20 @@ export default {
           // 獲取 itemNo 欄位的資料，以 , 符號切成陣列
           const itmeArr = storage["itemNo"].split(",");
 
+          function change(e) {
+            if (page == "t") {
+              e.push("/main/member/shopping");
+            }
+          }
+
           // 如果編號 no 的商品沒有在 itemArr 這個陣列裡面，則新增進去
           if (itmeArr.indexOf(no) != -1) {
             alert("已經加入購物車了！");
+            change(this.$router);
           } else {
             storage["itemNo"] += no + ",";
+            this.$emit("setCart", storage["itemNo"]);
+            change(this.$router);
           }
         }
       });
