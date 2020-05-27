@@ -94,10 +94,14 @@
           <div class="blog-landing-greenline"></div>
         </div>
         <div>
-          <span>其他關連文章</span>
-          <span @click="goToRelatedPage" v-for="(i, index) in otherLink" :key="index">{{
-            i.title
-          }}</span>
+          <span>其他關聯文章</span>
+          <span
+            class="otherLink"
+            @click="goToRelatedPage(i, $event)"
+            v-for="(i, index) in otherLink"
+            :key="index"
+            >{{ i.title }}</span
+          >
         </div>
       </div>
 
@@ -310,18 +314,18 @@
 <style lang="scss">
 .blog-landing-outer {
   #navbg {
-  position: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  box-sizing: border-box;
-  padding: 0px 1%;
-  top: 0px;
-  transition: all 0.5s;
-  height: 60px;
-  width: 100%;
-  z-index: 998;
-  background-color: rgba(251, 248, 239, 0.938);
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    box-sizing: border-box;
+    padding: 0px 1%;
+    top: 0px;
+    transition: all 0.5s;
+    height: 60px;
+    width: 100%;
+    z-index: 998;
+    background-color: rgba(251, 248, 239, 0.938);
   }
 
   padding-top: 60px;
@@ -571,6 +575,19 @@
         color: black;
         font-size: 16px;
       }
+      .otherLink {
+        cursor: pointer;
+      }
+      .otherLink:hover {
+        color: rgb(255, 255, 255);
+        font-size: 20px;
+        // background-color: rgb(51, 51, 51);
+        text-shadow: rgb(0, 0, 0) 0px 0px 1px,
+          rgb(0, 0, 0) 0px 0px 2px, rgb(0, 0, 0) 0px 0px 3px,
+          rgb(255, 45, 149) 0px 0px 4px, rgb(255, 45, 149) 0px 0px 5px,
+          rgb(255, 45, 149) 0px 0px 6px, rgb(255, 45, 149) 0px 0px 7px,
+          rgb(255, 45, 149) 0px 0px 8px;
+      }
     }
   }
   > div:nth-child(2) {
@@ -695,8 +712,8 @@
           // background-color: #000;
           height: 385px;
           position: relative;
-          @media (max-width: 576px) {
-            height: 600px;
+          @media (max-width: 1500px) {
+            height: auto;
           }
           &::before {
             content: '';
@@ -737,8 +754,8 @@
           //文章二區
           height: 385px;
           padding-bottom: 11%;
-          @media (max-width: 576px) {
-            height: 600px;
+          @media (max-width: 1500px) {
+            height: auto;
           }
         }
       }
@@ -780,10 +797,11 @@
             // top: 10%;
             right: 1%;
             top: 18%;
+            // border: solid black 3px;
             @media (max-width: 1500px) {
               // border: solid 5px #000;
               position: relative;
-              right: 0%;
+              right: 2.5%;
               top: 0%;
               display: grid;
               grid-template-columns: repeat(2, 1fr);
@@ -797,9 +815,12 @@
               grid-template-columns: repeat(1, 1fr);
             }
             > img {
+              // border: solid 3px red;
               margin-bottom: 4%;
-              width: 100%;
-              max-height: 300px;
+              width: 90%;
+              height: 100%;
+              // max-height: 300px;
+              min-height: 200px;
               object-fit: cover;
               @media (max-width: 1500px) {
                 // border: solid 5px #000;
@@ -1059,7 +1080,7 @@ export default {
       thumbSrc: '../assets/blog-img/blog-thumb.png',
       clapQuantity: null,
       otherLink: null,
-      sellerNo:null,
+      sellerNo: null,
     };
   },
   created() {
@@ -1076,7 +1097,6 @@ export default {
 
     this.$http.post(api, JSON.stringify(this.msgobj)).then((res) => {
       if (res.data != '') {
-      
         this.blogMsg = res.data[0];
 
         // console.log(this.blogMsg);
@@ -1098,11 +1118,9 @@ export default {
     let api2 = this.path + 'api_get_blog_content.php';
 
     this.$http.post(api2).then((res) => {
-
       if (res.data != '') {
-      
         this.previousValue = res.data;
-        this.sellerNo=this.previousValue[0].s_no
+        this.sellerNo = this.previousValue[0].s_no;
         this.previousValue[0].img = this.previousValue[0].img.split(',');
 
         for (let j = 0; j < this.previousValue[0].img.length; j++) {
@@ -1110,13 +1128,14 @@ export default {
             this.img + this.previousValue[0].img[j];
         }
         let api5 = this.path + 'api_blog_other_link.php';
-    this.$http.post(api5, JSON.stringify({no: this.sellerNo})).then((res) => {
-      console.log(res.data);
-      
-      this.otherLink = res.data;
-    });
+        this.$http
+          .post(api5, JSON.stringify({no: this.sellerNo}))
+          .then((res) => {
+            // console.log(res.data);
+
+            this.otherLink = res.data;
+          });
       }
-      
     });
 
     let api3 = this.path + 'api_detect_blog_clap.php';
@@ -1137,8 +1156,6 @@ export default {
       this.clapQuantity = res.data;
       // console.log(this.clapQuantity);
     });
-    
-
   },
   updated() {
     // let api = this.path + 'api_blog_clap_count.php';
@@ -1147,7 +1164,6 @@ export default {
     //   console.log(this.clapQuantity);
     // });
     // let api5 = this.path + 'api_blog_other_link.php';
-
     // this.$http.post(api5,this.previousValue[0].s_no).then((res) => {
     //   console.log(res.data);
     // });
@@ -1251,9 +1267,26 @@ export default {
         });
       }
     },
-    goToRelatedPage(){
-      
-    }
+    goToRelatedPage(i, e) {
+      let api = this.path + 'api_get_msg_ot.php';
+      // console.log(i.no)
+      this.$http.post(api, i.no).then((res) => {
+        if (res.data != '') {
+          console.log(res.data);
+          history.go(0);
+        } else {
+          history.go(0);
+          // alert('請先登入');
+        }
+      });
+    },
   },
+  // watch: {
+
+  //   blogMsgFilter(newValue, oldValue){
+
+  //     this.blogMsgFilter = newValue;
+  //   }
+  // },
 };
 </script>

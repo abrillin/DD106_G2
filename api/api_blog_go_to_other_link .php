@@ -13,8 +13,8 @@ try{
   
 
 
-        // $sql = "SELECT * from `blog` where `no` = :blogNo";
-        $sql = "SELECT b.content,b.content2,b.date,b.img,b.no,b.title,m.nick,m.img m_img,s.review_total,s.review_count FROM blog b JOIN seller s ON b.seller_no=s.no JOIN member m ON s.member_no=m.no WHERE b.status=1 AND s.no =:seller_no LIMIT 3"; 
+        $sql = "SELECT * from `blog` where `no` = :blogNo";
+        $sql = "SELECT b.content,b.content2,b.date,b.img,b.no,b.title,m.nick,m.img m_img,s.review_total,s.review_count FROM blog b JOIN seller s ON b.seller_no=s.no JOIN member m ON s.member_no=m.no WHERE b.status=1 AND s.no =:seller_no"; 
         $get_blog_content = $pdo->prepare($sql); 
         $get_blog_content->bindValue(":seller_no",$frontInfo->no);
         $get_blog_content->execute(); 

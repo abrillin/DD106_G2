@@ -189,9 +189,10 @@
                   </form>
                 </div>
                 <div>
-                  <span>周末親子旅遊</span>
-                  <span>桃園山區採果</span>
-                  <span>桃園山區採果</span>
+                  <span>番茄</span>
+                  <span>香蕉</span>
+                  <span>鳳梨</span>
+                  <span>黑魔王</span>
                 </div>
               </div>
             </div>
@@ -344,7 +345,7 @@
                         <img src="@/assets/blog-img/blog-tag.png" />
                         <span>知識類</span>
                       </div>
-                      <p>{{ i.content }}</p>
+                      <p v-html="i.content"></p>
                     </div>
                     <div>
                       <div>
@@ -1233,8 +1234,11 @@
       > div:nth-child(1) {
         // background-color: #000;
         //籃子圖
+        margin-right: 20px;
         > img {
           width: 100%;
+          // position: relative;
+          // right: 20px;
         }
       }
       > div:nth-child(2) {
@@ -1471,7 +1475,7 @@
           }
           > p:nth-child(2) {
             margin-top: 5px;
-            font-size: 16px;
+            font-size: 20px;
             display: -webkit-box;
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 1;
@@ -1510,6 +1514,8 @@
           > p:nth-child(4) {
             color: #000;
             font-size: 16px;
+            line-height: 1.5;
+            letter-spacing: 1px;
             margin-top: 20px;
             padding-right: 50px;
             width: 100%;
@@ -1680,7 +1686,7 @@
           > p:nth-child(2) {
             //標題
             margin-top: 5px;
-            font-size: 16px;
+            font-size: 20px;
             // line-height: 1.5;
           }
           > div:nth-child(3) {
@@ -1694,10 +1700,11 @@
             margin-top: 10px;
             padding-bottom: 10px;
             line-height: 1.5;
+            letter-spacing: 1px;
             font-size: 16px;
             // background-color:#000;
             overflow: hidden;
-            height: 92px;
+            height: 90px;
             text-overflow: ellipsis;
             display: -webkit-box;
             -webkit-box-orient: vertical;
