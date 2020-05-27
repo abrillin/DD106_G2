@@ -401,20 +401,20 @@ export default {
 
   updated() {
     // console.log(this.shopcommodityfilter[0].img.split(",")[0]);
-    console.log(this.shopcommodity);
-    for (let i = 0; i < SHOP_INDICATOR_SIZE; i++) {
-      document
-        .getElementsByClassName("page-item")
-        [i].setAttribute("class", "page-item");
-      if (
-        document.getElementsByClassName("page-item")[i].textContent ==
-        this.currentPage + 1
-      ) {
-        document
-          .getElementsByClassName("page-item")
-          [i].classList.add("currentPagecolor");
-      }
-    }
+    // console.log(this.shopcommodity);
+    // for (let i = 0; i < SHOP_INDICATOR_SIZE; i++) {
+    //   document
+    //     .getElementsByClassName("page-item")
+    //     [i].setAttribute("class", "page-item");
+    //   if (
+    //     document.getElementsByClassName("page-item")[i].textContent ==
+    //     this.currentPage + 1
+    //   ) {
+    //     document
+    //       .getElementsByClassName("page-item")
+    //       [i].classList.add("currentPagecolor");
+    //   }
+    // }
   },
 
   methods: {
@@ -516,6 +516,10 @@ export default {
       this.shopcommodityfilter = [];
       const firstItem = this.currentPage * SHOP_PAGE_ITEMS;
       const lastItem = Math.min(firstItem + 8, this.totalItems);
+
+      console.log(firstItem);
+      console.log(lastItem);
+
       for (let i = firstItem; i < lastItem; i++) {
         this.shopcommodityfilter.push(this.shopcommodity.pro[i]);
       }

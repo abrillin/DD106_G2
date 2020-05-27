@@ -32,7 +32,7 @@
               </div>
 
               <div class="td img">
-                <img :src="'./api/'+item.img" />
+                <img :src="item.img" />
               </div>
               <div class="td name">{{ item.name }}</div>
               <div class="td price">$ {{ item.price }}</div>
@@ -115,10 +115,19 @@ export default {
             // this.arr[i].item[j]["amount"] = 1;
 
             // 只取第一張圖片
-            this.arr[i].item[j]["img"] = data[i].item[j].img.split(",")[0];
+            this.arr[i].item[j]["img"] =
+              this.img + data[i].item[j].img.split(",")[0];
           }
         }
       });
+    } else {
+      this.arr = [
+        {
+          seller: "",
+          item: [],
+          total: 0
+        }
+      ];
     }
   },
   methods: {
