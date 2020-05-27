@@ -40,8 +40,7 @@
                     class="statusBtnLabel"
                     :for="'switch' + item.no"
                     @click="toggleStatus(item.no, item.status)"
-                    >Toggle</label
-                  >
+                  >Toggle</label>
                 </td>
               </tr>
             </thead>
@@ -57,17 +56,17 @@ import $ from "jquery";
 export default {
   data() {
     return {
-      member: [],
+      member: []
     };
   },
-  created() {
+  activated() {
     const api = this.path + "api_farmorder.php";
-    this.$http.post(api).then((res) => {
+    this.$http.post(api).then(res => {
       const data = res.data;
       if (data != "") {
         this.member = data;
 
-        data.forEach((i) => {
+        data.forEach(i => {
           i.status = parseInt(i.status);
         });
       }
@@ -100,7 +99,7 @@ export default {
 
       // 發送到 DB 更新商品的狀態
       this.$http.post(api, JSON.stringify({ no: no, status: s }));
-    },
-  },
+    }
+  }
 };
 </script>
