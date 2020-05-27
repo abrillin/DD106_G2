@@ -174,7 +174,7 @@
               <div>{{ i.nick }}</div>
               <div>{{ i.date }}</div>
             </div>
-            <div style="font-size:16px;">{{ i.content }}</div>
+            <div v-html="i.content" style="font-size:16px;"></div>
             <div>
               <img
                 @click="report(i)"
@@ -577,6 +577,7 @@
       }
       .otherLink {
         cursor: pointer;
+        color: #007552;
       }
       .otherLink:hover {
         color: rgb(255, 255, 255);
@@ -584,7 +585,7 @@
         // background-color: rgb(51, 51, 51);
         text-shadow: rgb(0, 0, 0) 0px 0px 1px,
           rgb(0, 0, 0) 0px 0px 2px, rgb(0, 0, 0) 0px 0px 3px,
-          rgb(255, 45, 149) 0px 0px 4px, rgb(255, 45, 149) 0px 0px 5px,
+          rgb(255, 255, 255) 0px 0px 4px, rgb(255, 255, 255) 0px 0px 5px,
           rgb(255, 45, 149) 0px 0px 6px, rgb(255, 45, 149) 0px 0px 7px,
           rgb(255, 45, 149) 0px 0px 8px;
       }
