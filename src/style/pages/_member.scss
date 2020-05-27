@@ -92,14 +92,14 @@ div.membercontain {
         & li:nth-child(2) {
           margin-top: 20px;
           display: block;
-          color: #666;
+          color: #333;
           @include rwd(medium) {
             font-size: 1.4rem;
           }
         }
         & li:nth-child(3) {
           display: block;
-          color: #666;
+          color: #333;
           @include rwd(medium) {
             font-size: 1.4rem;
           }

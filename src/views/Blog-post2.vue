@@ -1,5 +1,6 @@
 <template>
   <div class="blog-post-ousidebox">
+     <nav id="navbg"></nav>
     <img src="@/assets/blog-img/blog-bar.png" />
     <br />
     <div class="blog-landing-container">
@@ -485,7 +486,24 @@
 </template>
 
 <style lang="scss">
+
+
 .blog-post-ousidebox {
+  #navbg {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  box-sizing: border-box;
+  padding: 0px 1%;
+  top: 0px;
+  transition: all 0.5s;
+  height: 60px;
+  width: 100%;
+  z-index: 998;
+  background-color: rgba(251, 248, 239, 0.938);
+  }
+
   padding-top: 60px;
   // overflow: hidden;
   background-color: #fbf8ef;
@@ -842,8 +860,8 @@
       //   padding-right: 0px;
       // }
       &::-webkit-scrollbar {
-        background-color: lightgray;
-        width: 10px;
+        background-color: rgba(211, 211, 211, 0.411);
+        width: 6px;
         height: 10px;
         border-radius: 5px;
         background-clip: padding-box;
