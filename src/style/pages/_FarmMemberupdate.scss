@@ -125,11 +125,11 @@ div.farmupdate {
         display: inline-block;
         background-color: #f7c845;
         width: 150px;
-        height: 590px;
+        height: 620px;
         padding-top: 10px;
         @include rwd(small) {
           width: 30%;
-          height: 540px;
+          height: 520px;
         }
 
         > ul {
@@ -154,7 +154,7 @@ div.farmupdate {
         padding-left: 30px;
         padding-right: 30px;
         width: 340px;
-        height: 600px;
+        height: 630px;
         line-height: 3.3;
 
         @include rwd(medium) {
@@ -163,7 +163,7 @@ div.farmupdate {
         @include rwd(small) {
           font-size: 1.4rem;
           width: 70%;
-          height: 550px;
+          height: 530px;
           line-height: 3;
         }
 
@@ -183,6 +183,7 @@ div.farmupdate {
           float: right;
           border: none;
           margin-top: 30px;
+          margin-left: 10px;
           display: block;
           border-radius: 5px;
           background-color: #007552;

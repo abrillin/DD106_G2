@@ -29,14 +29,22 @@
               placeholder="最大字數限制20"
               v-model="blog.title"
             />
-            <label for="blogMainImg" class="blogMainImg" @change="changeMainPic">
+            <label
+              for="blogMainImg"
+              class="blogMainImg"
+              @change="changeMainPic"
+            >
               <span>上傳主要圖片</span>
               <input type="file" id="blogMainImg" accept="image/*" />
               <div>
                 <img src id="mainPic" />
               </div>
             </label>
-            <label for="blogOtherImg" class="blogOtherImg" @change="changeOtherPic">
+            <label
+              for="blogOtherImg"
+              class="blogOtherImg"
+              @change="changeOtherPic"
+            >
               <span>上傳其他圖片</span>
               <input type="file" id="blogOtherImg" accept="image/*" multiple />
 
@@ -50,29 +58,37 @@
             <select id="blogTags" v-model="tags.selected">
               <option value="0">請選擇</option>
               <option v-for="i in productTags" :value="i.no" :key="i.no">
-                {{
-                i.name
-                }}
+                {{ i.name }}
               </option>
             </select>
             <textarea
               id="blogContent1"
-              maxlength="500"
-              placeholder="最大字數限制500"
+              maxlength="400"
+              placeholder="最大字數限制400"
               v-model="blog.content1"
               style="resize:none"
             ></textarea>
             <textarea
               id="blogContent2"
-              maxlength="500"
-              placeholder="最大字數限制500"
+              maxlength="400"
+              placeholder="最大字數限制400"
               v-model="blog.content2"
               style="resize:none"
             ></textarea>
 
             <div class="submit_button">
-              <input type="button" value="取消" id="blogCancel" @click="$router.go(-1)" />
-              <input type="button" value="送出" id="blogSubmit" @click="blogUpdate" />
+              <input
+                type="button"
+                value="取消"
+                id="blogCancel"
+                @click="$router.go(-1)"
+              />
+              <input
+                type="button"
+                value="送出"
+                id="blogSubmit"
+                @click="blogUpdate"
+              />
             </div>
           </form>
         </div>
@@ -90,7 +106,7 @@ export default {
       productTags: [],
       tags: {
         selected: 0,
-        no: 0
+        no: 0,
       },
       blog: {
         sellerno: 0,
@@ -99,8 +115,8 @@ export default {
         title: "",
         date: "",
         img: "",
-        no: ""
-      }
+        no: "",
+      },
     };
   },
   activated() {
@@ -108,7 +124,7 @@ export default {
 
     this.blog = {};
 
-    this.$http.post(api).then(res => {
+    this.$http.post(api).then((res) => {
       const data = res.data;
       if (data[0].no != null) {
         this.blog.no = parseInt(data[0].no) + 1;
@@ -119,13 +135,12 @@ export default {
       this.productTags = data[1];
     });
     const api2 = this.path + "api_farmStatus.php";
-    this.$http.post(api2).then(res => {
+    this.$http.post(api2).then((res) => {
       const data = res.data;
       this.blog.sellerno = data.no;
     });
   },
 
-  mounted() {},
   methods: {
     changeMainPic: function(e) {
       document.getElementById("mainPic").src = "";
@@ -161,6 +176,11 @@ export default {
         }
       }
     },
+
+    // blogContent: function($event) {
+    //   $event.target.value.replace(/\r?\n/g, "<br />");
+    //   console.log($event.target.value);
+    // },
     blogUpdate: function() {
       this.blog.content1 = this.blog.content1.replace(/\r?\n/g, "<br />");
       this.blog.content2 = this.blog.content2.replace(/\r?\n/g, "<br />");
@@ -197,7 +217,7 @@ export default {
       } else {
         this.$http
           .post(this.path + "api_uploadBlogFiles.php", this.formData)
-          .then(res => {
+          .then((res) => {
             this.blog.img = res.data.toString();
             for (let i in this.blog) {
               if (this.blog[i] == "") {
@@ -214,7 +234,7 @@ export default {
                   this.path + "api_farmBlogUpdate.php",
                   JSON.stringify(this.blog)
                 )
-                .then(res => {
+                .then((res) => {
                   const data = res.data;
                   if (data == 0) {
                     alert("上傳失敗！");
@@ -225,7 +245,7 @@ export default {
                       this.path + "api_farmBlogtagsUpdate.php",
                       JSON.stringify(this.tags)
                     )
-                    .then(res => {
+                    .then((res) => {
                       const data = res.data;
 
                       if (data == 0) {
@@ -240,7 +260,7 @@ export default {
             }
           });
       }
-    }
-  }
+    },
+  },
 };
 </script>

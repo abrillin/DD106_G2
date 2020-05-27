@@ -34,22 +34,22 @@ div.farminfo {
       padding-top: 10%;
     }
 
-    >.bottom_form {
+    > .bottom_form {
       display: inline-block;
       width: 490px;
       border: 1px solid #666;
 
-      @include rwd(small) {
-        width: 287px;
+      @include rwd(medium) {
+        width: 320px;
       }
 
-      >.person_left {
+      > .person_left {
         vertical-align: top;
         display: inline-block;
         background-color: #f7c845;
         width: 150px;
-        height: 730px;
-        padding-top: 10px;
+        height: 700px;
+        padding-top: 50px;
         line-height: 2;
 
         @include rwd(medium) {
@@ -59,7 +59,7 @@ div.farminfo {
 
         > ul {
           > li {
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             color: #333;
             line-height: 3.3;
 
@@ -71,7 +71,7 @@ div.farminfo {
         }
       }
 
-      >.person_right {
+      > .person_right {
         display: inline-block;
         text-align: start;
         background-color: white;
@@ -80,7 +80,7 @@ div.farminfo {
         padding-left: 30px;
         padding-right: 30px;
         width: 340px;
-        height: 740px;
+        height: 750px;
 
         line-height: 3.3;
 
@@ -92,10 +92,8 @@ div.farminfo {
           padding-right: 10px;
         }
 
-        >ul {
-
-          >li {
-
+        > ul {
+          > li {
             font-size: 1.8rem;
 
             @include rwd(medium) {
@@ -104,7 +102,7 @@ div.farminfo {
           }
         }
 
-        >p {
+        > p {
           overflow: hidden;
           padding: 0;
 
@@ -116,13 +114,15 @@ div.farminfo {
         p.content_seller {
           word-break: break-all;
           font-size: 1.8rem;
+          line-height: 1.5;
+          margin-top: 20px;
 
           @include rwd(medium) {
             font-size: 1.4rem;
           }
         }
 
-        >.submit_button {
+        > .submit_button {
           position: absolute;
           border-radius: 5px;
           background-color: #007552;
@@ -133,12 +133,12 @@ div.farminfo {
           line-height: 2.3;
         }
 
-        >.btn {
+        > .btn {
           font-family: myFont;
           font-size: 1.6rem;
           float: right;
           border: none;
-          margin-top: 20px;
+          margin-top: 50px;
           display: block;
           border-radius: 5px;
           background-color: #007552;
