@@ -56,7 +56,7 @@
     </section>
 
     <div class="search-wrapper">
-      <nav></nav>
+      <nav id="nav_bg"></nav>
       <img src="../assets/search_logo_img.svg" width="170px" height="100px" class="search_logo" />
       <div class="search-section">
         <div class="searchbar">
@@ -343,7 +343,7 @@
   width: 100%;
   z-index: 998;
   background-color: rgba(251, 248, 239, 0.89);
-  transition: ease .3s;
+  transition: ease 0.3s;
 }
 </style>
 
@@ -610,20 +610,19 @@ export default {
     }
   },
   mounted() {
-
-     // 如果高度<search-wrapper，navbg就不顯示，>search-wrapper時顯示
+    // 如果高度< search-wrapper，navbg就不顯示，> search-wrapper時顯示
     $(function() {
       $(window).scroll(function() {
         var scrollVal = $(this).scrollTop();
         if (scrollVal > 580) {
           /* 如果滾動的物件捲動 > 500 則觸發指定的動作。*/
-          $("div > nav").addClass("navbg");
+          $("#nav_bg").addClass("navbg");
         } else {
-          $("div > nav").removeClass("navbg");
+          $("#nav_bg").removeClass("navbg");
         }
       });
     });
-    
+
     //------側邊欄開關------
     function showHideHam() {
       let filterPanel = document.getElementById("filterPanel");
@@ -645,7 +644,6 @@ export default {
         y: 0
       });
     });
-
   }
 };
 </script>
