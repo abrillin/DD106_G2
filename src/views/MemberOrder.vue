@@ -209,17 +209,18 @@ export default {
       });
     });
   },
+
   updated() {
     if (this.order[this.i].payment_status == 0) {
       $(".starSend").attr("disabled", true);
     } else if (this.order[this.i].payment_status == 1) {
       $(".Evaluation_text").text("付款完成可以給評價了");
+      $(".starSend").attr("disabled", false);
       if (this.order[this.i].status == 1) {
         $(".Evaluation_text").text("評價完成");
         $(".starSend").attr("disabled", true);
       }
     }
-
     document.getElementsByClassName("pageon")[this.i].classList.add("-on");
   },
   mounted() {},
