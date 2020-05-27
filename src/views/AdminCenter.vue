@@ -7,7 +7,9 @@
           <span class="admin_name">
             園長
             <span class="adminNameColor">{{admin.name}}</span> 巡邏中
-            <button @click="logOut"><span> 下班 </span></button>
+            <button @click="logOut">
+              <span>下班</span>
+            </button>
           </span>
 
           <li>
@@ -58,12 +60,12 @@ export default {
     logOut() {
       // 抓sessoin裡面的管理員資料
       // 如果有東西就清除 接著回到導入頁
-      const api = this.path + "api_memberStatus.php";
+      const api = this.path + "api_adminStatus.php";
 
       this.$http.post(api).then(res => {
         const data = res.data;
 
-        if (data == "") {
+        if (data == 1) {
           const api = this.path + "api_adminLogOut.php";
 
           this.$http.post(api);
