@@ -48,8 +48,8 @@ div.farminfo {
         display: inline-block;
         background-color: #f7c845;
         width: 150px;
-        height: 650px;
-        padding-top: 50px;
+        height: 730px;
+        padding-top: 10px;
         line-height: 2;
 
         @include rwd(medium) {
@@ -57,10 +57,10 @@ div.farminfo {
           height: 580px;
         }
 
-        >ul {
-          >li {
-            font-size: 1.8rem;
-            color: #666;
+        > ul {
+          > li {
+            font-size: 1.6rem;
+            color: #333;
             line-height: 3.3;
 
             @include rwd(medium) {
@@ -80,7 +80,8 @@ div.farminfo {
         padding-left: 30px;
         padding-right: 30px;
         width: 340px;
-        height: 700px;
+        height: 740px;
+
         line-height: 3.3;
 
         @include rwd(medium) {
@@ -135,7 +136,6 @@ div.farminfo {
         >.btn {
           font-family: myFont;
           font-size: 1.6rem;
-
           float: right;
           border: none;
           margin-top: 20px;

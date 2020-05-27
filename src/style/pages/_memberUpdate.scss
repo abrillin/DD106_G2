@@ -46,8 +46,8 @@ div.MemberUpdate_right {
         display: inline-block;
         background-color: #f7c845;
         width: 150px;
-        height: 520px;
-        padding-top: 50px;
+        height: 480px;
+        padding-top: 10px;
 
         @include rwd(small) {
           width: 30%;
@@ -77,7 +77,7 @@ div.MemberUpdate_right {
         padding-left: 30px;
         padding-right: 30px;
         width: 340px;
-        height: 570px;
+        height: 490px;
         line-height: 3.3;
         
         @include rwd(medium) {

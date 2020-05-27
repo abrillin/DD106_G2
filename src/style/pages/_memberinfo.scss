@@ -56,10 +56,11 @@ div.information {
           height: 380px;
         }
 
-        >ul {
-          >li {
-            font-size: 1.8rem;
-            color: #666;
+
+        > ul {
+          > li {
+            font-size: 1.6rem;
+            color: #333;
 
             @include rwd(medium) {
               font-size: 1.4rem;
