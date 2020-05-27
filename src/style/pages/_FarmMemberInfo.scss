@@ -1,6 +1,6 @@
 div.farminfo {
   display: block;
-  color: #007552;
+  color: #666;
   background-color: #fbf8ef;
   width: calc(100% - 250px);
   box-sizing: border-box;
@@ -17,7 +17,7 @@ div.farminfo {
     padding: 10% 5%;
   }
 
-  .farminfo_head {
+  .farminfo_head_text {
     color: #f7c845;
     font-size: 3rem;
   }
@@ -76,7 +76,7 @@ div.farminfo {
         text-align: start;
         background-color: white;
         box-sizing: border-box;
-        padding-top: 50px;
+        padding-top: 10px;
         padding-left: 30px;
         padding-right: 30px;
         width: 340px;

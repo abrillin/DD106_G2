@@ -1,6 +1,6 @@
 div.information {
   display: block;
-  color: #007552;
+  color: #666;
   background-color: #fbf8ef;
   width: calc(100% - 250px);
   float: right;
@@ -47,8 +47,8 @@ div.information {
         display: inline-block;
         background-color: #f7c845;
         width: 150px;
-        height: 500px;
-        padding-top: 50px;
+        height: 480px;
+        padding-top: 10px;
         line-height: 3.3;
 
         @include rwd(medium) {
@@ -68,20 +68,21 @@ div.information {
           }
         }
       }
-
+      
       > .information_right {
         display: inline-block;
         text-align: start;
         background-color: white;
         box-sizing: border-box;
-        padding-top: 50px;
+        padding-top: 10px;
         padding-left: 30px;
         padding-right: 30px;
         width: 340px;
-        height: 550px;
+        height: 490px;
         line-height: 3.3;
 
         @include rwd(medium) {
+
           width: 70%;
           height: 430px;
           width: 220px;
@@ -99,9 +100,9 @@ div.information {
         }
 
         > .btn {
+          
           font-family: myFont;
           font-size: 1.6rem;
-
           float: right;
           border: none;
           margin-top: 20px;

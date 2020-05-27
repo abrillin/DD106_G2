@@ -54,7 +54,7 @@
             </div>
           </div>
           <div>
-            <span>+追蹤</span>
+            <span style="display:none;">+追蹤</span>
           </div>
           <div class="blog-landing-greenline"></div>
           <div class="blog-landing-greenline"></div>
@@ -92,7 +92,7 @@
         <div>
           <div>
             <div>{{ previousValue[0].content }}</div>
-            <div>{{ previousValue[0].content }}</div>
+            <div>{{ previousValue[0].content2 }}</div>
           </div>
           <div>
             <div>
@@ -114,14 +114,23 @@
         <div>
           <div>
             <span>留言{{ blogMsg.length }}筆</span>
-            <img src="@/assets/blog-img/blog-thumb.png" />
-            <span>301</span>
+            <img
+              @click="clap"
+              v-if="imgStatus == true"
+              src="../assets/blog-img/blog-thumb.png"
+            />
+            <img
+              @click="clap"
+              v-else
+              src="../assets/blog-img/hollowThumb.png"
+            />
+            <span>{{ clapQuantity[0].count }}</span>
           </div>
         </div>
         <div>
           <div v-for="(i, index) in blogMsgFilter" :key="index">
             <div>
-              <img src="@/assets/blog-img/blog-someoneshead.png" />
+              <img :src="i.img" />
             </div>
             <div>
               <div>{{ i.nick }}</div>
@@ -628,8 +637,11 @@
           // background-color: #000;
           height: 385px;
           position: relative;
+          @media (max-width: 576px) {
+            height: 600px;
+          }
           &::before {
-            content: "";
+            content: '';
             width: 90%;
             border-bottom: solid #007552 2px;
             position: absolute;
@@ -646,7 +658,7 @@
             }
           }
           &::after {
-            content: "";
+            content: '';
             width: 75%;
             border-bottom: solid #007552 2px;
             position: absolute;
@@ -667,6 +679,9 @@
           //文章二區
           height: 385px;
           padding-bottom: 11%;
+          @media (max-width: 576px) {
+            height: 600px;
+          }
         }
       }
       > div:nth-child(2) {
@@ -747,7 +762,7 @@
       padding-bottom: 20px;
       position: relative;
       &::after {
-        content: "";
+        content: '';
         width: 90%;
         border-top: 2px solid #007552;
         position: absolute;
@@ -755,7 +770,7 @@
         right: 5%;
       }
       &::before {
-        content: "";
+        content: '';
         width: 90%;
         border-top: 2px solid #007552;
         position: absolute;
@@ -807,14 +822,23 @@
           grid-template-columns: 15% 75% 10%;
           grid-template-rows: repeat(2, 1fr);
           grid-template-areas:
-            "aa1 aa2 aa4"
-            "aa1 aa3 aa4";
+            'aa1 aa2 aa4'
+            'aa1 aa3 aa4';
         }
         > div:nth-child(1) {
           // background-color: #000;
+          // border: lightslategrey 2px solid;
+          width: 50px;
+          height: 50px;
           @media (max-width: 992px) {
             grid-area: aa1;
             align-self: center;
+          }
+          > img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
           }
         }
         > div:nth-child(2) {
@@ -830,7 +854,7 @@
             grid-area: aa2;
           }
           &::after {
-            content: "";
+            content: '';
             position: absolute;
             top: 0px;
             right: 10%;
@@ -842,7 +866,7 @@
           }
           @media (max-width: 576px) {
             &::before {
-              content: "";
+              content: '';
               position: absolute;
               top: 3px;
               left: -10px;
@@ -956,9 +980,9 @@
 }
 </style>
 <script>
-import $ from "jquery";
+import $ from 'jquery';
 export default {
-  props: { blogInfProps: Array, c: String },
+  props: {blogInfProps: Array, c: String},
   data() {
     return {
       msgobj: {
@@ -973,6 +997,9 @@ export default {
       previousItem: [],
       reportRadio: null,
       beReported: null,
+      imgStatus: false,
+      thumbSrc: '../assets/blog-img/blog-thumb.png',
+      clapQuantity: null,
     };
   },
   created() {
@@ -985,10 +1012,11 @@ export default {
     this.msgobj.date = today;
     // console.log(this.previousValue);
 
-    let api = this.path + "api_get_msg.php";
+    let api = this.path + 'api_get_msg.php';
 
     this.$http.post(api, JSON.stringify(this.msgobj)).then((res) => {
-      if (res.data != "") {
+      if (res.data != '') {
+      
         this.blogMsg = res.data[0];
 
         // console.log(this.blogMsg);
@@ -1007,12 +1035,14 @@ export default {
       }
     });
 
-    let api2 = this.path + "api_get_blog_content.php";
+    let api2 = this.path + 'api_get_blog_content.php';
 
     this.$http.post(api2).then((res) => {
-      if (res.data != "") {
+
+      if (res.data != '') {
+      
         this.previousValue = res.data;
-        this.previousValue[0].img = this.previousValue[0].img.split(",");
+        this.previousValue[0].img = this.previousValue[0].img.split(',');
 
         for (let j = 0; j < this.previousValue[0].img.length; j++) {
           this.previousValue[0].img[j] =
@@ -1020,6 +1050,34 @@ export default {
         }
       }
     });
+
+    let api3 = this.path + 'api_detect_blog_clap.php';
+
+    this.$http.post(api3).then((res) => {
+      if (res.data == 1) {
+        this.imgStatus = true;
+      } else {
+        this.imgStatus = false;
+      }
+      console.log(typeof res.data);
+
+      // console.log(res.data);
+    });
+
+    let api4 = this.path + 'api_blog_clap_count.php';
+
+    this.$http.post(api4).then((res) => {
+      this.clapQuantity = res.data;
+      console.log(this.clapQuantity);
+    });
+  },
+  updated() {
+    // let api = this.path + 'api_blog_clap_count.php';
+
+    // this.$http.post(api).then((res) => {
+    //   this.clapQuantity = res.data;
+    //   console.log(this.clapQuantity);
+    // });
   },
   computed: {
     // loadComment() {
@@ -1029,14 +1087,9 @@ export default {
   },
   methods: {
     comment() {
-      let msg = document.getElementsByTagName("textarea")[0].value;
+      let msg = document.getElementsByTagName('textarea')[0].value;
       this.msgobj.content = msg;
-
-      // let blogNo = this.blogInfProps.no;
-      // this.msgobj.blogNo = blogNo;
-      // console.log(this.msgobj);
-
-      let api = this.path + "api_blog_msg.php";
+      let api = this.path + 'api_blog_msg.php';
 
       this.$http.post(api, JSON.stringify(this.msgobj));
       var pathtopage = window.location.href;
@@ -1064,15 +1117,15 @@ export default {
       // console.log(e);
       // alert(e)
       document
-        .getElementsByClassName("reportLightBox")[0]
-        .setAttribute("style", "display: block;");
+        .getElementsByClassName('reportLightBox')[0]
+        .setAttribute('style', 'display: block;');
       // this.beReported=null
       this.beReported = e;
     },
     closeLightBox() {
       document
-        .getElementsByClassName("reportLightBox")[0]
-        .setAttribute("style", "display: none;");
+        .getElementsByClassName('reportLightBox')[0]
+        .setAttribute('style', 'display: none;');
     },
     sendReport() {
       var nStartTime = new Date(Date.now());
@@ -1083,19 +1136,47 @@ export default {
       this.beReported.reason = this.reportRadio;
       // console.log(this.beReported);
       if (this.beReported.reason == null) {
-        alert("請填寫原因");
+        alert('請填寫原因');
       } else {
-        let api = this.path + "api_report_msg.php";
+        let api = this.path + 'api_report_msg.php';
 
         this.$http.post(api, JSON.stringify(this.beReported)).then((res) => {
           if (res.data == 1) {
-            alert("您已經檢舉過了！");
+            alert('您已經檢舉過了！');
             // console.log(res.data);
           } else {
-            alert("檢舉成功！");
+            alert('檢舉成功！');
           }
         });
         this.closeLightBox();
+      }
+    },
+    clap() {
+      if (this.imgStatus == false) {
+        let api = this.path + 'api_blog_clap.php';
+
+        this.$http.post(api).then((res) => {
+          if (res.data != 123) {
+        this.clapQuantity[0].count=parseInt(this.clapQuantity[0].count)+1
+        this.imgStatus = true;
+            
+          }else{
+            alert("請先登入")
+          }
+        });
+      } else {
+        let api = this.path + 'api_blog_unclap.php';
+
+        this.$http.post(api).then((res) => {
+          if (res.data != 123) {
+            this.clapQuantity[0].count=parseInt(this.clapQuantity[0].count)-1
+        this.imgStatus = false;
+          }else{
+            alert("請先登入")
+
+          }
+        });
+        
       }
     },
   },

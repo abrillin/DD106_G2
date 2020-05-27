@@ -7,36 +7,21 @@
         </div>
         <ul>
           <li class="nick">
-            暱稱:
+            暱稱：
             <span>{{ member.nick }}</span>
           </li>
           <li class="fans">
-            身分別:
+            身分別：
             <span>果農</span>
           </li>
         </ul>
         <div class="star">
-          <span>評價</span>
-          <img
-            src="@/assets/Group 720.svg"
-            v-if="member.reviewtotal / member.reviewcount > 0"
-          />
-          <img
-            src="@/assets/Group 720.svg"
-            v-if="member.reviewtotal / member.reviewcount > 1"
-          />
-          <img
-            src="@/assets/Group 720.svg"
-            v-if="member.reviewtotal / member.reviewcount > 2"
-          />
-          <img
-            src="@/assets/Group 720.svg"
-            v-if="member.reviewtotal / member.reviewcount > 3"
-          />
-          <img
-            src="@/assets/Group 720.svg"
-            v-if="member.reviewtotal / member.reviewcount > 4"
-          />
+          <span>評價 </span>
+          <img src="@/assets/Group 720.svg" v-if="member.reviewtotal / member.reviewcount > 0" />
+          <img src="@/assets/Group 720.svg" v-if="member.reviewtotal / member.reviewcount > 1" />
+          <img src="@/assets/Group 720.svg" v-if="member.reviewtotal / member.reviewcount > 2" />
+          <img src="@/assets/Group 720.svg" v-if="member.reviewtotal / member.reviewcount > 3" />
+          <img src="@/assets/Group 720.svg" v-if="member.reviewtotal / member.reviewcount > 4" />
           <span>({{ member.reviewcount }})</span>
         </div>
       </div>
@@ -44,7 +29,7 @@
       <div class="Farminfo">
         <ul>
           <li>
-            <router-link to="/main/farm/info">個人資料</router-link>
+            <router-link to="/main/farm/info">個人資訊</router-link>
           </li>
           <!-- <li>
             <router-link to="/main/farm/update">個人資料修改</router-link>

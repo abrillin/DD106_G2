@@ -1,7 +1,7 @@
 <template>
   <div>
     <main class="blogComReportMainContent">
-      <h1 class="manageTitle">果農日誌 管理中心 -- 留言檢舉處理</h1>
+      <h1 class="manageTitle">果農日誌 管理中心   <span class="manageSubTitle">| 留言檢舉處理</span></h1>
       <section class="blogComReportTableSection">
         <div class="bcr-header">
           <table class="blogComReportManageTab" cellpadding="0" cellspacing="0" border="0">
