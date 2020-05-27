@@ -25,8 +25,12 @@
                   <tr>
                     <td>{{ this.order[this.i].date }}</td>
                     <td>$ {{ this.order[this.i].total }}</td>
-                    <td v-if="this.order[this.i].payment_status == 1">已付款</td>
-                    <td v-if="this.order[this.i].payment_status == 0">未付款</td>
+                    <td v-if="this.order[this.i].payment_status == 1">
+                      已付款
+                    </td>
+                    <td v-if="this.order[this.i].payment_status == 0">
+                      未付款
+                    </td>
                     <td v-if="this.order[this.i].status == 1">完成</td>
                     <td v-if="this.order[this.i].status == 0">未完成</td>
                   </tr>
@@ -96,11 +100,36 @@
             </div>
             <div class="star">
               <div class="starimg">
-                <img :src="this.srcon" value="1" @click="staron($event)" class="staron" />
-                <img :src="this.srcoff" value="2" @click="staron($event)" class="staron" />
-                <img :src="this.srcoff" value="3" @click="staron($event)" class="staron" />
-                <img :src="this.srcoff" value="4" @click="staron($event)" class="staron" />
-                <img :src="this.srcoff" value="5" @click="staron($event)" class="staron" />
+                <img
+                  :src="this.srcon"
+                  value="1"
+                  @click="staron($event)"
+                  class="staron"
+                />
+                <img
+                  :src="this.srcoff"
+                  value="2"
+                  @click="staron($event)"
+                  class="staron"
+                />
+                <img
+                  :src="this.srcoff"
+                  value="3"
+                  @click="staron($event)"
+                  class="staron"
+                />
+                <img
+                  :src="this.srcoff"
+                  value="4"
+                  @click="staron($event)"
+                  class="staron"
+                />
+                <img
+                  :src="this.srcoff"
+                  value="5"
+                  @click="staron($event)"
+                  class="staron"
+                />
               </div>
 
               <div class="Evaluation_submit">
@@ -123,7 +152,9 @@
             :key="i.no"
             @click="changepage($event)"
             class="pageon"
-          >{{ index + 1 }}</li>
+          >
+            {{ index + 1 }}
+          </li>
           <li @click="nextpage($event)">&gt;</li>
         </ul>
       </div>
@@ -143,41 +174,42 @@ export default {
       star: {
         star: 1,
         orderno: 0,
-        sellerno: 0
+        sellerno: 0,
       },
       total: 0,
       i: 0,
       memno: "",
       order: [[]],
-      item: []
+      item: [],
     };
   },
 
   created() {
     const api = this.path + "api_memberstatus.php";
 
-    this.$http.post(api).then(res => {
+    this.$http.post(api).then((res) => {
       this.memno = res.data.no;
 
       const api2 = this.path + "api_memberOrder.php";
 
-      this.$http.post(api2, JSON.stringify(this.memno)).then(res => {
+      this.$http.post(api2, JSON.stringify(this.memno)).then((res) => {
         if (res.data.length == 0) {
           $(".Order_bottom").hide();
           $(".order_zero").show();
         } else {
           this.order = res.data;
+          const api3 = this.path + "api_orderItem.php";
+
+          this.$http
+            .post(api3, JSON.stringify(this.order[this.i].no))
+            .then((res) => {
+              this.item = res.data;
+            });
         }
       });
     });
   },
   updated() {
-    const api = this.path + "api_orderItem.php";
-
-    this.$http.post(api, JSON.stringify(this.order[this.i].no)).then(res => {
-      this.item = res.data;
-    });
-
     if (this.order[this.i].payment_status == 0) {
       $(".starSend").attr("disabled", true);
     } else if (this.order[this.i].payment_status == 1) {
@@ -197,7 +229,7 @@ export default {
       this.star.orderno = this.order[this.i].no;
       this.$http
         .post(this.path + "api_orderReview.php", JSON.stringify(this.star))
-        .then(res => {
+        .then((res) => {
           if (res.data == 0) {
             alert("評價成功");
             this.$router.go(0);
@@ -267,7 +299,7 @@ export default {
         document.getElementsByClassName("staron")[4].src = this.srcon;
         this.star.star = 5;
       }
-    }
-  }
+    },
+  },
 };
 </script>
