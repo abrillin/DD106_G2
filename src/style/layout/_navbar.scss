@@ -9,7 +9,6 @@
   height: 60px;
   width: 100%;
   z-index: 999;
-  // background-color: rgba(255,255,255,.2);
 
   #home {
     position: absolute;
@@ -262,7 +261,7 @@
               }
 
               .pactive {
-                background-color: #666;
+                background-color: #85a392;
                 color: #fbf8ef;
               }
 
@@ -280,7 +279,7 @@
     }
 
     li.dropdown:hover div.title_text p {
-      background-color: #666;
+      background-color: #85a392;
       color: #fbf8ef;
     }
 

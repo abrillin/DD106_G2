@@ -151,12 +151,12 @@ export default {
           });
         } else {
           $("aside.left").addClass("popover");
+          $("button.btn_drawer").on("click", function() {
+            $("aside.left").toggleClass("popover");
+          });
         }
       } else {
         $("aside.left").removeClass("popover");
-        $("button.btn_drawer").on("click", function() {
-          $("aside.left").toggleClass("popover");
-        });
       }
     });
   },

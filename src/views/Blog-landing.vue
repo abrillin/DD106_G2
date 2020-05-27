@@ -1016,6 +1016,7 @@ export default {
 
     this.$http.post(api, JSON.stringify(this.msgobj)).then((res) => {
       if (res.data != '') {
+      
         this.blogMsg = res.data[0];
 
         // console.log(this.blogMsg);
@@ -1037,7 +1038,9 @@ export default {
     let api2 = this.path + 'api_get_blog_content.php';
 
     this.$http.post(api2).then((res) => {
+
       if (res.data != '') {
+      
         this.previousValue = res.data;
         this.previousValue[0].img = this.previousValue[0].img.split(',');
 
