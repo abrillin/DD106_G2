@@ -1272,7 +1272,7 @@ export default {
       // console.log(i.no)
       this.$http.post(api, i.no).then((res) => {
         if (res.data != '') {
-          console.log(res.data);
+          // console.log(res.data);
           history.go(0);
         } else {
           history.go(0);

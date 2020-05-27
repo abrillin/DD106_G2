@@ -43,12 +43,12 @@
                 嚴選台灣出產高甜度愛文芒果，為夏季芒果推薦 “TOP 1”
                 因果皮紅潤且果肉金黃，又有“太陽果”之稱。
                 <br />
-                <router-link class="product-details" to="/main/shopitem">商品詳情...</router-link>
+                <!-- <router-link class="product-details" to="/main/shopitem">商品詳情...</router-link> -->
               </p>
-              <div class="item_buy-box">
+              <!-- <div class="item_buy-box">
                 <a href="#" class="item_btn" @mouseenter="btnFun">加入購物籃</a>
                 <a href="#" class="item_btn buyNow">直接購買</a>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -78,7 +78,7 @@
               />
             </button>
           </div>
-          <div class="hot-words">
+          <!-- <div class="hot-words">
             <div class="hot-words_list">
               <a class="hot-words_item" href>週末親子旅遊</a>
               <a class="hot-words_item" href>桃園山區採果</a>
@@ -86,7 +86,7 @@
               <a class="hot-words_item" href>愛文芒果</a>
               <a class="hot-words_item" href>大湖草莓</a>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

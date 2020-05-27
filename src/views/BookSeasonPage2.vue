@@ -85,11 +85,6 @@
 </template>
 <script>
 export default {
-  props: { page: Number },
-  methods: {
-    content: function() {
-      console.log(this.page);
-    }
-  }
+  props: { page: Number }
 };
 </script>
