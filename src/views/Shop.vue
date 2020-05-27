@@ -165,7 +165,7 @@
               <router-link to="/main/shopitem">
                 <div class="card_img_box" @click="changePage(i)">
                   <img
-                    :src="'./api/' + shopcommodityfilter[index].img.split(',')[0]"
+                    :src="'/api/' + shopcommodityfilter[index].img.split(',')[0]"
                     width="100%"
                     height="100%"
                   />
@@ -228,7 +228,7 @@
               <div class="hot_commodity_text">{{ h.name }}</div>
             </router-link>
             <span>{{ index + 1 }}</span>
-            <img class="hot_commodity_bg" :src="`/api/` + shopcommodity.pro[0].img.split(',')[0]" />
+            <img class="hot_commodity_bg" :src="'/api/' + shopcommodity.pro[0].img.split(',')[0]" />
           </div>
         </div>
         <div class="hot_commodity_filter-status">
@@ -498,8 +498,8 @@ export default {
       const firstItem = this.currentPage * SHOP_PAGE_ITEMS;
       const lastItem = Math.min(firstItem + 8, this.totalItems);
 
-      console.log(firstItem);
-      console.log(lastItem);
+      // console.log(firstItem);
+      // console.log(lastItem);
 
       for (let i = firstItem; i < lastItem; i++) {
         this.shopcommodityfilter.push(this.shopcommodity.pro[i]);
@@ -585,6 +585,7 @@ export default {
             alert("已經加入購物車了！");
           } else {
             storage["itemNo"] += no + ",";
+            this.$emit("setCart", storage["itemNo"]);
           }
         }
       });
