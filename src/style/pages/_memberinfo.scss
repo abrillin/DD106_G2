@@ -16,12 +16,12 @@ div.information {
     padding: 10% 5%;
   }
 
-  >.information_head {
+  > .information_head {
     color: #f7c845;
     font-size: 3rem;
   }
 
-  >.information_bottom {
+  > .information_bottom {
     display: block;
     text-align: center;
     padding-top: 100px;
@@ -33,7 +33,7 @@ div.information {
       padding-top: 10%;
     }
 
-    >.bottom_form {
+    > .bottom_form {
       display: inline-block;
       width: 490px;
       border: 1px solid #666;
@@ -42,12 +42,12 @@ div.information {
         width: 320px;
       }
 
-      >.person_left {
+      > .person_left {
         vertical-align: top;
         display: inline-block;
         background-color: #f7c845;
         width: 150px;
-        height: 480px;
+        height: 500px;
         padding-top: 10px;
         line-height: 3.3;
 
@@ -56,10 +56,9 @@ div.information {
           height: 380px;
         }
 
-
         > ul {
           > li {
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             color: #333;
 
             @include rwd(medium) {
@@ -70,7 +69,7 @@ div.information {
         }
       }
 
-      >.information_right {
+      > .information_right {
         display: inline-block;
         text-align: start;
         background-color: white;
@@ -79,11 +78,10 @@ div.information {
         padding-left: 30px;
         padding-right: 30px;
         width: 340px;
-        height: 490px;
+        height: 510px;
         line-height: 3.3;
 
         @include rwd(medium) {
-
           width: 70%;
           height: 390px;
           width: 220px;
@@ -92,10 +90,8 @@ div.information {
           padding-right: 10px;
         }
 
-        >ul {
-
-          >li {
-
+        > ul {
+          > li {
             font-size: 1.8rem;
 
             @include rwd(medium) {
@@ -112,8 +108,7 @@ div.information {
         //   }
         // }
 
-        >.btn {
-
+        > .btn {
           font-family: myFont;
           font-size: 1.6rem;
           float: right;
