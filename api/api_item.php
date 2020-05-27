@@ -11,11 +11,11 @@ try {
     $_SESSION["key"] = $frontInfo;
 
     if ($_SESSION["key"] == 0) {
-        $sql = "select * from `item` ORDER BY `date` DESC";
+        $sql = "select * from `item` where status = 1 ORDER BY `date` DESC";
     } else if ($_SESSION["key"] == 1) {
-        $sql = "SELECT item.*, seller.review_total, seller.review_count,seller.review_total / seller.review_count AS review_average FROM item INNER JOIN seller INNER JOIN member WHERE seller.member_no = member.no AND item.seller_no = seller.no ORDER BY review_average DESC";
+        $sql = "SELECT item.*, seller.review_total, seller.review_count,seller.review_total / seller.review_count AS review_average FROM item INNER JOIN seller INNER JOIN member WHERE seller.member_no = member.no AND item.seller_no = seller.no and item.status = 1 ORDER BY review_average DESC";
     } else if ($_SESSION["key"] == 2) {
-        $sql = "select * from `item` ORDER BY `price` DESC";
+        $sql = "select * from `item` where status = 1 ORDER BY `price` DESC";
     };
 
 
