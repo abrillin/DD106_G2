@@ -492,8 +492,6 @@
 </template>
 
 <style lang="scss">
-
-
 .blog-post-ousidebox {
   #navbg {
   position: fixed;
