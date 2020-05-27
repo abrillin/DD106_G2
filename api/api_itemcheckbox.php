@@ -13,11 +13,11 @@ try {
     $_SESSION["key"] = $frontInfo;
 
     if ($_SESSION["key"] == 0) {
-        $sql = "select * from `item` ORDER BY `price` DESC";
+        $sql = "SELECT * FROM item i join item_tag t on i.no = t.item_no  WHERE t.tag_no = 21";
     } else if ($_SESSION["key"] == 1) {
-        $sql = "select * from `item` ORDER BY `name` DESC";
+        $sql = "SELECT * FROM item i join item_tag t on i.no = t.item_no  WHERE t.tag_no = 22";
     } else if ($_SESSION["key"] == 2) {
-        $sql = "select * from `item` ORDER BY `date` DESC";
+        $sql = "SELECT * FROM item i join item_tag t on i.no = t.item_no  WHERE t.tag_no = 23";
     };
 
 
