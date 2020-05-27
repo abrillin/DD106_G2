@@ -36,21 +36,53 @@
       <div>
         <div>
           <div>
-            <img
-              src="@/assets/blog-img/blog-someoneshead.png"
-              class="blog-landing-aunt"
-            />
+            <img :src="previousValue[0].m_img" class="blog-landing-aunt" />
           </div>
           <div>
             <div>
-              <span>蓬蓬草莓姨</span>
+              <span>{{ previousValue[0].nick }}</span>
             </div>
             <div>
-              <img src="@/assets/blog-img/blog-star.png" />
-              <img src="@/assets/blog-img/blog-star.png" />
-              <img src="@/assets/blog-img/blog-star.png" />
-              <img src="@/assets/blog-img/blog-star.png" />
-              <img src="@/assets/blog-img/blog-star.png" />
+              <img
+                src="@/assets/Group 720.svg"
+                v-if="
+                  previousValue[0].review_total /
+                    previousValue[0].review_count >
+                    0
+                "
+              />
+              <img
+                src="@/assets/Group 720.svg"
+                v-if="
+                  previousValue[0].review_total /
+                    previousValue[0].review_count >
+                    1
+                "
+              />
+              <img
+                src="@/assets/Group 720.svg"
+                v-if="
+                  previousValue[0].review_total /
+                    previousValue[0].review_count >
+                    2
+                "
+              />
+              <img
+                src="@/assets/Group 720.svg"
+                v-if="
+                  previousValue[0].review_total /
+                    previousValue[0].review_count >
+                    3
+                "
+              />
+              <img
+                src="@/assets/Group 720.svg"
+                v-if="
+                  previousValue[0].review_total /
+                    previousValue[0].review_count >
+                    4
+                "
+              />
             </div>
           </div>
           <div>
@@ -61,9 +93,10 @@
           <div class="blog-landing-greenline"></div>
         </div>
         <div>
-          <span>其他文章連結</span>
-          <span>其他文章連結</span>
-          <span>其他文章連結</span>
+          <span>其他關連文章</span>
+          <span @click="goToRelatedPage" v-for="(i, index) in otherLink" :key="index">{{
+            i.title
+          }}</span>
         </div>
       </div>
 
@@ -91,8 +124,8 @@
         </div>
         <div>
           <div>
-            <div>{{ previousValue[0].content }}</div>
-            <div>{{ previousValue[0].content2 }}</div>
+            <div v-html="previousValue[0].content"></div>
+            <div v-html="previousValue[0].content2"></div>
           </div>
           <div>
             <div>
@@ -398,6 +431,9 @@
       display: grid;
       grid-template-columns: 0.5fr 1.2fr 1fr;
       padding: 30% 50px 0px 50px;
+      min-width: 50px;
+      min-height: 50px;
+
       @media (max-width: 1500px) {
         padding: 30% 10px 0px 10px;
       }
@@ -406,7 +442,10 @@
         padding: 30% 10px 10px 10px;
       }
       .blog-landing-aunt {
-        width: 100%;
+        object-fit: cover;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
       }
       @media (max-width: 1300px) {
         & {
@@ -417,7 +456,10 @@
           justify-content: center;
 
           .blog-landing-aunt {
-            width: 100%;
+            object-fit: cover;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
           }
         }
       }
@@ -1000,6 +1042,8 @@ export default {
       imgStatus: false,
       thumbSrc: '../assets/blog-img/blog-thumb.png',
       clapQuantity: null,
+      otherLink: null,
+      sellerNo:null,
     };
   },
   created() {
@@ -1039,13 +1083,21 @@ export default {
     this.$http.post(api2).then((res) => {
       if (res.data != '') {
         this.previousValue = res.data;
+        this.sellerNo=this.previousValue[0].s_no
         this.previousValue[0].img = this.previousValue[0].img.split(',');
 
         for (let j = 0; j < this.previousValue[0].img.length; j++) {
           this.previousValue[0].img[j] =
             this.img + this.previousValue[0].img[j];
         }
+        let api5 = this.path + 'api_blog_other_link.php';
+    this.$http.post(api5, JSON.stringify({no: this.sellerNo})).then((res) => {
+      console.log(res.data);
+      
+      this.otherLink = res.data;
+    });
       }
+      
     });
 
     let api3 = this.path + 'api_detect_blog_clap.php';
@@ -1056,7 +1108,6 @@ export default {
       } else {
         this.imgStatus = false;
       }
-      console.log(typeof res.data);
 
       // console.log(res.data);
     });
@@ -1065,15 +1116,21 @@ export default {
 
     this.$http.post(api4).then((res) => {
       this.clapQuantity = res.data;
-      console.log(this.clapQuantity);
+      // console.log(this.clapQuantity);
     });
+    
+
   },
   updated() {
     // let api = this.path + 'api_blog_clap_count.php';
-
     // this.$http.post(api).then((res) => {
     //   this.clapQuantity = res.data;
     //   console.log(this.clapQuantity);
+    // });
+    // let api5 = this.path + 'api_blog_other_link.php';
+
+    // this.$http.post(api5,this.previousValue[0].s_no).then((res) => {
+    //   console.log(res.data);
     // });
   },
   computed: {
@@ -1154,11 +1211,11 @@ export default {
 
         this.$http.post(api).then((res) => {
           if (res.data != 123) {
-        this.clapQuantity[0].count=parseInt(this.clapQuantity[0].count)+1
-        this.imgStatus = true;
-            
-          }else{
-            alert("請先登入")
+            this.clapQuantity[0].count =
+              parseInt(this.clapQuantity[0].count) + 1;
+            this.imgStatus = true;
+          } else {
+            alert('請先登入');
           }
         });
       } else {
@@ -1166,16 +1223,18 @@ export default {
 
         this.$http.post(api).then((res) => {
           if (res.data != 123) {
-            this.clapQuantity[0].count=parseInt(this.clapQuantity[0].count)-1
-        this.imgStatus = false;
-          }else{
-            alert("請先登入")
-
+            this.clapQuantity[0].count =
+              parseInt(this.clapQuantity[0].count) - 1;
+            this.imgStatus = false;
+          } else {
+            alert('請先登入');
           }
         });
-        
       }
     },
+    goToRelatedPage(){
+      
+    }
   },
 };
 </script>

@@ -97,7 +97,7 @@
             </div>
             <div>
               <img src="@/assets/blog-img/blog-thumb.png" />
-              <span>{{blogArrFilterTop[0].clapCount}}</span>
+              <span>{{ blogArrFilterTop[0].clapCount }}</span>
             </div>
             <div>
               {{ blogArrFilterTop[0].content }}
@@ -106,8 +106,8 @@
           </div>
           <div>
             <div>
-              <div>
-                <!--sister-->
+              <div id="girlCollectionFruit">
+                <!--妹妹採水果/星星-->
               </div>
               <img src="@/assets/blog-img/post/yello-something.png" alt />
             </div>
@@ -178,7 +178,12 @@
               <div>
                 <div>
                   <form action method="get">
-                    <input placeholder="水果知識" type="text" />
+                    <input
+                      @keydown.enter="searchKeywordMethod"
+                      id="searchKeyword"
+                      placeholder="水果知識"
+                      type="text"
+                    />
                     <img src="@/assets/blog-img/post/magnifier.png" />
                   </form>
                 </div>
@@ -214,7 +219,7 @@
                       <p>{{ i.title }}</p>
                       <p>
                         <img src="@/assets/blog-img/blog-thumb.png" />
-                        <span>{{i.clapCount}}</span>
+                        <span>{{ i.clapCount }}</span>
                         <img src="@/assets/blog-img/blog-tag.png" />
                         <span>西瓜</span>
                         <img src="@/assets/blog-img/blog-tag.png" />
@@ -327,7 +332,7 @@
                           <img src="@/assets/blog-img/blog-thumb.png" />
                         </div>
                         <div>
-                          <span>{{i.clapCount}}</span>
+                          <span>{{ i.clapCount }}</span>
                         </div>
                       </div>
                     </div>
@@ -754,8 +759,8 @@
       grid-area: aa9;
       column-count: 2;
       // column-gap: ;
-      letter-spacing: 1.3px;
-      line-height: 1.3;
+      letter-spacing: 1.5px;
+      line-height: 1.5;
       column-gap: 6rem;
       padding-top: 30px;
       @media (max-width: 1500px) {
@@ -786,14 +791,17 @@
     > div:nth-child(1) {
       position: relative;
       //妹妹
-      > div:nth-child(1) {
+      > div#girlCollectionFruit {
+        //妹妹採水果/星星
+
         position: relative;
         // left: 10%;
         z-index: 2;
         width: 70%;
         padding-top: 70%;
-        background: url('../assets/blog-img/post/blog_aabbcc.svg') no-repeat
-          center center;
+        // background: url('../assets/blog-img/post/blog_aabbcc.svg');
+        background-repeat: no-repeat;
+        background-position: center center;
         background-size: cover;
         -webkit-mask: url('../assets/blog-img/post/blog_aabbcc.svg') no-repeat
           center center;
@@ -1550,6 +1558,7 @@
   .blog-post2-small-card-container {
     display: flex;
     flex-wrap: wrap;
+    column-gap: 20px;
     justify-content: space-between;
     > a:nth-child(9) {
       @media (max-width: 9999px) {
@@ -1569,6 +1578,7 @@
       }
     }
     > .blog-post2-small-card {
+      float: left;
       display: inline-block;
       text-decoration: none;
       color: #000;
@@ -1665,7 +1675,7 @@
             //內文
             margin-top: 10px;
             padding-bottom: 10px;
-            line-height: 1.3;
+            line-height: 1.5;
             font-size: 16px;
             // background-color:#000;
             overflow: hidden;
@@ -1824,18 +1834,12 @@ export default {
       }
     }
 
-    let api = this.path + 'api_get_msg_blogtop.php';
-
-    this.$http
-      .post(api, JSON.stringify(this.blogArrFilterTop[0].no))
-      .then((res) => {
-        if (res.data != '') {
-          this.topMsg = res.data;
-
-          // console.log(res.data);
-        } else {
-        }
-      });
+    document
+      .getElementById('girlCollectionFruit')
+      .setAttribute(
+        'style',
+        `background: url('${this.blogArrFilterTop[0].img[0]}');`
+      );
   },
   created() {
     let api = this.path + 'api_blog.php';
@@ -1860,13 +1864,12 @@ export default {
           });
         });
 
-
         for (let i in this.blogArr) {
           let api2 = this.path + 'api_get_all_blog_claps.php';
           this.$http.post(api2, this.blogArr[i].no).then((res) => {
             if (res.data != '') {
-              this.blogArr[i].clapCount=res.data[0].count
-              console.log(this.blogArr[i].clapCount);
+              this.blogArr[i].clapCount = res.data[0].count;
+              // console.log(this.blogArr[i].clapCount);
             }
           });
         }
@@ -1896,6 +1899,16 @@ export default {
             this.pageArr.push(i);
           }
         }
+        let api3 = this.path + 'api_get_msg_blogtop.php';
+
+        this.$http
+          .post(api3, JSON.stringify(this.blogArrFilterTop[0].no))
+          .then((res) => {
+            if (res.data != '') {
+              this.topMsg = res.data;
+            } else {
+            }
+          });
       } else {
         // console.log(res.error);
       }
@@ -2063,6 +2076,89 @@ export default {
         }
       });
       this.topMsgText = '';
+    },
+    searchKeywordMethod() {
+      let api = this.path + 'api_search_blog_keyword.php';
+      let aa = document.getElementById('searchKeyword').value.trim();
+      // console.log(document.getElementById("searchKeyword").value.trim())
+      this.$http.post(api, JSON.stringify(aa)).then((res) => {
+        if (res.data != '') {
+          // console.log(res.data);
+          this.blogArr = null;
+          this.blogArrFilter = [];
+          this.blogArrFilterTop = [];
+          this.pageArr = [];
+          this.currentPage = [];
+          this.topMsg = null;
+          this.topMsgText = '';
+          this.sendMsgArr = [];
+
+          this.blogArr = res.data;
+
+          for (let i = 0; i < this.blogArr.length; i++) {
+            this.blogArr[i].img = this.blogArr[i].img.split(',');
+          }
+
+          // for (let i = 0; i < this.blogArr.length; i++) {
+          //   for (let j = 0; j < this.blogArr[i].img.length; j++) {
+          //     this.blogArr[i].img[j] = `/api/${this.blogArr[i].img[j]}`;
+          //   }
+          // }
+          this.blogArr.forEach((arr, i) => {
+            arr.img.forEach((item, index) => {
+              this.blogArr[i].img[index] = this.img + item;
+            });
+          });
+
+          for (let i in this.blogArr) {
+            let api2 = this.path + 'api_get_all_blog_claps.php';
+            this.$http.post(api2, this.blogArr[i].no).then((res) => {
+              if (res.data != '') {
+                this.blogArr[i].clapCount = res.data[0].count;
+                // console.log(this.blogArr[i].clapCount);
+              }
+            });
+          }
+
+          this.blogArrFilterTop.push(this.blogArr[0]);
+
+          if (this.blogArr.length <= 9) {
+            for (let i = 1; i < this.blogArr.length; i++) {
+              this.blogArrFilter.push(this.blogArr[i]);
+            }
+          } else {
+            for (let i = 1; i < 10; i++) {
+              this.blogArrFilter.push(this.blogArr[i]);
+            }
+          }
+
+          this.currentPage.push(1);
+
+          if (this.blogArr.length <= 9) {
+            this.pageArr.push(1);
+          } else if (this.blogArr.length / 9 < 9) {
+            for (let i = 1; i <= parseInt(this.blogArr.length / 9) + 1; i++) {
+              this.pageArr.push(i);
+            }
+          } else {
+            for (let i = 1; i < 10; i++) {
+              this.pageArr.push(i);
+            }
+          }
+          let api3 = this.path + 'api_get_msg_blogtop.php';
+
+          this.$http
+            .post(api3, JSON.stringify(this.blogArrFilterTop[0].no))
+            .then((res) => {
+              if (res.data != '') {
+                this.topMsg = res.data;
+              } else {
+              }
+            });
+        } else {
+          // console.log(res.error);
+        }
+      });
     },
   },
 };
