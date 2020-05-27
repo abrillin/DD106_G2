@@ -349,9 +349,6 @@ export default {
 
       if (res.data != "") {
         this.shopitem = res.data["itemContent"];
-
-        console.log(this.shopitem);
-        
       } else {
       }
     });
