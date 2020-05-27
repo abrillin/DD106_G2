@@ -31,9 +31,14 @@
           <input type="text" v-model="member.address" maxlength="20" placeholder="字數限制20" />
 
           <textarea name="farmIntro" v-model="member.content" maxlength="100" placeholder="字數限制100"></textarea>
+          <button class="submit_button" @click="$router.go(-1)">
+            <div class="correct">
+              <p>取消</p>
+            </div>
+          </button>
           <button class="submit_button" @click="update">
             <div class="correct">
-              <p>確定</p>
+              <p>儲存</p>
             </div>
           </button>
         </div>

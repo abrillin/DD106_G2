@@ -120,6 +120,14 @@ export default {
           }
         }
       });
+    } else {
+      this.arr = [
+        {
+          seller: "",
+          item: [],
+          total: 0
+        }
+      ];
     }
   },
   methods: {

@@ -60,7 +60,7 @@ export default {
       email: ""
     };
   },
-  created() {
+  activated() {
     const api = this.path + "api_memberStatus.php";
 
     this.$http.post(api).then(res => {
