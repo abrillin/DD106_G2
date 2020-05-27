@@ -16,12 +16,12 @@ div.information {
     padding: 10% 5%;
   }
 
-  > .information_head {
+  >.information_head {
     color: #f7c845;
     font-size: 3rem;
   }
 
-  > .information_bottom {
+  >.information_bottom {
     display: block;
     text-align: center;
     padding-top: 100px;
@@ -33,7 +33,7 @@ div.information {
       padding-top: 10%;
     }
 
-    > .bottom_form {
+    >.bottom_form {
       display: inline-block;
       width: 490px;
       border: 1px solid #666;
@@ -42,7 +42,7 @@ div.information {
         width: 320px;
       }
 
-      > .person_left {
+      >.person_left {
         vertical-align: top;
         display: inline-block;
         background-color: #f7c845;
@@ -56,8 +56,8 @@ div.information {
           height: 380px;
         }
 
-        > ul {
-          > li {
+        >ul {
+          >li {
             font-size: 1.8rem;
             color: #666;
 
@@ -68,8 +68,8 @@ div.information {
           }
         }
       }
-      
-      > .information_right {
+
+      >.information_right {
         display: inline-block;
         text-align: start;
         background-color: white;
@@ -84,23 +84,35 @@ div.information {
         @include rwd(medium) {
 
           width: 70%;
-          height: 430px;
+          height: 390px;
           width: 220px;
           line-height: 3;
           padding-left: 10px;
           padding-right: 10px;
         }
 
-        span {
-          p {
+        >ul {
+
+          >li {
+
+            font-size: 1.8rem;
+
             @include rwd(medium) {
               font-size: 1.4rem;
             }
           }
         }
 
-        > .btn {
-          
+        // span {
+        //   p {
+        //     @include rwd(medium) {
+        //       font-size: 1.4rem;
+        //     }
+        //   }
+        // }
+
+        >.btn {
+
           font-family: myFont;
           font-size: 1.6rem;
           float: right;

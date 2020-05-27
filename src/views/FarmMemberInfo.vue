@@ -24,7 +24,20 @@
           </ul>
         </div>
         <div class="person_right">
-          <p>{{ member.no }}</p>
+          <ul>
+            <li>{{ member.no }}</li>
+            <li>{{ member.acc }}</li>
+            <!-- <li>密碼</li> -->
+            <!-- <li>修改密碼</li> -->
+            <li>{{ member.name }}</li>
+            <li>{{ member.nick }}</li>
+            <li>{{ gender }}</li>
+            <li>0{{ member.phone }}</li>
+            <li>{{ member.email }}</li>
+            <li>{{ member.address }}</li>
+            <p class="content_seller">{{ member.content }}</p>
+          </ul>
+          <!-- <p>{{ member.no }}</p>
           <p>{{ member.acc }}</p>
           <p>{{ member.name }}</p>
           <p>{{ member.nick }}</p>
@@ -32,7 +45,7 @@
           <p>0{{ member.phone }}</p>
           <p>{{ member.email }}</p>
           <p>{{ member.address }}</p>
-          <p class="content_seller">{{ member.content }}</p>
+          <p class="content_seller">{{ member.content }}</p> -->
           <button class="btn" @click="updatePage">修改</button>
         </div>
       </div>
