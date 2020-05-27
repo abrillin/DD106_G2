@@ -6,6 +6,7 @@
     </div>
 
     <div class="search-wrapper">
+      <nav id="nav_bg"></nav>
       <img src="../assets/search_logo_img.svg" width="170px" height="100px" class="search_logo" />
       <div class="search-section">
         <div class="searchbar">
@@ -255,6 +256,24 @@
   </main>
 </template>
 
+<style lang="scss" scoped>
+.navbg {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  box-sizing: border-box;
+  padding: 0px 1%;
+  top: 0px;
+  transition: all 0.5s;
+  height: 60px;
+  width: 100%;
+  z-index: 998;
+  background-color: rgba(251, 248, 239, 0.925);
+  transition: ease 0.3s;
+}
+</style>
+
 <script>
 let panelView = -1127;
 let maxIndex = 1;
@@ -284,6 +303,19 @@ export default {
     };
   },
   mounted() {
+    // 如果高度<search-wrapper，navbg就不顯示，>search-wrapper時顯示
+    $(function() {
+      $(window).scroll(function() {
+        var scrollVal = $(this).scrollTop();
+        if (scrollVal > 100) {
+          /* 如果滾動的物件捲動 > 500 則觸發指定的動作。*/
+          $("#nav_bg").addClass("navbg");
+        } else {
+          $("#nav_bg").removeClass("navbg");
+        }
+      });
+    });
+
     function $id(id) {
       return document.getElementById(id);
     }
