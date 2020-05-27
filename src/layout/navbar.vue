@@ -123,13 +123,15 @@ export default {
         this.userName = data.name;
       }
     });
-
     let storage = localStorage;
-    let itemArr = storage["itemNo"];
+    if (storage["itemNo"]) {
+      let itemArr = storage["itemNo"];
 
-    itemArr = itemArr.split(",");
-
-    this.str = itemArr.length - 1;
+      itemArr = itemArr.split(",");
+      this.str = itemArr.length - 1;
+    } else {
+      this.str = 0;
+    }
   },
   mounted() {
     $("div.title").click(function(e) {
