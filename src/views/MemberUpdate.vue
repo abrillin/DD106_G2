@@ -45,12 +45,8 @@
           <input type="text" v-model="member.phone" />
           <br />
           <input type="text" v-model="member.email" />
-          <button class="submit_button" @click="update">
-            送出
-            <!-- <div class="correct">
-                            <p>確定</p>
-            </div>-->
-          </button>
+          <button class="submit_button" @click="$router.go(-1)">取消</button>
+          <button class="submit_button" @click="update">儲存</button>
         </div>
       </div>
     </div>
@@ -117,7 +113,7 @@ export default {
         if (data == 1) {
           alert("修改成功 ᕦ(ò_óˇ)ᕤ ");
 
-          this.$router.go(0);
+          this.$router.go(-1);
         }
       });
     }
