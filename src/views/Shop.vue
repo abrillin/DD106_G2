@@ -201,7 +201,12 @@
                     @click="addCart(i.no)"
                     @mouseenter="btnFun"
                   >加入購物籃</a>
-                  <a href="javascript:" class="card_btn" @mouseenter="btnFun">直接購買</a>
+                  <a
+                    href="javascript:"
+                    class="card_btn"
+                    @mouseenter="btnFun"
+                    @click="addCart(i.no, 't')"
+                  >直接購買</a>
                 </div>
               </div>
             </div>
@@ -558,7 +563,7 @@ export default {
         }
       });
     },
-    addCart(no) {
+    addCart(no, page = "f") {
       const api = this.path + "api_memberStatus.php";
 
       this.$http.post(api).then(res => {
@@ -580,12 +585,20 @@ export default {
           // 獲取 itemNo 欄位的資料，以 , 符號切成陣列
           const itmeArr = storage["itemNo"].split(",");
 
+          function change(e) {
+            if (page == "t") {
+              e.push("/main/member/shopping");
+            }
+          }
+
           // 如果編號 no 的商品沒有在 itemArr 這個陣列裡面，則新增進去
           if (itmeArr.indexOf(no) != -1) {
             alert("已經加入購物車了！");
+            change(this.$router);
           } else {
             storage["itemNo"] += no + ",";
             this.$emit("setCart", storage["itemNo"]);
+            change(this.$router);
           }
         }
       });
