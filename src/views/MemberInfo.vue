@@ -11,7 +11,6 @@
           <ul>
             <li>果粉編號</li>
             <li>帳號</li>
-
             <li>果粉姓名</li>
             <li>暱稱</li>
             <li>性別</li>
@@ -20,7 +19,16 @@
           </ul>
         </div>
         <div class="information_right">
-          <span>
+          <ul>
+            <li>{{ no }}</li>
+            <li>{{ acc }}</li>
+            <li>{{ name }}</li>
+            <li>{{ nick }}</li>
+            <li>{{ gender }}</li>
+            <li>0{{ phone }}</li>
+            <li>{{ email }}</li>
+          </ul>
+          <!-- <span>
             <p>{{ no }}</p>
           </span>
           <span>
@@ -40,7 +48,7 @@
           </span>
           <span>
             <p>{{ email }}</p>
-          </span>
+          </span> -->
           <button class="btn" @click="updatePage">修改</button>
         </div>
       </div>
@@ -60,7 +68,7 @@ export default {
       email: ""
     };
   },
-  created() {
+  activated() {
     const api = this.path + "api_memberStatus.php";
 
     this.$http.post(api).then(res => {

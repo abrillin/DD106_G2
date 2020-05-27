@@ -30,38 +30,30 @@
               placeholder="最大字數限制10"
               v-model="item.name"
             />
-            <input
-              type="text"
-              id="productPrice"
-              v-model="item.price"
-              @change="changePrice"
-            />元
-
+            <input type="text" id="productPrice" v-model="item.price" @change="changePrice" />
+            元
             <label for="productMainPic" @change="changeMainPic">
               <span>上傳主要圖片</span>
               <input type="file" id="productMainPic" accept="image/*" />
               <div>
-                <img src="" id="mainPic" />
+                <img src id="mainPic" />
               </div>
             </label>
             <label for="productOtherPic" @change="changeOtherPic">
               <span>上傳其它圖片</span>
-              <input
-                type="file"
-                id="productOtherPic"
-                accept="image/*"
-                multiple
-              />
+              <input type="file" id="productOtherPic" accept="image/*" multiple />
               <div>
-                <img class="otherPic" src="" />
-                <img class="otherPic" src="" />
+                <img class="otherPic" src />
+                <img class="otherPic" src />
               </div>
             </label>
             <select id="productTags" v-model="tags.selected">
               <option value="0">請選擇</option>
-              <option v-for="i in itemTags" :value="i.no" :key="i.no">{{
+              <option v-for="i in itemTags" :value="i.no" :key="i.no">
+                {{
                 i.name
-              }}</option>
+                }}
+              </option>
             </select>
 
             <textarea
@@ -80,13 +72,8 @@
               style="resize:none"
             ></textarea>
             <div class="submit_button">
-              <input type="button" value="取消" id="productCancel" />
-              <input
-                type="button"
-                value="送出"
-                id="productSubmit"
-                @click="itemUpdate"
-              />
+              <input type="button" value="取消" id="productCancel" @click="$router.go(-1)" />
+              <input type="button" value="送出" id="productSubmit" @click="itemUpdate" />
             </div>
           </form>
         </div>
@@ -101,24 +88,25 @@ export default {
       formData: new FormData(),
       tags: {
         selected: 0,
-        no: 0,
+        no: 0
       },
       itemTags: [],
       item: {
         no: 1,
         name: "",
-        price: 1,
+        price: 0,
         description: "",
         infor: "",
         sellerno: "",
         date: "",
-        img: "",
-      },
+        img: ""
+      }
     };
   },
-  created() {
+  activated() {
+    this.item = { price: 0 };
     const api = this.path + "api_farmitem.php";
-    this.$http.post(api).then((res) => {
+    this.$http.post(api).then(res => {
       const data = res.data;
       if (data[0].no != null) {
         this.item.no = parseInt(data[0].no) + 1;
@@ -129,7 +117,7 @@ export default {
       this.itemTags = data[1];
     });
     const api2 = this.path + "api_farmStatus.php";
-    this.$http.post(api2).then((res) => {
+    this.$http.post(api2).then(res => {
       const data = res.data;
       this.item.sellerno = data.no;
     });
@@ -217,7 +205,7 @@ export default {
       } else {
         this.$http
           .post(this.path + "api_uploadProductFiles.php", this.formData)
-          .then((res) => {
+          .then(res => {
             this.item.img = res.data.toString();
             for (let i in this.item) {
               if (this.item[i] == "") {
@@ -234,7 +222,7 @@ export default {
                   this.path + "api_farmProductUpdate.php",
                   JSON.stringify(this.item)
                 )
-                .then((res) => {
+                .then(res => {
                   const data = res.data;
                   if (data == 0) {
                     alert("上傳失敗！");
@@ -247,7 +235,7 @@ export default {
             }
           });
       }
-    },
-  },
+    }
+  }
 };
 </script>

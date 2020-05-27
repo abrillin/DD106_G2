@@ -1,12 +1,7 @@
 <template>
   <nav id="nav">
     <router-link id="home" to="/main">
-      <img
-        class="logo"
-        src="@/assets/headerLOGO.svg"
-        alt="logo"
-        @click="logoclick"
-      />
+      <img class="logo" src="@/assets/headerLOGO.svg" alt="logo" @click="logoclick" />
     </router-link>
     <div class="member_status">
       <!-- 檢查登入的狀態 -->
@@ -14,21 +9,19 @@
         class="login_logout"
         to="/loginMember"
         v-if="status == false && session != true"
-        >登入/註冊</router-link
-      >
+      >登入/註冊</router-link>
       <div v-else>
         <router-link class="member_link" to="/main/member/information">
-          <span
-            class="member_pic"
-            :style="'background-image: url(' + img + ')'"
-          ></span>
+          <span class="member_pic" :style="'background-image: url(' + img + ')'"></span>
           {{ userName }}
         </router-link>
         <button class="logout" @click="logout">登出</button>
       </div>
     </div>
     <div class="cart" @click="loginclick">
-      <router-link class="pages" to="/main/member/shopping"></router-link>
+      <router-link class="pages" to="/main/member/shopping">
+        <span class="cart-amount">{{str}}</span>
+      </router-link>
     </div>
     <div class="hamburger hamburger--elastic" @click="hamclick">
       <div class="hamburger-box">
@@ -109,18 +102,19 @@
 import $ from "jquery";
 export default {
   // 5. 接收父層的 memberStatus 的值
-  props: { memberStatus: Boolean, memberImg: String },
+  props: { memberStatus: Boolean, memberImg: String, cartItem: String },
   data() {
     return {
       status: false,
       userName: "",
       img: "",
+      str: undefined
     };
   },
   created() {
     const api = this.path + "api_memberStatus.php";
 
-    this.$http.post(api).then((res) => {
+    this.$http.post(api).then(res => {
       const data = res.data;
 
       // 如果 session 的資料存在（代表有登入），則切換 navbar 果粉狀態
@@ -129,8 +123,16 @@ export default {
         this.userName = data.name;
       }
     });
-  },
+    let storage = localStorage;
+    if (storage["itemNo"]) {
+      let itemArr = storage["itemNo"];
 
+      itemArr = itemArr.split(",");
+      this.str = itemArr.length - 1;
+    } else {
+      this.str = 0;
+    }
+  },
   mounted() {
     $("div.title").click(function(e) {
       $("div.title")
@@ -166,6 +168,11 @@ export default {
         .addClass("pactive");
     });
   },
+  watch: {
+    cartItem(newValue, oldValue) {
+      this.str = newValue.split(",").length - 1;
+    }
+  },
   updated() {
     $(".member_link").click(function() {
       if ($("div.hamburger").hasClass("is-active") == true) {
@@ -191,7 +198,17 @@ export default {
       // 6. 偵聽到 memberStatus 有變動，觸發 login 方法，並回傳值到上面v-if狀態的顯示判斷
       this.login();
       return this.memberStatus;
-    },
+    }
+    // itemAmount: function() {
+    //   let len = () => {
+    //     if (this.cart.split(",") == "") {
+    //       return 0;
+    //     } else {
+    //       return this.cart.split(",").length - 1;
+    //     }
+    //   };
+    //   return len();
+    // }
   },
   methods: {
     logout() {
@@ -222,7 +239,7 @@ export default {
     login() {
       const api = this.path + "api_memberStatus.php";
 
-      this.$http.post(api).then((res) => {
+      this.$http.post(api).then(res => {
         const data = res.data;
 
         // 如果 session 的資料存在（代表有登入），則切換 navbar 果粉狀態
@@ -279,7 +296,7 @@ export default {
       $("ul li:nth-child(4)")
         .find("p")
         .addClass("pactive");
-    },
-  },
+    }
+  }
 };
 </script>

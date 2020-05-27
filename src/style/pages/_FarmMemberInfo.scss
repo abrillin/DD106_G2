@@ -34,7 +34,7 @@ div.farminfo {
       padding-top: 10%;
     }
 
-    > .bottom_form {
+    >.bottom_form {
       display: inline-block;
       width: 490px;
       border: 1px solid #666;
@@ -43,13 +43,13 @@ div.farminfo {
         width: 287px;
       }
 
-      > .person_left {
+      >.person_left {
         vertical-align: top;
         display: inline-block;
         background-color: #f7c845;
         width: 150px;
         height: 730px;
-        padding-top: 50px;
+        padding-top: 10px;
         line-height: 2;
 
         @include rwd(medium) {
@@ -59,8 +59,8 @@ div.farminfo {
 
         > ul {
           > li {
-            font-size: 1.8rem;
-            color: #666;
+            font-size: 1.6rem;
+            color: #333;
             line-height: 3.3;
 
             @include rwd(medium) {
@@ -71,16 +71,17 @@ div.farminfo {
         }
       }
 
-      > .person_right {
+      >.person_right {
         display: inline-block;
         text-align: start;
         background-color: white;
         box-sizing: border-box;
-        padding-top: 10px;
+        padding-top: 50px;
         padding-left: 30px;
         padding-right: 30px;
         width: 340px;
-        height: 780px;
+        height: 740px;
+
         line-height: 3.3;
 
         @include rwd(medium) {
@@ -91,7 +92,19 @@ div.farminfo {
           padding-right: 10px;
         }
 
-        > p {
+        >ul {
+
+          >li {
+
+            font-size: 1.8rem;
+
+            @include rwd(medium) {
+              font-size: 1.4rem;
+            }
+          }
+        }
+
+        >p {
           overflow: hidden;
           padding: 0;
 
@@ -99,18 +112,17 @@ div.farminfo {
             font-size: 1.4rem;
           }
         }
+
         p.content_seller {
-          padding-bottom: 70px;
           word-break: break-all;
-          padding-top: 20px;
-          line-height: 1.5;
+          font-size: 1.8rem;
+
           @include rwd(medium) {
-            padding-bottom: 20px;
-            padding-top: 15px;
+            font-size: 1.4rem;
           }
         }
 
-        > .submit_button {
+        >.submit_button {
           position: absolute;
           border-radius: 5px;
           background-color: #007552;
@@ -120,10 +132,10 @@ div.farminfo {
           bottom: 10px;
           line-height: 2.3;
         }
-        > .btn {
+
+        >.btn {
           font-family: myFont;
           font-size: 1.6rem;
-
           float: right;
           border: none;
           margin-top: 20px;
