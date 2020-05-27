@@ -11,7 +11,24 @@
     left: 25%;
     overflow-y: auto;
     // border: 1px solid red;
-
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+    
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        // background: rgba(231, 200, 106, 0.651);
+        background: transparent;
+        border-radius: 6px;
+    }
+    
+    &::-webkit-scrollbar-button {
+            background-color: transparent;
+     }
+    
 
     .encyEditTab {
         display: inline-block;

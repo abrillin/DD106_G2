@@ -29,50 +29,60 @@
               placeholder="最大字數限制20"
               v-model="blog.title"
             />
-            <label for="blogMainImg" class="blogMainImg" @change="changeMainPic"
-              ><span>上傳主要圖片</span>
+            <label
+              for="blogMainImg"
+              class="blogMainImg"
+              @change="changeMainPic"
+            >
+              <span>上傳主要圖片</span>
               <input type="file" id="blogMainImg" accept="image/*" />
               <div>
-                <img src="" id="mainPic" />
+                <img src id="mainPic" />
               </div>
             </label>
             <label
               for="blogOtherImg"
               class="blogOtherImg"
               @change="changeOtherPic"
-              ><span>上傳其他圖片</span>
+            >
+              <span>上傳其他圖片</span>
               <input type="file" id="blogOtherImg" accept="image/*" multiple />
 
               <div id="otherPic">
-                <img class="otherPic" src="" />
-                <img class="otherPic" src="" />
-                <img class="otherPic" src="" />
-                <img class="otherPic" src="" />
+                <img class="otherPic" src />
+                <img class="otherPic" src />
+                <img class="otherPic" src />
+                <img class="otherPic" src />
               </div>
             </label>
             <select id="blogTags" v-model="tags.selected">
               <option value="0">請選擇</option>
-              <option v-for="i in productTags" :value="i.no" :key="i.no">{{
-                i.name
-              }}</option>
+              <option v-for="i in productTags" :value="i.no" :key="i.no">
+                {{ i.name }}
+              </option>
             </select>
             <textarea
               id="blogContent1"
-              maxlength="500"
-              placeholder="最大字數限制500"
+              maxlength="400"
+              placeholder="最大字數限制400"
               v-model="blog.content1"
               style="resize:none"
             ></textarea>
             <textarea
               id="blogContent2"
-              maxlength="500"
-              placeholder="最大字數限制500"
+              maxlength="400"
+              placeholder="最大字數限制400"
               v-model="blog.content2"
               style="resize:none"
             ></textarea>
 
             <div class="submit_button">
-              <input type="button" value="取消" id="blogCancel" />
+              <input
+                type="button"
+                value="取消"
+                id="blogCancel"
+                @click="$router.go(-1)"
+              />
               <input
                 type="button"
                 value="送出"
@@ -109,8 +119,10 @@ export default {
       },
     };
   },
-  created() {
+  activated() {
     const api = this.path + "api_farmBlogUpdateBlogno.php";
+
+    this.blog = {};
 
     this.$http.post(api).then((res) => {
       const data = res.data;
@@ -128,6 +140,7 @@ export default {
       this.blog.sellerno = data.no;
     });
   },
+
   methods: {
     changeMainPic: function(e) {
       document.getElementById("mainPic").src = "";
@@ -163,7 +176,14 @@ export default {
         }
       }
     },
+
+    // blogContent: function($event) {
+    //   $event.target.value.replace(/\r?\n/g, "<br />");
+    //   console.log($event.target.value);
+    // },
     blogUpdate: function() {
+      this.blog.content1 = this.blog.content1.replace(/\r?\n/g, "<br />");
+      this.blog.content2 = this.blog.content2.replace(/\r?\n/g, "<br />");
       let month = new Date().getMonth() + 1;
       if (month < 10) {
         month = "0" + month;

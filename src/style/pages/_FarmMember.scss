@@ -1,7 +1,7 @@
 div.farmcontain {
   width: 100%;
   height: 100%;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
 
   @include rwd(large) {
     height: auto;
@@ -30,8 +30,8 @@ div.farmcontain {
     transition: transform 1s cubic-bezier(0.36, 0, 0.66, 0);
 
     @include rwd(medium) {
+      font-size: 1.4rem;
       position: fixed;
-
       width: 200px;
       z-index: 50;
     }
@@ -88,22 +88,35 @@ div.farmcontain {
         & li:nth-child(1) {
           margin-top: 20px;
           display: block;
-          color: #666;
+          color: #333;
+          @include rwd(medium) {
+            font-size: 1.4rem;
+          }
         }
 
         & li:nth-child(2) {
           display: block;
-          color: #666;
+          color: #333;
+          @include rwd(medium) {
+            font-size: 1.4rem;
+          }
         }
       }
 
       > .star {
         display: block;
         text-align: left;
+        @include rwd(medium) {
+          font-size: 1.4rem;
+        }
 
         > img {
           width: 20px;
           height: 20px;
+          @include rwd(medium) {
+            width: 10px;
+            height: 10px;
+          }
         }
 
         > span {
@@ -127,13 +140,14 @@ div.farmcontain {
           margin: 0;
 
           > a {
+            outline: none;
             text-align: left;
             text-decoration: none;
             color: #333;
-            font-size: 2rem;
+            font-size: 1.6rem;
 
             @include rwd(medium) {
-              font-size: 1.8rem;
+              font-size: 1.4rem;
             }
           }
         }
@@ -145,6 +159,9 @@ div.farmcontain {
       margin: 0 auto;
       padding-top: 50px;
       border-radius: 5px;
+      @include rwd(medium) {
+        padding-top: 30px;
+      }
 
       > .farm {
         a {
@@ -152,6 +169,9 @@ div.farmcontain {
           .return_member {
             width: 100px;
             font-weight: 800;
+            @include rwd(medium) {
+              font-size: 1.4rem;
+            }
             button {
               height: 50px;
             }
@@ -170,9 +190,9 @@ div.farmcontain {
         right: 0;
         top: 40%;
         transform: translateX(50%);
-        color: #666;
+        color: #333;
         border: 0;
-        font-size: 2rem;
+        font-size: 1.6rem;
         width: 40px;
         height: 60px;
         display: inline-block;

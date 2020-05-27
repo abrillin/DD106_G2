@@ -22,7 +22,7 @@ div.Order {
 
   .order_zero {
     font-size: 2rem;
-    color: #007552;
+    color: #333;
     text-align: center;
     margin-top: 100px;
     display: none;
@@ -124,7 +124,7 @@ div.Order {
         .list_slide {
           > p {
             padding-left: 10px;
-            color: #007552;
+            color: #333;
           }
         }
 
@@ -199,7 +199,7 @@ div.Order {
           > p {
             text-align: end;
             padding-right: 10px;
-            color: #007552;
+            color: #333;
           }
 
           > p:first-child {
@@ -224,7 +224,7 @@ div.Order {
 
             > p {
               padding-left: 10px;
-              color: #007552;
+              color: #333;
             }
           }
 

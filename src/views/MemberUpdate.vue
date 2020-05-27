@@ -32,9 +32,24 @@
           <input type="text" v-model="member.nick" />
           <br />
           <div>
-            <input type="radio" v-model="member.gender" value="1" name="gender" />男
-            <input type="radio" v-model="member.gender" value="2" name="gender" />女
-            <input type="radio" v-model="member.gender" value="0" name="gender" />其它
+            <input
+              type="radio"
+              v-model="member.gender"
+              value="1"
+              name="gender"
+            />男
+            <input
+              type="radio"
+              v-model="member.gender"
+              value="2"
+              name="gender"
+            />女
+            <input
+              type="radio"
+              v-model="member.gender"
+              value="0"
+              name="gender"
+            />其它
           </div>
 
           <!-- <p>{{ member.gender }}</p>-->
@@ -45,12 +60,8 @@
           <input type="text" v-model="member.phone" />
           <br />
           <input type="text" v-model="member.email" />
-          <button class="submit_button" @click="update">
-            送出
-            <!-- <div class="correct">
-                            <p>確定</p>
-            </div>-->
-          </button>
+          <button class="submit_button" @click="update">儲存</button>
+          <button class="submit_button" @click="$router.go(-1)">取消</button>
         </div>
       </div>
     </div>
@@ -69,14 +80,14 @@ export default {
         nick: "",
         gender: "",
         phone: "",
-        email: ""
-      }
+        email: "",
+      },
     };
   },
   created() {
     const api = this.path + "api_memberStatus.php";
 
-    this.$http.post(api).then(res => {
+    this.$http.post(api).then((res) => {
       const data = res.data;
 
       if (data != "") {
@@ -87,7 +98,7 @@ export default {
           nick: data.nick,
           phone: 0 + data.phone,
           email: data.email,
-          gender: data.gender
+          gender: data.gender,
         };
 
         // if (data.gender == 1) {
@@ -111,16 +122,16 @@ export default {
         }
       }
 
-      this.$http.post(api, JSON.stringify(this.member)).then(res => {
+      this.$http.post(api, JSON.stringify(this.member)).then((res) => {
         const data = res.data;
 
         if (data == 1) {
           alert("修改成功 ᕦ(ò_óˇ)ᕤ ");
 
-          this.$router.go(0);
+          this.$router.go(-1);
         }
       });
-    }
-  }
+    },
+  },
 };
 </script>

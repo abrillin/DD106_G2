@@ -14,7 +14,7 @@ $attention: #CC113C;
 $maintitleSize: 18px;
 $title1Size: 16px;
 $title2Size: 14px;
-$contentSize: 12px;
+$contentSize: 14px;
 
 $btnBgcolor: #62b45a;
 $btnBgHcolor: #FFA978;
@@ -25,14 +25,12 @@ $tagBGcolor: #E2E2E2;
 .msContainer {
 
   .msSideBar {
-    // margin: auto;
     color: $title1Color;
     display: flex;
     background: $sidebarBgColor;
     min-width: 20%;
     height: 100%;
     box-sizing: border-box;
-    // align-items: center;
     justify-content: center;
     font-size: $title2Size;
     line-height: 3.3rem;
@@ -58,15 +56,14 @@ $tagBGcolor: #E2E2E2;
         display: block;
         background: $formTtlBg;
         border-radius: 2px;
-        border: 0px;
+        border: none;
         text-align: cenetr;
         text-decoration: none;
         transition: ease-in-out .3s;
         width: 85px;
         margin: 2px;
-        // box-shadow: 3px 3px 2px #88888875;
+        // box-shadow: 2px 2px #00000075;
         span {
-
           font-family: myFont;
           font-weight: 700;
         }
@@ -113,8 +110,6 @@ $tagBGcolor: #E2E2E2;
     }
 
     a {
-      // position: relative;
-      // top: 25%;
       text-decoration: none;
       color: $title1Color;
       outline: none;
@@ -161,7 +156,6 @@ $tagBGcolor: #E2E2E2;
     left: 25%;
     // border: 1px solid red;
     padding-bottom: 80px;
-
     overflow: auto;
     scroll-behavior: smooth;
 

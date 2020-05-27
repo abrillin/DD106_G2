@@ -2,7 +2,8 @@
   <div class="farminfo">
     <div class="farminfo_head">
       <div class="farminfo_head_text">
-        <h2>個人資料</h2>
+        <h2>個人資訊
+        </h2>
       </div>
     </div>
     <div class="farminfo_bottom">
@@ -23,7 +24,20 @@
           </ul>
         </div>
         <div class="person_right">
-          <p>{{ member.no }}</p>
+          <ul>
+            <li>{{ member.no }}</li>
+            <li>{{ member.acc }}</li>
+            <!-- <li>密碼</li> -->
+            <!-- <li>修改密碼</li> -->
+            <li>{{ member.name }}</li>
+            <li>{{ member.nick }}</li>
+            <li>{{ gender }}</li>
+            <li>0{{ member.phone }}</li>
+            <li>{{ member.email }}</li>
+            <li>{{ member.address }}</li>
+            <p class="content_seller">{{ member.content }}</p>
+          </ul>
+          <!-- <p>{{ member.no }}</p>
           <p>{{ member.acc }}</p>
           <p>{{ member.name }}</p>
           <p>{{ member.nick }}</p>
@@ -31,10 +45,10 @@
           <p>0{{ member.phone }}</p>
           <p>{{ member.email }}</p>
           <p>{{ member.address }}</p>
-          <p>{{ member.content }}</p>
+          <p class="content_seller">{{ member.content }}</p> -->
+          <button class="btn" @click="updatePage">修改</button>
         </div>
       </div>
-      <button class="btn" @click="updatePage">修改</button>
     </div>
   </div>
 </template>
@@ -55,13 +69,13 @@ export default {
         content: "",
         reviewtotal: "",
         reviewcount: "",
-        memberno: ""
-      }
+        memberno: "",
+      },
     };
   },
   activated() {
     const api = this.path + "api_farmStatus.php";
-    this.$http.post(api).then(res => {
+    this.$http.post(api).then((res) => {
       const data = res.data;
       if (data != "") {
         this.member = {
@@ -77,7 +91,7 @@ export default {
           content: data.content,
           reviewtotal: data.reviewtotal,
           reviewcount: data.reviewcount,
-          memberno: data.memberno
+          memberno: data.memberno,
         };
         if (data.img == "") {
           this.member.img = require("@/assets/waterpear.png");
@@ -98,7 +112,7 @@ export default {
   methods: {
     updatePage() {
       this.$router.push("/main/farm/update");
-    }
-  }
+    },
+  },
 };
 </script>

@@ -1,5 +1,6 @@
 <template>
   <div class="blog-landing-outer">
+    <nav id="navbg"></nav>
     <img src="@/assets/blog-img/blog-bar.png" />
     <br />
     <div class="blog-landing-container-new">
@@ -36,31 +37,71 @@
       <div>
         <div>
           <div>
-            <img src="@/assets/blog-img/blog-someoneshead.png" class="blog-landing-aunt" />
+            <img :src="previousValue[0].m_img" class="blog-landing-aunt" />
           </div>
           <div>
             <div>
-              <span>蓬蓬草莓姨</span>
+              <span>{{ previousValue[0].nick }}</span>
             </div>
             <div>
-              <img src="@/assets/blog-img/blog-star.png" />
-              <img src="@/assets/blog-img/blog-star.png" />
-              <img src="@/assets/blog-img/blog-star.png" />
-              <img src="@/assets/blog-img/blog-star.png" />
-              <img src="@/assets/blog-img/blog-star.png" />
+              <img
+                src="@/assets/Group 720.svg"
+                v-if="
+                  previousValue[0].review_total /
+                    previousValue[0].review_count >
+                    0
+                "
+              />
+              <img
+                src="@/assets/Group 720.svg"
+                v-if="
+                  previousValue[0].review_total /
+                    previousValue[0].review_count >
+                    1
+                "
+              />
+              <img
+                src="@/assets/Group 720.svg"
+                v-if="
+                  previousValue[0].review_total /
+                    previousValue[0].review_count >
+                    2
+                "
+              />
+              <img
+                src="@/assets/Group 720.svg"
+                v-if="
+                  previousValue[0].review_total /
+                    previousValue[0].review_count >
+                    3
+                "
+              />
+              <img
+                src="@/assets/Group 720.svg"
+                v-if="
+                  previousValue[0].review_total /
+                    previousValue[0].review_count >
+                    4
+                "
+              />
             </div>
           </div>
           <div>
-            <span>+追蹤</span>
+            <span style="display:none;">+追蹤</span>
           </div>
           <div class="blog-landing-greenline"></div>
           <div class="blog-landing-greenline"></div>
           <div class="blog-landing-greenline"></div>
         </div>
         <div>
-          <span>其他文章連結</span>
-          <span>其他文章連結</span>
-          <span>其他文章連結</span>
+          <span>其他關聯文章</span>
+          <span
+            class="otherLink"
+            @click="goToRelatedPage(i, $event)"
+            v-for="(i, index) in otherLink"
+            :key="index"
+            >{{ i.title }}</span
+          >
         </div>
       </div>
 
@@ -88,14 +129,18 @@
         </div>
         <div>
           <div>
-            <div>{{ previousValue[0].content }}</div>
-            <div>{{ previousValue[0].content }}</div>
+            <div v-html="previousValue[0].content"></div>
+            <div v-html="previousValue[0].content2"></div>
           </div>
           <div>
             <div>
               <img src="../assets/blog-img/blog-trapezoid.png" />
               <div>
-                <img v-for="(i, index) in previousValue[0].img" :key="index" :src="i" />
+                <img
+                  v-for="(i, index) in previousValue[0].img"
+                  :key="index"
+                  :src="i"
+                />
                 <!-- <img :src="this.previousValue[0].img[2]" />
                 <img :src="this.previousValue[0].img[3]" />
                 <img :src="this.previousValue[0].img[4]" />-->
@@ -107,14 +152,23 @@
         <div>
           <div>
             <span>留言{{ blogMsg.length }}筆</span>
-            <img src="@/assets/blog-img/blog-thumb.png" />
-            <span>301</span>
+            <img
+              @click="clap"
+              v-if="imgStatus == true"
+              src="../assets/blog-img/blog-thumb.png"
+            />
+            <img
+              @click="clap"
+              v-else
+              src="../assets/blog-img/hollowThumb.png"
+            />
+            <span>{{ clapQuantity[0].count }}</span>
           </div>
         </div>
         <div>
           <div v-for="(i, index) in blogMsgFilter" :key="index">
             <div>
-              <img src="@/assets/blog-img/blog-someoneshead.png" />
+              <img :src="i.img" />
             </div>
             <div>
               <div>{{ i.nick }}</div>
@@ -122,7 +176,11 @@
             </div>
             <div style="font-size:16px;">{{ i.content }}</div>
             <div>
-              <img @click="report(i)" src="@/assets/blog-img/blog-report.png" class="report" />
+              <img
+                @click="report(i)"
+                src="@/assets/blog-img/blog-report.png"
+                class="report"
+              />
             </div>
           </div>
           <span @click="loadMoreMsg" id="loadMoreMsg">
@@ -189,7 +247,10 @@
             </label>
             <br />
             <div class="blog-landing-button-more" @click.prevent="comment">
-              <button-more class="blog-landing-button-more2" msg="送出"></button-more>
+              <button-more
+                class="blog-landing-button-more2"
+                msg="送出"
+              ></button-more>
             </div>
           </form>
         </div>
@@ -199,23 +260,52 @@
       <div>
         <span @click="closeLightBox">X</span>
         <div>
-          <input type="radio" name id="r1" value="0" v-model="reportRadio" />&emsp;
+          <input
+            type="radio"
+            name
+            id="r1"
+            value="0"
+            v-model="reportRadio"
+          />&emsp;
           <label for="r1">仇恨言論</label>
           <br />
           <br />
-          <input type="radio" name id="r2" value="1" v-model="reportRadio" />&emsp;
+          <input
+            type="radio"
+            name
+            id="r2"
+            value="1"
+            v-model="reportRadio"
+          />&emsp;
           <label for="r2">侵權</label>
           <br />
           <br />
-          <input type="radio" name id="r3" value="2" v-model="reportRadio" />&emsp;
+          <input
+            type="radio"
+            name
+            id="r3"
+            value="2"
+            v-model="reportRadio"
+          />&emsp;
           <label for="r3">色情內容</label>
           <br />
           <br />
-          <input type="radio" name id="r4" value="3" v-model="reportRadio" />&emsp;
+          <input
+            type="radio"
+            name
+            id="r4"
+            value="3"
+            v-model="reportRadio"
+          />&emsp;
           <label for="r4">與本網站無關</label>
           <br />
           <br />
-          <input class="reportBtn" type="button" value="確定" @click="sendReport()" />
+          <input
+            class="reportBtn"
+            type="button"
+            value="確定"
+            @click="sendReport()"
+          />
         </div>
       </div>
     </div>
@@ -223,6 +313,21 @@
 </template>
 <style lang="scss">
 .blog-landing-outer {
+  #navbg {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    box-sizing: border-box;
+    padding: 0px 1%;
+    top: 0px;
+    transition: all 0.5s;
+    height: 60px;
+    width: 100%;
+    z-index: 998;
+    background-color: rgba(251, 248, 239, 0.938);
+  }
+
   padding-top: 60px;
   background-color: #fbf8ef;
   box-sizing: border-box;
@@ -346,6 +451,9 @@
       display: grid;
       grid-template-columns: 0.5fr 1.2fr 1fr;
       padding: 30% 50px 0px 50px;
+      min-width: 50px;
+      min-height: 50px;
+
       @media (max-width: 1500px) {
         padding: 30% 10px 0px 10px;
       }
@@ -354,7 +462,10 @@
         padding: 30% 10px 10px 10px;
       }
       .blog-landing-aunt {
-        width: 100%;
+        object-fit: cover;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
       }
       @media (max-width: 1300px) {
         & {
@@ -365,7 +476,10 @@
           justify-content: center;
 
           .blog-landing-aunt {
-            width: 100%;
+            object-fit: cover;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
           }
         }
       }
@@ -460,6 +574,19 @@
         text-decoration: none;
         color: black;
         font-size: 16px;
+      }
+      .otherLink {
+        cursor: pointer;
+      }
+      .otherLink:hover {
+        color: rgb(255, 255, 255);
+        font-size: 20px;
+        // background-color: rgb(51, 51, 51);
+        text-shadow: rgb(0, 0, 0) 0px 0px 1px,
+          rgb(0, 0, 0) 0px 0px 2px, rgb(0, 0, 0) 0px 0px 3px,
+          rgb(255, 45, 149) 0px 0px 4px, rgb(255, 45, 149) 0px 0px 5px,
+          rgb(255, 45, 149) 0px 0px 6px, rgb(255, 45, 149) 0px 0px 7px,
+          rgb(255, 45, 149) 0px 0px 8px;
       }
     }
   }
@@ -585,8 +712,11 @@
           // background-color: #000;
           height: 385px;
           position: relative;
+          @media (max-width: 1500px) {
+            height: auto;
+          }
           &::before {
-            content: "";
+            content: '';
             width: 90%;
             border-bottom: solid #007552 2px;
             position: absolute;
@@ -603,7 +733,7 @@
             }
           }
           &::after {
-            content: "";
+            content: '';
             width: 75%;
             border-bottom: solid #007552 2px;
             position: absolute;
@@ -624,6 +754,9 @@
           //文章二區
           height: 385px;
           padding-bottom: 11%;
+          @media (max-width: 1500px) {
+            height: auto;
+          }
         }
       }
       > div:nth-child(2) {
@@ -664,10 +797,11 @@
             // top: 10%;
             right: 1%;
             top: 18%;
+            // border: solid black 3px;
             @media (max-width: 1500px) {
               // border: solid 5px #000;
               position: relative;
-              right: 0%;
+              right: 2.5%;
               top: 0%;
               display: grid;
               grid-template-columns: repeat(2, 1fr);
@@ -681,9 +815,12 @@
               grid-template-columns: repeat(1, 1fr);
             }
             > img {
+              // border: solid 3px red;
               margin-bottom: 4%;
-              width: 100%;
-              max-height: 300px;
+              width: 90%;
+              height: 100%;
+              // max-height: 300px;
+              min-height: 200px;
               object-fit: cover;
               @media (max-width: 1500px) {
                 // border: solid 5px #000;
@@ -704,7 +841,7 @@
       padding-bottom: 20px;
       position: relative;
       &::after {
-        content: "";
+        content: '';
         width: 90%;
         border-top: 2px solid #007552;
         position: absolute;
@@ -712,7 +849,7 @@
         right: 5%;
       }
       &::before {
-        content: "";
+        content: '';
         width: 90%;
         border-top: 2px solid #007552;
         position: absolute;
@@ -764,14 +901,23 @@
           grid-template-columns: 15% 75% 10%;
           grid-template-rows: repeat(2, 1fr);
           grid-template-areas:
-            "aa1 aa2 aa4"
-            "aa1 aa3 aa4";
+            'aa1 aa2 aa4'
+            'aa1 aa3 aa4';
         }
         > div:nth-child(1) {
           // background-color: #000;
+          // border: lightslategrey 2px solid;
+          width: 50px;
+          height: 50px;
           @media (max-width: 992px) {
             grid-area: aa1;
             align-self: center;
+          }
+          > img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
           }
         }
         > div:nth-child(2) {
@@ -787,7 +933,7 @@
             grid-area: aa2;
           }
           &::after {
-            content: "";
+            content: '';
             position: absolute;
             top: 0px;
             right: 10%;
@@ -799,7 +945,7 @@
           }
           @media (max-width: 576px) {
             &::before {
-              content: "";
+              content: '';
               position: absolute;
               top: 3px;
               left: -10px;
@@ -913,15 +1059,15 @@
 }
 </style>
 <script>
-import $ from "jquery";
+import $ from 'jquery';
 export default {
-  props: { blogInfProps: Array, c: String },
+  props: {blogInfProps: Array, c: String},
   data() {
     return {
       msgobj: {
         content: null,
         date: null,
-        blogNo: null
+        blogNo: null,
       },
       blogMsg: null,
       blogMsgFilter: [],
@@ -929,7 +1075,12 @@ export default {
       previousValue: null,
       previousItem: [],
       reportRadio: null,
-      beReported: null
+      beReported: null,
+      imgStatus: false,
+      thumbSrc: '../assets/blog-img/blog-thumb.png',
+      clapQuantity: null,
+      otherLink: null,
+      sellerNo: null,
     };
   },
   created() {
@@ -942,11 +1093,10 @@ export default {
     this.msgobj.date = today;
     // console.log(this.previousValue);
 
-    let api = this.path + "api_get_msg.php";
+    let api = this.path + 'api_get_msg.php';
 
-    this.$http.post(api, JSON.stringify(this.msgobj)).then(res => {
-      if (res.data != "") {
-
+    this.$http.post(api, JSON.stringify(this.msgobj)).then((res) => {
+      if (res.data != '') {
         this.blogMsg = res.data[0];
 
         // console.log(this.blogMsg);
@@ -965,20 +1115,58 @@ export default {
       }
     });
 
-    let api2 = this.path + "api_get_blog_content.php";
+    let api2 = this.path + 'api_get_blog_content.php';
 
-    this.$http.post(api2).then(res => {
-      if (res.data != "") {
+    this.$http.post(api2).then((res) => {
+      if (res.data != '') {
         this.previousValue = res.data;
-        this.previousValue[0].img = this.previousValue[0].img.split(",");
+        this.sellerNo = this.previousValue[0].s_no;
+        this.previousValue[0].img = this.previousValue[0].img.split(',');
 
         for (let j = 0; j < this.previousValue[0].img.length; j++) {
-
           this.previousValue[0].img[j] =
             this.img + this.previousValue[0].img[j];
         }
+        let api5 = this.path + 'api_blog_other_link.php';
+        this.$http
+          .post(api5, JSON.stringify({no: this.sellerNo}))
+          .then((res) => {
+            // console.log(res.data);
+
+            this.otherLink = res.data;
+          });
       }
     });
+
+    let api3 = this.path + 'api_detect_blog_clap.php';
+
+    this.$http.post(api3).then((res) => {
+      if (res.data == 1) {
+        this.imgStatus = true;
+      } else {
+        this.imgStatus = false;
+      }
+
+      // console.log(res.data);
+    });
+
+    let api4 = this.path + 'api_blog_clap_count.php';
+
+    this.$http.post(api4).then((res) => {
+      this.clapQuantity = res.data;
+      // console.log(this.clapQuantity);
+    });
+  },
+  updated() {
+    // let api = this.path + 'api_blog_clap_count.php';
+    // this.$http.post(api).then((res) => {
+    //   this.clapQuantity = res.data;
+    //   console.log(this.clapQuantity);
+    // });
+    // let api5 = this.path + 'api_blog_other_link.php';
+    // this.$http.post(api5,this.previousValue[0].s_no).then((res) => {
+    //   console.log(res.data);
+    // });
   },
   computed: {
     // loadComment() {
@@ -988,14 +1176,9 @@ export default {
   },
   methods: {
     comment() {
-      let msg = document.getElementsByTagName("textarea")[0].value;
+      let msg = document.getElementsByTagName('textarea')[0].value;
       this.msgobj.content = msg;
-
-      // let blogNo = this.blogInfProps.no;
-      // this.msgobj.blogNo = blogNo;
-      // console.log(this.msgobj);
-
-      let api = this.path + "api_blog_msg.php";
+      let api = this.path + 'api_blog_msg.php';
 
       this.$http.post(api, JSON.stringify(this.msgobj));
       var pathtopage = window.location.href;
@@ -1023,15 +1206,15 @@ export default {
       // console.log(e);
       // alert(e)
       document
-        .getElementsByClassName("reportLightBox")[0]
-        .setAttribute("style", "display: block;");
+        .getElementsByClassName('reportLightBox')[0]
+        .setAttribute('style', 'display: block;');
       // this.beReported=null
       this.beReported = e;
     },
     closeLightBox() {
       document
-        .getElementsByClassName("reportLightBox")[0]
-        .setAttribute("style", "display: none;");
+        .getElementsByClassName('reportLightBox')[0]
+        .setAttribute('style', 'display: none;');
     },
     sendReport() {
       var nStartTime = new Date(Date.now());
@@ -1042,21 +1225,68 @@ export default {
       this.beReported.reason = this.reportRadio;
       // console.log(this.beReported);
       if (this.beReported.reason == null) {
-        alert("請填寫原因");
+        alert('請填寫原因');
       } else {
-        let api = this.path + "api_report_msg.php";
+        let api = this.path + 'api_report_msg.php';
 
-        this.$http.post(api, JSON.stringify(this.beReported)).then(res => {
+        this.$http.post(api, JSON.stringify(this.beReported)).then((res) => {
           if (res.data == 1) {
-            alert("您已經檢舉過了！");
+            alert('您已經檢舉過了！');
             // console.log(res.data);
           } else {
-            alert("檢舉成功！");
+            alert('檢舉成功！');
           }
         });
         this.closeLightBox();
       }
-    }
-  }
+    },
+    clap() {
+      if (this.imgStatus == false) {
+        let api = this.path + 'api_blog_clap.php';
+
+        this.$http.post(api).then((res) => {
+          if (res.data != 123) {
+            this.clapQuantity[0].count =
+              parseInt(this.clapQuantity[0].count) + 1;
+            this.imgStatus = true;
+          } else {
+            alert('請先登入');
+          }
+        });
+      } else {
+        let api = this.path + 'api_blog_unclap.php';
+
+        this.$http.post(api).then((res) => {
+          if (res.data != 123) {
+            this.clapQuantity[0].count =
+              parseInt(this.clapQuantity[0].count) - 1;
+            this.imgStatus = false;
+          } else {
+            alert('請先登入');
+          }
+        });
+      }
+    },
+    goToRelatedPage(i, e) {
+      let api = this.path + 'api_get_msg_ot.php';
+      // console.log(i.no)
+      this.$http.post(api, i.no).then((res) => {
+        if (res.data != '') {
+          console.log(res.data);
+          history.go(0);
+        } else {
+          history.go(0);
+          // alert('請先登入');
+        }
+      });
+    },
+  },
+  // watch: {
+
+  //   blogMsgFilter(newValue, oldValue){
+
+  //     this.blogMsgFilter = newValue;
+  //   }
+  // },
 };
 </script>

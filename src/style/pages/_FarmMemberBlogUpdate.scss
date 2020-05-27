@@ -1,6 +1,6 @@
 div.BlogUpdate {
   display: block;
-  color: #007552;
+  color: #666;
   background-color: #fbf8ef;
   height: 100%;
   width: calc(100% - 250px);
@@ -29,7 +29,7 @@ div.BlogUpdate {
     > .BlogUpdate_right_head_text {
       span.new {
         margin-left: 10px;
-        color: #ffd3c1;
+        color: #FFA978;
         font-size: 20px;
       }
     }
@@ -62,7 +62,7 @@ div.BlogUpdate {
         width: 150px;
         height: 850px;
         padding-top: 50px;
-        font-size: 1.8rem;
+        font-size: 1.6rem;
 
         @include rwd(small) {
           width: 100px;
@@ -71,7 +71,7 @@ div.BlogUpdate {
 
         > ul {
           > li {
-            color: #666;
+            color: #333;
             padding-top: 50px;
 
             @include rwd(small) {
@@ -96,7 +96,6 @@ div.BlogUpdate {
         display: inline-block;
         text-align: left;
         background-color: white;
-        color: #333;
         padding: 50px;
         height: 800px;
         width: 350px;
@@ -217,7 +216,7 @@ div.BlogUpdate {
           > .submit_button {
             text-align: right;
             padding-top: 20px;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             @include rwd(small) {
               font-size: 1.4rem;
             }

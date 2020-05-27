@@ -22,13 +22,15 @@
             class="member_pic"
             :style="'background-image: url(' + img + ')'"
           ></span>
-          {{ userName }}
+          <span id="user_name"> {{ userName }}</span>
         </router-link>
         <button class="logout" @click="logout">登出</button>
       </div>
     </div>
     <div class="cart" @click="loginclick">
-      <router-link class="pages" to="/main/member/shopping"></router-link>
+      <router-link class="pages" to="/main/member/shopping">
+        <span class="cart-amount">{{ str }}</span>
+      </router-link>
     </div>
     <div class="hamburger hamburger--elastic" @click="hamclick">
       <div class="hamburger-box">
@@ -109,12 +111,13 @@
 import $ from "jquery";
 export default {
   // 5. 接收父層的 memberStatus 的值
-  props: { memberStatus: Boolean, memberImg: String },
+  props: { memberStatus: Boolean, memberImg: String, cartItem: String },
   data() {
     return {
       status: false,
       userName: "",
       img: "",
+      str: undefined,
     };
   },
   created() {
@@ -129,8 +132,16 @@ export default {
         this.userName = data.name;
       }
     });
-  },
+    let storage = localStorage;
+    if (storage["itemNo"]) {
+      let itemArr = storage["itemNo"];
 
+      itemArr = itemArr.split(",");
+      this.str = itemArr.length - 1;
+    } else {
+      this.str = 0;
+    }
+  },
   mounted() {
     $("div.title").click(function(e) {
       $("div.title")
@@ -166,7 +177,23 @@ export default {
         .addClass("pactive");
     });
   },
+
+  watch: {
+    cartItem(newValue, oldValue) {
+      this.str = newValue.split(",").length - 1;
+    },
+  },
   updated() {
+    if (window.innerWidth < 574) {
+      $("#user_name").hide();
+    }
+    $(window).resize(function() {
+      if (window.innerWidth < 574) {
+        $("#user_name").hide();
+      } else {
+        $("#user_name").show();
+      }
+    });
     $(".member_link").click(function() {
       if ($("div.hamburger").hasClass("is-active") == true) {
         $("div.nav_back").slideToggle();
@@ -192,6 +219,16 @@ export default {
       this.login();
       return this.memberStatus;
     },
+    // itemAmount: function() {
+    //   let len = () => {
+    //     if (this.cart.split(",") == "") {
+    //       return 0;
+    //     } else {
+    //       return this.cart.split(",").length - 1;
+    //     }
+    //   };
+    //   return len();
+    // }
   },
   methods: {
     logout() {
