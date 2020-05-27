@@ -103,8 +103,10 @@ export default {
       }
     };
   },
-  created() {
+  activated() {
     const api = this.path + "api_farmBlogUpdateBlogno.php";
+
+    this.blog = {};
 
     this.$http.post(api).then(res => {
       const data = res.data;

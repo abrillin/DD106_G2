@@ -31,7 +31,7 @@
               v-model="item.name"
             />
             <input type="text" id="productPrice" v-model="item.price" @change="changePrice" />
-元
+            元
             <label for="productMainPic" @change="changeMainPic">
               <span>上傳主要圖片</span>
               <input type="file" id="productMainPic" accept="image/*" />
@@ -94,7 +94,7 @@ export default {
       item: {
         no: 1,
         name: "",
-        price: 1,
+        price: 0,
         description: "",
         infor: "",
         sellerno: "",
@@ -103,7 +103,8 @@ export default {
       }
     };
   },
-  created() {
+  activated() {
+    this.item = { price: 0 };
     const api = this.path + "api_farmitem.php";
     this.$http.post(api).then(res => {
       const data = res.data;

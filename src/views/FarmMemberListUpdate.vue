@@ -31,13 +31,7 @@
                     <td>{{list.date}}</td>
                     <td>$ {{total}}</td>
                     <td>{{list.paymentStatus}}</td>
-                    <td>
-                      <select name="country">
-                        <option value="1">完成</option>
-                        <option value="2">未完成</option>
-                        <option value="3">選項3</option>
-                      </select>
-                    </td>
+                    <td>{{status[list.status]}}</td>
                   </tr>
                 </tbody>
               </table>
@@ -111,6 +105,7 @@ export default {
   data() {
     return {
       list: {},
+      status: ["未完成", "已完成"],
       sub: 0,
       transportMoney: 65,
       total: 0
