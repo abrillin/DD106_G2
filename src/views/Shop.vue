@@ -175,7 +175,7 @@
               </router-link>
               <div class="card_content">
                 <div class="commodity_title">
-                  <div class="commodity_title_text">{{ i.iname }}</div>
+                  <div class="commodity_title_text">{{ i.name }}</div>
                 </div>
 
                 <div
@@ -347,7 +347,7 @@
   height: 60px;
   width: 100%;
   z-index: 998;
-  background-color: rgba(251, 248, 239, 0.89);
+  background-color: rgba(251, 248, 239, 0.938);
   transition: ease 0.3s;
 }
 </style>
