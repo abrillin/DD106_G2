@@ -166,7 +166,7 @@
               <router-link to="/main/shopitem">
                 <div class="card_img_box" @click="changePage(i)">
                   <img
-                    :src="'/api/' + shopcommodityfilter[index].img.split(',')[0]"
+                    :src="'./api/' + shopcommodityfilter[index].img.split(',')[0]"
                     width="100%"
                     height="100%"
                   />
@@ -175,7 +175,7 @@
               </router-link>
               <div class="card_content">
                 <div class="commodity_title">
-                  <div class="commodity_title_text">{{ i.iname }}</div>
+                  <div class="commodity_title_text">{{ i.name }}</div>
                 </div>
 
                 <div
@@ -234,7 +234,7 @@
               <div class="hot_commodity_text">{{ h.iname }}</div>
             </router-link>
             <span>{{ index + 1 }}</span>
-            <img class="hot_commodity_bg" :src="'/api/' + shopcommodity.pro[0].img.split(',')[0]" />
+            <img class="hot_commodity_bg" :src="'./api/' + shopcommodity.pro[0].img.split(',')[0]" />
           </div>
         </div>
         <div class="hot_commodity_filter-status">

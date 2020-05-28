@@ -195,7 +195,7 @@
             <router-link to="/main/shopitem">
               <div class="card_img_box" @click="gotop">
                 <img
-                  :src="`/api/` + Commoditycontent.items[index].img.split(',')[0]"
+                  :src="`./api/` + Commoditycontent.items[index].img.split(',')[0]"
                   width="100%"
                   height="100%"
                 />
