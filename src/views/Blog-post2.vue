@@ -1,7 +1,7 @@
 <template>
   <div class="blog-post-ousidebox">
     <nav id="navbg"></nav>
-    <img src="@/assets/blog-img/blog-bar.png" />
+    <img class="post2-blog-bar" src="@/assets/blog-img/blog-bar.png" />
     <br />
     <div class="blog-landing-container">
       <div>
@@ -492,6 +492,10 @@
 
 <style lang="scss">
 .blog-post-ousidebox {
+  .post2-blog-bar{
+        width: 100%;
+
+  }
   #navbg {
     position: fixed;
     display: flex;
