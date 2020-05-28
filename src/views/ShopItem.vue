@@ -271,7 +271,7 @@
   height: 60px;
   width: 100%;
   z-index: 998;
-  background-color: rgba(251, 248, 239, 0.925);
+  background-color: rgba(251, 248, 239, 0.938);
   transition: ease 0.3s;
 }
 </style>
