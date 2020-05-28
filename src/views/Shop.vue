@@ -234,7 +234,7 @@
               <div class="hot_commodity_text">{{ h.name }}</div>
             </router-link>
             <span>{{ index + 1 }}</span>
-            <img class="hot_commodity_bg" :src="'/api/' + shopcommodity.pro[0].img.split(',')[0]" />
+            <img class="hot_commodity_bg" :src="'/api/' + shopcommodity.pro[index].img.split(',')[0]" />
           </div>
         </div>
         <div class="hot_commodity_filter-status">
