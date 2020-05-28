@@ -206,10 +206,10 @@
                 <div class="commodity_title_text">{{i.iname}}</div>
               </div>
 
-              <div class="card_tag">
+              <!-- <div class="card_tag">
                 <img src="../assets/icon/tag.svg" alt width="16px" height="16px" class="tag_icon" />
                 <span class="card_tag_text">{{i.tag_no}}</span>
-              </div>
+              </div> -->
               <!--  <div class="card_tag" v-for="(t, dex) in shopseller[index].tags" :key="dex">
                 <img src="../assets/icon/tag.svg" alt width="16px" height="16px" class="tag_icon" />
                 <span class="card_tag_text">

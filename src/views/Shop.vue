@@ -407,19 +407,19 @@ export default {
   updated() {
     // console.log(this.shopcommodityfilter[0].img.split(",")[0]);
     // console.log(this.shopcommodity);
-    // for (let i = 0; i < SHOP_INDICATOR_SIZE; i++) {
-    //   document
-    //     .getElementsByClassName("page-item")
-    //     [i].setAttribute("class", "page-item");
-    //   if (
-    //     document.getElementsByClassName("page-item")[i].textContent ==
-    //     this.currentPage + 1
-    //   ) {
-    //     document
-    //       .getElementsByClassName("page-item")
-    //       [i].classList.add("currentPagecolor");
-    //   }
-    // }
+    for (let i = 0; i < SHOP_INDICATOR_SIZE; i++) {
+      document
+        .getElementsByClassName("page-item")
+        [i].setAttribute("class", "page-item");
+      if (
+        document.getElementsByClassName("page-item")[i].textContent ==
+        this.currentPage + 1
+      ) {
+        document
+          .getElementsByClassName("page-item")
+          [i].classList.add("currentPagecolor");
+      }
+    }
   },
 
   methods: {
