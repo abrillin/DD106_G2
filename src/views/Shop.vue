@@ -48,7 +48,7 @@
               <!-- <div class="item_buy-box">
                 <a href="#" class="item_btn" @mouseenter="btnFun">加入購物籃</a>
                 <a href="#" class="item_btn buyNow">直接購買</a>
-              </div> -->
+              </div>-->
             </div>
           </div>
         </div>
@@ -86,7 +86,7 @@
               <a class="hot-words_item" href>愛文芒果</a>
               <a class="hot-words_item" href>大湖草莓</a>
             </div>
-          </div> -->
+          </div>-->
         </div>
       </div>
     </div>
@@ -231,7 +231,7 @@
             @mouseleave="HotCommodityItemsLeave"
           >
             <router-link to="/main/shopitem">
-              <div class="hot_commodity_text">{{ h.iname }}</div>
+              <div class="hot_commodity_text">{{ h.name }}</div>
             </router-link>
             <span>{{ index + 1 }}</span>
             <img class="hot_commodity_bg" :src="'/api/' + shopcommodity.pro[0].img.split(',')[0]" />
