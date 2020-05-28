@@ -1,7 +1,7 @@
 <template>
   <div class="blog-landing-outer">
     <nav id="navbg"></nav>
-    <img src="@/assets/blog-img/blog-bar.png" />
+    <img class="underNavImg" src="@/assets/blog-img/blog-bar.png" />
     <br />
     <div class="blog-landing-container-new">
       <div>
@@ -327,7 +327,9 @@
     z-index: 998;
     background-color: rgba(251, 248, 239, 0.938);
   }
-
+  .underNavImg {
+    width: 100%;
+  }
   padding-top: 60px;
   background-color: #fbf8ef;
   box-sizing: border-box;
@@ -583,11 +585,10 @@
         color: rgb(255, 255, 255);
         font-size: 20px;
         // background-color: rgb(51, 51, 51);
-        text-shadow: rgb(0, 0, 0) 0px 0px 1px,
-          rgb(0, 0, 0) 0px 0px 2px, rgb(0, 0, 0) 0px 0px 3px,
-          rgb(255, 255, 255) 0px 0px 4px, rgb(255, 255, 255) 0px 0px 5px,
-          rgb(255, 45, 149) 0px 0px 6px, rgb(255, 45, 149) 0px 0px 7px,
-          rgb(255, 45, 149) 0px 0px 8px;
+        text-shadow: rgb(0, 0, 0) 0px 0px 1px, rgb(0, 0, 0) 0px 0px 2px,
+          rgb(0, 0, 0) 0px 0px 3px, rgb(255, 255, 255) 0px 0px 4px,
+          rgb(255, 255, 255) 0px 0px 5px, rgb(255, 45, 149) 0px 0px 6px,
+          rgb(255, 45, 149) 0px 0px 7px, rgb(255, 45, 149) 0px 0px 8px;
       }
     }
   }
@@ -865,6 +866,8 @@
           margin-right: 30px;
         }
         > img:nth-child(2) {
+      // background-color: #000;
+      cursor: pointer;
           margin-right: 10px;
         }
         > span:nth-child(3) {
@@ -913,6 +916,13 @@
           @media (max-width: 992px) {
             grid-area: aa1;
             align-self: center;
+            justify-self: center;
+            width: 40px;
+          height: 40px;
+          }
+          @media (max-width: 400px) {
+          width: 30px;
+          height: 30px;
           }
           > img {
             object-fit: cover;
@@ -968,10 +978,13 @@
           }
         }
         > div:nth-child(4) {
-          // background-color: #000;
           //report
           @media (max-width: 992px) {
             grid-area: aa4;
+          }
+          >img{
+          cursor: pointer;
+
           }
         }
       }
