@@ -7,7 +7,9 @@
           <span class="admin_name">
             園長
             <span class="adminNameColor">{{admin.name}}</span> 巡邏中
-            <button @click="logOut"><span> 下班 </span></button>
+            <button @click="logOut">
+              <span>下班</span>
+            </button>
           </span>
 
           <li>
@@ -63,7 +65,7 @@ export default {
       this.$http.post(api).then(res => {
         const data = res.data;
 
-        if (data != "") {
+        if (data == 1) {
           const api = this.path + "api_adminLogOut.php";
 
           this.$http.post(api);

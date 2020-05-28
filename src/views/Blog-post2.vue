@@ -1,6 +1,6 @@
 <template>
   <div class="blog-post-ousidebox">
-     <nav id="navbg"></nav>
+    <nav id="navbg"></nav>
     <img src="@/assets/blog-img/blog-bar.png" />
     <br />
     <div class="blog-landing-container">
@@ -98,17 +98,18 @@
             </div>
             <div>
               <img src="@/assets/blog-img/blog-thumb.png" />
-              <span>{{blogArrFilterTop[0].clapCount}}</span>
+              <span>{{ blogArrFilterTop[0].clapCount }}</span>
             </div>
-            <div>
-              {{ blogArrFilterTop[0].content }}
-              {{ blogArrFilterTop[0].content2 }}
-            </div>
+            <div
+              v-html="
+                blogArrFilterTop[0].content + blogArrFilterTop[0].content2
+              "
+            ></div>
           </div>
           <div>
             <div>
-              <div>
-                <!--sister-->
+              <div id="girlCollectionFruit">
+                <!--妹妹採水果/星星-->
               </div>
               <img src="@/assets/blog-img/post/yello-something.png" alt />
             </div>
@@ -179,14 +180,20 @@
               <div>
                 <div>
                   <form action method="get">
-                    <input placeholder="水果知識" type="text" />
-                    <img src="@/assets/blog-img/post/magnifier.png" />
+                    <input
+                      @keydown.enter="searchKeywordMethod"
+                      id="searchKeyword"
+                      placeholder="水果知識"
+                      type="text"
+                    />
+                    <img class="magnifier" @click="searchKeywordMethod" src="@/assets/blog-img/post/magnifier.png" />
                   </form>
                 </div>
                 <div>
-                  <span>周末親子旅遊</span>
-                  <span>桃園山區採果</span>
-                  <span>桃園山區採果</span>
+                  <span>番茄</span>
+                  <span>香蕉</span>
+                  <span>鳳梨</span>
+                  <span>黑魔王</span>
                 </div>
               </div>
             </div>
@@ -215,15 +222,13 @@
                       <p>{{ i.title }}</p>
                       <p>
                         <img src="@/assets/blog-img/blog-thumb.png" />
-                        <span>{{i.clapCount}}</span>
+                        <span>{{ i.clapCount }}</span>
                         <img src="@/assets/blog-img/blog-tag.png" />
                         <span>西瓜</span>
                         <img src="@/assets/blog-img/blog-tag.png" />
                         <span>果農心得</span>
                       </p>
-                      <p>
-                        {{ i.content }}
-                      </p>
+                      <p v-html="i.content"></p>
                     </div>
                     <div>
                       <div>
@@ -328,7 +333,7 @@
                           <img src="@/assets/blog-img/blog-thumb.png" />
                         </div>
                         <div>
-                          <span>{{i.clapCount}}</span>
+                          <span>{{ i.clapCount }}</span>
                         </div>
                       </div>
                     </div>
@@ -339,7 +344,7 @@
                         <img src="@/assets/blog-img/blog-tag.png" />
                         <span>知識類</span>
                       </div>
-                      <p>{{ i.content }}</p>
+                      <p v-html="i.content"></p>
                     </div>
                     <div>
                       <div>
@@ -395,7 +400,7 @@
                 class="pageBorder"
                 v-for="(i, index) in pageArr"
                 :key="index"
-                v-on="{click: pageSelect}"
+                v-on="{ click: pageSelect }"
               >
                 {{ i }}
               </li>
@@ -488,18 +493,18 @@
 <style lang="scss">
 .blog-post-ousidebox {
   #navbg {
-  position: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  box-sizing: border-box;
-  padding: 0px 1%;
-  top: 0px;
-  transition: all 0.5s;
-  height: 60px;
-  width: 100%;
-  z-index: 998;
-  background-color: rgba(251, 248, 239, 0.938);
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    box-sizing: border-box;
+    padding: 0px 1%;
+    top: 0px;
+    transition: all 0.5s;
+    height: 60px;
+    width: 100%;
+    z-index: 998;
+    background-color: rgba(251, 248, 239, 0.938);
   }
 
   padding-top: 60px;
@@ -548,7 +553,7 @@
   // height: 50vw;
   // padding-bottom: 5%;
   &::before {
-    content: '';
+    content: "";
     border-bottom: #007552 5px solid;
     width: 105%;
     position: absolute;
@@ -568,7 +573,7 @@
   }
   > div:nth-child(1) {
     &::before {
-      content: '';
+      content: "";
       display: inline-block;
       border-right: #6baf9b solid 2px;
       height: 50%;
@@ -589,7 +594,7 @@
       bottom: 0%;
       left: 0%;
       @media (max-width: 1300px) {
-        content: '';
+        content: "";
       }
     }
     // border: 4px solid #000;
@@ -601,12 +606,12 @@
     grid-template-columns: 1.5fr 2fr 1.5fr 3fr;
     grid-template-rows: 0.1fr 1fr 0.5fr 0.5fr 0.4fr 5fr;
     grid-template-areas:
-      'aa1 aa1 aa1 aa1'
-      'aa2 aa2 aa2 aa2 '
-      'aa3 aa4 aa6 aa7'
-      'aa3 aa5 aa6 aa7'
-      'aa8 aa8 aa8 aa8'
-      'aa9 aa9 aa9 aa9';
+      "aa1 aa1 aa1 aa1"
+      "aa2 aa2 aa2 aa2 "
+      "aa3 aa4 aa6 aa7"
+      "aa3 aa5 aa6 aa7"
+      "aa8 aa8 aa8 aa8"
+      "aa9 aa9 aa9 aa9";
     @media (max-width: 1600px) {
       // padding-right: 0%;
       grid-template-columns: 0.9fr 1.3fr 1fr 3fr;
@@ -624,12 +629,12 @@
     }
     @media (max-width: 576px) {
       grid-template-areas:
-        'aa1 aa1 aa1 aa1'
-        'aa2 aa2 aa2 aa2 '
-        'aa3 aa4 aa6 aa6'
-        'aa3 aa5 aa7 aa7'
-        'aa8 aa8 aa8 aa8'
-        'aa9 aa9 aa9 aa9';
+        "aa1 aa1 aa1 aa1"
+        "aa2 aa2 aa2 aa2 "
+        "aa3 aa4 aa6 aa6"
+        "aa3 aa5 aa7 aa7"
+        "aa8 aa8 aa8 aa8"
+        "aa9 aa9 aa9 aa9";
       grid-template-columns: 1fr 1.5fr 1fr 1fr;
       // border: solid 1px red;
     }
@@ -770,8 +775,8 @@
       grid-area: aa9;
       column-count: 2;
       // column-gap: ;
-      letter-spacing: 1.3px;
-      line-height: 1.3;
+      letter-spacing: 1.5px;
+      line-height: 1.5;
       column-gap: 6rem;
       padding-top: 30px;
       @media (max-width: 1500px) {
@@ -802,18 +807,21 @@
     > div:nth-child(1) {
       position: relative;
       //妹妹
-      > div:nth-child(1) {
+      > div#girlCollectionFruit {
+        //妹妹採水果/星星
+
         position: relative;
         // left: 10%;
         z-index: 2;
         width: 70%;
         padding-top: 70%;
-        background: url('../assets/blog-img/post/blog_aabbcc.svg') no-repeat
-          center center;
+        // background: url('../assets/blog-img/post/blog_aabbcc.svg');
+        background-repeat: no-repeat;
+        background-position: center center;
         background-size: cover;
-        -webkit-mask: url('../assets/blog-img/post/blog_aabbcc.svg') no-repeat
+        -webkit-mask: url("../assets/blog-img/post/blog_aabbcc.svg") no-repeat
           center center;
-        mask: url('../assets/blog-img/post/blog_aabbcc.svg') no-repeat center
+        mask: url("../assets/blog-img/post/blog_aabbcc.svg") no-repeat center
           center;
         @media (max-width: 1600px) {
           width: 100%;
@@ -936,7 +944,7 @@
             margin-left: 10px;
           }
           &::before {
-            content: '';
+            content: "";
             position: absolute;
             height: 25px;
             border-right: #a0a0a0 solid 1px;
@@ -957,7 +965,7 @@
       }
       //留言表單
       &::before {
-        content: '';
+        content: "";
         border-top: solid #a0a0a0 1px;
         width: 50rem;
         position: absolute;
@@ -1132,7 +1140,7 @@
 }
 .blog-post-tri {
   //select
-  background: url('../assets/blog-img/post/triangle.png');
+  background: url("../assets/blog-img/post/triangle.png");
   background-repeat: no-repeat;
   background-position: 95% 60%;
   font-size: 15px;
@@ -1223,8 +1231,11 @@
       > div:nth-child(1) {
         // background-color: #000;
         //籃子圖
+        margin-right: 20px;
         > img {
           width: 100%;
+          // position: relative;
+          // right: 20px;
         }
       }
       > div:nth-child(2) {
@@ -1246,6 +1257,8 @@
               position: relative;
             }
             > img:nth-child(2) {
+              // border: #000 3px solid;
+              cursor: pointer;
               position: absolute;
               right: 20%;
               bottom: 5px;
@@ -1342,10 +1355,10 @@
       border-bottom: #a0a0a0 solid 1px;
       // border: chocolate 3px solid;
       grid-template-areas:
-        'aa1 aa2 aa2 aa2'
-        'aa1 aa3 aa3 aa3'
-        'aa1 aa4 aa5 aa7'
-        'aa1 aa4 aa6 aa7';
+        "aa1 aa2 aa2 aa2"
+        "aa1 aa3 aa3 aa3"
+        "aa1 aa4 aa5 aa7"
+        "aa1 aa4 aa6 aa7";
       > div:nth-child(1) {
         grid-area: aa1;
         font-size: 80px;
@@ -1461,7 +1474,7 @@
           }
           > p:nth-child(2) {
             margin-top: 5px;
-            font-size: 16px;
+            font-size: 20px;
             display: -webkit-box;
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 1;
@@ -1500,6 +1513,8 @@
           > p:nth-child(4) {
             color: #000;
             font-size: 16px;
+            line-height: 1.5;
+            letter-spacing: 1px;
             margin-top: 20px;
             padding-right: 50px;
             width: 100%;
@@ -1520,7 +1535,7 @@
           // top: 5%;
           padding-bottom: 2%;
           &::before {
-            content: '';
+            content: "";
             border-top: solid #007552 1.5px;
             width: 100%;
             top: -15px;
@@ -1566,6 +1581,7 @@
   .blog-post2-small-card-container {
     display: flex;
     flex-wrap: wrap;
+    column-gap: 20px;
     justify-content: space-between;
     > a:nth-child(9) {
       @media (max-width: 9999px) {
@@ -1585,6 +1601,7 @@
       }
     }
     > .blog-post2-small-card {
+      float: left;
       display: inline-block;
       text-decoration: none;
       color: #000;
@@ -1668,7 +1685,7 @@
           > p:nth-child(2) {
             //標題
             margin-top: 5px;
-            font-size: 16px;
+            font-size: 20px;
             // line-height: 1.5;
           }
           > div:nth-child(3) {
@@ -1681,11 +1698,12 @@
             //內文
             margin-top: 10px;
             padding-bottom: 10px;
-            line-height: 1.3;
+            line-height: 1.5;
+            letter-spacing: 1px;
             font-size: 16px;
             // background-color:#000;
             overflow: hidden;
-            height: 92px;
+            height: 90px;
             text-overflow: ellipsis;
             display: -webkit-box;
             -webkit-box-orient: vertical;
@@ -1797,7 +1815,7 @@
 </style>
 
 <script>
-import $ from 'jquery';
+import $ from "jquery";
 export default {
   data() {
     return {
@@ -1810,7 +1828,7 @@ export default {
       pageArr: [],
       currentPage: [],
       topMsg: null,
-      topMsgText: '',
+      topMsgText: "",
       sendMsgArr: [],
     };
   },
@@ -1824,45 +1842,39 @@ export default {
   updated() {
     for (
       let i = 0;
-      i < document.getElementsByClassName('pageBorder').length;
+      i < document.getElementsByClassName("pageBorder").length;
       i++
     ) {
       document
-        .getElementsByClassName('pageBorder')
-        [i].setAttribute('class', 'pageBorder');
+        .getElementsByClassName("pageBorder")
+        [i].setAttribute("class", "pageBorder");
       if (
-        document.getElementsByClassName('pageBorder')[i].textContent ==
+        document.getElementsByClassName("pageBorder")[i].textContent ==
         this.currentPage[0]
       ) {
         document
-          .getElementsByClassName('pageBorder')
-          [i].classList.add('currentPagecolor');
+          .getElementsByClassName("pageBorder")
+          [i].classList.add("currentPagecolor");
       }
     }
 
-    let api = this.path + 'api_get_msg_blogtop.php';
-
-    this.$http
-      .post(api, JSON.stringify(this.blogArrFilterTop[0].no))
-      .then((res) => {
-        if (res.data != '') {
-          this.topMsg = res.data;
-
-          // console.log(res.data);
-        } else {
-        }
-      });
+    document
+      .getElementById("girlCollectionFruit")
+      .setAttribute(
+        "style",
+        `background: url('${this.blogArrFilterTop[0].img[0]}');`
+      );
   },
   created() {
-    let api = this.path + 'api_blog.php';
+    let api = this.path + "api_blog.php";
 
     this.$http.post(api, JSON.stringify(this.member)).then((res) => {
-      if (res.data != '') {
+      if (res.data != "") {
         // console.log(res.data);
         this.blogArr = res.data;
 
         for (let i = 0; i < this.blogArr.length; i++) {
-          this.blogArr[i].img = this.blogArr[i].img.split(',');
+          this.blogArr[i].img = this.blogArr[i].img.split(",");
         }
 
         // for (let i = 0; i < this.blogArr.length; i++) {
@@ -1876,13 +1888,12 @@ export default {
           });
         });
 
-
         for (let i in this.blogArr) {
-          let api2 = this.path + 'api_get_all_blog_claps.php';
+          let api2 = this.path + "api_get_all_blog_claps.php";
           this.$http.post(api2, this.blogArr[i].no).then((res) => {
-            if (res.data != '') {
-              this.blogArr[i].clapCount=res.data[0].count
-              console.log(this.blogArr[i].clapCount);
+            if (res.data != "") {
+              this.blogArr[i].clapCount = res.data[0].count;
+              // console.log(this.blogArr[i].clapCount);
             }
           });
         }
@@ -1912,6 +1923,16 @@ export default {
             this.pageArr.push(i);
           }
         }
+        let api3 = this.path + "api_get_msg_blogtop.php";
+
+        this.$http
+          .post(api3, JSON.stringify(this.blogArrFilterTop[0].no))
+          .then((res) => {
+            if (res.data != "") {
+              this.topMsg = res.data;
+            } else {
+            }
+          });
       } else {
         // console.log(res.error);
       }
@@ -1976,6 +1997,16 @@ export default {
         }
       }
 
+      let api3 = this.path + "api_get_msg_blogtop.php";
+
+      this.$http
+        .post(api3, JSON.stringify(this.blogArrFilterTop[0].no))
+        .then((res) => {
+          if (res.data != "") {
+            this.topMsg = res.data;
+          } else {
+          }
+        });
       // for (
       //   let i = 1;
       //   i < document.getElementsByClassName('pageBorder').length;
@@ -2007,6 +2038,16 @@ export default {
           this.pageArr[index] = this.pageArr[index] - 1;
         });
       }
+      let api3 = this.path + "api_get_msg_blogtop.php";
+
+      this.$http
+        .post(api3, JSON.stringify(this.blogArrFilterTop[0].no))
+        .then((res) => {
+          if (res.data != "") {
+            this.topMsg = res.data;
+          } else {
+          }
+        });
     },
     nextPage() {
       let currentPage1 = this.currentPage[0];
@@ -2036,6 +2077,16 @@ export default {
           this.pageArr[index] = this.pageArr[index] + 1;
         });
       }
+      let api3 = this.path + "api_get_msg_blogtop.php";
+
+      this.$http
+        .post(api3, JSON.stringify(this.blogArrFilterTop[0].no))
+        .then((res) => {
+          if (res.data != "") {
+            this.topMsg = res.data;
+          } else {
+          }
+        });
     },
     changePage(e) {
       // (blog)a. 往父層傳遞一個 event(blogInf) 的值(this.blogArr)
@@ -2046,13 +2097,13 @@ export default {
       // });
       // console.log(e);
       // console.log('123');
-      this.$emit('blogInf', e);
+      this.$emit("blogInf", e);
       // console.log(e);
 
-      let api = this.path + 'api_session_blog_no.php';
+      let api = this.path + "api_session_blog_no.php";
 
       this.$http.post(api, JSON.stringify(e)).then((res) => {
-        if (res.data != '') {
+        if (res.data != "") {
           // console.log(res.data);
         } else {
           // console.log(res.error);
@@ -2063,7 +2114,7 @@ export default {
       // console.log(e.target.parentNode.parentNode.children[3].textContent);
     },
     comment() {
-      let api = this.path + 'api_send_blog_msg_top.php';
+      let api = this.path + "api_send_blog_msg_top.php";
       var nStartTime = new Date(Date.now());
       let today = `${nStartTime.getFullYear()}-${nStartTime.getMonth() +
         1}-${nStartTime.getDate()}`;
@@ -2072,13 +2123,106 @@ export default {
       this.sendMsgArr.push(this.blogArrFilterTop[0].no);
       this.sendMsgArr.push(today);
       this.$http.post(api, JSON.stringify(this.sendMsgArr)).then((res) => {
-        if (res.data != '') {
+        if (res.data != "") {
           // console.log(res.data);
         } else {
           // console.log(res.error);
         }
       });
-      this.topMsgText = '';
+      this.topMsgText = "";
+      let api3 = this.path + "api_get_msg_blogtop.php";
+
+      this.$http
+        .post(api3, JSON.stringify(this.blogArrFilterTop[0].no))
+        .then((res) => {
+          if (res.data != "") {
+            this.topMsg = res.data;
+          } else {
+          }
+        });
+    },
+    searchKeywordMethod() {
+      let api = this.path + "api_search_blog_keyword.php";
+      let aa = document.getElementById("searchKeyword").value.trim();
+      // console.log(document.getElementById("searchKeyword").value.trim())
+      this.$http.post(api, JSON.stringify(aa)).then((res) => {
+        if (res.data != "") {
+          // console.log(res.data);
+          this.blogArr = null;
+          this.blogArrFilter = [];
+          this.blogArrFilterTop = [];
+          this.pageArr = [];
+          this.currentPage = [];
+          this.topMsg = null;
+          this.topMsgText = "";
+          this.sendMsgArr = [];
+
+          this.blogArr = res.data;
+
+          for (let i = 0; i < this.blogArr.length; i++) {
+            this.blogArr[i].img = this.blogArr[i].img.split(",");
+          }
+
+          // for (let i = 0; i < this.blogArr.length; i++) {
+          //   for (let j = 0; j < this.blogArr[i].img.length; j++) {
+          //     this.blogArr[i].img[j] = `/api/${this.blogArr[i].img[j]}`;
+          //   }
+          // }
+          this.blogArr.forEach((arr, i) => {
+            arr.img.forEach((item, index) => {
+              this.blogArr[i].img[index] = this.img + item;
+            });
+          });
+
+          for (let i in this.blogArr) {
+            let api2 = this.path + "api_get_all_blog_claps.php";
+            this.$http.post(api2, this.blogArr[i].no).then((res) => {
+              if (res.data != "") {
+                this.blogArr[i].clapCount = res.data[0].count;
+                // console.log(this.blogArr[i].clapCount);
+              }
+            });
+          }
+
+          this.blogArrFilterTop.push(this.blogArr[0]);
+
+          if (this.blogArr.length <= 9) {
+            for (let i = 1; i < this.blogArr.length; i++) {
+              this.blogArrFilter.push(this.blogArr[i]);
+            }
+          } else {
+            for (let i = 1; i < 10; i++) {
+              this.blogArrFilter.push(this.blogArr[i]);
+            }
+          }
+
+          this.currentPage.push(1);
+
+          if (this.blogArr.length <= 9) {
+            this.pageArr.push(1);
+          } else if (this.blogArr.length / 9 < 9) {
+            for (let i = 1; i <= parseInt(this.blogArr.length / 9) + 1; i++) {
+              this.pageArr.push(i);
+            }
+          } else {
+            for (let i = 1; i < 10; i++) {
+              this.pageArr.push(i);
+            }
+          }
+          let api3 = this.path + "api_get_msg_blogtop.php";
+
+          this.$http
+            .post(api3, JSON.stringify(this.blogArrFilterTop[0].no))
+            .then((res) => {
+              if (res.data != "") {
+                this.topMsg = res.data;
+              } else {
+              }
+            });
+        } else {
+          // console.log(res.error);
+        }
+      });
     },
   },
 };

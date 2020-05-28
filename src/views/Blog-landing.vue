@@ -1,7 +1,7 @@
 <template>
   <div class="blog-landing-outer">
     <nav id="navbg"></nav>
-    <img src="@/assets/blog-img/blog-bar.png" />
+    <img class="underNavImg" src="@/assets/blog-img/blog-bar.png" />
     <br />
     <div class="blog-landing-container-new">
       <div>
@@ -37,21 +37,53 @@
       <div>
         <div>
           <div>
-            <img
-              src="@/assets/blog-img/blog-someoneshead.png"
-              class="blog-landing-aunt"
-            />
+            <img :src="previousValue[0].m_img" class="blog-landing-aunt" />
           </div>
           <div>
             <div>
-              <span>蓬蓬草莓姨</span>
+              <span>{{ previousValue[0].nick }}</span>
             </div>
             <div>
-              <img src="@/assets/blog-img/blog-star.png" />
-              <img src="@/assets/blog-img/blog-star.png" />
-              <img src="@/assets/blog-img/blog-star.png" />
-              <img src="@/assets/blog-img/blog-star.png" />
-              <img src="@/assets/blog-img/blog-star.png" />
+              <img
+                src="@/assets/Group 720.svg"
+                v-if="
+                  previousValue[0].review_total /
+                    previousValue[0].review_count >
+                    0
+                "
+              />
+              <img
+                src="@/assets/Group 720.svg"
+                v-if="
+                  previousValue[0].review_total /
+                    previousValue[0].review_count >
+                    1
+                "
+              />
+              <img
+                src="@/assets/Group 720.svg"
+                v-if="
+                  previousValue[0].review_total /
+                    previousValue[0].review_count >
+                    2
+                "
+              />
+              <img
+                src="@/assets/Group 720.svg"
+                v-if="
+                  previousValue[0].review_total /
+                    previousValue[0].review_count >
+                    3
+                "
+              />
+              <img
+                src="@/assets/Group 720.svg"
+                v-if="
+                  previousValue[0].review_total /
+                    previousValue[0].review_count >
+                    4
+                "
+              />
             </div>
           </div>
           <div>
@@ -62,9 +94,14 @@
           <div class="blog-landing-greenline"></div>
         </div>
         <div>
-          <span>其他文章連結</span>
-          <span>其他文章連結</span>
-          <span>其他文章連結</span>
+          <span>其他關聯文章</span>
+          <span
+            class="otherLink"
+            @click="goToRelatedPage(i, $event)"
+            v-for="(i, index) in otherLink"
+            :key="index"
+            >{{ i.title }}</span
+          >
         </div>
       </div>
 
@@ -92,8 +129,8 @@
         </div>
         <div>
           <div>
-            <div>{{ previousValue[0].content }}</div>
-            <div>{{ previousValue[0].content2 }}</div>
+            <div v-html="previousValue[0].content"></div>
+            <div v-html="previousValue[0].content2"></div>
           </div>
           <div>
             <div>
@@ -137,7 +174,7 @@
               <div>{{ i.nick }}</div>
               <div>{{ i.date }}</div>
             </div>
-            <div style="font-size:16px;">{{ i.content }}</div>
+            <div v-html="i.content" style="font-size:16px;"></div>
             <div>
               <img
                 @click="report(i)"
@@ -277,20 +314,22 @@
 <style lang="scss">
 .blog-landing-outer {
   #navbg {
-  position: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  box-sizing: border-box;
-  padding: 0px 1%;
-  top: 0px;
-  transition: all 0.5s;
-  height: 60px;
-  width: 100%;
-  z-index: 998;
-  background-color: rgba(251, 248, 239, 0.938);
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    box-sizing: border-box;
+    padding: 0px 1%;
+    top: 0px;
+    transition: all 0.5s;
+    height: 60px;
+    width: 100%;
+    z-index: 998;
+    background-color: rgba(251, 248, 239, 0.938);
   }
-
+  .underNavImg {
+    width: 100%;
+  }
   padding-top: 60px;
   background-color: #fbf8ef;
   box-sizing: border-box;
@@ -414,6 +453,9 @@
       display: grid;
       grid-template-columns: 0.5fr 1.2fr 1fr;
       padding: 30% 50px 0px 50px;
+      min-width: 50px;
+      min-height: 50px;
+
       @media (max-width: 1500px) {
         padding: 30% 10px 0px 10px;
       }
@@ -422,7 +464,10 @@
         padding: 30% 10px 10px 10px;
       }
       .blog-landing-aunt {
-        width: 100%;
+        object-fit: cover;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
       }
       @media (max-width: 1300px) {
         & {
@@ -433,7 +478,10 @@
           justify-content: center;
 
           .blog-landing-aunt {
-            width: 100%;
+            object-fit: cover;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
           }
         }
       }
@@ -528,6 +576,19 @@
         text-decoration: none;
         color: black;
         font-size: 16px;
+      }
+      .otherLink {
+        cursor: pointer;
+        color: #007552;
+      }
+      .otherLink:hover {
+        color: rgb(255, 255, 255);
+        font-size: 20px;
+        // background-color: rgb(51, 51, 51);
+        text-shadow: rgb(0, 0, 0) 0px 0px 1px, rgb(0, 0, 0) 0px 0px 2px,
+          rgb(0, 0, 0) 0px 0px 3px, rgb(255, 255, 255) 0px 0px 4px,
+          rgb(255, 255, 255) 0px 0px 5px, rgb(255, 45, 149) 0px 0px 6px,
+          rgb(255, 45, 149) 0px 0px 7px, rgb(255, 45, 149) 0px 0px 8px;
       }
     }
   }
@@ -653,8 +714,8 @@
           // background-color: #000;
           height: 385px;
           position: relative;
-          @media (max-width: 576px) {
-            height: 600px;
+          @media (max-width: 1500px) {
+            height: auto;
           }
           &::before {
             content: '';
@@ -695,8 +756,8 @@
           //文章二區
           height: 385px;
           padding-bottom: 11%;
-          @media (max-width: 576px) {
-            height: 600px;
+          @media (max-width: 1500px) {
+            height: auto;
           }
         }
       }
@@ -738,10 +799,11 @@
             // top: 10%;
             right: 1%;
             top: 18%;
+            // border: solid black 3px;
             @media (max-width: 1500px) {
               // border: solid 5px #000;
               position: relative;
-              right: 0%;
+              right: 2.5%;
               top: 0%;
               display: grid;
               grid-template-columns: repeat(2, 1fr);
@@ -755,9 +817,12 @@
               grid-template-columns: repeat(1, 1fr);
             }
             > img {
+              // border: solid 3px red;
               margin-bottom: 4%;
-              width: 100%;
-              max-height: 300px;
+              width: 90%;
+              height: 100%;
+              // max-height: 300px;
+              min-height: 200px;
               object-fit: cover;
               @media (max-width: 1500px) {
                 // border: solid 5px #000;
@@ -801,6 +866,8 @@
           margin-right: 30px;
         }
         > img:nth-child(2) {
+      // background-color: #000;
+      cursor: pointer;
           margin-right: 10px;
         }
         > span:nth-child(3) {
@@ -849,6 +916,13 @@
           @media (max-width: 992px) {
             grid-area: aa1;
             align-self: center;
+            justify-self: center;
+            width: 40px;
+          height: 40px;
+          }
+          @media (max-width: 400px) {
+          width: 30px;
+          height: 30px;
           }
           > img {
             object-fit: cover;
@@ -904,10 +978,13 @@
           }
         }
         > div:nth-child(4) {
-          // background-color: #000;
           //report
           @media (max-width: 992px) {
             grid-area: aa4;
+          }
+          >img{
+          cursor: pointer;
+
           }
         }
       }
@@ -1016,6 +1093,8 @@ export default {
       imgStatus: false,
       thumbSrc: '../assets/blog-img/blog-thumb.png',
       clapQuantity: null,
+      otherLink: null,
+      sellerNo: null,
     };
   },
   created() {
@@ -1032,7 +1111,6 @@ export default {
 
     this.$http.post(api, JSON.stringify(this.msgobj)).then((res) => {
       if (res.data != '') {
-      
         this.blogMsg = res.data[0];
 
         // console.log(this.blogMsg);
@@ -1054,16 +1132,23 @@ export default {
     let api2 = this.path + 'api_get_blog_content.php';
 
     this.$http.post(api2).then((res) => {
-
       if (res.data != '') {
-      
         this.previousValue = res.data;
+        this.sellerNo = this.previousValue[0].s_no;
         this.previousValue[0].img = this.previousValue[0].img.split(',');
 
         for (let j = 0; j < this.previousValue[0].img.length; j++) {
           this.previousValue[0].img[j] =
             this.img + this.previousValue[0].img[j];
         }
+        let api5 = this.path + 'api_blog_other_link.php';
+        this.$http
+          .post(api5, JSON.stringify({no: this.sellerNo}))
+          .then((res) => {
+            // console.log(res.data);
+
+            this.otherLink = res.data;
+          });
       }
     });
 
@@ -1075,7 +1160,6 @@ export default {
       } else {
         this.imgStatus = false;
       }
-      console.log(typeof res.data);
 
       // console.log(res.data);
     });
@@ -1084,15 +1168,18 @@ export default {
 
     this.$http.post(api4).then((res) => {
       this.clapQuantity = res.data;
-      console.log(this.clapQuantity);
+      // console.log(this.clapQuantity);
     });
   },
   updated() {
     // let api = this.path + 'api_blog_clap_count.php';
-
     // this.$http.post(api).then((res) => {
     //   this.clapQuantity = res.data;
     //   console.log(this.clapQuantity);
+    // });
+    // let api5 = this.path + 'api_blog_other_link.php';
+    // this.$http.post(api5,this.previousValue[0].s_no).then((res) => {
+    //   console.log(res.data);
     // });
   },
   computed: {
@@ -1173,11 +1260,11 @@ export default {
 
         this.$http.post(api).then((res) => {
           if (res.data != 123) {
-        this.clapQuantity[0].count=parseInt(this.clapQuantity[0].count)+1
-        this.imgStatus = true;
-            
-          }else{
-            alert("請先登入")
+            this.clapQuantity[0].count =
+              parseInt(this.clapQuantity[0].count) + 1;
+            this.imgStatus = true;
+          } else {
+            alert('請先登入');
           }
         });
       } else {
@@ -1185,16 +1272,35 @@ export default {
 
         this.$http.post(api).then((res) => {
           if (res.data != 123) {
-            this.clapQuantity[0].count=parseInt(this.clapQuantity[0].count)-1
-        this.imgStatus = false;
-          }else{
-            alert("請先登入")
-
+            this.clapQuantity[0].count =
+              parseInt(this.clapQuantity[0].count) - 1;
+            this.imgStatus = false;
+          } else {
+            alert('請先登入');
           }
         });
-        
       }
     },
+    goToRelatedPage(i, e) {
+      let api = this.path + 'api_get_msg_ot.php';
+      // console.log(i.no)
+      this.$http.post(api, i.no).then((res) => {
+        if (res.data != '') {
+          // console.log(res.data);
+          history.go(0);
+        } else {
+          history.go(0);
+          // alert('請先登入');
+        }
+      });
+    },
   },
+  // watch: {
+
+  //   blogMsgFilter(newValue, oldValue){
+
+  //     this.blogMsgFilter = newValue;
+  //   }
+  // },
 };
 </script>
