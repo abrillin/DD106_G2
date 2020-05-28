@@ -785,13 +785,21 @@ $color5: #ffa978;
       flex-direction: column;
       @include rwd(small) {
         margin: 20px 15px;
-        flex-direction: row;
       }
-      img{
+      .card_img_box{
         @media (max-width: 499px){
-          display: none;
+          width: 100%;
+          height: 100%;
+        }
+              img{
+        @media (max-width: 499px){
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
         }
       }
+      }
+
       .card_content {
         padding: 10px;
         .commodity_title {

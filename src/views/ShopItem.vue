@@ -47,11 +47,11 @@
       <div class="CommodityContent">
         <div class="CommodityContentImgBox">
           <div class="CommodityContentImgMain">
-            <img src="../assets/shop/ia_300000013.jpg" alt class="CommodityContentImg" />
+            <img :src="this.imgg" alt class="CommodityContentImg" />
           </div>
           <div class="CommodityContentImgChangeBox">
-            <img src="../assets/ia_300000017.jpg" alt class="CommodityContentChangeImg" />
-            <img src="../assets/ia_300000011.jpg" alt class="CommodityContentChangeImg" />
+            <img :src="this.imgg2" alt class="CommodityContentChangeImg" />
+            <img :src="this.imgg3" alt class="CommodityContentChangeImg" />
           </div>
         </div>
         <div class="CommodityContenText">
@@ -203,21 +203,8 @@
             </router-link>
             <div class="card_content">
               <div class="commodity_title">
-                <div class="commodity_title_text">{{i.iname}}</div>
+                <div class="commodity_title_text">{{i.name}}</div>
               </div>
-
-              <!-- <div class="card_tag">
-                <img src="../assets/icon/tag.svg" alt width="16px" height="16px" class="tag_icon" />
-                <span class="card_tag_text">{{i.tag_no}}</span>
-              </div> -->
-              <!--  <div class="card_tag" v-for="(t, dex) in shopseller[index].tags" :key="dex">
-                <img src="../assets/icon/tag.svg" alt width="16px" height="16px" class="tag_icon" />
-                <span class="card_tag_text">
-                  {{
-                  shopseller[index].tags[dex].name
-                  }}
-                </span>
-              </div>-->
 
               <div class="card_price">
                 <span class="money">{{i.price}}</span>
@@ -301,9 +288,20 @@ export default {
   data() {
     return {
       Commoditycontent: [],
+      imgg: "",
+      imgg2: "",
+      imgg3: "",
       shopitem: "null"
     };
   },
+  updated() {
+    this.imgg = `/api/` + this.shopitem[0].iimg.split(",")[0];
+    this.imgg2 = `/api/` + this.shopitem[0].iimg.split(",")[1];
+    if (this.shopitem[0].iimg.split(",").length > 2) {
+      this.imgg3 = `/api/` + this.shopitem[0].iimg.split(",")[2];
+    }
+  },
+
   mounted() {
     // 如果高度<search-wrapper，navbg就不顯示，>search-wrapper時顯示
     $(function() {
