@@ -1,6 +1,6 @@
 div.Registered {
   display: block;
-  color: #007552;
+  color: #333;
   background-color: #fbf8ef;
   width: calc(100% - 250px);
   float: right;
@@ -17,12 +17,12 @@ div.Registered {
     padding: 10% 5%;
   }
 
-  > .Registered_head {
+  >.Registered_head {
     color: #f7c845;
     font-size: 3rem;
   }
 
-  > .Registered_bottom {
+  >.Registered_bottom {
     display: block;
     text-align: center;
     padding-top: 100px;
@@ -34,7 +34,7 @@ div.Registered {
       padding-top: 10%;
     }
 
-    > .bottom_form {
+    >.bottom_form {
       display: inline-block;
       width: 490px;
       border: 1px solid #666;
@@ -43,7 +43,7 @@ div.Registered {
         width: 300px;
       }
 
-      > .Registered_left {
+      >.Registered_left {
         vertical-align: top;
         display: inline-block;
         background-color: #f7c845;
@@ -52,15 +52,16 @@ div.Registered {
         height: 600px;
         padding-top: 50px;
         line-height: 3.3;
+
         @include rwd(small) {
           width: 100px;
           height: 500px;
         }
 
-        > ul {
-          > li {
-            font-size: 1.8rem;
-            color: #666;
+        >ul {
+          >li {
+            font-size: 1.6rem;
+            color: #333;
 
             @include rwd(small) {
               font-size: 1.4rem;
@@ -70,7 +71,7 @@ div.Registered {
         }
       }
 
-      > .Registered_right {
+      >.Registered_right {
         display: inline-block;
         text-align: start;
 
@@ -91,6 +92,18 @@ div.Registered {
           height: 500px;
           width: 200px;
           line-height: 3;
+        }
+
+        >ul {
+          >li {
+            font-size: 1.6rem;
+            color: #666;
+
+            @include rwd(small) {
+              font-size: 1.4rem;
+              line-height: 3;
+            }
+          }
         }
 
         span {
@@ -117,7 +130,7 @@ div.Registered {
           }
         }
 
-        > .submit_button {
+        >.submit_button {
           margin-top: 20px;
           display: block;
           border-radius: 5px;
