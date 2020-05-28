@@ -25,7 +25,7 @@ try {
 
     //接收商品主頁點選商品的編號傳送該商品資訊至商品內頁呈現
     // $sql3 = "SELECT * from `item` where `no` = :itemNo";
-    $sql3 = "SELECT i.name iname, i.no, i.price, m.nick, m.name,m.img,i.description,i.infor,s.content, s.review_total / s.review_count average
+    $sql3 = "SELECT i.name iname, i.no, i.price,i.img iimg, m.nick, m.name,m.img,i.description,i.infor,s.content, s.review_total / s.review_count average
     FROM item i 
     join member m 
     join seller s
