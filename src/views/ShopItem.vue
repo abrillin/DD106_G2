@@ -57,7 +57,7 @@
         <div class="CommodityContenText">
           <div class="CommodityContenTextBox">
             <div class="CommodityTitle">
-              <h1>{{this.shopitem[0].name}}</h1>
+              <h1>{{this.shopitem[0].iname}}</h1>
             </div>
 
             <div class="CommodityNarrative">
@@ -118,44 +118,27 @@
 
             <div class="CommodityDetailsBox">
               <h2 class="CommodityDetailsTitle">商品敘述：</h2>
-              <div class="CommodityDetailsTextBox">
-                產地：
-                <span>台灣</span>
-              </div>
-              <div class="CommodityDetailsTextBox">
-                保存期限：
-                <span>6個月</span>
-              </div>
-              <div class="CommodityDetailsTextBox">
-                庫存數量：
-                <span>10</span>
-              </div>
+              <div class="CommodityDetailsTextBox">{{this.shopitem[0].infor}}</div>
             </div>
           </div>
         </div>
       </div>
       <div class="SellerInformationBox">
         <div class="SellerInformation">
-          <img
-            :src="Commoditycontent.img"
-            alt
-            height="60px"
-            width="60px"
-            style="border-radius: 100%;"
-          />
-          <p>{{Commoditycontent.name}}</p>
+          <img :src="shopitem[0].img" alt height="60px" width="60px" style="border-radius: 100%;" />
+          <p>{{this.shopitem[0].name}}</p>
           <!--  <div class="TrackBtn">＋追蹤</div> -->
         </div>
         <div class="SellerReviewsBox">
           <div class="SellerReviews">
-            <div class="Reviews">{{Commoditycontent.average}}</div>
+            <div class="Reviews">{{this.shopitem[0].average}}</div>
             <div class="StarBox">
               <img
                 src="../assets/icon/star.svg"
                 alt
                 width="20"
                 height="20"
-                v-if="Commoditycontent.average >= 1"
+                v-if="shopitem[0].average >= 1"
               />
               <img src="../assets/icon/star2.svg" alt width="20" height="20" v-else />
               <img
@@ -163,7 +146,7 @@
                 alt
                 width="20"
                 height="20"
-                v-if="Commoditycontent.average >= 2"
+                v-if="shopitem[0].average >= 2"
               />
               <img src="../assets/icon/star2.svg" alt width="20" height="20" v-else />
               <img
@@ -171,7 +154,7 @@
                 alt
                 width="20"
                 height="20"
-                v-if="Commoditycontent.average >= 3"
+                v-if="shopitem[0].average >= 3"
               />
               <img src="../assets/icon/star2.svg" alt width="20" height="20" v-else />
               <img
@@ -179,7 +162,7 @@
                 alt
                 width="20"
                 height="20"
-                v-if="Commoditycontent.average >= 4"
+                v-if="shopitem[0].average >= 4"
               />
               <img src="../assets/icon/star2.svg" alt width="20" height="20" v-else />
               <img
@@ -187,14 +170,14 @@
                 alt
                 width="20"
                 height="20"
-                v-if="Commoditycontent.average >= 5"
+                v-if="shopitem[0].average >= 5"
               />
               <img src="../assets/icon/star2.svg" alt width="20" height="20" v-else />
             </div>
           </div>
         </div>
         <div class="SellerInformationTextBox">
-          <p>{{Commoditycontent.content}}</p>
+          <p>{{this.shopitem[0].content}}</p>
         </div>
       </div>
     </section>
@@ -220,7 +203,7 @@
             </router-link>
             <div class="card_content">
               <div class="commodity_title">
-                <div class="commodity_title_text">{{i.name}}</div>
+                <div class="commodity_title_text">{{i.iname}}</div>
               </div>
 
               <!-- <div class="card_tag">
@@ -237,7 +220,7 @@
               </div>-->
 
               <div class="card_price">
-                <span class="money">{{i.no}}</span>
+                <span class="money">{{i.price}}</span>
               </div>
 
               <div class="buy">

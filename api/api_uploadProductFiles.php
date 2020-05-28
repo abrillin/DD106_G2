@@ -14,7 +14,7 @@ copy($from, $to);
 $count = count($_FILES['otherImg']['name']);
 for ($i = 0; $i < $count; $i++) {
     $from = $_FILES['otherImg']['tmp_name'][$i];
-    $to = "ProductPic/" . date("U") . $_FILES['otherImg']['name'][$i]; //   images/7.gif
+    $to = "ProductPic/159041242621myWpOjr.jpg,ProductPic/1590412426sitmap.png" . date("U") . $_FILES['otherImg']['name'][$i]; //   images/7.gif
     array_splice($array,$i+1,0,$to);
     copy($from, $to);
 }

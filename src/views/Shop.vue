@@ -175,7 +175,7 @@
               </router-link>
               <div class="card_content">
                 <div class="commodity_title">
-                  <div class="commodity_title_text">{{ i.date }}</div>
+                  <div class="commodity_title_text">{{ i.iname }}</div>
                 </div>
 
                 <div
@@ -231,7 +231,7 @@
             @mouseleave="HotCommodityItemsLeave"
           >
             <router-link to="/main/shopitem">
-              <div class="hot_commodity_text">{{ h.name }}</div>
+              <div class="hot_commodity_text">{{ h.iname }}</div>
             </router-link>
             <span>{{ index + 1 }}</span>
             <img class="hot_commodity_bg" :src="'/api/' + shopcommodity.pro[0].img.split(',')[0]" />
@@ -577,8 +577,12 @@ export default {
         // this.shopcommodity = "";
         this.shopcommodity = res.data;
         this.shopcommodityfilter = [];
-        for (let i = 1; i < 9; i++) {
+        for (let i = 0; i < this.shopcommodity["pro"].length; i++) {
           this.shopcommodityfilter.push(this.shopcommodity["pro"][i]);
+
+          if (i == 7) {
+            return;
+          }
         }
       });
     },
