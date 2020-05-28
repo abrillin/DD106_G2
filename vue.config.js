@@ -1,5 +1,5 @@
 module.exports = {
-  publicPath: "/demo-projects/DD106/DD106G2/",
+  // publicPath: "/demo-projects/DD106/DD106G2/",
   productionSourceMap: false,
   pages: {
     main: {
@@ -19,7 +19,7 @@ module.exports = {
     disableHostCheck: true,
     proxy: {
       "/api": {
-        target: "http://localhost:8888",
+        target: "http://localhost",
         ws: true,
         changeOrigin: true,
         autoRewrite: true,
