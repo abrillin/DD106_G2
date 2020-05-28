@@ -63,15 +63,15 @@
             </select>
             <textarea
               id="blogContent1"
-              maxlength="400"
-              placeholder="最大字數限制400"
+              maxlength="300"
+              placeholder="最大字數限制300"
               v-model="blog.content1"
               style="resize:none"
             ></textarea>
             <textarea
               id="blogContent2"
-              maxlength="400"
-              placeholder="最大字數限制400"
+              maxlength="300"
+              placeholder="最大字數限制300"
               v-model="blog.content2"
               style="resize:none"
             ></textarea>

@@ -295,10 +295,10 @@ export default {
     };
   },
   updated() {
-    this.imgg = `/api/` + this.shopitem[0].iimg.split(",")[0];
-    this.imgg2 = `/api/` + this.shopitem[0].iimg.split(",")[1];
+    this.imgg = this.img + this.shopitem[0].iimg.split(",")[0];
+    this.imgg2 = this.img + this.shopitem[0].iimg.split(",")[1];
     if (this.shopitem[0].iimg.split(",").length > 2) {
-      this.imgg3 = `/api/` + this.shopitem[0].iimg.split(",")[2];
+      this.imgg3 = this.img + this.shopitem[0].iimg.split(",")[2];
     }
   },
 
