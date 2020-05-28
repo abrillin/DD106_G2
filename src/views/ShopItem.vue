@@ -195,7 +195,7 @@
             <router-link to="/main/shopitem">
               <div class="card_img_box" @click="gotop">
                 <img
-                  :src="`./api/` + Commoditycontent.items[index].img.split(',')[0]"
+                  :src="`/api/` + Commoditycontent.items[index].img.split(',')[0]"
                   width="100%"
                   height="100%"
                 />
@@ -203,7 +203,7 @@
             </router-link>
             <div class="card_content">
               <div class="commodity_title">
-                <div class="commodity_title_text">{{i.iname}}</div>
+                <div class="commodity_title_text">{{i.name}}</div>
               </div>
 
               <!-- <div class="card_tag">
