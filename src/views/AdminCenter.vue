@@ -65,7 +65,7 @@ export default {
       this.$http.post(api).then(res => {
         const data = res.data;
 
-        if (data == 1) {
+        if (data.admin_no != "") {
           const api = this.path + "api_adminLogOut.php";
 
           this.$http.post(api);

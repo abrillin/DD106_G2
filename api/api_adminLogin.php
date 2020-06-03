@@ -29,12 +29,11 @@ try {
         $_SESSION["admin_name"] = $memRow["name"];
 
         //送出登入者的姓名資料
-        $member = array("no" => $_SESSION["admin_no"], "name" => $_SESSION["admin_name"]);
+        // $member = array("no" => $_SESSION["admin_no"], "name" => $_SESSION["admin_name"]);
 
         echo json_encode($memRow);
     }
 } catch (PDOException $e) {
-    //echo "error : " . $e->getMessage();
     $error = ["error" => $e->getMessage()];
     echo json_encode($error);
 }
