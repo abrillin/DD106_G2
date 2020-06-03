@@ -243,7 +243,7 @@ export default {
       this.status = false;
       this.userName = "";
       this.str = 0;
-      // localStorage.clear();
+      localStorage.clear();
 
       // a. 傳遞 logout 的值到父層
       this.$emit("logout", false);
