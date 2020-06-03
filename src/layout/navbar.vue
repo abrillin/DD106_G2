@@ -130,17 +130,21 @@ export default {
       if (data != "") {
         this.status = true;
         this.userName = data.name;
+
+        let storage = localStorage;
+        if (storage["itemNo"]) {
+          let itemArr = storage["itemNo"];
+
+          itemArr = itemArr.split(",");
+          this.str = itemArr.length - 1;
+        } else {
+          this.str = 0;
+        }
+      } else {
+        localStorage.clear();
+        this.str = 0;
       }
     });
-    let storage = localStorage;
-    if (storage["itemNo"]) {
-      let itemArr = storage["itemNo"];
-
-      itemArr = itemArr.split(",");
-      this.str = itemArr.length - 1;
-    } else {
-      this.str = 0;
-    }
   },
   mounted() {
     $("div.title").click(function(e) {
@@ -239,7 +243,7 @@ export default {
       this.status = false;
       this.userName = "";
       this.str = 0;
-      // localStorage.clear();
+      localStorage.clear();
 
       // a. 傳遞 logout 的值到父層
       this.$emit("logout", false);
