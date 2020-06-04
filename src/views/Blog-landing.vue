@@ -1074,6 +1074,7 @@
 </style>
 <script>
 import $ from 'jquery';
+import moment from "moment";
 export default {
   props: {blogInfProps: Array, c: String},
   data() {
@@ -1101,9 +1102,7 @@ export default {
     // this.previousValue = this.blogInfProps;
     this.msgobj.content = this.blogInfProps.content;
     this.msgobj.blogNo = this.blogInfProps.no;
-    var nStartTime = new Date(Date.now());
-    let today = `${nStartTime.getFullYear()}-${nStartTime.getMonth() +
-      1}-${nStartTime.getDate()}`;
+    let today = moment().format("YYYY-MM-DD");
     this.msgobj.date = today;
     // console.log(this.previousValue);
 
@@ -1231,9 +1230,7 @@ export default {
         .setAttribute('style', 'display: none;');
     },
     sendReport() {
-      var nStartTime = new Date(Date.now());
-      let today = `${nStartTime.getFullYear()}-${nStartTime.getMonth() +
-        1}-${nStartTime.getDate()}`;
+      let today = moment().format("YYYY-MM-DD");
       this.beReported.date = today;
       this.beReported.reason = null;
       this.beReported.reason = this.reportRadio;
