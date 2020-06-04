@@ -1820,6 +1820,7 @@
 
 <script>
 import $ from "jquery";
+import moment from "moment";
 export default {
   data() {
     return {
@@ -2119,9 +2120,7 @@ export default {
     },
     comment() {
       let api = this.path + "api_send_blog_msg_top.php";
-      var nStartTime = new Date(Date.now());
-      let today = `${nStartTime.getFullYear()}-${nStartTime.getMonth() +
-        1}-${nStartTime.getDate()}`;
+      let today = moment().format("YYYY-MM-DD");
       this.sendMsgArr = [];
       this.sendMsgArr.push(this.topMsgText);
       this.sendMsgArr.push(this.blogArrFilterTop[0].no);

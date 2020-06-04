@@ -82,6 +82,7 @@
   </div>
 </template>
 <script>
+import moment from "moment";
 export default {
   data() {
     return {
@@ -148,11 +149,8 @@ export default {
       reader.readAsDataURL(img.files[0]);
     },
     changeOtherPic: function(e) {
-      for (
-        let k = 0;
-        k < document.getElementsByClassName("otherPic").length;
-        k++
-      ) {
+      const length = document.getElementsByClassName("otherPic").length;
+      for (let k = 0; k < length; k++) {
         document.getElementsByClassName("otherPic")[k].src = "";
       }
       const img = e.target;
@@ -171,15 +169,8 @@ export default {
         }
       }
     },
-    itemUpdate: function() {
-      let month = new Date().getMonth() + 1;
-      if (month < 10) {
-        month = "0" + month;
-      }
-      this.item.date =
-        new Date().getFullYear().toString() +
-        month.toString() +
-        new Date().getDate().toString();
+    itemUpdate() {
+      this.item.date = moment().format("YYYYMMDD");
 
       this.formData.append(
         "mainImg",
