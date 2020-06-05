@@ -265,8 +265,8 @@ $color5: #ffa978;
       width: 700px;
     }
     @include rwd(small) {
-      width: 550px;
-      height: 400px;
+      width: 100%;
+      height: 700px;
     }
     @include rwd(mobile) {
       display: none;
@@ -301,10 +301,6 @@ $color5: #ffa978;
         }
         @include rwd(medium) {
           margin: 0 101px;
-        }
-        @include rwd(small) {
-          margin: 13.5px;
-          width: 500px;
         }
         .CommodityCarousel{
           margin: 0;

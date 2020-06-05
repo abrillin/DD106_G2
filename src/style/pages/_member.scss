@@ -104,8 +104,6 @@ div.membercontain {
             font-size: 1.4rem;
           }
         }
-
-
       }
     }
 
@@ -148,6 +146,9 @@ div.membercontain {
           .goto_farmer {
             width: 100px;
             font-weight: 800;
+            @include rwd(medium) {
+              font-size: 1.4rem;
+            }
             button {
               height: 50px;
             }

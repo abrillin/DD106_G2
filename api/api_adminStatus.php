@@ -10,7 +10,5 @@ if (isset($_SESSION["admin_no"])) {
     );
     echo json_encode($member);
 } else {
-    echo "";
+    echo "0";
 }
-
-?>

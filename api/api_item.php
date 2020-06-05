@@ -24,7 +24,8 @@ try {
     $itemRows = $item->fetchAll(PDO::FETCH_ASSOC);
 
     foreach ($itemRows as $i => $itemRow) {
-        $sql = "select * from `item_tag` t join `itemtag_des` d on t.tag_no = d.no where t.item_no={$itemRow["no"]}";
+        $sql = "select * from `item_tag` t join `itemtag_des` d on t.tag_no = d.no
+        where t.item_no={$itemRow["no"]}";
         $tag = $pdo->query($sql);
         $tagRows = $tag->fetchAll(PDO::FETCH_ASSOC);
         $itemRows[$i]["tags"] = $tagRows;

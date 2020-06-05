@@ -28,17 +28,28 @@
           <p>{{ gender }}</p>
           <p>{{ member.phone }}</p>
           <p>{{ member.email }}</p>
-          <input type="text" v-model="member.address" maxlength="20" placeholder="字數限制20" />
+          <input
+            type="text"
+            v-model="member.address"
+            maxlength="20"
+            placeholder="字數限制20"
+          />
 
-          <textarea name="farmIntro" v-model="member.content" maxlength="100" placeholder="字數限制100"></textarea>
-          <button class="submit_button" @click="$router.go(-1)">
-            <div class="correct">
-              <p>取消</p>
-            </div>
-          </button>
+          <textarea
+            name="farmIntro"
+            v-model="member.content"
+            maxlength="100"
+            placeholder="字數限制100"
+          ></textarea>
+
           <button class="submit_button" @click="update">
             <div class="correct">
               <p>儲存</p>
+            </div>
+          </button>
+          <button class="submit_button" @click="$router.go(-1)">
+            <div class="correct">
+              <p>取消</p>
             </div>
           </button>
         </div>
@@ -64,13 +75,13 @@ export default {
         content: "",
         reviewtotal: "",
         reviewcount: "",
-        memberno: ""
-      }
+        memberno: "",
+      },
     };
   },
   created() {
     const api = this.path + "api_farmStatus.php";
-    this.$http.post(api).then(res => {
+    this.$http.post(api).then((res) => {
       const data = res.data;
       if (data != "") {
         this.member = {
@@ -86,7 +97,7 @@ export default {
           content: data.content,
           reviewtotal: data.reviewtotal,
           reviewcount: data.reviewcount,
-          memberno: data.memberno
+          memberno: data.memberno,
         };
         if (data.img == "") {
           this.member.img = require("@/assets/waterpear.png");
@@ -117,7 +128,7 @@ export default {
 
       this.$http
         .post(api, JSON.stringify(this.member))
-        .then(res => {
+        .then((res) => {
           const data = res.data;
 
           if (data == 0) {
@@ -128,14 +139,14 @@ export default {
           }
         })
         // eslint-disable-next-line no-console
-        .catch(err => console.log(err));
+        .catch((err) => console.log(err));
     },
     updateSession: function() {
       const api = this.path + "api_farmUpdateSession.php";
 
       this.$http
         .post(api, JSON.stringify(this.member))
-        .then(res => {
+        .then((res) => {
           const data = res.data;
 
           if (data == 1) {
@@ -143,8 +154,8 @@ export default {
           }
         })
         // eslint-disable-next-line no-console
-        .catch(err => console.log(err));
-    }
-  }
+        .catch((err) => console.log(err));
+    },
+  },
 };
 </script>

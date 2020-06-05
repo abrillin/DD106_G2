@@ -13,8 +13,8 @@ try {
     $item ->bindValue(":no", $itemInfo->no);
     $item ->bindValue(":name", $itemInfo->name);
     $item ->bindValue(":price", $itemInfo->price);
-    $item ->bindValue(":infor", $itemInfo->infor);
     $item ->bindValue(":description", $itemInfo->description);
+    $item ->bindValue(":infor", $itemInfo->infor);
     $item ->bindValue(":img", $itemInfo->img);
     $item ->bindValue(":date", $itemInfo->date);
     $item ->bindValue(":sellerno", $itemInfo->sellerno);

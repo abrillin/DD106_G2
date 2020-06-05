@@ -47,17 +47,17 @@
       <div class="CommodityContent">
         <div class="CommodityContentImgBox">
           <div class="CommodityContentImgMain">
-            <img src="../assets/shop/ia_300000013.jpg" alt class="CommodityContentImg" />
+            <img :src="this.imgg" alt class="CommodityContentImg" />
           </div>
           <div class="CommodityContentImgChangeBox">
-            <img src="../assets/ia_300000017.jpg" alt class="CommodityContentChangeImg" />
-            <img src="../assets/ia_300000011.jpg" alt class="CommodityContentChangeImg" />
+            <img :src="this.imgg2" alt class="CommodityContentChangeImg" />
+            <img :src="this.imgg3" alt class="CommodityContentChangeImg" />
           </div>
         </div>
         <div class="CommodityContenText">
           <div class="CommodityContenTextBox">
             <div class="CommodityTitle">
-              <h1>{{this.shopitem[0].name}}</h1>
+              <h1>{{this.shopitem[0].iname}}</h1>
             </div>
 
             <div class="CommodityNarrative">
@@ -118,44 +118,27 @@
 
             <div class="CommodityDetailsBox">
               <h2 class="CommodityDetailsTitle">商品敘述：</h2>
-              <div class="CommodityDetailsTextBox">
-                產地：
-                <span>台灣</span>
-              </div>
-              <div class="CommodityDetailsTextBox">
-                保存期限：
-                <span>6個月</span>
-              </div>
-              <div class="CommodityDetailsTextBox">
-                庫存數量：
-                <span>10</span>
-              </div>
+              <div class="CommodityDetailsTextBox">{{this.shopitem[0].infor}}</div>
             </div>
           </div>
         </div>
       </div>
       <div class="SellerInformationBox">
         <div class="SellerInformation">
-          <img
-            :src="Commoditycontent.img"
-            alt
-            height="60px"
-            width="60px"
-            style="border-radius: 100%;"
-          />
-          <p>{{Commoditycontent.name}}</p>
+          <img :src="shopitem[0].img" alt height="60px" width="60px" style="border-radius: 100%;" />
+          <p>{{this.shopitem[0].name}}</p>
           <!--  <div class="TrackBtn">＋追蹤</div> -->
         </div>
         <div class="SellerReviewsBox">
           <div class="SellerReviews">
-            <div class="Reviews">{{Commoditycontent.average}}</div>
+            <div class="Reviews">{{this.shopitem[0].average}}</div>
             <div class="StarBox">
               <img
                 src="../assets/icon/star.svg"
                 alt
                 width="20"
                 height="20"
-                v-if="Commoditycontent.average >= 1"
+                v-if="shopitem[0].average >= 1"
               />
               <img src="../assets/icon/star2.svg" alt width="20" height="20" v-else />
               <img
@@ -163,7 +146,7 @@
                 alt
                 width="20"
                 height="20"
-                v-if="Commoditycontent.average >= 2"
+                v-if="shopitem[0].average >= 2"
               />
               <img src="../assets/icon/star2.svg" alt width="20" height="20" v-else />
               <img
@@ -171,7 +154,7 @@
                 alt
                 width="20"
                 height="20"
-                v-if="Commoditycontent.average >= 3"
+                v-if="shopitem[0].average >= 3"
               />
               <img src="../assets/icon/star2.svg" alt width="20" height="20" v-else />
               <img
@@ -179,7 +162,7 @@
                 alt
                 width="20"
                 height="20"
-                v-if="Commoditycontent.average >= 4"
+                v-if="shopitem[0].average >= 4"
               />
               <img src="../assets/icon/star2.svg" alt width="20" height="20" v-else />
               <img
@@ -187,14 +170,14 @@
                 alt
                 width="20"
                 height="20"
-                v-if="Commoditycontent.average >= 5"
+                v-if="shopitem[0].average >= 5"
               />
               <img src="../assets/icon/star2.svg" alt width="20" height="20" v-else />
             </div>
           </div>
         </div>
         <div class="SellerInformationTextBox">
-          <p>{{Commoditycontent.content}}</p>
+          <p>{{this.shopitem[0].content}}</p>
         </div>
       </div>
     </section>
@@ -223,21 +206,8 @@
                 <div class="commodity_title_text">{{i.name}}</div>
               </div>
 
-              <div class="card_tag">
-                <img src="../assets/icon/tag.svg" alt width="16px" height="16px" class="tag_icon" />
-                <span class="card_tag_text">{{i.tag_no}}</span>
-              </div>
-              <!--  <div class="card_tag" v-for="(t, dex) in shopseller[index].tags" :key="dex">
-                <img src="../assets/icon/tag.svg" alt width="16px" height="16px" class="tag_icon" />
-                <span class="card_tag_text">
-                  {{
-                  shopseller[index].tags[dex].name
-                  }}
-                </span>
-              </div>-->
-
               <div class="card_price">
-                <span class="money">{{i.no}}</span>
+                <span class="money">{{i.price}}</span>
               </div>
 
               <div class="buy">
@@ -288,7 +258,7 @@
   height: 60px;
   width: 100%;
   z-index: 998;
-  background-color: rgba(251, 248, 239, 0.925);
+  background-color: rgba(251, 248, 239, 0.938);
   transition: ease 0.3s;
 }
 </style>
@@ -318,9 +288,20 @@ export default {
   data() {
     return {
       Commoditycontent: [],
+      imgg: "",
+      imgg2: "",
+      imgg3: "",
       shopitem: "null"
     };
   },
+  updated() {
+    this.imgg = this.img + this.shopitem[0].iimg.split(",")[0];
+    this.imgg2 = this.img + this.shopitem[0].iimg.split(",")[1];
+    if (this.shopitem[0].iimg.split(",").length > 2) {
+      this.imgg3 = this.img + this.shopitem[0].iimg.split(",")[2];
+    }
+  },
+
   mounted() {
     // 如果高度<search-wrapper，navbg就不顯示，>search-wrapper時顯示
     $(function() {

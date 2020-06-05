@@ -257,7 +257,7 @@ export default {
 
       const api = this.path + "api_adminEncyUpdate.php";
 
-      console.log(this.encyEdit);
+      // console.log(this.encyEdit);
 
       this.$http.post(api, JSON.stringify(this.encyEdit)).then(res => {
         const data = res.data;

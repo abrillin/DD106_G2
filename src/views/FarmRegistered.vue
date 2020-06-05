@@ -22,7 +22,16 @@
           </ul>
         </div>
         <div class="Registered_right">
-          <span>
+          <ul>
+            <li>{{ member.no }}</li>
+            <li>{{ member.acc }}</li>
+            <li>{{ member.name }}</li>
+            <li>{{ member.nick }}</li>
+            <li>{{ member.gender }}</li>
+            <li>{{ member.phone }}</li>
+            <li>{{ member.email }}</li>
+          </ul>
+          <!-- <span>
             <p>{{ member.no }}</p>
           </span>
           <span>
@@ -42,7 +51,7 @@
           </span>
           <span>
             <p>{{ member.email }}</p>
-          </span>
+          </span>-->
           <!-- <label for>
             <input type="radio" />男
           </label>

@@ -43,12 +43,12 @@
                 嚴選台灣出產高甜度愛文芒果，為夏季芒果推薦 “TOP 1”
                 因果皮紅潤且果肉金黃，又有“太陽果”之稱。
                 <br />
-                <router-link class="product-details" to="/main/shopitem">商品詳情...</router-link>
+                <!-- <router-link class="product-details" to="/main/shopitem">商品詳情...</router-link> -->
               </p>
-              <div class="item_buy-box">
+              <!-- <div class="item_buy-box">
                 <a href="#" class="item_btn" @mouseenter="btnFun">加入購物籃</a>
                 <a href="#" class="item_btn buyNow">直接購買</a>
-              </div>
+              </div>-->
             </div>
           </div>
         </div>
@@ -78,7 +78,7 @@
               />
             </button>
           </div>
-          <div class="hot-words">
+          <!-- <div class="hot-words">
             <div class="hot-words_list">
               <a class="hot-words_item" href>週末親子旅遊</a>
               <a class="hot-words_item" href>桃園山區採果</a>
@@ -86,7 +86,7 @@
               <a class="hot-words_item" href>愛文芒果</a>
               <a class="hot-words_item" href>大湖草莓</a>
             </div>
-          </div>
+          </div>-->
         </div>
       </div>
     </div>
@@ -175,7 +175,7 @@
               </router-link>
               <div class="card_content">
                 <div class="commodity_title">
-                  <div class="commodity_title_text">{{ i.date }}</div>
+                  <div class="commodity_title_text">{{ i.name }}</div>
                 </div>
 
                 <div
@@ -234,7 +234,7 @@
               <div class="hot_commodity_text">{{ h.name }}</div>
             </router-link>
             <span>{{ index + 1 }}</span>
-            <img class="hot_commodity_bg" :src="'/api/' + shopcommodity.pro[0].img.split(',')[0]" />
+            <img class="hot_commodity_bg" :src="'/api/' + shopcommodity.pro[index].img.split(',')[0]" />
           </div>
         </div>
         <div class="hot_commodity_filter-status">
@@ -347,7 +347,7 @@
   height: 60px;
   width: 100%;
   z-index: 998;
-  background-color: rgba(251, 248, 239, 0.89);
+  background-color: rgba(251, 248, 239, 0.938);
   transition: ease 0.3s;
 }
 </style>
@@ -407,19 +407,19 @@ export default {
   updated() {
     // console.log(this.shopcommodityfilter[0].img.split(",")[0]);
     // console.log(this.shopcommodity);
-    // for (let i = 0; i < SHOP_INDICATOR_SIZE; i++) {
-    //   document
-    //     .getElementsByClassName("page-item")
-    //     [i].setAttribute("class", "page-item");
-    //   if (
-    //     document.getElementsByClassName("page-item")[i].textContent ==
-    //     this.currentPage + 1
-    //   ) {
-    //     document
-    //       .getElementsByClassName("page-item")
-    //       [i].classList.add("currentPagecolor");
-    //   }
-    // }
+    for (let i = 0; i < SHOP_INDICATOR_SIZE; i++) {
+      document
+        .getElementsByClassName("page-item")
+        [i].setAttribute("class", "page-item");
+      if (
+        document.getElementsByClassName("page-item")[i].textContent ==
+        this.currentPage + 1
+      ) {
+        document
+          .getElementsByClassName("page-item")
+          [i].classList.add("currentPagecolor");
+      }
+    }
   },
 
   methods: {
@@ -577,8 +577,12 @@ export default {
         // this.shopcommodity = "";
         this.shopcommodity = res.data;
         this.shopcommodityfilter = [];
-        for (let i = 1; i < 9; i++) {
+        for (let i = 0; i < this.shopcommodity["pro"].length; i++) {
           this.shopcommodityfilter.push(this.shopcommodity["pro"][i]);
+
+          if (i == 7) {
+            return;
+          }
         }
       });
     },
